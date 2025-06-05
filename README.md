@@ -1,6 +1,6 @@
-# MyBlob
+# ChiYu Code Journey
 
-MyBlob 是一個使用 [Hugo](https://gohugo.io/) 構建的靜態部落格，目標是提供簡單且易於維護的寫作與分享平台。
+ChiYu Code Journey 是一個使用 [Hugo](https://gohugo.io/) 構建的靜態部落格，目標是提供簡單且易於維護的寫作與分享平台。
 
 ## 特色
 
@@ -84,6 +84,7 @@ jobs:
 1. Fork 本倉庫並建立分支進行開發。
 2. 完成後提交 Pull Request，描述所做修改。
 3. 請確保程式碼格式整潔並通過下方測試指令。
+4. 更多程式碼規範請參考 [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ## 測試指令
 
