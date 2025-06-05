@@ -2,16 +2,19 @@
 <h1>歡迎來到 Blob</h1>
 <h2>導覽列</h2>
 {{ partial "navbar.html" . }}
-<h2>文章列表</h2>
+<h2>近期文章</h2>
 <ul>
-{{ range .Site.RegularPages }}
-<li><a href="{{ .RelPermalink }}">{{ .Title }}</a> - {{ .Section }}</li>
+{{ range first 5 (sort .Site.RegularPages "Date" "desc") }}
+  <li>
+    <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+    <span>{{ .Date.Format "2006-01-02" }}</span>
+  </li>
 {{ end }}
 </ul>
 <h2>文章類別</h2>
 <ul>
 {{ range $name, $taxonomy := .Site.Taxonomies.tags }}
-<li><a href="{{ $taxonomy.Page.RelPermalink }}">{{ $name }}</a></li>
+  <li><a href="{{ $taxonomy.Page.RelPermalink }}">{{ $name }}</a></li>
 {{ end }}
 </ul>
 {{ end }}
