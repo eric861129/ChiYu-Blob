@@ -2,8 +2,4 @@
 public/
 resources/
 .hugo_build.lock
-
-# .NET build artifacts
-tools/PostManager/bin/
-tools/PostManager/obj/
 tmp/

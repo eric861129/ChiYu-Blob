@@ -1,6 +1,6 @@
-# MyBlob
+# ChiYu Code Journey
 
-MyBlob 是一個使用 [Hugo](https://gohugo.io/) 構建的靜態部落格，目標是提供簡單且易於維護的寫作與分享平台。
+ChiYu Code Journey 是一個使用 [Hugo](https://gohugo.io/) 構建的靜態部落格，目標是提供簡單且易於維護的寫作與分享平台。
 
 ## 特色
 
