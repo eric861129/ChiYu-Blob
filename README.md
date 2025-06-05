@@ -16,6 +16,15 @@ MyBlob 是一個使用 [Hugo](https://gohugo.io/) 構建的靜態部落格，目
    ```
    或前往 [官方文件](https://gohugo.io/getting-started/installing/) 取得其他系統的安裝方式。
 
+## 安裝 htmltest (選用)
+
+如果想在本地端檢查連結，可安裝 [htmltest](https://github.com/wjdp/htmltest)：
+
+```bash
+go install github.com/wjdp/htmltest@latest
+export PATH="$PATH:$(go env GOPATH)/bin"
+```
+
 ## 建立與編輯文章
 
 1. 於專案根目錄執行以下指令產生新文章：
@@ -53,7 +62,11 @@ jobs:
       - uses: peaceiris/actions-hugo@v2
         with:
           hugo-version: '0.123.7'
-      - run: hugo --minify
+      - run: hugo --minify --gc
+      - name: Check links
+        uses: wjdp/htmltest-action@master
+        with:
+          path: ./public
       - uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -76,9 +89,10 @@ jobs:
 
 在根目錄執行：
 ```bash
-hugo --minify
+hugo --minify --gc
+htmltest ./public
 ```
-若命令成功完成，表示產生的靜態檔案位於 `public/` 目錄，可進一步部署。
+若兩個命令皆成功完成，表示產生的靜態檔案位於 `public/` 目錄且連結皆有效，可進一步部署。
 
 ## License
 
