@@ -32,6 +32,15 @@ export PATH="$PATH:$(go env GOPATH)/bin"
    hugo new posts/my-post.md
    ```
 2. 於 `content/posts/` 目錄下找到產生的檔案並使用喜愛的編輯器撰寫內容。
+### 使用 PostManager 產生文章
+
+可使用內建的 .NET 工具快速建立文章檔案：
+```bash
+cd tools/PostManager
+dotnet run -- new "文章標題"
+```
+產生的檔案會位於 `content/posts/` 目錄。
+
 
 ## 本地端啟動
 
