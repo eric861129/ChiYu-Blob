@@ -34,18 +34,16 @@ hugo server -D
 
 ## GitHub Pages 自動部署
 
-本專案可透過 GitHub Actions 在每次推送後自動部署至 GitHub Pages。範例 workflow 內容如下：
+本專案可透過 GitHub Actions 在每次推送到 `main` 分支後，自動將產生的檔案部署至 `gh-pages` 分支。範例 workflow 如下：
 ```yaml
 name: Deploy to GitHub Pages
 on:
   push:
     branches: [ main ]
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -56,20 +54,17 @@ jobs:
         with:
           hugo-version: '0.123.7'
       - run: hugo --minify
-      - uses: actions/upload-pages-artifact@v2
+      - uses: peaceiris/actions-gh-pages@v3
         with:
-          path: ./public
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - uses: actions/deploy-pages@v2
-        id: deployment
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+          publish_branch: gh-pages
 ```
-將此檔案存成 `.github/workflows/gh-pages.yml` 即可啟用。
+將此檔案存成 `.github/workflows/gh-pages.yml` 後，並在 GitHub Pages 設定中將分支設為 `gh-pages`，即可啟用自動部署。
+
+### 需要的 Secret
+
+此 workflow 預設使用 GitHub 提供的 `GITHUB_TOKEN` 推送內容，因此不需額外設定憑證。若存取權不足，可建立具 `repo` 權限的 Personal Access Token，並在倉庫的 Secrets 中設定 `GH_PAGES_TOKEN`，再於 workflow 內以 `github_token: ${{ secrets.GH_PAGES_TOKEN }}` 使用。
 
 ## 貢獻方式
 
