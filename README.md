@@ -15,6 +15,22 @@ ChiYu Code Journey 是一個使用 [Hugo](https://gohugo.io/) 構建的靜態部
    sudo apt-get install hugo
    ```
    或前往 [官方文件](https://gohugo.io/getting-started/installing/) 取得其他系統的安裝方式。
+### macOS
+在 macOS 環境可透過 Homebrew 安裝：
+```bash
+brew install hugo
+```
+若需要檢查連結，可安裝 htmltest：
+```bash
+brew install htmltest
+# 或使用 go install
+go install github.com/wjdp/htmltest@latest
+export PATH="$PATH:$(go env GOPATH)/bin"
+```
+若要使用 PostManager 工具，請安裝 .NET SDK：
+```bash
+brew install --cask dotnet-sdk
+```
 
 ## 安裝 htmltest (選用)
 
