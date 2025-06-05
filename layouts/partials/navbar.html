@@ -1,0 +1,8 @@
+<nav>
+  <ul>
+    <li><a href="/">首頁</a></li>
+    {{ range .Site.Sections }}
+    <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+    {{ end }}
+  </ul>
+</nav>
