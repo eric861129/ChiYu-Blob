@@ -1,4 +1,4 @@
-CheckExternal: false
+CheckExternal: true
 IgnoreInternalEmptyHash: true
 IgnoreEmptyHref: true
 IgnoreURLs:

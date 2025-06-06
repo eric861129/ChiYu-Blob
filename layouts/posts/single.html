@@ -16,6 +16,28 @@
           <a href="{{ .NextInSection.Permalink }}">{{ .NextInSection.Title }} &raquo;</a>
         {{ end }}
       </div>
+
+      <div class="post-taxonomies">
+        {{- with .Params.categories }}
+        <div class="post-categories">
+          <strong>分類:</strong>
+          {{ range . }}
+            <a href="{{ "categories/" | relURL }}{{ . | urlize }}/">{{ . }}</a>
+          {{ end }}
+        </div>
+        {{- end }}
+
+        {{- with .Params.tags }}
+        <div class="post-tags">
+          <strong>標籤:</strong>
+          {{ range . }}
+            <a href="{{ "tags/" | relURL }}{{ . | urlize }}/">#{{ . }}</a>
+          {{ end }}
+        </div>
+        {{- end }}
+      </div>
+
+      {{ partial "related.html" . }}
     </section>
     <br>
     {{ if and (eq .Kind "page") (not .Draft) }}
