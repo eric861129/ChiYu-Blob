@@ -66,21 +66,25 @@ div.highlight:hover .copy-code-button {
 }
 
 /* 預設（淺色）主題 */
+/* --------- 主題顏色變數 --------- */
 :root {
-  --bg-color: #ffffff;
-  --text-color: #333333;
-  --link-color: #007bff;
-  --header-bg: #f8f9fa;
-  --border-color: #dee2e6;
+  --bg-color: #f8fafc;        /* 背景顏色 */
+  --text-color: #0f172a;      /* 主要文字顏色 */
+  --text-secondary: #64748b;  /* 次要文字顏色 */
+  --border-color: #e2e8f0;    /* 邊框顏色 */
+  --link-color: #2563eb;      /* 連結顏色 */
+  --card-bg: #ffffff;         /* 卡片背景 */
 }
 
 /* 深色主題顏色 */
+/* 深色主題顏色 */
 [data-theme='dark'] {
-  --bg-color: #1a1a1a;
-  --text-color: #e0e0e0;
-  --link-color: #64b5f6;
-  --header-bg: #1e1e1e;
-  --border-color: #424242;
+  --bg-color: #0f172a;
+  --text-color: #f8fafc;
+  --text-secondary: #94a3b8;
+  --border-color: #334155;
+  --link-color: #60a5fa;
+  --card-bg: #1e293b;
 }
 
 /* 套用主題顏色 */
@@ -93,6 +97,41 @@ body {
 a {
   color: var(--link-color);
 }
+
+/* 深淺主題切換按鈕 */
+#theme-toggle {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 9999px; /* 全圓角 */
+  position: relative;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  transition: background-color 0.2s ease;
+  color: var(--text-secondary);
+}
+
+#theme-toggle:hover {
+  background-color: var(--border-color);
+}
+
+#theme-toggle svg {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+html[data-theme='light'] .moon-icon { transform: scale(0); opacity: 0; }
+html[data-theme='light'] .sun-icon { transform: scale(1); opacity: 1; }
+html[data-theme='dark'] .sun-icon { transform: scale(0); opacity: 0; }
+html[data-theme='dark'] .moon-icon { transform: rotate(360deg) scale(1); opacity: 1; }
 
 
 /* ------------------ 文章目錄（側邊欄）樣式 ------------------ */
