@@ -1,0 +1,15 @@
+{{ if gt .Paginator.TotalPages 1 }}
+<nav class="mt-8 flex justify-center" aria-label="Pagination">
+    <ul class="inline-flex items-center space-x-2">
+        {{ with .Paginator.Prev }}
+        <li><a href="{{ .URL }}" class="px-3 py-1 border rounded" style="border-color: var(--border-color);">上一頁</a></li>
+        {{ end }}
+        {{ range .Paginator.Pagers }}
+        <li><a href="{{ .URL }}" class="px-3 py-1 border rounded {{ if eq . .Paginator }}font-bold{{ end }}" style="border-color: var(--border-color);">{{ .PageNumber }}</a></li>
+        {{ end }}
+        {{ with .Paginator.Next }}
+        <li><a href="{{ .URL }}" class="px-3 py-1 border rounded" style="border-color: var(--border-color);">下一頁</a></li>
+        {{ end }}
+    </ul>
+</nav>
+{{ end }}
