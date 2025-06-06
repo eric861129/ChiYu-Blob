@@ -63,7 +63,8 @@ paginate = 5
     weight = 20
   [[menu.main]]
     name = '關於'
-    pageRef = '/about'
+    # 導向關於頁面，路徑需以斜線結尾避免 htmltest 連結錯誤
+    pageRef = '/about/'
     weight = 30
 
 [markup]
