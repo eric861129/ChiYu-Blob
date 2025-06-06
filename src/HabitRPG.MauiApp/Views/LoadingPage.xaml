@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:HabitRPG.MauiApp.ViewModels"
+             x:Class="HabitRPG.MauiApp.Views.LoadingPage"
+             x:DataType="vm:LoadingPageViewModel"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="#222222">
+    <Grid>
+        <Image Source="pixel_space_background.png" Aspect="AspectFill" Opacity="0.8" />
+
+        <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="40">
+            <Image x:Name="AppLogo"
+                   Source="app_logo_pixel.png"
+                   HeightRequest="150"
+                   Aspect="AspectFit" />
+
+            <Frame BackgroundColor="#1C1C1C"
+                   BorderColor="#FFFFFF"
+                   Padding="15"
+                   CornerRadius="0"
+                   WidthRequest="300">
+                <VerticalStackLayout Spacing="10">
+                    <Grid ColumnDefinitions="Auto, *, Auto">
+                        <Label Grid.Column="0" Text="HP" TextColor="#FF5555" FontFamily="PressStart2P" VerticalOptions="Center" />
+                        <ProgressBar Grid.Column="1" Progress="0.25" ProgressColor="#FF5555" />
+                        <Label Grid.Column="2" Text="25/100" TextColor="#EEEEEE" FontFamily="PressStart2P" FontSize="10" VerticalOptions="Center" />
+                    </Grid>
+                    <Grid ColumnDefinitions="Auto, *, Auto">
+                        <Label Grid.Column="0" Text="MP" TextColor="#5599FF" FontFamily="PressStart2P" VerticalOptions="Center" />
+                        <ProgressBar Grid.Column="1" Progress="0.36" ProgressColor="#5599FF" />
+                        <Label Grid.Column="2" Text="18/50" TextColor="#EEEEEE" FontFamily="PressStart2P" FontSize="10" VerticalOptions="Center" />
+                    </Grid>
+                    <Grid ColumnDefinitions="Auto, *, Auto">
+                        <Label Grid.Column="0" Text="EXP" TextColor="#FFEE55" FontFamily="PressStart2P" VerticalOptions="Center" />
+                        <ProgressBar x:Name="LoadingProgressBar" Grid.Column="1" Progress="0" ProgressColor="#FFEE55" />
+                        <Label x:Name="LoadingProgressLabel" Grid.Column="2" Text="0%" TextColor="#EEEEEE" FontFamily="PressStart2P" FontSize="10" VerticalOptions="Center" />
+                    </Grid>
+                </VerticalStackLayout>
+            </Frame>
+
+            <Label x:Name="PressStartLabel"
+                   Text="&lt; PRESS START &gt;"
+                   TextColor="#EEEEEE"
+                   FontFamily="PressStart2P"
+                   FontSize="18"
+                   HorizontalOptions="Center"
+                   Opacity="0" />
+        </VerticalStackLayout>
+
+        <Label Text="Ver 2.0"
+               TextColor="#AAAAAA"
+               FontSize="10"
+               FontFamily="PressStart2P"
+               HorizontalOptions="End"
+               VerticalOptions="End"
+               Padding="10" />
+
+        <Grid.GestureRecognizers>
+            <TapGestureRecognizer Tapped="OnScreenTapped" />
+        </Grid.GestureRecognizers>
+    </Grid>
+</ContentPage>
