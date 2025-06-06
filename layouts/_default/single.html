@@ -1,0 +1,39 @@
+{{ define "main" }}
+<div class="flex justify-center gap-8 lg:gap-12 py-8 sm:py-12">
+
+    <main class="w-full max-w-4xl min-w-0">
+        <article class="prose">
+            <header class="mb-8">
+                <h1 class="text-3xl sm:text-5xl font-bold tracking-tight mb-4 !mt-0">{{ .Title }}</h1>
+                <p class="text-base" style="color: var(--text-secondary);">
+                    發布於 {{ .Date.Format "2006年1月2日" }}
+                    {{ with .Params.tags }}
+                    &middot; 
+                    <span class="inline-flex space-x-2">
+                        {{ range . }}
+                        <span class="text-xs font-semibold bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full dark:bg-blue-900 dark:text-blue-200">{{ . }}</span>
+                        {{ end }}
+                    </span>
+                    {{ end }}
+                </p>
+            </header>
+            
+            {{ .Content }}
+
+        </article>
+
+        <div id="giscus-container" class="mt-16 pt-8 border-t not-prose" style="border-color: var(--border-color);">
+            </div>
+    </main>
+    
+    {{ if and (gt .WordCount 400) .TableOfContents }}
+    <aside class="post-toc-sidebar">
+        <div class="toc-sticky-container">
+            <h3 class="toc-title">本文目錄</h3>
+            {{ .TableOfContents }}
+        </div>
+    </aside>
+    {{ end }}
+    
+</div>
+{{ end }}
