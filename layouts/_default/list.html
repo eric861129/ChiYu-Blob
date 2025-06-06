@@ -2,10 +2,10 @@
 <main>
     <section class="mb-12 sm:mb-16">
         <h1 class="text-3xl sm:text-5xl font-bold tracking-tight mb-4">
-            {{ if eq .Kind "section" }}
+            {{ if .IsSection }}
                 {{ .Title }}
             {{ else if eq .Kind "taxonomy" }}
-                {{ .Data.Singular }}: {{ .Title }}
+                {{ .Data.Singular | i18n }}: {{ .Title }}
             {{ else }}
                 {{ .Title }}
             {{ end }}
