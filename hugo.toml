@@ -65,3 +65,9 @@ paginate = 5
     name = '關於'
     pageRef = '/about'
     weight = 30
+
+[markup]
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 4
+    ordered = false

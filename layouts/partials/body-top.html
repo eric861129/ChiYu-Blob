@@ -42,6 +42,9 @@
       </div>
   {{ end }}
   {{ partial "search.html" . }}
+  <div class="col-xs-3 col-sm-2 nav-item">
+    <button id="theme-toggle">切換主題</button>
+  </div>
   <div class="col-xs-6 col-sm-1 nav-toggle" style="{{ if not .IsHome -}} visibility: visible; {{- end }}">
       <a href="" class="nav-icon" onclick="return false">
         {{ partial "icon" "menu" }}
