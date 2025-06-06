@@ -1,7 +1,7 @@
 // 頁面載入完成後執行
 document.addEventListener('DOMContentLoaded', () => {
   // 取得所有程式碼區塊，加入複製按鈕與語言標籤
-  document.querySelectorAll('div.highlight').forEach(block => {
+document.querySelectorAll('div.highlight').forEach(block => {
     // 建立複製按鈕
     const copyButton = document.createElement('button');
     copyButton.className = 'copy-code-button';
@@ -57,5 +57,28 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { rootMargin: '0px 0px -80% 0px' });
 
     headings.forEach(h => observer.observe(h));
+  }
+
+  // -------- 主題切換邏輯 --------
+  const themeToggle = document.getElementById('theme-toggle');
+  if (themeToggle) {
+    const getStoredTheme = () => localStorage.getItem('theme');
+    const getPreferredTheme = () => (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+
+    const setTheme = theme => {
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+    };
+
+    // 初始化主題
+    const currentTheme = getStoredTheme() || getPreferredTheme();
+    setTheme(currentTheme);
+
+    // 切換按鈕點擊
+    themeToggle.addEventListener('click', () => {
+      const activeTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = activeTheme === 'light' ? 'dark' : 'light';
+      setTheme(newTheme);
+    });
   }
 });

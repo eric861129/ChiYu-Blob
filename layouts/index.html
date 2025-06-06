@@ -1,29 +1,80 @@
 {{ define "main" }}
-  <section class="container">
-    <!-- 首頁介紹文字 -->
-    <div class="home-intro">
-      {{ .Content }}
-    </div>
+  <!-- 主要容器 -->
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
 
-    <!-- 近期文章列表 -->
-    <h2>近期文章</h2>
-    <ul class="home-post-list">
-      {{ range first 5 (where .Site.RegularPages "Type" "posts") }}
-      <li>
-        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-        <time>{{ .Date.Format "2006-01-02" }}</time>
-      </li>
-      {{ end }}
-    </ul>
+    <!-- 頁首與導覽列 -->
+    <header class="flex justify-between items-center mb-10 sm:mb-16">
+      <a href="{{ "/" | relURL }}" class="text-xl sm:text-2xl font-bold" style="color: var(--text-color);">{{ .Site.Title }}</a>
+      <nav class="flex items-center space-x-4">
+        <a href="{{ "/about/" | relURL }}" class="text-sm sm:text-base hidden sm:block" style="color: var(--text-secondary);">關於我</a>
+        <a href="{{ "/posts/" | relURL }}" class="text-sm sm:text-base hidden sm:block" style="color: var(--text-secondary);">封存</a>
+        <button id="theme-toggle" title="切換深色/淺色主題">
+          <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </button>
+      </nav>
+    </header>
 
-    <!-- 所有標籤 -->
-    <h2>標籤</h2>
-    <ul class="home-tags">
-      {{ range .Site.Taxonomies.tags.ByCount }}
-      <li>
-        <a href="{{ .Page.RelPermalink }}">#{{ .Page.Title }} ({{ .Count }})</a>
-      </li>
-      {{ end }}
-    </ul>
-  </section>
+    <!-- 主要內容 -->
+    <main>
+      <!-- 介紹區塊 -->
+      <section class="text-center mb-12 sm:mb-20">
+        <h1 class="text-3xl sm:text-5xl font-bold tracking-tight mb-4">歡迎來到 ChiYu 的程式旅程</h1>
+        <p class="max-w-2xl mx-auto sm:text-lg" style="color: var(--text-secondary);">
+          {{ .Content }}
+        </p>
+      </section>
+
+      <!-- 最新文章列表 -->
+      <section>
+        <h2 class="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 border-b pb-3" style="border-color: var(--border-color);">最新文章</h2>
+
+        <div class="space-y-8">
+          {{ range first 3 (where .Site.RegularPages "Type" "posts") }}
+          <article class="p-6 rounded-lg transition-all" style="background-color: var(--card-bg); border: 1px solid var(--border-color);">
+            <a href="{{ .RelPermalink }}" class="block">
+              <header class="mb-2">
+                <h3 class="text-xl sm:text-2xl font-bold leading-tight" style="color: var(--text-color);">{{ .Title }}</h3>
+              </header>
+              {{ with .Params.description }}
+              <p class="mb-3 text-base" style="color: var(--text-secondary);">
+                {{ . }}
+              </p>
+              {{ else }}
+              <p class="mb-3 text-base" style="color: var(--text-secondary);">
+                {{ .Summary }}
+              </p>
+              {{ end }}
+              <footer class="flex items-center justify-between text-sm" style="color: var(--text-secondary);">
+                <span>{{ .Date.Format "2006年1月2日" }}</span>
+                {{ with .Params.tags }}
+                <div class="flex space-x-2">
+                  {{ range . }}
+                  <span class="bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full dark:bg-blue-900 dark:text-blue-200">{{ . }}</span>
+                  {{ end }}
+                </div>
+                {{ end }}
+              </footer>
+            </a>
+          </article>
+          {{ end }}
+        </div>
+
+        <!-- 查看更多 -->
+        <div class="mt-12 text-center">
+          <a href="{{ "/posts/" | relURL }}" class="font-semibold" style="color: var(--link-color);">
+            查看所有文章 &rarr;
+          </a>
+        </div>
+
+      </section>
+    </main>
+
+    <!-- 頁尾 -->
+    <footer class="mt-16 pt-8 border-t text-center text-sm" style="border-color: var(--border-color); color: var(--text-secondary);">
+      <p>&copy; {{ now.Format "2006" }} ChiYu. All Rights Reserved.</p>
+    </footer>
+
+  </div>
 {{ end }}
+
