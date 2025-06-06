@@ -9,7 +9,7 @@
                 <h1 class="text-3xl sm:text-5xl font-bold tracking-tight">{{ .Title }}</h1>
             {{ else if .IsTaxonomyType }}
                 <!-- 標籤或分類列表頁 -->
-                <p class="text-lg" style="color: var(--text-secondary);">{{ .Data.Singular | i18n | title }}</p>
+                <p class="text-lg" style="color: var(--text-secondary);">{{ .Data.Singular | title }}</p>
                 <h1 class="text-3xl sm:text-5xl font-bold tracking-tight mt-1">{{ .Title }}</h1>
             {{ else }}
                 <!-- 其他情況，如搜尋結果等 -->
