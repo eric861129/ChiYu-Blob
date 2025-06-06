@@ -100,6 +100,12 @@ jobs:
 ```
 將此檔案存成 `.github/workflows/gh-pages.yml` 後，並在 GitHub Pages 設定中將分支設為 `gh-pages`，即可啟用自動部署。
 
+若網站仍僅顯示 README，請檢查下列設定：
+
+1. GitHub Actions workflow 是否已成功執行並建立 `gh-pages` 分支。
+2. GitHub Pages 設定頁面是否選擇 `gh-pages` 作為來源分支。
+3. 部署完成後，即可在 <https://eric861129.github.io/MyBlob/> 看到網站首頁。
+
 ### 需要的 Secret
 
 此 workflow 預設使用 GitHub 提供的 `GITHUB_TOKEN` 推送內容，因此不需額外設定憑證。若存取權不足，可建立具 `repo` 權限的 Personal Access Token，並在倉庫的 Secrets 中設定 `GH_PAGES_TOKEN`，再於 workflow 內以 `github_token: ${{ secrets.GH_PAGES_TOKEN }}` 使用。
@@ -119,6 +125,12 @@ hugo --minify --gc
 htmltest ./public
 ```
 若兩個命令皆成功完成，表示產生的靜態檔案位於 `public/` 目錄且連結皆有效，可進一步部署。
+
+若系統顯示 `htmltest: command not found`，請先安裝 htmltest：
+```bash
+go install github.com/wjdp/htmltest@latest
+export PATH="$PATH:$(go env GOPATH)/bin"
+```
 
 ## License
 
