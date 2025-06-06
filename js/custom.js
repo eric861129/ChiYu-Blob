@@ -52,4 +52,26 @@ document.addEventListener('DOMContentLoaded', () => {
       localStorage.setItem('theme', targetTheme);
     });
   }
+
+  // 文章目錄反白邏輯，利用 IntersectionObserver 追蹤標題
+  const tocLinks = document.querySelectorAll('.post-toc-sidebar nav#TableOfContents a');
+  const headings = Array.from(tocLinks).map(link => {
+    const id = decodeURIComponent(link.getAttribute('href').substring(1));
+    return document.getElementById(id);
+  }).filter(Boolean);
+
+  if (headings.length > 0) {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        const id = entry.target.getAttribute('id');
+        const current = document.querySelector(`.post-toc-sidebar nav#TableOfContents a[href="#${encodeURIComponent(id)}"]`);
+        if (entry.isIntersecting && entry.intersectionRatio > 0) {
+          tocLinks.forEach(link => link.classList.remove('active'));
+          if (current) current.classList.add('active');
+        }
+      });
+    }, { rootMargin: '0px 0px -80% 0px' });
+
+    headings.forEach(h => observer.observe(h));
+  }
 });

@@ -66,51 +66,125 @@ a {
   color: var(--link-color);
 }
 
-/* 文章目錄區塊樣式 */
-.toc {
-  background: #f8f9fa;
-  border: 1px solid var(--border-color);
-  border-radius: 5px;
-  padding: 1em 1.5em;
-  margin-bottom: 2em;
+
+/* ------------------ 文章目錄（側邊欄）樣式 ------------------ */
+.post-layout-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2em;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1em;
 }
 
-[data-theme='dark'] .toc {
-  background: #2a2a2a;
+.post-main-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.post-toc-sidebar {
+  width: 280px;
+  flex-shrink: 0;
+}
+
+.toc-sticky-container {
+  position: sticky;
+  top: 80px;
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
 }
 
 .toc-title {
+  font-size: 1.1em;
+  font-weight: 600;
   margin-top: 0;
-  font-size: 1.2em;
-  border-bottom: 1px solid var(--border-color);
-  padding-bottom: 0.5em;
+  margin-bottom: 1em;
+}
+
+.post-toc-sidebar nav#TableOfContents ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.post-toc-sidebar nav#TableOfContents li {
   margin-bottom: 0.5em;
 }
 
-.toc ul {
-  padding-left: 1.2em;
+.post-toc-sidebar nav#TableOfContents a {
+  color: var(--text-color);
+  text-decoration: none;
+  opacity: 0.7;
+  display: block;
+  border-left: 2px solid var(--border-color);
+  padding-left: 1em;
+  transition: all 0.2s ease;
 }
 
-.toc li {
-  margin-bottom: 0.5em;
+.post-toc-sidebar nav#TableOfContents a:hover {
+  opacity: 1;
+  color: var(--link-color);
 }
 
-/* 深色模式切換按鈕樣式 */
+.post-toc-sidebar nav#TableOfContents a.active {
+  opacity: 1;
+  color: var(--link-color);
+  border-left-color: var(--link-color);
+  transform: translateX(5px);
+}
+
+@media (max-width: 1024px) {
+  .post-toc-sidebar {
+    display: none;
+  }
+}
+
+/* ------------------ 主題切換按鈕樣式 ------------------ */
 #theme-toggle {
-  background: none;
+  background: transparent;
   border: none;
   cursor: pointer;
-  padding: 0.5em;
+  padding: 8px;
+  border-radius: 50%;
+  position: relative;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  transition: background-color 0.2s ease;
 }
 
-[data-theme='light'] .moon {
-  display: none;
-}
-
-[data-theme='dark'] .sun {
-  display: none;
+#theme-toggle:hover {
+  background-color: rgba(128, 128, 128, 0.1);
 }
 
 #theme-toggle svg {
-  fill: var(--text-color);
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  stroke: var(--text-color);
+  fill: none;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+html[data-theme='light'] .moon-icon {
+  transform: scale(0);
+  opacity: 0;
+}
+
+html[data-theme='light'] .sun-icon {
+  transform: scale(1);
+  opacity: 1;
+}
+
+html[data-theme='dark'] .sun-icon {
+  transform: scale(0);
+  opacity: 0;
+}
+
+html[data-theme='dark'] .moon-icon {
+  transform: rotate(360deg) scale(1);
+  opacity: 1;
 }
