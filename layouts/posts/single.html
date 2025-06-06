@@ -1,50 +1,61 @@
 {{ define "main" }}
   <section class="container">
-    <section class="content">
-      <h1>{{ if .Params.heading }} {{ .Params.heading }} {{ else }} {{ .Title }} {{ end }}</h1>
-      <div class="sub-header">
-        {{ .Date.Format (.Site.Params.dateform | default "January 2, 2006") }} · {{ i18n "minuteRead" .ReadingTime }}
-      </div>
-      <article class="entry-content">
-        {{ if and (gt .WordCount 400) (.TableOfContents) }}
-        <aside class="toc">
-          <h2 class="toc-title">本文目錄</h2>
-          {{ .TableOfContents }}
-        </aside>
-        {{ end }}
-        {{ .Content }}
+    <!-- 文章主內容與目錄的佈局容器 -->
+    <div class="post-layout-container">
+      <article class="post-main-content">
+        <header class="post-header">
+          <h1>{{ if .Params.heading }} {{ .Params.heading }} {{ else }} {{ .Title }} {{ end }}</h1>
+          <div class="sub-header">
+            {{ .Date.Format (.Site.Params.dateform | default "January 2, 2006") }} · {{ i18n "minuteRead" .ReadingTime }}
+          </div>
+        </header>
+        <section class="post-body">
+          {{ .Content }}
+        </section>
+
+        <div class="pagination">
+          {{ if .PrevInSection }}
+            <a href="{{ .PrevInSection.Permalink }}">&laquo; {{ .PrevInSection.Title }}</a>
+          {{ end }}
+          {{ if .NextInSection }}
+            <a href="{{ .NextInSection.Permalink }}">{{ .NextInSection.Title }} &raquo;</a>
+          {{ end }}
+        </div>
+
+        <div class="post-taxonomies">
+          {{- with .Params.categories }}
+          <div class="post-categories">
+            <strong>分類:</strong>
+            {{ range . }}
+              <a href="{{ "categories/" | relURL }}{{ . | urlize }}/">{{ . }}</a>
+            {{ end }}
+          </div>
+          {{- end }}
+
+          {{- with .Params.tags }}
+          <div class="post-tags">
+            <strong>標籤:</strong>
+            {{ range . }}
+              <a href="{{ "tags/" | relURL }}{{ . | urlize }}/">#{{ . }}</a>
+            {{ end }}
+          </div>
+          {{- end }}
+        </div>
+
+        {{ partial "related.html" . }}
       </article>
-      <div class="pagination">
-        {{ if .PrevInSection }}
-          <a href="{{ .PrevInSection.Permalink }}">&laquo; {{ .PrevInSection.Title }}</a>
-        {{ end }}
-        {{ if .NextInSection }}
-          <a href="{{ .NextInSection.Permalink }}">{{ .NextInSection.Title }} &raquo;</a>
-        {{ end }}
-      </div>
 
-      <div class="post-taxonomies">
-        {{- with .Params.categories }}
-        <div class="post-categories">
-          <strong>分類:</strong>
-          {{ range . }}
-            <a href="{{ "categories/" | relURL }}{{ . | urlize }}/">{{ . }}</a>
-          {{ end }}
+      {{ if and (gt .WordCount 400) (.TableOfContents) }}
+      <!-- 右側固定的文章目錄 -->
+      <aside class="post-toc-sidebar">
+        <div class="toc-sticky-container">
+          <h3 class="toc-title">本文目錄</h3>
+          {{ .TableOfContents }}
         </div>
-        {{- end }}
+      </aside>
+      {{ end }}
+    </div>
 
-        {{- with .Params.tags }}
-        <div class="post-tags">
-          <strong>標籤:</strong>
-          {{ range . }}
-            <a href="{{ "tags/" | relURL }}{{ . | urlize }}/">#{{ . }}</a>
-          {{ end }}
-        </div>
-        {{- end }}
-      </div>
-
-      {{ partial "related.html" . }}
-    </section>
     <br>
     {{ if and (eq .Kind "page") (not .Draft) }}
       {{ partial "giscus.html" . }}
