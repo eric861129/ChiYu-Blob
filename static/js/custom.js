@@ -1,28 +1,39 @@
 // 頁面載入完成後執行
 document.addEventListener('DOMContentLoaded', () => {
-  // 取得所有程式碼區塊並加入複製按鈕
+  // 取得所有程式碼區塊，加入複製按鈕與語言標籤
   document.querySelectorAll('div.highlight').forEach(block => {
-    // 建立按鈕元素
-    const button = document.createElement('button');
-    button.className = 'copy-code-button';
-    button.type = 'button';
-    button.innerText = 'Copy';
+    // 建立複製按鈕
+    const copyButton = document.createElement('button');
+    copyButton.className = 'copy-code-button';
+    copyButton.type = 'button';
+    copyButton.ariaLabel = 'Copy code to clipboard';
+    copyButton.innerText = 'Copy';
 
     // 點擊按鈕後將程式碼複製到剪貼簿
-    button.addEventListener('click', () => {
+    copyButton.addEventListener('click', () => {
       const code = block.querySelector('code').innerText;
       navigator.clipboard.writeText(code).then(() => {
-        button.innerText = 'Copied!';
+        copyButton.innerText = 'Copied!';
         setTimeout(() => {
-          button.innerText = 'Copy';
+          copyButton.innerText = 'Copy';
         }, 2000);
       }, () => {
-        button.innerText = 'Error';
+        copyButton.innerText = 'Error';
       });
     });
 
-    // 將按鈕放到程式碼區塊最前面
-    block.insertBefore(button, block.firstChild);
+    // 解析程式語言名稱，並建立標籤顯示於程式碼區塊左上角
+    const languageClass = block.classList[1];
+    if (languageClass && languageClass.startsWith('language-')) {
+      const lang = languageClass.replace('language-', '');
+      const langTag = document.createElement('div');
+      langTag.className = 'code-language-tag';
+      langTag.innerText = lang;
+      block.appendChild(langTag);
+    }
+
+    // 將按鈕加入程式碼區塊
+    block.appendChild(copyButton);
   });
 
   // 深色模式切換按鈕
