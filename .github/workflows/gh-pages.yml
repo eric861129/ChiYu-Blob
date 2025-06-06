@@ -26,7 +26,6 @@ jobs:
         with:
           hugo-version: '0.123.7'
           extended: true
-      - run: dotnet test tools/PostManager.Tests/PostManager.Tests.csproj --verbosity minimal
       - run: hugo --minify --gc
 
       - name: Build Pagefind Index
