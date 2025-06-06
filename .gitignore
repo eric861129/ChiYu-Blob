@@ -2,4 +2,6 @@
 public/
 resources/
 .hugo_build.lock
-tmp/
+
+# Temporary directories
+layouts_backup/
