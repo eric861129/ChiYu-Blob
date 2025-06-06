@@ -9,8 +9,9 @@ paginate = 5
         path = 'github.com/kdevo/osprey-delight/v5'
 
 [params]
-  author = "ChiYu"
   description = "歡迎來到 ChiYu 的程式旅程部落格"
+  [params.author]
+    name = "ChiYu"
   # [params.logo]
   #   logo__png = "images/logo.png"
   #   logo_dark__png = "images/logo-dark.png"

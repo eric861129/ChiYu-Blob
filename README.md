@@ -124,7 +124,7 @@ jobs:
 在根目錄執行：
 ```bash
 hugo --minify --gc
-htmltest ./public
+htmltest -c .htmltest.yml ./public
 ```
 若兩個命令皆成功完成，表示產生的靜態檔案位於 `public/` 目錄且連結皆有效，可進一步部署。
 若無網路環境，可使用 `.htmltest.yml` 中的 `CheckExternal: false` 設定，略過外部連結檢查。

@@ -1,1 +1,5 @@
 CheckExternal: false
+IgnoreInternalEmptyHash: true
+IgnoreEmptyHref: true
+IgnoreURLs:
+  - /MyBlob/.*
