@@ -1,41 +1,28 @@
 # 貢獻指南
 
-感謝你對 MyBlob 的興趣！為了維持一致且高品質的程式碼，請在提交 Pull Request 前閱讀並遵循以下守則。
+感謝你有興趣參與改進 **MyBlob**！在提交 Pull Request 前，請依照以下步驟操作，以保持專案品質與一致性。
 
-## 程式碼規範
+## 提交流程
 
-- **物件導向設計與 SOLID 原則**：自訂的 Hugo 模組或腳本應以物件導向方式撰寫，確保符合單一職責、開放封閉、Liskov 取代、介面隔離與依賴反轉等原則。
-- **Clean Code 風格**：保持函式短小、命名清楚，避免過度巢狀與重複程式碼。
-- **XML 註解**：所有類別、方法與欄位需以繁體中文撰寫 XML 註解，說明用途與預期行為。
-- **測試**：變更前請執行 `hugo --minify --gc` 與 `htmltest ./public`，確保站點能正確產生且連結有效。
+1. 先 Fork 本倉庫並於自身帳號建立分支進行開發。
+2. 完成後提交 Pull Request，清楚描述所做的修改內容與原因。
+3. 提交前務必執行下列指令，確認靜態網站可以成功產生並通過連結檢查：
+   ```bash
+   hugo --minify --gc
+   htmltest -c .htmltest.yml ./public
+   ```
+   若缺少相關指令，可參考 `README.md` 的安裝說明。
 
-## 範例
+## 程式碼風格
 
-以下範例示範簡單的 Go 模組寫法，展示 XML 註解與物件導向風格：
+- 命名應清楚易懂，避免重複與過度巢狀。
+- 必要時加入繁體中文註解，幫助他人理解程式邏輯。
+- 提交文件或範例程式碼更新時，請一併附上。
 
-```go
-package example
-
-// ExampleService 代表範例服務。
-type ExampleService struct {
-    // name 儲存服務名稱。
-    name string
-}
-
-// NewExampleService 建立新的 ExampleService。
-func NewExampleService(name string) *ExampleService {
-    return &ExampleService{name: name}
-}
-
-// GetName 回傳服務名稱。
-func (s *ExampleService) GetName() string {
-    return s.name
-}
+本專案目前並未使用 Go modules，`go.mod` 與 `go.sum` 已移除，僅需要安裝 `htmltest` 即可：
+```bash
+go install github.com/wjdp/htmltest@latest
+export PATH="$PATH:$(go env GOPATH)/bin"
 ```
 
-## 參考資源
-
-- [Clean Code](https://www.oreilly.com/library/view/clean-code/9780136083238/)
-- [SOLID 原則簡介](https://ithelp.ithome.com.tw/articles/10227655)
-
-提交前請再次確認程式碼風格與測試結果，讓我們共同維護專案品質。
+歡迎你的貢獻，一同讓本部落格更臻完善！
