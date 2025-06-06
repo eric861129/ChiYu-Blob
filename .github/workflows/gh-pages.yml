@@ -12,9 +12,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-go@v5
+      - uses: actions/setup-dotnet@v3
         with:
-          go-version: '1.22'
+          dotnet-version: '8.0.x'
       - name: Cache Hugo modules
         uses: actions/cache@v4
         with:
@@ -26,6 +26,7 @@ jobs:
         with:
           hugo-version: '0.123.7'
           extended: true
+      - run: dotnet test tools/PostManager.Tests/PostManager.Tests.csproj --verbosity minimal
       - run: hugo --minify --gc
 
       - name: Build Pagefind Index

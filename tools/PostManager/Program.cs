@@ -79,9 +79,36 @@ namespace PostManagerTool
             writer.WriteLine("---");
             writer.WriteLine($"title: \"{post.Title}\"");
             writer.WriteLine($"date: {post.Date.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)}");
+            writer.WriteLine("draft: true");
             writer.WriteLine("---");
             writer.WriteLine();
             writer.WriteLine("請開始撰寫內容...");
+        }
+    }
+
+    /// <summary>
+    /// 路徑協助工具。
+    /// </summary>
+    internal static class PathHelper
+    {
+        /// <summary>
+        /// 尋找包含 hugo.toml 的專案根目錄。
+        /// </summary>
+        /// <returns>專案根目錄路徑。</returns>
+        public static string FindProjectRoot()
+        {
+            var dir = AppContext.BaseDirectory;
+            while (dir != null && !File.Exists(Path.Combine(dir, "hugo.toml")))
+            {
+                dir = Directory.GetParent(dir)?.FullName;
+            }
+
+            if (dir == null)
+            {
+                throw new InvalidOperationException("找不到專案根目錄。");
+            }
+
+            return dir;
         }
     }
 
@@ -105,7 +132,8 @@ namespace PostManagerTool
             var title = string.Join(' ', args, 1, args.Length - 1);
             var post = new Post(title);
 
-            var contentRoot = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "..", "content", "posts");
+            var projectRoot = PathHelper.FindProjectRoot();
+            var contentRoot = Path.Combine(projectRoot, "content", "posts");
             IPostGenerator generator = new MarkdownPostGenerator(contentRoot);
             generator.Generate(post);
 

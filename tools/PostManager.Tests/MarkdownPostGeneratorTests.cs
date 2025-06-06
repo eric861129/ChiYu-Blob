@@ -33,9 +33,10 @@ public class MarkdownPostGeneratorTests
         Assert.Equal("---", lines[0]);
         Assert.Equal($"title: \"{post.Title}\"", lines[1]);
         Assert.Equal($"date: {post.Date.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)}", lines[2]);
-        Assert.Equal("---", lines[3]);
-        Assert.Equal(string.Empty, lines[4]);
-        Assert.Equal("請開始撰寫內容...", lines[5]);
+        Assert.Equal("draft: true", lines[3]);
+        Assert.Equal("---", lines[4]);
+        Assert.Equal(string.Empty, lines[5]);
+        Assert.Equal("請開始撰寫內容...", lines[6]);
 
         Directory.Delete(tempDir, true);
     }
