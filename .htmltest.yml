@@ -1,2 +1,5 @@
 CheckExternal: false
 IgnoreEmptyHref: true
+
+IgnoreURLs:
+  - "^/MyBlob/"
