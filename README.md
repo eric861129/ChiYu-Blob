@@ -110,6 +110,12 @@ jobs:
 
 ### 需要的 Secret
 
+## 啟用 giscus 留言功能
+
+1. 前往 <https://giscus.app> 安裝 giscus GitHub App。
+2. 在設定頁面選擇留言用的 repository 與討論分類，產生 repoId 與 categoryId。
+3. 將 `hugo.toml` 內 `[params.giscus]` 區段的 `repo`、`repoId`、`category` 與 `categoryId` 更新為取得的值。
+4. 重新部署到 GitHub Pages 後，即可在文章頁面看到 giscus 留言區。
 此 workflow 預設使用 GitHub 提供的 `GITHUB_TOKEN` 推送內容，因此不需額外設定憑證。若存取權不足，可建立具 `repo` 權限的 Personal Access Token，並在倉庫的 Secrets 中設定 `GH_PAGES_TOKEN`，再於 workflow 內以 `github_token: ${{ secrets.GH_PAGES_TOKEN }}` 使用。
 
 ## 貢獻方式
