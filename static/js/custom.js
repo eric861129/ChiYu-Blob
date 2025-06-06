@@ -36,22 +36,6 @@ document.addEventListener('DOMContentLoaded', () => {
     block.appendChild(copyButton);
   });
 
-  // 深色模式切換按鈕
-  const themeToggle = document.getElementById('theme-toggle');
-  if (themeToggle) {
-    // 依使用者偏好或儲存的值設定初始主題
-    const storedTheme = localStorage.getItem('theme') ||
-      (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-    document.documentElement.setAttribute('data-theme', storedTheme);
-
-    // 點擊後切換主題並記錄到 localStorage
-    themeToggle.addEventListener('click', () => {
-      const currentTheme = document.documentElement.getAttribute('data-theme');
-      const targetTheme = currentTheme === 'light' ? 'dark' : 'light';
-      document.documentElement.setAttribute('data-theme', targetTheme);
-      localStorage.setItem('theme', targetTheme);
-    });
-  }
 
   // 文章目錄反白邏輯，利用 IntersectionObserver 追蹤標題
   const tocLinks = document.querySelectorAll('.post-toc-sidebar nav#TableOfContents a');

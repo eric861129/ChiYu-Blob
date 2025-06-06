@@ -1,0 +1,29 @@
+{{ define "main" }}
+  <section class="container">
+    <!-- 首頁介紹文字 -->
+    <div class="home-intro">
+      {{ .Content }}
+    </div>
+
+    <!-- 近期文章列表 -->
+    <h2>近期文章</h2>
+    <ul class="home-post-list">
+      {{ range first 5 (where .Site.RegularPages "Type" "posts") }}
+      <li>
+        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+        <time>{{ .Date.Format "2006-01-02" }}</time>
+      </li>
+      {{ end }}
+    </ul>
+
+    <!-- 所有標籤 -->
+    <h2>標籤</h2>
+    <ul class="home-tags">
+      {{ range .Site.Taxonomies.tags.ByCount }}
+      <li>
+        <a href="{{ .Page.RelPermalink }}">#{{ .Page.Title }} ({{ .Count }})</a>
+      </li>
+      {{ end }}
+    </ul>
+  </section>
+{{ end }}
