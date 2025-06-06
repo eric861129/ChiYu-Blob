@@ -20,6 +20,9 @@ jobs:
           hugo-version: '0.123.7'
           extended: true
       - run: hugo --minify --gc
+
+      - name: Build Pagefind Index
+        run: npx -y pagefind --site public
       - name: Check links
         uses: wjdp/htmltest-action@master
         with:
