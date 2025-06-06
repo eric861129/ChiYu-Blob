@@ -43,7 +43,10 @@
   {{ end }}
   {{ partial "search.html" . }}
   <div class="col-xs-3 col-sm-2 nav-item">
-    <button id="theme-toggle">切換主題</button>
+    <button id="theme-toggle" aria-label="切換主題">
+      <svg class="sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24"><path d="M12 9a3 3 0 100 6 3 3 0 000-6zm0-2a5 5 0 110 10 5 5 0 010-10zM12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path></svg>
+      <svg class="moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24"><path d="M11.99 2.007a9.993 9.993 0 018.15 4.312 9.993 9.993 0 01-4.312 8.15 9.993 9.993 0 01-9.936-9.936A9.993 9.993 0 0111.99 2.007z"></path></svg>
+    </button>
   </div>
   <div class="col-xs-6 col-sm-1 nav-toggle" style="{{ if not .IsHome -}} visibility: visible; {{- end }}">
       <a href="" class="nav-icon" onclick="return false">
