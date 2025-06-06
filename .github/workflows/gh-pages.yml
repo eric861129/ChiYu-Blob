@@ -18,6 +18,7 @@ jobs:
       - uses: peaceiris/actions-hugo@v2
         with:
           hugo-version: '0.123.7'
+          extended: true
       - run: hugo --minify --gc
       - name: Check links
         uses: wjdp/htmltest-action@master
