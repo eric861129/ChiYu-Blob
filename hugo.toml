@@ -32,12 +32,20 @@ paginate = 5
   description = "歡迎來到 ChiYu 的程式旅程部落格"
   [params.author]
     name = "ChiYu"
-  [params.giscus]
-    enable = true
-    repo = "yourname/yourrepo"
-    repoId = "R_kgDOO2a_UQ"
-    category = "Announcements"
-    categoryId = "DIC_kwDOO2a_Uc4CrGzL"
+[params.giscus]
+  enable = true
+  repo = "eric861129/MyBlob"
+  repoId = "R_kgDOO2a_UQ"
+  category = "Announcements"
+  categoryId = "DIC_kwDOO2a_Uc4CrGzL"
+  mapping = "pathname"
+  strict = "0"
+  reactionsEnabled = "1"
+  emitMetadata = "0"
+  inputPosition = "top"
+  theme = "dark"
+  lang = "zh-TW"
+  loading = "lazy"
   # [params.logo]
   #   logo__png = "images/logo.png"
   #   logo_dark__png = "images/logo-dark.png"
