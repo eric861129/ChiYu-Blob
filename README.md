@@ -126,6 +126,16 @@ htmltest ./public
 ```
 若兩個命令皆成功完成，表示產生的靜態檔案位於 `public/` 目錄且連結皆有效，可進一步部署。
 
+### 執行 .NET 測試
+
+若要驗證 `PostManager` 工具，請執行：
+
+```bash
+dotnet test tools/PostManager.Tests/PostManager.Tests.csproj
+```
+
+確保所有測試皆通過。
+
 若系統顯示 `htmltest: command not found`，請先安裝 htmltest：
 ```bash
 go install github.com/wjdp/htmltest@latest
