@@ -35,9 +35,9 @@ paginate = 5
   [params.giscus]
     enable = true
     repo = "yourname/yourrepo"
-    repoId = ""
-    category = "Comments"
-    categoryId = ""
+    repoId = "R_kgDOO2a_UQ"
+    category = "Announcements"
+    categoryId = "DIC_kwDOO2a_Uc4CrGzL"
   # [params.logo]
   #   logo__png = "images/logo.png"
   #   logo_dark__png = "images/logo-dark.png"
