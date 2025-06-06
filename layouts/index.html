@@ -2,7 +2,7 @@
 <main>
     <section class="text-center mb-12 sm:mb-20">
         <h1 class="text-3xl sm:text-5xl font-bold tracking-tight mb-4">{{ .Site.Params.description | default "歡迎來到我的部落格" }}</h1>
-         <div class="max-w-2xl mx-auto sm:text-lg" style="color: var(--text-secondary);">
+        <div class="max-w-2xl mx-auto sm:text-lg" style="color: var(--text-secondary);">
             {{ .Content }}
         </div>
     </section>
@@ -11,7 +11,7 @@
         <h2 class="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 border-b pb-3" style="border-color: var(--border-color);">最新文章</h2>
         
         <div class="space-y-8">
-            {{ range first 5 .Site.RegularPages }}
+            {{ range first 5 .Site.RegularPages.ByDate.Reverse }}
             <article class="p-6 rounded-lg transition-all" style="background-color: var(--card-bg); border: 1px solid var(--border-color);">
                 <a href="{{ .Permalink }}" class="block">
                     <header class="mb-2">
@@ -20,9 +20,16 @@
                     <p class="mb-3 text-base" style="color: var(--text-secondary);">
                         {{ .Summary | truncate 120 }}
                     </p>
-                    <footer class="text-sm" style="color: var(--text-secondary);">
+                    <footer class="flex items-center justify-between text-sm flex-wrap gap-2" style="color: var(--text-secondary);">
                         <span>{{ .Date.Format "2006年1月2日" }}</span>
-                    </footer>
+                        {{ with .Params.tags }}
+                        <div class="flex flex-wrap gap-2">
+                            {{ range . }}
+                            <span class="tag-pill">{{ . }}</span>
+                            {{ end }}
+                        </div>
+                        {{ end }}
+                        </footer>
                 </a>
             </article>
             {{ end }}

@@ -1,0 +1,14 @@
+{{ define "main" }}
+<main>
+    <h1 class="text-3xl sm:text-5xl font-bold tracking-tight mb-8">{{ .Title }}</h1>
+    
+    <div class="flex flex-wrap gap-4 items-center">
+        {{ range .Data.Terms.ByCount }}
+        <a href="{{ .Page.RelPermalink }}" class="block px-4 py-2 rounded-lg text-base transition-all" style="background-color: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-secondary);">
+            {{ .Page.Title }}
+            <span class="ml-2 text-sm px-2 py-0.5 rounded-full" style="background-color: var(--bg-color);">{{ .Count }}</span>
+        </a>
+        {{ end }}
+    </div>
+</main>
+{{ end }}

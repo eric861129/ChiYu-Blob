@@ -46,6 +46,23 @@
         .post-toc-sidebar nav#TableOfContents a.active { color: var(--link-color); border-left-color: var(--link-color); transform: translateX(5px); font-weight: 600; }
         @media (max-width: 1024px) { .post-toc-sidebar { display: none; } }
         .prose .not-prose { all: revert; }
+
+        /* 標籤藥丸樣式 */
+        .tag-pill {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            background-color: var(--border-color);
+            color: var(--text-secondary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        a.tag-pill:hover {
+            opacity: 0.8;
+        }
     </style>
 </head>
 <body class="antialiased">

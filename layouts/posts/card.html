@@ -1,0 +1,20 @@
+<article class="p-6 rounded-lg transition-all" style="background-color: var(--card-bg); border: 1px solid var(--border-color);">
+    <a href="{{ .Permalink }}" class="block">
+        <header class="mb-2">
+            <h3 class="text-xl sm:text-2xl font-bold leading-tight" style="color: var(--text-color);">{{ .Title }}</h3>
+        </header>
+        <p class="mb-3 text-base" style="color: var(--text-secondary);">
+            {{ .Summary | truncate 120 }}
+        </p>
+        <footer class="flex items-center justify-between text-sm flex-wrap gap-2" style="color: var(--text-secondary);">
+            <span>{{ .Date.Format "2006年1月2日" }}</span>
+            {{ with .Params.tags }}
+            <div class="flex flex-wrap gap-2">
+                {{ range . }}
+                <span class="tag-pill">{{ . }}</span>
+                {{ end }}
+            </div>
+            {{ end }}
+        </footer>
+    </a>
+</article>
