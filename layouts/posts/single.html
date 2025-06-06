@@ -6,6 +6,12 @@
         {{ .Date.Format (.Site.Params.dateform | default "January 2, 2006") }} · {{ i18n "minuteRead" .ReadingTime }}
       </div>
       <article class="entry-content">
+        {{ if .TableOfContents }}
+        <aside class="toc">
+          <h2>本文目錄</h2>
+          {{ .TableOfContents }}
+        </aside>
+        {{ end }}
         {{ .Content }}
       </article>
       <div class="pagination">

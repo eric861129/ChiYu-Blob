@@ -12,25 +12,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: '8.0.x'
-      - name: Cache Hugo modules
-        uses: actions/cache@v4
-        with:
-          path: ~/.hugo_cache
-          key: ${{ runner.os }}-hugo-${{ hashFiles('**/go.sum') }}
-          restore-keys: |
-            ${{ runner.os }}-hugo-
+
       - uses: peaceiris/actions-hugo@v2
         with:
           hugo-version: '0.123.7'
           extended: true
-      - run: dotnet test tools/PostManager.Tests/PostManager.Tests.csproj --verbosity minimal
       - run: hugo --minify --gc
-
-      - name: Build Pagefind Index
-        run: npx -y pagefind --site public
       - name: Check links
         uses: wjdp/htmltest-action@master
         with:

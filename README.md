@@ -27,10 +27,6 @@ brew install htmltest
 go install github.com/wjdp/htmltest@latest
 export PATH="$PATH:$(go env GOPATH)/bin"
 ```
-若要使用 PostManager 工具，請安裝 .NET SDK：
-```bash
-brew install --cask dotnet-sdk
-```
 
 ## 安裝 htmltest (選用)
 
@@ -48,14 +44,6 @@ export PATH="$PATH:$(go env GOPATH)/bin"
    hugo new posts/my-post.md
    ```
 2. 於 `content/posts/` 目錄下找到產生的檔案並使用喜愛的編輯器撰寫內容。
-### 使用 PostManager 產生文章
-
-可使用內建的 .NET 工具快速建立文章檔案：
-```bash
-cd tools/PostManager
-dotnet run -- new "文章標題"
-```
-產生的檔案會位於 `content/posts/` 目錄。
 
 
 ## 本地端啟動
@@ -81,9 +69,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-go@v5
-        with:
-          go-version: '1.22'
       - uses: peaceiris/actions-hugo@v2
         with:
           hugo-version: '0.123.7'
@@ -93,6 +78,7 @@ jobs:
         uses: wjdp/htmltest-action@master
         with:
           path: ./public
+          config: .htmltest.yml
       - uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -135,15 +121,6 @@ htmltest -c .htmltest.yml ./public
 若兩個命令皆成功完成，表示產生的靜態檔案位於 `public/` 目錄且連結皆有效，可進一步部署。
 若無網路環境，可使用 `.htmltest.yml` 中的 `CheckExternal: false` 設定，略過外部連結檢查。
 
-### 執行 .NET 測試
-
-若要驗證 `PostManager` 工具，請執行：
-
-```bash
-dotnet test tools/PostManager.Tests/PostManager.Tests.csproj
-```
-
-確保所有測試皆通過。
 
 若系統顯示 `htmltest: command not found`，請先安裝 htmltest：
 ```bash
