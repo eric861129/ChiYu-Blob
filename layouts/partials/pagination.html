@@ -1,15 +1,19 @@
-{{ if gt .Paginator.TotalPages 1 }}
-<nav class="mt-8 flex justify-center" aria-label="Pagination">
-    <ul class="inline-flex items-center space-x-2">
-        {{ with .Paginator.Prev }}
-        <li><a href="{{ .URL }}" class="px-3 py-1 border rounded" style="border-color: var(--border-color);">上一頁</a></li>
+<!-- 分頁元件 -->
+{{ $paginator := .Paginator }}
+{{ if gt $paginator.TotalPages 1 }}
+<div class="flex justify-between items-center mt-12">
+    <div>
+        {{ if $paginator.HasPrev }}
+            <a href="{{ $paginator.Prev.URL }}" class="font-semibold" style="color: var(--link-color);">&larr; 較新文章</a>
         {{ end }}
-        {{ range .Paginator.Pagers }}
-        <li><a href="{{ .URL }}" class="px-3 py-1 border rounded {{ if eq . .Paginator }}font-bold{{ end }}" style="border-color: var(--border-color);">{{ .PageNumber }}</a></li>
+    </div>
+    <div class="text-sm" style="color: var(--text-secondary);">
+        頁數 {{ $paginator.PageNumber }} / {{ $paginator.TotalPages }}
+    </div>
+    <div>
+        {{ if $paginator.HasNext }}
+            <a href="{{ $paginator.Next.URL }}" class="font-semibold" style="color: var(--link-color);">較舊文章 &rarr;</a>
         {{ end }}
-        {{ with .Paginator.Next }}
-        <li><a href="{{ .URL }}" class="px-3 py-1 border rounded" style="border-color: var(--border-color);">下一頁</a></li>
-        {{ end }}
-    </ul>
-</nav>
+    </div>
+</div>
 {{ end }}
