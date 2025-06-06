@@ -10,15 +10,15 @@ ChiYu Code Journey 是一個使用 [Hugo](https://gohugo.io/) 構建的靜態部
 
 ## 安裝 Hugo
 
-1. 下載並安裝 Hugo：
+1. 下載並安裝 Hugo（需使用 **extended** 版本）：
    ```bash
    sudo apt-get install hugo
    ```
-   或前往 [官方文件](https://gohugo.io/getting-started/installing/) 取得其他系統的安裝方式。
+   若套件庫未提供 extended 版，請至 [官方文件](https://gohugo.io/getting-started/installing/) 下載對應平台的安裝檔。
 ### macOS
 在 macOS 環境可透過 Homebrew 安裝：
 ```bash
-brew install hugo
+brew install hugo --HEAD --extended
 ```
 若需要檢查連結，可安裝 htmltest：
 ```bash
@@ -87,6 +87,7 @@ jobs:
       - uses: peaceiris/actions-hugo@v2
         with:
           hugo-version: '0.123.7'
+          extended: true
       - run: hugo --minify --gc
       - name: Check links
         uses: wjdp/htmltest-action@master
@@ -98,6 +99,7 @@ jobs:
           publish_dir: ./public
           publish_branch: gh-pages
 ```
+上述 workflow 範例會啟用 Hugo 的 **extended** 版本，以支援 SCSS 等功能。
 將此檔案存成 `.github/workflows/gh-pages.yml` 後，並在 GitHub Pages 設定中將分支設為 `gh-pages`，即可啟用自動部署。
 
 若網站仍僅顯示 README，請檢查下列設定：
