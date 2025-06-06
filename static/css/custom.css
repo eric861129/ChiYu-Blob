@@ -37,6 +37,34 @@ div.highlight:hover .copy-code-button {
   opacity: 1;
 }
 
+/* 相關文章列表置中樣式 */
+.related-posts ul {
+  list-style: none;
+  padding-left: 0;
+  text-align: center;
+}
+
+.related-posts li {
+  display: inline-block;
+  margin: 0 0.5em;
+}
+
+.pagination {
+  text-align: center;
+}
+
+/* 首頁文章與標籤樣式 */
+.home-post-list,
+.home-tags {
+  list-style: none;
+  padding-left: 0;
+}
+
+.home-post-list li,
+.home-tags li {
+  margin-bottom: 0.5em;
+}
+
 /* 預設（淺色）主題 */
 :root {
   --bg-color: #ffffff;
@@ -139,52 +167,3 @@ a {
   }
 }
 
-/* ------------------ 主題切換按鈕樣式 ------------------ */
-#theme-toggle {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 8px;
-  border-radius: 50%;
-  position: relative;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  outline: none;
-  transition: background-color 0.2s ease;
-}
-
-#theme-toggle:hover {
-  background-color: rgba(128, 128, 128, 0.1);
-}
-
-#theme-toggle svg {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  stroke: var(--text-color);
-  fill: none;
-  transition: transform 0.4s ease, opacity 0.4s ease;
-}
-
-html[data-theme='light'] .moon-icon {
-  transform: scale(0);
-  opacity: 0;
-}
-
-html[data-theme='light'] .sun-icon {
-  transform: scale(1);
-  opacity: 1;
-}
-
-html[data-theme='dark'] .sun-icon {
-  transform: scale(0);
-  opacity: 0;
-}
-
-html[data-theme='dark'] .moon-icon {
-  transform: rotate(360deg) scale(1);
-  opacity: 1;
-}
