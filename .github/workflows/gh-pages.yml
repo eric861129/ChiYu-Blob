@@ -18,23 +18,19 @@ jobs:
           hugo-version: '0.123.7'
           extended: true
 
-      # 1. 先執行 Hugo 建立靜態網站到 ./public 目錄
       - name: Build site
         run: hugo --minify --gc
 
-      # 2. (這是新增的步驟) 使用 Pagefind 掃描 public/ 並建立索引
-      #    此動作會自動在 ./public/pagefind/ 路徑下產生搜尋索引與 UI 檔案
+      # 將 action 版本從 @v1 更新為 @v3
       - name: Build Pagefind search index
-        uses: cloudcannon/pagefind-action@v1
+        uses: cloudcannon/pagefind-action@v3
 
-      # 3. 檢查連結 (您的原有步驟)
       - name: Check links
         uses: wjdp/htmltest-action@master
         with:
           path: ./public
           config: .htmltest.yml
           
-      # 4. 部署包含索引的 public/ 目錄到 gh-pages 分支
       - uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
