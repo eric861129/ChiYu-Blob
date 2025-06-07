@@ -91,8 +91,12 @@
 
     </div>
 
-    <script src="{{ "/pagefind/pagefind-ui.js" | relURL }}" onload="new PagefindUI({ element: '#search', showSubResults: true, baseUrl: '/MyBlob/', bundlePath: '/MyBlob/pagefind/' });"></script>
-
+<script src="{{ "/pagefind/pagefind-ui.js" | relURL }}"
+        onload="new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            baseUrl: '{{ .Site.BaseURL | relURL }}'
+        });"></script>
     <script>
          document.addEventListener('DOMContentLoaded', () => {
           // --- 1. 主題切換邏輯 ---
