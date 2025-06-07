@@ -21,9 +21,9 @@ jobs:
       - name: Build site
         run: hugo --minify --gc
 
-      # 新增 Pagefind 建立索引的步驟
+      # 更新 Pagefind Action 的版本
       - name: Run Pagefind Indexing
-        uses: cloudcannon/pagefind-action@v1
+        uses: CloudCannon/pagefind-action@v3
 
       - name: Check links
         uses: wjdp/htmltest-action@master
