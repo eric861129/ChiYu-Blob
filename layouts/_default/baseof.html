@@ -88,7 +88,6 @@
         .pagefind-ui__search-clear {
             display: none !important;
         }
-                
     </style>
 </head>
 <body class="antialiased">
@@ -115,24 +114,29 @@
 
     </div>
 
-     <script 
-        src="/MyBlob/pagefind/pagefind-ui.js" 
-        onload="new PagefindUI({
-            element: '#search',
-            showSubResults: false,
-            baseUrl: '/MyBlob/',
-            translations: {
-                ui: {
-                    search: '搜尋',
-                    clear_search: '清除',
-                    input_placeholder: '在這裡搜尋文章...',
-                    search_results: '個相關結果'
+    <script>
+    function initPagefind() {
+        // 確保 PagefindUI 物件已存在
+        if (window.PagefindUI) {
+            new PagefindUI({
+                element: '#search',
+                showSubResults: false, // 關閉摘要顯示
+                baseUrl: '/MyBlob/',
+                translations: {
+                    ui: {
+                        search: '搜尋',
+                        clear_search: '清除',
+                        input_placeholder: '在這裡搜尋文章...',
+                        search_results: '個相關結果'
+                    }
                 }
-            }
-        });">
+            });
+        }
+    }
     </script>
-    
+
     <script src="/MyBlob/pagefind/pagefind-ui.js" onload="initPagefind()"></script>
+    
     <script>
          document.addEventListener('DOMContentLoaded', () => {
           // --- 1. 主題切換邏輯 ---
