@@ -56,10 +56,9 @@ paginate = 5
   # --- ↓↓↓ 新增此區塊來放置社群連結 ↓↓↓ ---
   [params.social]
     GitHub = "https://github.com/eric861129"
-    LinkedIn = "https://www.linkedin.com/in/eric861129"
-    Threads = "https://www.threads.net/@eric861129"
-    Facebook = "https://www.facebook.com/eric861129"
-    CakeResume = "https://www.cakeresume.com/eric861129"
+    LinkedIn = "https://www.linkedin.com/in/chiyu-huang/"
+    Threads = "https://www.threads.com/@chiyuisme"
+    CakeResume = "https://www.cake.me/me/iamhandsomeboy1129"
   # --- ↑↑↑ 新增此區塊來放置社群連結 ↑↑↑ ---
 
 [menu]
