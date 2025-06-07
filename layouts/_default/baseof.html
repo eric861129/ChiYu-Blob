@@ -48,51 +48,12 @@
         .post-toc-sidebar nav#TableOfContents a.active { color: var(--link-color); border-left-color: var(--link-color); transform: translateX(5px); font-weight: 600; }
         @media (max-width: 1024px) { .post-toc-sidebar { display: none; } }
         .prose .not-prose { all: revert; }
-
-        /* 標籤藥丸樣式 */
-        .tag-pill {
-            display: inline-block;
-            font-size: 0.75rem;
-            font-weight: 600;
-            background-color: var(--border-color);
-            color: var(--text-secondary);
-            padding: 0.25rem 0.75rem;
-            border-radius: 9999px;
-            text-decoration: none;
-            transition: all 0.2s ease;
-        }
-
-        a.tag-pill:hover {
-            opacity: 0.8;
-        }
-
-        /* --- Pagefind 搜尋輸入框自訂樣式 --- */
-        .pagefind-ui__search-input {
-            color: var(--text-color) !important;
-            background-color: var(--bg-color) !important;
-            border: 1px solid var(--border-color) !important;
-            padding-top: 0.5rem;
-            padding-bottom: 0.5rem;
-            padding-left: 1rem;
-            padding-right: 1rem;
-            border-radius: 9999px;
-            width: 100%;
-        }
-        
-        /* 調整輸入框內提示文字的顏色 */
-        .pagefind-ui__search-input::placeholder {
-            color: var(--text-secondary);
-        }
-
-        /* 隱藏 Pagefind 搜尋框的清除按鈕 */
-        .pagefind-ui__search-clear {
-            display: none !important;
-        }
-
-        .pagefind-ui__result-excerpt {
-            display: none !important;
-        }
-        
+        .tag-pill { display: inline-block; font-size: 0.75rem; font-weight: 600; background-color: var(--border-color); color: var(--text-secondary); padding: 0.25rem 0.75rem; border-radius: 9999px; text-decoration: none; transition: all 0.2s ease; }
+        a.tag-pill:hover { opacity: 0.8; }
+        .pagefind-ui__search-input { color: var(--text-color) !important; background-color: var(--bg-color) !important; border: 1px solid var(--border-color) !important; padding-top: 0.5rem; padding-bottom: 0.5rem; padding-left: 1rem; padding-right: 1rem; border-radius: 9999px; width: 100%; }
+        .pagefind-ui__search-input::placeholder { color: var(--text-secondary); }
+        .pagefind-ui__search-clear { display: none !important; }
+        .pagefind-ui__result-excerpt { display: none !important; }
     </style>
 </head>
 <body class="antialiased">
@@ -120,38 +81,33 @@
     </div>
 
     <script>
-        function initPagefind() {
-            // 確保 PagefindUI 物件已存在
-            if (window.PagefindUI) {
-                new PagefindUI({
-                    element: '#search',
-                    showSubResults: false,
-                    baseUrl: '/MyBlob/',
-                    // --- ↓↓↓ 修改整個 translations 物件 ↓↓↓ ---
-                    translations: {
-                        ui: {
-                            search: "搜尋",
-                            clear_search: "清除",
-                            input_placeholder: "搜尋文章標題...",
-                            search_results: '找到 {count} 筆結果',
-                        },
-                        results: {
-                            zero_results: '找不到關於 "{query}" 的結果',
-                            many_results: '找到 {count} 筆關於 "{query}" 的結果',
-                            one_result: '找到 1 筆關於 "{query}" 的結果',
-                        }
+    function initPagefind() {
+        if (window.PagefindUI) {
+            new PagefindUI({
+                element: '#search',
+                showSubResults: false,
+                baseUrl: '/MyBlob/',
+                translations: {
+                    ui: {
+                        search: "搜尋",
+                        clear_search: "清除",
+                        input_placeholder: "搜尋文章標題...",
+                        search_results: '找到 {count} 筆結果',
+                    },
+                    results: {
+                        zero_results: '找不到關於 "{query}" 的結果',
+                        many_results: '找到 {count} 筆關於 "{query}" 的結果',
+                        one_result: '找到 1 筆關於 "{query}" 的結果',
                     }
-                    // --- ↑↑↑ 修改整個 translations 物件 ↑↑↑ ---
-                });
-            }
+                }
+            });
         }
+    }
     </script>
-
     <script src="/MyBlob/pagefind/pagefind-ui.js" onload="initPagefind()"></script>
     
     <script>
          document.addEventListener('DOMContentLoaded', () => {
-          // --- 1. 主題切換邏輯 ---
           const themeToggle = document.getElementById('theme-toggle');
           if (themeToggle) {
             const getStoredTheme = () => localStorage.getItem('theme');
@@ -168,8 +124,6 @@
               setTheme(newTheme);
             });
           }
-
-          // --- 2. 程式碼複製按鈕邏輯 ---
           document.querySelectorAll('div.highlight').forEach(block => {
             const copyButton = document.createElement('button');
             copyButton.className = 'copy-code-button';
@@ -184,8 +138,6 @@
             });
             block.appendChild(copyButton);
           });
-
-          // --- 3. 側邊欄目錄反白邏輯 ---
           const tocLinks = document.querySelectorAll('.post-toc-sidebar nav#TableOfContents a');
           const headings = Array.from(tocLinks).map(link => {
               try {
@@ -206,7 +158,6 @@
                   });
 
                   if (visibleHeadings.length > 0) {
-                      // 優先高亮最靠近頂部的可見標題
                       const topHeading = visibleHeadings.reduce((prev, curr) => {
                           return prev.getBoundingClientRect().top < curr.getBoundingClientRect().top ? prev : curr;
                       });
@@ -218,11 +169,10 @@
                           correspondingLink.classList.add('active');
                       }
                   }
-              }, { rootMargin: '-80px 0px -60% 0px' }); // 微調觸發區域
+              }, { rootMargin: '-80px 0px -60% 0px' });
               headings.forEach(heading => observer.observe(heading));
           }
 
-          // --- 4. Giscus 留言注入邏輯 ---
           const giscusContainer = document.getElementById('giscus-container');
           if (giscusContainer) {
               const script = document.createElement('script');
