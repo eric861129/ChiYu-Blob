@@ -1,24 +1,18 @@
-<!-- 文章列表頁範本，用於呈現文章、標籤或分類列表 -->
 {{ define "main" }}
 <main>
-    <!-- 置頂區塊：頁面標題與標籤、分類資訊 -->
     <section class="mb-12 sm:mb-16">
         <header class="border-b pb-6 mb-6" style="border-color: var(--border-color);">
             {{ if .IsSection }}
-                <!-- 一般文章列表 -->
                 <h1 class="text-3xl sm:text-5xl font-bold tracking-tight">{{ .Title }}</h1>
-            {{ else if .IsTaxonomyType }}
-                <!-- 標籤或分類列表頁 -->
+            {{ else if .IsTaxonomy }}
                 <p class="text-lg" style="color: var(--text-secondary);">{{ .Data.Singular | title }}</p>
                 <h1 class="text-3xl sm:text-5xl font-bold tracking-tight mt-1">{{ .Title }}</h1>
             {{ else }}
-                <!-- 其他情況，如搜尋結果等 -->
                 <h1 class="text-3xl sm:text-5xl font-bold tracking-tight">{{ .Title }}</h1>
             {{ end }}
         </header>
     </section>
 
-    <!-- 文章卡片清單 -->
     <section>
         <div class="space-y-8">
             {{ range .Paginator.Pages }}
@@ -27,7 +21,6 @@
         </div>
     </section>
     
-    <!-- 分頁導覽 -->
     {{ partial "pagination.html" . }}
 </main>
 {{ end }}
