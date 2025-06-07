@@ -1,4 +1,17 @@
 {{ define "main" }}
+
+{{/* --- ↓↓↓ 新增 Pagefind 索引區塊 ↓↓↓ --- */}}
+<div style="display:none;">
+    <div data-pagefind-meta="title:{{ .Title | plainify }}"></div>
+    <div data-pagefind-body>
+        {{/* 只在文章頁 (type: posts) 才將標題寫入索引內文 */}}
+        {{ if eq .Type "posts" }}
+            {{ .Title }}
+        {{ end }}
+    </div>
+</div>
+{{/* --- ↑↑↑ 新增 Pagefind 索引區塊 ↑↑↑ --- */}}
+
 <div class="py-8 sm:py-12">
     {{ if and (gt .WordCount 400) .TableOfContents }}
     <div class="flex justify-center gap-8 lg:gap-12">
