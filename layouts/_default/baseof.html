@@ -65,6 +65,24 @@
         a.tag-pill:hover {
             opacity: 0.8;
         }
+
+        /* --- Pagefind 搜尋輸入框自訂樣式 --- */
+        .pagefind-ui__search-input {
+            color: var(--text-color) !important;
+            background-color: var(--bg-color) !important;
+            border: 1px solid var(--border-color) !important;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            border-radius: 9999px;
+            width: 100%;
+        }
+        
+        /* 調整輸入框內提示文字的顏色 */
+        .pagefind-ui__search-input::placeholder {
+            color: var(--text-secondary);
+        }
     </style>
 </head>
 <body class="antialiased">
