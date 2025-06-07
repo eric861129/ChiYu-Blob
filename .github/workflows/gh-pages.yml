@@ -18,17 +18,12 @@ jobs:
           hugo-version: '0.123.7'
           extended: true
 
-      # ↓↓↓ 新增的診斷步驟 ↓↓↓
-      - name: List project files for debugging
-        run: |
-          echo "--- Root directory ---"
-          ls -l
-          echo "--- layouts/_default directory ---"
-          ls -l layouts/_default
-
-      # 原有的建置步驟
       - name: Build site
         run: hugo --minify --gc
+
+      # 新增 Pagefind 建立索引的步驟
+      - name: Run Pagefind Indexing
+        uses: cloudcannon/pagefind-action@v1
 
       - name: Check links
         uses: wjdp/htmltest-action@master
