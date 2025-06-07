@@ -88,6 +88,11 @@
         .pagefind-ui__search-clear {
             display: none !important;
         }
+
+        .pagefind-ui__result-excerpt {
+            display: none !important;
+        }
+        
     </style>
 </head>
 <body class="antialiased">
@@ -115,25 +120,31 @@
     </div>
 
     <script>
-    function initPagefind() {
-        // 確保 PagefindUI 物件已存在
-        if (window.PagefindUI) {
-            new PagefindUI({
-                element: '#search',
-                showSubResults: false, // 關閉摘要顯示
-                baseUrl: '/MyBlob/',
-                translations: {
-                    ui: {
-                        search: '搜尋',
-                        clear_search: '清除',
-                        input_placeholder: '在這裡搜尋文章...',
-                        // --- 修改此行 ---
-                        search_results: '找到 {count} 筆關於 "{query}" 的結果'
+        function initPagefind() {
+            // 確保 PagefindUI 物件已存在
+            if (window.PagefindUI) {
+                new PagefindUI({
+                    element: '#search',
+                    showSubResults: false,
+                    baseUrl: '/MyBlob/',
+                    // --- ↓↓↓ 修改整個 translations 物件 ↓↓↓ ---
+                    translations: {
+                        ui: {
+                            search: "搜尋",
+                            clear_search: "清除",
+                            input_placeholder: "搜尋文章標題...",
+                            search_results: '找到 {count} 筆結果',
+                        },
+                        results: {
+                            zero_results: '找不到關於 "{query}" 的結果',
+                            many_results: '找到 {count} 筆關於 "{query}" 的結果',
+                            one_result: '找到 1 筆關於 "{query}" 的結果',
+                        }
                     }
-                }
-            });
+                    // --- ↑↑↑ 修改整個 translations 物件 ↑↑↑ ---
+                });
+            }
         }
-    }
     </script>
 
     <script src="/MyBlob/pagefind/pagefind-ui.js" onload="initPagefind()"></script>
