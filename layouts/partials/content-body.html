@@ -16,13 +16,18 @@
         {{ end }}
     </header>
 
-  <div style="display: none;">
-        <div data-pagefind-meta="title:{{ .Title | plainify }}"></div>
-    
-        {{/* 將 data-pagefind-body 清空，讓 Pagefind 不索引內文和標籤 */}}
-        <div data-pagefind-body></div>
+    {{/* 為了讓 Pagefind 能找到標題進行索引，我們在此加入 meta 標籤。
+        同時，為了避免索引失敗，我們不再使用 data-pagefind-body。
+    */}}
+    <div data-pagefind-meta="title:{{ .Title | plainify }}" style="display: none;"></div>
+
+    {{/* 使用 data-pagefind-ignore 將主要文章內文包起來，
+        這樣 Pagefind 就會明確地跳過、不索引這個區塊的內容。
+    */}}
+    <div data-pagefind-ignore>
+        {{ .Content }}
     </div>
-    {{ .Content }}
+
 </article>
 
 {{ if eq .Type "posts" }}
