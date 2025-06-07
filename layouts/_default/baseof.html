@@ -115,22 +115,21 @@
 
     </div>
 
-  <script>
-    function initPagefind() {
-        new PagefindUI({
+     <script 
+        src="/MyBlob/pagefind/pagefind-ui.js" 
+        onload="new PagefindUI({
             element: '#search',
             showSubResults: false,
             baseUrl: '/MyBlob/',
             translations: {
                 ui: {
-                    search: "搜尋",
-                    clear_search: "清除",
-                    input_placeholder: "在這裡搜尋文章...",
-                    search_results: "個相關結果"
+                    search: '搜尋',
+                    clear_search: '清除',
+                    input_placeholder: '在這裡搜尋文章...',
+                    search_results: '個相關結果'
                 }
             }
-        });
-    }
+        });">
     </script>
     
     <script src="/MyBlob/pagefind/pagefind-ui.js" onload="initPagefind()"></script>
