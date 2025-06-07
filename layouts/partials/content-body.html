@@ -1,6 +1,6 @@
 <article class="prose max-w-none">
     <header class="mb-8">
-        <h1 class="text-3xl sm:text-5xl font-bold tracking-tight mb-4 !mt-0">{{ .Title }}</h1>
+        <h1 class="text-3xl sm:text-5xl font-bold tracking-tight mb-4 !mt-0" data-pagefind-body>{{ .Title }}</h1>
         {{ if eq .Type "posts" }}
         <p class="text-base" style="color: var(--text-secondary);">
             發布於 {{ .Date.Format "2006年1月2日" }}
