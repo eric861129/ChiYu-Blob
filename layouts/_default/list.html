@@ -1,27 +1,31 @@
 {{ define "main" }}
-<div data-pagefind-body style="display:none;"></div>
-<main>
-    <section class="mb-12 sm:mb-16">
-        <header class="border-b pb-6 mb-6" style="border-color: var(--border-color);">
-            {{ if .IsSection }}
-                <h1 class="text-3xl sm:text-5xl font-bold tracking-tight">{{ .Title }}</h1>
-            {{ else if eq .Kind "term" }}
-                <p class="text-lg" style="color: var(--text-secondary);">{{ .Data.Singular | title }}</p>
-                <h1 class="text-3xl sm:text-5xl font-bold tracking-tight mt-1">{{ .Title }}</h1>
-            {{ else }}
-                <h1 class="text-3xl sm:text-5xl font-bold tracking-tight">{{ .Title }}</h1>
-            {{ end }}
-        </header>
-    </section>
+<div class="flex flex-row justify-center py-8">
+    <div class="w-full max-w-4xl min-w-0">
+        <main>
+            <section class="mb-12 sm:mb-16">
+                <header class="border-b pb-6 mb-6" style="border-color: var(--border-color);">
+                    {{ if .IsSection }}
+                        <h1 class="text-3xl sm:text-5xl font-bold tracking-tight">{{ .Title }}</h1>
+                    {{ else if eq .Kind "term" }}
+                        <p class="text-lg" style="color: var(--text-secondary);">{{ .Data.Singular | title }}</p>
+                        <h1 class="text-3xl sm:text-5xl font-bold tracking-tight mt-1">{{ .Title }}</h1>
+                    {{ else }}
+                        <h1 class="text-3xl sm:text-5xl font-bold tracking-tight">{{ .Title }}</h1>
+                    {{ end }}
+                </header>
+            </section>
 
-    <section>
-        <div class="space-y-8">
-            {{ range .Paginator.Pages }}
-                {{ .Render "card" }}
-            {{ end }}
-        </div>
-    </section>
-    
-    {{ partial "pagination.html" . }}
-</main>
+            <section>
+                <div class="space-y-8">
+                    {{ range .Paginator.Pages }}
+                        {{ .Render "card" }}
+                    {{ end }}
+                </div>
+            </section>
+
+            {{ partial "pagination.html" . }}
+        </main>
+    </div>
+    {{ partial "tag_sidebar.html" . }}
+    </div>
 {{ end }}

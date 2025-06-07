@@ -1,33 +1,25 @@
 {{ define "main" }}
-<div data-pagefind-body style="display:none;"></div>
-<main>
-    <section class="text-center mb-12 sm:mb-20">
-        <h1 class="py-8  text-3xl sm:text-5xl font-bold tracking-tight mb-4">{{ .Site.Params.description | default "歡迎來到我的部落格" }}</h1>
-        <div class="max-w-2xl mx-auto sm:text-lg" style="color: var(--text-secondary);">
-            {{ .Content }}
-        </div>
-    </section>
+<div class="flex flex-row justify-center py-8">
+    <div class="w-full max-w-4xl min-w-0">
+        <main>
+            <section class="text-center mb-12 sm:mb-20">
+                <h1 class="py-8 text-3xl sm:text-5xl font-bold tracking-tight mb-4">{{ .Site.Params.description | default "歡迎來到我的部落格" }}</h1>
+                <div class="max-w-2xl mx-auto sm:text-lg" style="color: var(--text-secondary);">
+                    {{ .Content }}
+                </div>
+            </section>
 
-    <section class="mb-12 sm:mb-16">
-        <h2 class="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 border-b pb-3" style="border-color: var(--border-color);">所有標籤</h2>
-        <div class="flex flex-wrap gap-x-4 gap-y-3 items-center">
-            {{ range .Site.Taxonomies.tags.ByCount.Reverse }}
-            <a href="{{ .Page.RelPermalink }}" class="tag-pill">
-                {{ .Page.Title }}
-                <span class="ml-1 opacity-75">{{ .Count }}</span>
-            </a>
-            {{ end }}
-        </div>
-    </section>
+            <section>
+                <h2 class="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 border-b pb-3" style="border-color: var(--border-color);">最新文章</h2>
 
-    <section>
-        <h2 class="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 border-b pb-3" style="border-color: var(--border-color);">最新文章</h2>
-
-        <div class="space-y-8">
-            {{ range first 5 .Site.RegularPages.ByDate.Reverse }}
-                {{ .Render "card" }}
-            {{ end }}
-        </div>
-    </section>
-</main>
+                <div class="space-y-8">
+                    {{ range first 5 .Site.RegularPages.ByDate.Reverse }}
+                        {{ .Render "card" }}
+                    {{ end }}
+                </div>
+            </section>
+        </main>
+    </div>
+    {{ partial "tag_sidebar.html" . }}
+    </div>
 {{ end }}
