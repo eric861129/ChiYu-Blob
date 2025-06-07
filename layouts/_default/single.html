@@ -12,25 +12,29 @@
 </div>
 {{/* --- ↑↑↑ 新增 Pagefind 索引區塊 ↑↑↑ --- */}}
 
-<div class="py-8 sm:py-12">
-    {{ if and (gt .WordCount 400) .TableOfContents }}
-    <div class="flex justify-center gap-8 lg:gap-12">
-        <main class="w-full max-w-4xl min-w-0">
-            {{ partial "content-body.html" . }}
-        </main>
-        <aside class="post-toc-sidebar">
-            <div class="toc-sticky-container">
-                <h3 class="toc-title">本文目錄</h3>
-                {{ .TableOfContents }}
-            </div>
-        </aside>
+<div class="flex flex-row justify-center py-8 sm:py-12">
+    <div class="w-full max-w-6xl min-w-0">
+        {{ if and (gt .WordCount 400) .TableOfContents }}
+        <div class="flex flex-row gap-8 lg:gap-12">
+            <main class="w-full max-w-4xl min-w-0">
+                {{ partial "content-body.html" . }}
+            </main>
+            <aside class="post-toc-sidebar">
+                <div class="toc-sticky-container">
+                    <h3 class="toc-title">本文目錄</h3>
+                    {{ .TableOfContents }}
+                </div>
+            </aside>
+        </div>
+        {{ else }}
+        <div class="flex justify-center">
+            <main class="w-full max-w-4xl min-w-0">
+                 {{ partial "content-body.html" . }}
+            </main>
+        </div>
+        {{ end }}
     </div>
-    {{ else }}
-    <div class="flex justify-center">
-        <main class="w-full max-w-4xl min-w-0">
-             {{ partial "content-body.html" . }}
-        </main>
+
+    {{ partial "tag_sidebar.html" . }}
     </div>
-    {{ end }}
-</div>
 {{ end }}

@@ -1,0 +1,45 @@
+/*
+自訂網站樣式，將原本散落於模板的 CSS 集中於此。
+*/
+
+        :root {
+            --bg-color: #f8fafc; --text-color: #0f172a; --text-secondary: #64748b; --border-color: #e2e8f0; --link-color: #2563eb; --card-bg: #ffffff; --code-bg: #f1f5f9;
+            font-family: 'Inter', 'Noto Sans TC', sans-serif;
+        }
+        [data-theme='dark'] {
+            --bg-color: #0f172a; --text-color: #f8fafc; --text-secondary: #94a3b8; --border-color: #334155; --link-color: #60a5fa; --card-bg: #1e293b; --code-bg: #1e293b;
+        }
+        body { background-color: var(--bg-color); color: var(--text-color); transition: background-color 0.3s, color 0.3s; }
+        #theme-toggle { background: transparent; border: none; cursor: pointer; padding: 8px; border-radius: 9999px; position: relative; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; outline: none; transition: background-color 0.2s ease; color: var(--text-secondary); }
+        #theme-toggle:hover { background-color: var(--border-color); }
+        #theme-toggle svg { position: absolute; width: 20px; height: 20px; stroke: currentColor; transition: transform 0.4s ease, opacity 0.4s ease; }
+        html[data-theme='light'] .moon-icon { transform: scale(0); opacity: 0; }
+        html[data-theme='light'] .sun-icon { transform: scale(1); opacity: 1; }
+        html[data-theme='dark'] .sun-icon { transform: scale(0); opacity: 0; }
+        html[data-theme='dark'] .moon-icon { transform: rotate(360deg) scale(1); opacity: 1; }
+        .prose h2 { font-size: 1.5rem; font-weight: 700; margin-top: 2em; margin-bottom: 1em; padding-bottom: 0.5em; border-bottom: 1px solid var(--border-color); }
+        .prose h3 { font-size: 1.25rem; font-weight: 600; margin-top: 1.5em; margin-bottom: 0.75em; }
+        .prose p { line-height: 1.75; margin-bottom: 1.25em; }
+        .prose a { color: var(--link-color); text-decoration: none; }
+        .prose a:hover { text-decoration: underline; }
+        .prose blockquote { border-left: 4px solid var(--border-color); padding-left: 1em; margin-left: 0; font-style: italic; color: var(--text-secondary); }
+        .prose code:not(pre code) { background-color: var(--code-bg); color: var(--text-color); padding: 0.2em 0.4em; font-size: 0.9em; border-radius: 4px; }
+        .highlight { position: relative; margin: 1.5em 0; border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; }
+        .highlight pre { margin: 0; padding: 1.5em; background-color: var(--card-bg) !important; }
+        .copy-code-button { position: absolute; top: 0.75em; right: 0.75em; padding: 0.3em 0.6em; background-color: #333; color: #eee; border: 1px solid #555; border-radius: 4px; cursor: pointer; font-size: 0.8em; opacity: 0; transition: opacity 0.2s ease-in-out; }
+        .highlight:hover .copy-code-button { opacity: 1; }
+        .post-toc-sidebar { width: 280px; flex-shrink: 0; }
+        .toc-sticky-container { position: sticky; top: 80px; max-height: calc(100vh - 100px); overflow-y: auto; }
+        .toc-title { font-size: 0.9em; font-weight: 700; margin-bottom: 1em; text-transform: uppercase; color: var(--text-secondary); }
+        .post-toc-sidebar nav#TableOfContents ul { list-style: none; padding-left: 0; }
+        .post-toc-sidebar nav#TableOfContents a { color: var(--text-secondary); text-decoration: none; display: block; padding-left: 1em; border-left: 2px solid var(--border-color); font-size: 0.9em; transition: all 0.2s ease; }
+        .post-toc-sidebar nav#TableOfContents a:hover { color: var(--link-color); }
+        .post-toc-sidebar nav#TableOfContents a.active { color: var(--link-color); border-left-color: var(--link-color); transform: translateX(5px); font-weight: 600; }
+        @media (max-width: 1024px) { .post-toc-sidebar { display: none; } }
+        .prose .not-prose { all: revert; }
+        .tag-pill { display: inline-block; font-size: 0.75rem; font-weight: 600; background-color: var(--border-color); color: var(--text-secondary); padding: 0.25rem 0.75rem; border-radius: 9999px; text-decoration: none; transition: all 0.2s ease; }
+        a.tag-pill:hover { opacity: 0.8; }
+        .pagefind-ui__search-input { color: var(--text-color) !important; background-color: var(--bg-color) !important; border: 1px solid var(--border-color) !important; padding-top: 0.5rem; padding-bottom: 0.5rem; padding-left: 1rem; padding-right: 1rem; border-radius: 9999px; width: 100%; }
+        .pagefind-ui__search-input::placeholder { color: var(--text-secondary); }
+        .pagefind-ui__search-clear { display: none !important; }
+        .pagefind-ui__result-excerpt { display: none !important; }
