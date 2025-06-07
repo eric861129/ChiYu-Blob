@@ -18,9 +18,10 @@
 
     <div style="display: none;">
         <div data-pagefind-meta="title:{{ .Title | plainify }}"></div>
-
+    
         <div data-pagefind-body>
-            <p>{{ .Title }}</p>
+            {{/* 改為使用文章摘要當作索引內容，並移除標題 */}}
+            <p>{{ .Summary }}</p>
             {{ with .Params.tags }}
             <p>{{ delimit . " " }}</p>
             {{ end }}
