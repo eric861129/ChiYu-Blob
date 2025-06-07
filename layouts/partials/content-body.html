@@ -7,8 +7,8 @@
             {{ with .Params.tags }}
             &middot; 
             <span class="inline-flex flex-wrap gap-2 items-center">
-                {{ range . }}
-                <a href="{{ "/MyBlob/tags/" | relURL }}{{ . | urlize }}/" class="tag-pill">{{ . }}</a>
+               {{ range . }}
+                <a href="/MyBlob/tags/{{ . | urlize }}/" class="tag-pill">{{ . }}</a>
                 {{ end }}
             </span>
             {{ end }}
