@@ -16,16 +16,11 @@
         {{ end }}
     </header>
 
-    <div style="display: none;">
+  <div style="display: none;">
         <div data-pagefind-meta="title:{{ .Title | plainify }}"></div>
     
-        <div data-pagefind-body>
-            {{/* 改為使用文章摘要當作索引內容，並移除標題 */}}
-            <p>{{ .Summary }}</p>
-            {{ with .Params.tags }}
-            <p>{{ delimit . " " }}</p>
-            {{ end }}
-        </div>
+        {{/* 將 data-pagefind-body 清空，讓 Pagefind 不索引內文和標籤 */}}
+        <div data-pagefind-body></div>
     </div>
     {{ .Content }}
 </article>
