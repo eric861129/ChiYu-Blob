@@ -8,7 +8,7 @@
             &middot; 
             <span class="inline-flex flex-wrap gap-2 items-center">
                {{ range . }}
-                <a href="/MyBlob/tags/{{ . | urlize }}/" class="tag-pill">{{ . }}</a>
+                <a href="/MyBlob/tags/{{ . | urlize }}/" class="tag-pill" data-pagefind-body>{{ . }}</a>
                 {{ end }}
             </span>
             {{ end }}
