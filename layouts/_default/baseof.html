@@ -94,8 +94,11 @@
 <script src="/MyBlob/pagefind/pagefind-ui.js"
         onload="new PagefindUI({
             element: '#search',
-            showSubResults: true,
-            baseUrl: '/MyBlob/'
+            showSubResults: false, // 【修改點】改為 false，僅顯示標題
+            baseUrl: '/MyBlob/',
+            translations: { 
+              ui: 'zh-TW' // 【新增點】將 UI 設定為繁體中文
+            }
         });"></script>
     <script>
          document.addEventListener('DOMContentLoaded', () => {
