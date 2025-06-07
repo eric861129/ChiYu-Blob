@@ -4,7 +4,7 @@
         <header class="border-b pb-6 mb-6" style="border-color: var(--border-color);">
             {{ if .IsSection }}
                 <h1 class="text-3xl sm:text-5xl font-bold tracking-tight">{{ .Title }}</h1>
-            {{ else if .IsTaxonomy }}
+            {{ else if eq .Kind "term" }}
                 <p class="text-lg" style="color: var(--text-secondary);">{{ .Data.Singular | title }}</p>
                 <h1 class="text-3xl sm:text-5xl font-bold tracking-tight mt-1">{{ .Title }}</h1>
             {{ else }}
