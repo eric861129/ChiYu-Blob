@@ -115,15 +115,20 @@
 
     </div>
 
-<script src="/MyBlob/pagefind/pagefind-ui.js"
-        onload="new PagefindUI({
-            element: '#search',
-            showSubResults: false, // 【修改點】改為 false，僅顯示標題
-            baseUrl: '/MyBlob/',
-            translations: { 
-              ui: 'zh-TW' // 【新增點】將 UI 設定為繁體中文
-            }
-        });"></script>
+    <script src="/MyBlob/pagefind/pagefind-ui.js"
+            onload="new PagefindUI({
+                element: '#search',
+                showSubResults: false,
+                baseUrl: '/MyBlob/',
+                translations: {
+                    ui: {
+                        search: "搜尋",
+                        clear_search: "清除",
+                        input_placeholder: "在這裡搜尋文章...",
+                        search_results: "個相關結果"
+                    }
+                }
+            });"></script>
     <script>
          document.addEventListener('DOMContentLoaded', () => {
           // --- 1. 主題切換邏輯 ---
