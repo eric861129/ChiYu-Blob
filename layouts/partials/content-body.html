@@ -6,24 +6,23 @@
             發布於 {{ .Date.Format "2006年1月2日" }}
             {{ with .Params.tags }}
             &middot; 
-            <span class="inline-flex flex-wrap gap-2 items-center">
+            {{/* --- ↓↓↓ 主要修改處 ↓↓↓ --- */}}
+            {{/* 在此處加上 data-pagefind-ignore，讓搜尋功能忽略標籤 */}}
+            <span class="inline-flex flex-wrap gap-2 items-center" data-pagefind-ignore>
                {{ range . }}
                 <a href="/MyBlob/tags/{{ . | urlize }}/" class="tag-pill">{{ . }}</a>
                 {{ end }}
             </span>
+            {{/* --- ↑↑↑ 主要修改處 ↑↑↑ --- */}}
             {{ end }}
         </p>
         {{ end }}
     </header>
 
-    {{/* 為了讓 Pagefind 能找到標題進行索引，我們在此加入 meta 標籤。
-        同時，為了避免索引失敗，我們不再使用 data-pagefind-body。
-    */}}
+    {{/* 為了讓 Pagefind 能找到標題進行索引，我們在此加入 meta 標籤 */}}
     <div data-pagefind-meta="title:{{ .Title | plainify }}" style="display: none;"></div>
 
-    {{/* 使用 data-pagefind-ignore 將主要文章內文包起來，
-        這樣 Pagefind 就會明確地跳過、不索引這個區塊的內容。
-    */}}
+    {{/* 使用 data-pagefind-ignore 將主要文章內文包起來，讓 Pagefind 跳過此區塊 */}}
     <div data-pagefind-ignore>
         {{ .Content }}
     </div>
