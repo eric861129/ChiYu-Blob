@@ -1,19 +1,3 @@
-<div class="mt-8">
-    <h3 class="text-xl font-bold mb-4 pb-2 border-b" style="border-color: var(--border-color);">文章月曆</h3>
-    <div id="calendar-widget">
-        <div class="flex justify-between items-center mb-2 font-semibold">
-            <button id="cal-prev" title="上個月" class="px-2 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700">&lt;</button>
-            <span id="cal-month-year"></span>
-            <button id="cal-next" title="下個月" class="px-2 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700">&gt;</button>
-        </div>
-        <div class="grid grid-cols-7 text-center text-xs gap-y-2" style="color: var(--text-secondary);">
-            <span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span>
-        </div>
-        <div id="cal-days" class="grid grid-cols-7 text-center text-sm mt-2 gap-y-2">
-            </div>
-    </div>
-</div>
-
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     
@@ -21,11 +5,10 @@ document.addEventListener('DOMContentLoaded', function() {
     {{ range where .Site.RegularPages "Type" "posts" }}
         {{ $dateStr := .Date.Format "2006-1-2" }}
         
-        {{/* --- 最終修正：手動拼接 baseURL 和日期路徑，確保 URL 絕對正確 --- */}}
-        {{ $datePath := .Date.Format "2006/01/02/" }}
-        {{ $link := print .Site.BaseURL $datePath }}
-        postedDates["{{ $dateStr }}"] = "{{ $link }}";
-        {{/* --- 最終修正結束 --- */}}
+        {{/* --- 修正：直接使用文章的永久連結 (.Permalink) --- */}}
+        {{/* 舊的寫法會產生不存在的每日列表頁面，導致 404 */}}
+        {{/* 新的寫法會直接連結到該日期的文章頁面 */}}
+        postedDates["{{ $dateStr }}"] = "{{ .Permalink }}";
 
     {{ end }}
 
