@@ -1,53 +1,85 @@
-{{/* 抓取網站建置時的當下時間 */}}
-{{ $now := now }}
-{{ $current_year := $now.Year }}
-{{ $current_month := $now.Month }}
-{{ $current_month_str := printf "%d" $current_month }}
-
-{{/* 找出這個月的第一天和最後一天 */}}
-{{ $first_of_month := time (printf "%d-%02d-01" $current_year $current_month) }}
-{{ $last_of_month := $first_of_month.AddDate 0 1 -1 }}
-
-{{/* 建立一個字典，key 是日期的"字串"，value 是文章連結 */}}
-{{ $posted_links := dict }}
-{{ $pages_in_month := where .Site.RegularPages "Type" "posts" }}
-{{ $pages_in_month = where $pages_in_month "Date" "le" $last_of_month }}
-{{ $pages_in_month = where $pages_in_month "Date" "ge" $first_of_month }}
-
-{{ range $pages_in_month.ByDate }}
-    {{/* --- 修正 (1/2): 使用 printf 將數字的 Day 轉換成字串的 Key --- */}}
-    {{ $posted_links = merge $posted_links (dict (printf "%d" .Date.Day) .Permalink) }}
-{{ end }}
-
-
 <div class="mt-8">
     <h3 class="text-xl font-bold mb-4 pb-2 border-b" style="border-color: var(--border-color);">文章月曆</h3>
-    <div class="calendar-widget">
+    <div id="calendar-widget">
         <div class="flex justify-between items-center mb-2 font-semibold">
-            <span>{{ $current_year }} 年 {{ $current_month_str }} 月</span>
+            <button id="cal-prev" title="上個月" class="px-2 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700">&lt;</button>
+            <span id="cal-month-year"></span>
+            <button id="cal-next" title="下個月" class="px-2 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700">&gt;</button>
         </div>
         <div class="grid grid-cols-7 text-center text-xs gap-y-2" style="color: var(--text-secondary);">
             <span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span>
         </div>
-        <div class="grid grid-cols-7 text-center text-sm mt-2 gap-y-2">
-            {{/* 在第一天開始前，填上空白的格子 */}}
-            {{ range seq $first_of_month.Weekday }}
-                <div></div>
-            {{ end }}
-
-            {{/* 產生當月的所有日期 */}}
-            {{ range seq $last_of_month.Day }}
-                {{ $day := . }}
-                {{/* --- 修正 (2/2): 同樣將當前的日期數字轉成字串來查找 --- */}}
-                {{ $day_str := printf "%d" $day }}
-                {{ if isset $posted_links $day_str }}
-                    <a href="{{ index $posted_links $day_str }}" class="block p-1 rounded-full transition-colors font-bold" style="color: var(--link-color); text-decoration: underline; text-decoration-thickness: 2px;">
-                        {{ $day }}
-                    </a>
-                {{ else }}
-                    <span class="block p-1">{{ $day }}</span>
-                {{ end }}
-            {{ end }}
-        </div>
+        <div id="cal-days" class="grid grid-cols-7 text-center text-sm mt-2 gap-y-2">
+            </div>
     </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // 在建置階段，由 Hugo 產生所有文章日期與連結
+    const postedDates = {};
+    {{ range where .Site.RegularPages "Type" "posts" }}
+        {{/* 產生 Key: YYYY-M-D 格式的字串 */}}
+        {{ $dateStr := .Date.Format "2006-1-2" }}
+        {{/* 對應的每日彙整頁連結 */}}
+        {{ $link := .Date.Format "/2006/01/02/" | relURL }}
+        postedDates["{{ $dateStr }}"] = "{{ $link }}";
+    {{ end }}
+
+    const monthYearEl = document.getElementById('cal-month-year');
+    const daysEl = document.getElementById('cal-days');
+    const prevBtn = document.getElementById('cal-prev');
+    const nextBtn = document.getElementById('cal-next');
+
+    // 初始日期為今天
+    let currentDate = new Date();
+
+    // 根據給定日期重新產生月曆
+    function renderCalendar(date) {
+        const year = date.getFullYear();
+        const month = date.getMonth(); // 0~11 表示一月至十二月
+
+        monthYearEl.textContent = `${year} 年 ${month + 1} 月`;
+        daysEl.innerHTML = '';
+
+        const firstDayOfMonth = new Date(year, month, 1);
+        const lastDayOfMonth = new Date(year, month + 1, 0);
+        const firstDayOfWeek = firstDayOfMonth.getDay(); // 0=週日
+
+        // 在月曆前方填補空白格
+        for (let i = 0; i < firstDayOfWeek; i++) {
+            daysEl.insertAdjacentHTML('beforeend', '<div></div>');
+        }
+
+        // 產生日期格子
+        for (let day = 1; day <= lastDayOfMonth.getDate(); day++) {
+            const dateString = `${year}-${month + 1}-${day}`;
+            // 判斷是否有文章
+            if (postedDates[dateString]) {
+                daysEl.insertAdjacentHTML('beforeend', `
+                    <a href="${postedDates[dateString]}" class="block p-1 rounded-full transition-colors font-bold" style="color: var(--link-color); text-decoration: underline; text-decoration-thickness: 2px;">
+                        ${day}
+                    </a>
+                `);
+            } else {
+                daysEl.insertAdjacentHTML('beforeend', `<span class="block p-1">${day}</span>`);
+            }
+        }
+    }
+
+    // 按下「上個月」
+    prevBtn.addEventListener('click', () => {
+        currentDate.setMonth(currentDate.getMonth() - 1);
+        renderCalendar(currentDate);
+    });
+
+    // 按下「下個月」
+    nextBtn.addEventListener('click', () => {
+        currentDate.setMonth(currentDate.getMonth() + 1);
+        renderCalendar(currentDate);
+    });
+
+    // 初次載入
+    renderCalendar(currentDate);
+});
+</script>
