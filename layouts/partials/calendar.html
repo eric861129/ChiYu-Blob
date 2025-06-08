@@ -17,13 +17,16 @@
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     
-    // 在網站建置時，由 Hugo 產生所有文章日期的資料給 JavaScript 使用
     const postedDates = {};
     {{ range where .Site.RegularPages "Type" "posts" }}
         {{ $dateStr := .Date.Format "2006-1-2" }}
-        {{/* --- 修正處：改用 absURL 確保產生包含 hostname 和子目錄的完整絕對路徑 --- */}}
-        {{ $link := .Date.Format "/2006/01/02/" | absURL }}
+        
+        {{/* --- 最終修正：手動拼接 baseURL 和日期路徑，確保 URL 絕對正確 --- */}}
+        {{ $datePath := .Date.Format "2006/01/02/" }}
+        {{ $link := print .Site.BaseURL $datePath }}
         postedDates["{{ $dateStr }}"] = "{{ $link }}";
+        {{/* --- 最終修正結束 --- */}}
+
     {{ end }}
 
     const monthYearEl = document.getElementById('cal-month-year');
@@ -35,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function renderCalendar(date) {
         const year = date.getFullYear();
-        const month = date.getMonth(); // JavaScript 月份是 0-11
+        const month = date.getMonth();
         monthYearEl.textContent = `${year} 年 ${month + 1} 月`;
         daysEl.innerHTML = ''; 
         const firstDayOfMonth = new Date(year, month, 1);
