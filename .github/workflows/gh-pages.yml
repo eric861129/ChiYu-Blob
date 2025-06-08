@@ -21,7 +21,7 @@ jobs:
 
       # --- ↓↓↓ 關鍵修改 (1/2): 在建置指令中加入 baseURL ---
       - name: Build site
-        run: hugo --minify --gc --baseURL "/MyBlob/"
+        run: hugo --minify --gc --baseURL "/ChiYu-Blob/"
 
       # --- ↓↓↓ 關鍵修改 (2/2): 修正 Pagefind 的 deprecated 選項 ---
       - name: Build Pagefind search index

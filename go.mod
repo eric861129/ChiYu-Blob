@@ -1,4 +1,4 @@
-module github.com/eric861129/MyBlob
+module github.com/eric861129/ChiYu-Blob
 
 go 1.22
 
