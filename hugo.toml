@@ -1,4 +1,4 @@
-baseURL = 'https://eric861129.github.io/MyBlob/'
+baseURL = 'https://eric861129.github.io/ChiYu-Blob/'
 languageCode = 'zh-TW'
 title = 'ChiYu Code Journey'
 # theme = 'github.com/kdevo/osprey-delight/v5'
@@ -35,7 +35,7 @@ paginate = 5
     name = "ChiYu"
 [params.giscus]
   enable = true
-  repo = "eric861129/MyBlob"
+  repo = "eric861129/ChiYu-Blob"
   repoId = "R_kgDOO2a_UQ"
   category = "Announcements"
   categoryId = "DIC_kwDOO2a_Uc4CrGzL"
