@@ -19,14 +19,13 @@ jobs:
           hugo-version: '0.123.7'
           extended: true
 
-      # 1. 建置 Hugo 網站
+      # --- ↓↓↓ 關鍵修改 (1/2): 在建置指令中加入 baseURL ---
       - name: Build site
-        run: hugo --minify --gc
+        run: hugo --minify --gc --baseURL "/MyBlob/"
 
-      # 2. 直接使用 npx 執行 Pagefind 來建立索引
-      #    這會繞過有問題的 GitHub Action
+      # --- ↓↓↓ 關鍵修改 (2/2): 修正 Pagefind 的 deprecated 選項 ---
       - name: Build Pagefind search index
-        run: npx --yes pagefind --site public --bundle-dir pagefind
+        run: npx --yes pagefind --site public --output-subdir pagefind
 
       # 3. 檢查連結
       - name: Check links
