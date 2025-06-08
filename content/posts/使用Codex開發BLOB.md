@@ -1,7 +1,7 @@
 +++
 title = "我是如何使用 AI (Codex) 打造這個 Hugo 部落格的"
 date = 2025-06-08
-tags = ["Hugo", "Codex", "AI", "Web Development", "實戰"]
+tags = [ "AI"]
 description = "一篇實戰紀錄，分享我如何利用 AI 程式助理 Codex (整合於 ChatGPT) 從零到一開發這個 Hugo 靜態網站，從前端互動功能到後端自動化部署的完整過程。"
 +++
 
@@ -23,7 +23,7 @@ description = "一篇實戰紀錄，分享我如何利用 AI 程式助理 Codex 
 我的提問大致如下：
 > 「幫我寫一段 JavaScript。當使用者點擊 ID 為 `theme-toggle` 的按鈕時，在 `<html>` 元素上切換 `data-theme` 屬性，值為 'light' 或 'dark'。將這個設定存到 localStorage。頁面載入時，優先從 localStorage 讀取設定。最後，當主題改變時，發送一個 postMessage 給 class 為 `giscus-frame` 的 iframe，內容為 `{ giscus: { setTheme: newTheme } }`。」
 
-Codex 很快就生成了 `layouts/_default/baseof.html` 中的核心邏odescript>
+Codex 很快就生成了 `layouts/_default/baseof.html` 中的核心邏!
 
 ### 文章月曆與發布熱圖
 我想在側邊欄放一個月曆，並標示出當天有發布文章的日期，讓訪客能快速找到特定日期的文章。
