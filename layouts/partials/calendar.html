@@ -8,18 +8,17 @@
 {{ $first_of_month := time (printf "%d-%02d-01" $current_year $current_month) }}
 {{ $last_of_month := $first_of_month.AddDate 0 1 -1 }}
 
-{{/* --- ↓↓↓ 邏輯修改處 ↓↓↓ --- */}}
-{{/* 建立一個字典，key 是日期 (Day)，value 是該日第一篇文章的永久連結 (.Permalink) */}}
+{{/* 建立一個字典，key 是日期的"字串"，value 是文章連結 */}}
 {{ $posted_links := dict }}
 {{ $pages_in_month := where .Site.RegularPages "Type" "posts" }}
 {{ $pages_in_month = where $pages_in_month "Date" "le" $last_of_month }}
 {{ $pages_in_month = where $pages_in_month "Date" "ge" $first_of_month }}
 
-{{/* 依日期排序，確保若一天有多篇，我們抓到的連結是固定的 */}}
 {{ range $pages_in_month.ByDate }}
-    {{ $posted_links = merge $posted_links (dict .Date.Day .Permalink) }}
+    {{/* --- 修正 (1/2): 使用 printf 將數字的 Day 轉換成字串的 Key --- */}}
+    {{ $posted_links = merge $posted_links (dict (printf "%d" .Date.Day) .Permalink) }}
 {{ end }}
-{{/* --- ↑↑↑ 邏輯修改處 ↑↑↑ --- */}}
+
 
 <div class="mt-8">
     <h3 class="text-xl font-bold mb-4 pb-2 border-b" style="border-color: var(--border-color);">文章月曆</h3>
@@ -31,22 +30,23 @@
             <span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span>
         </div>
         <div class="grid grid-cols-7 text-center text-sm mt-2 gap-y-2">
+            {{/* 在第一天開始前，填上空白的格子 */}}
             {{ range seq $first_of_month.Weekday }}
                 <div></div>
             {{ end }}
 
+            {{/* 產生當月的所有日期 */}}
             {{ range seq $last_of_month.Day }}
                 {{ $day := . }}
-                {{/* --- ↓↓↓ 連結修改處 ↓↓↓ --- */}}
-                {{ if isset $posted_links $day }}
-                    {{/* 直接使用儲存好的文章連結 */}}
-                    <a href="{{ index $posted_links $day }}" class="block p-1 rounded-full transition-colors font-bold" style="color: var(--link-color); text-decoration: underline; text-decoration-thickness: 2px;">
+                {{/* --- 修正 (2/2): 同樣將當前的日期數字轉成字串來查找 --- */}}
+                {{ $day_str := printf "%d" $day }}
+                {{ if isset $posted_links $day_str }}
+                    <a href="{{ index $posted_links $day_str }}" class="block p-1 rounded-full transition-colors font-bold" style="color: var(--link-color); text-decoration: underline; text-decoration-thickness: 2px;">
                         {{ $day }}
                     </a>
                 {{ else }}
                     <span class="block p-1">{{ $day }}</span>
                 {{ end }}
-                {{/* --- ↑↑↑ 連結修改處 ↑↑↑ --- */}}
             {{ end }}
         </div>
     </div>
