@@ -4,29 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
-
-    {{/* 設定描述與社群分享標籤 */}}
-    {{ $description := .Description | default .Site.Params.description }}
-    {{ if .IsPage }}
-        {{ $description = .Summary | plainify | truncate 120 }}
-    {{ end }}
-    <meta name="description" content="{{ $description }}">
-    <meta property="og:title" content="{{ .Title }}">
-    <meta property="og:description" content="{{ $description }}">
-    <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
-    <meta property="og:url" content="{{ .Permalink }}">
-    {{ with .Params.image }}<meta property="og:image" content="{{ . | absURL }}">{{ end }}
     
+    <script>
+      // 此立即執行函式會在頁面繪製前執行，從根本解決閃爍問題
+      (function() {
+        // 優先從 localStorage 讀取使用者設定，若無，則預設為 'dark'
+        const theme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
     <link href="{{ "/pagefind/pagefind-ui.css" | relURL }}" rel="stylesheet">
 
-    {{/* 載入自訂樣式檔案 */}}
     {{ $customCSS := resources.Get "css/custom.css" | minify }}
     <link rel="stylesheet" href="{{ $customCSS.Permalink }}">
+
 </head>
 <body class="antialiased">
 
@@ -68,22 +63,24 @@
     
     <script>
          document.addEventListener('DOMContentLoaded', () => {
+          // --- 主題切換按鈕邏輯 ---
           const themeToggle = document.getElementById('theme-toggle');
           if (themeToggle) {
-            const getStoredTheme = () => localStorage.getItem('theme');
-            const getPreferredTheme = () => (window.matchMedia("(prefers-color-scheme: dark)").matches ? 'dark' : 'light');
-            const setTheme = (theme) => {
-              document.documentElement.setAttribute('data-theme', theme);
-              localStorage.setItem('theme', theme);
-            };
-            const currentTheme = getStoredTheme() || getPreferredTheme();
-            setTheme(currentTheme);
             themeToggle.addEventListener('click', () => {
               const activeTheme = document.documentElement.getAttribute('data-theme');
               const newTheme = activeTheme === 'light' ? 'dark' : 'light';
-              setTheme(newTheme);
+              document.documentElement.setAttribute('data-theme', newTheme);
+              localStorage.setItem('theme', newTheme);
+
+              // 通知 giscus 評論區變更主題
+              const giscusFrame = document.querySelector('iframe.giscus-frame');
+              if (giscusFrame) {
+                giscusFrame.contentWindow.postMessage({ giscus: { setTheme: newTheme } }, 'https://giscus.app');
+              }
             });
           }
+          
+          // --- 複製程式碼按鈕邏輯 ---
           document.querySelectorAll('div.highlight').forEach(block => {
             const copyButton = document.createElement('button');
             copyButton.className = 'copy-code-button';
@@ -98,6 +95,8 @@
             });
             block.appendChild(copyButton);
           });
+
+          // --- 目錄高亮邏輯 ---
           const tocLinks = document.querySelectorAll('.post-toc-sidebar nav#TableOfContents a');
           const headings = Array.from(tocLinks).map(link => {
               try {
@@ -132,6 +131,8 @@
               }, { rootMargin: '-80px 0px -60% 0px' });
               headings.forEach(heading => observer.observe(heading));
           }
+          
+          // --- Giscus 評論區初始化邏輯 ---
           const giscusContainer = document.getElementById('giscus-container');
           if (giscusContainer) {
               const script = document.createElement('script');
@@ -153,5 +154,5 @@
           }
         });
     </script>
-</body>
+    </body>
 </html>
