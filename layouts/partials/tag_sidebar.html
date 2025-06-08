@@ -1,6 +1,8 @@
 <!-- 標籤與相關連結側邊欄 -->
 <aside class="w-64 flex-shrink-0 hidden lg:block pl-8">
     <div class="sticky top-20">
+        
+        {{ partial "calendar.html" . }}
         <h3 class="text-xl font-bold mb-4 pb-2 border-b" style="border-color: var(--border-color);">所有標籤</h3>
         <div class="flex flex-wrap gap-2">
             {{ range .Site.Taxonomies.tags.ByCount.Reverse }}
@@ -26,6 +28,5 @@
         </div>
         {{ end }}
 
-        {{ partial "calendar.html" . }}
     </div>
 </aside>
