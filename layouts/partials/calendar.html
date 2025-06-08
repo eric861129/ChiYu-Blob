@@ -8,50 +8,45 @@
 {{ $first_of_month := time (printf "%d-%02d-01" $current_year $current_month) }}
 {{ $last_of_month := $first_of_month.AddDate 0 1 -1 }}
 
-{{/* 建立一個字典(map)，用來存放這個月內有發表文章的日期 */}}
-{{ $posted_days := dict }}
-{{ $pages_in_month := where .Site.RegularPages "Date" "le" $last_of_month }}
+{{/* --- ↓↓↓ 邏輯修改處 ↓↓↓ --- */}}
+{{/* 建立一個字典，key 是日期 (Day)，value 是該日第一篇文章的永久連結 (.Permalink) */}}
+{{ $posted_links := dict }}
+{{ $pages_in_month := where .Site.RegularPages "Type" "posts" }}
+{{ $pages_in_month = where $pages_in_month "Date" "le" $last_of_month }}
 {{ $pages_in_month = where $pages_in_month "Date" "ge" $first_of_month }}
-{{ range $pages_in_month }}
-    {{ $day_key := string .Date.Day }}
-    {{ $posted_days = merge $posted_days (dict $day_key true) }}
+
+{{/* 依日期排序，確保若一天有多篇，我們抓到的連結是固定的 */}}
+{{ range $pages_in_month.ByDate }}
+    {{ $posted_links = merge $posted_links (dict .Date.Day .Permalink) }}
 {{ end }}
+{{/* --- ↑↑↑ 邏輯修改處 ↑↑↑ --- */}}
 
 <div class="mt-8">
     <h3 class="text-xl font-bold mb-4 pb-2 border-b" style="border-color: var(--border-color);">文章月曆</h3>
     <div class="calendar-widget">
-        {{/* 月曆標頭，顯示 年/月 */}}
         <div class="flex justify-between items-center mb-2 font-semibold">
             <span>{{ $current_year }} 年 {{ $current_month_str }} 月</span>
         </div>
-
-        {{/* 星期標頭 */}}
         <div class="grid grid-cols-7 text-center text-xs gap-y-2" style="color: var(--text-secondary);">
             <span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span>
         </div>
-
-        {{/* 日期格子 */}}
         <div class="grid grid-cols-7 text-center text-sm mt-2 gap-y-2">
-            {{/* 在第一天開始前，填上空白的格子 */}}
             {{ range seq $first_of_month.Weekday }}
                 <div></div>
             {{ end }}
 
-            {{/* 產生當月的所有日期 (1號到最後一天) */}}
             {{ range seq $last_of_month.Day }}
                 {{ $day := . }}
-                {{/* 檢查今天是否有文章 */}}
-                {{ $day_key := string $day }}
-                {{ if isset $posted_days $day_key }}
-                    {{/* 如果有文章，就建立一個指向該日期的連結 */}}
-                    {{ $day_link := printf "/%d/%02d/%02d/" $current_year $current_month $day | relURL }}
-                    <a href="{{ $day_link }}" class="block p-1 rounded-full transition-colors font-bold" style="color: var(--link-color); text-decoration: underline; text-decoration-thickness: 2px;">
+                {{/* --- ↓↓↓ 連結修改處 ↓↓↓ --- */}}
+                {{ if isset $posted_links $day }}
+                    {{/* 直接使用儲存好的文章連結 */}}
+                    <a href="{{ index $posted_links $day }}" class="block p-1 rounded-full transition-colors font-bold" style="color: var(--link-color); text-decoration: underline; text-decoration-thickness: 2px;">
                         {{ $day }}
                     </a>
                 {{ else }}
-                    {{/* 如果沒文章，就只顯示日期數字 */}}
                     <span class="block p-1">{{ $day }}</span>
                 {{ end }}
+                {{/* --- ↑↑↑ 連結修改處 ↑↑↑ --- */}}
             {{ end }}
         </div>
     </div>
