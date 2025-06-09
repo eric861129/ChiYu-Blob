@@ -87,11 +87,3 @@ paginate = 5
 [permalinks]
   day = "/:year/:month/:day/"
   posts = "/posts/:slug/"
-
-[outputs]
-  home = ["HTML", "RSS"]
-
-[sitemap]
-  changefreq = "weekly"
-  priority = 0.5
-  filename = "sitemap.xml"

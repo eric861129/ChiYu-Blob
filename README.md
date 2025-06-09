@@ -30,13 +30,6 @@ go install github.com/wjdp/htmltest@latest
 export PATH="$PATH:$(go env GOPATH)/bin"
 ```
 
-### 2. 安裝 Node.js 套件
-網站樣式與腳本透過 Tailwind 與 PostCSS 處理，請先安裝相依套件：
-
-```bash
-npm install
-```
-
 ### 2. 建立文章
 
 於專案根目錄執行 `hugo new posts/my-post.md`，然後至 `content/posts/` 目錄下編輯產生的檔案。
@@ -72,7 +65,7 @@ npm install
 在部署前，可於根目錄執行下列指令，確保網站建置成功且無壞掉的連結。
 
 ```bash
-hugo --minify --gc
+hugo --minify --gc --baseURL "/ChiYu-Blob/"
 htmltest -c .htmltest.yml ./public
 ```
 

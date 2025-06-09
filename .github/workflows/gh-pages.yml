@@ -19,14 +19,9 @@ jobs:
           hugo-version: '0.123.7'
           extended: true
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-      - name: Install dependencies
-        run: npm ci
+      # --- ↓↓↓ 關鍵修改 (1/2): 在建置指令中加入 baseURL ---
       - name: Build site
-        run: hugo --minify --gc
+        run: hugo --minify --gc --baseURL "/ChiYu-Blob/"
 
       # --- ↓↓↓ 關鍵修改 (2/2): 修正 Pagefind 的 deprecated 選項 ---
       - name: Build Pagefind search index

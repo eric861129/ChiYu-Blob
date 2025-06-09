@@ -30,19 +30,5 @@
 </article>
 
 {{ if eq .Type "posts" }}
-{{ $related := .Site.RegularPages.Related . | first 5 }}
-{{ with $related }}
-<div class="mt-16 pt-8 border-t not-prose" style="border-color: var(--border-color);">
-    <h3 class="text-2xl font-bold mb-6">相關文章</h3>
-    <div class="space-y-4">
-        {{ range . }}
-        <a href="{{ .RelPermalink }}" class="block p-4 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 border" style="border-color: var(--border-color);">
-            <h4 class="font-semibold text-lg">{{ .Title }}</h4>
-            <p class="text-sm text-gray-500">{{ .Date.Format "2006年1月2日" }}</p>
-        </a>
-        {{ end }}
-    </div>
-</div>
-{{ end }}
 <div id="giscus-container" class="mt-16 pt-8 border-t not-prose" style="border-color: var(--border-color);"></div>
 {{ end }}
