@@ -86,5 +86,4 @@ paginate = 5
 
 [permalinks]
   day = "/:year/:month/:day/"
-[permalinks]
   posts = "/posts/:slug/"
