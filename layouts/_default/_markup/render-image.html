@@ -1,0 +1,13 @@
+{{ $image := .Page.Resources.GetMatch .Destination }}
+{{ if $image }}
+  {{ $small := $image.Resize "480x" }}
+  {{ $medium := $image.Resize "768x" }}
+  {{ $large := $image.Resize "1024x" }}
+  <picture>
+    <source media="(max-width: 480px)" srcset="{{ $small.RelPermalink }}">
+    <source media="(max-width: 768px)" srcset="{{ $medium.RelPermalink }}">
+    <img src="{{ $large.RelPermalink }}" alt="{{ .Text }}" width="{{ $image.Width }}" height="{{ $image.Height }}" loading="lazy" class="prose-img">
+  </picture>
+{{ else }}
+  <img src="{{ .Destination | safeURL }}" alt="{{ .Text }}" loading="lazy" class="prose-img">
+{{ end }}
