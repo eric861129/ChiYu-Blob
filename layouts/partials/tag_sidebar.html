@@ -1,13 +1,13 @@
-<!-- 標籤與相關連結側邊欄 -->
 <aside class="w-64 flex-shrink-0 hidden lg:block pl-8">
     <div class="sticky top-20">
+
         <div class="mb-8 text-center">
-            <img src="{{ "/ChiYu-Blob/static/images/avatar.jpg" | relURL }}" 
+            <img src="{{ "/images/avatar.jpg" | relURL }}" 
                  alt="個人大頭貼" 
                  class="w-32 h-32 rounded-full mx-auto object-cover border-2"
                  style="border-color: var(--border-color);">
         </div>
-        {{ partial "calendar.html" . }}
+
         <h3 class="text-xl font-bold mb-4 pb-2 border-b" style="border-color: var(--border-color);">所有標籤</h3>
         <div class="flex flex-wrap gap-2">
             {{ range .Site.Taxonomies.tags.ByCount.Reverse }}
@@ -19,12 +19,10 @@
         </div>
 
         {{ if .Site.Params.social }}
-        <!-- 外部社群連結區塊 -->
         <div class="mt-8">
             <h3 class="text-xl font-bold mb-4 pb-2 border-b" style="border-color: var(--border-color);">相關連結</h3>
             <div class="flex flex-col space-y-3 mt-4">
                 {{ range $name, $url := .Site.Params.social }}
-                <!-- 逐一列出社群連結 -->
                 <a href="{{ $url }}" target="_blank" rel="noopener noreferrer" class="transition-colors" style="color: var(--text-secondary); hover: var(--link-color);">
                     <span class="text-base">{{ $name }}</span>
                 </a>
@@ -32,6 +30,8 @@
             </div>
         </div>
         {{ end }}
+
+        {{ partial "calendar.html" . }}
 
     </div>
 </aside>
