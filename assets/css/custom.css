@@ -43,3 +43,24 @@
         .pagefind-ui__search-input::placeholder { color: var(--text-secondary); }
         .pagefind-ui__search-clear { display: none !important; }
         .pagefind-ui__result-excerpt { display: none !important; }
+/* --- Pagefind 搜尋結果樣式調整 --- */
+
+/* 調整搜尋結果的整體排版 */
+.pagefind-ui__result {
+    display: flex;
+    align-items: center;
+}
+
+/* 限制預覽圖外層容器的寬度，並增加右邊距 */
+.pagefind-ui__result-thumb {
+    flex-shrink: 0;
+    margin-right: 1rem; /* 圖片與文字之間的距離 */
+}
+
+/* 設定預覽圖的尺寸 */
+.pagefind-ui__result-image {
+    width: 60px;        /* 設定寬度為 60px */
+    height: 60px;       /* 設定高度為 60px */
+    object-fit: cover;  /* 確保圖片等比例縮放且填滿容器，不會變形 */
+    border-radius: 8px; /* 可選：加上圓角讓外觀更柔和 */
+}
