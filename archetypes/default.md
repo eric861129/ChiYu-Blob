@@ -6,4 +6,5 @@ description = ""
 tags = []
 categories = []
 image = ""
+slug = ""
 +++
