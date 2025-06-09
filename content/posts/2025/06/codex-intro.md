@@ -6,6 +6,8 @@ tags = ["AI", "Codex"]
 
 最近如果你有在關注 AI 或寫程式的領域，可能會聽過一個名字——Codex。它是 OpenAI 推出的一個超厲害工具，簡單來說，就是一個會寫程式的 AI。今天這篇文章就想用比較輕鬆的方式，來帶大家初步認識一下 Codex 是什麼、可以拿來做什麼、還有怎麼開始玩看看。
 
+![Codex](/ChiYu-Blob/images/openai-codex.jpg)
+
 ## Codex 是什麼？跟 ChatGPT 有關嗎？
 
 沒錯，Codex 是 OpenAI（就是做 ChatGPT 那家公司）開發的模型之一。它其實就是 ChatGPT 的「懂程式」版本。
