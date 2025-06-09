@@ -64,3 +64,15 @@
     object-fit: cover;  /* 確保圖片等比例縮放且填滿容器，不會變形 */
     border-radius: 8px; /* 可選：加上圓角讓外觀更柔和 */
 }
+/* --- 文章內容圖片樣式 --- */
+.prose img {
+    display: block;          /* 將圖片設為區塊元素，才能使用 margin auto 置中 */
+    max-width: 100%;         /* 圖片最大寬度為100%，確保在小螢幕上不會超出邊界 */
+    height: auto;            /* 高度自動，維持圖片的長寬比不變形 */
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2em;         /* 圖片與上方文字的距離 */
+    margin-bottom: 2em;      /* 圖片與下方文字的距離 */
+    border-radius: 0.75rem;  /* 加上圓角，與網站整體風格搭配 (12px) */
+    border: 1px solid var(--border-color); /* 加上符合主題顏色的邊框 */
+}
