@@ -19,6 +19,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="{{ "/pagefind/pagefind-ui.css" | relURL }}" rel="stylesheet">
 
+    <!-- 將大頭貼設置為網頁標籤圖示 -->
+    <link rel="icon" type="image/jpeg" href="{{ "/ChiYu-Blob/images/avatar.jpg" | relURL }}">
+
     {{ $customCSS := resources.Get "css/custom.css" | minify }}
     <link rel="stylesheet" href="{{ $customCSS.Permalink }}">
 
