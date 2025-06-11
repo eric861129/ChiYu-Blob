@@ -29,6 +29,27 @@
 
 </article>
 
+{{/* --- ↓↓↓ 新增區塊：上一篇與下一篇文章導覽 ↓↓↓ --- */}}
+<nav class="flex justify-between mt-16 pt-8 border-t not-prose" style="border-color: var(--border-color);">
+    <div>
+        {{ with .PrevInSection }}
+            <a href="{{ .Permalink }}" class="block p-4 rounded-lg transition-colors hover:bg-gray-100 dark:hover:bg-gray-800" style="color: var(--text-secondary);">
+                <span class="text-sm">上一篇</span>
+                <span class="block font-semibold mt-1" style="color: var(--text-color);">{{ .Title }} &rarr;</span>
+            </a>
+        {{ end }}
+    </div>
+    <div class="text-right">
+        {{ with .NextInSection }}
+            <a href="{{ .Permalink }}" class="block p-4 rounded-lg transition-colors hover:bg-gray-100 dark:hover:bg-gray-800" style="color: var(--text-secondary);">
+                <span class="text-sm">下一篇</span>
+                <span class="block font-semibold mt-1" style="color: var(--text-color);">&larr; {{ .Title }}</span>
+            </a>
+        {{ end }}
+    </div>
+</nav>
+{{/* --- ↑↑↑ 新增區塊：上一篇與下一篇文章導覽 ↑↑↑ --- */}}
+
 {{ if eq .Type "posts" }}
 <div id="giscus-container" class="mt-16 pt-8 border-t not-prose" style="border-color: var(--border-color);"></div>
 {{ end }}
