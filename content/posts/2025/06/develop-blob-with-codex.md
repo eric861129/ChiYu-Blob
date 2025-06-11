@@ -3,6 +3,7 @@ title = "我是如何使用 AI (Codex) 打造這個 Hugo 部落格的"
 date = 2025-06-08
 tags = [ "AI"]
 description = "一篇實戰紀錄，分享我如何利用 AI 程式助理 Codex (整合於 ChatGPT) 從零到一開發這個 Hugo 靜態網站，從前端互動功能到後端自動化部署的完整過程。"
+prev_post_slug = "codex-intro"
 +++
 
 在上一篇文章 [《第一次認識 Codex：讓 AI 幫你寫程式不是夢！》](/ChiYu-Blob/posts/codex-intro/) 中，我介紹了 Codex 這個強大的 AI 程式助理。而今天，我想分享一個更具體的實戰經驗：我是如何利用 Codex 來開發**你現在正在看的這個部落格**。
