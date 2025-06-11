@@ -3,6 +3,7 @@ title = "搞懂設計模式到底是什麼？"
 date = 2025-06-12
 tags = ["Code", "C#", "DesignPattern"]
 prev_post_slug = "4hugo-customization-guide"
+next_post_slug = "6singleton-pattern"
 +++
 
 哈囉！最近我決定開始一個新的 Side Project，要來用比較輕鬆的方式跟大家分享一下什麼是「設計模式（Design Patterns）」。
