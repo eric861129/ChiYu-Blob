@@ -6,6 +6,7 @@ prev_post_slug = "4hugo-customization-guide"
 next_post_slug = "6singleton-pattern"
 +++
 
+
 哈囉！最近我決定開始一個新的 Side Project，要來用比較輕鬆的方式跟大家分享一下什麼是「設計模式（Design Patterns）」。
 
 等等先別跑！雖然聽起來很硬，但設計模式其實就是一些「前輩工程師們」留下來的解決問題的好方法。懂了這些，你的程式碼會變得更容易維護，更容易擴充，甚至看起來更專業！（聽起來是不是有點心動了？）
