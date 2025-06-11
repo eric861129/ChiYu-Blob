@@ -85,7 +85,20 @@
     </div>
 </nav>
 {{/* --- ↑↑↑ 更新區塊：支援手動與自動的上下篇導覽 ↑↑↑ --- */}}
-
+{{ $related := .Site.RegularPages.Related . | first 5 }}
+{{ with $related }}
+<div class="mt-16 pt-8 border-t not-prose" style="border-color: var(--border-color);">
+    <h3 class="text-xl font-bold mb-6">相關文章</h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {{ range . }}
+        <a href="{{ .RelPermalink }}" class="block p-4 rounded-lg transition-colors" style="border: 1px solid var(--border-color);">
+            <span class="font-semibold block" style="color: var(--text-color);">{{ .Title }}</span>
+            <p class="text-sm mt-1" style="color: var(--text-secondary);">{{ .Summary | truncate 70 }}</p>
+        </a>
+        {{ end }}
+    </div>
+</div>
+{{ end }}
 {{ if eq .Type "posts" }}
 <div id="giscus-container" class="mt-16 pt-8 border-t not-prose" style="border-color: var(--border-color);"></div>
 {{ end }}
