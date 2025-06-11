@@ -1,7 +1,7 @@
 +++
 title = "讓部落格成為你的形狀：Hugo 個人化設定終極指南"
 date = 2025-06-11
-tags = ["Hugo", "教學", "個人化", "CSS", "字型", "Giscus"]
+tags = ["Hugo"]
 description = "一份終極指南，教你如何將 HugoBlobTemplate 或 ChiYu-Blob 專案，從裡到外徹底改造成專屬於你的個人網站。內容涵蓋核心資訊設定、Giscus 留言系統、大頭貼更換、多種 CSS 配色範本、字型更換教學，以及所有個人化細節。"
 +++
 -----
