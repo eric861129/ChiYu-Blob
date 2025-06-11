@@ -53,6 +53,8 @@
     align-items: center;
 }
 
+
+
 /* 限制預覽圖外層容器的寬度，並增加右邊距 */
 .pagefind-ui__result-thumb {
     flex-shrink: 0;
@@ -77,4 +79,10 @@
     margin-bottom: 2em;      /* 圖片與下方文字的距離 */
     border-radius: 0.75rem;  /* 加上圓角，與網站整體風格搭配 (12px) */
     border: 1px solid var(--border-color); /* 加上符合主題顏色的邊框 */
+}
+
+/* --- 修復：上下篇文章切換按鈕的 Hover 效果 --- */
+nav.not-prose a:hover {
+    background-color: var(--border-color);
+    opacity: 0.8;
 }
