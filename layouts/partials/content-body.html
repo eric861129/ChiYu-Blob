@@ -53,7 +53,7 @@
         {{ with $prev }}
             <a href="{{ .Permalink }}" class="block p-4 rounded-lg transition-colors" style="color: var(--text-secondary);">
                 <span class="text-sm">上一篇</span>
-                <span class="block font-semibold mt-1" style="color: var(--text-color);">{{ .Title }} &rarr;</span>
+                <span class="block font-semibold mt-1" style="color: var(--text-color);">{{ .Title }} &larr;</span>
             </a>
         {{ end }}
     </div>
@@ -79,7 +79,7 @@
         {{ with $next }}
             <a href="{{ .Permalink }}" class="block p-4 rounded-lg transition-colors" style="color: var(--text-secondary);">
                 <span class="text-sm">下一篇</span>
-                <span class="block font-semibold mt-1" style="color: var(--text-color);">&larr; {{ .Title }}</span>
+                <span class="block font-semibold mt-1" style="color: var(--text-color);">&rarr; {{ .Title }}</span>
             </a>
         {{ end }}
     </div>
