@@ -29,18 +29,39 @@
 
 </article>
 
-{{/* --- ↓↓↓ 新增區塊：上一篇與下一篇文章導覽 ↓↓↓ --- */}}
+{{/* --- ↓↓↓ 更新區塊：支援手動與自動的上下篇導覽 ↓↓↓ --- */}}
 <nav class="flex justify-between mt-16 pt-8 border-t not-prose" style="border-color: var(--border-color);">
+    {{/* ---------- 上一篇文章 ---------- */}}
     <div>
-        {{ with .PrevInSection }}
+        {{ $prev := "" }}
+        {{/* 若 front matter 有設定 prev_post_slug，優先以此為主 */}}
+        {{ with .Params.prev_post_slug }}
+            {{ $prev = $.Site.GetPage (printf "posts/%s" .) }}
+        {{ end }}
+        {{/* 若未手動指定，則退回預設依日期排序的 PrevInSection */}}
+        {{ if not $prev }}
+            {{ $prev = .PrevInSection }}
+        {{ end }}
+
+        {{ with $prev }}
             <a href="{{ .Permalink }}" class="block p-4 rounded-lg transition-colors hover:bg-gray-100 dark:hover:bg-gray-800" style="color: var(--text-secondary);">
                 <span class="text-sm">上一篇</span>
                 <span class="block font-semibold mt-1" style="color: var(--text-color);">{{ .Title }} &rarr;</span>
             </a>
         {{ end }}
     </div>
+
+    {{/* ---------- 下一篇文章 ---------- */}}
     <div class="text-right">
-        {{ with .NextInSection }}
+        {{ $next := "" }}
+        {{ with .Params.next_post_slug }}
+            {{ $next = $.Site.GetPage (printf "posts/%s" .) }}
+        {{ end }}
+        {{ if not $next }}
+            {{ $next = .NextInSection }}
+        {{ end }}
+
+        {{ with $next }}
             <a href="{{ .Permalink }}" class="block p-4 rounded-lg transition-colors hover:bg-gray-100 dark:hover:bg-gray-800" style="color: var(--text-secondary);">
                 <span class="text-sm">下一篇</span>
                 <span class="block font-semibold mt-1" style="color: var(--text-color);">&larr; {{ .Title }}</span>
@@ -48,7 +69,7 @@
         {{ end }}
     </div>
 </nav>
-{{/* --- ↑↑↑ 新增區塊：上一篇與下一篇文章導覽 ↑↑↑ --- */}}
+{{/* --- ↑↑↑ 更新區塊：支援手動與自動的上下篇導覽 ↑↑↑ --- */}}
 
 {{ if eq .Type "posts" }}
 <div id="giscus-container" class="mt-16 pt-8 border-t not-prose" style="border-color: var(--border-color);"></div>
