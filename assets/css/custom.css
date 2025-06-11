@@ -87,25 +87,26 @@ nav.not-prose a:hover {
     opacity: 0.8;
 }
 
-/* --- 回到頂部按鈕 --- */
+/* --- 回到頂部按鈕 (顯眼樣式) --- */
 .scroll-to-top {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    background-color: var(--card-bg);
-    color: var(--text-secondary);
-    border: 1px solid var(--border-color);
-    border-radius: 9999px; /* 圓形 */
-    width: 40px;
-    height: 40px;
+    background-color: var(--link-color); /* 改為使用主題的連結顏色，更加突出 */
+    color: #ffffff; /* 將箭頭圖示改為白色，對比更清晰 */
+    border: none; /* 移除邊框，讓顏色更純粹 */
+    border-radius: 9999px;
+    width: 44px; /* 稍微加大尺寸 */
+    height: 44px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    opacity: 0; /* 預設隱藏 */
+    opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s, visibility 0.3s, background-color 0.2s;
+    transition: all 0.3s ease; /* 讓所有過渡動畫更平滑 */
     z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* 加入立體陰影 */
 }
 
 .scroll-to-top.show {
@@ -114,5 +115,7 @@ nav.not-prose a:hover {
 }
 
 .scroll-to-top:hover {
-    background-color: var(--border-color);
+    filter: brightness(1.1); /* 滑鼠懸停時提高亮度 */
+    transform: translateY(-2px); /* 滑鼠懸停時稍微向上浮動 */
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2); /* 加深陰影 */
 }
