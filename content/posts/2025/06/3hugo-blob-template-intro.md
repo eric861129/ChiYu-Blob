@@ -3,7 +3,8 @@ title = "想快速打造個人部落格？試試 HugoBlobTemplate，極簡、開
 date = 2025-06-11
 tags = ["Hugo"]
 description = "一篇專案介紹文，分享如何使用 HugoBlobTemplate 這個開源、極簡的靜態網站模板，快速、幾乎零成本地建立一個屬於自己的個人部落格，讓你專注於內容創作。"
-next_post_slug = "hugo-customization-guide"
+prev_post_slug = "2develop-blob-with-codex"
+next_post_slug = "4hugo-customization-guide"
 +++
 
 -----
