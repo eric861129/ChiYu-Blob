@@ -2,6 +2,7 @@
 title = "第一次認識 Codex：讓 AI 幫你寫程式不是夢！"
 date = 2025-06-05
 tags = ["AI", "Codex"]
+next_post_slug = "develop-blob-with-codex"
 +++
 
 最近如果你有在關注 AI 或寫程式的領域，可能會聽過一個名字——Codex。它是 OpenAI 推出的一個超厲害工具，簡單來說，就是一個會寫程式的 AI。今天這篇文章就想用比較輕鬆的方式，來帶大家初步認識一下 Codex 是什麼、可以拿來做什麼、還有怎麼開始玩看看。
