@@ -17,7 +17,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     
     const postedDates = {};
-    {{ range where .Site.RegularPages "Type" "posts" }}
+    {{ range where (where .Site.RegularPages "Type" "posts") "Date" "le" now }}
         {{ $dateStr := .Date.Format "2006-1-2" }}
         
         {{/* --- 修正：直接使用文章的永久連結 (.Permalink) --- */}}
