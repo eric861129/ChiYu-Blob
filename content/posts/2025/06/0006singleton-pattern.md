@@ -1,9 +1,10 @@
 +++
 title = "單例模式：只要一個就夠！"
-date = 2025-06-13
+date = 2025-06-12
 tags = ["Code", "C#", "DesignPattern"]
-prev_post_slug = "5design-pattern-intro"
-next_post_slug = "7abstract-factory-pattern"
+prev_post_slug = "0005design-pattern-intro"
+next_post_slug = "0007abstract-factory-pattern"
+weight = 6
 +++
 
 在上一篇文章中，我們簡單認識了什麼是「設計模式」。這次，就讓我們從最經典的「單例模式（Singleton）」開始，看看它究竟能為開發帶來什麼幫助吧！

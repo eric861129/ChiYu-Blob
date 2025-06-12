@@ -1,9 +1,10 @@
 +++
 title = "介面卡模式：讓不相容也能合作"
-date = 2025-06-17
+date = 2025-06-12
 tags = ["Code", "C#", "DesignPattern"]
-prev_post_slug = "9builder-pattern"
-next_post_slug = "11bridge-pattern"
+prev_post_slug = "0009builder-pattern"
+next_post_slug = "0011bridge-pattern"
+weight = 10
 +++
 
 哈囉大家！今天我們要介紹的設計模式是：**介面卡模式（Adapter）**，又叫做轉接器模式。
