@@ -6,7 +6,7 @@ tags = ["Code", "Csharp", "DesignPattern"]
 prev_post_slug = "0025state-pattern"
 next_post_slug = "0027template-method-pattern"
 series = ["DesignPattern"]
-weight = 22
+weight = 26
 +++
 
 哈囉朋友們～今天我們要介紹的設計模式是非常靈活好用的**策略模式（Strategy）**，透過它，你可以輕鬆替換不同的行為，讓你的程式更有彈性！

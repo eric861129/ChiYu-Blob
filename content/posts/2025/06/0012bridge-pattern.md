@@ -6,7 +6,7 @@ tags = ["Code", "Csharp", "DesignPattern"]
 prev_post_slug = "0011adapter-pattern"
 next_post_slug = "0013composite-pattern"
 series = ["DesignPattern"]
-weight = 8
+weight = 12
 +++
 
 哈囉大家～我們繼續來探索設計模式的世界吧！今天要介紹的是一個聽起來可能有點陌生，但其實很實用的設計模式：**橋接模式（Bridge）**。

@@ -6,7 +6,7 @@ tags = ["Code", "Csharp", "DesignPattern"]
 prev_post_slug = "0004hugo-customization-guide"
 next_post_slug = "0006singleton-pattern"
 series = ["DesignPattern"]
-weight = 1
+weight = 5
 +++
 
 

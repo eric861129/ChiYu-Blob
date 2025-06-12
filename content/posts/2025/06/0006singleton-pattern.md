@@ -6,7 +6,7 @@ tags = ["Code", "Csharp", "DesignPattern"]
 prev_post_slug = "0005design-pattern-intro"
 next_post_slug = "0007factory-method-pattern"
 series = ["DesignPattern"]
-weight = 2
+weight = 6
 +++
 
 在上一篇文章中，我們簡單認識了什麼是「設計模式」。這次，就讓我們從最經典的「單例模式（Singleton）」開始，看看它究竟能為開發帶來什麼幫助吧！

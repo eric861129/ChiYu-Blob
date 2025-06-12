@@ -6,7 +6,7 @@ tags = ["Code", "Csharp", "DesignPattern"]
 prev_post_slug = "0012bridge-pattern"
 next_post_slug = "0014decorator-pattern"
 series = ["DesignPattern"]
-weight = 9
+weight = 13
 +++
 
 哈囉大家，歡迎繼續探索設計模式之旅！今天要介紹的是一個既實用又好理解的設計模式：**組合模式（Composite）**。

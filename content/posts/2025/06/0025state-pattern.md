@@ -6,7 +6,7 @@ tags = ["Code", "Csharp", "DesignPattern"]
 prev_post_slug = "0024observer-pattern"
 next_post_slug = "0026strategy-pattern"
 series = ["DesignPattern"]
-weight = 21
+weight = 25
 +++
 
 哈囉朋友們～今天我們要聊的是非常實用且有趣的**狀態模式（State）**，這個模式讓你的物件能夠根據內部狀態的變化而自動改變行為。

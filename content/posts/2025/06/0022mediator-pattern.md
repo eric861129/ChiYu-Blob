@@ -6,7 +6,7 @@ tags = ["Code", "Csharp", "DesignPattern"]
 prev_post_slug = "0021iterator-pattern"
 next_post_slug = "0023memento-pattern"
 series = ["DesignPattern"]
-weight = 18
+weight = 22
 +++
 
 哈囉朋友們～今天要聊的設計模式是**中介者模式（Mediator）**，這個模式能讓你的程式輕鬆管理物件之間複雜的溝通關係。

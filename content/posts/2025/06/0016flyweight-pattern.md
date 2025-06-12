@@ -6,7 +6,7 @@ tags = ["Code", "Csharp", "DesignPattern"]
 prev_post_slug = "0015facade-pattern"
 next_post_slug = "0017proxy-pattern"
 series = ["DesignPattern"]
-weight = 12
+weight = 16
 +++
 
 哈囉各位朋友，今天我們要聊的是一個特別省資源的設計模式：**享元模式（Flyweight）**。

@@ -6,7 +6,7 @@ tags = ["Code", "Csharp", "DesignPattern"]
 prev_post_slug = "0020interpreter-pattern"
 next_post_slug = "0022mediator-pattern"
 series = ["DesignPattern"]
-weight = 17
+weight = 21
 +++
 
 哈囉朋友們～今天來聊聊**迭代器模式（Iterator）**，這個設計模式能幫你輕鬆管理和操作集合中的元素。

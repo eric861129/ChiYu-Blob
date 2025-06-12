@@ -5,7 +5,7 @@ dates = ["2025-06-13"]
 tags = ["Code", "Csharp", "DesignPattern"]
 prev_post_slug = "0026strategy-pattern"
 series = ["DesignPattern"]
-weight = 23
+weight = 27
 next_post_slug = "0028visitor-pattern"
 +++
 

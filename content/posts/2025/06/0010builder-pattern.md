@@ -6,7 +6,7 @@ tags = ["Code", "Csharp", "DesignPattern"]
 prev_post_slug = "0009prototype-pattern"
 next_post_slug = "0011adapter-pattern"
 series = ["DesignPattern"]
-weight = 6
+weight = 10
 +++
 
 哈囉各位朋友們～今天我們繼續設計模式之旅，來聊聊 **建造者模式（Builder）** 吧！

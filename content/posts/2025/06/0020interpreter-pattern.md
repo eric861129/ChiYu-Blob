@@ -6,7 +6,7 @@ tags = ["Code", "Csharp", "DesignPattern"]
 prev_post_slug = "0019command-pattern"
 next_post_slug = "0021iterator-pattern"
 series = ["DesignPattern"]
-weight = 16
+weight = 20
 +++
 
 哈囉各位朋友，今天我們來認識一個有趣又實用的設計模式：**解譯器模式（Interpreter）**，並以好玩的「文字冒險遊戲」為例，輕鬆學會如何讓你的程式讀懂自訂語言或指令。

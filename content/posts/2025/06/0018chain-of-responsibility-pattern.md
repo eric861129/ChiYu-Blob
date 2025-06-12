@@ -6,7 +6,7 @@ tags = ["Code", "Csharp", "DesignPattern"]
 prev_post_slug = "0017proxy-pattern"
 next_post_slug = "0019command-pattern"
 series = ["DesignPattern"]
-weight = 14
+weight = 18
 +++
 
 哈囉～又來到了我們設計模式系列啦，今天要介紹的是一個非常靈活又好用的模式：**責任鏈模式（Chain of Responsibility）**。

@@ -6,7 +6,7 @@ tags = ["Code", "Csharp", "DesignPattern"]
 prev_post_slug = "0010builder-pattern"
 next_post_slug = "0012bridge-pattern"
 series = ["DesignPattern"]
-weight = 7
+weight = 11
 +++
 
 哈囉大家！今天我們要介紹的設計模式是：**介面卡模式（Adapter）**，又叫做轉接器模式。

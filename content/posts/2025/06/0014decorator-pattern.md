@@ -6,7 +6,7 @@ tags = ["Code", "Csharp", "DesignPattern"]
 prev_post_slug = "0013composite-pattern"
 next_post_slug = "0015facade-pattern"
 series = ["DesignPattern"]
-weight = 10
+weight = 14
 +++
 
 哈囉朋友們～今天要介紹的設計模式可是非常實用又有趣的喔，那就是 **裝飾者模式（Decorator）**！
