@@ -1,6 +1,7 @@
 +++
 title = "代理模式：控制存取的守門員"
 date = 2025-06-12T20:00:00+08:00
+dates = ["2025-06-12"]
 tags = ["Code", "C#", "DesignPattern"]
 prev_post_slug = "0016flyweight-pattern"
 next_post_slug = "0018chain-of-responsibility-pattern"

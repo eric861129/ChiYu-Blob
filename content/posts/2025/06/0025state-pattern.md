@@ -1,6 +1,7 @@
 +++
 title = "狀態模式：依狀態改變行為的祕訣"
 date = 2025-06-13T04:00:00+08:00
+dates = ["2025-06-13"]
 tags = ["Code", "C#", "DesignPattern"]
 prev_post_slug = "0024observer-pattern"
 next_post_slug = "0026strategy-pattern"
