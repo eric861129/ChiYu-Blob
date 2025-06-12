@@ -1,9 +1,10 @@
 +++
 title = "原型模式：複製的藝術"
-date = 2025-06-15
+date = 2025-06-12
 tags = ["Code", "C#", "DesignPattern"]
 prev_post_slug = "7abstract-factory-pattern"
 next_post_slug = "9builder-pattern"
+weight = 8
 +++
 
 嗨！繼續設計模式系列，這次要介紹的主角是**原型模式（Prototype）**。聽到「原型」這個詞是不是有點不太確定這到底是什麼？別擔心，我們還是用輕鬆易懂的方式來理解它吧！

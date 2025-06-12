@@ -1,0 +1,23 @@
+{{ define "main" }}
+<div class="flex flex-row justify-center py-8">
+    <div class="w-full max-w-4xl min-w-0">
+        <main>
+            <section class="mb-12 sm:mb-16">
+                <header class="border-b pb-6 mb-6" style="border-color: var(--border-color);">
+                    <h1 class="text-2xl sm:text-4xl font-bold tracking-tight">{{ .Title }}</h1>
+                </header>
+            </section>
+
+            <section>
+                <div class="space-y-8">
+                    {{/* 依日期排序，相同日期再依權重排序 */}}
+                    {{ range sort .Pages "Date" "desc" "Weight" "desc" }}
+                        {{ .Render "card" }}
+                    {{ end }}
+                </div>
+            </section>
+        </main>
+    </div>
+    {{ partial "tag_sidebar.html" . }}
+    </div>
+{{ end }}
