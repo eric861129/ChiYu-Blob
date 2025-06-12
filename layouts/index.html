@@ -13,7 +13,7 @@
                 <h2 class="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 border-b pb-3" style="border-color: var(--border-color);">最新文章</h2>
 
                 <div class="space-y-8">
-                    {{ range first 5 .Site.RegularPages.ByDate.Reverse }}
+                   {{ range first 5 (sort .Site.RegularPages "Date" "desc" "weight" "desc") }}
                         {{ .Render "card" }}
                     {{ end }}
                 </div>
