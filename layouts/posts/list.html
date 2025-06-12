@@ -10,15 +10,14 @@
 
             <section>
                 <div class="space-y-8">
-                    {{/* --- ↓↓↓ 移除 Weight，僅依日期排序並建立分頁 ↓↓↓ --- */}}
-                    {{/* 1. 建立分頁器：僅依日期降冪排序，日期需包含時間 */}}
-                    {{/* 在排序前過濾掉未來日期的文章 */}}
-                    {{ $paginator := .Paginate (sort (where .Pages "Date" "le" now) "Date" "desc") }}
-                    {{/* 2. 輸出當前分頁的文章 */}}
+                    {{/* 先篩掉未來的文章，再以日期降冪、weight 升冪排序 */}}
+                    {{ $sorted := sort (where .Pages "Date" "le" now) "Date" "desc" "Weight" "asc" }}
+                    {{/* 建立分頁器 */}}
+                    {{ $paginator := .Paginate $sorted }}
+                    {{/* 依序顯示分頁內的文章 */}}
                     {{ range $paginator.Pages }}
                         {{ .Render "card" }}
                     {{ end }}
-                    {{/* --- ↑↑↑ 移除 Weight，僅依日期排序並建立分頁 ↑↑↑ --- */}}
                 </div>
             </section>
 

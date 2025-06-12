@@ -6,7 +6,7 @@ tags = ["Code", "Csharp", "DesignPattern"]
 prev_post_slug = "0006singleton-pattern"
 next_post_slug = "0008abstract-factory-pattern"
 series = ["DesignPattern"]
-weight = 3
+weight = 7
 +++
 哈囉大家，接續上一次 Singleton 模式，這一次我們要介紹的是另一個超實用的模式：**工廠方法模式（Factory Method）**。
 

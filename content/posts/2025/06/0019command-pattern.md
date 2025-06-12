@@ -6,7 +6,7 @@ tags = ["Code", "Csharp", "DesignPattern"]
 prev_post_slug = "0018chain-of-responsibility-pattern"
 next_post_slug = "0020interpreter-pattern"
 series = ["DesignPattern"]
-weight = 15
+weight = 19
 +++
 
 哈囉大家，今天我們來聊聊 **命令模式（Command）**，這個設計模式能幫助你將請求封裝成物件，讓你可以輕鬆地操作、延遲或撤銷命令。

@@ -6,7 +6,7 @@ tags = ["Code", "Csharp", "DesignPattern"]
 prev_post_slug = "0014decorator-pattern"
 next_post_slug = "0016flyweight-pattern"
 series = ["DesignPattern"]
-weight = 11
+weight = 15
 +++
 
 哈囉大家～今天的主題非常實用，那就是「外觀模式（Facade）」！這個模式可以有效地讓複雜的系統變得簡單又好用，就像你按下遙控器的開機鍵，電視就會自動開啟、調整音量，甚至切換到你最愛的頻道一樣。

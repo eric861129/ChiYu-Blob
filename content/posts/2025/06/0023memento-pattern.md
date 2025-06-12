@@ -6,7 +6,7 @@ tags = ["Code", "Csharp", "DesignPattern"]
 prev_post_slug = "0022mediator-pattern"
 next_post_slug = "0024observer-pattern"
 series = ["DesignPattern"]
-weight = 19
+weight = 23
 +++
 
 哈囉朋友們！今天我們要介紹的是一個超實用的設計模式：**備忘錄模式（Memento）**，透過它，我們可以輕鬆儲存並回復物件的狀態！

@@ -6,7 +6,7 @@ tags = ["Code", "Csharp", "DesignPattern"]
 prev_post_slug = "0007factory-method-pattern"
 next_post_slug = "0009prototype-pattern"
 series = ["DesignPattern"]
-weight = 4
+weight = 8
 +++
 嗨各位朋友～前面我們介紹過了 Singleton 和 Factory Method，今天要繼續往下走，聊一個稍微進階一點點的設計模式：「抽象工廠模式（Abstract Factory）」。
 

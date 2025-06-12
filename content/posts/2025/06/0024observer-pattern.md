@@ -6,7 +6,7 @@ tags = ["Code", "Csharp", "DesignPattern"]
 prev_post_slug = "0023memento-pattern"
 next_post_slug = "0025state-pattern"
 series = ["DesignPattern"]
-weight = 20
+weight = 24
 +++
 
 哈囉朋友們～今天我們要聊的是**觀察者模式（Observer）**，這個模式在現實生活中非常常見，讓我們輕鬆理解並學會如何運用它！

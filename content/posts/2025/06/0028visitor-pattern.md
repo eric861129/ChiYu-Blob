@@ -5,7 +5,7 @@ dates = ["2025-06-13"]
 tags = ["Code", "Csharp", "DesignPattern"]
 prev_post_slug = "0027template-method-pattern"
 series = ["DesignPattern"]
-weight = 24
+weight = 28
 +++
 
 哈囉朋友們～今天要介紹的是比較特殊但十分強大的**訪問者模式（Visitor）**，透過這個模式，你可以在不修改物件結構的情況下輕鬆新增功能！

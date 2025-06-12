@@ -6,7 +6,7 @@ tags = ["Code", "Csharp", "DesignPattern"]
 prev_post_slug = "0016flyweight-pattern"
 next_post_slug = "0018chain-of-responsibility-pattern"
 series = ["DesignPattern"]
-weight = 13
+weight = 17
 +++
 
 哈囉各位朋友～今天我們要介紹的是很實用且日常生活也常碰到的 **代理模式（Proxy）**！
