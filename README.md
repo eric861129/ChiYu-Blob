@@ -36,7 +36,7 @@ export PATH="$PATH:$(go env GOPATH)/bin"
 
 ### 3. 本地端預覽
 
-在專案目錄執行 `hugo server -D`，即可在 [http://localhost:1313](https://www.google.com/search?q=http://localhost:1313) 預覽。
+在專案目錄執行 `hugo server -DF`，即可在 [http://localhost:1313](https://www.google.com/search?q=http://localhost:1313) 預覽。
 
 ## 自動部署
 
