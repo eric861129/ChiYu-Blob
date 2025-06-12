@@ -43,6 +43,15 @@
             </section>
             {{/* --- ↑↑↑ 新增區塊：顯示系列文章 ↑↑↑ --- */}}
 
+            <section class="mt-16">
+                <h2 class="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 border-b pb-3" style="border-color: var(--border-color);">我的開源專案</h2>
+                <div class="space-y-8">
+                    {{ range .Site.Params.projects }}
+                        {{ partial "project_card.html" . }}
+                    {{ end }}
+                </div>
+            </section>
+
         </main>
     </div>
     {{ partial "tag_sidebar.html" . }}
