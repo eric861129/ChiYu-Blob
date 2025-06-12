@@ -10,12 +10,19 @@
 
             <section>
                 <div class="space-y-8">
-                    {{/* 依日期排序，相同日期再依權重排序 */}}
-                    {{ range sort .Pages "Date" "desc" "Weight" "desc" }}
+                    {{/* --- ↓↓↓ 建立分頁並依日期與權重排序 ↓↓↓ --- */}}
+                    {{/* 1. 建立分頁器：先依日期降序，再依權重降序 */}}
+                    {{ $paginator := .Paginate (sort .Pages "Date" "desc" "Weight" "desc") }}
+                    {{/* 2. 輸出當前分頁的文章 */}}
+                    {{ range $paginator.Pages }}
                         {{ .Render "card" }}
                     {{ end }}
+                    {{/* --- ↑↑↑ 建立分頁並依日期與權重排序 ↑↑↑ --- */}}
                 </div>
             </section>
+
+            {{/* 新增分頁導覽列 */}}
+            {{ partial "pagination.html" . }}
         </main>
     </div>
     {{ partial "tag_sidebar.html" . }}
