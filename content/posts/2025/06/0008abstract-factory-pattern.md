@@ -1,6 +1,7 @@
 +++
 title = "抽象工廠模式：系列產品輕鬆生產"
 date = 2025-06-12T11:00:00+08:00
+dates = ["2025-06-12"]
 tags = ["Code", "C#", "DesignPattern"]
 prev_post_slug = "0007factory-method-pattern"
 next_post_slug = "0009prototype-pattern"

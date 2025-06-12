@@ -7,4 +7,5 @@ tags = []
 categories = []
 image = ""
 slug = ""
+dates = ["{{ .Date.Format "2006-01-02" }}"]
 +++

@@ -1,6 +1,7 @@
 +++
 title = "責任鏈模式：層層把關的處理機制"
 date = 2025-06-12T21:00:00+08:00
+dates = ["2025-06-12"]
 tags = ["Code", "C#", "DesignPattern"]
 prev_post_slug = "0017proxy-pattern"
 next_post_slug = "0019command-pattern"

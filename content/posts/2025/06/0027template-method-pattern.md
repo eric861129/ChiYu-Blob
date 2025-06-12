@@ -1,6 +1,7 @@
 +++
 title = "模板方法模式：固定流程靈活實作"
 date = 2025-06-13T06:00:00+08:00
+dates = ["2025-06-13"]
 tags = ["Code", "C#", "DesignPattern"]
 prev_post_slug = "0026strategy-pattern"
 series = ["DesignPattern"]

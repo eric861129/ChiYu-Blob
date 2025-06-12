@@ -1,6 +1,7 @@
 +++
 title = "我是如何使用 AI (Codex) 打造這個 Hugo 部落格的"
 date = 2025-06-08T10:00:00+08:00
+dates = ["2025-06-08"]
 tags = [ "AI"]
 description = "一篇實戰紀錄，分享我如何利用 AI 程式助理 Codex (整合於 ChatGPT) 從零到一開發這個 Hugo 靜態網站，從前端互動功能到後端自動化部署的完整過程。"
 prev_post_slug = "0001codex-intro"

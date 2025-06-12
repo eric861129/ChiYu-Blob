@@ -1,6 +1,7 @@
 +++
 title = "策略模式：靈活切換行為的好幫手"
 date = 2025-06-13T05:00:00+08:00
+dates = ["2025-06-13"]
 tags = ["Code", "C#", "DesignPattern"]
 prev_post_slug = "0025state-pattern"
 next_post_slug = "0027template-method-pattern"
