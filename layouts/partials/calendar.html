@@ -21,13 +21,9 @@ document.addEventListener('DOMContentLoaded', function() {
     {{ $base := strings.TrimSuffix ((urls.Parse .Site.BaseURL).Path) "/" }}
     {{ range where (where .Site.RegularPages "Type" "posts") "Date" "le" now }}
         {{ $dateStr := .Date.Format "2006-1-2" }}
-
-        {{/*
-            組合每日文章列表頁面的 URL
-            最終格式 /<base>/<yyyy>/<mm>/<dd>/
-        */}}
-        {{ $dailyPath := printf "%s/%s/" $base (.Date.Format "2006/01/02") }}
-        postedDates["{{ $dateStr }}"] = "{{ $dailyPath }}";
+        {{ $dailyPath := printf "/%s/" (.Date.Format "2006/01/02") }}
+        postedDates["{{ $dateStr }}"] = "{{ $dailyPath | absURL }}";
+       
 
     {{ end }}
 
