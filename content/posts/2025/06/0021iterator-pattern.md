@@ -3,6 +3,7 @@ title = "迭代器模式：輕鬆遍歷集合元素"
 date = 2025-06-13T00:00:00+08:00
 tags = ["Code", "C#", "DesignPattern"]
 prev_post_slug = "0020interpreter-pattern"
+next_post_slug = "0022mediator-pattern"
 series = ["DesignPattern"]
 weight = 17
 +++

@@ -3,6 +3,7 @@ title = "中介者模式：管理複雜溝通的好幫手"
 date = 2025-06-13T01:00:00+08:00
 tags = ["Code", "C#", "DesignPattern"]
 prev_post_slug = "0021iterator-pattern"
+next_post_slug = "0023memento-pattern"
 series = ["DesignPattern"]
 weight = 18
 +++
