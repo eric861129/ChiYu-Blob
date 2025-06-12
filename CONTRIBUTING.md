@@ -17,6 +17,6 @@
 3.  **提交前檢查**
     在推送 (`git push`) 到 `main` 分支前，執行以下指令，確保網站可以成功產生。
     ```bash
-    hugo --minify --gc --baseURL "/ChiYu-Blob/"
+    hugo --minify --gc --buildFuture --baseURL "/ChiYu-Blob/"
     htmltest -c .htmltest.yml ./public
     ```
