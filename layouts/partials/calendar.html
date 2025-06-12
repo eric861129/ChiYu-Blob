@@ -17,14 +17,14 @@
 document.addEventListener('DOMContentLoaded', function() {
     
     const postedDates = {};
-    {{/* 取得 baseURL 的路徑部分，確保連結能在任意位置運作 */}}
-    {{ $base := strings.TrimSuffix ((urls.Parse .Site.BaseURL).Path) "/" }}
     {{ range where (where .Site.RegularPages "Type" "posts") "Date" "le" now }}
         {{ $dateStr := .Date.Format "2006-1-2" }}
-        {{ $dailyPath := printf "/%s/" (.Date.Format "2006/01/02") }}
-        postedDates["{{ $dateStr }}"] = "{{ $dailyPath | absURL }}";
-       
-
+        {{/*
+            組合每日文章列表的連結，加入 /day 前綴
+            改用 relURL 以支援子目錄部署
+        */}}
+        {{ $dailyPath := printf "/day/%s/" (.Date.Format "2006/01/02") }}
+        postedDates["{{ $dateStr }}"] = "{{ $dailyPath | relURL }}";
     {{ end }}
 
     const monthYearEl = document.getElementById('cal-month-year');
