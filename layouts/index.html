@@ -14,9 +14,12 @@
 
                 <div class="space-y-8">
                     {{/* --- ↓↓↓ 移除 Weight，僅依日期排序最新文章 ↓↓↓ --- */}}
-                    {{/* 1. 僅從 "posts" 類型篩選文章 */}}
-                    {{ $pages := where .Site.RegularPages "Type" "posts" }}
-                    {{/* 2. 只依日期降冪排序，日期需包含時間 */}}
+                    {{/*
+                        1. 僅從 "posts" 類型篩選文章
+                        2. 再篩選發佈日期早於或等於今日
+                    */}}
+                    {{ $pages := where (where .Site.RegularPages "Type" "posts") "Date" "le" now }}
+                    {{/* 依日期降冪排序 */}}
                     {{ $sorted := sort $pages "Date" "desc" }}
                     {{/* 3. 取出最新五篇文章 */}}
                     {{ range first 5 $sorted }}

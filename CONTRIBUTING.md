@@ -11,7 +11,7 @@
 
 2.  **本地預覽**
     ```bash
-    hugo server -D
+    hugo server -DF
     ```
 
 3.  **提交前檢查**
