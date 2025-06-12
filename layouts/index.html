@@ -25,6 +25,24 @@
                     {{/* --- ↑↑↑ 移除 Weight，僅依日期排序最新文章 ↑↑↑ --- */}}
                 </div>
             </section>
+
+            {{/* --- ↓↓↓ 新增區塊：顯示系列文章 ↓↓↓ --- */}}
+            <section class="mt-16">
+                <h2 class="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 border-b pb-3" style="border-color: var(--border-color);">系列文章</h2>
+                <div class="space-y-8">
+                    {{ range .Site.Taxonomies.series.ByCount.Reverse }}
+                        {{ $seriesPage := .Page }}
+                        <a href="{{ $seriesPage.RelPermalink }}" class="block p-6 rounded-lg transition-all" style="background-color: var(--card-bg); border: 1px solid var(--border-color);">
+                            <h3 class="text-xl font-bold mb-2" style="color: var(--text-color);">{{ $seriesPage.Title }} ({{ .Count }})</h3>
+                            {{ with $seriesPage.Params.description }}
+                            <p class="text-base" style="color: var(--text-secondary);">{{ . }}</p>
+                            {{ end }}
+                        </a>
+                    {{ end }}
+                </div>
+            </section>
+            {{/* --- ↑↑↑ 新增區塊：顯示系列文章 ↑↑↑ --- */}}
+
         </main>
     </div>
     {{ partial "tag_sidebar.html" . }}

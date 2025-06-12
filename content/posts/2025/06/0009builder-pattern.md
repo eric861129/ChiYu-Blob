@@ -4,7 +4,7 @@ date = 2025-06-12T13:00:00+08:00
 tags = ["Code", "C#", "DesignPattern"]
 prev_post_slug = "0008prototype-pattern"
 next_post_slug = "0010adapter-pattern"
-series = ["設計模式"]
+series = ["DesignPattern"]
 weight = 5
 +++
 

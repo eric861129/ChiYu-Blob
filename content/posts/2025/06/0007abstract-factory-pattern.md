@@ -4,7 +4,7 @@ date = 2025-06-12T11:00:00+08:00
 tags = ["Code", "C#", "DesignPattern"]
 prev_post_slug = "0006singleton-pattern"
 next_post_slug = "0008prototype-pattern"
-series = ["設計模式"]
+series = ["DesignPattern"]
 weight = 3
 +++
 嗨各位朋友～前面我們介紹過了 Singleton 和 Factory Method，今天要繼續往下走，聊一個稍微進階一點點的設計模式：「抽象工廠模式（Abstract Factory）」。
