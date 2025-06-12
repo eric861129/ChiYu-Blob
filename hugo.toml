@@ -59,8 +59,20 @@ paginate = 5
     GitHub = "https://github.com/eric861129"
     LinkedIn = "https://www.linkedin.com/in/chiyu-huang/"
     Threads = "https://www.threads.com/@chiyuisme"
-    CakeResume = "https://www.cake.me/me/iamhandsomeboy1129"
+  CakeResume = "https://www.cake.me/me/iamhandsomeboy1129"
   # --- ↑↑↑ 新增此區塊來放置社群連結 ↑↑↑ ---
+
+  # --- ↓↓↓ 我的開源專案資料 ↓↓↓ ---
+  [[params.projects]]
+    name = "物件導向與設計模式 (C#)"
+    url = "https://github.com/eric861129/OOP-and-DesignPatern-Use-Csharp"
+    description = "這是一個用 C# 語言搭配生活化範例，來解釋物件導向四大特性與常見設計模式的教學專案。"
+
+  [[params.projects]]
+    name = "Hugo 極簡部落格模板 (HugoBlobTemplate)"
+    url = "https://github.com/eric861129/HugoBlobTemplate"
+    description = "一個開箱即用的 Hugo 部落格模板，整合了暗黑模式、自動化部署等功能，讓你能專注於寫作。"
+  # --- ↑↑↑ 我的開源專案資料 ↑↑↑ ---
 
 [menu]
   [[menu.main]]
