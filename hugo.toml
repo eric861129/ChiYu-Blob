@@ -3,6 +3,7 @@ languageCode = 'zh-TW'
 title = 'ChiYu Code Journey'
 # theme = 'github.com/kdevo/osprey-delight/v5'
 paginate = 5
+buildFuture = true
 
 [taxonomies]
   tag = "tags"
