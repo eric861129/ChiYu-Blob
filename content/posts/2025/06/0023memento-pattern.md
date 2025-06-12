@@ -1,8 +1,8 @@
 +++
 title = "備忘錄模式：保存與恢復物件狀態"
-date = 2025-06-13T02:00:00+08:00
+date = 2025-06-13
 dates = ["2025-06-13"]
-tags = ["Code", "C#", "DesignPattern"]
+tags = ["Code", "Csharp", "DesignPattern"]
 prev_post_slug = "0022mediator-pattern"
 next_post_slug = "0024observer-pattern"
 series = ["DesignPattern"]

@@ -1,8 +1,8 @@
 +++
 title = "建造者模式：一步步完成複雜任務"
-date = 2025-06-12T13:00:00+08:00
+date = 2025-06-12
 dates = ["2025-06-12"]
-tags = ["Code", "C#", "DesignPattern"]
+tags = ["Code", "Csharp", "DesignPattern"]
 prev_post_slug = "0009prototype-pattern"
 next_post_slug = "0011adapter-pattern"
 series = ["DesignPattern"]

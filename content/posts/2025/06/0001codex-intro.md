@@ -1,6 +1,6 @@
 +++
 title = "第一次認識 Codex：讓 AI 幫你寫程式不是夢！"
-date = 2025-06-05T10:00:00+08:00
+date = 2025-06-05
 dates = ["2025-06-05"]
 tags = ["AI", "Codex"]
 next_post_slug = "0002develop-blob-with-codex"
