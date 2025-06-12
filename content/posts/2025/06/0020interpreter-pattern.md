@@ -1,8 +1,8 @@
 +++
 title = "解譯器模式：讓程式聽懂你的指令"
-date = 2025-06-12T23:00:00+08:00
+date = 2025-06-12
 dates = ["2025-06-12"]
-tags = ["Code", "C#", "DesignPattern"]
+tags = ["Code", "Csharp", "DesignPattern"]
 prev_post_slug = "0019command-pattern"
 next_post_slug = "0021iterator-pattern"
 series = ["DesignPattern"]

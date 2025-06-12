@@ -1,8 +1,8 @@
 +++
 title = "命令模式：靈活封裝的請求指令"
-date = 2025-06-12T22:00:00+08:00
+date = 2025-06-12
 dates = ["2025-06-12"]
-tags = ["Code", "C#", "DesignPattern"]
+tags = ["Code", "Csharp", "DesignPattern"]
 prev_post_slug = "0018chain-of-responsibility-pattern"
 next_post_slug = "0020interpreter-pattern"
 series = ["DesignPattern"]

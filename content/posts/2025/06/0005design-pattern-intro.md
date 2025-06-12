@@ -1,8 +1,8 @@
 +++
 title = "搞懂設計模式到底是什麼？"
-date = 2025-06-11T12:00:00+08:00
+date = 2025-06-11
 dates = ["2025-06-11"]
-tags = ["Code", "C#", "DesignPattern"]
+tags = ["Code", "Csharp", "DesignPattern"]
 prev_post_slug = "0004hugo-customization-guide"
 next_post_slug = "0006singleton-pattern"
 series = ["DesignPattern"]
