@@ -47,17 +47,15 @@
             </section>
             {{/* --- ↑↑↑ 新增區塊：顯示系列文章 ↑↑↑ --- */}}
 
-            {{/* --- ↓↓↓ 更新區塊：僅顯示下一篇即將發布文章 ↓↓↓ --- */}}
+           {{/* --- ↓↓↓ 更新區塊：僅顯示下一篇即將發布文章 ↓↓↓ --- */}}
             {{/* 1. 取得排程日期在未來的文章 */}}
-            {{/* 限定類型為 posts，並篩選日期在未來的文章 */}}
-            {{/* --- ↓↓↓ 使用更精確的方式取得 posts 區塊下的未來文章 ↓↓↓ --- */}}
             {{ $postsSection := .Site.GetPage "posts" }}
-            {{ $futurePosts := where $postsSection.Pages "Date.After" now }}
-            {{/* --- ↑↑↑ 修正結束 ↑↑↑ --- */}}
-
+            {{/* --- 修正點：將 .Pages 改為 .RegularPages 才能找到子目錄中的文章 --- */}}
+            {{ $futurePosts := where $postsSection.RegularPages "Date.After" now }}
+            
             {{/* 2. 依照日期升冪排序，最接近現在的排在最前面 */}}
             {{ $sortedFuturePosts := sort $futurePosts "Date" "asc" }}
-
+            
             {{/* 3. 只取第一篇作為預告文章 */}}
             {{ with first 1 $sortedFuturePosts }}
             <section class="mt-16">
@@ -86,6 +84,7 @@
                 </div>
             </section>
             {{ end }}
+            {{/* --- ↑↑↑ 更新完成：僅顯示下一篇即將發布文章 ↑↑↑ --- */}}
             {{/* --- ↑↑↑ 更新完成：僅顯示下一篇即將發布文章 ↑↑↑ --- */}}
 
             <section class="mt-16">
