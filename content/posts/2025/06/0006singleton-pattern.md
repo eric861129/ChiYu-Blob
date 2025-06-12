@@ -3,7 +3,7 @@ title = "單例模式：只要一個就夠！"
 date = 2025-06-12T10:00:00+08:00
 tags = ["Code", "C#", "DesignPattern"]
 prev_post_slug = "0005design-pattern-intro"
-next_post_slug = "0007abstract-factory-pattern"
+next_post_slug = "0007factory-method-pattern"
 series = ["DesignPattern"]
 weight = 2
 +++

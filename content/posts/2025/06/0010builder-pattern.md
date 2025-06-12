@@ -2,10 +2,10 @@
 title = "建造者模式：一步步完成複雜任務"
 date = 2025-06-12T13:00:00+08:00
 tags = ["Code", "C#", "DesignPattern"]
-prev_post_slug = "0008prototype-pattern"
-next_post_slug = "0010adapter-pattern"
+prev_post_slug = "0009prototype-pattern"
+next_post_slug = "0011adapter-pattern"
 series = ["DesignPattern"]
-weight = 5
+weight = 6
 +++
 
 哈囉各位朋友們～今天我們繼續設計模式之旅，來聊聊 **建造者模式（Builder）** 吧！
