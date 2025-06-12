@@ -5,6 +5,7 @@ tags = ["Code", "C#", "DesignPattern"]
 prev_post_slug = "0026strategy-pattern"
 series = ["DesignPattern"]
 weight = 23
+next_post_slug = "0028visitor-pattern"
 +++
 
 哈囉朋友們～今天我們要介紹的是非常實用且常見的**模板方法模式（Template Method）**，透過它你可以固定一系列的步驟，讓子類別靈活地去實現細節。
