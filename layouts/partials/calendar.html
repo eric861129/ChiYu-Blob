@@ -17,15 +17,13 @@
 document.addEventListener('DOMContentLoaded', function() {
     
     const postedDates = {};
+    {{/* 取得 baseURL 的路徑部分，確保連結能在任意位置運作 */}}
+    {{ $base := strings.TrimSuffix ((urls.Parse .Site.BaseURL).Path) "/" }}
     {{ range where (where .Site.RegularPages "Type" "posts") "Date" "le" now }}
         {{ $dateStr := .Date.Format "2006-1-2" }}
-
-        {{/*
-            將日期對應到每日文章列表頁面的 URL
-            依照 hugo.toml 中設定的 day 永久連結格式 /:year/:month/:day/
-        */}}
         {{ $dailyPath := printf "/%s/" (.Date.Format "2006/01/02") }}
         postedDates["{{ $dateStr }}"] = "{{ $dailyPath | absURL }}";
+       
 
     {{ end }}
 
