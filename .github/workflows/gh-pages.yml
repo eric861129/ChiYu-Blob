@@ -3,7 +3,12 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [ main ]
-
+  # --- ↓↓↓ 新增此區塊，即可每日自動執行 ↓↓↓ ---
+  schedule:
+    # cron 語法，代表在每天的 UTC 時間 00:00 執行
+    # 台灣時間 (UTC+8) 為每天早上 8:00
+    - cron: '0 0 * * *'
+  # --- ↑↑↑ 新增結束 ↑↑↑ ---
 permissions:
   contents: write
 
