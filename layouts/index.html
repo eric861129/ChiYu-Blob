@@ -13,16 +13,16 @@
                 <h2 class="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 border-b pb-3" style="border-color: var(--border-color);">最新文章</h2>
 
                 <div class="space-y-8">
-                    {{/* --- ↓↓↓ 依日期與權重排序最新文章 ↓↓↓ --- */}}
+                    {{/* --- ↓↓↓ 移除 Weight，僅依日期排序最新文章 ↓↓↓ --- */}}
                     {{/* 1. 僅從 "posts" 類型篩選文章 */}}
                     {{ $pages := where .Site.RegularPages "Type" "posts" }}
-                    {{/* 2. 先依日期降冪，再依權重降冪排序 */}}
-                    {{ $sorted := sort $pages "Date" "desc" "Weight" "desc" }}
+                    {{/* 2. 只依日期降冪排序，日期需包含時間 */}}
+                    {{ $sorted := sort $pages "Date" "desc" }}
                     {{/* 3. 取出最新五篇文章 */}}
                     {{ range first 5 $sorted }}
                         {{ .Render "card" }}
                     {{ end }}
-                    {{/* --- ↑↑↑ 依日期與權重排序最新文章 ↑↑↑ --- */}}
+                    {{/* --- ↑↑↑ 移除 Weight，僅依日期排序最新文章 ↑↑↑ --- */}}
                 </div>
             </section>
         </main>

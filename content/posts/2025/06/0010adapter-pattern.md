@@ -1,6 +1,6 @@
 +++
 title = "介面卡模式：讓不相容也能合作"
-date = 2025-06-12
+date = 2025-06-12T14:00:00+08:00
 tags = ["Code", "C#", "DesignPattern"]
 prev_post_slug = "0009builder-pattern"
 next_post_slug = "0011bridge-pattern"
