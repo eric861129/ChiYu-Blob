@@ -43,6 +43,27 @@
             </section>
             {{/* --- ↑↑↑ 新增區塊：顯示系列文章 ↑↑↑ --- */}}
 
+            {{/* --- ↓↓↓ 新增區塊：顯示未來排程文章 ↓↓↓ --- */}}
+            {{/* 1. 從所有正式頁面中挑出排程日期在未來的文章 */}}
+            {{ $futurePosts := where .Site.RegularPages "Date.After" now }}
+
+            {{/* 2. 依照日期由近到遠排序，以便即將發布的文章排在前面 */}}
+            {{ $sortedFuturePosts := sort $futurePosts "Date" "asc" }}
+
+            {{/* 3. 當未來文章數量大於 0 時，才渲染此區塊 */}}
+            {{ if gt (len $sortedFuturePosts) 0 }}
+            <section class="mt-16">
+                <h2 class="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 border-b pb-3" style="border-color: var(--border-color);">未來發布文章</h2>
+                <div class="space-y-8">
+                    {{/* 4. 逐一渲染每篇未來文章的卡片 */}}
+                    {{ range $sortedFuturePosts }}
+                        {{ .Render "card" }}
+                    {{ end }}
+                </div>
+            </section>
+            {{ end }}
+            {{/* --- ↑↑↑ 新增區塊：顯示未來排程文章 ↑↑↑ --- */}}
+
             <section class="mt-16">
                 <h2 class="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 border-b pb-3" style="border-color: var(--border-color);">我的開源專案</h2>
                 <div class="space-y-8">
