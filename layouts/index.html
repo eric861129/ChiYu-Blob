@@ -36,7 +36,8 @@
                     {{ range .Site.Taxonomies.series.ByCount.Reverse }}
                         {{ $seriesPage := .Page }}
                         <a href="{{ $seriesPage.RelPermalink }}" class="block p-6 rounded-lg transition-all" style="background-color: var(--card-bg); border: 1px solid var(--border-color);">
-                            <h3 class="text-xl font-bold mb-2" style="color: var(--text-color);">{{ $seriesPage.Title }} ({{ .Count }})</h3>
+                            {{/* 手動計算已發佈文章數量，排除未來文章 */}}
+                            <h3 class="text-xl font-bold mb-2" style="color: var(--text-color);">{{ $seriesPage.Title }} ({{ len (where .Page.Pages "Date" "le" now) }})</h3>
                             {{ with $seriesPage.Params.description }}
                             <p class="text-base" style="color: var(--text-secondary);">{{ . }}</p>
                             {{ end }}
@@ -48,7 +49,8 @@
 
             {{/* --- ↓↓↓ 更新區塊：僅顯示下一篇即將發布文章 ↓↓↓ --- */}}
             {{/* 1. 取得排程日期在未來的文章 */}}
-            {{ $futurePosts := where .Site.RegularPages "Date.After" now }}
+            {{/* 限定類型為 posts，並篩選日期在未來的文章 */}}
+            {{ $futurePosts := where (where .Site.RegularPages "Type" "posts") "Date.After" now }}
 
             {{/* 2. 依照日期升冪排序，最接近現在的排在最前面 */}}
             {{ $sortedFuturePosts := sort $futurePosts "Date" "asc" }}
