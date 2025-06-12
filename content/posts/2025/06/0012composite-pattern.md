@@ -3,7 +3,8 @@ title = "組合模式：樹狀結構的好幫手"
 date = 2025-06-12T16:00:00+08:00
 tags = ["Code", "C#", "DesignPattern"]
 prev_post_slug = "0011bridge-pattern"
-weight = 12
+series = ["設計模式"]
+weight = 8
 +++
 
 哈囉大家，歡迎繼續探索設計模式之旅！今天要介紹的是一個既實用又好理解的設計模式：**組合模式（Composite）**。

@@ -4,7 +4,8 @@ date = 2025-06-12T12:00:00+08:00
 tags = ["Code", "C#", "DesignPattern"]
 prev_post_slug = "0007abstract-factory-pattern"
 next_post_slug = "0009builder-pattern"
-weight = 8
+series = ["設計模式"]
+weight = 4
 +++
 
 嗨！繼續設計模式系列，這次要介紹的主角是**原型模式（Prototype）**。聽到「原型」這個詞是不是有點不太確定這到底是什麼？別擔心，我們還是用輕鬆易懂的方式來理解它吧！
