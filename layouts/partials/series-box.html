@@ -1,15 +1,19 @@
 {{/* 檢查此文章是否有設定 series */}}
 {{ with .Params.series }}
   {{ $seriesName := index . 0 }}
+  
+  {{/* --- ↓↓↓ 使用路徑方式取得對應系列頁面，避免版本相容性問題 ↓↓↓ --- */}}
   {{ $seriesPage := $.Site.GetPage (printf "/series/%s" ($seriesName | urlize)) }}
-
+  
+  {{/* 只有在成功找到頁面時才渲染區塊，避免出錯 */}}
+  {{ with $seriesPage }}
   <div class="not-prose mt-16 pt-8 border-t" style="border-color: var(--border-color);">
-    <h3 class="text-xl font-bold mb-4">系列文章：<a href="{{ $seriesPage.Permalink }}" class="text-inherit hover:underline">{{ $seriesName }}</a></h3>
+    <h3 class="text-xl font-bold mb-4">系列文章：<a href="{{ .Permalink }}" class="text-inherit hover:underline">{{ $seriesName }}</a></h3>
     <ol class="list-decimal list-inside space-y-2">
       {{/* 根據權重 (weight) 排序系列文章 */}}
-      {{ range $seriesPage.Pages.ByWeight }}
+      {{ range .Pages.ByWeight }}
         <li class="{{ if eq .Permalink $.Permalink }}font-bold{{ end }}" style="color: var(--text-secondary);">
-          <a href="{{ .Permalink }}" class="{{ if eq .Permalink $.Permalink }}font-bold{{ end }}" style="color: {{ if eq .Permalink $.Permalink }}var(--text-color){{ else }}var(--text-secondary){{ end }};">
+          <a href="{{ if eq .Permalink $.Permalink }}javascript:void(0);{{ else }}{{ .Permalink }}{{ end }}" class="{{ if eq .Permalink $.Permalink }}font-bold cursor-default{{ else }}hover:underline{{ end }}" style="color: {{ if eq .Permalink $.Permalink }}var(--text-color){{ else }}var(--text-secondary){{ end }};">
             {{ .Title }}
             {{ if eq .Permalink $.Permalink }}<span class="text-sm ml-1" style="color: var(--link-color);"> (目前文章)</span>{{ end }}
           </a>
@@ -17,4 +21,6 @@
       {{ end }}
     </ol>
   </div>
+  {{ end }}
+  {{/* --- ↑↑↑ 修正結束 --- */}}
 {{ end }}

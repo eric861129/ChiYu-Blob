@@ -5,3 +5,4 @@ resources/
 
 # Temporary directories
 layouts_backup/
+tmp/

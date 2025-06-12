@@ -4,7 +4,7 @@ date = 2025-06-12T14:00:00+08:00
 tags = ["Code", "C#", "DesignPattern"]
 prev_post_slug = "0009builder-pattern"
 next_post_slug = "0011bridge-pattern"
-series = ["設計模式"]
+series = ["DesignPattern"]
 weight = 6
 +++
 
