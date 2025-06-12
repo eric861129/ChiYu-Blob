@@ -17,13 +17,17 @@
 document.addEventListener('DOMContentLoaded', function() {
     
     const postedDates = {};
+    {{/* 取得 baseURL 的路徑部分，確保連結能在任意位置運作 */}}
+    {{ $base := strings.TrimSuffix ((urls.Parse .Site.BaseURL).Path) "/" }}
     {{ range where (where .Site.RegularPages "Type" "posts") "Date" "le" now }}
         {{ $dateStr := .Date.Format "2006-1-2" }}
-        
-        {{/* --- 修正：直接使用文章的永久連結 (.Permalink) --- */}}
-        {{/* 舊的寫法會產生不存在的每日列表頁面，導致 404 */}}
-        {{/* 新的寫法會直接連結到該日期的文章頁面 */}}
-        postedDates["{{ $dateStr }}"] = "{{ .Permalink }}";
+
+        {{/*
+            組合每日文章列表頁面的 URL
+            最終格式 /<base>/<yyyy>/<mm>/<dd>/
+        */}}
+        {{ $dailyPath := printf "%s/%s/" $base (.Date.Format "2006/01/02") }}
+        postedDates["{{ $dateStr }}"] = "{{ $dailyPath }}";
 
     {{ end }}
 
