@@ -19,11 +19,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const postedDates = {};
     {{ range where (where .Site.RegularPages "Type" "posts") "Date" "le" now }}
         {{ $dateStr := .Date.Format "2006-1-2" }}
-        
-        {{/* --- 修正：直接使用文章的永久連結 (.Permalink) --- */}}
-        {{/* 舊的寫法會產生不存在的每日列表頁面，導致 404 */}}
-        {{/* 新的寫法會直接連結到該日期的文章頁面 */}}
-        postedDates["{{ $dateStr }}"] = "{{ .Permalink }}";
+
+        {{/*
+            將日期對應到每日文章列表頁面的 URL
+            依照 hugo.toml 中設定的 day 永久連結格式 /:year/:month/:day/
+        */}}
+        {{ $dailyPath := printf "/%s/" (.Date.Format "2006/01/02") }}
+        postedDates["{{ $dateStr }}"] = "{{ $dailyPath | absURL }}";
 
     {{ end }}
 
