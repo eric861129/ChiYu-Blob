@@ -2,8 +2,8 @@
 title = "搞懂設計模式到底是什麼？"
 date = 2025-06-11
 tags = ["Code", "C#", "DesignPattern"]
-prev_post_slug = "4hugo-customization-guide"
-next_post_slug = "6singleton-pattern"
+prev_post_slug = "0004hugo-customization-guide"
+next_post_slug = "0006singleton-pattern"
 weight = 5
 +++
 

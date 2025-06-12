@@ -2,8 +2,8 @@
 title = "原型模式：複製的藝術"
 date = 2025-06-12
 tags = ["Code", "C#", "DesignPattern"]
-prev_post_slug = "7abstract-factory-pattern"
-next_post_slug = "9builder-pattern"
+prev_post_slug = "0007abstract-factory-pattern"
+next_post_slug = "0009builder-pattern"
 weight = 8
 +++
 

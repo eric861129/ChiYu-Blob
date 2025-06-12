@@ -2,7 +2,7 @@
 title = "組合模式：樹狀結構的好幫手"
 date = 2025-06-12
 tags = ["Code", "C#", "DesignPattern"]
-prev_post_slug = "11bridge-pattern"
+prev_post_slug = "0011bridge-pattern"
 weight = 12
 +++
 

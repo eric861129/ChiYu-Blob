@@ -2,8 +2,8 @@
 title = "橋接模式：抽象與實作分離"
 date = 2025-06-12
 tags = ["Code", "C#", "DesignPattern"]
-prev_post_slug = "10adapter-pattern"
-next_post_slug = "12composite-pattern"
+prev_post_slug = "0010adapter-pattern"
+next_post_slug = "0012composite-pattern"
 weight = 11
 +++
 

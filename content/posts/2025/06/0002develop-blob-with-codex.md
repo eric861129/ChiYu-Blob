@@ -3,11 +3,11 @@ title = "我是如何使用 AI (Codex) 打造這個 Hugo 部落格的"
 date = 2025-06-08
 tags = [ "AI"]
 description = "一篇實戰紀錄，分享我如何利用 AI 程式助理 Codex (整合於 ChatGPT) 從零到一開發這個 Hugo 靜態網站，從前端互動功能到後端自動化部署的完整過程。"
-prev_post_slug = "1codex-intro"
-next_post_slug = "3hugo-blob-template-intro"
+prev_post_slug = "0001codex-intro"
+next_post_slug = "0003hugo-blob-template-intro"
 +++
 
-在上一篇文章 [《第一次認識 Codex：讓 AI 幫你寫程式不是夢！》](/ChiYu-Blob/posts/codex-intro/) 中，我介紹了 Codex 這個強大的 AI 程式助理。而今天，我想分享一個更具體的實戰經驗：我是如何利用 Codex 來開發**你現在正在看的這個部落格**。
+在上一篇文章 [《第一次認識 Codex：讓 AI 幫你寫程式不是夢！》](/ChiYu-Blob/posts/0001codex-intro/) 中，我介紹了 Codex 這個強大的 AI 程式助理。而今天，我想分享一個更具體的實戰經驗：我是如何利用 Codex 來開發**你現在正在看的這個部落格**。
 
 這個網站是使用 [Hugo](https://gohugo.io/) 靜態網站產生器搭建的，並搭配 [Tailwind CSS](https://tailwindcss.com/) 進行樣式設計。從前端的 JavaScript 互動功能，到後端的 GitHub Actions 自動化部署，許多環節都有 AI 的深度參與。接下來，我會分享幾個關鍵功能的開發過程，以及我是如何「詠唱」我的需求，讓 AI 幫我完成任務的。
 

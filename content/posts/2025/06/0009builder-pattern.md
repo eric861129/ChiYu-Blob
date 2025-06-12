@@ -2,8 +2,8 @@
 title = "建造者模式：一步步完成複雜任務"
 date = 2025-06-12
 tags = ["Code", "C#", "DesignPattern"]
-prev_post_slug = "8prototype-pattern"
-next_post_slug = "10adapter-pattern"
+prev_post_slug = "0008prototype-pattern"
+next_post_slug = "0010adapter-pattern"
 weight = 9
 +++
 
