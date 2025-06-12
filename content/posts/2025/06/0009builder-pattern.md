@@ -4,7 +4,8 @@ date = 2025-06-12T13:00:00+08:00
 tags = ["Code", "C#", "DesignPattern"]
 prev_post_slug = "0008prototype-pattern"
 next_post_slug = "0010adapter-pattern"
-weight = 9
+series = ["設計模式"]
+weight = 5
 +++
 
 哈囉各位朋友們～今天我們繼續設計模式之旅，來聊聊 **建造者模式（Builder）** 吧！

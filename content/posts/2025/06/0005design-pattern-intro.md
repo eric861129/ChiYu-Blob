@@ -4,7 +4,8 @@ date = 2025-06-11T12:00:00+08:00
 tags = ["Code", "C#", "DesignPattern"]
 prev_post_slug = "0004hugo-customization-guide"
 next_post_slug = "0006singleton-pattern"
-weight = 5
+series = ["設計模式"]
+weight = 1
 +++
 
 

@@ -4,7 +4,8 @@ date = 2025-06-12T14:00:00+08:00
 tags = ["Code", "C#", "DesignPattern"]
 prev_post_slug = "0009builder-pattern"
 next_post_slug = "0011bridge-pattern"
-weight = 10
+series = ["設計模式"]
+weight = 6
 +++
 
 哈囉大家！今天我們要介紹的設計模式是：**介面卡模式（Adapter）**，又叫做轉接器模式。

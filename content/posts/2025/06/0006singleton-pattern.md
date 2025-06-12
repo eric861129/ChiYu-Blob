@@ -4,7 +4,8 @@ date = 2025-06-12T10:00:00+08:00
 tags = ["Code", "C#", "DesignPattern"]
 prev_post_slug = "0005design-pattern-intro"
 next_post_slug = "0007abstract-factory-pattern"
-weight = 6
+series = ["設計模式"]
+weight = 2
 +++
 
 在上一篇文章中，我們簡單認識了什麼是「設計模式」。這次，就讓我們從最經典的「單例模式（Singleton）」開始，看看它究竟能為開發帶來什麼幫助吧！
