@@ -1,6 +1,7 @@
 +++
 title = "觀察者模式：即時通知的好幫手"
 date = 2025-06-13T03:00:00+08:00
+dates = ["2025-06-13"]
 tags = ["Code", "C#", "DesignPattern"]
 prev_post_slug = "0023memento-pattern"
 next_post_slug = "0025state-pattern"

@@ -20,10 +20,10 @@ document.addEventListener('DOMContentLoaded', function() {
     {{ range where (where .Site.RegularPages "Type" "posts") "Date" "le" now }}
         {{ $dateStr := .Date.Format "2006-1-2" }}
         {{/*
-            組合每日文章列表的連結，加入 /day 前綴
-            改用 relURL 以支援子目錄部署
+            使用日期分類 (dates) 來產生連結，
+            免去在 content/day 下建立眾多索引檔案
         */}}
-        {{ $dailyPath := printf "/day/%s/" (.Date.Format "2006/01/02") }}
+        {{ $dailyPath := printf "/dates/%s/" (.Date.Format "2006-01-02") }}
         postedDates["{{ $dateStr }}"] = "{{ $dailyPath | relURL }}";
     {{ end }}
 

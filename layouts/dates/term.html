@@ -1,0 +1,25 @@
+{{ define "main" }}
+<div class="flex flex-row justify-center py-8">
+    <div class="w-full max-w-4xl min-w-0">
+        <main>
+            <section class="mb-12 sm:mb-16">
+                <header class="border-b pb-6 mb-6" style="border-color: var(--border-color);">
+                    {{/* .Title 會是日期字串，例如 "2025-06-12" */}}
+                    <h1 class="text-2xl sm:text-4xl font-bold tracking-tight">{{ .Title }} 文章列表</h1>
+                </header>
+            </section>
+            <section>
+                <div class="space-y-8">
+                    {{/* 建立分頁器並依日期排序 */}}
+                    {{ $paginator := .Paginate (.Pages.ByDate.Reverse) }}
+                    {{ range $paginator.Pages }}
+                        {{ .Render "card" }}
+                    {{ end }}
+                </div>
+            </section>
+            {{ partial "pagination.html" . }}
+        </main>
+    </div>
+    {{ partial "tag_sidebar.html" . }}
+    </div>
+{{ end }}

@@ -1,6 +1,7 @@
 +++
 title = "原型模式：複製的藝術"
 date = 2025-06-12T12:00:00+08:00
+dates = ["2025-06-12"]
 tags = ["Code", "C#", "DesignPattern"]
 prev_post_slug = "0008abstract-factory-pattern"
 next_post_slug = "0010builder-pattern"

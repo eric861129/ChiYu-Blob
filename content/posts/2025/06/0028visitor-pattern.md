@@ -1,6 +1,7 @@
 +++
 title = "訪問者模式：新增功能不動既有架構"
 date = 2025-06-13T07:00:00+08:00
+dates = ["2025-06-13"]
 tags = ["Code", "C#", "DesignPattern"]
 prev_post_slug = "0027template-method-pattern"
 series = ["DesignPattern"]

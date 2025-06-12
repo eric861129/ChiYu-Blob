@@ -1,6 +1,8 @@
 baseURL = 'https://eric861129.github.io/ChiYu-Blob/'
 languageCode = 'zh-TW'
 title = 'ChiYu Code Journey'
+# 明確指定網站時區，避免日期顯示錯亂
+timeZone = 'Asia/Taipei'
 # theme = 'github.com/kdevo/osprey-delight/v5'
 paginate = 5
 buildFuture = true
@@ -9,6 +11,7 @@ buildFuture = true
   tag = "tags"
   category = "categories"
   series = "series"
+  dates = "dates"
 
 [related]
   threshold = 80
@@ -99,5 +102,4 @@ buildFuture = true
     # 請將這段設定加入到您的 hugo.toml 檔案中
 
 [permalinks]
-  day = "/:year/:month/:day/"
   posts = "/posts/:slug/"
