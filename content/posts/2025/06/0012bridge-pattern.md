@@ -2,10 +2,10 @@
 title = "橋接模式：抽象與實作分離"
 date = 2025-06-12T15:00:00+08:00
 tags = ["Code", "C#", "DesignPattern"]
-prev_post_slug = "0010adapter-pattern"
-next_post_slug = "0012composite-pattern"
+prev_post_slug = "0011adapter-pattern"
+next_post_slug = "0013composite-pattern"
 series = ["DesignPattern"]
-weight = 7
+weight = 8
 +++
 
 哈囉大家～我們繼續來探索設計模式的世界吧！今天要介紹的是一個聽起來可能有點陌生，但其實很實用的設計模式：**橋接模式（Bridge）**。
