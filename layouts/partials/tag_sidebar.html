@@ -33,6 +33,38 @@
         </div>
         {{ end }}
 
-       
+        {{/* --- 新增：系列文章列表 --- */}}
+        {{ with .Site.Taxonomies.series.ByCount }}
+        <div class="mt-8">
+            <h3 class="text-xl font-bold mb-4 pb-2 border-b" style="border-color: var(--border-color);">系列文章</h3>
+            <ul class="space-y-1">
+                {{ range . }}
+                <li>
+                    <a href="{{ .Page.Permalink }}" class="flex justify-between">
+                        <span>{{ .Page.Title }}</span>
+                        <span class="text-sm">{{ .Count }}</span>
+                    </a>
+                </li>
+                {{ end }}
+            </ul>
+        </div>
+        {{ end }}
+
+        {{/* --- 新增：開源專案列表 --- */}}
+        {{ $projects := where site.RegularPages "Type" "in" "projects" }}
+        {{ if $projects }}
+        <div class="mt-8">
+            <h3 class="text-xl font-bold mb-4 pb-2 border-b" style="border-color: var(--border-color);">開源專案</h3>
+            <ul class="space-y-1">
+                {{ range $projects }}
+                <li>
+                    <a href="{{ .Permalink }}">{{ .Title }}</a>
+                </li>
+                {{ end }}
+            </ul>
+        </div>
+        {{ end }}
+
+
     </div>
 </aside>

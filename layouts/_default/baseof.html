@@ -37,6 +37,9 @@
 
     {{ $customCSS := resources.Get "css/custom.css" | minify }}
     <link rel="stylesheet" href="{{ $customCSS.Permalink }}">
+    {{/* 載入延伸用的自訂樣式 */}}
+    {{ $extendedCSS := resources.Get "css/extended/custom.css" | minify }}
+    <link rel="stylesheet" href="{{ $extendedCSS.Permalink }}">
 
 </head>
 <body class="antialiased">
