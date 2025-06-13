@@ -1,0 +1,42 @@
+{{- $existingContent := .Scratch.Get "sidebar" -}}
+
+{{- if or $existingContent (not .IsHome) -}}
+<aside class="sidebar">
+    <div class="sidebar-inner">
+        {{/* 原本側邊欄的內容，這裡會放置目錄等 */}}
+        {{ $existingContent }}
+
+        {{/* === 新增：系列文章 === */}}
+        {{- with .Site.Taxonomies.series.ByCount -}}
+        <div class="widget">
+            <h3 class="widget-title">系列文章</h3>
+            <ul class="widget-list">
+                {{- range . -}}
+                <li>
+                    <a href="{{ .Page.Permalink }}">
+                        {{ .Page.Title }}
+                        <span class="posts-count">{{ .Count }}</span>
+                    </a>
+                </li>
+                {{- end -}}
+            </ul>
+        </div>
+        {{- end -}}
+        
+        {{/* === 新增：開源專案 === */}}
+        {{- $pages := where site.RegularPages "Type" "in" "projects" -}}
+        {{- if $pages -}}
+        <div class="widget">
+            <h3 class="widget-title">開源專案</h3>
+            <ul class="widget-list">
+                {{- range $pages -}}
+                <li>
+                    <a href="{{ .Permalink }}">{{ .Title }}</a>
+                </li>
+                {{- end -}}
+            </ul>
+        </div>
+        {{- end -}}
+    </div>
+</aside>
+{{- end -}}
