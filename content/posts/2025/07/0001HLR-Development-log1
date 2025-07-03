@@ -1,12 +1,13 @@
 +++
 title = "開發日誌 #1：我把『人生』變成了一款可以練功打寶的RPG！"
 date = 2025-07-03
+dates = ["2025-07-03"] 
 tags = ["SideProject", "HLR"]
 prev_post_slug = "0028visitor-pattern"
 weight = 29
 +++
 
-大家好！我是 [你的名字]，很高興你正在看「習慣人生RPG」(Habit-Life RPG / H.L.R.) 的第一篇開發日誌！
+大家好！我是 ChiYu，很高興你正在看「習慣人生RPG」(Habit-Life RPG / H.L.R.) 的第一篇開發日誌！
 
 先問大家一個問題：你是不是也一樣，手機裡裝了一堆待辦事項App，結果最後都懶得打開？看著那些永遠劃不完的清單，只覺得煩，完全沒有動力。
 
