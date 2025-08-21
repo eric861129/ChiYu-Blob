@@ -1,1 +1,16 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2025 iThome 鐵人賽 on ChiYu Code Journey</title><link>/ChiYu-Blob/series/2025ithomeironman/</link><description>Recent content in 2025 iThome 鐵人賽 on ChiYu Code Journey</description><generator>Hugo -- gohugo.io</generator><language>zh-TW</language><atom:link href="/ChiYu-Blob/series/2025ithomeironman/index.xml" rel="self" type="application/rss+xml"/></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2025 iThome 鐵人賽 on ChiYu Code Journey</title><link>/ChiYu-Blob/series/2025ithomeironman/</link><description>Recent content in 2025 iThome 鐵人賽 on ChiYu Code Journey</description><generator>Hugo -- gohugo.io</generator><language>zh-TW</language><lastBuildDate>Wed, 20 Aug 2025 00:00:00 +0800</lastBuildDate><atom:link href="/ChiYu-Blob/series/2025ithomeironman/index.xml" rel="self" type="application/rss+xml"/><item><title>Day 0: 【啟程】嘿，AI！我們來做個網站，但這次，我們約法三章</title><link>/ChiYu-Blob/posts/2025ithomeironmanday0/</link><pubDate>Wed, 20 Aug 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday0/</guid><description>Day 0: 【啟程】嘿，AI！我們來做個網站，但這次，我們約法三章 嘿，大家好啊！我是 ChiYu，也可以叫我 Eric。
+寫了五年的 Code，平常都在跟 .Net 還有 Azure 打交道。簡單說，就是個靠鍵盤吃飯的工程師啦。去年有參賽，但中途忘記發文中斷!!! 希望今年能培養好習慣每天準時一篇不斷更!!!
+這趟旅程，是為誰準備的？ 在開始之前，我想先說說，這系列文章是為誰而寫的。
+你可能完全沒有程式背景，但對現在最紅的 Vibe Coding 充滿好奇嗎？你是不是也想跟上這波 AI 浪潮，試著自己動手做點東西，甚至想成為一名開發者呢？
+如果答案是「YES」，那這系列文章就是為你量身打造的！
+我們不只玩 Vibe Coding，我更希望在過程中，帶你認識一些重要的「開發觀念」。像是什麼是「前端」、「後端」？什麼是「API」？版本要怎麼控制？這些在專業開發中一定會用到的術語和工作流程，我會用最白話的方式，融入到我們的實作裡。
+所以，別擔心自己是「程式小白」。跟著我，我們一步一步來，不只做出一個酷專案，更要幫你打下成為開發者的堅實基礎。
+那個…我只是想要一台腳踏車，你給我一艘航空母艦幹嘛？ 身為工程師，有新玩具當然會想要跟著玩看看，但純粹的 Vibe Coding 下去，到底會得到什麼？
+我的故事是這樣的：我想說來做個最經典最常見的「待辦事項清單 (Todo List)」練練手感。就對 AI 下了一個超簡單的指令：「幫我做個 Todo List 網站，要有CRUD的功能，並且想要一個簡約的UI，我希望專案要越完整越好。」
+那時候我心裡想的超單純：啊不就一個 HTML，裡面塞一點點 JavaScript 就搞定了嗎？簡單、好懂、我自己要改也方便。
+結果呢？AI 老兄一頓操作猛如虎，給我生出了一整個專案包。我點開資料夾，下巴直接掉下來。哇靠，這是怎樣？React、Node.js、Express、MongoDB……全家餐都來了！
+老實說，這 App 能跑，但感覺完全歪掉了。我只是想要一台腳踏車，結果 AI 給了我一艘航空母艦。這要我怎麼騎……啊不是，這已經超出我所了解與熟悉的範圍，且專案規模整個失控！會導致這樣的原因有各種可能，可能是我的Prompt太過鬆散，但又出現了這個「專案要越完整越好」這個關鍵字，也可能是AI自己異想天開等等。出現這種「技術奇觀」讓我意識到，完全放任的 Vibe Coding 真的很容易失控，變成一個你根本不想碰的燙手山芋。
+而且老實說，有時候在社群上看到一些分享，真的會替他們頭痛，曾看到有人在分享，他的朋友VibeCoding出了一個購物網站，但登入系統不論怎麼打密碼都可以登入，或是開發出的網站把所有應加密資訊顯露出去。
+我完全懂拿到新玩具那種興奮感，AI 工具也確實是開發上的一大福音，而且也讓許多程式小白能體會成為一名工程師的感覺!! 但問題出在「盲目相信」。當專案一搞大，你很快會發現：東西越來越難改、AI 給的專案根本跑不起來、就算跑起來了，噴出來的 BUG 你也看不懂。更慘的是，你叫 AI 修，它修完又生出新的 BUG，最後就卡在一個無限迴圈裡動彈不得。這對沒有太多開發經驗的人來說，真的是個超級大坑。
+為魔法裝上韁繩：左手藍圖，右手魔法 所以咧？難道就要這樣放棄 AI 這個神隊友嗎？當然不行！
+這就像拿到一把絕世神兵，你不能因為它太利就把它丟掉，而是要學會怎麼駕馭它。所以我就開始找方法，到底要怎麼做才能讓 AI 乖乖聽話，然後我找到了這個說新不新說舊不舊的開發法則：</description></item></channel></rss>
