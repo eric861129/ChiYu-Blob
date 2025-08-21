@@ -5,8 +5,8 @@ slug = "2025iThomeIronmanDay0"
 dates = ["2025-08-20"] 
 tags = ["2025iThomeIronman", "VibeCoding","DDD"] 
 series = ["2025iThomeIronman"] 
+weight = 30
 +++
-
 ---
 
 ### Day 0: 【啟程】嘿，AI！我們來做個網站，但這次，我們約法三章
