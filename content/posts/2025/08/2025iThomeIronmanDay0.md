@@ -4,6 +4,7 @@ date = 2025-08-20
 slug = "2025iThomeIronmanDay0" 
 dates = ["2025-08-20"] 
 tags = ["2025iThomeIronman", "VibeCoding","DDD"] 
+series = ["2025iThomeIronman"] 
 +++
 
 ---
