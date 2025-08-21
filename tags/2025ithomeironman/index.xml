@@ -1,4 +1,23 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2025iThomeIronman on ChiYu Code Journey</title><link>/ChiYu-Blob/tags/2025ithomeironman/</link><description>Recent content in 2025iThomeIronman on ChiYu Code Journey</description><generator>Hugo -- gohugo.io</generator><language>zh-TW</language><lastBuildDate>Wed, 20 Aug 2025 00:00:00 +0800</lastBuildDate><atom:link href="/ChiYu-Blob/tags/2025ithomeironman/index.xml" rel="self" type="application/rss+xml"/><item><title>Day 0: 【啟程】嘿，AI！我們來做個網站，但這次，我們約法三章</title><link>/ChiYu-Blob/posts/2025ithomeironmanday0/</link><pubDate>Wed, 20 Aug 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday0/</guid><description>Day 0: 【啟程】嘿，AI！我們來做個網站，但這次，我們約法三章 嘿，大家好啊！我是 ChiYu，也可以叫我 Eric。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2025iThomeIronman on ChiYu Code Journey</title><link>/ChiYu-Blob/tags/2025ithomeironman/</link><description>Recent content in 2025iThomeIronman on ChiYu Code Journey</description><generator>Hugo -- gohugo.io</generator><language>zh-TW</language><lastBuildDate>Thu, 21 Aug 2025 00:00:00 +0800</lastBuildDate><atom:link href="/ChiYu-Blob/tags/2025ithomeironman/index.xml" rel="self" type="application/rss+xml"/><item><title>Day 1: 【心法篇】開發者的航海圖：什麼是文件驅動開發 (DDD)？</title><link>/ChiYu-Blob/posts/2025ithomeironmanday1/</link><pubDate>Thu, 21 Aug 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday1/</guid><description>嘿，大家好啊！我是 ChiYu。
+昨天聊到 AI 開發，一不小心就把小小的「腳踏車」專案搞成一艘「航空母艦」，超頭痛的對吧？這種「AI 太能幹」造成的失控，在 Vibe Coding 的浪潮下，只會越來越常見。這不只是個笑話，它反映了一個深刻的問題：當我們擁有無窮的力量（AI），卻沒有明確的方向時，混亂是必然的結果。
+那到底要怎麼辦，才能讓 AI 乖乖聽話，不要自己亂加戲？我們該如何從一個被 AI 牽著鼻子走的「使用者」，蛻變成一個能駕馭 AI 的「指揮家」？
+今天就要來分享我的秘密武器，一個能讓你從「玩票」變「專業」的酷東西：文件驅動開發 (Document-Driven Development, DDD)！
+我知道，一聽到「文件」兩個字，你可能就想關掉了，感覺超無聊，對吧？先別走！相信我，這東西比你想的有趣多了，它就是我們駕馭 Vibe Coding 這匹野馬最重要的「韁繩」！這不是要你回到寫八股文的老路，而是要教你一種用「文字」來駕馭「程式碼」的現代魔法。
+核心精神：「左移」你的思考 (Shift-Left) 在蓋房子前，你會先畫好藍圖，還是直接叫工人來亂蓋一通？當然是先畫藍圖嘛！這個簡單的道理，在軟體開發中卻常常被遺忘。
+這在我們寫程式的世界裡，有個很潮的說法叫 「左移」(Shift-Left)。意思就是，把所有燒腦的規劃、設計工作，全部往前挪。這就像規劃一場環島旅行，你不會等到出發當天才在想要去哪裡、住哪裡，對吧？你肯定會提前好幾個禮拜，就把路線、住宿、景點都研究得一清二楚。
+為什麼？因為一開始在紙上改個設計，頂多花幾分鐘；等到牆都蓋好了才說要改，那可就得花好幾天敲掉重來，不只工人想罷工，連設計師都會想掐死你！修改的成本，隨著時間往右，是呈指數級暴增的，這不只是時間成本，更是團隊士氣的巨大耗損。一個小小的早期決策失誤，到後期可能會演變成需要數週才能修復的**「技術債」**，那種感覺真的糟透了。
+DDD 就是這個概念的最佳實踐，先想清楚，再動手！
+所以，DDD 到底在幹嘛？ 所以說，DDD 到底是在幹嘛？超簡單，就是一個規矩：
+沒文件，就沒有 Code！
+這聽起來可能有點極端，但它的核心是一種紀律，一種能帶來巨大回報的紀律。整個開發流程大概是這樣：
+先動腦，再動手：有任何新想法？第一步絕對不是打開 VS Code，而是先把它跟 AI「聊」成一份具體的規格文件。這個「聊」的過程，其實就是在強迫我們把腦中模糊不清的想法，具象化成有邏輯、有結構的文字。很多時候，光是在這個階段，你就會發現自己想法中的矛盾與漏洞。 在文件上吵架：所有的討論、修改，都在文件上搞定。這是一種健康的吵架！把所有可能的誤解、模糊地帶，在程式碼誕生前就全部解決掉。在文件上吵架，成本是零；但在程式碼上吵架，成本可能就是好幾個工程師好幾天的工時，改文字總比改程式碼便宜吧？ 文件就是聖旨：文件一旦定稿，就是不能亂改的「施工命令單」。它成為了我們後續所有開發工作的唯一依據。這份文件就像是我們與「未來的自己」以及「AI」之間簽訂的一份契約，確保大家永遠在同一個頻道上。 寫 Code 只是翻譯：這時候，寫程式就變得很單純，不再是天馬行空的創作，而是把文件上的東西，有效率地「翻譯」成程式碼而已。開發者的認知負擔被大幅降低，我們可以更專注在如何把程式碼寫得更乾淨、更有效率，而不是一邊寫一邊想「我到底要做什麼來著？」。 面對現實：我知道，你討厭寫文件 好啦，我知道你在想什麼。講到「寫文件」，大概九成的工程師（包括我！）都會翻白眼。心裡想著：
+「唉，又來了」「敏捷開發不是說不用寫文件嗎？」「我有這時間不如多寫幾行 Code」。
+這真的不是我們的錯！很多人誤解了「敏捷開發」的精神，它強調的是「可工作的軟體 勝於 詳盡的文件」，而不是「不要文件」。一份沒人看的、過時的文件確實是垃圾；但一份能指引方向、建立共識的「活文件」，卻是專案成功的基石。以前寫文件又痛苦又沒用，誰想寫啊？我們都經歷過那種「文件是個謊言」的專案，規格書上寫 A，但程式碼早就改成 B 了，這種文件不如不要有。
+但這次，我們不自己動手寫 但！這次完全不一樣了！
+我們不用自己一個字一個字地敲文件！
+我們要讓 AI 當我們的專屬寫手。我們的工作，從苦哈哈的打字員，升級成動動嘴巴的決策者。開發的瓶頸，不再是我們的打字速度，而是我們思想的清晰度。
+說白了，「下指令 (Prompt)」本身，就是一種新時代的「規格設計」啦！ 我們的價值，從「如何實現」，轉變成了「如何清晰地定義問題」。這是一種更高層次的抽象能力，也是未來開發者的核心競爭力。
+「好文件」不是廢話文學，而是唯一的真理 既然有 AI 幫忙，我們更應該專注在做出「有用的」文件。這份文件就是我們專案的 「單一真理來源 (Single Source of Truth, SSoT)」，所有人都得聽它的！</description></item><item><title>Day 0: 【啟程】嘿，AI！我們來做個網站，但這次，我們約法三章</title><link>/ChiYu-Blob/posts/2025ithomeironmanday0/</link><pubDate>Wed, 20 Aug 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday0/</guid><description>Day 0: 【啟程】嘿，AI！我們來做個網站，但這次，我們約法三章 嘿，大家好啊！我是 ChiYu，也可以叫我 Eric。
 寫了五年的 Code，平常都在跟 .Net 還有 Azure 打交道。簡單說，就是個靠鍵盤吃飯的工程師啦。去年有參賽，但中途忘記發文中斷!!! 希望今年能培養好習慣每天準時一篇不斷更!!!
 這趟旅程，是為誰準備的？ 在開始之前，我想先說說，這系列文章是為誰而寫的。
 你可能完全沒有程式背景，但對現在最紅的 Vibe Coding 充滿好奇嗎？你是不是也想跟上這波 AI 浪潮，試著自己動手做點東西，甚至想成為一名開發者呢？
