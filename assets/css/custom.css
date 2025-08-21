@@ -5,7 +5,7 @@
         :root {
             --bg-color: #f8fafc; --text-color: #0f172a; --text-secondary: #64748b; --border-color: #e2e8f0; --link-color: #2563eb; --card-bg: #ffffff; --code-bg: #f1f5f9;
             /* --- ↓↓↓ 修改處：更換為新的中文字體 --- */
-            font-family: 'Edu SA Hand', 'Chocolate Classical Sans', 'Inter', sans-serif;
+            font-family: 'Edu SA Hand', 'Exo 2', 'Inter', sans-serif;
             /* --- ↑↑↑ 修改處 --- */
         }
         [data-theme='dark'] {
