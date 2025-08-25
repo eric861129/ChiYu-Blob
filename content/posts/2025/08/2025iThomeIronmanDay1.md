@@ -1,5 +1,5 @@
 +++ 
-title = "Day 0: 【啟程】嘿，AI！我們來做個網站，但這次，我們約法三章" 
+title = "Day 1: 【啟程】嘿，AI！我們來做個網站，但這次，我們約法三章" 
 date = 2025-08-20 
 slug = "2025iThomeIronmanDay0" 
 dates = ["2025-08-20"] 
