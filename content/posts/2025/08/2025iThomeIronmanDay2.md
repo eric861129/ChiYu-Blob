@@ -1,5 +1,5 @@
 +++ 
-title = "Day 1: 【心法篇】開發者的航海圖：什麼是文件驅動開發 (DDD)？" 
+title = "Day 2: 【心法篇】開發者的航海圖：什麼是文件驅動開發 (DDD)？" 
 date = 2025-08-21 
 slug = "2025iThomeIronmanDay1" 
 dates = ["2025-08-21"] 
