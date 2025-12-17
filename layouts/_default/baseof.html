@@ -135,19 +135,30 @@
         const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default';
         mermaid.initialize({ startOnLoad: false, theme: theme });
 
-        // 2. 自動修正：如果 Render Hook 沒生效，手動將 code block 轉為 mermaid div
-        const codeBlocks = document.querySelectorAll('pre code.language-mermaid');
+        // 2. 自動修正：手動將 code block 轉為 mermaid div
+        // 支援多種 Hugo/Chroma 輸出格式
+        const codeBlocks = document.querySelectorAll('code.language-mermaid');
         codeBlocks.forEach(function(codeBlock) {
-            const pre = codeBlock.parentElement;
+            // 找到最外層的容器 (通常是 pre 或 div.highlight)
+            let container = codeBlock.parentElement;
+            if (container.tagName === 'PRE' && container.parentElement && container.parentElement.classList.contains('highlight')) {
+                container = container.parentElement;
+            } else if (container.tagName === 'PRE') {
+                // just pre
+            } else {
+                // just code? unusual but possible
+                container = codeBlock; 
+            }
+
             // 建立新的 div
             const div = document.createElement('div');
             div.className = 'mermaid';
-            // 使用 textContent 獲取純文本 (會自動解碼 HTML entity)
-            div.textContent = codeBlock.textContent;
+            // 使用 textContent 獲取純文本，這會自動解碼 HTML entities (如 &gt; 變 >)
+            div.textContent = codeBlock.textContent.trim();
             
-            // 替換原本的 pre 標籤
-            if (pre && pre.parentNode) {
-                pre.parentNode.replaceChild(div, pre);
+            // 替換原本的容器
+            if (container && container.parentNode) {
+                container.parentNode.replaceChild(div, container);
             }
         });
 
