@@ -1,7 +1,7 @@
 +++ 
-title = "Day 3: 【心法篇】開發者的航海圖：什麼是文件驅動開發 (DDD)？" 
+title = "Day 3: 【工具篇 #1】萬丈高樓平地起：建置本地開發環境" 
 date = 2025-08-22
-slug = "2025iThomeIronmanDay1" 
+slug = "2025iThomeIronmanDay3" 
 dates = ["2025-08-22"] 
 tags = ["2025iThomeIronman", "VibeCoding","DDD"] 
 series = ["2025iThomeIronman"] 

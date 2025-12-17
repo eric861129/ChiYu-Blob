@@ -1,26 +1,106 @@
 {{/* 檢查此文章是否有設定 series */}}
 {{ with .Params.series }}
   {{ $seriesName := index . 0 }}
-  
-  {{/* --- ↓↓↓ 使用路徑方式取得對應系列頁面，避免版本相容性問題 ↓↓↓ --- */}}
   {{ $seriesPage := $.Site.GetPage (printf "/series/%s" ($seriesName | urlize)) }}
   
-  {{/* 只有在成功找到頁面時才渲染區塊，避免出錯 */}}
   {{ with $seriesPage }}
-  <div class="not-prose mt-16 pt-8 border-t" style="border-color: var(--border-color);">
-    <h3 class="text-xl font-bold mb-4">系列文章：<a href="{{ .Permalink }}" class="text-inherit hover:underline">{{ $seriesName }}</a></h3>
-    <ol class="list-decimal list-inside space-y-2">
-      {{/* 根據權重 (weight) 排序系列文章 */}}
-      {{ range .Pages.ByWeight }}
-        <li class="{{ if eq .Permalink $.Permalink }}font-bold{{ end }}" style="color: var(--text-secondary);">
-          <a href="{{ if eq .Permalink $.Permalink }}javascript:void(0);{{ else }}{{ .Permalink }}{{ end }}" class="{{ if eq .Permalink $.Permalink }}font-bold cursor-default{{ else }}hover:underline{{ end }}" style="color: {{ if eq .Permalink $.Permalink }}var(--text-color){{ else }}var(--text-secondary){{ end }};">
-            {{ .Title }}
-            {{ if eq .Permalink $.Permalink }}<span class="text-sm ml-1" style="color: var(--link-color);"> (目前文章)</span>{{ end }}
-          </a>
-        </li>
-      {{ end }}
-    </ol>
-  </div>
+    {{ $pages := .Pages.ByWeight }}
+    {{ $total := len $pages }}
+    {{ $currentIndex := 0 }}
+    {{ range $index, $page := $pages }}
+        {{ if eq $page.Permalink $.Permalink }}{{ $currentIndex = add $index 1 }}{{ end }}
+    {{ end }}
+
+    <div class="not-prose my-8 p-6 rounded-lg border transition-colors" 
+         style="background-color: var(--code-bg); border-color: var(--border-color);">
+        
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-4 pb-4 border-b" style="border-color: var(--border-color);">
+            <div>
+                <span class="text-xs font-semibold uppercase tracking-wider" style="color: var(--text-secondary);">Series</span>
+                <h3 class="text-lg font-bold mt-1">
+                    <a href="{{ .Permalink }}" class="hover:underline" style="color: var(--link-color);">{{ $seriesName }}</a>
+                </h3>
+            </div>
+            <div class="mt-2 sm:mt-0 text-sm font-medium px-3 py-1 rounded-full border" 
+                 style="background-color: var(--bg-color); color: var(--text-secondary); border-color: var(--border-color);">
+                Part {{ $currentIndex }} of {{ $total }}
+            </div>
+        </div>
+
+        <div class="series-list-container relative">
+            <ol class="list-none space-y-1 relative" id="series-list-{{ $seriesName | urlize }}">
+                {{ range $index, $page := $pages }}
+                    {{ $isCurrent := eq $page.Permalink $.Permalink }}
+                    {{ $itemIndex := add $index 1 }}
+                    
+                    {{/* Logic to hide items if list is long (more than 5), but always show current, first, last, and neighbors */}}
+                    {{/* This logic is complex in Hugo templates, so we'll use CSS/JS for the toggle instead */}}
+                    
+                    <li class="series-item p-2 rounded-md transition-colors {{ if $isCurrent }}current-series-item{{ end }}"
+                        style="{{ if $isCurrent }}background-color: var(--bg-color); border: 1px solid var(--border-color);{{ end }}">
+                        <a href="{{ if $isCurrent }}javascript:void(0);{{ else }}{{ $page.Permalink }}{{ end }}" 
+                           class="flex items-start {{ if $isCurrent }}cursor-default{{ else }}hover:text-blue-500{{ end }}"
+                           style="color: {{ if $isCurrent }}var(--text-color){{ else }}var(--text-secondary){{ end }};">
+                            <span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">{{ printf "%02d." $itemIndex }}</span>
+                            <span class="{{ if $isCurrent }}font-bold{{ end }}">{{ $page.Title }}</span>
+                            {{ if $isCurrent }}
+                                <span class="ml-2 text-xs px-2 py-0.5 rounded-full bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">Current</span>
+                            {{ end }}
+                        </a>
+                    </li>
+                {{ end }}
+            </ol>
+            
+            {{/* Toggle Button for long lists */}}
+            {{ if gt $total 5 }}
+            <button onclick="toggleSeriesList(this)" 
+                    class="w-full mt-4 text-xs font-medium text-center py-2 border-t hover:bg-opacity-50 transition-colors"
+                    style="color: var(--text-secondary); border-color: var(--border-color);">
+                Show all {{ $total }} posts
+            </button>
+            <style>
+                /* Initial State: Hide items except first 5 (simplified approach via CSS) */
+                /* Actually, a better approach for mixed logic is pure JS or just scrollable */
+                #series-list-{{ $seriesName | urlize }} {
+                    max-height: 300px;
+                    overflow-y: auto;
+                    padding-right: 5px; /* space for scrollbar */
+                }
+                /* Custom Scrollbar */
+                #series-list-{{ $seriesName | urlize }}::-webkit-scrollbar {
+                    width: 4px;
+                }
+                #series-list-{{ $seriesName | urlize }}::-webkit-scrollbar-track {
+                    background: transparent;
+                }
+                #series-list-{{ $seriesName | urlize }}::-webkit-scrollbar-thumb {
+                    background-color: var(--border-color);
+                    border-radius: 4px;
+                }
+            </style>
+            {{ end }}
+        </div>
+    </div>
+    
+    <script>
+    function toggleSeriesList(btn) {
+        const list = btn.previousElementSibling;
+        if (list.style.maxHeight === 'none') {
+            list.style.maxHeight = '300px';
+            btn.innerText = 'Show all {{ $total }} posts';
+        } else {
+            list.style.maxHeight = 'none';
+            btn.innerText = 'Collapse list';
+        }
+    }
+    
+    // Auto-scroll to current item
+    document.addEventListener('DOMContentLoaded', () => {
+        const currentItem = document.querySelector('.current-series-item');
+        if (currentItem) {
+            currentItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    });
+    </script>
   {{ end }}
-  {{/* --- ↑↑↑ 修正結束 --- */}}
 {{ end }}

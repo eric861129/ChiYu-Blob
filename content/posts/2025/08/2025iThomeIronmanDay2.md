@@ -1,13 +1,13 @@
 +++ 
 title = "Day 2: 【心法篇】開發者的航海圖：什麼是文件驅動開發 (DDD)？" 
 date = 2025-08-21 
-slug = "2025iThomeIronmanDay1" 
+slug = "2025iThomeIronmanDay2" 
 dates = ["2025-08-21"] 
 tags = ["2025iThomeIronman", "VibeCoding","DDD"] 
 series = ["2025iThomeIronman"] 
 weight = 30
-prev_post_slug = "2025iThomeIronmanDay0"
-next_post_slug = "2025iThomeIronmanDay2"
+prev_post_slug = "2025iThomeIronmanDay1"
+next_post_slug = "2025iThomeIronmanDay3"
 +++
 ---
 
