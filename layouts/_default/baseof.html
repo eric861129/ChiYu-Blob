@@ -127,7 +127,8 @@
     <script src="/ChiYu-Blob/pagefind/pagefind-ui.js" onload="initPagefind()"></script>
     
     {{/* --- Mermaid JS Support --- */}}
-    {{ if .Store.Get "hasMermaid" }}
+    {{/* 直接在所有文章頁面載入 Mermaid，避免 .Store 時序問題導致不渲染 */}}
+    {{ if .IsPage }}
     <script type="module">
       import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs';
       

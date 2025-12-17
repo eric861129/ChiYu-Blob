@@ -295,3 +295,10 @@ nav.not-prose a:hover {
  } 
   
  
+ / *   - - -   F i x :   A n c h o r   S c r o l l i n g   - - -   * / 
+ h t m l   { 
+         s c r o l l - p a d d i n g - t o p :   1 0 0 p x ;   / *   ˜Yu  H e a d e r   Øš¦^  * / 
+         s c r o l l - b e h a v i o r :   s m o o t h ; 
+ } 
+  
+ 
