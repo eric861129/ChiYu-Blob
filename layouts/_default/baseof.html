@@ -35,11 +35,14 @@
     <!-- 將大頭貼設置為網頁標籤圖示 -->
     <link rel="icon" type="image/jpeg" href="{{ "/ChiYu-Blob/images/avatar.jpg" | relURL }}">
 
-    {{ $customCSS := resources.Get "css/custom.css" | minify }}
-    <link rel="stylesheet" href="{{ $customCSS.Permalink }}">
-    {{/* 載入延伸用的自訂樣式 */}}
-    {{ $extendedCSS := resources.Get "css/extended/custom.css" | minify }}
-    <link rel="stylesheet" href="{{ $extendedCSS.Permalink }}">
+    {{ $styles := slice
+        (resources.Get "css/custom.css")
+        (resources.Get "css/extended/custom.css")
+        | resources.Concat "css/style.bundle.css"
+        | resources.Minify
+        | resources.Fingerprint
+    }}
+    <link rel="stylesheet" href="{{ $styles.Permalink }}" integrity="{{ $styles.Data.Integrity }}" crossorigin="anonymous">
 
 </head>
 <body class="antialiased">

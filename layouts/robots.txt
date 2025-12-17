@@ -1,0 +1,8 @@
+User-agent: *
+{{- range .Data.Pages }}
+{{- if .Params.noindex }}
+Disallow: {{ .Permalink }}
+{{- end }}
+{{- end }}
+
+Sitemap: {{ "sitemap.xml" | absURL }}
