@@ -2,11 +2,14 @@
 <div data-pagefind-body style="display: none">{{ .Content }}</div>
 
 <div class="flex flex-row justify-center py-8 sm:py-12">
-  <div class="w-full max-w-6xl min-w-0">
-    {{/* 檢查是否顯示目錄：字數 > 400 且 showToc != false 且 有目錄內容 */}} {{
-    if and (and (gt .WordCount 400) (ne .Params.showToc false)) .TableOfContents
-    }}
-    <div class="flex flex-row gap-8 lg:gap-12">
+
+    <div class="w-full max-w-6xl min-w-0">
+
+        {{/* 檢查是否顯示目錄：字數 > 400 且 showToc == true 且 有目錄內容 */}}
+
+        {{ if and (and (gt .WordCount 400) (eq .Params.showToc true)) .TableOfContents }}
+
+        <div class="flex flex-row gap-8 lg:gap-12">
       <main class="w-full max-w-4xl min-w-0">
         {{ partial "content-body.html" . }}
       </main>

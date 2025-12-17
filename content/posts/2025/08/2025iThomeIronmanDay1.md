@@ -5,7 +5,7 @@ slug = "2025iThomeIronmanDay1"
 dates = ["2025-08-20"] 
 tags = ["2025iThomeIronman", "VibeCoding","DDD"] 
 series = ["2025iThomeIronman"] 
-weight = 30
+weight = 1
 next_post_slug = "2025iThomeIronmanDay2"
 +++
 ---
