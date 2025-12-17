@@ -241,10 +241,9 @@ graph TD
 
 > 【小提示】： 想看到 Mermaid 圖表渲染出來的樣子嗎？在 VS Code 市集搜尋並安裝名為 Markdown Preview Mermaid Support 的擴充功能，然後打開 docs/USER_STORIES.md 的預覽模式 (快捷鍵 Ctrl+Shift+V)，欣賞你的文字「程式碼」被即時渲染成的漂亮流程圖！
 
-
 流程圖長這樣：
 
-![使用者流程圖範例](https://ithelp.ithome.com.tw/upload/images/20250826/20132971UWgKacL5pr.jpg)
+![使用者流程圖範例](/ChiYu-Blob/images/user-flow-diagram.jpg)
 
 單看語法可能會覺得稍微有點亂！但Mermaid語法傳換成流程圖後非常清楚！！！
 
