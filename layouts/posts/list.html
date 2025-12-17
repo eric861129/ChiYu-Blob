@@ -1,9 +1,7 @@
 {{ define "main" }}
-<div class="py-8">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-        <!-- Main Content Area -->
-        <main class="lg:col-span-9">
+<div class="flex flex-row justify-center py-8">
+    <div class="w-full max-w-4xl min-w-0">
+        <main>
             <section class="mb-12 sm:mb-16">
                 <header class="border-b pb-6 mb-6" style="border-color: var(--border-color);">
                     <h1 class="text-2xl sm:text-4xl font-bold tracking-tight">{{ .Title }}</h1>
@@ -22,16 +20,8 @@
 
             {{ partial "pagination.html" . }}
         </main>
-
-        <!-- Unified Desktop Sidebar -->
-        <aside class="hidden lg:block lg:col-span-3">
-            <div class="sticky top-8 space-y-8">
-                {{ partial "sidebar.html" . }}
-                {{ partial "calendar.html" . }}
-                {{ partial "tag_sidebar.html" . }}
-            </div>
-        </aside>
-
     </div>
+    
+    {{ partial "tag_sidebar.html" . }}
 </div>
 {{ end }}
