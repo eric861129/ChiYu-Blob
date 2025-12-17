@@ -119,3 +119,30 @@ nav.not-prose a:hover {
     transform: translateY(-2px); /* 滑鼠懸停時稍微向上浮動 */
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2); /* 加深陰影 */
 }
+
+/* --- Mobile Sidebar Styles --- */
+.sidebar-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 99;
+    display: none;
+}
+.sidebar-overlay.is-open {
+    display: block;
+}
+.mobile-sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: -300px; /* Start off-screen */
+    width: 300px;
+    background-color: var(--bg-color);
+    z-index: 100;
+    transition: transform 0.3s ease-in-out;
+    overflow-y: auto;
+    padding-top: 4rem; /* Add padding to avoid content being under the header */
+}
+.mobile-sidebar.is-open {
+    transform: translateX(-300px); /* Slide in */
+}
