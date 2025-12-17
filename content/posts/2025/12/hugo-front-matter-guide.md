@@ -186,46 +186,102 @@ hugo new posts/2025/12/my-new-post.md
 
 本部落格已支援 Mermaid.js。直接使用 \```mermaid 區塊即可繪製。
 
-**流程圖 (Flowchart):**
+#### 流程圖 (Flowchart)
 
-    ```mermaid
-    graph TD;
-      A[開始] --> B{是否快樂?};
-      B -- 是 --> C[繼續保持];
-      B -- 否 --> D[吃點好吃的];
-      D --> C;
-    ```
+**語法：**
+```markdown
+```mermaid
+graph TD;
+  A[開始] --> B{是否快樂?};
+  B -- 是 --> C[繼續保持];
+  B -- 否 --> D[吃點好吃的];
+  D --> C;
+```
+```
 
-**時序圖 (Sequence Diagram):**
+**預覽結果：**
+```mermaid
+graph TD;
+  A[開始] --> B{是否快樂?};
+  B -- 是 --> C[繼續保持];
+  B -- 否 --> D[吃點好吃的];
+  D --> C;
+```
 
-    ```mermaid
-    sequenceDiagram
-      Alice->>John: Hello John, how are you?
-      John-->>Alice: Great!
-    ```
+---
 
-**心智圖 (Mindmap):**
+#### 時序圖 (Sequence Diagram)
 
-    ```mermaid
-    mindmap
-      root((核心主題))
-        技術
-          Hugo
-          Git
-        生活
-          旅行
-          美食
-    ```
+**語法：**
+```markdown
+```mermaid
+sequenceDiagram
+  Alice->>John: Hello John, how are you?
+  John-->>Alice: Great!
+```
+```
 
-**甘特圖 (Gantt):**
+**預覽結果：**
+```mermaid
+sequenceDiagram
+  Alice->>John: Hello John, how are you?
+  John-->>Alice: Great!
+```
 
-    ```mermaid
-    gantt
-      title 專案時程表
-      dateFormat  YYYY-MM-DD
-      section 規劃
-      需求分析 :a1, 2025-12-01, 3d
-      系統設計 :after a1, 5d
-    ```
+---
+
+#### 心智圖 (Mindmap)
+
+**語法：**
+```markdown
+```mermaid
+mindmap
+  root((核心主題))
+    技術
+      Hugo
+      Git
+    生活
+      旅行
+      美食
+```
+```
+
+**預覽結果：**
+```mermaid
+mindmap
+  root((核心主題))
+    技術
+      Hugo
+      Git
+    生活
+      旅行
+      美食
+```
+
+---
+
+#### 甘特圖 (Gantt)
+
+**語法：**
+```markdown
+```mermaid
+gantt
+  title 專案時程表
+  dateFormat  YYYY-MM-DD
+  section 規劃
+  需求分析 :a1, 2025-12-01, 3d
+  系統設計 :after a1, 5d
+```
+```
+
+**預覽結果：**
+```mermaid
+gantt
+  title 專案時程表
+  dateFormat  YYYY-MM-DD
+  section 規劃
+  需求分析 :a1, 2025-12-01, 3d
+  系統設計 :after a1, 5d
+```
 
 
