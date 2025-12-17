@@ -1,24 +1,54 @@
 <!-- Unified Desktop Sidebar -->
-<aside class="w-64 flex-shrink-0 lg:block pl-8">
-  <div class="sticky top-8 space-y-8">
-    {{ partial "sidebar.html" . }} {{ partial "calendar.html" . }}
+<aside class="hidden lg:block lg:col-span-3">
+    <div class="sticky top-8 space-y-8">
+        
+        <!-- Calendar -->
+        {{ partial "calendar.html" . }}
 
-    <!-- Original Tag Cloud Content -->
-    <div>
-      <h3
-        class="text-xl font-bold mb-4 pb-2 border-b"
-        style="border-color: var(--border-color)"
-      >
-        所有標籤
-      </h3>
-      <div class="flex flex-wrap gap-2">
-        {{ $tags := .Site.Taxonomies.tags.ByCount }} {{ range $tags }}
-        <a href="{{ .Page.Permalink }}" class="tag-pill">
-          {{ .Page.Title }}
-          <span class="ml-1 opacity-75">{{ .Count }}</span>
-        </a>
+        <!-- Series -->
+        {{ with .Site.Taxonomies.series.ByCount }}
+        <div>
+            <h3 class="text-xl font-bold mb-4 pb-2 border-b" style="border-color: var(--border-color);">系列文章</h3>
+            <ul class="space-y-2">
+                {{ range . }}
+                <li>
+                    <a href="{{ .Page.Permalink }}" class="flex justify-between items-center transition-colors" style="color: var(--text-secondary);">
+                        <span>{{ .Page.Title }}</span>
+                        <span class="text-xs font-semibold ml-2 px-2 py-0.5 rounded-full" style="background-color: var(--border-color);">{{ .Count }}</span>
+                    </a>
+                </li>
+                {{ end }}
+            </ul>
+        </div>
         {{ end }}
-      </div>
+
+        <!-- Social Links -->
+        {{ with .Site.Params.social }}
+        <div>
+            <h3 class="text-xl font-bold mb-4 pb-2 border-b" style="border-color: var(--border-color);">相關連結</h3>
+            <div class="flex flex-col space-y-3 mt-4">
+                {{ range $key, $value := . }}
+                <a href="{{ $value }}" target="_blank" rel="noopener noreferrer" class="capitalize transition-colors" style="color: var(--text-secondary);">
+                    <span>{{ $key }}</span>
+                </a>
+                {{ end }}
+            </div>
+        </div>
+        {{ end }}
+
+        <!-- Tag Cloud -->
+        <div>
+            <h3 class="text-xl font-bold mb-4 pb-2 border-b" style="border-color: var(--border-color);">所有標籤</h3>
+            <div class="flex flex-wrap gap-2">
+                {{ $tags := .Site.Taxonomies.tags.ByCount }}
+                {{ range $tags }}
+                <a href="{{ .Page.Permalink }}" class="tag-pill">
+                    {{ .Page.Title }}
+                    <span class="ml-1 opacity-75">{{ .Count }}</span>
+                </a>
+                {{ end }}
+            </div>
+        </div>
+
     </div>
-  </div>
 </aside>
