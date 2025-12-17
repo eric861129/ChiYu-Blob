@@ -1,0 +1,292 @@
+<!doctype html><html lang=zh-tw><head><meta name=description content="這是一篇給自己看的備忘錄，詳細記錄了撰寫新文章時所需的參數設定與用途。"><meta property="og:title" content="【撰寫指南】Hugo 文章 Front Matter 參數詳解"><meta property="og:description" content="這是一篇給自己看的備忘錄，詳細記錄了撰寫新文章時所需的參數設定與用途。"><meta property="og:type" content="article"><meta property="og:url" content="/ChiYu-Blob/posts/hugo-front-matter-guide/"><meta name=twitter:card content="summary_large_image"><meta name=twitter:title content="【撰寫指南】Hugo 文章 Front Matter 參數詳解"><meta name=twitter:description content="這是一篇給自己看的備忘錄，詳細記錄了撰寫新文章時所需的參數設定與用途。"><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>【撰寫指南】Hugo 文章 Front Matter 參數詳解 | ChiYu Code Journey</title>
+<script>(function(){const e=localStorage.getItem("theme")||"dark";document.documentElement.setAttribute("data-theme",e)})()</script><script src=https://cdn.tailwindcss.com></script><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel=stylesheet><link href=/pagefind/pagefind-ui.css rel=stylesheet><link href="https://fonts.googleapis.com/css2?family=Chocolate+Classical+Sans&family=Edu+SA+Hand:wght@400..700&family=Inter:wght@400;500;600;700&display=swap" rel=stylesheet><link rel=icon type=image/jpeg href=/ChiYu-Blob/images/avatar.jpg><link rel=stylesheet href=/ChiYu-Blob/css/style.bundle.min.1c208b293bf20d5cc51f80bf2a79e95823d87e59a14540b4226ea5250bf09f9b.css integrity="sha256-HCCLKTvyDVzFH4C/KnnpWCPYflmhRUC0Im6lJQvwn5s=" crossorigin=anonymous><style>#reading-progress-container{position:fixed;top:0;left:0;width:100%;height:3px;z-index:9999;background:0 0}#reading-progress-bar{height:100%;width:0%;background:linear-gradient(to right,#60a5fa,#2563eb);transition:width .1s ease-out}</style></head><body class=antialiased><div id=reading-progress-container><div id=reading-progress-bar></div></div><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><header class="flex justify-between items-center py-6 border-b" style=border-color:var(--border-color)><a href=/ChiYu-Blob/ class="text-xl sm:text-2xl font-bold" style=color:var(--text-color)>ChiYu Code Journey</a><nav class="flex items-center space-x-2 sm:space-x-4"><div id=search></div><a href=/ChiYu-Blob/ class="text-sm sm:text-base" style=color:var(--text-secondary)>首頁</a>
+<a href=/ChiYu-Blob/posts/ class="text-sm sm:text-base" style=color:var(--text-secondary)>文章</a>
+<a href=/ChiYu-Blob/about/ class="text-sm sm:text-base" style=color:var(--text-secondary)>關於</a>
+<button id=theme-toggle title=切換深色/淺色主題>
+<svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+<svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+</button>
+<button id=mobile-sidebar-toggle class=lg:hidden title=開啟側邊欄><svg class="w-6 h-6" fill="none" stroke="currentcolor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/></svg></button></nav></header><div data-pagefind-body style=display:none><p>這篇文章是為了快速查閱 Front Matter (文章開頭的設定區塊) 而建立的範本。</p><h2 id=完整範本-可以直接複製>完整範本 (可以直接複製)</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-toml data-lang=toml><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>+++</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>title</span> = <span style=color:#e6db74>&#34;文章標題&#34;</span> 
+</span></span><span style=display:flex><span><span style=color:#a6e22e>date</span> = <span style=color:#e6db74>2025-12-17T16:00:00+08:00</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>slug</span> = <span style=color:#e6db74>&#34;自訂文章網址-Slug&#34;</span> 
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 顯示於側邊欄日曆的日期 (通常與 date 相同)</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>dates</span> = [<span style=color:#e6db74>&#34;2025-12-17&#34;</span>] 
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 標籤與系列</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>tags</span> = [<span style=color:#e6db74>&#34;Tag1&#34;</span>, <span style=color:#e6db74>&#34;Tag2&#34;</span>] 
+</span></span><span style=display:flex><span><span style=color:#a6e22e>series</span> = [<span style=color:#e6db74>&#34;系列名稱&#34;</span>] 
+</span></span><span style=display:flex><span><span style=color:#a6e22e>categories</span> = [<span style=color:#e6db74>&#34;分類名稱&#34;</span>]
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 系列文章排序 (數字越小越前面)</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>weight</span> = <span style=color:#ae81ff>10</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 手動指定上下篇 (選填，若不填則依時間自動排序)</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 填寫對應文章的 Slug 或 檔名 (不含副檔名)</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>prev_post_slug</span> = <span style=color:#e6db74>&#34;&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>next_post_slug</span> = <span style=color:#e6db74>&#34;&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 是否為草稿 (true 則不會被發布)</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>draft</span> = <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>+++</span>
+</span></span></code></pre></div><h2 id=參數詳細說明>參數詳細說明</h2><h3 id=基礎設定>基礎設定</h3><ul><li><strong><code>title</code></strong>: 文章的主標題。</li><li><strong><code>date</code></strong>: 發布日期。Hugo 會根據這個日期進行排序。</li><li><strong><code>slug</code></strong>: 自定義網址的尾端。例如設為 <code>my-post</code>，文章網址就會是 <code>.../posts/my-post/</code>。若不設定，預設會使用檔名。</li><li><strong><code>draft</code></strong>: 設為 <code>true</code> 代表草稿，<code>hugo server</code> 預設看得到，但部署到 GitHub Pages 時會被隱藏。寫完確認沒問題後請改為 <code>false</code>。</li></ul><h3 id=分類與關聯>分類與關聯</h3><ul><li><strong><code>series</code></strong>: <strong>重要！</strong> 設定系列名稱。相同系列名稱的文章會自動彙整在系列區塊中。</li><li><strong><code>weight</code></strong>: 這是<strong>系列文章專用</strong>的排序權重。<ul><li>Day 1 設為 <code>1</code></li><li>Day 2 設為 <code>2</code></li><li>以此類推。</li></ul></li><li><strong><code>tags</code></strong>: 文章標籤，用於搜尋與分類。</li><li><strong><code>dates</code></strong>: 這是一個特殊的陣列欄位，用於您的「日曆/歸檔」功能。</li></ul><h3 id=導覽控制-選填>導覽控制 (選填)</h3><p>這兩個欄位用於當您想要<strong>強制指定</strong>「上一篇」與「下一篇」連結時使用。</p><ul><li><strong><code>prev_post_slug</code></strong>: 上一篇文章的 Slug 或檔名。</li><li><strong><code>next_post_slug</code></strong>: 下一篇文章的 Slug 或檔名。</li></ul><blockquote><p><strong>小技巧</strong>：如果您的系列文章都有設定 <code>weight</code>，通常系統會自動正確排序，不需要手動設定這兩個欄位。這主要用於跨系列的連結或修正排序錯誤。</p></blockquote><h2 id=如何自動產生這個範本>如何自動產生這個範本？</h2><p>不需要每次都複製貼上！請參考專案中的 <code>archetypes/posts.md</code> 檔案。</p><p>只要在終端機執行：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>hugo new posts/2025/12/my-new-post.md
+</span></span></code></pre></div><p>系統就會自動根據 <code>archetypes/posts.md</code> 的內容，幫您產生好上述的所有欄位！</p><hr><h2 id=常見-markdown-語法速查>常見 Markdown 語法速查</h2><p>這裡列出寫作時最常用的語法，忘記時可以隨時回來複製。</p><h3 id=1-標題-headers>1. 標題 (Headers)</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown><span style=display:flex><span># H1 最大標題 (通常用於文章 Title，內文不建議用)
+</span></span><span style=display:flex><span><span style=color:#75715e>## H2 二級標題 (章節)
+</span></span></span><span style=display:flex><span><span style=color:#75715e>### H3 三級標題 (小節)
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#### H4 四級標題 (細項)
+</span></span></span></code></pre></div><h3 id=2-文字樣式-text-styling>2. 文字樣式 (Text Styling)</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown><span style=display:flex><span>**粗體文字**
+</span></span><span style=display:flex><span><span style=font-style:italic>*斜體文字*</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>~~刪除線~~</span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>`行內程式碼 (Inline Code)`</span>
+</span></span></code></pre></div><p><strong>預覽：</strong>
+<strong>粗體文字</strong> | <em>斜體文字</em> | <del>刪除線</del> | <code>const a = 1;</code></p><h3 id=3-列表-lists>3. 列表 (Lists)</h3><p><strong>無序列表</strong> (使用 <code>*</code>, <code>+</code> 或 <code>-</code>)：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown><span style=display:flex><span><span style=color:#66d9ef>-</span> 項目一
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span> 項目二
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>-</span> 子項目 A (縮排兩個空白)
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>-</span> 子項目 B
+</span></span></code></pre></div><p><strong>有序列表</strong> (使用數字加點)：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown><span style=display:flex><span><span style=color:#66d9ef>1.</span> 第一步
+</span></span><span style=display:flex><span><span style=color:#66d9ef>2.</span> 第二步
+</span></span><span style=display:flex><span><span style=color:#66d9ef>3.</span> 第三步
+</span></span></code></pre></div><h3 id=4-程式碼區塊-code-blocks>4. 程式碼區塊 (Code Blocks)</h3><p>請使用三個反引號 ``` 包裹程式碼，並在第一行指定語言以啟用高亮。</p><pre><code>```javascript
+function sayHello() {
+    console.log(&quot;Hello, World!&quot;);
+}
+```
+
+```csharp
+public class Program {
+    public static void Main() {
+        Console.WriteLine(&quot;Hello C#&quot;);
+    }
+}
+```
+</code></pre><h3 id=5-引用-blockquotes>5. 引用 (Blockquotes)</h3><p>用於註解、警告或引用他人文字。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown><span style=display:flex><span><span style=color:#66d9ef>&gt; </span><span style=font-style:italic>這是引用文字
+</span></span></span><span style=display:flex><span><span style=font-style:italic></span><span style=color:#66d9ef>&gt; </span><span style=font-style:italic>可以多行
+</span></span></span></code></pre></div><p><strong>預覽：</strong></p><blockquote><p>這是引用文字
+可以多行</p></blockquote><h3 id=6-連結與圖片>6. 連結與圖片</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown><span style=display:flex><span>[<span style=color:#f92672>顯示文字</span>](<span style=color:#a6e22e>https://www.google.com</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>![<span style=color:#f92672>圖片替代文字</span>](<span style=color:#a6e22e>/images/avatar.jpg</span>)
+</span></span></code></pre></div><h3 id=7-表格-tables>7. 表格 (Tables)</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown><span style=display:flex><span>| 欄位 1 | 欄位 2 | 欄位 3 |
+</span></span><span style=display:flex><span>| :--- | :---: | ---: |
+</span></span><span style=display:flex><span>| 置左 | 置中 | 置右 |
+</span></span><span style=display:flex><span>| 內容 A | 內容 B | 內容 C |
+</span></span></code></pre></div><h3 id=8-分隔線>8. 分隔線</h3><p>使用三個以上的 <code>-</code> 或 <code>*</code>。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown><span style=display:flex><span>---
+</span></span></code></pre></div><h3 id=9-流程圖與心智圖-mermaid>9. 流程圖與心智圖 (Mermaid)</h3><p>本部落格已支援 Mermaid.js。直接使用 ```mermaid 區塊即可繪製。</p><p><strong>流程圖 (Flowchart):</strong></p><pre><code>```mermaid
+graph TD;
+  A[開始] --&gt; B{是否快樂?};
+  B -- 是 --&gt; C[繼續保持];
+  B -- 否 --&gt; D[吃點好吃的];
+  D --&gt; C;
+```
+</code></pre><p><strong>時序圖 (Sequence Diagram):</strong></p><pre><code>```mermaid
+sequenceDiagram
+  Alice-&gt;&gt;John: Hello John, how are you?
+  John--&gt;&gt;Alice: Great!
+```
+</code></pre><p><strong>心智圖 (Mindmap):</strong></p><pre><code>```mermaid
+mindmap
+  root((核心主題))
+    技術
+      Hugo
+      Git
+    生活
+      旅行
+      美食
+```
+</code></pre><p><strong>甘特圖 (Gantt):</strong></p><pre><code>```mermaid
+gantt
+  title 專案時程表
+  dateFormat  YYYY-MM-DD
+  section 規劃
+  需求分析 :a1, 2025-12-01, 3d
+  系統設計 :after a1, 5d
+```
+</code></pre></div><div class="flex flex-row justify-center py-8 sm:py-12"><div class="w-full max-w-6xl min-w-0"><div class="flex justify-center"><main class="w-full max-w-4xl min-w-0"><article class="prose max-w-none"><nav class="flex text-sm mb-6" aria-label=Breadcrumb><ol class="inline-flex items-center space-x-1 md:space-x-3"><li class="inline-flex items-center"><a href=/ChiYu-Blob/ class="inline-flex items-center hover:text-blue-600 dark:hover:text-blue-400" style=color:var(--text-secondary)><svg class="w-4 h-4 mr-2" fill="currentcolor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414.0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/></svg>
+首頁</a></li><li><div class="flex items-center"><svg class="w-4 h-4 mx-1" style="color:var(--text-secondary);opacity:.5" fill="currentcolor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414.0z" clip-rule="evenodd"/></svg>
+<a href=/ChiYu-Blob/posts/ class="ml-1 hover:text-blue-600 dark:hover:text-blue-400 capitalize" style=color:var(--text-secondary)>全部文章</a></div></li><li aria-current=page><div class="flex items-center"><svg class="w-4 h-4 mx-1" style="color:var(--text-secondary);opacity:.5" fill="currentcolor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414.0z" clip-rule="evenodd"/></svg>
+<span class="ml-1 font-medium truncate max-w-[150px] sm:max-w-[300px]" style=color:var(--text-color)>【撰寫指南】Hugo 文章 Front Matter 參數詳解</span></div></li></ol></nav><header class=mb-8><h1 class="text-2xl sm:text-4xl font-bold tracking-tight mb-4 !mt-0">【撰寫指南】Hugo 文章 Front Matter 參數詳解</h1><p class=text-base style=color:var(--text-secondary)>發布於 2025年12月17日
+&#183;
+<span class="inline-flex flex-wrap gap-2 items-center" data-pagefind-ignore><a href=/ChiYu-Blob/tags/hugo/ class=tag-pill>Hugo</a>
+<a href=/ChiYu-Blob/tags/documentation/ class=tag-pill>Documentation</a>
+<a href=/ChiYu-Blob/tags/guide/ class=tag-pill>Guide</a></span></p></header><div data-pagefind-meta="title:【撰寫指南】Hugo 文章 Front Matter 參數詳解" style=display:none></div><div data-pagefind-ignore><p>這篇文章是為了快速查閱 Front Matter (文章開頭的設定區塊) 而建立的範本。</p><h2 id=完整範本-可以直接複製>完整範本 (可以直接複製)</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-toml data-lang=toml><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>+++</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>title</span> = <span style=color:#e6db74>&#34;文章標題&#34;</span> 
+</span></span><span style=display:flex><span><span style=color:#a6e22e>date</span> = <span style=color:#e6db74>2025-12-17T16:00:00+08:00</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>slug</span> = <span style=color:#e6db74>&#34;自訂文章網址-Slug&#34;</span> 
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 顯示於側邊欄日曆的日期 (通常與 date 相同)</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>dates</span> = [<span style=color:#e6db74>&#34;2025-12-17&#34;</span>] 
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 標籤與系列</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>tags</span> = [<span style=color:#e6db74>&#34;Tag1&#34;</span>, <span style=color:#e6db74>&#34;Tag2&#34;</span>] 
+</span></span><span style=display:flex><span><span style=color:#a6e22e>series</span> = [<span style=color:#e6db74>&#34;系列名稱&#34;</span>] 
+</span></span><span style=display:flex><span><span style=color:#a6e22e>categories</span> = [<span style=color:#e6db74>&#34;分類名稱&#34;</span>]
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 系列文章排序 (數字越小越前面)</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>weight</span> = <span style=color:#ae81ff>10</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 手動指定上下篇 (選填，若不填則依時間自動排序)</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 填寫對應文章的 Slug 或 檔名 (不含副檔名)</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>prev_post_slug</span> = <span style=color:#e6db74>&#34;&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>next_post_slug</span> = <span style=color:#e6db74>&#34;&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 是否為草稿 (true 則不會被發布)</span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>draft</span> = <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>+++</span>
+</span></span></code></pre></div><h2 id=參數詳細說明>參數詳細說明</h2><h3 id=基礎設定>基礎設定</h3><ul><li><strong><code>title</code></strong>: 文章的主標題。</li><li><strong><code>date</code></strong>: 發布日期。Hugo 會根據這個日期進行排序。</li><li><strong><code>slug</code></strong>: 自定義網址的尾端。例如設為 <code>my-post</code>，文章網址就會是 <code>.../posts/my-post/</code>。若不設定，預設會使用檔名。</li><li><strong><code>draft</code></strong>: 設為 <code>true</code> 代表草稿，<code>hugo server</code> 預設看得到，但部署到 GitHub Pages 時會被隱藏。寫完確認沒問題後請改為 <code>false</code>。</li></ul><h3 id=分類與關聯>分類與關聯</h3><ul><li><strong><code>series</code></strong>: <strong>重要！</strong> 設定系列名稱。相同系列名稱的文章會自動彙整在系列區塊中。</li><li><strong><code>weight</code></strong>: 這是<strong>系列文章專用</strong>的排序權重。<ul><li>Day 1 設為 <code>1</code></li><li>Day 2 設為 <code>2</code></li><li>以此類推。</li></ul></li><li><strong><code>tags</code></strong>: 文章標籤，用於搜尋與分類。</li><li><strong><code>dates</code></strong>: 這是一個特殊的陣列欄位，用於您的「日曆/歸檔」功能。</li></ul><h3 id=導覽控制-選填>導覽控制 (選填)</h3><p>這兩個欄位用於當您想要<strong>強制指定</strong>「上一篇」與「下一篇」連結時使用。</p><ul><li><strong><code>prev_post_slug</code></strong>: 上一篇文章的 Slug 或檔名。</li><li><strong><code>next_post_slug</code></strong>: 下一篇文章的 Slug 或檔名。</li></ul><blockquote><p><strong>小技巧</strong>：如果您的系列文章都有設定 <code>weight</code>，通常系統會自動正確排序，不需要手動設定這兩個欄位。這主要用於跨系列的連結或修正排序錯誤。</p></blockquote><h2 id=如何自動產生這個範本>如何自動產生這個範本？</h2><p>不需要每次都複製貼上！請參考專案中的 <code>archetypes/posts.md</code> 檔案。</p><p>只要在終端機執行：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>hugo new posts/2025/12/my-new-post.md
+</span></span></code></pre></div><p>系統就會自動根據 <code>archetypes/posts.md</code> 的內容，幫您產生好上述的所有欄位！</p><hr><h2 id=常見-markdown-語法速查>常見 Markdown 語法速查</h2><p>這裡列出寫作時最常用的語法，忘記時可以隨時回來複製。</p><h3 id=1-標題-headers>1. 標題 (Headers)</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown><span style=display:flex><span># H1 最大標題 (通常用於文章 Title，內文不建議用)
+</span></span><span style=display:flex><span><span style=color:#75715e>## H2 二級標題 (章節)
+</span></span></span><span style=display:flex><span><span style=color:#75715e>### H3 三級標題 (小節)
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#### H4 四級標題 (細項)
+</span></span></span></code></pre></div><h3 id=2-文字樣式-text-styling>2. 文字樣式 (Text Styling)</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown><span style=display:flex><span>**粗體文字**
+</span></span><span style=display:flex><span><span style=font-style:italic>*斜體文字*</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>~~刪除線~~</span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>`行內程式碼 (Inline Code)`</span>
+</span></span></code></pre></div><p><strong>預覽：</strong>
+<strong>粗體文字</strong> | <em>斜體文字</em> | <del>刪除線</del> | <code>const a = 1;</code></p><h3 id=3-列表-lists>3. 列表 (Lists)</h3><p><strong>無序列表</strong> (使用 <code>*</code>, <code>+</code> 或 <code>-</code>)：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown><span style=display:flex><span><span style=color:#66d9ef>-</span> 項目一
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span> 項目二
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>-</span> 子項目 A (縮排兩個空白)
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>-</span> 子項目 B
+</span></span></code></pre></div><p><strong>有序列表</strong> (使用數字加點)：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown><span style=display:flex><span><span style=color:#66d9ef>1.</span> 第一步
+</span></span><span style=display:flex><span><span style=color:#66d9ef>2.</span> 第二步
+</span></span><span style=display:flex><span><span style=color:#66d9ef>3.</span> 第三步
+</span></span></code></pre></div><h3 id=4-程式碼區塊-code-blocks>4. 程式碼區塊 (Code Blocks)</h3><p>請使用三個反引號 ``` 包裹程式碼，並在第一行指定語言以啟用高亮。</p><pre><code>```javascript
+function sayHello() {
+    console.log(&quot;Hello, World!&quot;);
+}
+```
+
+```csharp
+public class Program {
+    public static void Main() {
+        Console.WriteLine(&quot;Hello C#&quot;);
+    }
+}
+```
+</code></pre><h3 id=5-引用-blockquotes>5. 引用 (Blockquotes)</h3><p>用於註解、警告或引用他人文字。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown><span style=display:flex><span><span style=color:#66d9ef>&gt; </span><span style=font-style:italic>這是引用文字
+</span></span></span><span style=display:flex><span><span style=font-style:italic></span><span style=color:#66d9ef>&gt; </span><span style=font-style:italic>可以多行
+</span></span></span></code></pre></div><p><strong>預覽：</strong></p><blockquote><p>這是引用文字
+可以多行</p></blockquote><h3 id=6-連結與圖片>6. 連結與圖片</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown><span style=display:flex><span>[<span style=color:#f92672>顯示文字</span>](<span style=color:#a6e22e>https://www.google.com</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>![<span style=color:#f92672>圖片替代文字</span>](<span style=color:#a6e22e>/images/avatar.jpg</span>)
+</span></span></code></pre></div><h3 id=7-表格-tables>7. 表格 (Tables)</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown><span style=display:flex><span>| 欄位 1 | 欄位 2 | 欄位 3 |
+</span></span><span style=display:flex><span>| :--- | :---: | ---: |
+</span></span><span style=display:flex><span>| 置左 | 置中 | 置右 |
+</span></span><span style=display:flex><span>| 內容 A | 內容 B | 內容 C |
+</span></span></code></pre></div><h3 id=8-分隔線>8. 分隔線</h3><p>使用三個以上的 <code>-</code> 或 <code>*</code>。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown><span style=display:flex><span>---
+</span></span></code></pre></div><h3 id=9-流程圖與心智圖-mermaid>9. 流程圖與心智圖 (Mermaid)</h3><p>本部落格已支援 Mermaid.js。直接使用 ```mermaid 區塊即可繪製。</p><p><strong>流程圖 (Flowchart):</strong></p><pre><code>```mermaid
+graph TD;
+  A[開始] --&gt; B{是否快樂?};
+  B -- 是 --&gt; C[繼續保持];
+  B -- 否 --&gt; D[吃點好吃的];
+  D --&gt; C;
+```
+</code></pre><p><strong>時序圖 (Sequence Diagram):</strong></p><pre><code>```mermaid
+sequenceDiagram
+  Alice-&gt;&gt;John: Hello John, how are you?
+  John--&gt;&gt;Alice: Great!
+```
+</code></pre><p><strong>心智圖 (Mindmap):</strong></p><pre><code>```mermaid
+mindmap
+  root((核心主題))
+    技術
+      Hugo
+      Git
+    生活
+      旅行
+      美食
+```
+</code></pre><p><strong>甘特圖 (Gantt):</strong></p><pre><code>```mermaid
+gantt
+  title 專案時程表
+  dateFormat  YYYY-MM-DD
+  section 規劃
+  需求分析 :a1, 2025-12-01, 3d
+  系統設計 :after a1, 5d
+```
+</code></pre></div></article><nav class="flex justify-between mt-16 pt-8 border-t not-prose" style=border-color:var(--border-color)><div><a href=/ChiYu-Blob/posts/%E6%83%B3%E5%BF%AB%E9%80%9F%E6%89%93%E9%80%A0%E5%80%8B%E4%BA%BA%E9%83%A8%E8%90%BD%E6%A0%BC%E8%A9%A6%E8%A9%A6-hugoblobtemplate%E6%A5%B5%E7%B0%A1%E9%96%8B%E6%BA%90%E8%AE%93%E4%BD%A0%E5%B0%88%E6%B3%A8%E5%AF%AB%E4%BD%9C/ class="block p-4 rounded-lg transition-colors" style=color:var(--text-secondary)><span class=text-sm>上一篇</span>
+<span class="block font-semibold mt-1" style=color:var(--text-color)>想快速打造個人部落格？試試 HugoBlobTemplate，極簡、開源，讓你專注寫作！ &larr;</span></a></div><div class=text-right></div></nav><div class="mt-16 pt-8 border-t not-prose" style=border-color:var(--border-color)><h3 class="text-xl font-bold mb-6">相關文章</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-4"><a href=/ChiYu-Blob/posts/%E6%83%B3%E5%BF%AB%E9%80%9F%E6%89%93%E9%80%A0%E5%80%8B%E4%BA%BA%E9%83%A8%E8%90%BD%E6%A0%BC%E8%A9%A6%E8%A9%A6-hugoblobtemplate%E6%A5%B5%E7%B0%A1%E9%96%8B%E6%BA%90%E8%AE%93%E4%BD%A0%E5%B0%88%E6%B3%A8%E5%AF%AB%E4%BD%9C/ class="block p-4 rounded-lg transition-colors" style="border:1px solid var(--border-color)"><span class="font-semibold block" style=color:var(--text-color)>想快速打造個人部落格？試試 HugoBlobTemplate，極簡、開源，讓你專注寫作！</span><p class="text-sm mt-1" style=color:var(--text-secondary)>【文章最終整合版】 想快速打造個人部落格？試試 HugoBlobTemplate，極簡、開源，讓你專注寫作！ 你是不是也曾想過，要建立一個屬 …</p></a><a href=/ChiYu-Blob/posts/%E8%AE%93%E9%83%A8%E8%90%BD%E6%A0%BC%E6%88%90%E7%82%BA%E4%BD%A0%E7%9A%84%E5%BD%A2%E7%8B%80hugo-%E5%80%8B%E4%BA%BA%E5%8C%96%E8%A8%AD%E5%AE%9A%E7%B5%82%E6%A5%B5%E6%8C%87%E5%8D%97/ class="block p-4 rounded-lg transition-colors" style="border:1px solid var(--border-color)"><span class="font-semibold block" style=color:var(--text-color)>讓部落格成為你的形狀：Hugo 個人化設定終極指南</span><p class="text-sm mt-1" style=color:var(--text-secondary)>讓部落格成為你的形狀：Hugo 個人化設定終極指南 當你成功部署了這個部落格模板，恭喜你完成了第一步！但真正的樂趣現在才開始：將這個公版的部 …</p></a></div></div><div id=giscus-container class="mt-16 pt-8 border-t not-prose" style=border-color:var(--border-color)></div></main></div></div><aside class="w-64 flex-shrink-0 lg:block pl-8"><div class="sticky top-20" data-pagefind-ignore><div class="mb-8 text-center" data-pagefind-ignore><img src=/ChiYu-Blob/images/avatar.jpg alt=個人大頭貼 class="w-32 h-32 rounded-full mx-auto object-cover border-2" style=border-color:var(--border-color) data-pagefind-ignore></div><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>文章月曆</h3><div id=calendar-widget><div class="flex justify-between items-center mb-2 font-semibold"><button id=cal-prev title=上個月 class="px-2 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700">&lt;</button>
+<span id=cal-month-year></span>
+<button id=cal-next title=下個月 class="px-2 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700">></button></div><div class="grid grid-cols-7 text-center text-xs gap-y-2" style=color:var(--text-secondary)><span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span></div><div id=cal-days class="grid grid-cols-7 text-center text-sm mt-2 gap-y-2"></div></div></div><script>document.addEventListener("DOMContentLoaded",function(){const e={};e["2025-12-17"]="/ChiYu-Blob/dates/2025-12-17/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-7-3"]="/ChiYu-Blob/dates/2025-07-03/",e["2025-8-22"]="/ChiYu-Blob/dates/2025-08-22/",e["2025-8-21"]="/ChiYu-Blob/dates/2025-08-21/",e["2025-8-20"]="/ChiYu-Blob/dates/2025-08-20/",e["2025-6-8"]="/ChiYu-Blob/dates/2025-06-08/",e["2025-6-5"]="/ChiYu-Blob/dates/2025-06-05/";const o=document.getElementById("cal-month-year"),n=document.getElementById("cal-days"),i=document.getElementById("cal-prev"),a=document.getElementById("cal-next");let t=new Date;function s(t){const s=t.getFullYear(),i=t.getMonth();o.textContent=`${s} 年 ${i+1} 月`,n.innerHTML="";const a=new Date(s,i,1),r=new Date(s,i+1,0),c=a.getDay();for(let e=0;e<c;e++)n.insertAdjacentHTML("beforeend","<div></div>");for(let t=1;t<=r.getDate();t++){const o=`${s}-${i+1}-${t}`;e[o]?n.insertAdjacentHTML("beforeend",`
+                    <a href="${e[o]}" class="block p-1 rounded-full transition-colors font-bold" style="color: var(--link-color); text-decoration: underline; text-decoration-thickness: 2px;">
+                        ${t}
+                    </a>
+                `):n.insertAdjacentHTML("beforeend",`<span class="block p-1">${t}</span>`)}}i.addEventListener("click",()=>{t.setMonth(t.getMonth()-1),s(t)}),a.addEventListener("click",()=>{t.setMonth(t.getMonth()+1),s(t)}),s(t)})</script><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>所有標籤</h3><div class="flex flex-wrap gap-2"><a href=/ChiYu-Blob/tags/sideproject/ class=tag-pill>SideProject
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/hlr/ class=tag-pill>HLR
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/guide/ class=tag-pill>Guide
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/documentation/ class=tag-pill>Documentation
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/codex/ class=tag-pill>Codex
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/ai/ class=tag-pill>AI
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/vibecoding/ class=tag-pill>VibeCoding
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/hugo/ class=tag-pill>Hugo
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/ddd/ class=tag-pill>DDD
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/2025ithomeironman/ class=tag-pill>2025iThomeIronman
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/designpattern/ class=tag-pill>DesignPattern
+<span class="ml-1 opacity-75">24</span>
+</a><a href=/ChiYu-Blob/tags/csharp/ class=tag-pill>Csharp
+<span class="ml-1 opacity-75">24</span>
+</a><a href=/ChiYu-Blob/tags/code/ class=tag-pill>Code
+<span class="ml-1 opacity-75">24</span></a></div><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>相關連結</h3><div class="flex flex-col space-y-3 mt-4"><a href=https://www.cake.me/me/ChiYuisme target=_blank rel="noopener noreferrer" class=transition-colors style=color:var(--text-secondary);hover:var(--link-color)><span class=text-base>cakeresume</span>
+</a><a href=https://github.com/eric861129 target=_blank rel="noopener noreferrer" class=transition-colors style=color:var(--text-secondary);hover:var(--link-color)><span class=text-base>github</span>
+</a><a href=https://ithelp.ithome.com.tw/users/20132971/ironman/8253 target=_blank rel="noopener noreferrer" class=transition-colors style=color:var(--text-secondary);hover:var(--link-color)><span class=text-base>ithome</span>
+</a><a href=https://www.linkedin.com/in/chiyu-huang/ target=_blank rel="noopener noreferrer" class=transition-colors style=color:var(--text-secondary);hover:var(--link-color)><span class=text-base>linkedin</span>
+</a><a href=https://www.threads.com/@chiyuisme target=_blank rel="noopener noreferrer" class=transition-colors style=color:var(--text-secondary);hover:var(--link-color)><span class=text-base>threads</span></a></div></div><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>系列文章</h3><ul class=space-y-1><li><a href=/ChiYu-Blob/series/designpattern/ class="flex justify-between"><span>設計模式</span>
+<span class=text-sm>24</span></a></li><li><a href=/ChiYu-Blob/series/2025ithomeironman/ class="flex justify-between"><span>2025 iThome 鐵人賽</span>
+<span class=text-sm>3</span></a></li><li><a href=/ChiYu-Blob/series/hugo-%E9%96%8B%E7%99%BC%E7%B4%80%E9%8C%84/ class="flex justify-between"><span>Hugo 開發紀錄</span>
+<span class=text-sm>1</span></a></li></ul></div></div></aside></div><footer class="mt-16 pt-8 border-t text-center text-sm" style=border-color:var(--border-color);color:var(--text-secondary)><p>&copy; 2025 ChiYu. All Rights Reserved.</p></footer><button id=scroll-to-top-btn class=scroll-to-top title=回到頂部><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentcolor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 15a.5.5.0 00.5-.5V2.707l3.146 3.147a.5.5.0 00.708-.708l-4-4a.5.5.0 00-.708.0l-4 4a.5.5.0 10.708.708L7.5 2.707V14.5a.5.5.0 00.5.5z"/></svg></button></div><div id=sidebar-overlay class=sidebar-overlay></div><aside id=mobile-sidebar class=mobile-sidebar><div class=p-4><aside class=sidebar><div class=sidebar-inner><div class=widget><h3 class=widget-title>系列文章</h3><ul class=widget-list><li><a href=/ChiYu-Blob/series/designpattern/>設計模式
+<span class=posts-count>24</span></a></li><li><a href=/ChiYu-Blob/series/2025ithomeironman/>2025 iThome 鐵人賽
+<span class=posts-count>3</span></a></li><li><a href=/ChiYu-Blob/series/hugo-%E9%96%8B%E7%99%BC%E7%B4%80%E9%8C%84/>Hugo 開發紀錄
+<span class=posts-count>1</span></a></li></ul></div></div></aside><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>文章月曆</h3><div id=calendar-widget><div class="flex justify-between items-center mb-2 font-semibold"><button id=cal-prev title=上個月 class="px-2 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700">&lt;</button>
+<span id=cal-month-year></span>
+<button id=cal-next title=下個月 class="px-2 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700">></button></div><div class="grid grid-cols-7 text-center text-xs gap-y-2" style=color:var(--text-secondary)><span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span></div><div id=cal-days class="grid grid-cols-7 text-center text-sm mt-2 gap-y-2"></div></div></div><script>document.addEventListener("DOMContentLoaded",function(){const e={};e["2025-12-17"]="/ChiYu-Blob/dates/2025-12-17/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-7-3"]="/ChiYu-Blob/dates/2025-07-03/",e["2025-8-22"]="/ChiYu-Blob/dates/2025-08-22/",e["2025-8-21"]="/ChiYu-Blob/dates/2025-08-21/",e["2025-8-20"]="/ChiYu-Blob/dates/2025-08-20/",e["2025-6-8"]="/ChiYu-Blob/dates/2025-06-08/",e["2025-6-5"]="/ChiYu-Blob/dates/2025-06-05/";const o=document.getElementById("cal-month-year"),n=document.getElementById("cal-days"),i=document.getElementById("cal-prev"),a=document.getElementById("cal-next");let t=new Date;function s(t){const s=t.getFullYear(),i=t.getMonth();o.textContent=`${s} 年 ${i+1} 月`,n.innerHTML="";const a=new Date(s,i,1),r=new Date(s,i+1,0),c=a.getDay();for(let e=0;e<c;e++)n.insertAdjacentHTML("beforeend","<div></div>");for(let t=1;t<=r.getDate();t++){const o=`${s}-${i+1}-${t}`;e[o]?n.insertAdjacentHTML("beforeend",`
+                    <a href="${e[o]}" class="block p-1 rounded-full transition-colors font-bold" style="color: var(--link-color); text-decoration: underline; text-decoration-thickness: 2px;">
+                        ${t}
+                    </a>
+                `):n.insertAdjacentHTML("beforeend",`<span class="block p-1">${t}</span>`)}}i.addEventListener("click",()=>{t.setMonth(t.getMonth()-1),s(t)}),a.addEventListener("click",()=>{t.setMonth(t.getMonth()+1),s(t)}),s(t)})</script><aside class="w-64 flex-shrink-0 lg:block pl-8"><div class="sticky top-20" data-pagefind-ignore><div class="mb-8 text-center" data-pagefind-ignore><img src=/ChiYu-Blob/images/avatar.jpg alt=個人大頭貼 class="w-32 h-32 rounded-full mx-auto object-cover border-2" style=border-color:var(--border-color) data-pagefind-ignore></div><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>文章月曆</h3><div id=calendar-widget><div class="flex justify-between items-center mb-2 font-semibold"><button id=cal-prev title=上個月 class="px-2 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700">&lt;</button>
+<span id=cal-month-year></span>
+<button id=cal-next title=下個月 class="px-2 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700">></button></div><div class="grid grid-cols-7 text-center text-xs gap-y-2" style=color:var(--text-secondary)><span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span></div><div id=cal-days class="grid grid-cols-7 text-center text-sm mt-2 gap-y-2"></div></div></div><script>document.addEventListener("DOMContentLoaded",function(){const e={};e["2025-12-17"]="/ChiYu-Blob/dates/2025-12-17/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-7-3"]="/ChiYu-Blob/dates/2025-07-03/",e["2025-8-22"]="/ChiYu-Blob/dates/2025-08-22/",e["2025-8-21"]="/ChiYu-Blob/dates/2025-08-21/",e["2025-8-20"]="/ChiYu-Blob/dates/2025-08-20/",e["2025-6-8"]="/ChiYu-Blob/dates/2025-06-08/",e["2025-6-5"]="/ChiYu-Blob/dates/2025-06-05/";const o=document.getElementById("cal-month-year"),n=document.getElementById("cal-days"),i=document.getElementById("cal-prev"),a=document.getElementById("cal-next");let t=new Date;function s(t){const s=t.getFullYear(),i=t.getMonth();o.textContent=`${s} 年 ${i+1} 月`,n.innerHTML="";const a=new Date(s,i,1),r=new Date(s,i+1,0),c=a.getDay();for(let e=0;e<c;e++)n.insertAdjacentHTML("beforeend","<div></div>");for(let t=1;t<=r.getDate();t++){const o=`${s}-${i+1}-${t}`;e[o]?n.insertAdjacentHTML("beforeend",`
+                    <a href="${e[o]}" class="block p-1 rounded-full transition-colors font-bold" style="color: var(--link-color); text-decoration: underline; text-decoration-thickness: 2px;">
+                        ${t}
+                    </a>
+                `):n.insertAdjacentHTML("beforeend",`<span class="block p-1">${t}</span>`)}}i.addEventListener("click",()=>{t.setMonth(t.getMonth()-1),s(t)}),a.addEventListener("click",()=>{t.setMonth(t.getMonth()+1),s(t)}),s(t)})</script><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>所有標籤</h3><div class="flex flex-wrap gap-2"><a href=/ChiYu-Blob/tags/sideproject/ class=tag-pill>SideProject
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/hlr/ class=tag-pill>HLR
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/guide/ class=tag-pill>Guide
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/documentation/ class=tag-pill>Documentation
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/codex/ class=tag-pill>Codex
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/ai/ class=tag-pill>AI
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/vibecoding/ class=tag-pill>VibeCoding
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/hugo/ class=tag-pill>Hugo
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/ddd/ class=tag-pill>DDD
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/2025ithomeironman/ class=tag-pill>2025iThomeIronman
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/designpattern/ class=tag-pill>DesignPattern
+<span class="ml-1 opacity-75">24</span>
+</a><a href=/ChiYu-Blob/tags/csharp/ class=tag-pill>Csharp
+<span class="ml-1 opacity-75">24</span>
+</a><a href=/ChiYu-Blob/tags/code/ class=tag-pill>Code
+<span class="ml-1 opacity-75">24</span></a></div><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>相關連結</h3><div class="flex flex-col space-y-3 mt-4"><a href=https://www.cake.me/me/ChiYuisme target=_blank rel="noopener noreferrer" class=transition-colors style=color:var(--text-secondary);hover:var(--link-color)><span class=text-base>cakeresume</span>
+</a><a href=https://github.com/eric861129 target=_blank rel="noopener noreferrer" class=transition-colors style=color:var(--text-secondary);hover:var(--link-color)><span class=text-base>github</span>
+</a><a href=https://ithelp.ithome.com.tw/users/20132971/ironman/8253 target=_blank rel="noopener noreferrer" class=transition-colors style=color:var(--text-secondary);hover:var(--link-color)><span class=text-base>ithome</span>
+</a><a href=https://www.linkedin.com/in/chiyu-huang/ target=_blank rel="noopener noreferrer" class=transition-colors style=color:var(--text-secondary);hover:var(--link-color)><span class=text-base>linkedin</span>
+</a><a href=https://www.threads.com/@chiyuisme target=_blank rel="noopener noreferrer" class=transition-colors style=color:var(--text-secondary);hover:var(--link-color)><span class=text-base>threads</span></a></div></div><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>系列文章</h3><ul class=space-y-1><li><a href=/ChiYu-Blob/series/designpattern/ class="flex justify-between"><span>設計模式</span>
+<span class=text-sm>24</span></a></li><li><a href=/ChiYu-Blob/series/2025ithomeironman/ class="flex justify-between"><span>2025 iThome 鐵人賽</span>
+<span class=text-sm>3</span></a></li><li><a href=/ChiYu-Blob/series/hugo-%E9%96%8B%E7%99%BC%E7%B4%80%E9%8C%84/ class="flex justify-between"><span>Hugo 開發紀錄</span>
+<span class=text-sm>1</span></a></li></ul></div></div></aside></div></aside><script>function initPagefind(){window.PagefindUI&&new PagefindUI({element:"#search",showSubResults:!1,baseUrl:"/ChiYu-Blob/",language:"zh-tw"})}</script><script src=/ChiYu-Blob/pagefind/pagefind-ui.js onload=initPagefind()></script><script>document.addEventListener("DOMContentLoaded",()=>{const s=document.getElementById("reading-progress-bar");s&&window.addEventListener("scroll",()=>{const e=document.documentElement.scrollTop||document.body.scrollTop,t=document.documentElement.scrollHeight-document.documentElement.clientHeight,n=e/t*100;s.style.width=n+"%"});const o=document.getElementById("theme-toggle");o&&o.addEventListener("click",()=>{const n=document.documentElement.getAttribute("data-theme"),e=n==="light"?"dark":"light";document.documentElement.setAttribute("data-theme",e),localStorage.setItem("theme",e);const t=document.querySelector("iframe.giscus-frame");t&&t.contentWindow.postMessage({giscus:{setTheme:e}},"https://giscus.app")}),document.querySelectorAll("div.highlight").forEach(e=>{const t=document.createElement("button");t.className="copy-code-button",t.type="button",t.innerText="Copy",t.addEventListener("click",()=>{const n=e.querySelector("code").innerText;navigator.clipboard.writeText(n).then(()=>{t.innerText="Copied!",setTimeout(()=>{t.innerText="Copy"},2e3)})}),e.appendChild(t)});const i=document.querySelectorAll(".post-toc-sidebar nav#TableOfContents a"),a=Array.from(i).map(e=>{try{const t=decodeURIComponent(e.getAttribute("href").substring(1));return document.getElementById(t)}catch{return null}}).filter(Boolean);if(a.length>0){const e=new IntersectionObserver(e=>{let t=[];if(e.forEach(e=>{e.isIntersecting&&t.push(e.target)}),t.length>0){const n=t.reduce((e,t)=>e.getBoundingClientRect().top<t.getBoundingClientRect().top?e:t);i.forEach(e=>e.classList.remove("active"));const s=n.getAttribute("id"),e=document.querySelector(`.post-toc-sidebar nav#TableOfContents a[href="#${encodeURIComponent(s)}"]`);e&&e.classList.add("active")}},{rootMargin:"-80px 0px -60% 0px"});a.forEach(t=>e.observe(t))}const r=document.getElementById("giscus-container");if(r){const e=document.createElement("script");e.src="https://giscus.app/client.js",e.setAttribute("data-repo","eric861129/ChiYu-Blob"),e.setAttribute("data-repo-id","R_kgDOO2a_UQ"),e.setAttribute("data-category","Announcements"),e.setAttribute("data-category-id","DIC_kwDOO2a_Uc4CrGzL"),e.setAttribute("data-mapping","pathname"),e.setAttribute("data-strict","0"),e.setAttribute("data-reactions-enabled","1"),e.setAttribute("data-emit-metadata","0"),e.setAttribute("data-input-position","top"),e.setAttribute("data-theme",document.documentElement.getAttribute("data-theme")),e.setAttribute("data-lang","zh-TW"),e.setAttribute("crossorigin","anonymous"),e.async=!0,r.appendChild(e)}const e=document.getElementById("scroll-to-top-btn");e&&(window.addEventListener("scroll",()=>{window.pageYOffset>300?e.classList.add("show"):e.classList.remove("show")}),e.addEventListener("click",()=>{window.scrollTo({top:0,behavior:"smooth"})}));const c=document.getElementById("mobile-sidebar-toggle"),n=document.getElementById("mobile-sidebar"),t=document.getElementById("sidebar-overlay");c&&n&&t&&(c.addEventListener("click",()=>{n.classList.toggle("is-open"),t.classList.toggle("is-open")}),t.addEventListener("click",()=>{n.classList.remove("is-open"),t.classList.remove("is-open")}))})</script></body></html>
