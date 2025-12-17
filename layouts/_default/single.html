@@ -1,4 +1,10 @@
 {{ define "main" }}
+
+{{/* --- Pagefind Indexing Hint --- */}}
+<div data-pagefind-body style="display:none;">
+    {{ .Content }}
+</div>
+
 <div class="flex flex-row justify-center py-8 sm:py-12">
     <div class="w-full max-w-6xl min-w-0">
         {{ if and (gt .WordCount 400) .TableOfContents }}
