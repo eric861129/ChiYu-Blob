@@ -1,5 +1,5 @@
 +++
-title = "Day 4: 【工具篇 #2】打造雲端保險庫：Git 與 GitHub 實戰"
+title = "Day 4: 【工具篇 #2】程式碼的時光機：Git 與 GitHub 版本控制"
 date = 2025-08-23
 slug = "2025iThomeIronmanDay4"
 dates = ["2025-08-23"]
