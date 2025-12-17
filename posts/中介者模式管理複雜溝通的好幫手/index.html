@@ -21,7 +21,116 @@
 <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
 <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
 </button>
-<button id=mobile-sidebar-toggle class=lg:hidden title=開啟側邊欄><svg class="w-6 h-6" fill="none" stroke="currentcolor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/></svg></button></nav></header><div style=display:none><div data-pagefind-meta=title:中介者模式：管理複雜溝通的好幫手></div><div data-pagefind-body>中介者模式：管理複雜溝通的好幫手</div></div><div class="flex flex-row justify-center py-8 sm:py-12"><div class="w-full max-w-6xl min-w-0"><div class="flex justify-center"><main class="w-full max-w-4xl min-w-0"><article class="prose max-w-none"><header class=mb-8><h1 class="text-2xl sm:text-4xl font-bold tracking-tight mb-4 !mt-0">中介者模式：管理複雜溝通的好幫手</h1><p class=text-base style=color:var(--text-secondary)>發布於 2025年6月13日
+<button id=mobile-sidebar-toggle class=lg:hidden title=開啟側邊欄><svg class="w-6 h-6" fill="none" stroke="currentcolor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/></svg></button></nav></header><div data-pagefind-body style=display:none><p>哈囉朋友們～今天要聊的設計模式是<strong>中介者模式（Mediator）</strong>，這個模式能讓你的程式輕鬆管理物件之間複雜的溝通關係。</p><h2 id=-中介者模式是什麼>🌟 中介者模式是什麼？</h2><p>中介者模式透過一個中介者物件來協調其他物件之間的互動，避免物件間的直接聯繫導致的混亂。</p><p>想像你使用聊天室時，你並不直接跟每個使用者對話，而是透過聊天室作為中介，幫你發送訊息給其他使用者，這樣每個人只要與聊天室溝通即可，簡單明瞭。</p><hr><h2 id=-什麼情況適合使用中介者模式>🤔 什麼情況適合使用中介者模式？</h2><p>以下情況適合使用中介者模式：</p><ul><li>當系統內有許多物件需要彼此溝通，關係變得複雜難以管理。</li><li>想降低物件間的耦合度，讓系統容易維護與擴充。</li><li>想集中管理物件之間的溝通邏輯。</li></ul><hr><h2 id=-c-中介者模式範例聊天室應用程式>💬 C# 中介者模式範例：聊天室應用程式</h2><p>我們透過「聊天室」範例來實際展示中介者模式。</p><h3 id=-定義中介者介面>💻 定義中介者介面</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=display:flex><span><span style=color:#75715e>/// &lt;summary&gt;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>/// 中介者介面</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>/// &lt;/summary&gt;</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>interface</span> <span style=color:#a6e22e>IChatMediator</span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// &lt;summary&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// 傳送訊息給其他使用者</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// &lt;/summary&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// &lt;param name=&#34;message&#34;&gt;訊息內容&lt;/param&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// &lt;param name=&#34;user&#34;&gt;發送者&lt;/param&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>void</span> SendMessage(<span style=color:#66d9ef>string</span> message, User user);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// &lt;summary&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// 註冊使用者到聊天室</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// &lt;/summary&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// &lt;param name=&#34;user&#34;&gt;新使用者&lt;/param&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>void</span> RegisterUser(User user);
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h3 id=-建立具體中介者聊天室>👥 建立具體中介者（聊天室）</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=display:flex><span><span style=color:#66d9ef>using</span> System;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>using</span> System.Collections.Generic;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>/// &lt;summary&gt;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>/// 聊天室中介者，負責轉發訊息</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>/// &lt;/summary&gt;</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ChatMediator</span> : IChatMediator
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>readonly</span> List&lt;User&gt; _users = <span style=color:#66d9ef>new</span>();  <span style=color:#75715e>// 聊天室中的使用者名單</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// &lt;inheritdoc /&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> RegisterUser(User user)
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        _users.Add(user);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// &lt;inheritdoc /&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> SendMessage(<span style=color:#66d9ef>string</span> message, User sender)
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>foreach</span> (<span style=color:#66d9ef>var</span> user <span style=color:#66d9ef>in</span> _users)
+</span></span><span style=display:flex><span>        {
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> (user != sender)
+</span></span><span style=display:flex><span>            {
+</span></span><span style=display:flex><span>                user.Receive(message, sender.Name);
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h3 id=-建立使用者參與者>🙋 建立使用者（參與者）</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=display:flex><span><span style=color:#66d9ef>using</span> System;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>/// &lt;summary&gt;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>/// 聊天室使用者</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>/// &lt;/summary&gt;</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>User</span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// &lt;summary&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// 使用者名稱</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// &lt;/summary&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>string</span> Name { <span style=color:#66d9ef>get</span>; }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>readonly</span> IChatMediator _chatMediator;  <span style=color:#75715e>// 中介者</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> User(<span style=color:#66d9ef>string</span> name, IChatMediator chatMediator)
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        Name = name;
+</span></span><span style=display:flex><span>        _chatMediator = chatMediator;
+</span></span><span style=display:flex><span>        _chatMediator.RegisterUser(<span style=color:#66d9ef>this</span>);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// &lt;summary&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// 發送訊息</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// &lt;/summary&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// &lt;param name=&#34;message&#34;&gt;要傳送的訊息&lt;/param&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> Send(<span style=color:#66d9ef>string</span> message)
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        Console.WriteLine(<span style=color:#e6db74>$&#34;{Name} 發送訊息：{message}&#34;</span>);
+</span></span><span style=display:flex><span>        _chatMediator.SendMessage(message, <span style=color:#66d9ef>this</span>);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// &lt;summary&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// 接收訊息</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// &lt;/summary&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// &lt;param name=&#34;message&#34;&gt;收到的訊息&lt;/param&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>/// &lt;param name=&#34;senderName&#34;&gt;發送者名稱&lt;/param&gt;</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> Receive(<span style=color:#66d9ef>string</span> message, <span style=color:#66d9ef>string</span> senderName)
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        Console.WriteLine(<span style=color:#e6db74>$&#34;{Name} 收到來自 {senderName} 的訊息：{message}&#34;</span>);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h3 id=-實際使用範例>🚀 實際使用範例</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-csharp data-lang=csharp><span style=display:flex><span><span style=color:#66d9ef>using</span> System;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Program</span>
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>void</span> Main(<span style=color:#66d9ef>string</span>[] args)
+</span></span><span style=display:flex><span>    {
+</span></span><span style=display:flex><span>        ChatMediator chatMediator = <span style=color:#66d9ef>new</span> ChatMediator();
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        User alice = <span style=color:#66d9ef>new</span> User(<span style=color:#e6db74>&#34;Alice&#34;</span>, chatMediator);
+</span></span><span style=display:flex><span>        User bob = <span style=color:#66d9ef>new</span> User(<span style=color:#e6db74>&#34;Bob&#34;</span>, chatMediator);
+</span></span><span style=display:flex><span>        User charlie = <span style=color:#66d9ef>new</span> User(<span style=color:#e6db74>&#34;Charlie&#34;</span>, chatMediator);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        alice.Send(<span style=color:#e6db74>&#34;大家好！&#34;</span>);
+</span></span><span style=display:flex><span>        bob.Send(<span style=color:#e6db74>&#34;嗨 Alice！&#34;</span>);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h3 id=-執行結果>🎯 執行結果</h3><pre tabindex=0><code>Alice 發送訊息：大家好！
+Bob 收到來自 Alice 的訊息：大家好！
+Charlie 收到來自 Alice 的訊息：大家好！
+Bob 發送訊息：嗨 Alice！
+Alice 收到來自 Bob 的訊息：嗨 Alice！
+Charlie 收到來自 Bob 的訊息：嗨 Alice！
+</code></pre><hr><h2 id=-中介者模式使用注意事項>⚠️ 中介者模式使用注意事項</h2><ul><li>優點：簡化物件之間的溝通，降低耦合性，系統容易維護。</li><li>缺點：中介者物件可能會變得複雜，需注意設計清晰。</li></ul><hr><h2 id=-結語>🎉 結語</h2><p>恭喜你掌握了中介者模式（Mediator）！透過這個模式，你的程式將更好管理物件間的互動與溝通，清晰又有彈性。</p><p>持續追蹤我們的設計模式系列吧，下篇再見啦～</p></div><div class="flex flex-row justify-center py-8 sm:py-12"><div class="w-full max-w-6xl min-w-0"><div class="flex justify-center"><main class="w-full max-w-4xl min-w-0"><article class="prose max-w-none"><header class=mb-8><h1 class="text-2xl sm:text-4xl font-bold tracking-tight mb-4 !mt-0">中介者模式：管理複雜溝通的好幫手</h1><p class=text-base style=color:var(--text-secondary)>發布於 2025年6月13日
 &#183;
 <span class="inline-flex flex-wrap gap-2 items-center" data-pagefind-ignore><a href=/ChiYu-Blob/tags/code/ class=tag-pill>Code</a>
 <a href=/ChiYu-Blob/tags/csharp/ class=tag-pill>Csharp</a>
@@ -141,7 +250,7 @@ Charlie 收到來自 Bob 的訊息：嗨 Alice！
 🌟 備忘錄模式 …</p></a><a href=/ChiYu-Blob/posts/%E6%A8%A1%E6%9D%BF%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F%E5%9B%BA%E5%AE%9A%E6%B5%81%E7%A8%8B%E9%9D%88%E6%B4%BB%E5%AF%A6%E4%BD%9C/ class="block p-4 rounded-lg transition-colors" style="border:1px solid var(--border-color)"><span class="font-semibold block" style=color:var(--text-color)>模板方法模式：固定流程靈活實作</span><p class="text-sm mt-1" style=color:var(--text-secondary)>哈囉朋友們～今天我們要介紹的是非常實用且常見的模板方法模式（Template Method），透過它你可以固定一系列的步驟，讓子類別靈活地去 …</p></a><a href=/ChiYu-Blob/posts/%E7%8B%80%E6%85%8B%E6%A8%A1%E5%BC%8F%E4%BE%9D%E7%8B%80%E6%85%8B%E6%94%B9%E8%AE%8A%E8%A1%8C%E7%82%BA%E7%9A%84%E7%A5%95%E8%A8%A3/ class="block p-4 rounded-lg transition-colors" style="border:1px solid var(--border-color)"><span class="font-semibold block" style=color:var(--text-color)>狀態模式：依狀態改變行為的祕訣</span><p class="text-sm mt-1" style=color:var(--text-secondary)>哈囉朋友們～今天我們要聊的是非常實用且有趣的狀態模式（State），這個模式讓你的物件能夠根據內部狀態的變化而自動改變行為。
 🌟 狀態模式是 …</p></a><a href=/ChiYu-Blob/posts/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F%E9%9D%88%E6%B4%BB%E5%88%87%E6%8F%9B%E8%A1%8C%E7%82%BA%E7%9A%84%E5%A5%BD%E5%B9%AB%E6%89%8B/ class="block p-4 rounded-lg transition-colors" style="border:1px solid var(--border-color)"><span class="font-semibold block" style=color:var(--text-color)>策略模式：靈活切換行為的好幫手</span><p class="text-sm mt-1" style=color:var(--text-secondary)>哈囉朋友們～今天我們要介紹的設計模式是非常靈活好用的策略模式（Strategy），透過它，你可以輕鬆替換不同的行為，讓你的程式更有彈性！
 🌟 …</p></a><a href=/ChiYu-Blob/posts/%E8%A7%80%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F%E5%8D%B3%E6%99%82%E9%80%9A%E7%9F%A5%E7%9A%84%E5%A5%BD%E5%B9%AB%E6%89%8B/ class="block p-4 rounded-lg transition-colors" style="border:1px solid var(--border-color)"><span class="font-semibold block" style=color:var(--text-color)>觀察者模式：即時通知的好幫手</span><p class="text-sm mt-1" style=color:var(--text-secondary)>哈囉朋友們～今天我們要聊的是觀察者模式（Observer），這個模式在現實生活中非常常見，讓我們輕鬆理解並學會如何運用它！
-🌟 觀察者模式是 …</p></a></div></div><div id=giscus-container class="mt-16 pt-8 border-t not-prose" style=border-color:var(--border-color)></div></main></div></div><div class="hidden lg:block lg:w-1/4 lg:ml-8"><div class="sticky top-8 space-y-8"><aside class=sidebar><div class=sidebar-inner><div class=widget><h3 class=widget-title>系列文章</h3><ul class=widget-list><li><a href=/ChiYu-Blob/series/designpattern/>設計模式
+🌟 觀察者模式是 …</p></a></div></div><div id=giscus-container class="mt-16 pt-8 border-t not-prose" style=border-color:var(--border-color)></div></main></div></div><aside class="hidden lg:block lg:col-span-3"><div class="sticky top-8 space-y-8"><aside class=sidebar><div class=sidebar-inner><div class=widget><h3 class=widget-title>系列文章</h3><ul class=widget-list><li><a href=/ChiYu-Blob/series/designpattern/>設計模式
 <span class=posts-count>24</span></a></li><li><a href=/ChiYu-Blob/series/2025ithomeironman/>2025 iThome 鐵人賽
 <span class=posts-count>3</span></a></li></ul></div></div></aside><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>文章月曆</h3><div id=calendar-widget><div class="flex justify-between items-center mb-2 font-semibold"><button id=cal-prev title=上個月 class="px-2 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700">&lt;</button>
 <span id=cal-month-year></span>
@@ -149,40 +258,28 @@ Charlie 收到來自 Bob 的訊息：嗨 Alice！
                     <a href="${e[o]}" class="block p-1 rounded-full transition-colors font-bold" style="color: var(--link-color); text-decoration: underline; text-decoration-thickness: 2px;">
                         ${t}
                     </a>
-                `):n.insertAdjacentHTML("beforeend",`<span class="block p-1">${t}</span>`)}}i.addEventListener("click",()=>{t.setMonth(t.getMonth()-1),s(t)}),a.addEventListener("click",()=>{t.setMonth(t.getMonth()+1),s(t)}),s(t)})</script></div></div><aside class="w-64 flex-shrink-0 hidden lg:block pl-8"><div class="sticky top-20" data-pagefind-ignore><div class="mb-8 text-center" data-pagefind-ignore><img src=/ChiYu-Blob/images/avatar.jpg alt=個人大頭貼 class="w-32 h-32 rounded-full mx-auto object-cover border-2" style=border-color:var(--border-color) data-pagefind-ignore></div><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>文章月曆</h3><div id=calendar-widget><div class="flex justify-between items-center mb-2 font-semibold"><button id=cal-prev title=上個月 class="px-2 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700">&lt;</button>
-<span id=cal-month-year></span>
-<button id=cal-next title=下個月 class="px-2 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700">></button></div><div class="grid grid-cols-7 text-center text-xs gap-y-2" style=color:var(--text-secondary)><span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span></div><div id=cal-days class="grid grid-cols-7 text-center text-sm mt-2 gap-y-2"></div></div></div><script>document.addEventListener("DOMContentLoaded",function(){const e={};e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-7-3"]="/ChiYu-Blob/dates/2025-07-03/",e["2025-8-22"]="/ChiYu-Blob/dates/2025-08-22/",e["2025-8-21"]="/ChiYu-Blob/dates/2025-08-21/",e["2025-8-20"]="/ChiYu-Blob/dates/2025-08-20/",e["2025-6-8"]="/ChiYu-Blob/dates/2025-06-08/",e["2025-6-5"]="/ChiYu-Blob/dates/2025-06-05/";const o=document.getElementById("cal-month-year"),n=document.getElementById("cal-days"),i=document.getElementById("cal-prev"),a=document.getElementById("cal-next");let t=new Date;function s(t){const s=t.getFullYear(),i=t.getMonth();o.textContent=`${s} 年 ${i+1} 月`,n.innerHTML="";const a=new Date(s,i,1),r=new Date(s,i+1,0),c=a.getDay();for(let e=0;e<c;e++)n.insertAdjacentHTML("beforeend","<div></div>");for(let t=1;t<=r.getDate();t++){const o=`${s}-${i+1}-${t}`;e[o]?n.insertAdjacentHTML("beforeend",`
-                    <a href="${e[o]}" class="block p-1 rounded-full transition-colors font-bold" style="color: var(--link-color); text-decoration: underline; text-decoration-thickness: 2px;">
-                        ${t}
-                    </a>
-                `):n.insertAdjacentHTML("beforeend",`<span class="block p-1">${t}</span>`)}}i.addEventListener("click",()=>{t.setMonth(t.getMonth()-1),s(t)}),a.addEventListener("click",()=>{t.setMonth(t.getMonth()+1),s(t)}),s(t)})</script><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>所有標籤</h3><div class="flex flex-wrap gap-2"><a href=/ChiYu-Blob/tags/sideproject/ class=tag-pill>SideProject
-<span class="ml-1 opacity-75">1</span>
-</a><a href=/ChiYu-Blob/tags/hlr/ class=tag-pill>HLR
-<span class="ml-1 opacity-75">1</span>
-</a><a href=/ChiYu-Blob/tags/codex/ class=tag-pill>Codex
-<span class="ml-1 opacity-75">1</span>
-</a><a href=/ChiYu-Blob/tags/hugo/ class=tag-pill>Hugo
-<span class="ml-1 opacity-75">2</span>
-</a><a href=/ChiYu-Blob/tags/ai/ class=tag-pill>AI
-<span class="ml-1 opacity-75">2</span>
-</a><a href=/ChiYu-Blob/tags/vibecoding/ class=tag-pill>VibeCoding
-<span class="ml-1 opacity-75">3</span>
-</a><a href=/ChiYu-Blob/tags/ddd/ class=tag-pill>DDD
-<span class="ml-1 opacity-75">3</span>
-</a><a href=/ChiYu-Blob/tags/2025ithomeironman/ class=tag-pill>2025iThomeIronman
-<span class="ml-1 opacity-75">3</span>
-</a><a href=/ChiYu-Blob/tags/designpattern/ class=tag-pill>DesignPattern
+                `):n.insertAdjacentHTML("beforeend",`<span class="block p-1">${t}</span>`)}}i.addEventListener("click",()=>{t.setMonth(t.getMonth()-1),s(t)}),a.addEventListener("click",()=>{t.setMonth(t.getMonth()+1),s(t)}),s(t)})</script><div><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>所有標籤</h3><div class="flex flex-wrap gap-2"><a href=/ChiYu-Blob/tags/code/ class=tag-pill>Code
 <span class="ml-1 opacity-75">24</span>
 </a><a href=/ChiYu-Blob/tags/csharp/ class=tag-pill>Csharp
 <span class="ml-1 opacity-75">24</span>
-</a><a href=/ChiYu-Blob/tags/code/ class=tag-pill>Code
-<span class="ml-1 opacity-75">24</span></a></div><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>相關連結</h3><div class="flex flex-col space-y-3 mt-4"><a href=https://www.cake.me/me/ChiYuisme target=_blank rel="noopener noreferrer" class=transition-colors style=color:var(--text-secondary);hover:var(--link-color)><span class=text-base>cakeresume</span>
-</a><a href=https://github.com/eric861129 target=_blank rel="noopener noreferrer" class=transition-colors style=color:var(--text-secondary);hover:var(--link-color)><span class=text-base>github</span>
-</a><a href=https://ithelp.ithome.com.tw/users/20132971/ironman/8253 target=_blank rel="noopener noreferrer" class=transition-colors style=color:var(--text-secondary);hover:var(--link-color)><span class=text-base>ithome</span>
-</a><a href=https://www.linkedin.com/in/chiyu-huang/ target=_blank rel="noopener noreferrer" class=transition-colors style=color:var(--text-secondary);hover:var(--link-color)><span class=text-base>linkedin</span>
-</a><a href=https://www.threads.com/@chiyuisme target=_blank rel="noopener noreferrer" class=transition-colors style=color:var(--text-secondary);hover:var(--link-color)><span class=text-base>threads</span></a></div></div><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>系列文章</h3><ul class=space-y-1><li><a href=/ChiYu-Blob/series/designpattern/ class="flex justify-between"><span>設計模式</span>
-<span class=text-sm>24</span></a></li><li><a href=/ChiYu-Blob/series/2025ithomeironman/ class="flex justify-between"><span>2025 iThome 鐵人賽</span>
-<span class=text-sm>3</span></a></li></ul></div></div></aside></div><footer class="mt-16 pt-8 border-t text-center text-sm" style=border-color:var(--border-color);color:var(--text-secondary)><p>&copy; 2025 ChiYu. All Rights Reserved.</p></footer><button id=scroll-to-top-btn class=scroll-to-top title=回到頂部><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentcolor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 15a.5.5.0 00.5-.5V2.707l3.146 3.147a.5.5.0 00.708-.708l-4-4a.5.5.0 00-.708.0l-4 4a.5.5.0 10.708.708L7.5 2.707V14.5a.5.5.0 00.5.5z"/></svg></button></div><div id=sidebar-overlay class=sidebar-overlay></div><aside id=mobile-sidebar class=mobile-sidebar><div class=p-4><aside class=sidebar><div class=sidebar-inner><div class=widget><h3 class=widget-title>系列文章</h3><ul class=widget-list><li><a href=/ChiYu-Blob/series/designpattern/>設計模式
+</a><a href=/ChiYu-Blob/tags/designpattern/ class=tag-pill>DesignPattern
+<span class="ml-1 opacity-75">24</span>
+</a><a href=/ChiYu-Blob/tags/2025ithomeironman/ class=tag-pill>2025iThomeIronman
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/ddd/ class=tag-pill>DDD
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/vibecoding/ class=tag-pill>VibeCoding
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/ai/ class=tag-pill>AI
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/hugo/ class=tag-pill>Hugo
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/codex/ class=tag-pill>Codex
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/hlr/ class=tag-pill>HLR
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/sideproject/ class=tag-pill>SideProject
+<span class="ml-1 opacity-75">1</span></a></div></div></div></aside></div><footer class="mt-16 pt-8 border-t text-center text-sm" style=border-color:var(--border-color);color:var(--text-secondary)><p>&copy; 2025 ChiYu. All Rights Reserved.</p></footer><button id=scroll-to-top-btn class=scroll-to-top title=回到頂部><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentcolor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 15a.5.5.0 00.5-.5V2.707l3.146 3.147a.5.5.0 00.708-.708l-4-4a.5.5.0 00-.708.0l-4 4a.5.5.0 10.708.708L7.5 2.707V14.5a.5.5.0 00.5.5z"/></svg></button></div><div id=sidebar-overlay class=sidebar-overlay></div><aside id=mobile-sidebar class=mobile-sidebar><div class=p-4><aside class=sidebar><div class=sidebar-inner><div class=widget><h3 class=widget-title>系列文章</h3><ul class=widget-list><li><a href=/ChiYu-Blob/series/designpattern/>設計模式
 <span class=posts-count>24</span></a></li><li><a href=/ChiYu-Blob/series/2025ithomeironman/>2025 iThome 鐵人賽
 <span class=posts-count>3</span></a></li></ul></div></div></aside><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>文章月曆</h3><div id=calendar-widget><div class="flex justify-between items-center mb-2 font-semibold"><button id=cal-prev title=上個月 class="px-2 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700">&lt;</button>
 <span id=cal-month-year></span>
@@ -190,37 +287,33 @@ Charlie 收到來自 Bob 的訊息：嗨 Alice！
                     <a href="${e[o]}" class="block p-1 rounded-full transition-colors font-bold" style="color: var(--link-color); text-decoration: underline; text-decoration-thickness: 2px;">
                         ${t}
                     </a>
-                `):n.insertAdjacentHTML("beforeend",`<span class="block p-1">${t}</span>`)}}i.addEventListener("click",()=>{t.setMonth(t.getMonth()-1),s(t)}),a.addEventListener("click",()=>{t.setMonth(t.getMonth()+1),s(t)}),s(t)})</script><aside class="w-64 flex-shrink-0 hidden lg:block pl-8"><div class="sticky top-20" data-pagefind-ignore><div class="mb-8 text-center" data-pagefind-ignore><img src=/ChiYu-Blob/images/avatar.jpg alt=個人大頭貼 class="w-32 h-32 rounded-full mx-auto object-cover border-2" style=border-color:var(--border-color) data-pagefind-ignore></div><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>文章月曆</h3><div id=calendar-widget><div class="flex justify-between items-center mb-2 font-semibold"><button id=cal-prev title=上個月 class="px-2 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700">&lt;</button>
+                `):n.insertAdjacentHTML("beforeend",`<span class="block p-1">${t}</span>`)}}i.addEventListener("click",()=>{t.setMonth(t.getMonth()-1),s(t)}),a.addEventListener("click",()=>{t.setMonth(t.getMonth()+1),s(t)}),s(t)})</script><aside class="hidden lg:block lg:col-span-3"><div class="sticky top-8 space-y-8"><aside class=sidebar><div class=sidebar-inner><div class=widget><h3 class=widget-title>系列文章</h3><ul class=widget-list><li><a href=/ChiYu-Blob/series/designpattern/>設計模式
+<span class=posts-count>24</span></a></li><li><a href=/ChiYu-Blob/series/2025ithomeironman/>2025 iThome 鐵人賽
+<span class=posts-count>3</span></a></li></ul></div></div></aside><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>文章月曆</h3><div id=calendar-widget><div class="flex justify-between items-center mb-2 font-semibold"><button id=cal-prev title=上個月 class="px-2 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700">&lt;</button>
 <span id=cal-month-year></span>
 <button id=cal-next title=下個月 class="px-2 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700">></button></div><div class="grid grid-cols-7 text-center text-xs gap-y-2" style=color:var(--text-secondary)><span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span></div><div id=cal-days class="grid grid-cols-7 text-center text-sm mt-2 gap-y-2"></div></div></div><script>document.addEventListener("DOMContentLoaded",function(){const e={};e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-7-3"]="/ChiYu-Blob/dates/2025-07-03/",e["2025-8-22"]="/ChiYu-Blob/dates/2025-08-22/",e["2025-8-21"]="/ChiYu-Blob/dates/2025-08-21/",e["2025-8-20"]="/ChiYu-Blob/dates/2025-08-20/",e["2025-6-8"]="/ChiYu-Blob/dates/2025-06-08/",e["2025-6-5"]="/ChiYu-Blob/dates/2025-06-05/";const o=document.getElementById("cal-month-year"),n=document.getElementById("cal-days"),i=document.getElementById("cal-prev"),a=document.getElementById("cal-next");let t=new Date;function s(t){const s=t.getFullYear(),i=t.getMonth();o.textContent=`${s} 年 ${i+1} 月`,n.innerHTML="";const a=new Date(s,i,1),r=new Date(s,i+1,0),c=a.getDay();for(let e=0;e<c;e++)n.insertAdjacentHTML("beforeend","<div></div>");for(let t=1;t<=r.getDate();t++){const o=`${s}-${i+1}-${t}`;e[o]?n.insertAdjacentHTML("beforeend",`
                     <a href="${e[o]}" class="block p-1 rounded-full transition-colors font-bold" style="color: var(--link-color); text-decoration: underline; text-decoration-thickness: 2px;">
                         ${t}
                     </a>
-                `):n.insertAdjacentHTML("beforeend",`<span class="block p-1">${t}</span>`)}}i.addEventListener("click",()=>{t.setMonth(t.getMonth()-1),s(t)}),a.addEventListener("click",()=>{t.setMonth(t.getMonth()+1),s(t)}),s(t)})</script><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>所有標籤</h3><div class="flex flex-wrap gap-2"><a href=/ChiYu-Blob/tags/sideproject/ class=tag-pill>SideProject
-<span class="ml-1 opacity-75">1</span>
-</a><a href=/ChiYu-Blob/tags/hlr/ class=tag-pill>HLR
-<span class="ml-1 opacity-75">1</span>
-</a><a href=/ChiYu-Blob/tags/codex/ class=tag-pill>Codex
-<span class="ml-1 opacity-75">1</span>
-</a><a href=/ChiYu-Blob/tags/hugo/ class=tag-pill>Hugo
-<span class="ml-1 opacity-75">2</span>
-</a><a href=/ChiYu-Blob/tags/ai/ class=tag-pill>AI
-<span class="ml-1 opacity-75">2</span>
-</a><a href=/ChiYu-Blob/tags/vibecoding/ class=tag-pill>VibeCoding
-<span class="ml-1 opacity-75">3</span>
-</a><a href=/ChiYu-Blob/tags/ddd/ class=tag-pill>DDD
-<span class="ml-1 opacity-75">3</span>
-</a><a href=/ChiYu-Blob/tags/2025ithomeironman/ class=tag-pill>2025iThomeIronman
-<span class="ml-1 opacity-75">3</span>
-</a><a href=/ChiYu-Blob/tags/designpattern/ class=tag-pill>DesignPattern
+                `):n.insertAdjacentHTML("beforeend",`<span class="block p-1">${t}</span>`)}}i.addEventListener("click",()=>{t.setMonth(t.getMonth()-1),s(t)}),a.addEventListener("click",()=>{t.setMonth(t.getMonth()+1),s(t)}),s(t)})</script><div><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>所有標籤</h3><div class="flex flex-wrap gap-2"><a href=/ChiYu-Blob/tags/code/ class=tag-pill>Code
 <span class="ml-1 opacity-75">24</span>
 </a><a href=/ChiYu-Blob/tags/csharp/ class=tag-pill>Csharp
 <span class="ml-1 opacity-75">24</span>
-</a><a href=/ChiYu-Blob/tags/code/ class=tag-pill>Code
-<span class="ml-1 opacity-75">24</span></a></div><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>相關連結</h3><div class="flex flex-col space-y-3 mt-4"><a href=https://www.cake.me/me/ChiYuisme target=_blank rel="noopener noreferrer" class=transition-colors style=color:var(--text-secondary);hover:var(--link-color)><span class=text-base>cakeresume</span>
-</a><a href=https://github.com/eric861129 target=_blank rel="noopener noreferrer" class=transition-colors style=color:var(--text-secondary);hover:var(--link-color)><span class=text-base>github</span>
-</a><a href=https://ithelp.ithome.com.tw/users/20132971/ironman/8253 target=_blank rel="noopener noreferrer" class=transition-colors style=color:var(--text-secondary);hover:var(--link-color)><span class=text-base>ithome</span>
-</a><a href=https://www.linkedin.com/in/chiyu-huang/ target=_blank rel="noopener noreferrer" class=transition-colors style=color:var(--text-secondary);hover:var(--link-color)><span class=text-base>linkedin</span>
-</a><a href=https://www.threads.com/@chiyuisme target=_blank rel="noopener noreferrer" class=transition-colors style=color:var(--text-secondary);hover:var(--link-color)><span class=text-base>threads</span></a></div></div><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>系列文章</h3><ul class=space-y-1><li><a href=/ChiYu-Blob/series/designpattern/ class="flex justify-between"><span>設計模式</span>
-<span class=text-sm>24</span></a></li><li><a href=/ChiYu-Blob/series/2025ithomeironman/ class="flex justify-between"><span>2025 iThome 鐵人賽</span>
-<span class=text-sm>3</span></a></li></ul></div></div></aside></div></aside><script>function initPagefind(){window.PagefindUI&&new PagefindUI({element:"#search",showSubResults:!1,baseUrl:"/ChiYu-Blob/",language:"zh-tw"})}</script><script src=/ChiYu-Blob/pagefind/pagefind-ui.js onload=initPagefind()></script><script>document.addEventListener("DOMContentLoaded",()=>{const s=document.getElementById("theme-toggle");s&&s.addEventListener("click",()=>{const n=document.documentElement.getAttribute("data-theme"),e=n==="light"?"dark":"light";document.documentElement.setAttribute("data-theme",e),localStorage.setItem("theme",e);const t=document.querySelector("iframe.giscus-frame");t&&t.contentWindow.postMessage({giscus:{setTheme:e}},"https://giscus.app")}),document.querySelectorAll("div.highlight").forEach(e=>{const t=document.createElement("button");t.className="copy-code-button",t.type="button",t.innerText="Copy",t.addEventListener("click",()=>{const n=e.querySelector("code").innerText;navigator.clipboard.writeText(n).then(()=>{t.innerText="Copied!",setTimeout(()=>{t.innerText="Copy"},2e3)})}),e.appendChild(t)});const o=document.querySelectorAll(".post-toc-sidebar nav#TableOfContents a"),i=Array.from(o).map(e=>{try{const t=decodeURIComponent(e.getAttribute("href").substring(1));return document.getElementById(t)}catch{return null}}).filter(Boolean);if(i.length>0){const e=new IntersectionObserver(e=>{let t=[];if(e.forEach(e=>{e.isIntersecting&&t.push(e.target)}),t.length>0){const n=t.reduce((e,t)=>e.getBoundingClientRect().top<t.getBoundingClientRect().top?e:t);o.forEach(e=>e.classList.remove("active"));const s=n.getAttribute("id"),e=document.querySelector(`.post-toc-sidebar nav#TableOfContents a[href="#${encodeURIComponent(s)}"]`);e&&e.classList.add("active")}},{rootMargin:"-80px 0px -60% 0px"});i.forEach(t=>e.observe(t))}const a=document.getElementById("giscus-container");if(a){const e=document.createElement("script");e.src="https://giscus.app/client.js",e.setAttribute("data-repo","eric861129/ChiYu-Blob"),e.setAttribute("data-repo-id","R_kgDOO2a_UQ"),e.setAttribute("data-category","Announcements"),e.setAttribute("data-category-id","DIC_kwDOO2a_Uc4CrGzL"),e.setAttribute("data-mapping","pathname"),e.setAttribute("data-strict","0"),e.setAttribute("data-reactions-enabled","1"),e.setAttribute("data-emit-metadata","0"),e.setAttribute("data-input-position","top"),e.setAttribute("data-theme",document.documentElement.getAttribute("data-theme")),e.setAttribute("data-lang","zh-TW"),e.setAttribute("crossorigin","anonymous"),e.async=!0,a.appendChild(e)}const e=document.getElementById("scroll-to-top-btn");e&&(window.addEventListener("scroll",()=>{window.pageYOffset>300?e.classList.add("show"):e.classList.remove("show")}),e.addEventListener("click",()=>{window.scrollTo({top:0,behavior:"smooth"})}));const r=document.getElementById("mobile-sidebar-toggle"),n=document.getElementById("mobile-sidebar"),t=document.getElementById("sidebar-overlay");r&&n&&t&&(r.addEventListener("click",()=>{n.classList.toggle("is-open"),t.classList.toggle("is-open")}),t.addEventListener("click",()=>{n.classList.remove("is-open"),t.classList.remove("is-open")}))})</script></body></html>
+</a><a href=/ChiYu-Blob/tags/designpattern/ class=tag-pill>DesignPattern
+<span class="ml-1 opacity-75">24</span>
+</a><a href=/ChiYu-Blob/tags/2025ithomeironman/ class=tag-pill>2025iThomeIronman
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/ddd/ class=tag-pill>DDD
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/vibecoding/ class=tag-pill>VibeCoding
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/ai/ class=tag-pill>AI
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/hugo/ class=tag-pill>Hugo
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/codex/ class=tag-pill>Codex
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/hlr/ class=tag-pill>HLR
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/sideproject/ class=tag-pill>SideProject
+<span class="ml-1 opacity-75">1</span></a></div></div></div></aside></div></aside><script>function initPagefind(){window.PagefindUI&&new PagefindUI({element:"#search",showSubResults:!1,baseUrl:"/ChiYu-Blob/",language:"zh-tw"})}</script><script src=/ChiYu-Blob/pagefind/pagefind-ui.js onload=initPagefind()></script><script>document.addEventListener("DOMContentLoaded",()=>{const s=document.getElementById("theme-toggle");s&&s.addEventListener("click",()=>{const n=document.documentElement.getAttribute("data-theme"),e=n==="light"?"dark":"light";document.documentElement.setAttribute("data-theme",e),localStorage.setItem("theme",e);const t=document.querySelector("iframe.giscus-frame");t&&t.contentWindow.postMessage({giscus:{setTheme:e}},"https://giscus.app")}),document.querySelectorAll("div.highlight").forEach(e=>{const t=document.createElement("button");t.className="copy-code-button",t.type="button",t.innerText="Copy",t.addEventListener("click",()=>{const n=e.querySelector("code").innerText;navigator.clipboard.writeText(n).then(()=>{t.innerText="Copied!",setTimeout(()=>{t.innerText="Copy"},2e3)})}),e.appendChild(t)});const o=document.querySelectorAll(".post-toc-sidebar nav#TableOfContents a"),i=Array.from(o).map(e=>{try{const t=decodeURIComponent(e.getAttribute("href").substring(1));return document.getElementById(t)}catch{return null}}).filter(Boolean);if(i.length>0){const e=new IntersectionObserver(e=>{let t=[];if(e.forEach(e=>{e.isIntersecting&&t.push(e.target)}),t.length>0){const n=t.reduce((e,t)=>e.getBoundingClientRect().top<t.getBoundingClientRect().top?e:t);o.forEach(e=>e.classList.remove("active"));const s=n.getAttribute("id"),e=document.querySelector(`.post-toc-sidebar nav#TableOfContents a[href="#${encodeURIComponent(s)}"]`);e&&e.classList.add("active")}},{rootMargin:"-80px 0px -60% 0px"});i.forEach(t=>e.observe(t))}const a=document.getElementById("giscus-container");if(a){const e=document.createElement("script");e.src="https://giscus.app/client.js",e.setAttribute("data-repo","eric861129/ChiYu-Blob"),e.setAttribute("data-repo-id","R_kgDOO2a_UQ"),e.setAttribute("data-category","Announcements"),e.setAttribute("data-category-id","DIC_kwDOO2a_Uc4CrGzL"),e.setAttribute("data-mapping","pathname"),e.setAttribute("data-strict","0"),e.setAttribute("data-reactions-enabled","1"),e.setAttribute("data-emit-metadata","0"),e.setAttribute("data-input-position","top"),e.setAttribute("data-theme",document.documentElement.getAttribute("data-theme")),e.setAttribute("data-lang","zh-TW"),e.setAttribute("crossorigin","anonymous"),e.async=!0,a.appendChild(e)}const e=document.getElementById("scroll-to-top-btn");e&&(window.addEventListener("scroll",()=>{window.pageYOffset>300?e.classList.add("show"):e.classList.remove("show")}),e.addEventListener("click",()=>{window.scrollTo({top:0,behavior:"smooth"})}));const r=document.getElementById("mobile-sidebar-toggle"),n=document.getElementById("mobile-sidebar"),t=document.getElementById("sidebar-overlay");r&&n&&t&&(r.addEventListener("click",()=>{n.classList.toggle("is-open"),t.classList.toggle("is-open")}),t.addEventListener("click",()=>{n.classList.remove("is-open"),t.classList.remove("is-open")}))})</script></body></html>
