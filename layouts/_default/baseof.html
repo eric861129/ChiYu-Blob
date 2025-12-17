@@ -127,19 +127,26 @@
     <script src="/ChiYu-Blob/pagefind/pagefind-ui.js" onload="initPagefind()"></script>
     
     {{/* --- Mermaid JS Support --- */}}
-    {{/* 直接在所有文章頁面載入 Mermaid，避免 .Store 時序問題導致不渲染 */}}
     {{ if .IsPage }}
     <script type="module">
       import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs';
       
-      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default';
-      mermaid.initialize({ startOnLoad: true, theme: theme });
-      
-      // Listen for theme changes to re-render mermaid diagrams (optional but nice)
+      document.addEventListener('DOMContentLoaded', async () => {
+        const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default';
+        mermaid.initialize({ startOnLoad: false, theme: theme });
+        
+        // 明確尋找並渲染所有 .mermaid 區塊
+        await mermaid.run({
+          querySelector: '.mermaid'
+        });
+      });
+
+      // Listen for theme changes to re-render mermaid diagrams
       const themeToggle = document.getElementById('theme-toggle');
       if (themeToggle) {
           themeToggle.addEventListener('click', () => {
-             location.reload(); // Simple way to re-render with new theme
+             // 簡單暴力的重繪方式：重新載入頁面 (因為 mermaid 不容易動態切換主題)
+             location.reload(); 
           });
       }
     </script>
