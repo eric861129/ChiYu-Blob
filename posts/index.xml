@@ -148,7 +148,7 @@ baseURL: (最重要!) 這裡必須換成你未來部署網站的最終網址。�
 接下來的計畫？ 這款App是我用愛發電的熱情專案。目前，我正全力打磨核心的任務系統，確保整個「努力-回饋」的循環玩起來是真的有趣、真的有感。同時，我也在準備「菁英大師」訂閱方案的相關功能，希望能給深度使用者帶來更多驚喜。
 不久後，我們預計會展開第一輪小規模的封閉測試。
 如果你也對這個「把人生變遊戲」的瘋狂計畫有興趣，想成為第一批進入這個世界的勇者，或者單純想看一個夢想是如何被一行行程式碼實現的，歡迎你繼續追蹤這個部落格。
-感謝你讀完這篇日誌。我們的冒險，現在才正要開始呢！</description></item><item><title>Day 3: 【心法篇】開發者的航海圖：什麼是文件驅動開發 (DDD)？</title><link>/ChiYu-Blob/posts/2025ithomeironmanday1/</link><pubDate>Fri, 22 Aug 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday1/</guid><description>安安，我是 ChiYu！
+感謝你讀完這篇日誌。我們的冒險，現在才正要開始呢！</description></item><item><title>Day 3: 【工具篇 #1】萬丈高樓平地起：建置本地開發環境</title><link>/ChiYu-Blob/posts/2025ithomeironmanday3/</link><pubDate>Fri, 22 Aug 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday3/</guid><description>安安，我是 ChiYu！
 昨天，我們在腦中畫好了宏偉的建築藍圖 (DDD)，確立了「文件驅動開發」這個核心心法。今天，理論課結束，我們要開始動手了！我們將扮演「技師與軍火官」的角色，為接下來的開發大戰，準備好我們最精良的「施工機具」與「建材」。
 「工欲善其事，必先利其器」。一個乾淨、強大、順手的開發環境，是所有偉大專案的起點。今天的目標非常明確：手把手帶你完成所有必要的環境安裝，包括 Python、Node.js，以及我們的開發神器 VS Code。
 Part 1：我們的「總工具箱」：安裝 Visual Studio Code (VS Code) 在無數的程式碼編輯器中，VS Code 已經成為了現代開發的絕對主流。為什麼？原因很簡單：它免費、開源、速度快、功能強大，而且擁有全世界最豐富的「擴充功能」生態系，可以讓我們把它打造成任何我們想要的樣子。
@@ -158,7 +158,7 @@ Step 2：初次見面！認識 VS Code 的介面
 當你第一次打開 VS Code，可能會看到一個歡迎畫面。別怕，我們先來認識一下它的幾個主要區域，未來它們會成為你最熟悉的朋友：
 左側活動列 (Activity Bar)：最左邊那一排圖示，是你切換不同功能的入口，例如檔案總管、搜尋、原始碼管理（就是 Git）、以及我們待會要安裝的擴充功能。 側邊欄 (Side Bar)：點擊活動列的圖示後，左邊展開的區域就是側邊欄。最常用到的就是「檔案總管」，我們專案的所有資料夾和檔案都會顯示在這裡。 編輯區 (Editor)：中間最大塊的區域，就是我們主要編寫程式碼與文件的地方。 底部面板 (Panel)：下方可以拉開的區域，這裡非常重要，因為它包含了「終端機 (Terminal)」。我們之後所有的魔法指令，都會在這裡詠唱！ Part 2：VS Code 威力升級：必備擴充功能 (Extensions) 如果說 VS Code 是一個功能強大的手機，那「擴充功能」就是上面的 App，能讓你的手機擁有各種超能力。
 請在左側活動列找到像「俄羅斯方塊」一樣的圖示，那就是擴充功能的市集。點擊它，然後在搜尋框裡，找到並全部安裝以下幾個我們這次旅程必備的神級外掛：
-Python (Microsoft) 這是什麼：微軟官方出品的 Python 語言支援包。 為什麼必裝：裝上它，你的 VS Code 才會真正「看懂」Python。它提供了智慧程式碼提示、自動補全、語法錯誤檢查、除錯等所有核心功能，直接將 VS Code 變身為一個頂級的 Python IDE。 Prettier - Code formatter 這是什麼：你的程式碼專屬造型師。 為什麼必裝：它會在每次存檔時，自動把你的程式碼整理成一個統一、乾淨、漂亮的風格。從此告別為了「兩個空格還是四個空格」而引發的聖戰！ GitLens — Git supercharged 這是什麼：Git 的透視眼鏡。 為什麼必裝：它能讓你直接在程式碼的每一行旁邊，看到這行是誰、在什麼時候修改的，極大地增強了 VS Code 的版本控制能力。 Thunder Client 這是什麼：內建在 VS Code 裡的 API 測試神器。 為什麼必裝：我們之後會用它來測試我們寫好的後端 API，不用再開別的軟體，非常方便。先裝起來放！ Markdown Preview Mermaid Support 這是什麼：讓你的文件活起來的魔法。 為什麼必裝：我們之後會用 Mermaid.</description></item><item><title>Day 2: 【心法篇】開發者的航海圖：什麼是文件驅動開發 (DDD)？</title><link>/ChiYu-Blob/posts/2025ithomeironmanday1/</link><pubDate>Thu, 21 Aug 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday1/</guid><description>嘿，大家好啊！我是 ChiYu。
+Python (Microsoft) 這是什麼：微軟官方出品的 Python 語言支援包。 為什麼必裝：裝上它，你的 VS Code 才會真正「看懂」Python。它提供了智慧程式碼提示、自動補全、語法錯誤檢查、除錯等所有核心功能，直接將 VS Code 變身為一個頂級的 Python IDE。 Prettier - Code formatter 這是什麼：你的程式碼專屬造型師。 為什麼必裝：它會在每次存檔時，自動把你的程式碼整理成一個統一、乾淨、漂亮的風格。從此告別為了「兩個空格還是四個空格」而引發的聖戰！ GitLens — Git supercharged 這是什麼：Git 的透視眼鏡。 為什麼必裝：它能讓你直接在程式碼的每一行旁邊，看到這行是誰、在什麼時候修改的，極大地增強了 VS Code 的版本控制能力。 Thunder Client 這是什麼：內建在 VS Code 裡的 API 測試神器。 為什麼必裝：我們之後會用它來測試我們寫好的後端 API，不用再開別的軟體，非常方便。先裝起來放！ Markdown Preview Mermaid Support 這是什麼：讓你的文件活起來的魔法。 為什麼必裝：我們之後會用 Mermaid.</description></item><item><title>Day 2: 【心法篇】開發者的航海圖：什麼是文件驅動開發 (DDD)？</title><link>/ChiYu-Blob/posts/2025ithomeironmanday2/</link><pubDate>Thu, 21 Aug 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday2/</guid><description>嘿，大家好啊！我是 ChiYu。
 昨天聊到 AI 開發，一不小心就把小小的「腳踏車」專案搞成一艘「航空母艦」，超頭痛的對吧？這種「AI 太能幹」造成的失控，在 Vibe Coding 的浪潮下，只會越來越常見。這不只是個笑話，它反映了一個深刻的問題：當我們擁有無窮的力量（AI），卻沒有明確的方向時，混亂是必然的結果。
 那到底要怎麼辦，才能讓 AI 乖乖聽話，不要自己亂加戲？我們該如何從一個被 AI 牽著鼻子走的「使用者」，蛻變成一個能駕馭 AI 的「指揮家」？
 今天就要來分享我的秘密武器，一個能讓你從「玩票」變「專業」的酷東西：文件驅動開發 (Document-Driven Development, DDD)！
@@ -177,7 +177,7 @@ DDD 就是這個概念的最佳實踐，先想清楚，再動手！
 我們不用自己一個字一個字地敲文件！
 我們要讓 AI 當我們的專屬寫手。我們的工作，從苦哈哈的打字員，升級成動動嘴巴的決策者。開發的瓶頸，不再是我們的打字速度，而是我們思想的清晰度。
 說白了，「下指令 (Prompt)」本身，就是一種新時代的「規格設計」啦！ 我們的價值，從「如何實現」，轉變成了「如何清晰地定義問題」。這是一種更高層次的抽象能力，也是未來開發者的核心競爭力。
-「好文件」不是廢話文學，而是唯一的真理 既然有 AI 幫忙，我們更應該專注在做出「有用的」文件。這份文件就是我們專案的 「單一真理來源 (Single Source of Truth, SSoT)」，所有人都得聽它的！</description></item><item><title>Day 1: 【啟程】嘿，AI！我們來做個網站，但這次，我們約法三章</title><link>/ChiYu-Blob/posts/2025ithomeironmanday0/</link><pubDate>Wed, 20 Aug 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday0/</guid><description>Day 0: 【啟程】嘿，AI！我們來做個網站，但這次，我們約法三章 嘿，大家好啊！我是 ChiYu，也可以叫我 Eric。
+「好文件」不是廢話文學，而是唯一的真理 既然有 AI 幫忙，我們更應該專注在做出「有用的」文件。這份文件就是我們專案的 「單一真理來源 (Single Source of Truth, SSoT)」，所有人都得聽它的！</description></item><item><title>Day 1: 【啟程】嘿，AI！我們來做個網站，但這次，我們約法三章</title><link>/ChiYu-Blob/posts/2025ithomeironmanday1/</link><pubDate>Wed, 20 Aug 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday1/</guid><description>Day 0: 【啟程】嘿，AI！我們來做個網站，但這次，我們約法三章 嘿，大家好啊！我是 ChiYu，也可以叫我 Eric。
 寫了五年的 Code，平常都在跟 .Net 還有 Azure 打交道。簡單說，就是個靠鍵盤吃飯的工程師啦。去年有參賽，但中途忘記發文中斷!!! 希望今年能培養好習慣每天準時一篇不斷更!!!
 這趟旅程，是為誰準備的？ 在開始之前，我想先說說，這系列文章是為誰而寫的。
 你可能完全沒有程式背景，但對現在最紅的 Vibe Coding 充滿好奇嗎？你是不是也想跟上這波 AI 浪潮，試著自己動手做點東西，甚至想成為一名開發者呢？
