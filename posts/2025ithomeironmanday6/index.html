@@ -6,75 +6,50 @@
 <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
 <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
 </button>
-<button id=mobile-sidebar-toggle class=lg:hidden title=開啟側邊欄><svg class="w-6 h-6" fill="none" stroke="currentcolor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/></svg></button></nav></header><div data-pagefind-body style=display:none><p>安安，我是 ChiYu！</p><p>經過了五天的「前置作業」，我們的駕駛艙 (<code>VS Code</code>)、引擎 (<code>Python</code>)、魔法法杖 (<code>Gemini CLI</code>) 全都準備就緒了。是不是已經手癢難耐，準備大展身手了？</p><p>別急！還記得我們的核心心法嗎？<strong>先有藍圖，再有魔法。</strong></p><p>今天，我們就要正式啟動專案，打響「左手藍圖」的第一槍！我們將完全在 VS Code 終端機內，為我們的太空船，設定好最初也最重要的航行座標。我們要來產出整個專案中，位階最高、最重要的一份文件——<strong>專案章程 (Project Charter)</strong>。</p><h2 id=part-1什麼是專案章程它到底有多重要>Part 1：什麼是「專案章程」？它到底有多重要？</h2><p>「專案章程」…這名字聽起來好像很厲害、很嚴肅，但你別被它嚇到。</p><p>你可以把它想像成這個專案的「出生證明」或「身分證」。它用最精簡的方式，回答了幾個最根本的問題：<strong>我們是誰？我們要去哪裡？我們要做什麼？以及，我們「不做」什麼？</strong></p><p>在團隊開發中，這份文件至關重要，因為它是：</p><ul><li><strong>建立共識的基石</strong>：專案最怕的就是「我以為我們是要做A，結果你做的是B」。專案章程是第一份讓所有人（老闆、PM、工程師）都點頭同意的文件，確保大家從第一天起，對專案的想像就是一致的。</li><li><strong>正式啟動的號角</strong>：在企業裡，一份被簽核的專案章程，代表著這個專案被「正式授權」。對我們來說，完成這份文件，就像是為自己舉辦一個開工儀式，代表我們對這個專案的承諾，從此刻起，它不再只是個空想。</li><li><strong>未來決策的北極星</strong>：開發過程中，我們肯定會冒出各種新點子。這時候，我們就可以拿出專案章程來檢視：「這個新點子，符合我們的『願景』和『範圍』嗎？」它能幫助我們抵抗「<strong>範圍潛變 (Scope Creep)</strong>」這個專案的無聲殺手，確保我們能聚焦在核心價值上。</li></ul><p>總之，在一頭熱地栽進去開發前，先把這份文件定義清楚，就像開車前先在 Google Maps 設定好目的地。它就是我們後續所有文件的最高指導原則。</p><h2 id=part-2實戰開始在終端機中從無到有>Part 2：實戰開始：在終端機中從無到有</h2><p>接下來，就是見證奇蹟的時刻。我們將把腦中那個非常模糊的想法，透過與 Gemini CLI 的對話，直接在我們的專案中，生成一份專業文件。</p><h3 id=魔法的基礎什麼是提示工程-prompt-engineering>魔法的基礎：什麼是提示工程 (Prompt Engineering)？</h3><p>在我們詠唱第一個咒語之前，我們先來學習「咒語的文法」。與 AI 溝通，是一門藝術，也是一門科學，這就是所謂的「<strong>提示工程 (Prompt Engineering)</strong>」。</p><p>你可以把它想像成你在對一個法力無邊的「許願精靈」下指令。</p><ul><li><strong>糟糕的許願</strong>：「我想要變有錢！」 -> 精靈可能會給你一張樂透彩券，或是讓你家地下冒出處理起來很麻煩的石油。</li><li><strong>優秀的許願</strong>：「請在今天下午三點前，將一百萬新台幣，以合法的銀行轉帳方式，存入我指定的銀行帳戶。」</li></ul><p>看到了嗎？一個好的 Prompt，就像一個好的許願，它清晰、具體、有邊界、有上下文。這能大幅降低 AI「理解錯誤」或「自由發揮」的機率。</p><p>根據業界的最佳實踐（例如 OpenAI 的官方文件），一個高品質的 Prompt 通常包含幾個關鍵要素，而這也正是我們接下來所有咒語的設計核心：</p><h3 id=1-角色扮演-role-playing為-ai-賦予專家身份><strong>1. 角色扮演 (Role-playing)：為 AI 賦予專家身份</strong></h3><p>這是最重要，也最容易被忽略的一點。在指令的開頭，先告訴 AI 他「是誰」。這會讓模型進入一個特定的知識領域與思考模式，產出的內容會更專業、更貼近你的需求。</p><ul><li><strong>不好的指令</strong>: <code>幫我寫一個 Python 函式來驗證電子郵件。</code></li><li><strong>好的指令</strong>: <code>你是一位資深的 Python 開發者，專長是後端開發與資料驗證。請幫我寫一個符合 RFC 5322 標準的 Python 函式來驗證電子郵件...</code></li></ul><p>賦予角色後，AI 會自動調用與該角色相關的知識，例如程式碼風格、使用的函式庫、考慮的邊界情況等。</p><h3 id=2-清晰目標-clear-objective明確定義完成的標準><strong>2. 清晰目標 (Clear Objective)：明確定義「完成」的標準</strong></h3><p>你必須非常清楚地告訴 AI 你想要「什麼」。不要使用模糊的詞語，例如「好一點」、「優化一下」。</p><ul><li><strong>不好的指令</strong>: <code>讓這段程式碼跑快一點。</code></li><li><strong>好的指令</strong>: <code>你是一位專注於演算法與效能優化的 C++ 工程師。請分析以下這段 C++ 程式碼，找出效能瓶頸，並在不改變其核心邏輯的前提下，提出三種可以降低時間複雜度的重構建議。請解釋每一種建議的優缺點。</code></li></ul><h3 id=3-提供上下文-provide-context給予足夠的背景資訊><strong>3. 提供上下文 (Provide Context)：給予足夠的背景資訊</strong></h3><p>AI 不知道你的專案背景、程式碼架構或你的最終目的。你提供的上下文越豐富，他給出的答案就越精準。</p><ul><li><strong>需要提供的重要上下文包括：</strong><ul><li><strong>程式語言與框架</strong>：<code>我正在使用 Next.js 14 與 TypeScript...</code></li><li><strong>相關程式碼</strong>：貼上相關的 function、class 或檔案內容。</li><li><strong>錯誤訊息</strong>：完整貼上終端機的錯誤日誌 (Error Log)。</li><li><strong>目標與限制</strong>：<code>這個函式將會部署在記憶體只有 256MB 的 AWS Lambda 環境中，因此需要特別注意記憶體用量。</code></li><li><strong>專案結構</strong>：<code>我的專案目錄結構如下，請將新檔案放在 components/auth/ 資料夾中...</code></li></ul></li></ul><h3 id=4-設定限制與格式-constraints--formatting規範輸出方便使用><strong>4. 設定限制與格式 (Constraints & Formatting)：規範輸出，方便使用</strong></h3><p>告訴 AI 你「不想要」什麼，以及你希望他用什麼「格式」回覆你。這能省去你大量後續整理的時間。</p><ul><li><strong>限制 (Constraints)</strong>：<ul><li><code>請不要使用任何第三方函式庫。</code></li><li><code>程式碼風格必須遵循 PEP 8 規範。</code></li><li><code>解決方案中不能使用遞迴 (recursion)。</code></li></ul></li><li><strong>格式 (Formatting)</strong>：<ul><li><code>請用 Markdown 格式回覆。</code></li><li>`所有的程式碼區塊都必須明確標示語言，例如</li></ul></li></ul><pre tabindex=0><code class=language-python。 data-lang=python。>    - `請將你的解釋與程式碼範例分開。`
-    - `請以 JSON 格式輸出結果，key 必須包含 &#34;functionName&#34;, &#34;description&#34;, &#34;code&#34;。`
-
-### **5. 迭代與追問 (Iteration &amp; Follow-up)：像對話一樣逐步深入**
-
-不要期望一次就得到完美的答案。把與 AI 的互動看作一場對話。第一次的 Prompt 產出了 70 分的答案，你可以針對不足之處進行追問，逐步將答案優化到 100 分。
-
-- **範例對話流程**：
-    1. **你**: `(給予一個完整的初始 Prompt)`
-    2. **AI**: `(產生初步的程式碼)`
-    3. **你**: `這個方案很好，但請加入詳細的註解，解釋每一行的作用。`
-    4. **AI**: `(加入註解)`
-    5. **你**: `現在，請為這個函式撰寫三個單元測試案例，使用 pytest 框架，包含一個正常情況、一個邊界情況、跟一個錯誤情況的測試。`
-    6. **AI**: `(產生測試案例)`
-
-現在，讓我們用這個專業的「許願框架」，來詠唱我們的第一個創世咒語。
-
-### Step 1：詠唱「創世」咒語，生成第一版草稿
-
-1. 在 VS Code 的專案根目錄，先手動建立一個 `docs` 資料夾，我們未來所有的文件都會放在這裡。
-2. 打開終端機，詠唱我們的第一個「文件生成咒語」：
-
-### 【魔法詠唱：我們的 Prompt】
-
-```bash
-
-# 角色 (Role)
-你是一位頂尖的產品策略顧問，擁有十年以上成功推出 Web 應用程式的經驗，專長是將模糊的初始概念，轉化為清晰、可執行的專案計畫。你的思考兼具市場洞察力與技術可行性。
-
-# 目標 (Objective)
-我的任務是，請你根據我提供的專案初步構想，為我生成一份專業、完整、且具備策略高度的「專案章程 (Project Charter)」。
-
----
-
-## 專案構想資訊 (Project Idea Details)
-
-* **專案核心想法**:
-    `我想做個能幫助使用者追蹤好習慣、記錄每日心情的 Web App。`
-
-* **目標使用者 (Target Audience)**:
-    `追求個人成長、希望提升自我覺察能力的年輕上班族與大專院校學生。他們通常對心理學、時間管理有興趣，但生活忙碌，需要一個簡單、無壓力的工具來幫助自己。`
-
-* **要解決的關鍵問題 (Problem to Solve)**:
-    `使用者常常感覺自己的情緒起伏不定，卻不清楚背後的原因。同時，他們嘗試建立良好習慣（如運動、冥想），卻因為缺乏持續的正向反饋而難以堅持。現有的工具要嘛功能太過繁雜，要嘛缺乏將「行為」與「感受」連結的洞察。`
-
-* **獨特價值主張 (Unique Value Proposition) (可選)**:
-    `我們的核心差異化在於「關聯性洞察」。應用程式會透過簡單的視覺化圖表，主動向使用者揭示他們的特定習慣與心情波動之間的正向或負向關聯，提供個人化的洞察，而不僅僅是數據記錄。`
-
-* **專案暫定名稱 (Working Title) (可選)**:
-    `心境軌跡 (MindTrack)`
-
----
-
-## 你的任務與產出要求 (Your Task &amp; Output Requirements)
-
-1.  **生成文件**: 請將上述的構想資訊，擴寫成一份結構完整的專案章程。
-2.  **文件格式**: 必須使用 **Markdown** 格式。
-3.  **文件語言**: 繁體中文。
-4.  **文件大綱**: 請**嚴格遵從**以下大綱結構，並為每個段落產生具體的內容：
-    * **文件標題與版本資訊**: 包含版本號 1.0 與作者（產品策略顧問）。
-    * **專案願景 (Project Vision)**: 描繪一個鼓舞人心的未來藍圖，說明這個專案的終極理想。
-    * **主要目標 (Goals)**: 列出 2-3 個具體的、可衡量的、有時限的專案目標 (SMART Goals)。
-    * **成功衡量指標 (Success Metrics)**: 針對每個目標，提出量化的衡量指標（例如：使用者留存率、活躍使用者數、特定功能使用率）。
-    * **專案範圍 (Scope)**: 明確定義「範圍內 (In-Scope)」與「範圍外 (Out-of-Scope)」的事項，幫助團隊聚焦。
-    * **核心功能 (Core Features)**: 以項目符號列出構成最小可行性產品 (MVP) 的關鍵功能。
-    * **初步假設與風險 (Assumptions &amp; Risks)**: 列出專案成功所依賴的幾個關鍵假設，以及可能遇到的潛在風險。
-
-5.  **直接產出**: 請直接生成完整的 Markdown 文件檔案，命名為[PROJECT_CHARTER.md]後，放置於 @docs\** 資料夾內。
-</code></pre><h3 id=step-2審核迭代與分析>Step 2：審核、迭代與分析</h3><blockquote><p><strong>【重要心法】AI 不是上帝，你才是專案的主人</strong></p><p>AI 產出的內容，永遠都只是一份「草稿 (Draft)」。它是一個能力超強的實習生，幫我們完成了 80% 的工作，但最後那 20% 的審核、微調、與最終拍板，絕對要由我們自己來完成。</p></blockquote><h3 id=方法一用---指令直接修改>方法一：用 <code>@</code> 指令直接修改</h3><p>打開剛剛生成的 <code>PROJECT_CHARTER.md</code>，你可能覺得「主要目標」寫得不夠好。沒問題，我們直接命令 AI 修改它！</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>gemini <span style=color:#e6db74>&#34;請你檢視我附加的這份專案章程草稿。我覺得「主要目標 (Goals)」這個章節寫得不夠具體。請你幫我把這個章節，改寫得更符合 SMART 原則，然後輸出修改後的**完整**文件內容。&#34;</span> @docs/PROJECT_CHARTER.md &gt; docs/PROJECT_CHARTER.md
+<button id=mobile-sidebar-toggle class=lg:hidden title=開啟側邊欄><svg class="w-6 h-6" fill="none" stroke="currentcolor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/></svg></button></nav></header><div data-pagefind-body style=display:none><p>安安，我是 ChiYu！</p><p>經過了五天的「前置作業」，我們的駕駛艙 (<code>VS Code</code>)、引擎 (<code>Python</code>)、魔法法杖 (<code>Gemini CLI</code>) 全都準備就緒了。是不是已經手癢難耐，準備大展身手了？</p><p>別急！還記得我們的核心心法嗎？<strong>先有藍圖，再有魔法。</strong></p><p>今天，我們就要正式啟動專案，打響「左手藍圖」的第一槍！我們將完全在 VS Code 終端機內，為我們的太空船，設定好最初也最重要的航行座標。我們要來產出整個專案中，位階最高、最重要的一份文件——<strong>專案章程 (Project Charter)</strong>。</p><h2 id=part-1什麼是專案章程它到底有多重要>Part 1：什麼是「專案章程」？它到底有多重要？</h2><p>「專案章程」…這名字聽起來好像很厲害、很嚴肅，但你別被它嚇到。</p><p>你可以把它想像成這個專案的「出生證明」或「身分證」。它用最精簡的方式，回答了幾個最根本的問題：<strong>我們是誰？我們要去哪裡？我們要做什麼？以及，我們「不做」什麼？</strong></p><p>在團隊開發中，這份文件至關重要，因為它是：</p><ul><li><strong>建立共識的基石</strong>：專案最怕的就是「我以為我們是要做A，結果你做的是B」。專案章程是第一份讓所有人（老闆、PM、工程師）都點頭同意的文件，確保大家從第一天起，對專案的想像就是一致的。</li><li><strong>正式啟動的號角</strong>：在企業裡，一份被簽核的專案章程，代表著這個專案被「正式授權」。對我們來說，完成這份文件，就像是為自己舉辦一個開工儀式，代表我們對這個專案的承諾，從此刻起，它不再只是個空想。</li><li><strong>未來決策的北極星</strong>：開發過程中，我們肯定會冒出各種新點子。這時候，我們就可以拿出專案章程來檢視：「這個新點子，符合我們的『願景』和『範圍』嗎？」它能幫助我們抵抗「<strong>範圍潛變 (Scope Creep)</strong>」這個專案的無聲殺手，確保我們能聚焦在核心價值上。</li></ul><p>總之，在一頭熱地栽進去開發前，先把這份文件定義清楚，就像開車前先在 Google Maps 設定好目的地。它就是我們後續所有文件的最高指導原則。</p><h2 id=part-2實戰開始在終端機中從無到有>Part 2：實戰開始：在終端機中從無到有</h2><p>接下來，就是見證奇蹟的時刻。我們將把腦中那個非常模糊的想法，透過與 Gemini CLI 的對話，直接在我們的專案中，生成一份專業文件。</p><h3 id=魔法的基礎什麼是提示工程-prompt-engineering>魔法的基礎：什麼是提示工程 (Prompt Engineering)？</h3><p>在我們詠唱第一個咒語之前，我們先來學習「咒語的文法」。與 AI 溝通，是一門藝術，也是一門科學，這就是所謂的「<strong>提示工程 (Prompt Engineering)</strong>」。</p><p>你可以把它想像成你在對一個法力無邊的「許願精靈」下指令。</p><ul><li><strong>糟糕的許願</strong>：「我想要變有錢！」 -> 精靈可能會給你一張樂透彩券，或是讓你家地下冒出處理起來很麻煩的石油。</li><li><strong>優秀的許願</strong>：「請在今天下午三點前，將一百萬新台幣，以合法的銀行轉帳方式，存入我指定的銀行帳戶。」</li></ul><p>看到了嗎？一個好的 Prompt，就像一個好的許願，它清晰、具體、有邊界、有上下文。這能大幅降低 AI「理解錯誤」或「自由發揮」的機率。</p><p>根據業界的最佳實踐（例如 OpenAI 的官方文件），一個高品質的 Prompt 通常包含幾個關鍵要素，而這也正是我們接下來所有咒語的設計核心：</p><h3 id=1-角色扮演-role-playing為-ai-賦予專家身份><strong>1. 角色扮演 (Role-playing)：為 AI 賦予專家身份</strong></h3><p>這是最重要，也最容易被忽略的一點。在指令的開頭，先告訴 AI 他「是誰」。這會讓模型進入一個特定的知識領域與思考模式，產出的內容會更專業、更貼近你的需求。</p><ul><li><strong>不好的指令</strong>: <code>幫我寫一個 Python 函式來驗證電子郵件。</code></li><li><strong>好的指令</strong>: <code>你是一位資深的 Python 開發者，專長是後端開發與資料驗證。請幫我寫一個符合 RFC 5322 標準的 Python 函式來驗證電子郵件...</code></li></ul><p>賦予角色後，AI 會自動調用與該角色相關的知識，例如程式碼風格、使用的函式庫、考慮的邊界情況等。</p><h3 id=2-清晰目標-clear-objective明確定義完成的標準><strong>2. 清晰目標 (Clear Objective)：明確定義「完成」的標準</strong></h3><p>你必須非常清楚地告訴 AI 你想要「什麼」。不要使用模糊的詞語，例如「好一點」、「優化一下」。</p><ul><li><strong>不好的指令</strong>: <code>讓這段程式碼跑快一點。</code></li><li><strong>好的指令</strong>: <code>你是一位專注於演算法與效能優化的 C++ 工程師。請分析以下這段 C++ 程式碼，找出效能瓶頸，並在不改變其核心邏輯的前提下，提出三種可以降低時間複雜度的重構建議。請解釋每一種建議的優缺點。</code></li></ul><h3 id=3-提供上下文-provide-context給予足夠的背景資訊><strong>3. 提供上下文 (Provide Context)：給予足夠的背景資訊</strong></h3><p>AI 不知道你的專案背景、程式碼架構或你的最終目的。你提供的上下文越豐富，他給出的答案就越精準。</p><ul><li><strong>需要提供的重要上下文包括：</strong><ul><li><strong>程式語言與框架</strong>：<code>我正在使用 Next.js 14 與 TypeScript...</code></li><li><strong>相關程式碼</strong>：貼上相關的 function、class 或檔案內容。</li><li><strong>錯誤訊息</strong>：完整貼上終端機的錯誤日誌 (Error Log)。</li><li><strong>目標與限制</strong>：<code>這個函式將會部署在記憶體只有 256MB 的 AWS Lambda 環境中，因此需要特別注意記憶體用量。</code></li><li><strong>專案結構</strong>：<code>我的專案目錄結構如下，請將新檔案放在 components/auth/ 資料夾中...</code></li></ul></li></ul><h3 id=4-設定限制與格式-constraints--formatting規範輸出方便使用><strong>4. 設定限制與格式 (Constraints & Formatting)：規範輸出，方便使用</strong></h3><p>告訴 AI 你「不想要」什麼，以及你希望他用什麼「格式」回覆你。這能省去你大量後續整理的時間。</p><ul><li><strong>限制 (Constraints)</strong>：<ul><li><code>請不要使用任何第三方函式庫。</code></li><li><code>程式碼風格必須遵循 PEP 8 規範。</code></li><li><code>解決方案中不能使用遞迴 (recursion)。</code></li></ul></li><li><strong>格式 (Formatting)</strong>：<ul><li><code>請用 Markdown 格式回覆。</code></li><li><code>所有的程式碼區塊都必須明確標示語言，例如 \</code>``python。`</li><li><code>請將你的解釋與程式碼範例分開。</code></li><li><code>請以 JSON 格式輸出結果，key 必須包含 "functionName", "description", "code"。</code></li></ul></li></ul><h3 id=5-迭代與追問-iteration--follow-up像對話一樣逐步深入><strong>5. 迭代與追問 (Iteration & Follow-up)：像對話一樣逐步深入</strong></h3><p>不要期望一次就得到完美的答案。把與 AI 的互動看作一場對話。第一次的 Prompt 產出了 70 分的答案，你可以針對不足之處進行追問，逐步將答案優化到 100 分。</p><ul><li><strong>範例對話流程</strong>：<ol><li><strong>你</strong>: <code>(給予一個完整的初始 Prompt)</code></li><li><strong>AI</strong>: <code>(產生初步的程式碼)</code></li><li><strong>你</strong>: <code>這個方案很好，但請加入詳細的註解，解釋每一行的作用。</code></li><li><strong>AI</strong>: <code>(加入註解)</code></li><li><strong>你</strong>: <code>現在，請為這個函式撰寫三個單元測試案例，使用 pytest 框架，包含一個正常情況、一個邊界情況、跟一個錯誤情況的測試。</code></li><li><strong>AI</strong>: <code>(產生測試案例)</code></li></ol></li></ul><p>現在，讓我們用這個專業的「許願框架」，來詠唱我們的第一個創世咒語。</p><h3 id=step-1詠唱創世咒語生成第一版草稿>Step 1：詠唱「創世」咒語，生成第一版草稿</h3><ol><li>在 VS Code 的專案根目錄，先手動建立一個 <code>docs</code> 資料夾，我們未來所有的文件都會放在這裡。</li><li>打開終端機，詠唱我們的第一個「文件生成咒語」：</li></ol><h3 id=魔法詠唱我們的-prompt>【魔法詠唱：我們的 Prompt】</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 角色 (Role)</span>
+</span></span><span style=display:flex><span>你是一位頂尖的產品策略顧問，擁有十年以上成功推出 Web 應用程式的經驗，專長是將模糊的初始概念，轉化為清晰、可執行的專案計畫。你的思考兼具市場洞察力與技術可行性。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 目標 (Objective)</span>
+</span></span><span style=display:flex><span>我的任務是，請你根據我提供的專案初步構想，為我生成一份專業、完整、且具備策略高度的「專案章程 <span style=color:#f92672>(</span>Project Charter<span style=color:#f92672>)</span>」。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>---
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## 專案構想資訊 (Project Idea Details)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>* **專案核心想法**:
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>`</span>我想做個能幫助使用者追蹤好習慣、記錄每日心情的 Web App。<span style=color:#e6db74>`</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>* **目標使用者 <span style=color:#f92672>(</span>Target Audience<span style=color:#f92672>)</span>**:
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>`</span>追求個人成長、希望提升自我覺察能力的年輕上班族與大專院校學生。他們通常對心理學、時間管理有興趣，但生活忙碌，需要一個簡單、無壓力的工具來幫助自己。<span style=color:#e6db74>`</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>* **要解決的關鍵問題 <span style=color:#f92672>(</span>Problem to Solve<span style=color:#f92672>)</span>**:
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>`</span>使用者常常感覺自己的情緒起伏不定，卻不清楚背後的原因。同時，他們嘗試建立良好習慣（如運動、冥想），卻因為缺乏持續的正向反饋而難以堅持。現有的工具要嘛功能太過繁雜，要嘛缺乏將「行為」與「感受」連結的洞察。<span style=color:#e6db74>`</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>* **獨特價值主張 <span style=color:#f92672>(</span>Unique Value Proposition<span style=color:#f92672>)</span> <span style=color:#f92672>(</span>可選<span style=color:#f92672>)</span>**:
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>`</span>我們的核心差異化在於「關聯性洞察」。應用程式會透過簡單的視覺化圖表，主動向使用者揭示他們的特定習慣與心情波動之間的正向或負向關聯，提供個人化的洞察，而不僅僅是數據記錄。<span style=color:#e6db74>`</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>* **專案暫定名稱 <span style=color:#f92672>(</span>Working Title<span style=color:#f92672>)</span> <span style=color:#f92672>(</span>可選<span style=color:#f92672>)</span>**:
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>`</span>心境軌跡 <span style=color:#f92672>(</span>MindTrack<span style=color:#f92672>)</span><span style=color:#e6db74>`</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>---
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## 你的任務與產出要求 (Your Task &amp; Output Requirements)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>1.  **生成文件**: 請將上述的構想資訊，擴寫成一份結構完整的專案章程。
+</span></span><span style=display:flex><span>2.  **文件格式**: 必須使用 **Markdown** 格式。
+</span></span><span style=display:flex><span>3.  **文件語言**: 繁體中文。
+</span></span><span style=display:flex><span>4.  **文件大綱**: 請**嚴格遵從**以下大綱結構，並為每個段落產生具體的內容：
+</span></span><span style=display:flex><span>    * **文件標題與版本資訊**: 包含版本號 1.0 與作者（產品策略顧問）。
+</span></span><span style=display:flex><span>    * **專案願景 <span style=color:#f92672>(</span>Project Vision<span style=color:#f92672>)</span>**: 描繪一個鼓舞人心的未來藍圖，說明這個專案的終極理想。
+</span></span><span style=display:flex><span>    * **主要目標 <span style=color:#f92672>(</span>Goals<span style=color:#f92672>)</span>**: 列出 2-3 個具體的、可衡量的、有時限的專案目標 <span style=color:#f92672>(</span>SMART Goals<span style=color:#f92672>)</span>。
+</span></span><span style=display:flex><span>    * **成功衡量指標 <span style=color:#f92672>(</span>Success Metrics<span style=color:#f92672>)</span>**: 針對每個目標，提出量化的衡量指標（例如：使用者留存率、活躍使用者數、特定功能使用率）。
+</span></span><span style=display:flex><span>    * **專案範圍 <span style=color:#f92672>(</span>Scope<span style=color:#f92672>)</span>**: 明確定義「範圍內 <span style=color:#f92672>(</span>In-Scope<span style=color:#f92672>)</span>」與「範圍外 <span style=color:#f92672>(</span>Out-of-Scope<span style=color:#f92672>)</span>」的事項，幫助團隊聚焦。
+</span></span><span style=display:flex><span>    * **核心功能 <span style=color:#f92672>(</span>Core Features<span style=color:#f92672>)</span>**: 以項目符號列出構成最小可行性產品 <span style=color:#f92672>(</span>MVP<span style=color:#f92672>)</span> 的關鍵功能。
+</span></span><span style=display:flex><span>    * **初步假設與風險 <span style=color:#f92672>(</span>Assumptions &amp; Risks<span style=color:#f92672>)</span>**: 列出專案成功所依賴的幾個關鍵假設，以及可能遇到的潛在風險。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>5.  **直接產出**: 請直接生成完整的 Markdown 文件檔案，命名為<span style=color:#f92672>[</span>PROJECT_CHARTER.md<span style=color:#f92672>]</span>後，放置於 @docs<span style=color:#ae81ff>\*</span>* 資料夾內。
+</span></span></code></pre></div><h3 id=step-2審核迭代與分析>Step 2：審核、迭代與分析</h3><blockquote><p><strong>【重要心法】AI 不是上帝，你才是專案的主人</strong></p><p>AI 產出的內容，永遠都只是一份「草稿 (Draft)」。它是一個能力超強的實習生，幫我們完成了 80% 的工作，但最後那 20% 的審核、微調、與最終拍板，絕對要由我們自己來完成。</p></blockquote><h3 id=方法一用---指令直接修改>方法一：用 <code>@</code> 指令直接修改</h3><p>打開剛剛生成的 <code>PROJECT_CHARTER.md</code>，你可能覺得「主要目標」寫得不夠好。沒問題，我們直接命令 AI 修改它！</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>gemini <span style=color:#e6db74>&#34;請你檢視我附加的這份專案章程草稿。我覺得「主要目標 (Goals)」這個章節寫得不夠具體。請你幫我把這個章節，改寫得更符合 SMART 原則，然後輸出修改後的**完整**文件內容。&#34;</span> @docs/PROJECT_CHARTER.md &gt; docs/PROJECT_CHARTER.md
 </span></span></code></pre></div><p>看到了嗎？我們用 <code>@</code> 讀取舊檔案，下達修改指令，然後用 <code>></code> 將修改後的新版本，直接覆蓋掉舊檔案！這就是 AI 輔助的「原地重構」！</p><h3 id=方法二直接修改文件>方法二：直接修改文件</h3><p>打開剛剛生成的文件，直接針對需要修改的地方修改，修改完成後可以在請AI幫我們順過文件，將文件調整好。</p><h3 id=ai-生成文件範例>【AI 生成文件範例】</h3><p>在你與 AI 經過幾輪的迭代優化後，最終你會得到一份高品質的定稿文件，就像下面這樣：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown><span style=display:flex><span># 專案章程：心境軌跡 (MindTrack)
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#66d9ef>-</span> **版本**: 1.0
@@ -168,75 +143,50 @@
 <a href=/ChiYu-Blob/tags/gemini/ class=tag-pill>Gemini</a>
 <a href=/ChiYu-Blob/tags/project-charter/ class=tag-pill>Project Charter</a>
 <a href=/ChiYu-Blob/tags/prompt-engineering/ class=tag-pill>Prompt Engineering</a>
-<a href=/ChiYu-Blob/tags/vibecoding/ class=tag-pill>VibeCoding</a></span></p></header><div data-pagefind-meta="title:Day 6: 【文件 #1】專案的靈魂：用 Gemini CLI 生成「專案章程」" style=display:none></div><div data-pagefind-ignore><p>安安，我是 ChiYu！</p><p>經過了五天的「前置作業」，我們的駕駛艙 (<code>VS Code</code>)、引擎 (<code>Python</code>)、魔法法杖 (<code>Gemini CLI</code>) 全都準備就緒了。是不是已經手癢難耐，準備大展身手了？</p><p>別急！還記得我們的核心心法嗎？<strong>先有藍圖，再有魔法。</strong></p><p>今天，我們就要正式啟動專案，打響「左手藍圖」的第一槍！我們將完全在 VS Code 終端機內，為我們的太空船，設定好最初也最重要的航行座標。我們要來產出整個專案中，位階最高、最重要的一份文件——<strong>專案章程 (Project Charter)</strong>。</p><h2 id=part-1什麼是專案章程它到底有多重要>Part 1：什麼是「專案章程」？它到底有多重要？</h2><p>「專案章程」…這名字聽起來好像很厲害、很嚴肅，但你別被它嚇到。</p><p>你可以把它想像成這個專案的「出生證明」或「身分證」。它用最精簡的方式，回答了幾個最根本的問題：<strong>我們是誰？我們要去哪裡？我們要做什麼？以及，我們「不做」什麼？</strong></p><p>在團隊開發中，這份文件至關重要，因為它是：</p><ul><li><strong>建立共識的基石</strong>：專案最怕的就是「我以為我們是要做A，結果你做的是B」。專案章程是第一份讓所有人（老闆、PM、工程師）都點頭同意的文件，確保大家從第一天起，對專案的想像就是一致的。</li><li><strong>正式啟動的號角</strong>：在企業裡，一份被簽核的專案章程，代表著這個專案被「正式授權」。對我們來說，完成這份文件，就像是為自己舉辦一個開工儀式，代表我們對這個專案的承諾，從此刻起，它不再只是個空想。</li><li><strong>未來決策的北極星</strong>：開發過程中，我們肯定會冒出各種新點子。這時候，我們就可以拿出專案章程來檢視：「這個新點子，符合我們的『願景』和『範圍』嗎？」它能幫助我們抵抗「<strong>範圍潛變 (Scope Creep)</strong>」這個專案的無聲殺手，確保我們能聚焦在核心價值上。</li></ul><p>總之，在一頭熱地栽進去開發前，先把這份文件定義清楚，就像開車前先在 Google Maps 設定好目的地。它就是我們後續所有文件的最高指導原則。</p><h2 id=part-2實戰開始在終端機中從無到有>Part 2：實戰開始：在終端機中從無到有</h2><p>接下來，就是見證奇蹟的時刻。我們將把腦中那個非常模糊的想法，透過與 Gemini CLI 的對話，直接在我們的專案中，生成一份專業文件。</p><h3 id=魔法的基礎什麼是提示工程-prompt-engineering>魔法的基礎：什麼是提示工程 (Prompt Engineering)？</h3><p>在我們詠唱第一個咒語之前，我們先來學習「咒語的文法」。與 AI 溝通，是一門藝術，也是一門科學，這就是所謂的「<strong>提示工程 (Prompt Engineering)</strong>」。</p><p>你可以把它想像成你在對一個法力無邊的「許願精靈」下指令。</p><ul><li><strong>糟糕的許願</strong>：「我想要變有錢！」 -> 精靈可能會給你一張樂透彩券，或是讓你家地下冒出處理起來很麻煩的石油。</li><li><strong>優秀的許願</strong>：「請在今天下午三點前，將一百萬新台幣，以合法的銀行轉帳方式，存入我指定的銀行帳戶。」</li></ul><p>看到了嗎？一個好的 Prompt，就像一個好的許願，它清晰、具體、有邊界、有上下文。這能大幅降低 AI「理解錯誤」或「自由發揮」的機率。</p><p>根據業界的最佳實踐（例如 OpenAI 的官方文件），一個高品質的 Prompt 通常包含幾個關鍵要素，而這也正是我們接下來所有咒語的設計核心：</p><h3 id=1-角色扮演-role-playing為-ai-賦予專家身份><strong>1. 角色扮演 (Role-playing)：為 AI 賦予專家身份</strong></h3><p>這是最重要，也最容易被忽略的一點。在指令的開頭，先告訴 AI 他「是誰」。這會讓模型進入一個特定的知識領域與思考模式，產出的內容會更專業、更貼近你的需求。</p><ul><li><strong>不好的指令</strong>: <code>幫我寫一個 Python 函式來驗證電子郵件。</code></li><li><strong>好的指令</strong>: <code>你是一位資深的 Python 開發者，專長是後端開發與資料驗證。請幫我寫一個符合 RFC 5322 標準的 Python 函式來驗證電子郵件...</code></li></ul><p>賦予角色後，AI 會自動調用與該角色相關的知識，例如程式碼風格、使用的函式庫、考慮的邊界情況等。</p><h3 id=2-清晰目標-clear-objective明確定義完成的標準><strong>2. 清晰目標 (Clear Objective)：明確定義「完成」的標準</strong></h3><p>你必須非常清楚地告訴 AI 你想要「什麼」。不要使用模糊的詞語，例如「好一點」、「優化一下」。</p><ul><li><strong>不好的指令</strong>: <code>讓這段程式碼跑快一點。</code></li><li><strong>好的指令</strong>: <code>你是一位專注於演算法與效能優化的 C++ 工程師。請分析以下這段 C++ 程式碼，找出效能瓶頸，並在不改變其核心邏輯的前提下，提出三種可以降低時間複雜度的重構建議。請解釋每一種建議的優缺點。</code></li></ul><h3 id=3-提供上下文-provide-context給予足夠的背景資訊><strong>3. 提供上下文 (Provide Context)：給予足夠的背景資訊</strong></h3><p>AI 不知道你的專案背景、程式碼架構或你的最終目的。你提供的上下文越豐富，他給出的答案就越精準。</p><ul><li><strong>需要提供的重要上下文包括：</strong><ul><li><strong>程式語言與框架</strong>：<code>我正在使用 Next.js 14 與 TypeScript...</code></li><li><strong>相關程式碼</strong>：貼上相關的 function、class 或檔案內容。</li><li><strong>錯誤訊息</strong>：完整貼上終端機的錯誤日誌 (Error Log)。</li><li><strong>目標與限制</strong>：<code>這個函式將會部署在記憶體只有 256MB 的 AWS Lambda 環境中，因此需要特別注意記憶體用量。</code></li><li><strong>專案結構</strong>：<code>我的專案目錄結構如下，請將新檔案放在 components/auth/ 資料夾中...</code></li></ul></li></ul><h3 id=4-設定限制與格式-constraints--formatting規範輸出方便使用><strong>4. 設定限制與格式 (Constraints & Formatting)：規範輸出，方便使用</strong></h3><p>告訴 AI 你「不想要」什麼，以及你希望他用什麼「格式」回覆你。這能省去你大量後續整理的時間。</p><ul><li><strong>限制 (Constraints)</strong>：<ul><li><code>請不要使用任何第三方函式庫。</code></li><li><code>程式碼風格必須遵循 PEP 8 規範。</code></li><li><code>解決方案中不能使用遞迴 (recursion)。</code></li></ul></li><li><strong>格式 (Formatting)</strong>：<ul><li><code>請用 Markdown 格式回覆。</code></li><li>`所有的程式碼區塊都必須明確標示語言，例如</li></ul></li></ul><pre tabindex=0><code class=language-python。 data-lang=python。>    - `請將你的解釋與程式碼範例分開。`
-    - `請以 JSON 格式輸出結果，key 必須包含 &#34;functionName&#34;, &#34;description&#34;, &#34;code&#34;。`
-
-### **5. 迭代與追問 (Iteration &amp; Follow-up)：像對話一樣逐步深入**
-
-不要期望一次就得到完美的答案。把與 AI 的互動看作一場對話。第一次的 Prompt 產出了 70 分的答案，你可以針對不足之處進行追問，逐步將答案優化到 100 分。
-
-- **範例對話流程**：
-    1. **你**: `(給予一個完整的初始 Prompt)`
-    2. **AI**: `(產生初步的程式碼)`
-    3. **你**: `這個方案很好，但請加入詳細的註解，解釋每一行的作用。`
-    4. **AI**: `(加入註解)`
-    5. **你**: `現在，請為這個函式撰寫三個單元測試案例，使用 pytest 框架，包含一個正常情況、一個邊界情況、跟一個錯誤情況的測試。`
-    6. **AI**: `(產生測試案例)`
-
-現在，讓我們用這個專業的「許願框架」，來詠唱我們的第一個創世咒語。
-
-### Step 1：詠唱「創世」咒語，生成第一版草稿
-
-1. 在 VS Code 的專案根目錄，先手動建立一個 `docs` 資料夾，我們未來所有的文件都會放在這裡。
-2. 打開終端機，詠唱我們的第一個「文件生成咒語」：
-
-### 【魔法詠唱：我們的 Prompt】
-
-```bash
-
-# 角色 (Role)
-你是一位頂尖的產品策略顧問，擁有十年以上成功推出 Web 應用程式的經驗，專長是將模糊的初始概念，轉化為清晰、可執行的專案計畫。你的思考兼具市場洞察力與技術可行性。
-
-# 目標 (Objective)
-我的任務是，請你根據我提供的專案初步構想，為我生成一份專業、完整、且具備策略高度的「專案章程 (Project Charter)」。
-
----
-
-## 專案構想資訊 (Project Idea Details)
-
-* **專案核心想法**:
-    `我想做個能幫助使用者追蹤好習慣、記錄每日心情的 Web App。`
-
-* **目標使用者 (Target Audience)**:
-    `追求個人成長、希望提升自我覺察能力的年輕上班族與大專院校學生。他們通常對心理學、時間管理有興趣，但生活忙碌，需要一個簡單、無壓力的工具來幫助自己。`
-
-* **要解決的關鍵問題 (Problem to Solve)**:
-    `使用者常常感覺自己的情緒起伏不定，卻不清楚背後的原因。同時，他們嘗試建立良好習慣（如運動、冥想），卻因為缺乏持續的正向反饋而難以堅持。現有的工具要嘛功能太過繁雜，要嘛缺乏將「行為」與「感受」連結的洞察。`
-
-* **獨特價值主張 (Unique Value Proposition) (可選)**:
-    `我們的核心差異化在於「關聯性洞察」。應用程式會透過簡單的視覺化圖表，主動向使用者揭示他們的特定習慣與心情波動之間的正向或負向關聯，提供個人化的洞察，而不僅僅是數據記錄。`
-
-* **專案暫定名稱 (Working Title) (可選)**:
-    `心境軌跡 (MindTrack)`
-
----
-
-## 你的任務與產出要求 (Your Task &amp; Output Requirements)
-
-1.  **生成文件**: 請將上述的構想資訊，擴寫成一份結構完整的專案章程。
-2.  **文件格式**: 必須使用 **Markdown** 格式。
-3.  **文件語言**: 繁體中文。
-4.  **文件大綱**: 請**嚴格遵從**以下大綱結構，並為每個段落產生具體的內容：
-    * **文件標題與版本資訊**: 包含版本號 1.0 與作者（產品策略顧問）。
-    * **專案願景 (Project Vision)**: 描繪一個鼓舞人心的未來藍圖，說明這個專案的終極理想。
-    * **主要目標 (Goals)**: 列出 2-3 個具體的、可衡量的、有時限的專案目標 (SMART Goals)。
-    * **成功衡量指標 (Success Metrics)**: 針對每個目標，提出量化的衡量指標（例如：使用者留存率、活躍使用者數、特定功能使用率）。
-    * **專案範圍 (Scope)**: 明確定義「範圍內 (In-Scope)」與「範圍外 (Out-of-Scope)」的事項，幫助團隊聚焦。
-    * **核心功能 (Core Features)**: 以項目符號列出構成最小可行性產品 (MVP) 的關鍵功能。
-    * **初步假設與風險 (Assumptions &amp; Risks)**: 列出專案成功所依賴的幾個關鍵假設，以及可能遇到的潛在風險。
-
-5.  **直接產出**: 請直接生成完整的 Markdown 文件檔案，命名為[PROJECT_CHARTER.md]後，放置於 @docs\** 資料夾內。
-</code></pre><h3 id=step-2審核迭代與分析>Step 2：審核、迭代與分析</h3><blockquote><p><strong>【重要心法】AI 不是上帝，你才是專案的主人</strong></p><p>AI 產出的內容，永遠都只是一份「草稿 (Draft)」。它是一個能力超強的實習生，幫我們完成了 80% 的工作，但最後那 20% 的審核、微調、與最終拍板，絕對要由我們自己來完成。</p></blockquote><h3 id=方法一用---指令直接修改>方法一：用 <code>@</code> 指令直接修改</h3><p>打開剛剛生成的 <code>PROJECT_CHARTER.md</code>，你可能覺得「主要目標」寫得不夠好。沒問題，我們直接命令 AI 修改它！</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>gemini <span style=color:#e6db74>&#34;請你檢視我附加的這份專案章程草稿。我覺得「主要目標 (Goals)」這個章節寫得不夠具體。請你幫我把這個章節，改寫得更符合 SMART 原則，然後輸出修改後的**完整**文件內容。&#34;</span> @docs/PROJECT_CHARTER.md &gt; docs/PROJECT_CHARTER.md
+<a href=/ChiYu-Blob/tags/vibecoding/ class=tag-pill>VibeCoding</a></span></p></header><div data-pagefind-meta="title:Day 6: 【文件 #1】專案的靈魂：用 Gemini CLI 生成「專案章程」" style=display:none></div><div data-pagefind-ignore><p>安安，我是 ChiYu！</p><p>經過了五天的「前置作業」，我們的駕駛艙 (<code>VS Code</code>)、引擎 (<code>Python</code>)、魔法法杖 (<code>Gemini CLI</code>) 全都準備就緒了。是不是已經手癢難耐，準備大展身手了？</p><p>別急！還記得我們的核心心法嗎？<strong>先有藍圖，再有魔法。</strong></p><p>今天，我們就要正式啟動專案，打響「左手藍圖」的第一槍！我們將完全在 VS Code 終端機內，為我們的太空船，設定好最初也最重要的航行座標。我們要來產出整個專案中，位階最高、最重要的一份文件——<strong>專案章程 (Project Charter)</strong>。</p><h2 id=part-1什麼是專案章程它到底有多重要>Part 1：什麼是「專案章程」？它到底有多重要？</h2><p>「專案章程」…這名字聽起來好像很厲害、很嚴肅，但你別被它嚇到。</p><p>你可以把它想像成這個專案的「出生證明」或「身分證」。它用最精簡的方式，回答了幾個最根本的問題：<strong>我們是誰？我們要去哪裡？我們要做什麼？以及，我們「不做」什麼？</strong></p><p>在團隊開發中，這份文件至關重要，因為它是：</p><ul><li><strong>建立共識的基石</strong>：專案最怕的就是「我以為我們是要做A，結果你做的是B」。專案章程是第一份讓所有人（老闆、PM、工程師）都點頭同意的文件，確保大家從第一天起，對專案的想像就是一致的。</li><li><strong>正式啟動的號角</strong>：在企業裡，一份被簽核的專案章程，代表著這個專案被「正式授權」。對我們來說，完成這份文件，就像是為自己舉辦一個開工儀式，代表我們對這個專案的承諾，從此刻起，它不再只是個空想。</li><li><strong>未來決策的北極星</strong>：開發過程中，我們肯定會冒出各種新點子。這時候，我們就可以拿出專案章程來檢視：「這個新點子，符合我們的『願景』和『範圍』嗎？」它能幫助我們抵抗「<strong>範圍潛變 (Scope Creep)</strong>」這個專案的無聲殺手，確保我們能聚焦在核心價值上。</li></ul><p>總之，在一頭熱地栽進去開發前，先把這份文件定義清楚，就像開車前先在 Google Maps 設定好目的地。它就是我們後續所有文件的最高指導原則。</p><h2 id=part-2實戰開始在終端機中從無到有>Part 2：實戰開始：在終端機中從無到有</h2><p>接下來，就是見證奇蹟的時刻。我們將把腦中那個非常模糊的想法，透過與 Gemini CLI 的對話，直接在我們的專案中，生成一份專業文件。</p><h3 id=魔法的基礎什麼是提示工程-prompt-engineering>魔法的基礎：什麼是提示工程 (Prompt Engineering)？</h3><p>在我們詠唱第一個咒語之前，我們先來學習「咒語的文法」。與 AI 溝通，是一門藝術，也是一門科學，這就是所謂的「<strong>提示工程 (Prompt Engineering)</strong>」。</p><p>你可以把它想像成你在對一個法力無邊的「許願精靈」下指令。</p><ul><li><strong>糟糕的許願</strong>：「我想要變有錢！」 -> 精靈可能會給你一張樂透彩券，或是讓你家地下冒出處理起來很麻煩的石油。</li><li><strong>優秀的許願</strong>：「請在今天下午三點前，將一百萬新台幣，以合法的銀行轉帳方式，存入我指定的銀行帳戶。」</li></ul><p>看到了嗎？一個好的 Prompt，就像一個好的許願，它清晰、具體、有邊界、有上下文。這能大幅降低 AI「理解錯誤」或「自由發揮」的機率。</p><p>根據業界的最佳實踐（例如 OpenAI 的官方文件），一個高品質的 Prompt 通常包含幾個關鍵要素，而這也正是我們接下來所有咒語的設計核心：</p><h3 id=1-角色扮演-role-playing為-ai-賦予專家身份><strong>1. 角色扮演 (Role-playing)：為 AI 賦予專家身份</strong></h3><p>這是最重要，也最容易被忽略的一點。在指令的開頭，先告訴 AI 他「是誰」。這會讓模型進入一個特定的知識領域與思考模式，產出的內容會更專業、更貼近你的需求。</p><ul><li><strong>不好的指令</strong>: <code>幫我寫一個 Python 函式來驗證電子郵件。</code></li><li><strong>好的指令</strong>: <code>你是一位資深的 Python 開發者，專長是後端開發與資料驗證。請幫我寫一個符合 RFC 5322 標準的 Python 函式來驗證電子郵件...</code></li></ul><p>賦予角色後，AI 會自動調用與該角色相關的知識，例如程式碼風格、使用的函式庫、考慮的邊界情況等。</p><h3 id=2-清晰目標-clear-objective明確定義完成的標準><strong>2. 清晰目標 (Clear Objective)：明確定義「完成」的標準</strong></h3><p>你必須非常清楚地告訴 AI 你想要「什麼」。不要使用模糊的詞語，例如「好一點」、「優化一下」。</p><ul><li><strong>不好的指令</strong>: <code>讓這段程式碼跑快一點。</code></li><li><strong>好的指令</strong>: <code>你是一位專注於演算法與效能優化的 C++ 工程師。請分析以下這段 C++ 程式碼，找出效能瓶頸，並在不改變其核心邏輯的前提下，提出三種可以降低時間複雜度的重構建議。請解釋每一種建議的優缺點。</code></li></ul><h3 id=3-提供上下文-provide-context給予足夠的背景資訊><strong>3. 提供上下文 (Provide Context)：給予足夠的背景資訊</strong></h3><p>AI 不知道你的專案背景、程式碼架構或你的最終目的。你提供的上下文越豐富，他給出的答案就越精準。</p><ul><li><strong>需要提供的重要上下文包括：</strong><ul><li><strong>程式語言與框架</strong>：<code>我正在使用 Next.js 14 與 TypeScript...</code></li><li><strong>相關程式碼</strong>：貼上相關的 function、class 或檔案內容。</li><li><strong>錯誤訊息</strong>：完整貼上終端機的錯誤日誌 (Error Log)。</li><li><strong>目標與限制</strong>：<code>這個函式將會部署在記憶體只有 256MB 的 AWS Lambda 環境中，因此需要特別注意記憶體用量。</code></li><li><strong>專案結構</strong>：<code>我的專案目錄結構如下，請將新檔案放在 components/auth/ 資料夾中...</code></li></ul></li></ul><h3 id=4-設定限制與格式-constraints--formatting規範輸出方便使用><strong>4. 設定限制與格式 (Constraints & Formatting)：規範輸出，方便使用</strong></h3><p>告訴 AI 你「不想要」什麼，以及你希望他用什麼「格式」回覆你。這能省去你大量後續整理的時間。</p><ul><li><strong>限制 (Constraints)</strong>：<ul><li><code>請不要使用任何第三方函式庫。</code></li><li><code>程式碼風格必須遵循 PEP 8 規範。</code></li><li><code>解決方案中不能使用遞迴 (recursion)。</code></li></ul></li><li><strong>格式 (Formatting)</strong>：<ul><li><code>請用 Markdown 格式回覆。</code></li><li><code>所有的程式碼區塊都必須明確標示語言，例如 \</code>``python。`</li><li><code>請將你的解釋與程式碼範例分開。</code></li><li><code>請以 JSON 格式輸出結果，key 必須包含 "functionName", "description", "code"。</code></li></ul></li></ul><h3 id=5-迭代與追問-iteration--follow-up像對話一樣逐步深入><strong>5. 迭代與追問 (Iteration & Follow-up)：像對話一樣逐步深入</strong></h3><p>不要期望一次就得到完美的答案。把與 AI 的互動看作一場對話。第一次的 Prompt 產出了 70 分的答案，你可以針對不足之處進行追問，逐步將答案優化到 100 分。</p><ul><li><strong>範例對話流程</strong>：<ol><li><strong>你</strong>: <code>(給予一個完整的初始 Prompt)</code></li><li><strong>AI</strong>: <code>(產生初步的程式碼)</code></li><li><strong>你</strong>: <code>這個方案很好，但請加入詳細的註解，解釋每一行的作用。</code></li><li><strong>AI</strong>: <code>(加入註解)</code></li><li><strong>你</strong>: <code>現在，請為這個函式撰寫三個單元測試案例，使用 pytest 框架，包含一個正常情況、一個邊界情況、跟一個錯誤情況的測試。</code></li><li><strong>AI</strong>: <code>(產生測試案例)</code></li></ol></li></ul><p>現在，讓我們用這個專業的「許願框架」，來詠唱我們的第一個創世咒語。</p><h3 id=step-1詠唱創世咒語生成第一版草稿>Step 1：詠唱「創世」咒語，生成第一版草稿</h3><ol><li>在 VS Code 的專案根目錄，先手動建立一個 <code>docs</code> 資料夾，我們未來所有的文件都會放在這裡。</li><li>打開終端機，詠唱我們的第一個「文件生成咒語」：</li></ol><h3 id=魔法詠唱我們的-prompt>【魔法詠唱：我們的 Prompt】</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 角色 (Role)</span>
+</span></span><span style=display:flex><span>你是一位頂尖的產品策略顧問，擁有十年以上成功推出 Web 應用程式的經驗，專長是將模糊的初始概念，轉化為清晰、可執行的專案計畫。你的思考兼具市場洞察力與技術可行性。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 目標 (Objective)</span>
+</span></span><span style=display:flex><span>我的任務是，請你根據我提供的專案初步構想，為我生成一份專業、完整、且具備策略高度的「專案章程 <span style=color:#f92672>(</span>Project Charter<span style=color:#f92672>)</span>」。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>---
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## 專案構想資訊 (Project Idea Details)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>* **專案核心想法**:
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>`</span>我想做個能幫助使用者追蹤好習慣、記錄每日心情的 Web App。<span style=color:#e6db74>`</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>* **目標使用者 <span style=color:#f92672>(</span>Target Audience<span style=color:#f92672>)</span>**:
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>`</span>追求個人成長、希望提升自我覺察能力的年輕上班族與大專院校學生。他們通常對心理學、時間管理有興趣，但生活忙碌，需要一個簡單、無壓力的工具來幫助自己。<span style=color:#e6db74>`</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>* **要解決的關鍵問題 <span style=color:#f92672>(</span>Problem to Solve<span style=color:#f92672>)</span>**:
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>`</span>使用者常常感覺自己的情緒起伏不定，卻不清楚背後的原因。同時，他們嘗試建立良好習慣（如運動、冥想），卻因為缺乏持續的正向反饋而難以堅持。現有的工具要嘛功能太過繁雜，要嘛缺乏將「行為」與「感受」連結的洞察。<span style=color:#e6db74>`</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>* **獨特價值主張 <span style=color:#f92672>(</span>Unique Value Proposition<span style=color:#f92672>)</span> <span style=color:#f92672>(</span>可選<span style=color:#f92672>)</span>**:
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>`</span>我們的核心差異化在於「關聯性洞察」。應用程式會透過簡單的視覺化圖表，主動向使用者揭示他們的特定習慣與心情波動之間的正向或負向關聯，提供個人化的洞察，而不僅僅是數據記錄。<span style=color:#e6db74>`</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>* **專案暫定名稱 <span style=color:#f92672>(</span>Working Title<span style=color:#f92672>)</span> <span style=color:#f92672>(</span>可選<span style=color:#f92672>)</span>**:
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>`</span>心境軌跡 <span style=color:#f92672>(</span>MindTrack<span style=color:#f92672>)</span><span style=color:#e6db74>`</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>---
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## 你的任務與產出要求 (Your Task &amp; Output Requirements)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>1.  **生成文件**: 請將上述的構想資訊，擴寫成一份結構完整的專案章程。
+</span></span><span style=display:flex><span>2.  **文件格式**: 必須使用 **Markdown** 格式。
+</span></span><span style=display:flex><span>3.  **文件語言**: 繁體中文。
+</span></span><span style=display:flex><span>4.  **文件大綱**: 請**嚴格遵從**以下大綱結構，並為每個段落產生具體的內容：
+</span></span><span style=display:flex><span>    * **文件標題與版本資訊**: 包含版本號 1.0 與作者（產品策略顧問）。
+</span></span><span style=display:flex><span>    * **專案願景 <span style=color:#f92672>(</span>Project Vision<span style=color:#f92672>)</span>**: 描繪一個鼓舞人心的未來藍圖，說明這個專案的終極理想。
+</span></span><span style=display:flex><span>    * **主要目標 <span style=color:#f92672>(</span>Goals<span style=color:#f92672>)</span>**: 列出 2-3 個具體的、可衡量的、有時限的專案目標 <span style=color:#f92672>(</span>SMART Goals<span style=color:#f92672>)</span>。
+</span></span><span style=display:flex><span>    * **成功衡量指標 <span style=color:#f92672>(</span>Success Metrics<span style=color:#f92672>)</span>**: 針對每個目標，提出量化的衡量指標（例如：使用者留存率、活躍使用者數、特定功能使用率）。
+</span></span><span style=display:flex><span>    * **專案範圍 <span style=color:#f92672>(</span>Scope<span style=color:#f92672>)</span>**: 明確定義「範圍內 <span style=color:#f92672>(</span>In-Scope<span style=color:#f92672>)</span>」與「範圍外 <span style=color:#f92672>(</span>Out-of-Scope<span style=color:#f92672>)</span>」的事項，幫助團隊聚焦。
+</span></span><span style=display:flex><span>    * **核心功能 <span style=color:#f92672>(</span>Core Features<span style=color:#f92672>)</span>**: 以項目符號列出構成最小可行性產品 <span style=color:#f92672>(</span>MVP<span style=color:#f92672>)</span> 的關鍵功能。
+</span></span><span style=display:flex><span>    * **初步假設與風險 <span style=color:#f92672>(</span>Assumptions &amp; Risks<span style=color:#f92672>)</span>**: 列出專案成功所依賴的幾個關鍵假設，以及可能遇到的潛在風險。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>5.  **直接產出**: 請直接生成完整的 Markdown 文件檔案，命名為<span style=color:#f92672>[</span>PROJECT_CHARTER.md<span style=color:#f92672>]</span>後，放置於 @docs<span style=color:#ae81ff>\*</span>* 資料夾內。
+</span></span></code></pre></div><h3 id=step-2審核迭代與分析>Step 2：審核、迭代與分析</h3><blockquote><p><strong>【重要心法】AI 不是上帝，你才是專案的主人</strong></p><p>AI 產出的內容，永遠都只是一份「草稿 (Draft)」。它是一個能力超強的實習生，幫我們完成了 80% 的工作，但最後那 20% 的審核、微調、與最終拍板，絕對要由我們自己來完成。</p></blockquote><h3 id=方法一用---指令直接修改>方法一：用 <code>@</code> 指令直接修改</h3><p>打開剛剛生成的 <code>PROJECT_CHARTER.md</code>，你可能覺得「主要目標」寫得不夠好。沒問題，我們直接命令 AI 修改它！</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>gemini <span style=color:#e6db74>&#34;請你檢視我附加的這份專案章程草稿。我覺得「主要目標 (Goals)」這個章節寫得不夠具體。請你幫我把這個章節，改寫得更符合 SMART 原則，然後輸出修改後的**完整**文件內容。&#34;</span> @docs/PROJECT_CHARTER.md &gt; docs/PROJECT_CHARTER.md
 </span></span></code></pre></div><p>看到了嗎？我們用 <code>@</code> 讀取舊檔案，下達修改指令，然後用 <code>></code> 將修改後的新版本，直接覆蓋掉舊檔案！這就是 AI 輔助的「原地重構」！</p><h3 id=方法二直接修改文件>方法二：直接修改文件</h3><p>打開剛剛生成的文件，直接針對需要修改的地方修改，修改完成後可以在請AI幫我們順過文件，將文件調整好。</p><h3 id=ai-生成文件範例>【AI 生成文件範例】</h3><p>在你與 AI 經過幾輪的迭代優化後，最終你會得到一份高品質的定稿文件，就像下面這樣：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown><span style=display:flex><span># 專案章程：心境軌跡 (MindTrack)
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#66d9ef>-</span> **版本**: 1.0
