@@ -6,6 +6,11 @@
         {{ if eq .Type "posts" }}
         <p class="text-base" style="color: var(--text-secondary);">
             發布於 {{ .Date.Format "2006年1月2日" }}
+            {{ if ne .Lastmod .Date }}
+            <span class="ml-2" style="color: var(--text-secondary); opacity: 0.8; font-size: 0.9em;">
+                (更新於 {{ .Lastmod.Format "2006年1月2日" }})
+            </span>
+            {{ end }}
             {{ with .Params.tags }}
             &middot; 
             {{/* --- ↓↓↓ 主要修改處 ↓↓↓ --- */}}
