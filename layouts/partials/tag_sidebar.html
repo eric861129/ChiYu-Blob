@@ -1,54 +1,86 @@
-<!-- Unified Desktop Sidebar -->
-<aside class="hidden lg:block lg:col-span-3">
-    <div class="sticky top-8 space-y-8">
-        
-        <!-- Calendar -->
-        {{ partial "calendar.html" . }}
-
-        <!-- Series -->
-        {{ with .Site.Taxonomies.series.ByCount }}
-        <div>
-            <h3 class="text-xl font-bold mb-4 pb-2 border-b" style="border-color: var(--border-color);">系列文章</h3>
-            <ul class="space-y-2">
-                {{ range . }}
-                <li>
-                    <a href="{{ .Page.Permalink }}" class="flex justify-between items-center transition-colors" style="color: var(--text-secondary);">
-                        <span>{{ .Page.Title }}</span>
-                        <span class="text-xs font-semibold ml-2 px-2 py-0.5 rounded-full" style="background-color: var(--border-color);">{{ .Count }}</span>
-                    </a>
-                </li>
-                {{ end }}
-            </ul>
-        </div>
-        {{ end }}
-
-        <!-- Social Links -->
-        {{ with .Site.Params.social }}
-        <div>
-            <h3 class="text-xl font-bold mb-4 pb-2 border-b" style="border-color: var(--border-color);">相關連結</h3>
-            <div class="flex flex-col space-y-3 mt-4">
-                {{ range $key, $value := . }}
-                <a href="{{ $value }}" target="_blank" rel="noopener noreferrer" class="capitalize transition-colors" style="color: var(--text-secondary);">
-                    <span>{{ $key }}</span>
-                </a>
-                {{ end }}
-            </div>
-        </div>
-        {{ end }}
-
-        <!-- Tag Cloud -->
-        <div>
-            <h3 class="text-xl font-bold mb-4 pb-2 border-b" style="border-color: var(--border-color);">所有標籤</h3>
-            <div class="flex flex-wrap gap-2">
-                {{ $tags := .Site.Taxonomies.tags.ByCount }}
-                {{ range $tags }}
-                <a href="{{ .Page.Permalink }}" class="tag-pill">
-                    {{ .Page.Title }}
-                    <span class="ml-1 opacity-75">{{ .Count }}</span>
-                </a>
-                {{ end }}
-            </div>
-        </div>
-
+<aside class="w-64 flex-shrink-0 lg:block pl-8">
+  <div class="sticky top-20" data-pagefind-ignore>
+    <div class="mb-8 text-center" data-pagefind-ignore>
+      <img src="{{ "/ChiYu-Blob/images/avatar.jpg" | relURL }}" alt="個人大頭貼"
+      class="w-32 h-32 rounded-full mx-auto object-cover border-2"
+      style="border-color: var(--border-color);" data-pagefind-ignore >
     </div>
+    {{ partial "calendar.html" . }}
+
+    <h3
+      class="text-xl font-bold mb-4 pb-2 border-b"
+      style="border-color: var(--border-color)"
+    >
+      所有標籤
+    </h3>
+    <div class="flex flex-wrap gap-2">
+      {{ range .Site.Taxonomies.tags.ByCount.Reverse }}
+      <a href="{{ .Page.RelPermalink }}" class="tag-pill">
+        {{ .Page.Title }}
+        <span class="ml-1 opacity-75">{{ .Count }}</span>
+      </a>
+      {{ end }}
+    </div>
+
+    {{ if .Site.Params.social }}
+    <div class="mt-8">
+      <h3
+        class="text-xl font-bold mb-4 pb-2 border-b"
+        style="border-color: var(--border-color)"
+      >
+        相關連結
+      </h3>
+      <div class="flex flex-col space-y-3 mt-4">
+        {{ range $name, $url := .Site.Params.social }}
+        <a
+          href="{{ $url }}"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="transition-colors"
+          style="color: var(--text-secondary); hover: var(--link-color)"
+        >
+          <span class="text-base">{{ $name }}</span>
+        </a>
+        {{ end }}
+      </div>
+    </div>
+    {{ end }} {{/* --- 新增：系列文章列表 --- */}} {{ with
+    .Site.Taxonomies.series.ByCount }}
+    <div class="mt-8">
+      <h3
+        class="text-xl font-bold mb-4 pb-2 border-b"
+        style="border-color: var(--border-color)"
+      >
+        系列文章
+      </h3>
+      <ul class="space-y-1">
+        {{ range . }}
+        <li>
+          <a href="{{ .Page.Permalink }}" class="flex justify-between">
+            <span>{{ .Page.Title }}</span>
+            <span class="text-sm">{{ .Count }}</span>
+          </a>
+        </li>
+        {{ end }}
+      </ul>
+    </div>
+    {{ end }} {{/* --- 新增：開源專案列表 --- */}} {{ $projects := where
+    site.RegularPages "Type" "in" "projects" }} {{ if $projects }}
+    <div class="mt-8">
+      <h3
+        class="text-xl font-bold mb-4 pb-2 border-b"
+        style="border-color: var(--border-color)"
+      >
+        開源專案
+      </h3>
+      <ul class="space-y-1">
+        {{ range $projects }}
+        <li>
+          <a href="{{ .Permalink }}">{{ .Title }}</a>
+        </li>
+        {{ end }}
+      </ul>
+    </div>
+    {{ end }}
+  </div>
 </aside>
