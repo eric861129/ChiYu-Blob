@@ -316,13 +316,21 @@ Show all 24 posts</button><style>#series-list-designpattern{max-height:300px;ove
 <span class=text-sm>1</span></a></li></ul></div></div></aside></div></aside><script>function initPagefind(){window.PagefindUI&&new PagefindUI({element:"#search",showSubResults:!1,baseUrl:"/ChiYu-Blob/",language:"zh-tw"})}</script><script src=/ChiYu-Blob/pagefind/pagefind-ui.js onload=initPagefind()></script><script type=module>
       import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs';
       
-      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default';
-      mermaid.initialize({ startOnLoad: true, theme: theme });
-      
+      document.addEventListener('DOMContentLoaded', async () => {
+        const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default';
+        mermaid.initialize({ startOnLoad: false, theme: theme });
+        
+        
+        await mermaid.run({
+          querySelector: '.mermaid'
+        });
+      });
+
       
       const themeToggle = document.getElementById('theme-toggle');
       if (themeToggle) {
           themeToggle.addEventListener('click', () => {
+             
              location.reload(); 
           });
       }
