@@ -1,33 +1,31 @@
-{{ define "main" }}
-
-{{/* --- Pagefind Indexing Hint --- */}}
-<div data-pagefind-body style="display:none;">
-    {{ .Content }}
-</div>
+{{ define "main" }} {{/* --- Pagefind Indexing Hint --- */}}
+<div data-pagefind-body style="display: none">{{ .Content }}</div>
 
 <div class="flex flex-row justify-center py-8 sm:py-12">
-    <div class="w-full max-w-6xl min-w-0">
-        {{ if and (gt .WordCount 400) .TableOfContents }}
-        <div class="flex flex-row gap-8 lg:gap-12">
-            <main class="w-full max-w-4xl min-w-0">
-                {{ partial "content-body.html" . }}
-            </main>
-            <aside class="post-toc-sidebar">
-                <div class="toc-sticky-container">
-                    <h3 class="toc-title">本文目錄</h3>
-                    {{ .TableOfContents }}
-                </div>
-            </aside>
+  <div class="w-full max-w-6xl min-w-0">
+    {{/* 檢查是否顯示目錄：字數 > 400 且 showToc != false 且 有目錄內容 */}} {{
+    if and (and (gt .WordCount 400) (ne .Params.showToc false)) .TableOfContents
+    }}
+    <div class="flex flex-row gap-8 lg:gap-12">
+      <main class="w-full max-w-4xl min-w-0">
+        {{ partial "content-body.html" . }}
+      </main>
+      <aside class="post-toc-sidebar">
+        <div class="toc-sticky-container">
+          <h3 class="toc-title">本文目錄</h3>
+          {{ .TableOfContents }}
         </div>
-        {{ else }}
-        <div class="flex justify-center">
-            <main class="w-full max-w-4xl min-w-0">
-                 {{ partial "content-body.html" . }}
-            </main>
-        </div>
-        {{ end }}
+      </aside>
     </div>
+    {{ else }}
+    <div class="flex justify-center">
+      <main class="w-full max-w-4xl min-w-0">
+        {{ partial "content-body.html" . }}
+      </main>
+    </div>
+    {{ end }}
+  </div>
 
-    {{ partial "tag_sidebar.html" . }}
+  {{ partial "tag_sidebar.html" . }}
 </div>
 {{ end }}

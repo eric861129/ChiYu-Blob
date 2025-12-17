@@ -8,6 +8,7 @@ series = ["Hugo 開發紀錄"]
 categories = ["開發工具"]
 weight = 1
 draft = false
+showToc = false
 description = "這是一篇給自己看的備忘錄，詳細記錄了撰寫新文章時所需的參數設定與用途。"
 +++
 
