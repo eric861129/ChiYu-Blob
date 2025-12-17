@@ -1,7 +1,9 @@
 {{ define "main" }}
-<div class="flex flex-row justify-center py-8">
-    <div class="w-full max-w-4xl min-w-0">
-        <main>
+<div class="py-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <!-- Main Content Area -->
+        <main class="lg:col-span-9">
             <section class="mb-12 sm:mb-16">
                 <header class="border-b pb-6 mb-6" style="border-color: var(--border-color);">
                     <h1 class="text-2xl sm:text-4xl font-bold tracking-tight">{{ .Title }}</h1>
@@ -10,27 +12,26 @@
 
             <section>
                 <div class="space-y-8">
-                    {{/* 先篩掉未來的文章，再以日期降冪、weight 升冪排序 */}}
                     {{ $sorted := sort (where .Pages "Date" "le" now) "Date" "desc" "Weight" "asc" }}
-                    {{/* 建立分頁器 */}}
                     {{ $paginator := .Paginate $sorted }}
-                    {{/* 依序顯示分頁內的文章 */}}
                     {{ range $paginator.Pages }}
                         {{ .Render "card" }}
                     {{ end }}
                 </div>
             </section>
 
-            {{/* 新增分頁導覽列 */}}
             {{ partial "pagination.html" . }}
         </main>
+
+        <!-- Unified Desktop Sidebar -->
+        <aside class="hidden lg:block lg:col-span-3">
+            <div class="sticky top-8 space-y-8">
+                {{ partial "sidebar.html" . }}
+                {{ partial "calendar.html" . }}
+                {{ partial "tag_sidebar.html" . }}
+            </div>
+        </aside>
+
     </div>
-    <div class="hidden lg:block lg:w-1/4 lg:ml-8">
-        <div class="sticky top-8 space-y-8">
-            {{ partial "sidebar.html" . }}
-            {{ partial "calendar.html" . }}
-        </div>
-    </div>
-    {{ partial "tag_sidebar.html" . }}
-    </div>
+</div>
 {{ end }}
