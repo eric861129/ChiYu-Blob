@@ -1,0 +1,10 @@
+{{- $type := .Get "type" | default "note" -}}
+{{- $title := .Get "title" -}}
+<div class="notice notice-{{ $type }}">
+    {{- if $title -}}
+    <div class="notice-title">{{ $title }}</div>
+    {{- end -}}
+    <div class="notice-content">
+        {{ .Inner | markdownify }}
+    </div>
+</div>

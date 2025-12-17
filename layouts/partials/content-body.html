@@ -11,6 +11,7 @@
                 (更新於 {{ .Lastmod.Format "2006年1月2日" }})
             </span>
             {{ end }}
+            &middot; <span class="mx-1">約 {{ .ReadingTime }} 分鐘閱讀</span>
             {{ with .Params.tags }}
             &middot; 
             {{/* --- ↓↓↓ 主要修改處 ↓↓↓ --- */}}
@@ -106,6 +107,9 @@
     </div>
 </div>
 {{ end }}
+
+{{ partial "share-buttons.html" . }}
+
 {{ if eq .Type "posts" }}
 <div id="giscus-container" class="mt-16 pt-8 border-t not-prose" style="border-color: var(--border-color);"></div>
 {{ end }}
