@@ -126,6 +126,24 @@
     </script>
     <script src="/ChiYu-Blob/pagefind/pagefind-ui.js" onload="initPagefind()"></script>
     
+    {{/* --- Mermaid JS Support --- */}}
+    {{ if .Store.Get "hasMermaid" }}
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs';
+      
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default';
+      mermaid.initialize({ startOnLoad: true, theme: theme });
+      
+      // Listen for theme changes to re-render mermaid diagrams (optional but nice)
+      const themeToggle = document.getElementById('theme-toggle');
+      if (themeToggle) {
+          themeToggle.addEventListener('click', () => {
+             location.reload(); // Simple way to re-render with new theme
+          });
+      }
+    </script>
+    {{ end }}
+
     <script>
          document.addEventListener('DOMContentLoaded', () => {
           // --- 閱讀進度條邏輯 ---
