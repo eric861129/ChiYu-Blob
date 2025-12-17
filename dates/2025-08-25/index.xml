@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2025-08-25 on ChiYu Code Journey</title><link>/ChiYu-Blob/dates/2025-08-25/</link><description>Recent content in 2025-08-25 on ChiYu Code Journey</description><generator>Hugo -- gohugo.io</generator><language>zh-TW</language><lastBuildDate>Mon, 25 Aug 2025 00:00:00 +0800</lastBuildDate><atom:link href="/ChiYu-Blob/dates/2025-08-25/index.xml" rel="self" type="application/rss+xml"/><item><title>Day 6: 【文件 #1】專案的靈魂：用 Gemini CLI 生成「專案章程」</title><link>/ChiYu-Blob/posts/2025ithomeironmanday6/</link><pubDate>Mon, 25 Aug 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday6/</guid><description>安安，我是 ChiYu！
+經過了五天的「前置作業」，我們的駕駛艙 (VS Code)、引擎 (Python)、魔法法杖 (Gemini CLI) 全都準備就緒了。是不是已經手癢難耐，準備大展身手了？
+別急！還記得我們的核心心法嗎？先有藍圖，再有魔法。
+今天，我們就要正式啟動專案，打響「左手藍圖」的第一槍！我們將完全在 VS Code 終端機內，為我們的太空船，設定好最初也最重要的航行座標。我們要來產出整個專案中，位階最高、最重要的一份文件——專案章程 (Project Charter)。
+Part 1：什麼是「專案章程」？它到底有多重要？ 「專案章程」…這名字聽起來好像很厲害、很嚴肅，但你別被它嚇到。
+你可以把它想像成這個專案的「出生證明」或「身分證」。它用最精簡的方式，回答了幾個最根本的問題：我們是誰？我們要去哪裡？我們要做什麼？以及，我們「不做」什麼？
+在團隊開發中，這份文件至關重要，因為它是：
+建立共識的基石：專案最怕的就是「我以為我們是要做A，結果你做的是B」。專案章程是第一份讓所有人（老闆、PM、工程師）都點頭同意的文件，確保大家從第一天起，對專案的想像就是一致的。 正式啟動的號角：在企業裡，一份被簽核的專案章程，代表著這個專案被「正式授權」。對我們來說，完成這份文件，就像是為自己舉辦一個開工儀式，代表我們對這個專案的承諾，從此刻起，它不再只是個空想。 未來決策的北極星：開發過程中，我們肯定會冒出各種新點子。這時候，我們就可以拿出專案章程來檢視：「這個新點子，符合我們的『願景』和『範圍』嗎？」它能幫助我們抵抗「範圍潛變 (Scope Creep)」這個專案的無聲殺手，確保我們能聚焦在核心價值上。 總之，在一頭熱地栽進去開發前，先把這份文件定義清楚，就像開車前先在 Google Maps 設定好目的地。它就是我們後續所有文件的最高指導原則。
+Part 2：實戰開始：在終端機中從無到有 接下來，就是見證奇蹟的時刻。我們將把腦中那個非常模糊的想法，透過與 Gemini CLI 的對話，直接在我們的專案中，生成一份專業文件。
+魔法的基礎：什麼是提示工程 (Prompt Engineering)？ 在我們詠唱第一個咒語之前，我們先來學習「咒語的文法」。與 AI 溝通，是一門藝術，也是一門科學，這就是所謂的「提示工程 (Prompt Engineering)」。
+你可以把它想像成你在對一個法力無邊的「許願精靈」下指令。
+糟糕的許願：「我想要變有錢！」 -&amp;gt; 精靈可能會給你一張樂透彩券，或是讓你家地下冒出處理起來很麻煩的石油。 優秀的許願：「請在今天下午三點前，將一百萬新台幣，以合法的銀行轉帳方式，存入我指定的銀行帳戶。」 看到了嗎？一個好的 Prompt，就像一個好的許願，它清晰、具體、有邊界、有上下文。這能大幅降低 AI「理解錯誤」或「自由發揮」的機率。
+根據業界的最佳實踐（例如 OpenAI 的官方文件），一個高品質的 Prompt 通常包含幾個關鍵要素，而這也正是我們接下來所有咒語的設計核心：
+1. 角色扮演 (Role-playing)：為 AI 賦予專家身份 這是最重要，也最容易被忽略的一點。在指令的開頭，先告訴 AI 他「是誰」。這會讓模型進入一個特定的知識領域與思考模式，產出的內容會更專業、更貼近你的需求。
+不好的指令: 幫我寫一個 Python 函式來驗證電子郵件。 好的指令: 你是一位資深的 Python 開發者，專長是後端開發與資料驗證。請幫我寫一個符合 RFC 5322 標準的 Python 函式來驗證電子郵件.</description></item></channel></rss>

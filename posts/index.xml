@@ -8,7 +8,7 @@
 內建亮色/暗色模式：自動偵測使用者系統的偏好設定，也可以讓訪客手動切換，非常貼心。 社群連結整合：想放你的 GitHub、LinkedIn 等連結？只要在設定檔裡填上你的帳號，就會自動出現在個人介紹區塊。 SEO 友善：專案已經幫你處理好基礎的搜尋引擎優化（SEO），讓你的內容更容易被 Google 等搜尋引擎找到。 響應式設計 (RWD)：無論你的訪客用的是電腦、平板還是手機，網站版面都能自動適應，提供最佳的閱讀體驗。 好！我想用！該如何開始？ 整個過程比你想像的還要簡單，大概可以分成以下幾步：
 第 1 步：準備環境 (若想在本機預覽) 如果你想在自己的電腦上看到網站的即時變化，需要先安裝兩樣東西：
 Git：用來抓取專案程式碼。 Hugo：用來產生網站的核心工具。（官方安裝說明 ） 第 2 步：把專案抓下來 打開你的終端機，輸入以下指令：
-git clone https://github.</description></item><item><title>Day 4: 【工具篇 #2】打造雲端保險庫：Git 與 GitHub 實戰</title><link>/ChiYu-Blob/posts/2025ithomeironmanday4/</link><pubDate>Sat, 23 Aug 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday4/</guid><description>安安，我是 ChiYu！
+git clone https://github.</description></item><item><title>Day 4: 【工具篇 #2】程式碼的時光機：Git 與 GitHub 版本控制</title><link>/ChiYu-Blob/posts/2025ithomeironmanday4/</link><pubDate>Sat, 23 Aug 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday4/</guid><description>安安，我是 ChiYu！
 昨天，我們扮演了「技師與軍火官」的角色，把我們的駕駛艙 (VS Code) 從毛胚屋打造成了精裝房，並備妥了所有核心的建材與燃料 (Python &amp;amp; Node.js)。
 我們的開發環境已經準備就緒，但在我們正式動工、蓋起萬丈高樓之前，還有一件至關重要的事要做：我們需要為我們的建築工地，安裝一套最頂級的「安全監控系統」與「時光倒流機器」。
 今天，我們就要來深入軟體開發中最最最重要的觀念——版本控制，並親手設定我們專案的「雲端保險庫」與「時光機總部」：Git 與 GitHub。
@@ -23,7 +23,19 @@ Git - 你的程式碼時光機 它是什麼：Git 是一個「版本控制系統
 1. 網站基本資訊 首先，打開 hugo.toml 檔案，找到並修改以下幾個關鍵欄位：
 baseURL: (最重要!) 這裡必須換成你未來部署網站的最終網址。如果是使用 GitHub Pages，通常會是 https://&amp;lt;你的GitHub帳號&amp;gt;.github.io/&amp;lt;你的專案名稱&amp;gt;/。 title: 你部落格的主要名稱，會顯示在瀏覽器分頁和網站標頭上。 [params] description: 網站的副標題或描述，會顯示在首頁的大標題下方。 [params.author] name: 你的名字或暱稱。 2. 你的社交連結 在 hugo.toml 中，有一個 [params.social] 區塊，你可以在這裡新增、刪除或修改你的社群媒體連結。
 # hugo.toml [params.social] GitHub = &amp;#34;https://github.com/eric861129&amp;#34; LinkedIn = &amp;#34;https://www.linkedin.com/in/chiyu-huang/&amp;#34; Threads = &amp;#34;https://www.threads.com/@chiyuisme&amp;#34; # 你也可以新增自己的，例如： # Twitter = &amp;#34;https://twitter.com/your_account&amp;#34; 3. 啟用你自己的留言區 (Giscus) 這個部落格模板整合了 Giscus 留言系統。為了讓讀者能在你的部落格留言，而不是在我的模板專案上，你必須進行設定：
-跟隨 Giscus 官網的教學，為你自己的 GitHub 專案啟用 Giscus。 將 hugo.toml 檔案中 [params.giscus] 的設定值，換成你在 Giscus 官網上取得的你自己的設定。 這些設定會被 layouts/_default/baseof.</description></item><item><title>搞懂設計模式到底是什麼？</title><link>/ChiYu-Blob/posts/%E6%90%9E%E6%87%82%E8%A8%AD%E8%A8%88%E6%A8%A1%E5%BC%8F%E5%88%B0%E5%BA%95%E6%98%AF%E4%BB%80%E9%BA%BC/</link><pubDate>Wed, 11 Jun 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/%E6%90%9E%E6%87%82%E8%A8%AD%E8%A8%88%E6%A8%A1%E5%BC%8F%E5%88%B0%E5%BA%95%E6%98%AF%E4%BB%80%E9%BA%BC/</guid><description>哈囉！最近我決定開始一個新的 Side Project，要來用比較輕鬆的方式跟大家分享一下什麼是「設計模式（Design Patterns）」。
+跟隨 Giscus 官網的教學，為你自己的 GitHub 專案啟用 Giscus。 將 hugo.toml 檔案中 [params.giscus] 的設定值，換成你在 Giscus 官網上取得的你自己的設定。 這些設定會被 layouts/_default/baseof.</description></item><item><title>Day 5: 【工具篇 #3】終端機裡的魔法：什麼是 Vibe Coding 與 Gemini CLI？</title><link>/ChiYu-Blob/posts/2025ithomeironmanday5/</link><pubDate>Sun, 24 Aug 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday5/</guid><description>安安，我是 ChiYu！
+昨天，我們完成了技師的工作，為我們的專案蓋好了雲端機棚 (GitHub)，也把駕駛艙 (VS Code) 裝潢得舒適又專業。硬體設施全部到位，現在，是時候為我們的專案注入真正的「靈魂」了。
+今天，我們將迎來本系列第一個令人心跳加速的轉捩點。我們不只要安裝「引擎」，我們還要學會詠唱「魔法的咒語」，真正地與 AI 對話，把我們的意念灌注到終端機之中！準備好迎接你的「魔法覺醒」了嗎？
+Part 1：到底什麼是「Vibe Coding」？ 最近你可能常常聽到 Vibe Coding 這個詞，但它到底是什麼意思？
+它不是什麼艱深的技術或框架，而是一種徹底顛覆傳統的開發風格或心態。
+這徹底顛覆了我們過去學習程式的模式。以前我們學的是機器的**「語法 (Syntax)」，現在我們學的是如何更精準地「表達意圖 (Intent)」**。你的中文能力，從未像此刻一樣，直接與你的生產力掛鉤。
+這就像你從一個樂手，變成了一個指揮家。你不用親自演奏每個樂器，你只需要揮舞你的指揮法杖，告訴整個樂團（AI），這一段要「雄壯激昂」、那一段要「溫柔婉約」。你負責定義**「氛圍 (Vibe)」**，AI 負責實現它。
+而我們今天要安裝的 Gemini CLI，就是我們的第一支客製化指揮法杖。
+Part 2：我們的魔法法杖：Gemini CLI，你的開源 AI 代理人 CLI 的全名是 Command Line Interface (命令列介面)。你不用害怕這個詞，它指的就是我們在 VS Code 裡打開的那個黑黑的、看起來很像駭客電影的「終端機」視窗。
+我們要介紹的 gemini-cli，根據 Google 官方的說法，它不只是一個工具，更是一個**「開源的 AI 代理人 (Open Source AI Agent)」**。這代表它是一個住在你終端機裡的智慧夥伴，可以幫你讀取檔案、存取網路、甚至與其他工具串接，來完成更複雜的任務。
+官方參考資料 對 gemini-cli 有興趣的讀者，可以直接參考它的官方 GitHub 倉庫與 Google 官方部落格文章：
+GitHub: https://github.com/google-gemini/gemini-cli Google Blog: https://blog.google/intl/zh-tw/products/cloud/gemini-cli-your-open-source-ai-agent/ Part 3：安裝與授權：法杖的鑄造與認主 好的，讓我們開始進行法杖的「鑄造與附魔」！
+Step 1：前置作業 - 準備 Node.</description></item><item><title>搞懂設計模式到底是什麼？</title><link>/ChiYu-Blob/posts/%E6%90%9E%E6%87%82%E8%A8%AD%E8%A8%88%E6%A8%A1%E5%BC%8F%E5%88%B0%E5%BA%95%E6%98%AF%E4%BB%80%E9%BA%BC/</link><pubDate>Wed, 11 Jun 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/%E6%90%9E%E6%87%82%E8%A8%AD%E8%A8%88%E6%A8%A1%E5%BC%8F%E5%88%B0%E5%BA%95%E6%98%AF%E4%BB%80%E9%BA%BC/</guid><description>哈囉！最近我決定開始一個新的 Side Project，要來用比較輕鬆的方式跟大家分享一下什麼是「設計模式（Design Patterns）」。
 等等先別跑！雖然聽起來很硬，但設計模式其實就是一些「前輩工程師們」留下來的解決問題的好方法。懂了這些，你的程式碼會變得更容易維護，更容易擴充，甚至看起來更專業！（聽起來是不是有點心動了？）
 這篇先帶你入個門，我們會聊聊設計模式的概念、分類，最後也會簡單列出一些常見好用的模式，讓你一次搞懂設計模式到底在幹嘛。
 🧐 所以，到底什麼是設計模式啊？ 簡單說，設計模式就像是程式設計師之間的「共通語言」。
@@ -42,10 +54,40 @@ baseURL: (最重要!) 這裡必須換成你未來部署網站的最終網址。�
 🚀 建立型模式（Creational） 單例模式（Singleton） 工廠方法模式（Factory Method） 抽象工廠模式（Abstract Factory） 原型模式（Prototype） 建造者模式（Builder） 📌 特點： 這一類幫你搞定物件的建立，讓你不用一直煩惱物件從哪裡來，要怎麼產生之類的問題。
 2. 結構型模式（Structural） 介面卡模式（Adapter） 橋接模式（Bridge） 組合模式（Composite） 裝飾者模式（Decorator） 外觀模式（Facade） 享元模式（Flyweight） 代理模式（Proxy） 📌 特點： 這些模式專門解決如何「拼裝」不同物件，讓你的程式更容易擴充、更有彈性。
 想像成在玩樂高，一個一個小零件組裝起來，最後變成超酷的東西！
-🚦 行為型模式（Behavioral） 責任鏈模式（Chain of Responsibility） 命令模式（Command） 解譯器模式（Interpreter） 迭代器模式（Iterator） 中介者模式（Mediator） 備忘錄模式（Memento） 觀察者模式（Observer） 狀態模式（State） 策略模式（Strategy） 模板方法模式（Template Method） 訪問者模式（Visitor） 📌 特點： 處理物件之間的「互動」。如果你常常覺得你的物件們關係很亂，溝通起來像在吵架，那這些模式就是你的救星！</description></item><item><title>單例模式：只要一個就夠！</title><link>/ChiYu-Blob/posts/%E5%96%AE%E4%BE%8B%E6%A8%A1%E5%BC%8F%E5%8F%AA%E8%A6%81%E4%B8%80%E5%80%8B%E5%B0%B1%E5%A4%A0/</link><pubDate>Thu, 12 Jun 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/%E5%96%AE%E4%BE%8B%E6%A8%A1%E5%BC%8F%E5%8F%AA%E8%A6%81%E4%B8%80%E5%80%8B%E5%B0%B1%E5%A4%A0/</guid><description>在上一篇文章中，我們簡單認識了什麼是「設計模式」。這次，就讓我們從最經典的「單例模式（Singleton）」開始，看看它究竟能為開發帶來什麼幫助吧！
+🚦 行為型模式（Behavioral） 責任鏈模式（Chain of Responsibility） 命令模式（Command） 解譯器模式（Interpreter） 迭代器模式（Iterator） 中介者模式（Mediator） 備忘錄模式（Memento） 觀察者模式（Observer） 狀態模式（State） 策略模式（Strategy） 模板方法模式（Template Method） 訪問者模式（Visitor） 📌 特點： 處理物件之間的「互動」。如果你常常覺得你的物件們關係很亂，溝通起來像在吵架，那這些模式就是你的救星！</description></item><item><title>Day 6: 【文件 #1】專案的靈魂：用 Gemini CLI 生成「專案章程」</title><link>/ChiYu-Blob/posts/2025ithomeironmanday6/</link><pubDate>Mon, 25 Aug 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday6/</guid><description>安安，我是 ChiYu！
+經過了五天的「前置作業」，我們的駕駛艙 (VS Code)、引擎 (Python)、魔法法杖 (Gemini CLI) 全都準備就緒了。是不是已經手癢難耐，準備大展身手了？
+別急！還記得我們的核心心法嗎？先有藍圖，再有魔法。
+今天，我們就要正式啟動專案，打響「左手藍圖」的第一槍！我們將完全在 VS Code 終端機內，為我們的太空船，設定好最初也最重要的航行座標。我們要來產出整個專案中，位階最高、最重要的一份文件——專案章程 (Project Charter)。
+Part 1：什麼是「專案章程」？它到底有多重要？ 「專案章程」…這名字聽起來好像很厲害、很嚴肅，但你別被它嚇到。
+你可以把它想像成這個專案的「出生證明」或「身分證」。它用最精簡的方式，回答了幾個最根本的問題：我們是誰？我們要去哪裡？我們要做什麼？以及，我們「不做」什麼？
+在團隊開發中，這份文件至關重要，因為它是：
+建立共識的基石：專案最怕的就是「我以為我們是要做A，結果你做的是B」。專案章程是第一份讓所有人（老闆、PM、工程師）都點頭同意的文件，確保大家從第一天起，對專案的想像就是一致的。 正式啟動的號角：在企業裡，一份被簽核的專案章程，代表著這個專案被「正式授權」。對我們來說，完成這份文件，就像是為自己舉辦一個開工儀式，代表我們對這個專案的承諾，從此刻起，它不再只是個空想。 未來決策的北極星：開發過程中，我們肯定會冒出各種新點子。這時候，我們就可以拿出專案章程來檢視：「這個新點子，符合我們的『願景』和『範圍』嗎？」它能幫助我們抵抗「範圍潛變 (Scope Creep)」這個專案的無聲殺手，確保我們能聚焦在核心價值上。 總之，在一頭熱地栽進去開發前，先把這份文件定義清楚，就像開車前先在 Google Maps 設定好目的地。它就是我們後續所有文件的最高指導原則。
+Part 2：實戰開始：在終端機中從無到有 接下來，就是見證奇蹟的時刻。我們將把腦中那個非常模糊的想法，透過與 Gemini CLI 的對話，直接在我們的專案中，生成一份專業文件。
+魔法的基礎：什麼是提示工程 (Prompt Engineering)？ 在我們詠唱第一個咒語之前，我們先來學習「咒語的文法」。與 AI 溝通，是一門藝術，也是一門科學，這就是所謂的「提示工程 (Prompt Engineering)」。
+你可以把它想像成你在對一個法力無邊的「許願精靈」下指令。
+糟糕的許願：「我想要變有錢！」 -&amp;gt; 精靈可能會給你一張樂透彩券，或是讓你家地下冒出處理起來很麻煩的石油。 優秀的許願：「請在今天下午三點前，將一百萬新台幣，以合法的銀行轉帳方式，存入我指定的銀行帳戶。」 看到了嗎？一個好的 Prompt，就像一個好的許願，它清晰、具體、有邊界、有上下文。這能大幅降低 AI「理解錯誤」或「自由發揮」的機率。
+根據業界的最佳實踐（例如 OpenAI 的官方文件），一個高品質的 Prompt 通常包含幾個關鍵要素，而這也正是我們接下來所有咒語的設計核心：
+1. 角色扮演 (Role-playing)：為 AI 賦予專家身份 這是最重要，也最容易被忽略的一點。在指令的開頭，先告訴 AI 他「是誰」。這會讓模型進入一個特定的知識領域與思考模式，產出的內容會更專業、更貼近你的需求。
+不好的指令: 幫我寫一個 Python 函式來驗證電子郵件。 好的指令: 你是一位資深的 Python 開發者，專長是後端開發與資料驗證。請幫我寫一個符合 RFC 5322 標準的 Python 函式來驗證電子郵件.</description></item><item><title>單例模式：只要一個就夠！</title><link>/ChiYu-Blob/posts/%E5%96%AE%E4%BE%8B%E6%A8%A1%E5%BC%8F%E5%8F%AA%E8%A6%81%E4%B8%80%E5%80%8B%E5%B0%B1%E5%A4%A0/</link><pubDate>Thu, 12 Jun 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/%E5%96%AE%E4%BE%8B%E6%A8%A1%E5%BC%8F%E5%8F%AA%E8%A6%81%E4%B8%80%E5%80%8B%E5%B0%B1%E5%A4%A0/</guid><description>在上一篇文章中，我們簡單認識了什麼是「設計模式」。這次，就讓我們從最經典的「單例模式（Singleton）」開始，看看它究竟能為開發帶來什麼幫助吧！
 ☕ 小故事：世界上只此一家 想像你開了一間只允許存在一個分店的咖啡廳，無論客人怎麼找，都只能到這家。單例模式的精神也差不多：確保整個應用程式裡只有同一個實例存在。
 🤔 什麼情境適合用 Singleton？ 系統設定：確保設定檔只有一份，避免各模組各自讀取產生混亂。 日誌記錄：統一紀錄進入點，不會讓檔案四散。 資料庫連線：集中管理連線、節省資源。 接下來的範例將以「系統設定」為主角，用 C# 程式碼示範 Singleton 的實作。
-💻 Singleton 類別 using System; /// &amp;lt;summary&amp;gt; /// 系統設定管理器，只允許產生一個實例 /// &amp;lt;/summary&amp;gt; public sealed class ConfigurationManager { // 保留唯一實例 private static ConfigurationManager _instance; // 執行緒鎖定物件，確保多執行緒環境下仍只會建立一次 private static readonly object _lock = new object(); /// &amp;lt;summary&amp;gt; /// 連線字串設定 /// &amp;lt;/summary&amp;gt; public string ConnectionString { get; private set; } // 建構子設為私有，阻止外部直接建立 private ConfigurationManager() { Console.WriteLine(&amp;#34;建立 ConfigurationManager 唯一實例&amp;#34;); // 模擬載入設定值 ConnectionString = &amp;#34;Server=myServer;Database=myDB;User Id=myUser;&amp;#34;; } /// &amp;lt;summary&amp;gt; /// 取得唯一實例的存取點 /// &amp;lt;/summary&amp;gt; public static ConfigurationManager Instance { get { if (_instance == null) { lock (_lock) { if (_instance == null) { _instance = new ConfigurationManager(); } } } return _instance; } } } 🚀 實際使用範例 using System; class Program { static void Main(string[] args) { // 第一次取得實例 ConfigurationManager config1 = ConfigurationManager.</description></item><item><title>工廠方法模式：點披薩不用親自下廚</title><link>/ChiYu-Blob/posts/%E5%B7%A5%E5%BB%A0%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F%E9%BB%9E%E6%8A%AB%E8%96%A9%E4%B8%8D%E7%94%A8%E8%A6%AA%E8%87%AA%E4%B8%8B%E5%BB%9A/</link><pubDate>Thu, 12 Jun 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/%E5%B7%A5%E5%BB%A0%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F%E9%BB%9E%E6%8A%AB%E8%96%A9%E4%B8%8D%E7%94%A8%E8%A6%AA%E8%87%AA%E4%B8%8B%E5%BB%9A/</guid><description>哈囉大家，接續上一次 Singleton 模式，這一次我們要介紹的是另一個超實用的模式：工廠方法模式（Factory Method）。
+💻 Singleton 類別 using System; /// &amp;lt;summary&amp;gt; /// 系統設定管理器，只允許產生一個實例 /// &amp;lt;/summary&amp;gt; public sealed class ConfigurationManager { // 保留唯一實例 private static ConfigurationManager _instance; // 執行緒鎖定物件，確保多執行緒環境下仍只會建立一次 private static readonly object _lock = new object(); /// &amp;lt;summary&amp;gt; /// 連線字串設定 /// &amp;lt;/summary&amp;gt; public string ConnectionString { get; private set; } // 建構子設為私有，阻止外部直接建立 private ConfigurationManager() { Console.WriteLine(&amp;#34;建立 ConfigurationManager 唯一實例&amp;#34;); // 模擬載入設定值 ConnectionString = &amp;#34;Server=myServer;Database=myDB;User Id=myUser;&amp;#34;; } /// &amp;lt;summary&amp;gt; /// 取得唯一實例的存取點 /// &amp;lt;/summary&amp;gt; public static ConfigurationManager Instance { get { if (_instance == null) { lock (_lock) { if (_instance == null) { _instance = new ConfigurationManager(); } } } return _instance; } } } 🚀 實際使用範例 using System; class Program { static void Main(string[] args) { // 第一次取得實例 ConfigurationManager config1 = ConfigurationManager.</description></item><item><title>Day 7: 【文件 #2】使用者的旅程：用 Gemini CLI 描繪「使用者故事」</title><link>/ChiYu-Blob/posts/2025ithomeironmanday7/</link><pubDate>Tue, 26 Aug 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday7/</guid><description>安安，我是 ChiYu！
+昨天，我們確立了專案的「北極星」——專案章程，並在 GitHub 上留下了第一個不可磨滅的印記。如果說昨天的「專案章程」是我們的**「戰略地圖」，告訴我們為何而戰、要攻下哪座城池。那今天，我們就要化身為「戰場指揮官」，繪製出士兵（使用者）在戰場上的具體「戰術路線圖」**。
+今天，我們將完全在終端機內，描繪這張地圖，產出兩份從「使用者視角」出發的關鍵文件：使用者故事 (User Stories) 與 使用者流程圖 (User Flowchart)。
+Part 1：什麼是「使用者故事」？ 別被「故事」這兩個字嚇到，我們不是要寫小說。使用者故事其實是一種在敏捷開發中，用來描述需求的強大工具。
+你可以把它想像成你在跟咖啡師點餐。你不會直接跟他說「給我咖啡因、水和牛奶的混合物」，你會說：
+身為 一個想提神的顧客 (使用者)，
+我想要 一杯大杯的熱拿鐵 (功能)，
+以便 讓我有精神撐過下午的會議 (價值)。
+看到這個格式的威力了嗎？它強迫我們停止用「工程師的語言」思考，而是用「使用者的語言」思考。一個好的使用者故事，包含了經典的「3C」要素：
+Card (卡片)：故事本身簡短扼要，像一張可以貼在牆上的便利貼。 Conversation (對話)：它不是一份冰冷的規格書，而是一個「邀請」，邀請你和 AI 針對這個需求進行對話，釐清細節。 Confirmation (確認)：這是最關鍵的一步！每個故事都應該伴隨著**「驗收條件 (Acceptance Criteria)」**，也就是一個非黑即白、不容狡辯的簡單清單，用來確認「怎樣才算完成了這個故事」。 Part 2：什麼是「使用者流程圖」與 Mermaid.js？ 如果說使用者故事是描述一個個「單點需求」，那「使用者流程圖」就是把這些點串連起來的「路線圖」。它用視覺化的方式，呈現使用者為了完成一個特定目標所需要經過的完整路徑。
+一張圖勝過千言萬語，但一張圖配上精闢的文字解說，才能確保所有人對這千言萬語的理解是完全一致的。
+而 Mermaid.js 就是一個能讓我們用「文字」來畫流程圖的神奇工具。因為是純文字，所以我們可以輕鬆地用 Git 進行版本控制，這對開發者來說再方便不過了！
+Mermaid的語法我暫時不花太多篇幅作介紹，感覺要介紹可以花一天的文章篇幅來完整介紹，在系列文章結束後我再來補充好了(挖坑給自己)！畢竟Mermaid.js 真的有他非常好用的地方，語法簡單直觀、便於版本控制、易於整合與維護而且還跨平台!!!
+Part 3：實戰開始：在終端機中扮演我們的產品經理 好了，理論課結束，讓我們再次召喚 Gemini CLI，請它繼續扮演我們的產品經理。
+Step 1：詠唱我們的魔法 (Craft the Prompt) 我們要讓 Gemini 直接讀取我們本地的「專案章程」，來確保我們的工作是基於最新、最正確的藍圖。
+打開 VS Code 終端機，詠唱我們的第二個「文件生成咒語」：
+【魔法詠唱：我們的 Prompt】 # 角色 (Role) 你是一位頂尖的產品經理 (PM)，擁有豐富的敏捷開發經驗，擅長將高階的專案目標，轉化為清晰、可執行的使用者故事與流程。你的產出兼具使用者同理心與技術可行性。 # 目標 (Objective) 我的目標是讓你將一份高階的「專案章程」分解為開發團隊可以立即投入工作的敏捷開發產物 (Agile Artifacts)，包含使用者故事和流程圖。 # 上下文 (Context) - **唯一的真相來源 (Single Source of Truth)**: 請將 @docs/PROJECT_CHARTER.</description></item><item><title>工廠方法模式：點披薩不用親自下廚</title><link>/ChiYu-Blob/posts/%E5%B7%A5%E5%BB%A0%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F%E9%BB%9E%E6%8A%AB%E8%96%A9%E4%B8%8D%E7%94%A8%E8%A6%AA%E8%87%AA%E4%B8%8B%E5%BB%9A/</link><pubDate>Thu, 12 Jun 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/%E5%B7%A5%E5%BB%A0%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F%E9%BB%9E%E6%8A%AB%E8%96%A9%E4%B8%8D%E7%94%A8%E8%A6%AA%E8%87%AA%E4%B8%8B%E5%BB%9A/</guid><description>哈囉大家，接續上一次 Singleton 模式，這一次我們要介紹的是另一個超實用的模式：工廠方法模式（Factory Method）。
 別看到「工廠」兩個字就開始緊張，其實它超簡單！讓我們先來個輕鬆的比喻吧：
 假設你今天去一家披薩店，店員跟你說：「告訴我你想吃什麼披薩，我們後面的廚師就會幫你做出來！」你不用在意披薩到底怎麼做，反正店家會處理好所有製作細節。這樣，你只要說出你想要的東西，剩下的交給專業的工廠就行。
 這就是「工廠方法模式」的核心精神啦！

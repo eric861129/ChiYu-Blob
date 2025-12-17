@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>User Stories on ChiYu Code Journey</title><link>/ChiYu-Blob/tags/user-stories/</link><description>Recent content in User Stories on ChiYu Code Journey</description><generator>Hugo -- gohugo.io</generator><language>zh-TW</language><lastBuildDate>Tue, 26 Aug 2025 00:00:00 +0800</lastBuildDate><atom:link href="/ChiYu-Blob/tags/user-stories/index.xml" rel="self" type="application/rss+xml"/><item><title>Day 7: 【文件 #2】使用者的旅程：用 Gemini CLI 描繪「使用者故事」</title><link>/ChiYu-Blob/posts/2025ithomeironmanday7/</link><pubDate>Tue, 26 Aug 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday7/</guid><description>安安，我是 ChiYu！
+昨天，我們確立了專案的「北極星」——專案章程，並在 GitHub 上留下了第一個不可磨滅的印記。如果說昨天的「專案章程」是我們的**「戰略地圖」，告訴我們為何而戰、要攻下哪座城池。那今天，我們就要化身為「戰場指揮官」，繪製出士兵（使用者）在戰場上的具體「戰術路線圖」**。
+今天，我們將完全在終端機內，描繪這張地圖，產出兩份從「使用者視角」出發的關鍵文件：使用者故事 (User Stories) 與 使用者流程圖 (User Flowchart)。
+Part 1：什麼是「使用者故事」？ 別被「故事」這兩個字嚇到，我們不是要寫小說。使用者故事其實是一種在敏捷開發中，用來描述需求的強大工具。
+你可以把它想像成你在跟咖啡師點餐。你不會直接跟他說「給我咖啡因、水和牛奶的混合物」，你會說：
+身為 一個想提神的顧客 (使用者)，
+我想要 一杯大杯的熱拿鐵 (功能)，
+以便 讓我有精神撐過下午的會議 (價值)。
+看到這個格式的威力了嗎？它強迫我們停止用「工程師的語言」思考，而是用「使用者的語言」思考。一個好的使用者故事，包含了經典的「3C」要素：
+Card (卡片)：故事本身簡短扼要，像一張可以貼在牆上的便利貼。 Conversation (對話)：它不是一份冰冷的規格書，而是一個「邀請」，邀請你和 AI 針對這個需求進行對話，釐清細節。 Confirmation (確認)：這是最關鍵的一步！每個故事都應該伴隨著**「驗收條件 (Acceptance Criteria)」**，也就是一個非黑即白、不容狡辯的簡單清單，用來確認「怎樣才算完成了這個故事」。 Part 2：什麼是「使用者流程圖」與 Mermaid.js？ 如果說使用者故事是描述一個個「單點需求」，那「使用者流程圖」就是把這些點串連起來的「路線圖」。它用視覺化的方式，呈現使用者為了完成一個特定目標所需要經過的完整路徑。
+一張圖勝過千言萬語，但一張圖配上精闢的文字解說，才能確保所有人對這千言萬語的理解是完全一致的。
+而 Mermaid.js 就是一個能讓我們用「文字」來畫流程圖的神奇工具。因為是純文字，所以我們可以輕鬆地用 Git 進行版本控制，這對開發者來說再方便不過了！
+Mermaid的語法我暫時不花太多篇幅作介紹，感覺要介紹可以花一天的文章篇幅來完整介紹，在系列文章結束後我再來補充好了(挖坑給自己)！畢竟Mermaid.js 真的有他非常好用的地方，語法簡單直觀、便於版本控制、易於整合與維護而且還跨平台!!!
+Part 3：實戰開始：在終端機中扮演我們的產品經理 好了，理論課結束，讓我們再次召喚 Gemini CLI，請它繼續扮演我們的產品經理。
+Step 1：詠唱我們的魔法 (Craft the Prompt) 我們要讓 Gemini 直接讀取我們本地的「專案章程」，來確保我們的工作是基於最新、最正確的藍圖。
+打開 VS Code 終端機，詠唱我們的第二個「文件生成咒語」：
+【魔法詠唱：我們的 Prompt】 # 角色 (Role) 你是一位頂尖的產品經理 (PM)，擁有豐富的敏捷開發經驗，擅長將高階的專案目標，轉化為清晰、可執行的使用者故事與流程。你的產出兼具使用者同理心與技術可行性。 # 目標 (Objective) 我的目標是讓你將一份高階的「專案章程」分解為開發團隊可以立即投入工作的敏捷開發產物 (Agile Artifacts)，包含使用者故事和流程圖。 # 上下文 (Context) - **唯一的真相來源 (Single Source of Truth)**: 請將 @docs/PROJECT_CHARTER.</description></item></channel></rss>

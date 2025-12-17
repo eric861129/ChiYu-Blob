@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2025-08-24 on ChiYu Code Journey</title><link>/ChiYu-Blob/dates/2025-08-24/</link><description>Recent content in 2025-08-24 on ChiYu Code Journey</description><generator>Hugo -- gohugo.io</generator><language>zh-TW</language><lastBuildDate>Sun, 24 Aug 2025 00:00:00 +0800</lastBuildDate><atom:link href="/ChiYu-Blob/dates/2025-08-24/index.xml" rel="self" type="application/rss+xml"/><item><title>Day 5: 【工具篇 #3】終端機裡的魔法：什麼是 Vibe Coding 與 Gemini CLI？</title><link>/ChiYu-Blob/posts/2025ithomeironmanday5/</link><pubDate>Sun, 24 Aug 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday5/</guid><description>安安，我是 ChiYu！
+昨天，我們完成了技師的工作，為我們的專案蓋好了雲端機棚 (GitHub)，也把駕駛艙 (VS Code) 裝潢得舒適又專業。硬體設施全部到位，現在，是時候為我們的專案注入真正的「靈魂」了。
+今天，我們將迎來本系列第一個令人心跳加速的轉捩點。我們不只要安裝「引擎」，我們還要學會詠唱「魔法的咒語」，真正地與 AI 對話，把我們的意念灌注到終端機之中！準備好迎接你的「魔法覺醒」了嗎？
+Part 1：到底什麼是「Vibe Coding」？ 最近你可能常常聽到 Vibe Coding 這個詞，但它到底是什麼意思？
+它不是什麼艱深的技術或框架，而是一種徹底顛覆傳統的開發風格或心態。
+這徹底顛覆了我們過去學習程式的模式。以前我們學的是機器的**「語法 (Syntax)」，現在我們學的是如何更精準地「表達意圖 (Intent)」**。你的中文能力，從未像此刻一樣，直接與你的生產力掛鉤。
+這就像你從一個樂手，變成了一個指揮家。你不用親自演奏每個樂器，你只需要揮舞你的指揮法杖，告訴整個樂團（AI），這一段要「雄壯激昂」、那一段要「溫柔婉約」。你負責定義**「氛圍 (Vibe)」**，AI 負責實現它。
+而我們今天要安裝的 Gemini CLI，就是我們的第一支客製化指揮法杖。
+Part 2：我們的魔法法杖：Gemini CLI，你的開源 AI 代理人 CLI 的全名是 Command Line Interface (命令列介面)。你不用害怕這個詞，它指的就是我們在 VS Code 裡打開的那個黑黑的、看起來很像駭客電影的「終端機」視窗。
+我們要介紹的 gemini-cli，根據 Google 官方的說法，它不只是一個工具，更是一個**「開源的 AI 代理人 (Open Source AI Agent)」**。這代表它是一個住在你終端機裡的智慧夥伴，可以幫你讀取檔案、存取網路、甚至與其他工具串接，來完成更複雜的任務。
+官方參考資料 對 gemini-cli 有興趣的讀者，可以直接參考它的官方 GitHub 倉庫與 Google 官方部落格文章：
+GitHub: https://github.com/google-gemini/gemini-cli Google Blog: https://blog.google/intl/zh-tw/products/cloud/gemini-cli-your-open-source-ai-agent/ Part 3：安裝與授權：法杖的鑄造與認主 好的，讓我們開始進行法杖的「鑄造與附魔」！
+Step 1：前置作業 - 準備 Node.</description></item></channel></rss>

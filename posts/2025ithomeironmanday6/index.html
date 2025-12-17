@@ -1,0 +1,462 @@
+<!doctype html><html lang=zh-tw><head><meta name=description content="今天，我們就要正式啟動專案，打響「左手藍圖」的第一槍！我們將完全在 VS Code 終端機內，為我們的太空船，設定好最初也最重要的航行座標。"><meta property="og:title" content="Day 6: 【文件 #1】專案的靈魂：用 Gemini CLI 生成「專案章程」"><meta property="og:description" content="今天，我們就要正式啟動專案，打響「左手藍圖」的第一槍！我們將完全在 VS Code 終端機內，為我們的太空船，設定好最初也最重要的航行座標。"><meta property="og:type" content="article"><meta property="og:url" content="/ChiYu-Blob/posts/2025ithomeironmanday6/"><meta name=twitter:card content="summary_large_image"><meta name=twitter:title content="Day 6: 【文件 #1】專案的靈魂：用 Gemini CLI 生成「專案章程」"><meta name=twitter:description content="今天，我們就要正式啟動專案，打響「左手藍圖」的第一槍！我們將完全在 VS Code 終端機內，為我們的太空船，設定好最初也最重要的航行座標。"><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Day 6: 【文件 #1】專案的靈魂：用 Gemini CLI 生成「專案章程」 | ChiYu Code Journey</title>
+<script>(function(){const e=localStorage.getItem("theme")||"dark";document.documentElement.setAttribute("data-theme",e)})()</script><script src=https://cdn.tailwindcss.com></script><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel=stylesheet><link href=/pagefind/pagefind-ui.css rel=stylesheet><link href="https://fonts.googleapis.com/css2?family=Chocolate+Classical+Sans&family=Edu+SA+Hand:wght@400..700&family=Inter:wght@400;500;600;700&display=swap" rel=stylesheet><link rel=icon type=image/jpeg href=/ChiYu-Blob/images/avatar.jpg><link rel=stylesheet href=/ChiYu-Blob/css/style.bundle.min.ff25b38a655942c39e72a789187e941c23c28cdf24f698e8823256e08e959326.css integrity="sha256-/yWzimVZQsOecqeJGH6UHCPCjN8k9pjogjJW4I6VkyY=" crossorigin=anonymous><style>#reading-progress-container{position:fixed;top:0;left:0;width:100%;height:3px;z-index:9999;background:0 0}#reading-progress-bar{height:100%;width:0%;background:linear-gradient(to right,#60a5fa,#2563eb);transition:width .1s ease-out}</style></head><body class=antialiased><div id=reading-progress-container><div id=reading-progress-bar></div></div><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><header class="flex justify-between items-center py-6 border-b" style=border-color:var(--border-color)><a href=/ChiYu-Blob/ class="text-xl sm:text-2xl font-bold" style=color:var(--text-color)>ChiYu Code Journey</a><nav class="flex items-center space-x-2 sm:space-x-4"><div id=search></div><a href=/ChiYu-Blob/ class="text-sm sm:text-base" style=color:var(--text-secondary)>首頁</a>
+<a href=/ChiYu-Blob/posts/ class="text-sm sm:text-base" style=color:var(--text-secondary)>文章</a>
+<a href=/ChiYu-Blob/about/ class="text-sm sm:text-base" style=color:var(--text-secondary)>關於</a>
+<button id=theme-toggle title=切換深色/淺色主題>
+<svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+<svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+</button>
+<button id=mobile-sidebar-toggle class=lg:hidden title=開啟側邊欄><svg class="w-6 h-6" fill="none" stroke="currentcolor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/></svg></button></nav></header><div data-pagefind-body style=display:none><p>安安，我是 ChiYu！</p><p>經過了五天的「前置作業」，我們的駕駛艙 (<code>VS Code</code>)、引擎 (<code>Python</code>)、魔法法杖 (<code>Gemini CLI</code>) 全都準備就緒了。是不是已經手癢難耐，準備大展身手了？</p><p>別急！還記得我們的核心心法嗎？<strong>先有藍圖，再有魔法。</strong></p><p>今天，我們就要正式啟動專案，打響「左手藍圖」的第一槍！我們將完全在 VS Code 終端機內，為我們的太空船，設定好最初也最重要的航行座標。我們要來產出整個專案中，位階最高、最重要的一份文件——<strong>專案章程 (Project Charter)</strong>。</p><h2 id=part-1什麼是專案章程它到底有多重要>Part 1：什麼是「專案章程」？它到底有多重要？</h2><p>「專案章程」…這名字聽起來好像很厲害、很嚴肅，但你別被它嚇到。</p><p>你可以把它想像成這個專案的「出生證明」或「身分證」。它用最精簡的方式，回答了幾個最根本的問題：<strong>我們是誰？我們要去哪裡？我們要做什麼？以及，我們「不做」什麼？</strong></p><p>在團隊開發中，這份文件至關重要，因為它是：</p><ul><li><strong>建立共識的基石</strong>：專案最怕的就是「我以為我們是要做A，結果你做的是B」。專案章程是第一份讓所有人（老闆、PM、工程師）都點頭同意的文件，確保大家從第一天起，對專案的想像就是一致的。</li><li><strong>正式啟動的號角</strong>：在企業裡，一份被簽核的專案章程，代表著這個專案被「正式授權」。對我們來說，完成這份文件，就像是為自己舉辦一個開工儀式，代表我們對這個專案的承諾，從此刻起，它不再只是個空想。</li><li><strong>未來決策的北極星</strong>：開發過程中，我們肯定會冒出各種新點子。這時候，我們就可以拿出專案章程來檢視：「這個新點子，符合我們的『願景』和『範圍』嗎？」它能幫助我們抵抗「<strong>範圍潛變 (Scope Creep)</strong>」這個專案的無聲殺手，確保我們能聚焦在核心價值上。</li></ul><p>總之，在一頭熱地栽進去開發前，先把這份文件定義清楚，就像開車前先在 Google Maps 設定好目的地。它就是我們後續所有文件的最高指導原則。</p><h2 id=part-2實戰開始在終端機中從無到有>Part 2：實戰開始：在終端機中從無到有</h2><p>接下來，就是見證奇蹟的時刻。我們將把腦中那個非常模糊的想法，透過與 Gemini CLI 的對話，直接在我們的專案中，生成一份專業文件。</p><h3 id=魔法的基礎什麼是提示工程-prompt-engineering>魔法的基礎：什麼是提示工程 (Prompt Engineering)？</h3><p>在我們詠唱第一個咒語之前，我們先來學習「咒語的文法」。與 AI 溝通，是一門藝術，也是一門科學，這就是所謂的「<strong>提示工程 (Prompt Engineering)</strong>」。</p><p>你可以把它想像成你在對一個法力無邊的「許願精靈」下指令。</p><ul><li><strong>糟糕的許願</strong>：「我想要變有錢！」 -> 精靈可能會給你一張樂透彩券，或是讓你家地下冒出處理起來很麻煩的石油。</li><li><strong>優秀的許願</strong>：「請在今天下午三點前，將一百萬新台幣，以合法的銀行轉帳方式，存入我指定的銀行帳戶。」</li></ul><p>看到了嗎？一個好的 Prompt，就像一個好的許願，它清晰、具體、有邊界、有上下文。這能大幅降低 AI「理解錯誤」或「自由發揮」的機率。</p><p>根據業界的最佳實踐（例如 OpenAI 的官方文件），一個高品質的 Prompt 通常包含幾個關鍵要素，而這也正是我們接下來所有咒語的設計核心：</p><h3 id=1-角色扮演-role-playing為-ai-賦予專家身份><strong>1. 角色扮演 (Role-playing)：為 AI 賦予專家身份</strong></h3><p>這是最重要，也最容易被忽略的一點。在指令的開頭，先告訴 AI 他「是誰」。這會讓模型進入一個特定的知識領域與思考模式，產出的內容會更專業、更貼近你的需求。</p><ul><li><strong>不好的指令</strong>: <code>幫我寫一個 Python 函式來驗證電子郵件。</code></li><li><strong>好的指令</strong>: <code>你是一位資深的 Python 開發者，專長是後端開發與資料驗證。請幫我寫一個符合 RFC 5322 標準的 Python 函式來驗證電子郵件...</code></li></ul><p>賦予角色後，AI 會自動調用與該角色相關的知識，例如程式碼風格、使用的函式庫、考慮的邊界情況等。</p><h3 id=2-清晰目標-clear-objective明確定義完成的標準><strong>2. 清晰目標 (Clear Objective)：明確定義「完成」的標準</strong></h3><p>你必須非常清楚地告訴 AI 你想要「什麼」。不要使用模糊的詞語，例如「好一點」、「優化一下」。</p><ul><li><strong>不好的指令</strong>: <code>讓這段程式碼跑快一點。</code></li><li><strong>好的指令</strong>: <code>你是一位專注於演算法與效能優化的 C++ 工程師。請分析以下這段 C++ 程式碼，找出效能瓶頸，並在不改變其核心邏輯的前提下，提出三種可以降低時間複雜度的重構建議。請解釋每一種建議的優缺點。</code></li></ul><h3 id=3-提供上下文-provide-context給予足夠的背景資訊><strong>3. 提供上下文 (Provide Context)：給予足夠的背景資訊</strong></h3><p>AI 不知道你的專案背景、程式碼架構或你的最終目的。你提供的上下文越豐富，他給出的答案就越精準。</p><ul><li><strong>需要提供的重要上下文包括：</strong><ul><li><strong>程式語言與框架</strong>：<code>我正在使用 Next.js 14 與 TypeScript...</code></li><li><strong>相關程式碼</strong>：貼上相關的 function、class 或檔案內容。</li><li><strong>錯誤訊息</strong>：完整貼上終端機的錯誤日誌 (Error Log)。</li><li><strong>目標與限制</strong>：<code>這個函式將會部署在記憶體只有 256MB 的 AWS Lambda 環境中，因此需要特別注意記憶體用量。</code></li><li><strong>專案結構</strong>：<code>我的專案目錄結構如下，請將新檔案放在 components/auth/ 資料夾中...</code></li></ul></li></ul><h3 id=4-設定限制與格式-constraints--formatting規範輸出方便使用><strong>4. 設定限制與格式 (Constraints & Formatting)：規範輸出，方便使用</strong></h3><p>告訴 AI 你「不想要」什麼，以及你希望他用什麼「格式」回覆你。這能省去你大量後續整理的時間。</p><ul><li><strong>限制 (Constraints)</strong>：<ul><li><code>請不要使用任何第三方函式庫。</code></li><li><code>程式碼風格必須遵循 PEP 8 規範。</code></li><li><code>解決方案中不能使用遞迴 (recursion)。</code></li></ul></li><li><strong>格式 (Formatting)</strong>：<ul><li><code>請用 Markdown 格式回覆。</code></li><li>`所有的程式碼區塊都必須明確標示語言，例如</li></ul></li></ul><pre tabindex=0><code class=language-python。 data-lang=python。>    - `請將你的解釋與程式碼範例分開。`
+    - `請以 JSON 格式輸出結果，key 必須包含 &#34;functionName&#34;, &#34;description&#34;, &#34;code&#34;。`
+
+### **5. 迭代與追問 (Iteration &amp; Follow-up)：像對話一樣逐步深入**
+
+不要期望一次就得到完美的答案。把與 AI 的互動看作一場對話。第一次的 Prompt 產出了 70 分的答案，你可以針對不足之處進行追問，逐步將答案優化到 100 分。
+
+- **範例對話流程**：
+    1. **你**: `(給予一個完整的初始 Prompt)`
+    2. **AI**: `(產生初步的程式碼)`
+    3. **你**: `這個方案很好，但請加入詳細的註解，解釋每一行的作用。`
+    4. **AI**: `(加入註解)`
+    5. **你**: `現在，請為這個函式撰寫三個單元測試案例，使用 pytest 框架，包含一個正常情況、一個邊界情況、跟一個錯誤情況的測試。`
+    6. **AI**: `(產生測試案例)`
+
+現在，讓我們用這個專業的「許願框架」，來詠唱我們的第一個創世咒語。
+
+### Step 1：詠唱「創世」咒語，生成第一版草稿
+
+1. 在 VS Code 的專案根目錄，先手動建立一個 `docs` 資料夾，我們未來所有的文件都會放在這裡。
+2. 打開終端機，詠唱我們的第一個「文件生成咒語」：
+
+### 【魔法詠唱：我們的 Prompt】
+
+```bash
+
+# 角色 (Role)
+你是一位頂尖的產品策略顧問，擁有十年以上成功推出 Web 應用程式的經驗，專長是將模糊的初始概念，轉化為清晰、可執行的專案計畫。你的思考兼具市場洞察力與技術可行性。
+
+# 目標 (Objective)
+我的任務是，請你根據我提供的專案初步構想，為我生成一份專業、完整、且具備策略高度的「專案章程 (Project Charter)」。
+
+---
+
+## 專案構想資訊 (Project Idea Details)
+
+* **專案核心想法**:
+    `我想做個能幫助使用者追蹤好習慣、記錄每日心情的 Web App。`
+
+* **目標使用者 (Target Audience)**:
+    `追求個人成長、希望提升自我覺察能力的年輕上班族與大專院校學生。他們通常對心理學、時間管理有興趣，但生活忙碌，需要一個簡單、無壓力的工具來幫助自己。`
+
+* **要解決的關鍵問題 (Problem to Solve)**:
+    `使用者常常感覺自己的情緒起伏不定，卻不清楚背後的原因。同時，他們嘗試建立良好習慣（如運動、冥想），卻因為缺乏持續的正向反饋而難以堅持。現有的工具要嘛功能太過繁雜，要嘛缺乏將「行為」與「感受」連結的洞察。`
+
+* **獨特價值主張 (Unique Value Proposition) (可選)**:
+    `我們的核心差異化在於「關聯性洞察」。應用程式會透過簡單的視覺化圖表，主動向使用者揭示他們的特定習慣與心情波動之間的正向或負向關聯，提供個人化的洞察，而不僅僅是數據記錄。`
+
+* **專案暫定名稱 (Working Title) (可選)**:
+    `心境軌跡 (MindTrack)`
+
+---
+
+## 你的任務與產出要求 (Your Task &amp; Output Requirements)
+
+1.  **生成文件**: 請將上述的構想資訊，擴寫成一份結構完整的專案章程。
+2.  **文件格式**: 必須使用 **Markdown** 格式。
+3.  **文件語言**: 繁體中文。
+4.  **文件大綱**: 請**嚴格遵從**以下大綱結構，並為每個段落產生具體的內容：
+    * **文件標題與版本資訊**: 包含版本號 1.0 與作者（產品策略顧問）。
+    * **專案願景 (Project Vision)**: 描繪一個鼓舞人心的未來藍圖，說明這個專案的終極理想。
+    * **主要目標 (Goals)**: 列出 2-3 個具體的、可衡量的、有時限的專案目標 (SMART Goals)。
+    * **成功衡量指標 (Success Metrics)**: 針對每個目標，提出量化的衡量指標（例如：使用者留存率、活躍使用者數、特定功能使用率）。
+    * **專案範圍 (Scope)**: 明確定義「範圍內 (In-Scope)」與「範圍外 (Out-of-Scope)」的事項，幫助團隊聚焦。
+    * **核心功能 (Core Features)**: 以項目符號列出構成最小可行性產品 (MVP) 的關鍵功能。
+    * **初步假設與風險 (Assumptions &amp; Risks)**: 列出專案成功所依賴的幾個關鍵假設，以及可能遇到的潛在風險。
+
+5.  **直接產出**: 請直接生成完整的 Markdown 文件檔案，命名為[PROJECT_CHARTER.md]後，放置於 @docs\** 資料夾內。
+</code></pre><h3 id=step-2審核迭代與分析>Step 2：審核、迭代與分析</h3><blockquote><p><strong>【重要心法】AI 不是上帝，你才是專案的主人</strong></p><p>AI 產出的內容，永遠都只是一份「草稿 (Draft)」。它是一個能力超強的實習生，幫我們完成了 80% 的工作，但最後那 20% 的審核、微調、與最終拍板，絕對要由我們自己來完成。</p></blockquote><h3 id=方法一用---指令直接修改>方法一：用 <code>@</code> 指令直接修改</h3><p>打開剛剛生成的 <code>PROJECT_CHARTER.md</code>，你可能覺得「主要目標」寫得不夠好。沒問題，我們直接命令 AI 修改它！</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>gemini <span style=color:#e6db74>&#34;請你檢視我附加的這份專案章程草稿。我覺得「主要目標 (Goals)」這個章節寫得不夠具體。請你幫我把這個章節，改寫得更符合 SMART 原則，然後輸出修改後的**完整**文件內容。&#34;</span> @docs/PROJECT_CHARTER.md &gt; docs/PROJECT_CHARTER.md
+</span></span></code></pre></div><p>看到了嗎？我們用 <code>@</code> 讀取舊檔案，下達修改指令，然後用 <code>></code> 將修改後的新版本，直接覆蓋掉舊檔案！這就是 AI 輔助的「原地重構」！</p><h3 id=方法二直接修改文件>方法二：直接修改文件</h3><p>打開剛剛生成的文件，直接針對需要修改的地方修改，修改完成後可以在請AI幫我們順過文件，將文件調整好。</p><h3 id=ai-生成文件範例>【AI 生成文件範例】</h3><p>在你與 AI 經過幾輪的迭代優化後，最終你會得到一份高品質的定稿文件，就像下面這樣：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown><span style=display:flex><span># 專案章程：心境軌跡 (MindTrack)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span> **版本**: 1.0
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span> **作者**: 產品策略顧問
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>---
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## 1. 專案願景 (Project Vision)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>我們的願景是，打造一個最直覺、最富有洞察力的個人成長工具。我們相信，真正的自我提升源於深刻的自我覺察。`心境軌跡 (MindTrack)` 將不僅僅是一個紀錄工具，而是每一位使用者專屬的數據分析師，透過揭示個人行為與內在感受之間的微妙聯繫，賦予他們改善生活品質的知識與力量，最終引導使用者走向一個更健康、更快樂、更有意識的生活方式。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## 2. 主要目標 (Goals)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>我們將專注於以下幾個關鍵的、可衡量的目標，以確保專案初期的成功：
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>1.</span>  <span style=font-weight:700>**產品開發目標**</span>: 在接下來的 <span style=font-weight:700>**3 個月內**</span>，成功開發並上線具備核心功能的最小可行性產品 (MVP)，確保其穩定性與核心價值主張的展現。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>2.</span>  <span style=font-weight:700>**市場驗證目標**</span>: 產品上線後的 <span style=font-weight:700>**6 個月內**</span>，吸引並累積 <span style=font-weight:700>**1,000 名活躍使用者**</span>，以驗證產品概念對目標市場（追求個人成長的年輕上班族與學生）的吸引力。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>3.</span>  <span style=font-weight:700>**價值主張驗證目標**</span>: 在上線後的 <span style=font-weight:700>**6 個月內**</span>，透過數據分析證明「關聯性洞察」功能能有效提升使用者參與度，目標是讓使用此功能的使用者 <span style=font-weight:700>**28 天留存率**相較於未使用者**提升 20%**</span>。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## 3. 成功衡量指標 (Success Metrics)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>為了客觀評估我們是否達成上述目標，我們將追蹤以下關鍵績效指標 (KPIs)：
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>| 主要目標 | 關鍵成功指標 (KPIs) |
+</span></span><span style=display:flex><span>| :--- | :--- |
+</span></span><span style=display:flex><span>| <span style=font-weight:700>**1. 產品開發**</span> | - <span style=font-weight:700>**上線時程**</span>: 專案是否在預算內及時程內（3 個月）完成 MVP 開發並部署。 &lt;<span style=color:#f92672>br</span>&gt; - <span style=font-weight:700>**程式錯誤率**</span>: 上線後一個月內的嚴重錯誤 (Critical Bugs) 數量低於 5 個。 |
+</span></span><span style=display:flex><span>| <span style=font-weight:700>**2. 市場驗證**</span> | - <span style=font-weight:700>**月活躍使用者 (MAU)**</span>: 第 6 個月結束時，MAU 達到或超過 1,000 人。 &lt;<span style=color:#f92672>br</span>&gt; - <span style=font-weight:700>**使用者註冊轉換率**</span>: 訪問首頁的使用者中，有 15% 完成註冊。 |
+</span></span><span style=display:flex><span>| <span style=font-weight:700>**3. 價值主張驗證**</span> | - <span style=font-weight:700>**28 天使用者留存率**</span>: 整體使用者 28 天留存率達到 10% 以上。 &lt;<span style=color:#f92672>br</span>&gt; - <span style=font-weight:700>**核心功能採用率**</span>: 至少 60% 的活躍使用者每週至少使用一次「關聯性洞察」圖表功能。 |
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## 4. 專案範圍 (Scope)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>為了集中資源、快速迭代，我們將嚴格定義本次 MVP 開發的範圍。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#### **範圍內 (In-Scope):**
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span>   <span style=font-weight:700>**使用者帳號系統**</span>: 包含註冊、登入、登出及基本的個人資料管理。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span>   <span style=font-weight:700>**每日習慣追蹤**</span>: 使用者可以自定義想要追蹤的每日習慣，並以簡單的「打勾」方式完成記錄。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span>   <span style=font-weight:700>**每日心情記錄**</span>: 提供一個簡單的介面（例如：1-5 分的評分量表），讓使用者快速記錄當日心情。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span>   <span style=font-weight:700>**關聯性洞察視覺化**</span>: 開發一個基礎的視覺化圖表，展示心情分數趨勢與特定習慣完成情況之間的關聯性。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span>   <span style=font-weight:700>**響應式網頁設計 (RWD)**</span>: 確保應用程式在桌面與行動裝置瀏覽器上皆有良好的使用體驗。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#### **範圍外 (Out-of-Scope):**
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span>   <span style=font-weight:700>**原生 App 開發 (iOS/Android)**</span>: MVP 階段將專注於 Web App。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span>   <span style=font-weight:700>**社交功能**</span>: 例如好友、分享、排行榜等功能。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span>   <span style=font-weight:700>**複雜目標設定**</span>: 例如設定每週目標、目標依賴性等進階功能。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span>   <span style=font-weight:700>**第三方服務整合**</span>: 例如與行事曆、穿戴式裝置的數據同步。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span>   <span style=font-weight:700>**AI 驅動的預測與建議**</span>: MVP 階段不包含自動化的智慧建議功能。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span>   <span style=font-weight:700>**內容或課程模組**</span>: 不提供冥想引導、文章閱讀等內容。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## 5. 核心功能 (Core Features)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>構成最小可行性產品 (MVP) 的具體功能列表如下：
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span>   <span style=font-style:italic>**</span>[使用者]** 可以透過 Email 和密碼建立一個新帳號。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span>   <span style=font-style:italic>**</span>[使用者]** 登入後，可以進入個人的主控台頁面。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span>   <span style=font-style:italic>**</span>[使用者]** 可以在主控台上新增、命名想要追蹤的習慣（例如：運動、閱讀、冥想）。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span>   <span style=font-style:italic>**</span>[使用者]** 每天可以針對已建立的習慣，點擊「完成」按鈕進行打卡。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span>   <span style=font-style:italic>**</span>[使用者]** 每天可以使用一個 1 到 5 的評分條來記錄自己的整體心情。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span>   <span style=font-style:italic>**</span>[使用者]** 可以選擇性地為當日心情添加一段簡短的文字註記。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span>   <span style=font-style:italic>**</span>[使用者]** 可以查看一個視覺化圖表，該圖表以時間軸呈現過去 30 天的心情分數曲線，並在圖表上標示出已完成特定習慣的日期，以供對照。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## 6. 初步假設與風險 (Assumptions &amp; Risks)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>我們認知到專案的成功建立在以下假設之上，並已識別潛在風險。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#### **主要假設 (Assumptions):**
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>1.</span>  <span style=font-weight:700>**使用者意願**</span>: 我們假設目標使用者有足夠的動機，願意為了獲得洞察而持續每日記錄他們的習慣與心情。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>2.</span>  <span style=font-weight:700>**數據價值**</span>: 我們假設透過簡單的數據疊加，確實能產生讓使用者感到「有價值」的關聯性洞察。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>3.</span>  <span style=font-weight:700>**平台選擇**</span>: 我們假設以 Web App 作為起點，足以觸及並服務我們的早期使用者，他們不強烈要求立即擁有原生 App。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#### **潛在風險 (Risks):**
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>1.</span>  <span style=font-weight:700>**使用者數據隱私疑慮 (高風險)**</span>: 使用者可能因擔心心情等敏感數據的隱私問題而卻步。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span> **應對策略**: 從第一天起就建立清晰、透明的隱私權政策。在技術上採用端到端加密，並在行銷上強調我們對數據安全的承諾。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>2.</span>  <span style=font-weight:700>**使用者黏著度不足 (高風險)**</span>: 使用者可能在初期因未立即看到價值，或覺得每日記錄過於繁瑣而放棄使用。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span> **應對策略**: 優化使用者體驗，讓記錄過程盡可能無摩擦。透過新手引導，快速展示產品的核心價值。設計溫和的提醒機制 (Email/推播)。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>3.</span>  <span style=font-weight:700>**洞察的有效性不足 (中風險)**</span>: 簡單的關聯性分析可能無法提供真正有意義的洞察，導致使用者失望。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span> **應對策略**: MVP 階段保持圖表簡單直觀，並收集使用者回饋。規劃在後續版本中引入更成熟的統計模型或允許使用者標記影響事件。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>4.</span>  <span style=font-weight:700>**市場競爭 (中風險)**</span>: 市場上已存在功能強大的習慣追蹤器或日記應用。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span> **應對策略**: 專注並強化我們的獨特價值主張——「習慣與心情的關聯性洞察」，並以此作為行銷和產品設計的核心。
+</span></span></code></pre></div><p>當然這邊主要目標列出的時間我們參考即可，這邊的時間是沒有AI輔助，純人工一個人當作SideProject逐步開發出來的時間或許真的就這麼花時間!這邊我就沒有特別調整(懶)，我們先將目標放在[最小可行性產品 (MVP)]。可以快速上線即可~</p><h2 id=part-3將我們的藍圖存檔-commit-to-github>Part 3：將我們的藍圖存檔 (Commit to GitHub)</h2><p>當你得到一份滿意的「定稿」版本後，是時候將它寫入專案的歷史了。</p><p><strong>提交變更 (Commit)：</strong></p><ol><li>點擊 VS Code 左側活動列的「原始碼管理」圖示。</li><li>在 <code>docs/PROJECT_CHARTER.md</code> 檔案名旁，點擊「+」號 (Stage Changes)。</li><li>在上方「Message」輸入框中，輸入訊息：<code>docs: Create initial project charter</code>。</li><li>點擊「V」打勾按鈕 (Commit)！</li></ol><p><strong>推送到雲端 (Push)：</strong></p><ol><li>點擊左下角狀態列的「同步變更」按鈕。</li></ol><p>現在，去你的 GitHub 倉庫頁面重新整理看看，<code>docs</code> 資料夾跟裡面的 <code>PROJECT_CHARTER.md</code> 是不是已經靜靜地躺在那裡了？</p><h2 id=結語不只是一份文件更是一份出航許可證>結語：不只是一份文件，更是一份出航許可證！</h2><p>恭喜！今天，我們完全在終端機內，從一個飄渺的想法，到手握一份專業的專案章程，並在 GitHub 上留下了第一個不可磨滅的印記。我們的太空船，不僅有了目的地，更有了一張正式的「出航許可證」！</p><p>有了專案的最高指導原則，下一步，我們就要來深入使用者的世界。明天，我們將繼續扮演產品經理，用 Gemini CLI 產出關鍵的「使用者故事 (User Stories)」與「流程圖」！</p></div><div class="flex flex-row justify-center py-8 sm:py-12"><div class="w-full max-w-6xl min-w-0"><div class="flex flex-row gap-8 lg:gap-12"><main class="w-full max-w-4xl min-w-0"><article class="prose max-w-none"><nav class="flex text-sm mb-6" aria-label=Breadcrumb><ol class="inline-flex items-center space-x-1 md:space-x-3"><li class="inline-flex items-center"><a href=/ChiYu-Blob/ class="inline-flex items-center hover:text-blue-600 dark:hover:text-blue-400" style=color:var(--text-secondary)><svg class="w-4 h-4 mr-2" fill="currentcolor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414.0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/></svg>
+首頁</a></li><li><div class="flex items-center"><svg class="w-4 h-4 mx-1" style="color:var(--text-secondary);opacity:.5" fill="currentcolor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414.0z" clip-rule="evenodd"/></svg>
+<a href=/ChiYu-Blob/posts/ class="ml-1 hover:text-blue-600 dark:hover:text-blue-400 capitalize" style=color:var(--text-secondary)>全部文章</a></div></li><li aria-current=page><div class="flex items-center"><svg class="w-4 h-4 mx-1" style="color:var(--text-secondary);opacity:.5" fill="currentcolor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414.0z" clip-rule="evenodd"/></svg>
+<span class="ml-1 font-medium truncate max-w-[150px] sm:max-w-[300px]" style=color:var(--text-color)>Day 6: 【文件 #1】專案的靈魂：用 Gemini CLI 生成「專案章程」</span></div></li></ol></nav><header class=mb-8><h1 class="text-2xl sm:text-4xl font-bold tracking-tight mb-4 !mt-0">Day 6: 【文件 #1】專案的靈魂：用 Gemini CLI 生成「專案章程」</h1><p class=text-base style=color:var(--text-secondary)>發布於 2025年8月25日
+<span class=ml-2 style=color:var(--text-secondary);opacity:.8;font-size:.9em>(更新於 2025年8月25日)
+</span>&#183;
+<span class="inline-flex flex-wrap gap-2 items-center" data-pagefind-ignore><a href=/ChiYu-Blob/tags/2025ithomeironman/ class=tag-pill>2025iThomeIronman</a>
+<a href=/ChiYu-Blob/tags/gemini/ class=tag-pill>Gemini</a>
+<a href=/ChiYu-Blob/tags/project-charter/ class=tag-pill>Project Charter</a>
+<a href=/ChiYu-Blob/tags/prompt-engineering/ class=tag-pill>Prompt Engineering</a>
+<a href=/ChiYu-Blob/tags/vibecoding/ class=tag-pill>VibeCoding</a></span></p></header><div data-pagefind-meta="title:Day 6: 【文件 #1】專案的靈魂：用 Gemini CLI 生成「專案章程」" style=display:none></div><div data-pagefind-ignore><p>安安，我是 ChiYu！</p><p>經過了五天的「前置作業」，我們的駕駛艙 (<code>VS Code</code>)、引擎 (<code>Python</code>)、魔法法杖 (<code>Gemini CLI</code>) 全都準備就緒了。是不是已經手癢難耐，準備大展身手了？</p><p>別急！還記得我們的核心心法嗎？<strong>先有藍圖，再有魔法。</strong></p><p>今天，我們就要正式啟動專案，打響「左手藍圖」的第一槍！我們將完全在 VS Code 終端機內，為我們的太空船，設定好最初也最重要的航行座標。我們要來產出整個專案中，位階最高、最重要的一份文件——<strong>專案章程 (Project Charter)</strong>。</p><h2 id=part-1什麼是專案章程它到底有多重要>Part 1：什麼是「專案章程」？它到底有多重要？</h2><p>「專案章程」…這名字聽起來好像很厲害、很嚴肅，但你別被它嚇到。</p><p>你可以把它想像成這個專案的「出生證明」或「身分證」。它用最精簡的方式，回答了幾個最根本的問題：<strong>我們是誰？我們要去哪裡？我們要做什麼？以及，我們「不做」什麼？</strong></p><p>在團隊開發中，這份文件至關重要，因為它是：</p><ul><li><strong>建立共識的基石</strong>：專案最怕的就是「我以為我們是要做A，結果你做的是B」。專案章程是第一份讓所有人（老闆、PM、工程師）都點頭同意的文件，確保大家從第一天起，對專案的想像就是一致的。</li><li><strong>正式啟動的號角</strong>：在企業裡，一份被簽核的專案章程，代表著這個專案被「正式授權」。對我們來說，完成這份文件，就像是為自己舉辦一個開工儀式，代表我們對這個專案的承諾，從此刻起，它不再只是個空想。</li><li><strong>未來決策的北極星</strong>：開發過程中，我們肯定會冒出各種新點子。這時候，我們就可以拿出專案章程來檢視：「這個新點子，符合我們的『願景』和『範圍』嗎？」它能幫助我們抵抗「<strong>範圍潛變 (Scope Creep)</strong>」這個專案的無聲殺手，確保我們能聚焦在核心價值上。</li></ul><p>總之，在一頭熱地栽進去開發前，先把這份文件定義清楚，就像開車前先在 Google Maps 設定好目的地。它就是我們後續所有文件的最高指導原則。</p><h2 id=part-2實戰開始在終端機中從無到有>Part 2：實戰開始：在終端機中從無到有</h2><p>接下來，就是見證奇蹟的時刻。我們將把腦中那個非常模糊的想法，透過與 Gemini CLI 的對話，直接在我們的專案中，生成一份專業文件。</p><h3 id=魔法的基礎什麼是提示工程-prompt-engineering>魔法的基礎：什麼是提示工程 (Prompt Engineering)？</h3><p>在我們詠唱第一個咒語之前，我們先來學習「咒語的文法」。與 AI 溝通，是一門藝術，也是一門科學，這就是所謂的「<strong>提示工程 (Prompt Engineering)</strong>」。</p><p>你可以把它想像成你在對一個法力無邊的「許願精靈」下指令。</p><ul><li><strong>糟糕的許願</strong>：「我想要變有錢！」 -> 精靈可能會給你一張樂透彩券，或是讓你家地下冒出處理起來很麻煩的石油。</li><li><strong>優秀的許願</strong>：「請在今天下午三點前，將一百萬新台幣，以合法的銀行轉帳方式，存入我指定的銀行帳戶。」</li></ul><p>看到了嗎？一個好的 Prompt，就像一個好的許願，它清晰、具體、有邊界、有上下文。這能大幅降低 AI「理解錯誤」或「自由發揮」的機率。</p><p>根據業界的最佳實踐（例如 OpenAI 的官方文件），一個高品質的 Prompt 通常包含幾個關鍵要素，而這也正是我們接下來所有咒語的設計核心：</p><h3 id=1-角色扮演-role-playing為-ai-賦予專家身份><strong>1. 角色扮演 (Role-playing)：為 AI 賦予專家身份</strong></h3><p>這是最重要，也最容易被忽略的一點。在指令的開頭，先告訴 AI 他「是誰」。這會讓模型進入一個特定的知識領域與思考模式，產出的內容會更專業、更貼近你的需求。</p><ul><li><strong>不好的指令</strong>: <code>幫我寫一個 Python 函式來驗證電子郵件。</code></li><li><strong>好的指令</strong>: <code>你是一位資深的 Python 開發者，專長是後端開發與資料驗證。請幫我寫一個符合 RFC 5322 標準的 Python 函式來驗證電子郵件...</code></li></ul><p>賦予角色後，AI 會自動調用與該角色相關的知識，例如程式碼風格、使用的函式庫、考慮的邊界情況等。</p><h3 id=2-清晰目標-clear-objective明確定義完成的標準><strong>2. 清晰目標 (Clear Objective)：明確定義「完成」的標準</strong></h3><p>你必須非常清楚地告訴 AI 你想要「什麼」。不要使用模糊的詞語，例如「好一點」、「優化一下」。</p><ul><li><strong>不好的指令</strong>: <code>讓這段程式碼跑快一點。</code></li><li><strong>好的指令</strong>: <code>你是一位專注於演算法與效能優化的 C++ 工程師。請分析以下這段 C++ 程式碼，找出效能瓶頸，並在不改變其核心邏輯的前提下，提出三種可以降低時間複雜度的重構建議。請解釋每一種建議的優缺點。</code></li></ul><h3 id=3-提供上下文-provide-context給予足夠的背景資訊><strong>3. 提供上下文 (Provide Context)：給予足夠的背景資訊</strong></h3><p>AI 不知道你的專案背景、程式碼架構或你的最終目的。你提供的上下文越豐富，他給出的答案就越精準。</p><ul><li><strong>需要提供的重要上下文包括：</strong><ul><li><strong>程式語言與框架</strong>：<code>我正在使用 Next.js 14 與 TypeScript...</code></li><li><strong>相關程式碼</strong>：貼上相關的 function、class 或檔案內容。</li><li><strong>錯誤訊息</strong>：完整貼上終端機的錯誤日誌 (Error Log)。</li><li><strong>目標與限制</strong>：<code>這個函式將會部署在記憶體只有 256MB 的 AWS Lambda 環境中，因此需要特別注意記憶體用量。</code></li><li><strong>專案結構</strong>：<code>我的專案目錄結構如下，請將新檔案放在 components/auth/ 資料夾中...</code></li></ul></li></ul><h3 id=4-設定限制與格式-constraints--formatting規範輸出方便使用><strong>4. 設定限制與格式 (Constraints & Formatting)：規範輸出，方便使用</strong></h3><p>告訴 AI 你「不想要」什麼，以及你希望他用什麼「格式」回覆你。這能省去你大量後續整理的時間。</p><ul><li><strong>限制 (Constraints)</strong>：<ul><li><code>請不要使用任何第三方函式庫。</code></li><li><code>程式碼風格必須遵循 PEP 8 規範。</code></li><li><code>解決方案中不能使用遞迴 (recursion)。</code></li></ul></li><li><strong>格式 (Formatting)</strong>：<ul><li><code>請用 Markdown 格式回覆。</code></li><li>`所有的程式碼區塊都必須明確標示語言，例如</li></ul></li></ul><pre tabindex=0><code class=language-python。 data-lang=python。>    - `請將你的解釋與程式碼範例分開。`
+    - `請以 JSON 格式輸出結果，key 必須包含 &#34;functionName&#34;, &#34;description&#34;, &#34;code&#34;。`
+
+### **5. 迭代與追問 (Iteration &amp; Follow-up)：像對話一樣逐步深入**
+
+不要期望一次就得到完美的答案。把與 AI 的互動看作一場對話。第一次的 Prompt 產出了 70 分的答案，你可以針對不足之處進行追問，逐步將答案優化到 100 分。
+
+- **範例對話流程**：
+    1. **你**: `(給予一個完整的初始 Prompt)`
+    2. **AI**: `(產生初步的程式碼)`
+    3. **你**: `這個方案很好，但請加入詳細的註解，解釋每一行的作用。`
+    4. **AI**: `(加入註解)`
+    5. **你**: `現在，請為這個函式撰寫三個單元測試案例，使用 pytest 框架，包含一個正常情況、一個邊界情況、跟一個錯誤情況的測試。`
+    6. **AI**: `(產生測試案例)`
+
+現在，讓我們用這個專業的「許願框架」，來詠唱我們的第一個創世咒語。
+
+### Step 1：詠唱「創世」咒語，生成第一版草稿
+
+1. 在 VS Code 的專案根目錄，先手動建立一個 `docs` 資料夾，我們未來所有的文件都會放在這裡。
+2. 打開終端機，詠唱我們的第一個「文件生成咒語」：
+
+### 【魔法詠唱：我們的 Prompt】
+
+```bash
+
+# 角色 (Role)
+你是一位頂尖的產品策略顧問，擁有十年以上成功推出 Web 應用程式的經驗，專長是將模糊的初始概念，轉化為清晰、可執行的專案計畫。你的思考兼具市場洞察力與技術可行性。
+
+# 目標 (Objective)
+我的任務是，請你根據我提供的專案初步構想，為我生成一份專業、完整、且具備策略高度的「專案章程 (Project Charter)」。
+
+---
+
+## 專案構想資訊 (Project Idea Details)
+
+* **專案核心想法**:
+    `我想做個能幫助使用者追蹤好習慣、記錄每日心情的 Web App。`
+
+* **目標使用者 (Target Audience)**:
+    `追求個人成長、希望提升自我覺察能力的年輕上班族與大專院校學生。他們通常對心理學、時間管理有興趣，但生活忙碌，需要一個簡單、無壓力的工具來幫助自己。`
+
+* **要解決的關鍵問題 (Problem to Solve)**:
+    `使用者常常感覺自己的情緒起伏不定，卻不清楚背後的原因。同時，他們嘗試建立良好習慣（如運動、冥想），卻因為缺乏持續的正向反饋而難以堅持。現有的工具要嘛功能太過繁雜，要嘛缺乏將「行為」與「感受」連結的洞察。`
+
+* **獨特價值主張 (Unique Value Proposition) (可選)**:
+    `我們的核心差異化在於「關聯性洞察」。應用程式會透過簡單的視覺化圖表，主動向使用者揭示他們的特定習慣與心情波動之間的正向或負向關聯，提供個人化的洞察，而不僅僅是數據記錄。`
+
+* **專案暫定名稱 (Working Title) (可選)**:
+    `心境軌跡 (MindTrack)`
+
+---
+
+## 你的任務與產出要求 (Your Task &amp; Output Requirements)
+
+1.  **生成文件**: 請將上述的構想資訊，擴寫成一份結構完整的專案章程。
+2.  **文件格式**: 必須使用 **Markdown** 格式。
+3.  **文件語言**: 繁體中文。
+4.  **文件大綱**: 請**嚴格遵從**以下大綱結構，並為每個段落產生具體的內容：
+    * **文件標題與版本資訊**: 包含版本號 1.0 與作者（產品策略顧問）。
+    * **專案願景 (Project Vision)**: 描繪一個鼓舞人心的未來藍圖，說明這個專案的終極理想。
+    * **主要目標 (Goals)**: 列出 2-3 個具體的、可衡量的、有時限的專案目標 (SMART Goals)。
+    * **成功衡量指標 (Success Metrics)**: 針對每個目標，提出量化的衡量指標（例如：使用者留存率、活躍使用者數、特定功能使用率）。
+    * **專案範圍 (Scope)**: 明確定義「範圍內 (In-Scope)」與「範圍外 (Out-of-Scope)」的事項，幫助團隊聚焦。
+    * **核心功能 (Core Features)**: 以項目符號列出構成最小可行性產品 (MVP) 的關鍵功能。
+    * **初步假設與風險 (Assumptions &amp; Risks)**: 列出專案成功所依賴的幾個關鍵假設，以及可能遇到的潛在風險。
+
+5.  **直接產出**: 請直接生成完整的 Markdown 文件檔案，命名為[PROJECT_CHARTER.md]後，放置於 @docs\** 資料夾內。
+</code></pre><h3 id=step-2審核迭代與分析>Step 2：審核、迭代與分析</h3><blockquote><p><strong>【重要心法】AI 不是上帝，你才是專案的主人</strong></p><p>AI 產出的內容，永遠都只是一份「草稿 (Draft)」。它是一個能力超強的實習生，幫我們完成了 80% 的工作，但最後那 20% 的審核、微調、與最終拍板，絕對要由我們自己來完成。</p></blockquote><h3 id=方法一用---指令直接修改>方法一：用 <code>@</code> 指令直接修改</h3><p>打開剛剛生成的 <code>PROJECT_CHARTER.md</code>，你可能覺得「主要目標」寫得不夠好。沒問題，我們直接命令 AI 修改它！</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>gemini <span style=color:#e6db74>&#34;請你檢視我附加的這份專案章程草稿。我覺得「主要目標 (Goals)」這個章節寫得不夠具體。請你幫我把這個章節，改寫得更符合 SMART 原則，然後輸出修改後的**完整**文件內容。&#34;</span> @docs/PROJECT_CHARTER.md &gt; docs/PROJECT_CHARTER.md
+</span></span></code></pre></div><p>看到了嗎？我們用 <code>@</code> 讀取舊檔案，下達修改指令，然後用 <code>></code> 將修改後的新版本，直接覆蓋掉舊檔案！這就是 AI 輔助的「原地重構」！</p><h3 id=方法二直接修改文件>方法二：直接修改文件</h3><p>打開剛剛生成的文件，直接針對需要修改的地方修改，修改完成後可以在請AI幫我們順過文件，將文件調整好。</p><h3 id=ai-生成文件範例>【AI 生成文件範例】</h3><p>在你與 AI 經過幾輪的迭代優化後，最終你會得到一份高品質的定稿文件，就像下面這樣：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown><span style=display:flex><span># 專案章程：心境軌跡 (MindTrack)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span> **版本**: 1.0
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span> **作者**: 產品策略顧問
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>---
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## 1. 專案願景 (Project Vision)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>我們的願景是，打造一個最直覺、最富有洞察力的個人成長工具。我們相信，真正的自我提升源於深刻的自我覺察。`心境軌跡 (MindTrack)` 將不僅僅是一個紀錄工具，而是每一位使用者專屬的數據分析師，透過揭示個人行為與內在感受之間的微妙聯繫，賦予他們改善生活品質的知識與力量，最終引導使用者走向一個更健康、更快樂、更有意識的生活方式。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## 2. 主要目標 (Goals)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>我們將專注於以下幾個關鍵的、可衡量的目標，以確保專案初期的成功：
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>1.</span>  <span style=font-weight:700>**產品開發目標**</span>: 在接下來的 <span style=font-weight:700>**3 個月內**</span>，成功開發並上線具備核心功能的最小可行性產品 (MVP)，確保其穩定性與核心價值主張的展現。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>2.</span>  <span style=font-weight:700>**市場驗證目標**</span>: 產品上線後的 <span style=font-weight:700>**6 個月內**</span>，吸引並累積 <span style=font-weight:700>**1,000 名活躍使用者**</span>，以驗證產品概念對目標市場（追求個人成長的年輕上班族與學生）的吸引力。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>3.</span>  <span style=font-weight:700>**價值主張驗證目標**</span>: 在上線後的 <span style=font-weight:700>**6 個月內**</span>，透過數據分析證明「關聯性洞察」功能能有效提升使用者參與度，目標是讓使用此功能的使用者 <span style=font-weight:700>**28 天留存率**相較於未使用者**提升 20%**</span>。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## 3. 成功衡量指標 (Success Metrics)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>為了客觀評估我們是否達成上述目標，我們將追蹤以下關鍵績效指標 (KPIs)：
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>| 主要目標 | 關鍵成功指標 (KPIs) |
+</span></span><span style=display:flex><span>| :--- | :--- |
+</span></span><span style=display:flex><span>| <span style=font-weight:700>**1. 產品開發**</span> | - <span style=font-weight:700>**上線時程**</span>: 專案是否在預算內及時程內（3 個月）完成 MVP 開發並部署。 &lt;<span style=color:#f92672>br</span>&gt; - <span style=font-weight:700>**程式錯誤率**</span>: 上線後一個月內的嚴重錯誤 (Critical Bugs) 數量低於 5 個。 |
+</span></span><span style=display:flex><span>| <span style=font-weight:700>**2. 市場驗證**</span> | - <span style=font-weight:700>**月活躍使用者 (MAU)**</span>: 第 6 個月結束時，MAU 達到或超過 1,000 人。 &lt;<span style=color:#f92672>br</span>&gt; - <span style=font-weight:700>**使用者註冊轉換率**</span>: 訪問首頁的使用者中，有 15% 完成註冊。 |
+</span></span><span style=display:flex><span>| <span style=font-weight:700>**3. 價值主張驗證**</span> | - <span style=font-weight:700>**28 天使用者留存率**</span>: 整體使用者 28 天留存率達到 10% 以上。 &lt;<span style=color:#f92672>br</span>&gt; - <span style=font-weight:700>**核心功能採用率**</span>: 至少 60% 的活躍使用者每週至少使用一次「關聯性洞察」圖表功能。 |
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## 4. 專案範圍 (Scope)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>為了集中資源、快速迭代，我們將嚴格定義本次 MVP 開發的範圍。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#### **範圍內 (In-Scope):**
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span>   <span style=font-weight:700>**使用者帳號系統**</span>: 包含註冊、登入、登出及基本的個人資料管理。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span>   <span style=font-weight:700>**每日習慣追蹤**</span>: 使用者可以自定義想要追蹤的每日習慣，並以簡單的「打勾」方式完成記錄。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span>   <span style=font-weight:700>**每日心情記錄**</span>: 提供一個簡單的介面（例如：1-5 分的評分量表），讓使用者快速記錄當日心情。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span>   <span style=font-weight:700>**關聯性洞察視覺化**</span>: 開發一個基礎的視覺化圖表，展示心情分數趨勢與特定習慣完成情況之間的關聯性。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span>   <span style=font-weight:700>**響應式網頁設計 (RWD)**</span>: 確保應用程式在桌面與行動裝置瀏覽器上皆有良好的使用體驗。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#### **範圍外 (Out-of-Scope):**
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span>   <span style=font-weight:700>**原生 App 開發 (iOS/Android)**</span>: MVP 階段將專注於 Web App。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span>   <span style=font-weight:700>**社交功能**</span>: 例如好友、分享、排行榜等功能。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span>   <span style=font-weight:700>**複雜目標設定**</span>: 例如設定每週目標、目標依賴性等進階功能。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span>   <span style=font-weight:700>**第三方服務整合**</span>: 例如與行事曆、穿戴式裝置的數據同步。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span>   <span style=font-weight:700>**AI 驅動的預測與建議**</span>: MVP 階段不包含自動化的智慧建議功能。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span>   <span style=font-weight:700>**內容或課程模組**</span>: 不提供冥想引導、文章閱讀等內容。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## 5. 核心功能 (Core Features)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>構成最小可行性產品 (MVP) 的具體功能列表如下：
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span>   <span style=font-style:italic>**</span>[使用者]** 可以透過 Email 和密碼建立一個新帳號。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span>   <span style=font-style:italic>**</span>[使用者]** 登入後，可以進入個人的主控台頁面。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span>   <span style=font-style:italic>**</span>[使用者]** 可以在主控台上新增、命名想要追蹤的習慣（例如：運動、閱讀、冥想）。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span>   <span style=font-style:italic>**</span>[使用者]** 每天可以針對已建立的習慣，點擊「完成」按鈕進行打卡。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span>   <span style=font-style:italic>**</span>[使用者]** 每天可以使用一個 1 到 5 的評分條來記錄自己的整體心情。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span>   <span style=font-style:italic>**</span>[使用者]** 可以選擇性地為當日心情添加一段簡短的文字註記。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span>   <span style=font-style:italic>**</span>[使用者]** 可以查看一個視覺化圖表，該圖表以時間軸呈現過去 30 天的心情分數曲線，並在圖表上標示出已完成特定習慣的日期，以供對照。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## 6. 初步假設與風險 (Assumptions &amp; Risks)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>我們認知到專案的成功建立在以下假設之上，並已識別潛在風險。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#### **主要假設 (Assumptions):**
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>1.</span>  <span style=font-weight:700>**使用者意願**</span>: 我們假設目標使用者有足夠的動機，願意為了獲得洞察而持續每日記錄他們的習慣與心情。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>2.</span>  <span style=font-weight:700>**數據價值**</span>: 我們假設透過簡單的數據疊加，確實能產生讓使用者感到「有價值」的關聯性洞察。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>3.</span>  <span style=font-weight:700>**平台選擇**</span>: 我們假設以 Web App 作為起點，足以觸及並服務我們的早期使用者，他們不強烈要求立即擁有原生 App。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#### **潛在風險 (Risks):**
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>1.</span>  <span style=font-weight:700>**使用者數據隱私疑慮 (高風險)**</span>: 使用者可能因擔心心情等敏感數據的隱私問題而卻步。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span> **應對策略**: 從第一天起就建立清晰、透明的隱私權政策。在技術上採用端到端加密，並在行銷上強調我們對數據安全的承諾。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>2.</span>  <span style=font-weight:700>**使用者黏著度不足 (高風險)**</span>: 使用者可能在初期因未立即看到價值，或覺得每日記錄過於繁瑣而放棄使用。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span> **應對策略**: 優化使用者體驗，讓記錄過程盡可能無摩擦。透過新手引導，快速展示產品的核心價值。設計溫和的提醒機制 (Email/推播)。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>3.</span>  <span style=font-weight:700>**洞察的有效性不足 (中風險)**</span>: 簡單的關聯性分析可能無法提供真正有意義的洞察，導致使用者失望。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span> **應對策略**: MVP 階段保持圖表簡單直觀，並收集使用者回饋。規劃在後續版本中引入更成熟的統計模型或允許使用者標記影響事件。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>4.</span>  <span style=font-weight:700>**市場競爭 (中風險)**</span>: 市場上已存在功能強大的習慣追蹤器或日記應用。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span> **應對策略**: 專注並強化我們的獨特價值主張——「習慣與心情的關聯性洞察」，並以此作為行銷和產品設計的核心。
+</span></span></code></pre></div><p>當然這邊主要目標列出的時間我們參考即可，這邊的時間是沒有AI輔助，純人工一個人當作SideProject逐步開發出來的時間或許真的就這麼花時間!這邊我就沒有特別調整(懶)，我們先將目標放在[最小可行性產品 (MVP)]。可以快速上線即可~</p><h2 id=part-3將我們的藍圖存檔-commit-to-github>Part 3：將我們的藍圖存檔 (Commit to GitHub)</h2><p>當你得到一份滿意的「定稿」版本後，是時候將它寫入專案的歷史了。</p><p><strong>提交變更 (Commit)：</strong></p><ol><li>點擊 VS Code 左側活動列的「原始碼管理」圖示。</li><li>在 <code>docs/PROJECT_CHARTER.md</code> 檔案名旁，點擊「+」號 (Stage Changes)。</li><li>在上方「Message」輸入框中，輸入訊息：<code>docs: Create initial project charter</code>。</li><li>點擊「V」打勾按鈕 (Commit)！</li></ol><p><strong>推送到雲端 (Push)：</strong></p><ol><li>點擊左下角狀態列的「同步變更」按鈕。</li></ol><p>現在，去你的 GitHub 倉庫頁面重新整理看看，<code>docs</code> 資料夾跟裡面的 <code>PROJECT_CHARTER.md</code> 是不是已經靜靜地躺在那裡了？</p><h2 id=結語不只是一份文件更是一份出航許可證>結語：不只是一份文件，更是一份出航許可證！</h2><p>恭喜！今天，我們完全在終端機內，從一個飄渺的想法，到手握一份專業的專案章程，並在 GitHub 上留下了第一個不可磨滅的印記。我們的太空船，不僅有了目的地，更有了一張正式的「出航許可證」！</p><p>有了專案的最高指導原則，下一步，我們就要來深入使用者的世界。明天，我們將繼續扮演產品經理，用 Gemini CLI 產出關鍵的「使用者故事 (User Stories)」與「流程圖」！</p></div></article><div class="not-prose my-8 p-6 rounded-lg border transition-colors" style=background-color:var(--code-bg);border-color:var(--border-color)><div class="flex flex-col sm:flex-row sm:items-center justify-between mb-4 pb-4 border-b" style=border-color:var(--border-color)><div><span class="text-xs font-semibold uppercase tracking-wider" style=color:var(--text-secondary)>Series</span><h3 class="text-lg font-bold mt-1"><a href=/ChiYu-Blob/series/2025ithomeironman/ class=hover:underline style=color:var(--link-color)>2025iThomeIronman</a></h3></div><div class="mt-2 sm:mt-0 text-sm font-medium px-3 py-1 rounded-full border" style=background-color:var(--bg-color);color:var(--text-secondary);border-color:var(--border-color)>Part 3 of 7</div></div><div class="series-list-container relative"><ol class="list-none space-y-1 relative" id=series-list-2025ithomeironman><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday4/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">01.</span>
+<span>Day 4: 【工具篇 #2】程式碼的時光機：Git 與 GitHub 版本控制</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday5/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">02.</span>
+<span>Day 5: 【工具篇 #3】終端機裡的魔法：什麼是 Vibe Coding 與 Gemini CLI？</span></a></li><li class="series-item p-2 rounded-md transition-colors current-series-item" style="background-color:var(--bg-color);border:1px solid var(--border-color)"><a href=javascript:void(0); class="flex items-start cursor-default" style=color:var(--text-color)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">03.</span>
+<span class=font-bold>Day 6: 【文件 #1】專案的靈魂：用 Gemini CLI 生成「專案章程」</span>
+<span class="ml-2 text-xs px-2 py-0.5 rounded-full bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">Current</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday7/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">04.</span>
+<span>Day 7: 【文件 #2】使用者的旅程：用 Gemini CLI 描繪「使用者故事」</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday3/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">05.</span>
+<span>Day 3: 【工具篇 #1】萬丈高樓平地起：建置本地開發環境</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday2/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">06.</span>
+<span>Day 2: 【心法篇】開發者的航海圖：什麼是文件驅動開發 (DDD)？</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday1/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">07.</span>
+<span>Day 1: 【啟程】嘿，AI！我們來做個網站，但這次，我們約法三章</span></a></li></ol><button onclick=toggleSeriesList(this) class="w-full mt-4 text-xs font-medium text-center py-2 border-t hover:bg-opacity-50 transition-colors" style=color:var(--text-secondary);border-color:var(--border-color)>
+Show all 7 posts</button><style>#series-list-2025ithomeironman{max-height:300px;overflow-y:auto;padding-right:5px}#series-list-2025ithomeironman::-webkit-scrollbar{width:4px}#series-list-2025ithomeironman::-webkit-scrollbar-track{background:0 0}#series-list-2025ithomeironman::-webkit-scrollbar-thumb{background-color:var(--border-color);border-radius:4px}</style></div></div><script>function toggleSeriesList(e){const t=e.previousElementSibling;t.style.maxHeight==="none"?(t.style.maxHeight="300px",e.innerText="Show all 7 posts"):(t.style.maxHeight="none",e.innerText="Collapse list")}document.addEventListener("DOMContentLoaded",()=>{const e=document.querySelector(".current-series-item");e&&e.scrollIntoView({behavior:"smooth",block:"nearest"})})</script><nav class="flex justify-between mt-16 pt-8 border-t not-prose" style=border-color:var(--border-color)><div><a href=/ChiYu-Blob/posts/2025ithomeironmanday5/ class="block p-4 rounded-lg transition-colors" style=color:var(--text-secondary)><span class=text-sm>上一篇</span>
+<span class="block font-semibold mt-1" style=color:var(--text-color)>Day 5: 【工具篇 #3】終端機裡的魔法：什麼是 Vibe Coding 與 Gemini CLI？ &larr;</span></a></div><div class=text-right><a href=/ChiYu-Blob/posts/2025ithomeironmanday7/ class="block p-4 rounded-lg transition-colors" style=color:var(--text-secondary)><span class=text-sm>下一篇</span>
+<span class="block font-semibold mt-1" style=color:var(--text-color)>&rarr; Day 7: 【文件 #2】使用者的旅程：用 Gemini CLI 描繪「使用者故事」</span></a></div></nav><div class="mt-16 pt-8 border-t not-prose" style=border-color:var(--border-color)><h3 class="text-xl font-bold mb-6">相關文章</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-4"><a href=/ChiYu-Blob/posts/2025ithomeironmanday5/ class="block p-4 rounded-lg transition-colors" style="border:1px solid var(--border-color)"><span class="font-semibold block" style=color:var(--text-color)>Day 5: 【工具篇 #3】終端機裡的魔法：什麼是 Vibe Coding 與 Gemini CLI？</span><p class="text-sm mt-1" style=color:var(--text-secondary)>安安，我是 ChiYu！
+昨天，我們完成了技師的工作，為我們的專案蓋好了雲端機棚 (GitHub)，也把駕駛艙 (VS Code) 裝潢得舒 …</p></a><a href=/ChiYu-Blob/posts/2025ithomeironmanday7/ class="block p-4 rounded-lg transition-colors" style="border:1px solid var(--border-color)"><span class="font-semibold block" style=color:var(--text-color)>Day 7: 【文件 #2】使用者的旅程：用 Gemini CLI 描繪「使用者故事」</span><p class="text-sm mt-1" style=color:var(--text-secondary)>安安，我是 ChiYu！
+昨天，我們確立了專案的「北極星」——專案章程，並在 GitHub 上留下了第一個不可磨滅的印記。如果說昨天的「專案 …</p></a><a href=/ChiYu-Blob/posts/2025ithomeironmanday4/ class="block p-4 rounded-lg transition-colors" style="border:1px solid var(--border-color)"><span class="font-semibold block" style=color:var(--text-color)>Day 4: 【工具篇 #2】程式碼的時光機：Git 與 GitHub 版本控制</span><p class="text-sm mt-1" style=color:var(--text-secondary)>安安，我是 ChiYu！
+昨天，我們扮演了「技師與軍火官」的角色，把我們的駕駛艙 (VS Code) 從毛胚屋打造成了精裝房，並備妥了所有核 …</p></a><a href=/ChiYu-Blob/posts/2025ithomeironmanday3/ class="block p-4 rounded-lg transition-colors" style="border:1px solid var(--border-color)"><span class="font-semibold block" style=color:var(--text-color)>Day 3: 【工具篇 #1】萬丈高樓平地起：建置本地開發環境</span><p class="text-sm mt-1" style=color:var(--text-secondary)>安安，我是 ChiYu！
+昨天，我們在腦中畫好了宏偉的建築藍圖 (DDD)，確立了「文件驅動開發」這個核心心法。今天，理論課結束，我們要開始 …</p></a><a href=/ChiYu-Blob/posts/2025ithomeironmanday2/ class="block p-4 rounded-lg transition-colors" style="border:1px solid var(--border-color)"><span class="font-semibold block" style=color:var(--text-color)>Day 2: 【心法篇】開發者的航海圖：什麼是文件驅動開發 (DDD)？</span><p class="text-sm mt-1" style=color:var(--text-secondary)>嘿，大家好啊！我是 ChiYu。
+昨天聊到 AI 開發，一不小心就把小小的「腳踏車」專案搞成一艘「航空母艦」，超頭痛的對吧？這種「AI 太能 …</p></a></div></div><div id=giscus-container class="mt-16 pt-8 border-t not-prose" style=border-color:var(--border-color)></div></main><aside class=post-toc-sidebar><div class=toc-sticky-container><h3 class=toc-title>本文目錄</h3><nav id=TableOfContents><ul><li><a href=#part-1什麼是專案章程它到底有多重要>Part 1：什麼是「專案章程」？它到底有多重要？</a></li><li><a href=#part-2實戰開始在終端機中從無到有>Part 2：實戰開始：在終端機中從無到有</a><ul><li><a href=#魔法的基礎什麼是提示工程-prompt-engineering>魔法的基礎：什麼是提示工程 (Prompt Engineering)？</a></li><li><a href=#1-角色扮演-role-playing為-ai-賦予專家身份><strong>1. 角色扮演 (Role-playing)：為 AI 賦予專家身份</strong></a></li><li><a href=#2-清晰目標-clear-objective明確定義完成的標準><strong>2. 清晰目標 (Clear Objective)：明確定義「完成」的標準</strong></a></li><li><a href=#3-提供上下文-provide-context給予足夠的背景資訊><strong>3. 提供上下文 (Provide Context)：給予足夠的背景資訊</strong></a></li><li><a href=#4-設定限制與格式-constraints--formatting規範輸出方便使用><strong>4. 設定限制與格式 (Constraints & Formatting)：規範輸出，方便使用</strong></a></li><li><a href=#step-2審核迭代與分析>Step 2：審核、迭代與分析</a></li><li><a href=#方法一用---指令直接修改>方法一：用 <code>@</code> 指令直接修改</a></li><li><a href=#方法二直接修改文件>方法二：直接修改文件</a></li><li><a href=#ai-生成文件範例>【AI 生成文件範例】</a></li></ul></li><li><a href=#part-3將我們的藍圖存檔-commit-to-github>Part 3：將我們的藍圖存檔 (Commit to GitHub)</a></li><li><a href=#結語不只是一份文件更是一份出航許可證>結語：不只是一份文件，更是一份出航許可證！</a></li></ul></nav></div></aside></div></div><aside class="w-64 flex-shrink-0 lg:block pl-8"><div class="sticky top-20" data-pagefind-ignore><div class="mb-8 text-center" data-pagefind-ignore><img src=/ChiYu-Blob/images/avatar.jpg alt=個人大頭貼 class="w-32 h-32 rounded-full mx-auto object-cover border-2" style=border-color:var(--border-color) data-pagefind-ignore></div><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>文章月曆</h3><div id=calendar-widget><div class="flex justify-between items-center mb-2 font-semibold"><button id=cal-prev title=上個月 class="px-2 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700">&lt;</button>
+<span id=cal-month-year></span>
+<button id=cal-next title=下個月 class="px-2 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700">></button></div><div class="grid grid-cols-7 text-center text-xs gap-y-2" style=color:var(--text-secondary)><span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span></div><div id=cal-days class="grid grid-cols-7 text-center text-sm mt-2 gap-y-2"></div></div></div><script>document.addEventListener("DOMContentLoaded",function(){const e={};e["2025-12-17"]="/ChiYu-Blob/dates/2025-12-17/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-8-23"]="/ChiYu-Blob/dates/2025-08-23/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-8-24"]="/ChiYu-Blob/dates/2025-08-24/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-8-25"]="/ChiYu-Blob/dates/2025-08-25/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-26"]="/ChiYu-Blob/dates/2025-08-26/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-7-3"]="/ChiYu-Blob/dates/2025-07-03/",e["2025-8-22"]="/ChiYu-Blob/dates/2025-08-22/",e["2025-8-21"]="/ChiYu-Blob/dates/2025-08-21/",e["2025-8-20"]="/ChiYu-Blob/dates/2025-08-20/",e["2025-6-8"]="/ChiYu-Blob/dates/2025-06-08/",e["2025-6-5"]="/ChiYu-Blob/dates/2025-06-05/";const o=document.getElementById("cal-month-year"),n=document.getElementById("cal-days"),i=document.getElementById("cal-prev"),a=document.getElementById("cal-next");let t=new Date;function s(t){const s=t.getFullYear(),i=t.getMonth();o.textContent=`${s} 年 ${i+1} 月`,n.innerHTML="";const a=new Date(s,i,1),r=new Date(s,i+1,0),c=a.getDay();for(let e=0;e<c;e++)n.insertAdjacentHTML("beforeend","<div></div>");for(let t=1;t<=r.getDate();t++){const o=`${s}-${i+1}-${t}`;e[o]?n.insertAdjacentHTML("beforeend",`
+                    <a href="${e[o]}" class="block p-1 rounded-full transition-colors font-bold" style="color: var(--link-color); text-decoration: underline; text-decoration-thickness: 2px;">
+                        ${t}
+                    </a>
+                `):n.insertAdjacentHTML("beforeend",`<span class="block p-1">${t}</span>`)}}i.addEventListener("click",()=>{t.setMonth(t.getMonth()-1),s(t)}),a.addEventListener("click",()=>{t.setMonth(t.getMonth()+1),s(t)}),s(t)})</script><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>所有標籤</h3><div class="flex flex-wrap gap-2"><a href=/ChiYu-Blob/tags/user-stories/ class=tag-pill>User Stories
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/sideproject/ class=tag-pill>SideProject
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/prompt-engineering/ class=tag-pill>Prompt Engineering
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/project-charter/ class=tag-pill>Project Charter
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/mermaid/ class=tag-pill>Mermaid
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/hlr/ class=tag-pill>HLR
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/guide/ class=tag-pill>Guide
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/github/ class=tag-pill>GitHub
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/git/ class=tag-pill>Git
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/documentation/ class=tag-pill>Documentation
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/codex/ class=tag-pill>Codex
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/cli/ class=tag-pill>CLI
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/ai-agent/ class=tag-pill>AI Agent
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/agile/ class=tag-pill>Agile
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/ai/ class=tag-pill>AI
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/hugo/ class=tag-pill>Hugo
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/gemini/ class=tag-pill>Gemini
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/ddd/ class=tag-pill>DDD
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/vibecoding/ class=tag-pill>VibeCoding
+<span class="ml-1 opacity-75">6</span>
+</a><a href=/ChiYu-Blob/tags/2025ithomeironman/ class=tag-pill>2025iThomeIronman
+<span class="ml-1 opacity-75">7</span>
+</a><a href=/ChiYu-Blob/tags/designpattern/ class=tag-pill>DesignPattern
+<span class="ml-1 opacity-75">24</span>
+</a><a href=/ChiYu-Blob/tags/csharp/ class=tag-pill>Csharp
+<span class="ml-1 opacity-75">24</span>
+</a><a href=/ChiYu-Blob/tags/code/ class=tag-pill>Code
+<span class="ml-1 opacity-75">24</span></a></div><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>相關連結</h3><div class="flex flex-col space-y-3 mt-4"><a href=https://www.cake.me/me/ChiYuisme target=_blank rel="noopener noreferrer" class=transition-colors style=color:var(--text-secondary);hover:var(--link-color)><span class=text-base>cakeresume</span>
+</a><a href=https://github.com/eric861129 target=_blank rel="noopener noreferrer" class=transition-colors style=color:var(--text-secondary);hover:var(--link-color)><span class=text-base>github</span>
+</a><a href=https://ithelp.ithome.com.tw/users/20132971/ironman/8253 target=_blank rel="noopener noreferrer" class=transition-colors style=color:var(--text-secondary);hover:var(--link-color)><span class=text-base>ithome</span>
+</a><a href=https://www.linkedin.com/in/chiyu-huang/ target=_blank rel="noopener noreferrer" class=transition-colors style=color:var(--text-secondary);hover:var(--link-color)><span class=text-base>linkedin</span>
+</a><a href=https://www.threads.com/@chiyuisme target=_blank rel="noopener noreferrer" class=transition-colors style=color:var(--text-secondary);hover:var(--link-color)><span class=text-base>threads</span></a></div></div><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>系列文章</h3><ul class=space-y-1><li><a href=/ChiYu-Blob/series/designpattern/ class="flex justify-between"><span>設計模式</span>
+<span class=text-sm>24</span></a></li><li><a href=/ChiYu-Blob/series/2025ithomeironman/ class="flex justify-between"><span>2025 iThome 鐵人賽</span>
+<span class=text-sm>7</span></a></li><li><a href=/ChiYu-Blob/series/hugo-%E9%96%8B%E7%99%BC%E7%B4%80%E9%8C%84/ class="flex justify-between"><span>Hugo 開發紀錄</span>
+<span class=text-sm>1</span></a></li></ul></div></div></aside></div><footer class="mt-16 pt-8 border-t text-center text-sm" style=border-color:var(--border-color);color:var(--text-secondary)><p>&copy; 2025 ChiYu. All Rights Reserved.</p></footer><button id=scroll-to-top-btn class=scroll-to-top title=回到頂部><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentcolor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 15a.5.5.0 00.5-.5V2.707l3.146 3.147a.5.5.0 00.708-.708l-4-4a.5.5.0 00-.708.0l-4 4a.5.5.0 10.708.708L7.5 2.707V14.5a.5.5.0 00.5.5z"/></svg></button></div><div id=sidebar-overlay class=sidebar-overlay></div><aside id=mobile-sidebar class=mobile-sidebar><div class=p-4><aside class=sidebar><div class=sidebar-inner><div class=widget><h3 class=widget-title>系列文章</h3><ul class=widget-list><li><a href=/ChiYu-Blob/series/designpattern/>設計模式
+<span class=posts-count>24</span></a></li><li><a href=/ChiYu-Blob/series/2025ithomeironman/>2025 iThome 鐵人賽
+<span class=posts-count>7</span></a></li><li><a href=/ChiYu-Blob/series/hugo-%E9%96%8B%E7%99%BC%E7%B4%80%E9%8C%84/>Hugo 開發紀錄
+<span class=posts-count>1</span></a></li></ul></div></div></aside><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>文章月曆</h3><div id=calendar-widget><div class="flex justify-between items-center mb-2 font-semibold"><button id=cal-prev title=上個月 class="px-2 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700">&lt;</button>
+<span id=cal-month-year></span>
+<button id=cal-next title=下個月 class="px-2 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700">></button></div><div class="grid grid-cols-7 text-center text-xs gap-y-2" style=color:var(--text-secondary)><span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span></div><div id=cal-days class="grid grid-cols-7 text-center text-sm mt-2 gap-y-2"></div></div></div><script>document.addEventListener("DOMContentLoaded",function(){const e={};e["2025-12-17"]="/ChiYu-Blob/dates/2025-12-17/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-8-23"]="/ChiYu-Blob/dates/2025-08-23/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-8-24"]="/ChiYu-Blob/dates/2025-08-24/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-8-25"]="/ChiYu-Blob/dates/2025-08-25/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-26"]="/ChiYu-Blob/dates/2025-08-26/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-7-3"]="/ChiYu-Blob/dates/2025-07-03/",e["2025-8-22"]="/ChiYu-Blob/dates/2025-08-22/",e["2025-8-21"]="/ChiYu-Blob/dates/2025-08-21/",e["2025-8-20"]="/ChiYu-Blob/dates/2025-08-20/",e["2025-6-8"]="/ChiYu-Blob/dates/2025-06-08/",e["2025-6-5"]="/ChiYu-Blob/dates/2025-06-05/";const o=document.getElementById("cal-month-year"),n=document.getElementById("cal-days"),i=document.getElementById("cal-prev"),a=document.getElementById("cal-next");let t=new Date;function s(t){const s=t.getFullYear(),i=t.getMonth();o.textContent=`${s} 年 ${i+1} 月`,n.innerHTML="";const a=new Date(s,i,1),r=new Date(s,i+1,0),c=a.getDay();for(let e=0;e<c;e++)n.insertAdjacentHTML("beforeend","<div></div>");for(let t=1;t<=r.getDate();t++){const o=`${s}-${i+1}-${t}`;e[o]?n.insertAdjacentHTML("beforeend",`
+                    <a href="${e[o]}" class="block p-1 rounded-full transition-colors font-bold" style="color: var(--link-color); text-decoration: underline; text-decoration-thickness: 2px;">
+                        ${t}
+                    </a>
+                `):n.insertAdjacentHTML("beforeend",`<span class="block p-1">${t}</span>`)}}i.addEventListener("click",()=>{t.setMonth(t.getMonth()-1),s(t)}),a.addEventListener("click",()=>{t.setMonth(t.getMonth()+1),s(t)}),s(t)})</script><aside class="w-64 flex-shrink-0 lg:block pl-8"><div class="sticky top-20" data-pagefind-ignore><div class="mb-8 text-center" data-pagefind-ignore><img src=/ChiYu-Blob/images/avatar.jpg alt=個人大頭貼 class="w-32 h-32 rounded-full mx-auto object-cover border-2" style=border-color:var(--border-color) data-pagefind-ignore></div><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>文章月曆</h3><div id=calendar-widget><div class="flex justify-between items-center mb-2 font-semibold"><button id=cal-prev title=上個月 class="px-2 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700">&lt;</button>
+<span id=cal-month-year></span>
+<button id=cal-next title=下個月 class="px-2 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700">></button></div><div class="grid grid-cols-7 text-center text-xs gap-y-2" style=color:var(--text-secondary)><span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span></div><div id=cal-days class="grid grid-cols-7 text-center text-sm mt-2 gap-y-2"></div></div></div><script>document.addEventListener("DOMContentLoaded",function(){const e={};e["2025-12-17"]="/ChiYu-Blob/dates/2025-12-17/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-8-23"]="/ChiYu-Blob/dates/2025-08-23/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-8-24"]="/ChiYu-Blob/dates/2025-08-24/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-8-25"]="/ChiYu-Blob/dates/2025-08-25/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-26"]="/ChiYu-Blob/dates/2025-08-26/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-7-3"]="/ChiYu-Blob/dates/2025-07-03/",e["2025-8-22"]="/ChiYu-Blob/dates/2025-08-22/",e["2025-8-21"]="/ChiYu-Blob/dates/2025-08-21/",e["2025-8-20"]="/ChiYu-Blob/dates/2025-08-20/",e["2025-6-8"]="/ChiYu-Blob/dates/2025-06-08/",e["2025-6-5"]="/ChiYu-Blob/dates/2025-06-05/";const o=document.getElementById("cal-month-year"),n=document.getElementById("cal-days"),i=document.getElementById("cal-prev"),a=document.getElementById("cal-next");let t=new Date;function s(t){const s=t.getFullYear(),i=t.getMonth();o.textContent=`${s} 年 ${i+1} 月`,n.innerHTML="";const a=new Date(s,i,1),r=new Date(s,i+1,0),c=a.getDay();for(let e=0;e<c;e++)n.insertAdjacentHTML("beforeend","<div></div>");for(let t=1;t<=r.getDate();t++){const o=`${s}-${i+1}-${t}`;e[o]?n.insertAdjacentHTML("beforeend",`
+                    <a href="${e[o]}" class="block p-1 rounded-full transition-colors font-bold" style="color: var(--link-color); text-decoration: underline; text-decoration-thickness: 2px;">
+                        ${t}
+                    </a>
+                `):n.insertAdjacentHTML("beforeend",`<span class="block p-1">${t}</span>`)}}i.addEventListener("click",()=>{t.setMonth(t.getMonth()-1),s(t)}),a.addEventListener("click",()=>{t.setMonth(t.getMonth()+1),s(t)}),s(t)})</script><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>所有標籤</h3><div class="flex flex-wrap gap-2"><a href=/ChiYu-Blob/tags/user-stories/ class=tag-pill>User Stories
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/sideproject/ class=tag-pill>SideProject
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/prompt-engineering/ class=tag-pill>Prompt Engineering
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/project-charter/ class=tag-pill>Project Charter
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/mermaid/ class=tag-pill>Mermaid
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/hlr/ class=tag-pill>HLR
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/guide/ class=tag-pill>Guide
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/github/ class=tag-pill>GitHub
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/git/ class=tag-pill>Git
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/documentation/ class=tag-pill>Documentation
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/codex/ class=tag-pill>Codex
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/cli/ class=tag-pill>CLI
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/ai-agent/ class=tag-pill>AI Agent
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/agile/ class=tag-pill>Agile
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/ai/ class=tag-pill>AI
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/hugo/ class=tag-pill>Hugo
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/gemini/ class=tag-pill>Gemini
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/ddd/ class=tag-pill>DDD
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/vibecoding/ class=tag-pill>VibeCoding
+<span class="ml-1 opacity-75">6</span>
+</a><a href=/ChiYu-Blob/tags/2025ithomeironman/ class=tag-pill>2025iThomeIronman
+<span class="ml-1 opacity-75">7</span>
+</a><a href=/ChiYu-Blob/tags/designpattern/ class=tag-pill>DesignPattern
+<span class="ml-1 opacity-75">24</span>
+</a><a href=/ChiYu-Blob/tags/csharp/ class=tag-pill>Csharp
+<span class="ml-1 opacity-75">24</span>
+</a><a href=/ChiYu-Blob/tags/code/ class=tag-pill>Code
+<span class="ml-1 opacity-75">24</span></a></div><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>相關連結</h3><div class="flex flex-col space-y-3 mt-4"><a href=https://www.cake.me/me/ChiYuisme target=_blank rel="noopener noreferrer" class=transition-colors style=color:var(--text-secondary);hover:var(--link-color)><span class=text-base>cakeresume</span>
+</a><a href=https://github.com/eric861129 target=_blank rel="noopener noreferrer" class=transition-colors style=color:var(--text-secondary);hover:var(--link-color)><span class=text-base>github</span>
+</a><a href=https://ithelp.ithome.com.tw/users/20132971/ironman/8253 target=_blank rel="noopener noreferrer" class=transition-colors style=color:var(--text-secondary);hover:var(--link-color)><span class=text-base>ithome</span>
+</a><a href=https://www.linkedin.com/in/chiyu-huang/ target=_blank rel="noopener noreferrer" class=transition-colors style=color:var(--text-secondary);hover:var(--link-color)><span class=text-base>linkedin</span>
+</a><a href=https://www.threads.com/@chiyuisme target=_blank rel="noopener noreferrer" class=transition-colors style=color:var(--text-secondary);hover:var(--link-color)><span class=text-base>threads</span></a></div></div><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>系列文章</h3><ul class=space-y-1><li><a href=/ChiYu-Blob/series/designpattern/ class="flex justify-between"><span>設計模式</span>
+<span class=text-sm>24</span></a></li><li><a href=/ChiYu-Blob/series/2025ithomeironman/ class="flex justify-between"><span>2025 iThome 鐵人賽</span>
+<span class=text-sm>7</span></a></li><li><a href=/ChiYu-Blob/series/hugo-%E9%96%8B%E7%99%BC%E7%B4%80%E9%8C%84/ class="flex justify-between"><span>Hugo 開發紀錄</span>
+<span class=text-sm>1</span></a></li></ul></div></div></aside></div></aside><script>function initPagefind(){window.PagefindUI&&new PagefindUI({element:"#search",showSubResults:!1,baseUrl:"/ChiYu-Blob/",language:"zh-tw"})}</script><script src=/ChiYu-Blob/pagefind/pagefind-ui.js onload=initPagefind()></script><script>document.addEventListener("DOMContentLoaded",()=>{const s=document.getElementById("reading-progress-bar");s&&window.addEventListener("scroll",()=>{const e=document.documentElement.scrollTop||document.body.scrollTop,t=document.documentElement.scrollHeight-document.documentElement.clientHeight,n=e/t*100;s.style.width=n+"%"});const o=document.getElementById("theme-toggle");o&&o.addEventListener("click",()=>{const n=document.documentElement.getAttribute("data-theme"),e=n==="light"?"dark":"light";document.documentElement.setAttribute("data-theme",e),localStorage.setItem("theme",e);const t=document.querySelector("iframe.giscus-frame");t&&t.contentWindow.postMessage({giscus:{setTheme:e}},"https://giscus.app")}),document.querySelectorAll("div.highlight").forEach(e=>{const t=document.createElement("button");t.className="copy-code-button",t.type="button",t.innerText="Copy",t.addEventListener("click",()=>{const n=e.querySelector("code").innerText;navigator.clipboard.writeText(n).then(()=>{t.innerText="Copied!",setTimeout(()=>{t.innerText="Copy"},2e3)})}),e.appendChild(t)});const i=document.querySelectorAll(".post-toc-sidebar nav#TableOfContents a"),a=Array.from(i).map(e=>{try{const t=decodeURIComponent(e.getAttribute("href").substring(1));return document.getElementById(t)}catch{return null}}).filter(Boolean);if(a.length>0){const e=new IntersectionObserver(e=>{let t=[];if(e.forEach(e=>{e.isIntersecting&&t.push(e.target)}),t.length>0){const n=t.reduce((e,t)=>e.getBoundingClientRect().top<t.getBoundingClientRect().top?e:t);i.forEach(e=>e.classList.remove("active"));const s=n.getAttribute("id"),e=document.querySelector(`.post-toc-sidebar nav#TableOfContents a[href="#${encodeURIComponent(s)}"]`);e&&e.classList.add("active")}},{rootMargin:"-80px 0px -60% 0px"});a.forEach(t=>e.observe(t))}const r=document.getElementById("giscus-container");if(r){const e=document.createElement("script");e.src="https://giscus.app/client.js",e.setAttribute("data-repo","eric861129/ChiYu-Blob"),e.setAttribute("data-repo-id","R_kgDOO2a_UQ"),e.setAttribute("data-category","Announcements"),e.setAttribute("data-category-id","DIC_kwDOO2a_Uc4CrGzL"),e.setAttribute("data-mapping","pathname"),e.setAttribute("data-strict","0"),e.setAttribute("data-reactions-enabled","1"),e.setAttribute("data-emit-metadata","0"),e.setAttribute("data-input-position","top"),e.setAttribute("data-theme",document.documentElement.getAttribute("data-theme")),e.setAttribute("data-lang","zh-TW"),e.setAttribute("crossorigin","anonymous"),e.async=!0,r.appendChild(e)}const e=document.getElementById("scroll-to-top-btn");e&&(window.addEventListener("scroll",()=>{window.pageYOffset>300?e.classList.add("show"):e.classList.remove("show")}),e.addEventListener("click",()=>{window.scrollTo({top:0,behavior:"smooth"})}));const c=document.getElementById("mobile-sidebar-toggle"),n=document.getElementById("mobile-sidebar"),t=document.getElementById("sidebar-overlay");c&&n&&t&&(c.addEventListener("click",()=>{n.classList.toggle("is-open"),t.classList.toggle("is-open")}),t.addEventListener("click",()=>{n.classList.remove("is-open"),t.classList.remove("is-open")}))})</script></body></html>

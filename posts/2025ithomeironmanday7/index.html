@@ -1,0 +1,497 @@
+<!doctype html><html lang=zh-tw><head><meta name=description content="今天，我們將完全在終端機內，描繪這張地圖，產出兩份從「使用者視角」出發的關鍵文件：使用者故事與使用者流程圖。"><meta property="og:title" content="Day 7: 【文件 #2】使用者的旅程：用 Gemini CLI 描繪「使用者故事」"><meta property="og:description" content="今天，我們將完全在終端機內，描繪這張地圖，產出兩份從「使用者視角」出發的關鍵文件：使用者故事與使用者流程圖。"><meta property="og:type" content="article"><meta property="og:url" content="/ChiYu-Blob/posts/2025ithomeironmanday7/"><meta name=twitter:card content="summary_large_image"><meta name=twitter:title content="Day 7: 【文件 #2】使用者的旅程：用 Gemini CLI 描繪「使用者故事」"><meta name=twitter:description content="今天，我們將完全在終端機內，描繪這張地圖，產出兩份從「使用者視角」出發的關鍵文件：使用者故事與使用者流程圖。"><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Day 7: 【文件 #2】使用者的旅程：用 Gemini CLI 描繪「使用者故事」 | ChiYu Code Journey</title>
+<script>(function(){const e=localStorage.getItem("theme")||"dark";document.documentElement.setAttribute("data-theme",e)})()</script><script src=https://cdn.tailwindcss.com></script><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel=stylesheet><link href=/pagefind/pagefind-ui.css rel=stylesheet><link href="https://fonts.googleapis.com/css2?family=Chocolate+Classical+Sans&family=Edu+SA+Hand:wght@400..700&family=Inter:wght@400;500;600;700&display=swap" rel=stylesheet><link rel=icon type=image/jpeg href=/ChiYu-Blob/images/avatar.jpg><link rel=stylesheet href=/ChiYu-Blob/css/style.bundle.min.ff25b38a655942c39e72a789187e941c23c28cdf24f698e8823256e08e959326.css integrity="sha256-/yWzimVZQsOecqeJGH6UHCPCjN8k9pjogjJW4I6VkyY=" crossorigin=anonymous><style>#reading-progress-container{position:fixed;top:0;left:0;width:100%;height:3px;z-index:9999;background:0 0}#reading-progress-bar{height:100%;width:0%;background:linear-gradient(to right,#60a5fa,#2563eb);transition:width .1s ease-out}</style></head><body class=antialiased><div id=reading-progress-container><div id=reading-progress-bar></div></div><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><header class="flex justify-between items-center py-6 border-b" style=border-color:var(--border-color)><a href=/ChiYu-Blob/ class="text-xl sm:text-2xl font-bold" style=color:var(--text-color)>ChiYu Code Journey</a><nav class="flex items-center space-x-2 sm:space-x-4"><div id=search></div><a href=/ChiYu-Blob/ class="text-sm sm:text-base" style=color:var(--text-secondary)>首頁</a>
+<a href=/ChiYu-Blob/posts/ class="text-sm sm:text-base" style=color:var(--text-secondary)>文章</a>
+<a href=/ChiYu-Blob/about/ class="text-sm sm:text-base" style=color:var(--text-secondary)>關於</a>
+<button id=theme-toggle title=切換深色/淺色主題>
+<svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+<svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+</button>
+<button id=mobile-sidebar-toggle class=lg:hidden title=開啟側邊欄><svg class="w-6 h-6" fill="none" stroke="currentcolor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/></svg></button></nav></header><div data-pagefind-body style=display:none><p>安安，我是 ChiYu！</p><p>昨天，我們確立了專案的「北極星」——專案章程，並在 GitHub 上留下了第一個不可磨滅的印記。如果說昨天的「專案章程」是我們的**「戰略地圖」，告訴我們為何而戰、要攻下哪座城池。那今天，我們就要化身為「戰場指揮官」，繪製出士兵（使用者）在戰場上的具體「戰術路線圖」**。</p><p>今天，我們將完全在終端機內，描繪這張地圖，產出兩份從「使用者視角」出發的關鍵文件：<code>使用者故事 (User Stories)</code> 與 <code>使用者流程圖 (User Flowchart)</code>。</p><h2 id=part-1什麼是使用者故事>Part 1：什麼是「使用者故事」？</h2><p>別被「故事」這兩個字嚇到，我們不是要寫小說。使用者故事其實是一種在敏捷開發中，用來描述需求的強大工具。</p><p>你可以把它想像成你在跟咖啡師點餐。你不會直接跟他說「給我咖啡因、水和牛奶的混合物」，你會說：</p><blockquote><p>身為 一個想提神的顧客 (使用者)，</p><p>我想要 一杯大杯的熱拿鐵 (功能)，</p><p>以便 讓我有精神撐過下午的會議 (價值)。</p></blockquote><p>看到這個格式的威力了嗎？它強迫我們停止用「工程師的語言」思考，而是用「使用者的語言」思考。一個好的使用者故事，包含了經典的「3C」要素：</p><ul><li><strong>Card (卡片)</strong>：故事本身簡短扼要，像一張可以貼在牆上的便利貼。</li><li><strong>Conversation (對話)</strong>：它不是一份冰冷的規格書，而是一個「邀請」，邀請你和 AI 針對這個需求進行對話，釐清細節。</li><li><strong>Confirmation (確認)</strong>：這是最關鍵的一步！每個故事都應該伴隨著**「驗收條件 (Acceptance Criteria)」**，也就是一個非黑即白、不容狡辯的簡單清單，用來確認「怎樣才算完成了這個故事」。</li></ul><h2 id=part-2什麼是使用者流程圖與-mermaidjs>Part 2：什麼是「使用者流程圖」與 Mermaid.js？</h2><p>如果說使用者故事是描述一個個「單點需求」，那「使用者流程圖」就是把這些點串連起來的「路線圖」。它用視覺化的方式，呈現使用者為了完成一個特定目標所需要經過的完整路徑。</p><p>一張圖勝過千言萬語，但一張圖配上精闢的文字解說，才能確保所有人對這千言萬語的理解是完全一致的。</p><p>而 <code>Mermaid.js</code> 就是一個能讓我們用「文字」來畫流程圖的神奇工具。因為是純文字，所以我們可以輕鬆地用 <code>Git</code> 進行版本控制，這對開發者來說再方便不過了！</p><p>Mermaid的語法我暫時不花太多篇幅作介紹，感覺要介紹可以花一天的文章篇幅來完整介紹，在系列文章結束後我再來補充好了(挖坑給自己)！畢竟<code>Mermaid.js</code> 真的有他非常好用的地方，語法簡單直觀、便於版本控制、易於整合與維護而且還跨平台!!!</p><h2 id=part-3實戰開始在終端機中扮演我們的產品經理>Part 3：實戰開始：在終端機中扮演我們的產品經理</h2><p>好了，理論課結束，讓我們再次召喚 Gemini CLI，請它繼續扮演我們的產品經理。</p><h3 id=step-1詠唱我們的魔法-craft-the-prompt>Step 1：詠唱我們的魔法 (Craft the Prompt)</h3><p>我們要讓 Gemini 直接讀取我們本地的「專案章程」，來確保我們的工作是基於最新、最正確的藍圖。</p><p>打開 VS Code 終端機，詠唱我們的第二個「文件生成咒語」：</p><h3 id=魔法詠唱我們的-prompt>【魔法詠唱：我們的 Prompt】</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown><span style=display:flex><span># 角色 (Role)
+</span></span><span style=display:flex><span>你是一位頂尖的產品經理 (PM)，擁有豐富的敏捷開發經驗，擅長將高階的專案目標，轉化為清晰、可執行的使用者故事與流程。你的產出兼具使用者同理心與技術可行性。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 目標 (Objective)
+</span></span><span style=display:flex><span>我的目標是讓你將一份高階的「專案章程」分解為開發團隊可以立即投入工作的敏捷開發產物 (Agile Artifacts)，包含使用者故事和流程圖。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 上下文 (Context)
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   <span style=font-weight:700>**唯一的真相來源 (Single Source of Truth)**</span>: 請將 @docs/PROJECT_CHARTER.md 這份文件作為你所有分析與產出的唯一依據。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>---
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## 你的任務與產出要求 (Your Task &amp; Output Requirements)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>請嚴格按照以下順序與格式，完成所有任務，並將最終結果生成到指定的檔案中。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 任務 1: 生成核心使用者故事 (Core User Stories)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   <span style=font-weight:700>**數量**</span>: 根據專案章程中的 MVP 範圍，撰寫 **5 個最核心**的使用者故事。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   <span style=font-weight:700>**聚焦**</span>: 故事應專注於新使用者從註冊到首次體驗到產品核心價值的「關鍵路徑 (Critical Path)」。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   <span style=font-weight:700>**格式**</span>:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   <span style=font-weight:700>**使用者故事**</span>: 採用標準格式 <span style=color:#e6db74>`As a [角色], I want to [行為], so that [價值]`</span>。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   <span style=font-weight:700>**驗收標準 (Acceptance Criteria)**</span>: 每個故事必須附上 **3 條**驗收標準。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   <span style=font-weight:700>**AC 語法**</span>: 驗收標準必須採用 Gherkin 語法 <span style=color:#e6db74>`Given-When-Then`</span> 撰寫。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 任務 2: 生成使用者流程圖 (User Flow Diagram)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   <span style=font-weight:700>**目標流程**</span>: 聚焦於「**新使用者從進入網站到完成第一次習慣打卡**」的完整流程。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   <span style=font-weight:700>**格式**</span>:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   請使用 **Mermaid.js 的 <span style=color:#e6db74>`graph TD`</span> (由上至下圖表) 語法**來生成流程圖。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   將 Mermaid 語法完整地包在 <span style=color:#e6db74>` `</span>``mermaid ... ``` 程式碼區塊中。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   節點文字應簡潔，箭頭應清晰表示流程方向與條件分支（例如：成功/失敗）。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 任務 3: 撰寫流程圖詳細說明 (Detailed Flow Description)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   在 Mermaid 圖表下方，提供一個名為「**流程圖詳細說明**」的段落。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   使用有序列表，**逐一解釋**流程圖中每個主要步驟的**「WHY」**。不僅要說明「做了什麼」，更要解釋「**為什麼這樣設計**」，包含背後的使用者動機或業務考量。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 最終產出指令 (Final Output Command)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   <span style=font-weight:700>**文件標頭**</span>: 在文件的最頂部，加上文件版本號 <span style=color:#e6db74>`1.0`</span> 與作者 <span style=color:#e6db74>`Gemini (產品經理)`</span>。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   <span style=font-weight:700>**執行動作**</span>: 將以上所有產出（使用者故事、Mermaid 圖表、流程說明）合併到同一個 Markdown 檔案中，命名為 <span style=color:#e6db74>`USER_STORIES.md`</span>，並放置於 @docs\** 資料夾內。
+</span></span></code></pre></div><h3 id=指令拆解>【指令拆解】</h3><ul><li><code>@docs/PROJECT_CHARTER.md</code>：我們將昨天的產出作為上下文「餵」給 Gemini，讓它的發想有根有據。</li></ul><h3 id=step-2迭代與定稿>Step 2：迭代與定稿</h3><p>記住我們的心法：AI 給的永遠是草稿。打開 <code>docs/USER_STORIES.md</code>，仔細閱讀。故事是否合理？驗收標準是否清晰？你可以直接修改，或使用 <code>@</code> 指令讓 AI 針對這個檔案進行「原地重構」，直到你得到一份滿意的「定稿」為止。</p><h3 id=step-3審核與分析我們的-ai-產出>Step 3：審核與分析我們的 AI 產出</h3><p>在你與 AI 經過幾輪的迭代優化後，最終你會得到一份高品質的定稿文件，就像下面這樣：</p><hr><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown><span style=display:flex><span><span style=color:#66d9ef>-</span> **版本**: 1.0
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span> **作者**: Gemini (產品經理)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>---
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## 核心使用者故事 (Core User Stories)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>以下是專為「心境軌跡 (MindTrack)」MVP 設計的 5 個核心使用者故事，聚焦於新使用者的關鍵體驗路徑。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 1. 使用者註冊
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>**作為一個**新使用者，
+</span></span><span style=display:flex><span>**我想要**用我的電子郵件和密碼建立一個帳號，
+</span></span><span style=display:flex><span>**這樣我才能**擁有一個個人化且安全的空間來追蹤我的習慣和心情。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=font-weight:700>**驗收標準 (Acceptance Criteria):**</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>1.</span>  <span style=color:#e6db74>`假設`</span>我正在註冊頁面，`當`我輸入一個有效的、未被使用的電子郵件和一個安全的密碼，並點擊「註冊」，`那麼`我的帳號應該被成功建立，並且我會自動登入到主控台。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>2.</span>  <span style=color:#e6db74>`假設`</span>我正在註冊頁面，`當`我嘗試使用一個已經存在的電子郵件進行註冊，`那麼`我應該會看到一個清晰的錯誤訊息：「此電子郵件地址已被使用。」
+</span></span><span style=display:flex><span><span style=color:#66d9ef>3.</span>  <span style=color:#e6db74>`假設`</span>我正在註冊頁面，`當`我輸入一個無效的電子郵件格式（例如：「user @test」）或一個過短的密碼，`那麼`我應該會在對應的欄位旁看到一個即時的驗證錯誤訊息。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 2. 建立第一個習慣
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>**作為一個**剛剛登入的初次使用者，
+</span></span><span style=display:flex><span>**我希望能**立即被引導去建立我的第一個習慣，
+</span></span><span style=display:flex><span>**這樣我才能**快速了解應用的核心功能並開始設定我的目標。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=font-weight:700>**驗收標準 (Acceptance Criteria):**</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>1.</span>  <span style=color:#e6db74>`假設`</span>我這是第一次登入，`當`主控台載入完成時，`那麼`畫面上應該會顯示一個彈出視窗或一個顯眼的行動呼籲（CTA）元素，邀請我「建立你的第一個習慣」。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>2.</span>  <span style=color:#e6db74>`假設`</span>我被提示要建立一個習慣，`當`我為習慣輸入一個名稱（例如：「每日運動」）並儲存它，`那麼`提示應該會消失，而且新的習慣會被列在我的主控台上。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>3.</span>  <span style=color:#e6db74>`假設`</span>我正在建立一個新的習慣，`當`我嘗試在沒有輸入名稱的情況下儲存，`那麼`儲存按鈕應該是不可點擊的，並且會顯示一個錯誤訊息：「習慣名稱不能為空。」
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 3. 每日習慣打卡
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>**作為一個**回訪使用者，
+</span></span><span style=display:flex><span>**我希望能**透過一次點擊就輕易地將一個習慣標記為「今日已完成」，
+</span></span><span style=display:flex><span>**這樣我才能**維持一個一致且無阻礙的每日成就記錄。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=font-weight:700>**驗收標準 (Acceptance Criteria):**</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>1.</span>  <span style=color:#e6db74>`假設`</span>我的主控台上至少列有一個習慣，`當`我點擊某個習慣旁的空白核取方塊，`那麼`該方塊的狀態應該變為「已勾選」，並且此變更會被儲存。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>2.</span>  <span style=color:#e6db74>`假設`</span>我今天已經將一個習慣標記為完成，`當`我再次點擊那個已勾選的方塊，`那麼`該習慣今天的狀態應該會回復到「未完成」。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>3.</span>  <span style=color:#e6db74>`假設`</span>我昨天完成了一個習慣，`當`我今天訪問我的主控台時，`那麼`該習慣的核取方塊應該被重設為預設的、未勾選的狀態，為新的一天做好準備。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 4. 每日心情記錄
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>**作為一個**專注於自我覺察的使用者，
+</span></span><span style=display:flex><span>**我希望能**快速地在一個簡單的量表上記錄我一天的整體心情，
+</span></span><span style=display:flex><span>**這樣我才能**建立一個數據集，以便日後發現它與我習慣之間的關聯。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=font-weight:700>**驗收標準 (Acceptance Criteria):**</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>1.</span>  <span style=color:#e6db74>`假設`</span>我已經登入到我的主控台，`當`我看到心情記錄區塊並選擇 4 顆星的評分，`那麼`我今天的心情應該被儲存為「4」，並且介面會提供清晰的選擇反饋。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>2.</span>  <span style=color:#e6db74>`假設`</span>我今天已經記錄過心情，`當`我選擇一個不同的評分（例如，從 4 顆星改為 2 顆星），`那麼`我今天的心情記錄應該會被更新為新的數值。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>3.</span>  <span style=color:#e6db74>`假設`</span>我已經選擇了心情評分，`當`我選擇性地輸入一段文字註記「今天會議很順利」並儲存，`那麼`這段文字應該會與今天的心情記錄關聯起來。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 5. 查看關聯性洞察
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>**作為一個**數據導向的使用者，
+</span></span><span style=display:flex><span>**我希望能**看到一個簡單的圖表，將我的心情趨勢與我完成的習慣並列視覺化，
+</span></span><span style=display:flex><span>**這樣我才能**開始識別我的行為與幸福感之間有意義的模式。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=font-weight:700>**驗收標準 (Acceptance Criteria):**</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>1.</span>  <span style=color:#e6db74>`假設`</span>我已經記錄我的心情和至少一個習慣達 3 天或以上，`當`我前往「洞察」頁面，`那麼`我應該會看到一個顯示我心情分數隨時間變化的折線圖。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>2.</span>  <span style=color:#e6db74>`假設`</span>我正在查看心情圖表，`當`我在某一天完成了一個特定的習慣，`那麼`在圖表上那天的數據點旁，應該會顯示一個清晰的視覺指標（例如，一個彩色的點）。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>3.</span>  <span style=color:#e6db74>`假設`</span>我尚未記錄足夠的數據（例如，少於 3 天的記錄），`當`我訪問「洞察」頁面，`那麼`我應該會看到一條訊息，說明需要更多的數據才能生成洞察報告。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>---
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## 新使用者首次打卡流程圖
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>```mermaid
+</span></span><span style=display:flex><span>graph TD
+</span></span><span style=display:flex><span>    A[使用者訪問網站] --&gt; B{有帳號嗎?};
+</span></span><span style=display:flex><span>    B --&gt;|否| C[點擊註冊];
+</span></span><span style=display:flex><span>    C --&gt; D[進入註冊頁];
+</span></span><span style=display:flex><span>    D --&gt; E{填寫表單}; 
+</span></span><span style=display:flex><span>    E --&gt; F{提交}; 
+</span></span><span style=display:flex><span>    F --&gt;|註冊成功| G[進入個人主控台];
+</span></span><span style=display:flex><span>    F --&gt;|註冊失敗| H[顯示錯誤訊息];
+</span></span><span style=display:flex><span>    H --&gt; E;
+</span></span><span style=display:flex><span>    B --&gt;|是| I[點擊登入];
+</span></span><span style=display:flex><span>    I --&gt; J[進入登入頁];
+</span></span><span style=display:flex><span>    J --&gt; G;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    G --&gt; K[首次登入，顯示「建立習慣」引導];
+</span></span><span style=display:flex><span>    K --&gt; L[使用者輸入習慣名稱];
+</span></span><span style=display:flex><span>    L --&gt; M{儲存習慣};
+</span></span><span style=display:flex><span>    M --&gt;|成功| N[主控台顯示新習慣];
+</span></span><span style=display:flex><span>    M --&gt;|失敗/名稱空白| O[提示錯誤];
+</span></span><span style=display:flex><span>    O --&gt; L;
+</span></span><span style=display:flex><span>    N --&gt; P[使用者點擊習慣旁的「打勾」按鈕];
+</span></span><span style=display:flex><span>    P --&gt; Q[狀態更新為「已完成」];
+</span></span><span style=display:flex><span>    Q --&gt; R[流程結束：首次價值體驗];
+</span></span></code></pre></div><h3 id=流程圖詳細說明>流程圖詳細說明</h3><ol><li><p><strong>訪問網站與帳號判斷</strong>: 流程始於使用者到達我們的登陸頁。第一步是區分新舊使用者。</p><ul><li><strong>WHY</strong>: 這是所有 Web 應用的標準起點，提供清晰的註冊或登入路徑，避免使用者混淆。</li></ul></li><li><p><strong>註冊流程</strong>: 新使用者需要建立帳號。</p><ul><li><strong>WHY</strong>: 帳號是保存個人化數據（習慣、心情）的基礎，也是實現長期追蹤與留存的必要條件。我們在此設計了失敗迴路，確保使用者能修正錯誤（如已被使用的 Email）並成功註冊。</li></ul></li><li><p><strong>首次登入與引導</strong>: 使用者成功登入後，直接進入個人主控台。</p><ul><li><strong>WHY</strong>: 為了盡快讓使用者體驗產品價值（Time to Value），我們在首次登入時主動引導他們執行最關鍵的操作——「建立第一個習慣」。這能有效降低新手的學習曲線，提高使用者激活率。</li></ul></li><li><p><strong>建立新習慣</strong>: 使用者被引導去命名並儲存一個他們想追蹤的習慣。</p><ul><li><strong>WHY</strong>: 這是使用者與 App 的第一次有意義的互動。讓使用者輸入自己的目標，能建立個人連結與擁有感，是將抽象目標轉化為具體可追蹤項目的第一步。</li></ul></li><li><p><strong>完成首次打卡</strong>: 習慣建立後，它會立即顯示在主控台上，使用者可以點擊完成打卡。</p><ul><li><strong>WHY</strong>: 這是整個關鍵路徑的終點，也是使用者首次體驗到「完成任務」的回饋閉環。這個簡單的點擊動作提供了即時的滿足感，並成功地教會了使用者最核心的日常操作，為他們未來的持續使用奠定了基礎。</li></ul></li></ol><pre tabindex=0><code>
+
+---
+
+**預覽流程圖：**
+
+&gt; 【小提示】： 想看到 Mermaid 圖表渲染出來的樣子嗎？在 VS Code 市集搜尋並安裝名為 Markdown Preview Mermaid Support 的擴充功能，然後打開 docs/USER_STORIES.md 的預覽模式 (快捷鍵 Ctrl+Shift+V)，欣賞你的文字「程式碼」被即時渲染成的漂亮流程圖！
+
+
+流程圖長這樣：
+
+![使用者流程圖範例](https://ithelp.ithome.com.tw/upload/images/20250826/20132971UWgKacL5pr.jpg)
+
+單看語法可能會覺得稍微有點亂！但Mermaid語法傳換成流程圖後非常清楚！！！
+
+## Part 4：將使用者地圖存檔 (Commit &amp; Push)
+
+
+
+**提交至 GitHub：**
+
+1. 在原始碼管理頁面，對 `docs/USER_STORIES.md` 按 `+` (Stage Changes)。
+2. 輸入 Commit 訊息: `docs: Add user stories, ACs, and detailed user flow`
+3. 點擊打勾按鈕 (Commit)，然後同步變更 (Push)。
+
+## 結語：戴上使用者的眼鏡
+
+太棒了！這次的 commit，就像是我們在專案地圖上，插上了第一批代表「使用者需求」的旗幟。
+
+今天，我們不只是產品經理，更像是「使用者心理學家」，學會了從他們的角度來思考、規劃、與定義。這份同理心，是 AI 無法取代的，也是區分優秀開發者與普通碼農的關鍵。
+
+有了使用者的視角，下一步，我們就要從天上鳥瞰，規劃我們系統的「鋼筋骨架」了。明天，我們將化身為架構師，與 Gemini 一同討論並設計出我們專案的「軟體架構文件」！
+</code></pre></div><div class="flex flex-row justify-center py-8 sm:py-12"><div class="w-full max-w-6xl min-w-0"><div class="flex flex-row gap-8 lg:gap-12"><main class="w-full max-w-4xl min-w-0"><article class="prose max-w-none"><nav class="flex text-sm mb-6" aria-label=Breadcrumb><ol class="inline-flex items-center space-x-1 md:space-x-3"><li class="inline-flex items-center"><a href=/ChiYu-Blob/ class="inline-flex items-center hover:text-blue-600 dark:hover:text-blue-400" style=color:var(--text-secondary)><svg class="w-4 h-4 mr-2" fill="currentcolor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414.0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/></svg>
+首頁</a></li><li><div class="flex items-center"><svg class="w-4 h-4 mx-1" style="color:var(--text-secondary);opacity:.5" fill="currentcolor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414.0z" clip-rule="evenodd"/></svg>
+<a href=/ChiYu-Blob/posts/ class="ml-1 hover:text-blue-600 dark:hover:text-blue-400 capitalize" style=color:var(--text-secondary)>全部文章</a></div></li><li aria-current=page><div class="flex items-center"><svg class="w-4 h-4 mx-1" style="color:var(--text-secondary);opacity:.5" fill="currentcolor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414.0z" clip-rule="evenodd"/></svg>
+<span class="ml-1 font-medium truncate max-w-[150px] sm:max-w-[300px]" style=color:var(--text-color)>Day 7: 【文件 #2】使用者的旅程：用 Gemini CLI 描繪「使用者故事」</span></div></li></ol></nav><header class=mb-8><h1 class="text-2xl sm:text-4xl font-bold tracking-tight mb-4 !mt-0">Day 7: 【文件 #2】使用者的旅程：用 Gemini CLI 描繪「使用者故事」</h1><p class=text-base style=color:var(--text-secondary)>發布於 2025年8月26日
+<span class=ml-2 style=color:var(--text-secondary);opacity:.8;font-size:.9em>(更新於 2025年8月26日)
+</span>&#183;
+<span class="inline-flex flex-wrap gap-2 items-center" data-pagefind-ignore><a href=/ChiYu-Blob/tags/2025ithomeironman/ class=tag-pill>2025iThomeIronman</a>
+<a href=/ChiYu-Blob/tags/gemini/ class=tag-pill>Gemini</a>
+<a href=/ChiYu-Blob/tags/user-stories/ class=tag-pill>User Stories</a>
+<a href=/ChiYu-Blob/tags/mermaid/ class=tag-pill>Mermaid</a>
+<a href=/ChiYu-Blob/tags/agile/ class=tag-pill>Agile</a></span></p></header><div data-pagefind-meta="title:Day 7: 【文件 #2】使用者的旅程：用 Gemini CLI 描繪「使用者故事」" style=display:none></div><div data-pagefind-ignore><p>安安，我是 ChiYu！</p><p>昨天，我們確立了專案的「北極星」——專案章程，並在 GitHub 上留下了第一個不可磨滅的印記。如果說昨天的「專案章程」是我們的**「戰略地圖」，告訴我們為何而戰、要攻下哪座城池。那今天，我們就要化身為「戰場指揮官」，繪製出士兵（使用者）在戰場上的具體「戰術路線圖」**。</p><p>今天，我們將完全在終端機內，描繪這張地圖，產出兩份從「使用者視角」出發的關鍵文件：<code>使用者故事 (User Stories)</code> 與 <code>使用者流程圖 (User Flowchart)</code>。</p><h2 id=part-1什麼是使用者故事>Part 1：什麼是「使用者故事」？</h2><p>別被「故事」這兩個字嚇到，我們不是要寫小說。使用者故事其實是一種在敏捷開發中，用來描述需求的強大工具。</p><p>你可以把它想像成你在跟咖啡師點餐。你不會直接跟他說「給我咖啡因、水和牛奶的混合物」，你會說：</p><blockquote><p>身為 一個想提神的顧客 (使用者)，</p><p>我想要 一杯大杯的熱拿鐵 (功能)，</p><p>以便 讓我有精神撐過下午的會議 (價值)。</p></blockquote><p>看到這個格式的威力了嗎？它強迫我們停止用「工程師的語言」思考，而是用「使用者的語言」思考。一個好的使用者故事，包含了經典的「3C」要素：</p><ul><li><strong>Card (卡片)</strong>：故事本身簡短扼要，像一張可以貼在牆上的便利貼。</li><li><strong>Conversation (對話)</strong>：它不是一份冰冷的規格書，而是一個「邀請」，邀請你和 AI 針對這個需求進行對話，釐清細節。</li><li><strong>Confirmation (確認)</strong>：這是最關鍵的一步！每個故事都應該伴隨著**「驗收條件 (Acceptance Criteria)」**，也就是一個非黑即白、不容狡辯的簡單清單，用來確認「怎樣才算完成了這個故事」。</li></ul><h2 id=part-2什麼是使用者流程圖與-mermaidjs>Part 2：什麼是「使用者流程圖」與 Mermaid.js？</h2><p>如果說使用者故事是描述一個個「單點需求」，那「使用者流程圖」就是把這些點串連起來的「路線圖」。它用視覺化的方式，呈現使用者為了完成一個特定目標所需要經過的完整路徑。</p><p>一張圖勝過千言萬語，但一張圖配上精闢的文字解說，才能確保所有人對這千言萬語的理解是完全一致的。</p><p>而 <code>Mermaid.js</code> 就是一個能讓我們用「文字」來畫流程圖的神奇工具。因為是純文字，所以我們可以輕鬆地用 <code>Git</code> 進行版本控制，這對開發者來說再方便不過了！</p><p>Mermaid的語法我暫時不花太多篇幅作介紹，感覺要介紹可以花一天的文章篇幅來完整介紹，在系列文章結束後我再來補充好了(挖坑給自己)！畢竟<code>Mermaid.js</code> 真的有他非常好用的地方，語法簡單直觀、便於版本控制、易於整合與維護而且還跨平台!!!</p><h2 id=part-3實戰開始在終端機中扮演我們的產品經理>Part 3：實戰開始：在終端機中扮演我們的產品經理</h2><p>好了，理論課結束，讓我們再次召喚 Gemini CLI，請它繼續扮演我們的產品經理。</p><h3 id=step-1詠唱我們的魔法-craft-the-prompt>Step 1：詠唱我們的魔法 (Craft the Prompt)</h3><p>我們要讓 Gemini 直接讀取我們本地的「專案章程」，來確保我們的工作是基於最新、最正確的藍圖。</p><p>打開 VS Code 終端機，詠唱我們的第二個「文件生成咒語」：</p><h3 id=魔法詠唱我們的-prompt>【魔法詠唱：我們的 Prompt】</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown><span style=display:flex><span># 角色 (Role)
+</span></span><span style=display:flex><span>你是一位頂尖的產品經理 (PM)，擁有豐富的敏捷開發經驗，擅長將高階的專案目標，轉化為清晰、可執行的使用者故事與流程。你的產出兼具使用者同理心與技術可行性。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 目標 (Objective)
+</span></span><span style=display:flex><span>我的目標是讓你將一份高階的「專案章程」分解為開發團隊可以立即投入工作的敏捷開發產物 (Agile Artifacts)，包含使用者故事和流程圖。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 上下文 (Context)
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   <span style=font-weight:700>**唯一的真相來源 (Single Source of Truth)**</span>: 請將 @docs/PROJECT_CHARTER.md 這份文件作為你所有分析與產出的唯一依據。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>---
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## 你的任務與產出要求 (Your Task &amp; Output Requirements)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>請嚴格按照以下順序與格式，完成所有任務，並將最終結果生成到指定的檔案中。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 任務 1: 生成核心使用者故事 (Core User Stories)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   <span style=font-weight:700>**數量**</span>: 根據專案章程中的 MVP 範圍，撰寫 **5 個最核心**的使用者故事。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   <span style=font-weight:700>**聚焦**</span>: 故事應專注於新使用者從註冊到首次體驗到產品核心價值的「關鍵路徑 (Critical Path)」。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   <span style=font-weight:700>**格式**</span>:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   <span style=font-weight:700>**使用者故事**</span>: 採用標準格式 <span style=color:#e6db74>`As a [角色], I want to [行為], so that [價值]`</span>。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   <span style=font-weight:700>**驗收標準 (Acceptance Criteria)**</span>: 每個故事必須附上 **3 條**驗收標準。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   <span style=font-weight:700>**AC 語法**</span>: 驗收標準必須採用 Gherkin 語法 <span style=color:#e6db74>`Given-When-Then`</span> 撰寫。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 任務 2: 生成使用者流程圖 (User Flow Diagram)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   <span style=font-weight:700>**目標流程**</span>: 聚焦於「**新使用者從進入網站到完成第一次習慣打卡**」的完整流程。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   <span style=font-weight:700>**格式**</span>:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   請使用 **Mermaid.js 的 <span style=color:#e6db74>`graph TD`</span> (由上至下圖表) 語法**來生成流程圖。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   將 Mermaid 語法完整地包在 <span style=color:#e6db74>` `</span>``mermaid ... ``` 程式碼區塊中。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   節點文字應簡潔，箭頭應清晰表示流程方向與條件分支（例如：成功/失敗）。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 任務 3: 撰寫流程圖詳細說明 (Detailed Flow Description)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   在 Mermaid 圖表下方，提供一個名為「**流程圖詳細說明**」的段落。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   使用有序列表，**逐一解釋**流程圖中每個主要步驟的**「WHY」**。不僅要說明「做了什麼」，更要解釋「**為什麼這樣設計**」，包含背後的使用者動機或業務考量。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 最終產出指令 (Final Output Command)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   <span style=font-weight:700>**文件標頭**</span>: 在文件的最頂部，加上文件版本號 <span style=color:#e6db74>`1.0`</span> 與作者 <span style=color:#e6db74>`Gemini (產品經理)`</span>。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   <span style=font-weight:700>**執行動作**</span>: 將以上所有產出（使用者故事、Mermaid 圖表、流程說明）合併到同一個 Markdown 檔案中，命名為 <span style=color:#e6db74>`USER_STORIES.md`</span>，並放置於 @docs\** 資料夾內。
+</span></span></code></pre></div><h3 id=指令拆解>【指令拆解】</h3><ul><li><code>@docs/PROJECT_CHARTER.md</code>：我們將昨天的產出作為上下文「餵」給 Gemini，讓它的發想有根有據。</li></ul><h3 id=step-2迭代與定稿>Step 2：迭代與定稿</h3><p>記住我們的心法：AI 給的永遠是草稿。打開 <code>docs/USER_STORIES.md</code>，仔細閱讀。故事是否合理？驗收標準是否清晰？你可以直接修改，或使用 <code>@</code> 指令讓 AI 針對這個檔案進行「原地重構」，直到你得到一份滿意的「定稿」為止。</p><h3 id=step-3審核與分析我們的-ai-產出>Step 3：審核與分析我們的 AI 產出</h3><p>在你與 AI 經過幾輪的迭代優化後，最終你會得到一份高品質的定稿文件，就像下面這樣：</p><hr><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown><span style=display:flex><span><span style=color:#66d9ef>-</span> **版本**: 1.0
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span> **作者**: Gemini (產品經理)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>---
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## 核心使用者故事 (Core User Stories)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>以下是專為「心境軌跡 (MindTrack)」MVP 設計的 5 個核心使用者故事，聚焦於新使用者的關鍵體驗路徑。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 1. 使用者註冊
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>**作為一個**新使用者，
+</span></span><span style=display:flex><span>**我想要**用我的電子郵件和密碼建立一個帳號，
+</span></span><span style=display:flex><span>**這樣我才能**擁有一個個人化且安全的空間來追蹤我的習慣和心情。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=font-weight:700>**驗收標準 (Acceptance Criteria):**</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>1.</span>  <span style=color:#e6db74>`假設`</span>我正在註冊頁面，`當`我輸入一個有效的、未被使用的電子郵件和一個安全的密碼，並點擊「註冊」，`那麼`我的帳號應該被成功建立，並且我會自動登入到主控台。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>2.</span>  <span style=color:#e6db74>`假設`</span>我正在註冊頁面，`當`我嘗試使用一個已經存在的電子郵件進行註冊，`那麼`我應該會看到一個清晰的錯誤訊息：「此電子郵件地址已被使用。」
+</span></span><span style=display:flex><span><span style=color:#66d9ef>3.</span>  <span style=color:#e6db74>`假設`</span>我正在註冊頁面，`當`我輸入一個無效的電子郵件格式（例如：「user @test」）或一個過短的密碼，`那麼`我應該會在對應的欄位旁看到一個即時的驗證錯誤訊息。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 2. 建立第一個習慣
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>**作為一個**剛剛登入的初次使用者，
+</span></span><span style=display:flex><span>**我希望能**立即被引導去建立我的第一個習慣，
+</span></span><span style=display:flex><span>**這樣我才能**快速了解應用的核心功能並開始設定我的目標。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=font-weight:700>**驗收標準 (Acceptance Criteria):**</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>1.</span>  <span style=color:#e6db74>`假設`</span>我這是第一次登入，`當`主控台載入完成時，`那麼`畫面上應該會顯示一個彈出視窗或一個顯眼的行動呼籲（CTA）元素，邀請我「建立你的第一個習慣」。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>2.</span>  <span style=color:#e6db74>`假設`</span>我被提示要建立一個習慣，`當`我為習慣輸入一個名稱（例如：「每日運動」）並儲存它，`那麼`提示應該會消失，而且新的習慣會被列在我的主控台上。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>3.</span>  <span style=color:#e6db74>`假設`</span>我正在建立一個新的習慣，`當`我嘗試在沒有輸入名稱的情況下儲存，`那麼`儲存按鈕應該是不可點擊的，並且會顯示一個錯誤訊息：「習慣名稱不能為空。」
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 3. 每日習慣打卡
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>**作為一個**回訪使用者，
+</span></span><span style=display:flex><span>**我希望能**透過一次點擊就輕易地將一個習慣標記為「今日已完成」，
+</span></span><span style=display:flex><span>**這樣我才能**維持一個一致且無阻礙的每日成就記錄。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=font-weight:700>**驗收標準 (Acceptance Criteria):**</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>1.</span>  <span style=color:#e6db74>`假設`</span>我的主控台上至少列有一個習慣，`當`我點擊某個習慣旁的空白核取方塊，`那麼`該方塊的狀態應該變為「已勾選」，並且此變更會被儲存。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>2.</span>  <span style=color:#e6db74>`假設`</span>我今天已經將一個習慣標記為完成，`當`我再次點擊那個已勾選的方塊，`那麼`該習慣今天的狀態應該會回復到「未完成」。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>3.</span>  <span style=color:#e6db74>`假設`</span>我昨天完成了一個習慣，`當`我今天訪問我的主控台時，`那麼`該習慣的核取方塊應該被重設為預設的、未勾選的狀態，為新的一天做好準備。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 4. 每日心情記錄
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>**作為一個**專注於自我覺察的使用者，
+</span></span><span style=display:flex><span>**我希望能**快速地在一個簡單的量表上記錄我一天的整體心情，
+</span></span><span style=display:flex><span>**這樣我才能**建立一個數據集，以便日後發現它與我習慣之間的關聯。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=font-weight:700>**驗收標準 (Acceptance Criteria):**</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>1.</span>  <span style=color:#e6db74>`假設`</span>我已經登入到我的主控台，`當`我看到心情記錄區塊並選擇 4 顆星的評分，`那麼`我今天的心情應該被儲存為「4」，並且介面會提供清晰的選擇反饋。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>2.</span>  <span style=color:#e6db74>`假設`</span>我今天已經記錄過心情，`當`我選擇一個不同的評分（例如，從 4 顆星改為 2 顆星），`那麼`我今天的心情記錄應該會被更新為新的數值。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>3.</span>  <span style=color:#e6db74>`假設`</span>我已經選擇了心情評分，`當`我選擇性地輸入一段文字註記「今天會議很順利」並儲存，`那麼`這段文字應該會與今天的心情記錄關聯起來。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 5. 查看關聯性洞察
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>**作為一個**數據導向的使用者，
+</span></span><span style=display:flex><span>**我希望能**看到一個簡單的圖表，將我的心情趨勢與我完成的習慣並列視覺化，
+</span></span><span style=display:flex><span>**這樣我才能**開始識別我的行為與幸福感之間有意義的模式。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=font-weight:700>**驗收標準 (Acceptance Criteria):**</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>1.</span>  <span style=color:#e6db74>`假設`</span>我已經記錄我的心情和至少一個習慣達 3 天或以上，`當`我前往「洞察」頁面，`那麼`我應該會看到一個顯示我心情分數隨時間變化的折線圖。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>2.</span>  <span style=color:#e6db74>`假設`</span>我正在查看心情圖表，`當`我在某一天完成了一個特定的習慣，`那麼`在圖表上那天的數據點旁，應該會顯示一個清晰的視覺指標（例如，一個彩色的點）。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>3.</span>  <span style=color:#e6db74>`假設`</span>我尚未記錄足夠的數據（例如，少於 3 天的記錄），`當`我訪問「洞察」頁面，`那麼`我應該會看到一條訊息，說明需要更多的數據才能生成洞察報告。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>---
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## 新使用者首次打卡流程圖
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>```mermaid
+</span></span><span style=display:flex><span>graph TD
+</span></span><span style=display:flex><span>    A[使用者訪問網站] --&gt; B{有帳號嗎?};
+</span></span><span style=display:flex><span>    B --&gt;|否| C[點擊註冊];
+</span></span><span style=display:flex><span>    C --&gt; D[進入註冊頁];
+</span></span><span style=display:flex><span>    D --&gt; E{填寫表單}; 
+</span></span><span style=display:flex><span>    E --&gt; F{提交}; 
+</span></span><span style=display:flex><span>    F --&gt;|註冊成功| G[進入個人主控台];
+</span></span><span style=display:flex><span>    F --&gt;|註冊失敗| H[顯示錯誤訊息];
+</span></span><span style=display:flex><span>    H --&gt; E;
+</span></span><span style=display:flex><span>    B --&gt;|是| I[點擊登入];
+</span></span><span style=display:flex><span>    I --&gt; J[進入登入頁];
+</span></span><span style=display:flex><span>    J --&gt; G;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    G --&gt; K[首次登入，顯示「建立習慣」引導];
+</span></span><span style=display:flex><span>    K --&gt; L[使用者輸入習慣名稱];
+</span></span><span style=display:flex><span>    L --&gt; M{儲存習慣};
+</span></span><span style=display:flex><span>    M --&gt;|成功| N[主控台顯示新習慣];
+</span></span><span style=display:flex><span>    M --&gt;|失敗/名稱空白| O[提示錯誤];
+</span></span><span style=display:flex><span>    O --&gt; L;
+</span></span><span style=display:flex><span>    N --&gt; P[使用者點擊習慣旁的「打勾」按鈕];
+</span></span><span style=display:flex><span>    P --&gt; Q[狀態更新為「已完成」];
+</span></span><span style=display:flex><span>    Q --&gt; R[流程結束：首次價值體驗];
+</span></span></code></pre></div><h3 id=流程圖詳細說明>流程圖詳細說明</h3><ol><li><p><strong>訪問網站與帳號判斷</strong>: 流程始於使用者到達我們的登陸頁。第一步是區分新舊使用者。</p><ul><li><strong>WHY</strong>: 這是所有 Web 應用的標準起點，提供清晰的註冊或登入路徑，避免使用者混淆。</li></ul></li><li><p><strong>註冊流程</strong>: 新使用者需要建立帳號。</p><ul><li><strong>WHY</strong>: 帳號是保存個人化數據（習慣、心情）的基礎，也是實現長期追蹤與留存的必要條件。我們在此設計了失敗迴路，確保使用者能修正錯誤（如已被使用的 Email）並成功註冊。</li></ul></li><li><p><strong>首次登入與引導</strong>: 使用者成功登入後，直接進入個人主控台。</p><ul><li><strong>WHY</strong>: 為了盡快讓使用者體驗產品價值（Time to Value），我們在首次登入時主動引導他們執行最關鍵的操作——「建立第一個習慣」。這能有效降低新手的學習曲線，提高使用者激活率。</li></ul></li><li><p><strong>建立新習慣</strong>: 使用者被引導去命名並儲存一個他們想追蹤的習慣。</p><ul><li><strong>WHY</strong>: 這是使用者與 App 的第一次有意義的互動。讓使用者輸入自己的目標，能建立個人連結與擁有感，是將抽象目標轉化為具體可追蹤項目的第一步。</li></ul></li><li><p><strong>完成首次打卡</strong>: 習慣建立後，它會立即顯示在主控台上，使用者可以點擊完成打卡。</p><ul><li><strong>WHY</strong>: 這是整個關鍵路徑的終點，也是使用者首次體驗到「完成任務」的回饋閉環。這個簡單的點擊動作提供了即時的滿足感，並成功地教會了使用者最核心的日常操作，為他們未來的持續使用奠定了基礎。</li></ul></li></ol><pre tabindex=0><code>
+
+---
+
+**預覽流程圖：**
+
+&gt; 【小提示】： 想看到 Mermaid 圖表渲染出來的樣子嗎？在 VS Code 市集搜尋並安裝名為 Markdown Preview Mermaid Support 的擴充功能，然後打開 docs/USER_STORIES.md 的預覽模式 (快捷鍵 Ctrl+Shift+V)，欣賞你的文字「程式碼」被即時渲染成的漂亮流程圖！
+
+
+流程圖長這樣：
+
+![使用者流程圖範例](https://ithelp.ithome.com.tw/upload/images/20250826/20132971UWgKacL5pr.jpg)
+
+單看語法可能會覺得稍微有點亂！但Mermaid語法傳換成流程圖後非常清楚！！！
+
+## Part 4：將使用者地圖存檔 (Commit &amp; Push)
+
+
+
+**提交至 GitHub：**
+
+1. 在原始碼管理頁面，對 `docs/USER_STORIES.md` 按 `+` (Stage Changes)。
+2. 輸入 Commit 訊息: `docs: Add user stories, ACs, and detailed user flow`
+3. 點擊打勾按鈕 (Commit)，然後同步變更 (Push)。
+
+## 結語：戴上使用者的眼鏡
+
+太棒了！這次的 commit，就像是我們在專案地圖上，插上了第一批代表「使用者需求」的旗幟。
+
+今天，我們不只是產品經理，更像是「使用者心理學家」，學會了從他們的角度來思考、規劃、與定義。這份同理心，是 AI 無法取代的，也是區分優秀開發者與普通碼農的關鍵。
+
+有了使用者的視角，下一步，我們就要從天上鳥瞰，規劃我們系統的「鋼筋骨架」了。明天，我們將化身為架構師，與 Gemini 一同討論並設計出我們專案的「軟體架構文件」！
+</code></pre></div></article><div class="not-prose my-8 p-6 rounded-lg border transition-colors" style=background-color:var(--code-bg);border-color:var(--border-color)><div class="flex flex-col sm:flex-row sm:items-center justify-between mb-4 pb-4 border-b" style=border-color:var(--border-color)><div><span class="text-xs font-semibold uppercase tracking-wider" style=color:var(--text-secondary)>Series</span><h3 class="text-lg font-bold mt-1"><a href=/ChiYu-Blob/series/2025ithomeironman/ class=hover:underline style=color:var(--link-color)>2025iThomeIronman</a></h3></div><div class="mt-2 sm:mt-0 text-sm font-medium px-3 py-1 rounded-full border" style=background-color:var(--bg-color);color:var(--text-secondary);border-color:var(--border-color)>Part 4 of 7</div></div><div class="series-list-container relative"><ol class="list-none space-y-1 relative" id=series-list-2025ithomeironman><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday4/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">01.</span>
+<span>Day 4: 【工具篇 #2】程式碼的時光機：Git 與 GitHub 版本控制</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday5/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">02.</span>
+<span>Day 5: 【工具篇 #3】終端機裡的魔法：什麼是 Vibe Coding 與 Gemini CLI？</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday6/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">03.</span>
+<span>Day 6: 【文件 #1】專案的靈魂：用 Gemini CLI 生成「專案章程」</span></a></li><li class="series-item p-2 rounded-md transition-colors current-series-item" style="background-color:var(--bg-color);border:1px solid var(--border-color)"><a href=javascript:void(0); class="flex items-start cursor-default" style=color:var(--text-color)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">04.</span>
+<span class=font-bold>Day 7: 【文件 #2】使用者的旅程：用 Gemini CLI 描繪「使用者故事」</span>
+<span class="ml-2 text-xs px-2 py-0.5 rounded-full bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">Current</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday3/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">05.</span>
+<span>Day 3: 【工具篇 #1】萬丈高樓平地起：建置本地開發環境</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday2/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">06.</span>
+<span>Day 2: 【心法篇】開發者的航海圖：什麼是文件驅動開發 (DDD)？</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday1/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">07.</span>
+<span>Day 1: 【啟程】嘿，AI！我們來做個網站，但這次，我們約法三章</span></a></li></ol><button onclick=toggleSeriesList(this) class="w-full mt-4 text-xs font-medium text-center py-2 border-t hover:bg-opacity-50 transition-colors" style=color:var(--text-secondary);border-color:var(--border-color)>
+Show all 7 posts</button><style>#series-list-2025ithomeironman{max-height:300px;overflow-y:auto;padding-right:5px}#series-list-2025ithomeironman::-webkit-scrollbar{width:4px}#series-list-2025ithomeironman::-webkit-scrollbar-track{background:0 0}#series-list-2025ithomeironman::-webkit-scrollbar-thumb{background-color:var(--border-color);border-radius:4px}</style></div></div><script>function toggleSeriesList(e){const t=e.previousElementSibling;t.style.maxHeight==="none"?(t.style.maxHeight="300px",e.innerText="Show all 7 posts"):(t.style.maxHeight="none",e.innerText="Collapse list")}document.addEventListener("DOMContentLoaded",()=>{const e=document.querySelector(".current-series-item");e&&e.scrollIntoView({behavior:"smooth",block:"nearest"})})</script><nav class="flex justify-between mt-16 pt-8 border-t not-prose" style=border-color:var(--border-color)><div><a href=/ChiYu-Blob/posts/2025ithomeironmanday6/ class="block p-4 rounded-lg transition-colors" style=color:var(--text-secondary)><span class=text-sm>上一篇</span>
+<span class="block font-semibold mt-1" style=color:var(--text-color)>Day 6: 【文件 #1】專案的靈魂：用 Gemini CLI 生成「專案章程」 &larr;</span></a></div><div class=text-right></div></nav><div class="mt-16 pt-8 border-t not-prose" style=border-color:var(--border-color)><h3 class="text-xl font-bold mb-6">相關文章</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-4"><a href=/ChiYu-Blob/posts/2025ithomeironmanday6/ class="block p-4 rounded-lg transition-colors" style="border:1px solid var(--border-color)"><span class="font-semibold block" style=color:var(--text-color)>Day 6: 【文件 #1】專案的靈魂：用 Gemini CLI 生成「專案章程」</span><p class="text-sm mt-1" style=color:var(--text-secondary)>安安，我是 ChiYu！
+經過了五天的「前置作業」，我們的駕駛艙 (VS Code)、引擎 (Python)、魔法法杖 (Gemini …</p></a><a href=/ChiYu-Blob/posts/2025ithomeironmanday5/ class="block p-4 rounded-lg transition-colors" style="border:1px solid var(--border-color)"><span class="font-semibold block" style=color:var(--text-color)>Day 5: 【工具篇 #3】終端機裡的魔法：什麼是 Vibe Coding 與 Gemini CLI？</span><p class="text-sm mt-1" style=color:var(--text-secondary)>安安，我是 ChiYu！
+昨天，我們完成了技師的工作，為我們的專案蓋好了雲端機棚 (GitHub)，也把駕駛艙 (VS Code) 裝潢得舒 …</p></a><a href=/ChiYu-Blob/posts/2025ithomeironmanday4/ class="block p-4 rounded-lg transition-colors" style="border:1px solid var(--border-color)"><span class="font-semibold block" style=color:var(--text-color)>Day 4: 【工具篇 #2】程式碼的時光機：Git 與 GitHub 版本控制</span><p class="text-sm mt-1" style=color:var(--text-secondary)>安安，我是 ChiYu！
+昨天，我們扮演了「技師與軍火官」的角色，把我們的駕駛艙 (VS Code) 從毛胚屋打造成了精裝房，並備妥了所有核 …</p></a><a href=/ChiYu-Blob/posts/2025ithomeironmanday3/ class="block p-4 rounded-lg transition-colors" style="border:1px solid var(--border-color)"><span class="font-semibold block" style=color:var(--text-color)>Day 3: 【工具篇 #1】萬丈高樓平地起：建置本地開發環境</span><p class="text-sm mt-1" style=color:var(--text-secondary)>安安，我是 ChiYu！
+昨天，我們在腦中畫好了宏偉的建築藍圖 (DDD)，確立了「文件驅動開發」這個核心心法。今天，理論課結束，我們要開始 …</p></a><a href=/ChiYu-Blob/posts/2025ithomeironmanday2/ class="block p-4 rounded-lg transition-colors" style="border:1px solid var(--border-color)"><span class="font-semibold block" style=color:var(--text-color)>Day 2: 【心法篇】開發者的航海圖：什麼是文件驅動開發 (DDD)？</span><p class="text-sm mt-1" style=color:var(--text-secondary)>嘿，大家好啊！我是 ChiYu。
+昨天聊到 AI 開發，一不小心就把小小的「腳踏車」專案搞成一艘「航空母艦」，超頭痛的對吧？這種「AI 太能 …</p></a></div></div><div id=giscus-container class="mt-16 pt-8 border-t not-prose" style=border-color:var(--border-color)></div></main><aside class=post-toc-sidebar><div class=toc-sticky-container><h3 class=toc-title>本文目錄</h3><nav id=TableOfContents><ul><li><a href=#part-1什麼是使用者故事>Part 1：什麼是「使用者故事」？</a></li><li><a href=#part-2什麼是使用者流程圖與-mermaidjs>Part 2：什麼是「使用者流程圖」與 Mermaid.js？</a></li><li><a href=#part-3實戰開始在終端機中扮演我們的產品經理>Part 3：實戰開始：在終端機中扮演我們的產品經理</a><ul><li><a href=#step-1詠唱我們的魔法-craft-the-prompt>Step 1：詠唱我們的魔法 (Craft the Prompt)</a></li><li><a href=#魔法詠唱我們的-prompt>【魔法詠唱：我們的 Prompt】</a></li><li><a href=#指令拆解>【指令拆解】</a></li><li><a href=#step-2迭代與定稿>Step 2：迭代與定稿</a></li><li><a href=#step-3審核與分析我們的-ai-產出>Step 3：審核與分析我們的 AI 產出</a></li><li><a href=#流程圖詳細說明>流程圖詳細說明</a></li></ul></li></ul></nav></div></aside></div></div><aside class="w-64 flex-shrink-0 lg:block pl-8"><div class="sticky top-20" data-pagefind-ignore><div class="mb-8 text-center" data-pagefind-ignore><img src=/ChiYu-Blob/images/avatar.jpg alt=個人大頭貼 class="w-32 h-32 rounded-full mx-auto object-cover border-2" style=border-color:var(--border-color) data-pagefind-ignore></div><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>文章月曆</h3><div id=calendar-widget><div class="flex justify-between items-center mb-2 font-semibold"><button id=cal-prev title=上個月 class="px-2 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700">&lt;</button>
+<span id=cal-month-year></span>
+<button id=cal-next title=下個月 class="px-2 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700">></button></div><div class="grid grid-cols-7 text-center text-xs gap-y-2" style=color:var(--text-secondary)><span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span></div><div id=cal-days class="grid grid-cols-7 text-center text-sm mt-2 gap-y-2"></div></div></div><script>document.addEventListener("DOMContentLoaded",function(){const e={};e["2025-12-17"]="/ChiYu-Blob/dates/2025-12-17/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-8-23"]="/ChiYu-Blob/dates/2025-08-23/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-8-24"]="/ChiYu-Blob/dates/2025-08-24/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-8-25"]="/ChiYu-Blob/dates/2025-08-25/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-26"]="/ChiYu-Blob/dates/2025-08-26/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-7-3"]="/ChiYu-Blob/dates/2025-07-03/",e["2025-8-22"]="/ChiYu-Blob/dates/2025-08-22/",e["2025-8-21"]="/ChiYu-Blob/dates/2025-08-21/",e["2025-8-20"]="/ChiYu-Blob/dates/2025-08-20/",e["2025-6-8"]="/ChiYu-Blob/dates/2025-06-08/",e["2025-6-5"]="/ChiYu-Blob/dates/2025-06-05/";const o=document.getElementById("cal-month-year"),n=document.getElementById("cal-days"),i=document.getElementById("cal-prev"),a=document.getElementById("cal-next");let t=new Date;function s(t){const s=t.getFullYear(),i=t.getMonth();o.textContent=`${s} 年 ${i+1} 月`,n.innerHTML="";const a=new Date(s,i,1),r=new Date(s,i+1,0),c=a.getDay();for(let e=0;e<c;e++)n.insertAdjacentHTML("beforeend","<div></div>");for(let t=1;t<=r.getDate();t++){const o=`${s}-${i+1}-${t}`;e[o]?n.insertAdjacentHTML("beforeend",`
+                    <a href="${e[o]}" class="block p-1 rounded-full transition-colors font-bold" style="color: var(--link-color); text-decoration: underline; text-decoration-thickness: 2px;">
+                        ${t}
+                    </a>
+                `):n.insertAdjacentHTML("beforeend",`<span class="block p-1">${t}</span>`)}}i.addEventListener("click",()=>{t.setMonth(t.getMonth()-1),s(t)}),a.addEventListener("click",()=>{t.setMonth(t.getMonth()+1),s(t)}),s(t)})</script><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>所有標籤</h3><div class="flex flex-wrap gap-2"><a href=/ChiYu-Blob/tags/user-stories/ class=tag-pill>User Stories
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/sideproject/ class=tag-pill>SideProject
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/prompt-engineering/ class=tag-pill>Prompt Engineering
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/project-charter/ class=tag-pill>Project Charter
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/mermaid/ class=tag-pill>Mermaid
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/hlr/ class=tag-pill>HLR
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/guide/ class=tag-pill>Guide
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/github/ class=tag-pill>GitHub
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/git/ class=tag-pill>Git
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/documentation/ class=tag-pill>Documentation
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/codex/ class=tag-pill>Codex
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/cli/ class=tag-pill>CLI
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/ai-agent/ class=tag-pill>AI Agent
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/agile/ class=tag-pill>Agile
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/ai/ class=tag-pill>AI
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/hugo/ class=tag-pill>Hugo
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/gemini/ class=tag-pill>Gemini
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/ddd/ class=tag-pill>DDD
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/vibecoding/ class=tag-pill>VibeCoding
+<span class="ml-1 opacity-75">6</span>
+</a><a href=/ChiYu-Blob/tags/2025ithomeironman/ class=tag-pill>2025iThomeIronman
+<span class="ml-1 opacity-75">7</span>
+</a><a href=/ChiYu-Blob/tags/designpattern/ class=tag-pill>DesignPattern
+<span class="ml-1 opacity-75">24</span>
+</a><a href=/ChiYu-Blob/tags/csharp/ class=tag-pill>Csharp
+<span class="ml-1 opacity-75">24</span>
+</a><a href=/ChiYu-Blob/tags/code/ class=tag-pill>Code
+<span class="ml-1 opacity-75">24</span></a></div><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>相關連結</h3><div class="flex flex-col space-y-3 mt-4"><a href=https://www.cake.me/me/ChiYuisme target=_blank rel="noopener noreferrer" class=transition-colors style=color:var(--text-secondary);hover:var(--link-color)><span class=text-base>cakeresume</span>
+</a><a href=https://github.com/eric861129 target=_blank rel="noopener noreferrer" class=transition-colors style=color:var(--text-secondary);hover:var(--link-color)><span class=text-base>github</span>
+</a><a href=https://ithelp.ithome.com.tw/users/20132971/ironman/8253 target=_blank rel="noopener noreferrer" class=transition-colors style=color:var(--text-secondary);hover:var(--link-color)><span class=text-base>ithome</span>
+</a><a href=https://www.linkedin.com/in/chiyu-huang/ target=_blank rel="noopener noreferrer" class=transition-colors style=color:var(--text-secondary);hover:var(--link-color)><span class=text-base>linkedin</span>
+</a><a href=https://www.threads.com/@chiyuisme target=_blank rel="noopener noreferrer" class=transition-colors style=color:var(--text-secondary);hover:var(--link-color)><span class=text-base>threads</span></a></div></div><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>系列文章</h3><ul class=space-y-1><li><a href=/ChiYu-Blob/series/designpattern/ class="flex justify-between"><span>設計模式</span>
+<span class=text-sm>24</span></a></li><li><a href=/ChiYu-Blob/series/2025ithomeironman/ class="flex justify-between"><span>2025 iThome 鐵人賽</span>
+<span class=text-sm>7</span></a></li><li><a href=/ChiYu-Blob/series/hugo-%E9%96%8B%E7%99%BC%E7%B4%80%E9%8C%84/ class="flex justify-between"><span>Hugo 開發紀錄</span>
+<span class=text-sm>1</span></a></li></ul></div></div></aside></div><footer class="mt-16 pt-8 border-t text-center text-sm" style=border-color:var(--border-color);color:var(--text-secondary)><p>&copy; 2025 ChiYu. All Rights Reserved.</p></footer><button id=scroll-to-top-btn class=scroll-to-top title=回到頂部><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentcolor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 15a.5.5.0 00.5-.5V2.707l3.146 3.147a.5.5.0 00.708-.708l-4-4a.5.5.0 00-.708.0l-4 4a.5.5.0 10.708.708L7.5 2.707V14.5a.5.5.0 00.5.5z"/></svg></button></div><div id=sidebar-overlay class=sidebar-overlay></div><aside id=mobile-sidebar class=mobile-sidebar><div class=p-4><aside class=sidebar><div class=sidebar-inner><div class=widget><h3 class=widget-title>系列文章</h3><ul class=widget-list><li><a href=/ChiYu-Blob/series/designpattern/>設計模式
+<span class=posts-count>24</span></a></li><li><a href=/ChiYu-Blob/series/2025ithomeironman/>2025 iThome 鐵人賽
+<span class=posts-count>7</span></a></li><li><a href=/ChiYu-Blob/series/hugo-%E9%96%8B%E7%99%BC%E7%B4%80%E9%8C%84/>Hugo 開發紀錄
+<span class=posts-count>1</span></a></li></ul></div></div></aside><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>文章月曆</h3><div id=calendar-widget><div class="flex justify-between items-center mb-2 font-semibold"><button id=cal-prev title=上個月 class="px-2 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700">&lt;</button>
+<span id=cal-month-year></span>
+<button id=cal-next title=下個月 class="px-2 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700">></button></div><div class="grid grid-cols-7 text-center text-xs gap-y-2" style=color:var(--text-secondary)><span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span></div><div id=cal-days class="grid grid-cols-7 text-center text-sm mt-2 gap-y-2"></div></div></div><script>document.addEventListener("DOMContentLoaded",function(){const e={};e["2025-12-17"]="/ChiYu-Blob/dates/2025-12-17/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-8-23"]="/ChiYu-Blob/dates/2025-08-23/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-8-24"]="/ChiYu-Blob/dates/2025-08-24/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-8-25"]="/ChiYu-Blob/dates/2025-08-25/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-26"]="/ChiYu-Blob/dates/2025-08-26/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-7-3"]="/ChiYu-Blob/dates/2025-07-03/",e["2025-8-22"]="/ChiYu-Blob/dates/2025-08-22/",e["2025-8-21"]="/ChiYu-Blob/dates/2025-08-21/",e["2025-8-20"]="/ChiYu-Blob/dates/2025-08-20/",e["2025-6-8"]="/ChiYu-Blob/dates/2025-06-08/",e["2025-6-5"]="/ChiYu-Blob/dates/2025-06-05/";const o=document.getElementById("cal-month-year"),n=document.getElementById("cal-days"),i=document.getElementById("cal-prev"),a=document.getElementById("cal-next");let t=new Date;function s(t){const s=t.getFullYear(),i=t.getMonth();o.textContent=`${s} 年 ${i+1} 月`,n.innerHTML="";const a=new Date(s,i,1),r=new Date(s,i+1,0),c=a.getDay();for(let e=0;e<c;e++)n.insertAdjacentHTML("beforeend","<div></div>");for(let t=1;t<=r.getDate();t++){const o=`${s}-${i+1}-${t}`;e[o]?n.insertAdjacentHTML("beforeend",`
+                    <a href="${e[o]}" class="block p-1 rounded-full transition-colors font-bold" style="color: var(--link-color); text-decoration: underline; text-decoration-thickness: 2px;">
+                        ${t}
+                    </a>
+                `):n.insertAdjacentHTML("beforeend",`<span class="block p-1">${t}</span>`)}}i.addEventListener("click",()=>{t.setMonth(t.getMonth()-1),s(t)}),a.addEventListener("click",()=>{t.setMonth(t.getMonth()+1),s(t)}),s(t)})</script><aside class="w-64 flex-shrink-0 lg:block pl-8"><div class="sticky top-20" data-pagefind-ignore><div class="mb-8 text-center" data-pagefind-ignore><img src=/ChiYu-Blob/images/avatar.jpg alt=個人大頭貼 class="w-32 h-32 rounded-full mx-auto object-cover border-2" style=border-color:var(--border-color) data-pagefind-ignore></div><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>文章月曆</h3><div id=calendar-widget><div class="flex justify-between items-center mb-2 font-semibold"><button id=cal-prev title=上個月 class="px-2 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700">&lt;</button>
+<span id=cal-month-year></span>
+<button id=cal-next title=下個月 class="px-2 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700">></button></div><div class="grid grid-cols-7 text-center text-xs gap-y-2" style=color:var(--text-secondary)><span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span></div><div id=cal-days class="grid grid-cols-7 text-center text-sm mt-2 gap-y-2"></div></div></div><script>document.addEventListener("DOMContentLoaded",function(){const e={};e["2025-12-17"]="/ChiYu-Blob/dates/2025-12-17/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-8-23"]="/ChiYu-Blob/dates/2025-08-23/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-8-24"]="/ChiYu-Blob/dates/2025-08-24/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-8-25"]="/ChiYu-Blob/dates/2025-08-25/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-26"]="/ChiYu-Blob/dates/2025-08-26/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-7-3"]="/ChiYu-Blob/dates/2025-07-03/",e["2025-8-22"]="/ChiYu-Blob/dates/2025-08-22/",e["2025-8-21"]="/ChiYu-Blob/dates/2025-08-21/",e["2025-8-20"]="/ChiYu-Blob/dates/2025-08-20/",e["2025-6-8"]="/ChiYu-Blob/dates/2025-06-08/",e["2025-6-5"]="/ChiYu-Blob/dates/2025-06-05/";const o=document.getElementById("cal-month-year"),n=document.getElementById("cal-days"),i=document.getElementById("cal-prev"),a=document.getElementById("cal-next");let t=new Date;function s(t){const s=t.getFullYear(),i=t.getMonth();o.textContent=`${s} 年 ${i+1} 月`,n.innerHTML="";const a=new Date(s,i,1),r=new Date(s,i+1,0),c=a.getDay();for(let e=0;e<c;e++)n.insertAdjacentHTML("beforeend","<div></div>");for(let t=1;t<=r.getDate();t++){const o=`${s}-${i+1}-${t}`;e[o]?n.insertAdjacentHTML("beforeend",`
+                    <a href="${e[o]}" class="block p-1 rounded-full transition-colors font-bold" style="color: var(--link-color); text-decoration: underline; text-decoration-thickness: 2px;">
+                        ${t}
+                    </a>
+                `):n.insertAdjacentHTML("beforeend",`<span class="block p-1">${t}</span>`)}}i.addEventListener("click",()=>{t.setMonth(t.getMonth()-1),s(t)}),a.addEventListener("click",()=>{t.setMonth(t.getMonth()+1),s(t)}),s(t)})</script><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>所有標籤</h3><div class="flex flex-wrap gap-2"><a href=/ChiYu-Blob/tags/user-stories/ class=tag-pill>User Stories
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/sideproject/ class=tag-pill>SideProject
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/prompt-engineering/ class=tag-pill>Prompt Engineering
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/project-charter/ class=tag-pill>Project Charter
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/mermaid/ class=tag-pill>Mermaid
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/hlr/ class=tag-pill>HLR
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/guide/ class=tag-pill>Guide
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/github/ class=tag-pill>GitHub
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/git/ class=tag-pill>Git
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/documentation/ class=tag-pill>Documentation
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/codex/ class=tag-pill>Codex
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/cli/ class=tag-pill>CLI
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/ai-agent/ class=tag-pill>AI Agent
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/agile/ class=tag-pill>Agile
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/ai/ class=tag-pill>AI
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/hugo/ class=tag-pill>Hugo
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/gemini/ class=tag-pill>Gemini
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/ddd/ class=tag-pill>DDD
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/vibecoding/ class=tag-pill>VibeCoding
+<span class="ml-1 opacity-75">6</span>
+</a><a href=/ChiYu-Blob/tags/2025ithomeironman/ class=tag-pill>2025iThomeIronman
+<span class="ml-1 opacity-75">7</span>
+</a><a href=/ChiYu-Blob/tags/designpattern/ class=tag-pill>DesignPattern
+<span class="ml-1 opacity-75">24</span>
+</a><a href=/ChiYu-Blob/tags/csharp/ class=tag-pill>Csharp
+<span class="ml-1 opacity-75">24</span>
+</a><a href=/ChiYu-Blob/tags/code/ class=tag-pill>Code
+<span class="ml-1 opacity-75">24</span></a></div><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>相關連結</h3><div class="flex flex-col space-y-3 mt-4"><a href=https://www.cake.me/me/ChiYuisme target=_blank rel="noopener noreferrer" class=transition-colors style=color:var(--text-secondary);hover:var(--link-color)><span class=text-base>cakeresume</span>
+</a><a href=https://github.com/eric861129 target=_blank rel="noopener noreferrer" class=transition-colors style=color:var(--text-secondary);hover:var(--link-color)><span class=text-base>github</span>
+</a><a href=https://ithelp.ithome.com.tw/users/20132971/ironman/8253 target=_blank rel="noopener noreferrer" class=transition-colors style=color:var(--text-secondary);hover:var(--link-color)><span class=text-base>ithome</span>
+</a><a href=https://www.linkedin.com/in/chiyu-huang/ target=_blank rel="noopener noreferrer" class=transition-colors style=color:var(--text-secondary);hover:var(--link-color)><span class=text-base>linkedin</span>
+</a><a href=https://www.threads.com/@chiyuisme target=_blank rel="noopener noreferrer" class=transition-colors style=color:var(--text-secondary);hover:var(--link-color)><span class=text-base>threads</span></a></div></div><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>系列文章</h3><ul class=space-y-1><li><a href=/ChiYu-Blob/series/designpattern/ class="flex justify-between"><span>設計模式</span>
+<span class=text-sm>24</span></a></li><li><a href=/ChiYu-Blob/series/2025ithomeironman/ class="flex justify-between"><span>2025 iThome 鐵人賽</span>
+<span class=text-sm>7</span></a></li><li><a href=/ChiYu-Blob/series/hugo-%E9%96%8B%E7%99%BC%E7%B4%80%E9%8C%84/ class="flex justify-between"><span>Hugo 開發紀錄</span>
+<span class=text-sm>1</span></a></li></ul></div></div></aside></div></aside><script>function initPagefind(){window.PagefindUI&&new PagefindUI({element:"#search",showSubResults:!1,baseUrl:"/ChiYu-Blob/",language:"zh-tw"})}</script><script src=/ChiYu-Blob/pagefind/pagefind-ui.js onload=initPagefind()></script><script>document.addEventListener("DOMContentLoaded",()=>{const s=document.getElementById("reading-progress-bar");s&&window.addEventListener("scroll",()=>{const e=document.documentElement.scrollTop||document.body.scrollTop,t=document.documentElement.scrollHeight-document.documentElement.clientHeight,n=e/t*100;s.style.width=n+"%"});const o=document.getElementById("theme-toggle");o&&o.addEventListener("click",()=>{const n=document.documentElement.getAttribute("data-theme"),e=n==="light"?"dark":"light";document.documentElement.setAttribute("data-theme",e),localStorage.setItem("theme",e);const t=document.querySelector("iframe.giscus-frame");t&&t.contentWindow.postMessage({giscus:{setTheme:e}},"https://giscus.app")}),document.querySelectorAll("div.highlight").forEach(e=>{const t=document.createElement("button");t.className="copy-code-button",t.type="button",t.innerText="Copy",t.addEventListener("click",()=>{const n=e.querySelector("code").innerText;navigator.clipboard.writeText(n).then(()=>{t.innerText="Copied!",setTimeout(()=>{t.innerText="Copy"},2e3)})}),e.appendChild(t)});const i=document.querySelectorAll(".post-toc-sidebar nav#TableOfContents a"),a=Array.from(i).map(e=>{try{const t=decodeURIComponent(e.getAttribute("href").substring(1));return document.getElementById(t)}catch{return null}}).filter(Boolean);if(a.length>0){const e=new IntersectionObserver(e=>{let t=[];if(e.forEach(e=>{e.isIntersecting&&t.push(e.target)}),t.length>0){const n=t.reduce((e,t)=>e.getBoundingClientRect().top<t.getBoundingClientRect().top?e:t);i.forEach(e=>e.classList.remove("active"));const s=n.getAttribute("id"),e=document.querySelector(`.post-toc-sidebar nav#TableOfContents a[href="#${encodeURIComponent(s)}"]`);e&&e.classList.add("active")}},{rootMargin:"-80px 0px -60% 0px"});a.forEach(t=>e.observe(t))}const r=document.getElementById("giscus-container");if(r){const e=document.createElement("script");e.src="https://giscus.app/client.js",e.setAttribute("data-repo","eric861129/ChiYu-Blob"),e.setAttribute("data-repo-id","R_kgDOO2a_UQ"),e.setAttribute("data-category","Announcements"),e.setAttribute("data-category-id","DIC_kwDOO2a_Uc4CrGzL"),e.setAttribute("data-mapping","pathname"),e.setAttribute("data-strict","0"),e.setAttribute("data-reactions-enabled","1"),e.setAttribute("data-emit-metadata","0"),e.setAttribute("data-input-position","top"),e.setAttribute("data-theme",document.documentElement.getAttribute("data-theme")),e.setAttribute("data-lang","zh-TW"),e.setAttribute("crossorigin","anonymous"),e.async=!0,r.appendChild(e)}const e=document.getElementById("scroll-to-top-btn");e&&(window.addEventListener("scroll",()=>{window.pageYOffset>300?e.classList.add("show"):e.classList.remove("show")}),e.addEventListener("click",()=>{window.scrollTo({top:0,behavior:"smooth"})}));const c=document.getElementById("mobile-sidebar-toggle"),n=document.getElementById("mobile-sidebar"),t=document.getElementById("sidebar-overlay");c&&n&&t&&(c.addEventListener("click",()=>{n.classList.toggle("is-open"),t.classList.toggle("is-open")}),t.addEventListener("click",()=>{n.classList.remove("is-open"),t.classList.remove("is-open")}))})</script></body></html>
