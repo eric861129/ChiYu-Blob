@@ -2,7 +2,7 @@
 title = "裝飾者模式：讓功能自由加點"
 date = 2025-06-12
 dates = ["2025-06-12"]
-tags = ["Code", "Csharp", "DesignPattern"]
+tags = ["C#", "Design Patterns"]
 prev_post_slug = "0013composite-pattern"
 next_post_slug = "0015facade-pattern"
 series = ["DesignPattern"]

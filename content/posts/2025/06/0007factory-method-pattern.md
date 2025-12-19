@@ -2,7 +2,7 @@
 title = "工廠方法模式：點披薩不用親自下廚"
 date = 2025-06-12
 dates = ["2025-06-12"]
-tags = ["Code", "Csharp", "DesignPattern"]
+tags = ["C#", "Design Patterns"]
 prev_post_slug = "0006singleton-pattern"
 next_post_slug = "0008abstract-factory-pattern"
 series = ["DesignPattern"]

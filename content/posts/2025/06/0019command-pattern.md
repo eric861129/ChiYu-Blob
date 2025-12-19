@@ -2,7 +2,7 @@
 title = "命令模式：靈活封裝的請求指令"
 date = 2025-06-12
 dates = ["2025-06-12"]
-tags = ["Code", "Csharp", "DesignPattern"]
+tags = ["C#", "Design Patterns"]
 prev_post_slug = "0018chain-of-responsibility-pattern"
 next_post_slug = "0020interpreter-pattern"
 series = ["DesignPattern"]

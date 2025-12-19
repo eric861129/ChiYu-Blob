@@ -2,7 +2,7 @@
 title = "享元模式：節省記憶體的利器"
 date = 2025-06-12
 dates = ["2025-06-12"]
-tags = ["Code", "Csharp", "DesignPattern"]
+tags = ["C#", "Design Patterns"]
 prev_post_slug = "0015facade-pattern"
 next_post_slug = "0017proxy-pattern"
 series = ["DesignPattern"]

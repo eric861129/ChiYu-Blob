@@ -3,7 +3,7 @@ title = "開發日誌 #1：我把『人生』變成了一款可以練功打寶�
 date = 2025-07-03
 slug = "hlr-devlog-1"
 dates = ["2025-07-03"]
-tags = ["SideProject", "HLR"]
+tags = ["Side Project", "HLR"]
 prev_post_slug = "0028visitor-pattern"
 weight = 29
 +++

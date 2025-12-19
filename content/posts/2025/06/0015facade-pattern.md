@@ -2,7 +2,7 @@
 title = "外觀模式：化繁為簡"
 date = 2025-06-12
 dates = ["2025-06-12"]
-tags = ["Code", "Csharp", "DesignPattern"]
+tags = ["C#", "Design Patterns"]
 prev_post_slug = "0014decorator-pattern"
 next_post_slug = "0016flyweight-pattern"
 series = ["DesignPattern"]

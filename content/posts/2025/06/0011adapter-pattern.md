@@ -2,7 +2,7 @@
 title = "介面卡模式：讓不相容也能合作"
 date = 2025-06-12
 dates = ["2025-06-12"]
-tags = ["Code", "Csharp", "DesignPattern"]
+tags = ["C#", "Design Patterns"]
 prev_post_slug = "0010builder-pattern"
 next_post_slug = "0012bridge-pattern"
 series = ["DesignPattern"]

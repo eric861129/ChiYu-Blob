@@ -2,7 +2,7 @@
 title = "訪問者模式：新增功能不動既有架構"
 date = 2025-06-13
 dates = ["2025-06-13"]
-tags = ["Code", "Csharp", "DesignPattern"]
+tags = ["C#", "Design Patterns"]
 prev_post_slug = "0027template-method-pattern"
 series = ["DesignPattern"]
 weight = 28

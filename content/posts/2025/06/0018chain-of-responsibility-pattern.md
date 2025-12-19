@@ -2,7 +2,7 @@
 title = "責任鏈模式：層層把關的處理機制"
 date = 2025-06-12
 dates = ["2025-06-12"]
-tags = ["Code", "Csharp", "DesignPattern"]
+tags = ["C#", "Design Patterns"]
 prev_post_slug = "0017proxy-pattern"
 next_post_slug = "0019command-pattern"
 series = ["DesignPattern"]

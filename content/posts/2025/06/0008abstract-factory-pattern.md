@@ -2,7 +2,7 @@
 title = "抽象工廠模式：系列產品輕鬆生產"
 date = 2025-06-12
 dates = ["2025-06-12"]
-tags = ["Code", "Csharp", "DesignPattern"]
+tags = ["C#", "Design Patterns"]
 prev_post_slug = "0007factory-method-pattern"
 next_post_slug = "0009prototype-pattern"
 series = ["DesignPattern"]

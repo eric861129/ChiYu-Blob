@@ -2,7 +2,7 @@
 title = "模板方法模式：固定流程靈活實作"
 date = 2025-06-13
 dates = ["2025-06-13"]
-tags = ["Code", "Csharp", "DesignPattern"]
+tags = ["C#", "Design Patterns"]
 prev_post_slug = "0026strategy-pattern"
 series = ["DesignPattern"]
 weight = 27

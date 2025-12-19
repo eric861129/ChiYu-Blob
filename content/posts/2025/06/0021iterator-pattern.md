@@ -2,7 +2,7 @@
 title = "迭代器模式：輕鬆遍歷集合元素"
 date = 2025-06-13
 dates = ["2025-06-13"]
-tags = ["Code", "Csharp", "DesignPattern"]
+tags = ["C#", "Design Patterns"]
 prev_post_slug = "0020interpreter-pattern"
 next_post_slug = "0022mediator-pattern"
 series = ["DesignPattern"]

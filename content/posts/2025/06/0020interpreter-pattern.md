@@ -2,7 +2,7 @@
 title = "解譯器模式：讓程式聽懂你的指令"
 date = 2025-06-12
 dates = ["2025-06-12"]
-tags = ["Code", "Csharp", "DesignPattern"]
+tags = ["C#", "Design Patterns"]
 prev_post_slug = "0019command-pattern"
 next_post_slug = "0021iterator-pattern"
 series = ["DesignPattern"]

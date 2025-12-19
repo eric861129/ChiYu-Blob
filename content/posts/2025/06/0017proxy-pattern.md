@@ -2,7 +2,7 @@
 title = "代理模式：控制存取的守門員"
 date = 2025-06-12
 dates = ["2025-06-12"]
-tags = ["Code", "Csharp", "DesignPattern"]
+tags = ["C#", "Design Patterns"]
 prev_post_slug = "0016flyweight-pattern"
 next_post_slug = "0018chain-of-responsibility-pattern"
 series = ["DesignPattern"]

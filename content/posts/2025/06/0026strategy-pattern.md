@@ -2,7 +2,7 @@
 title = "策略模式：靈活切換行為的好幫手"
 date = 2025-06-13
 dates = ["2025-06-13"]
-tags = ["Code", "Csharp", "DesignPattern"]
+tags = ["C#", "Design Patterns"]
 prev_post_slug = "0025state-pattern"
 next_post_slug = "0027template-method-pattern"
 series = ["DesignPattern"]

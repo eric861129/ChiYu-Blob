@@ -2,7 +2,7 @@
 title = "組合模式：樹狀結構的好幫手"
 date = 2025-06-12
 dates = ["2025-06-12"]
-tags = ["Code", "Csharp", "DesignPattern"]
+tags = ["C#", "Design Patterns"]
 prev_post_slug = "0012bridge-pattern"
 next_post_slug = "0014decorator-pattern"
 series = ["DesignPattern"]

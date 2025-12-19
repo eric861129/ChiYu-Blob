@@ -2,7 +2,7 @@
 title = "原型模式：複製的藝術"
 date = 2025-06-12
 dates = ["2025-06-12"]
-tags = ["Code", "Csharp", "DesignPattern"]
+tags = ["C#", "Design Patterns"]
 prev_post_slug = "0008abstract-factory-pattern"
 next_post_slug = "0010builder-pattern"
 series = ["DesignPattern"]

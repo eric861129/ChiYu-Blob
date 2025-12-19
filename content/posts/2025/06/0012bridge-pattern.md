@@ -2,7 +2,7 @@
 title = "橋接模式：抽象與實作分離"
 date = 2025-06-12
 dates = ["2025-06-12"]
-tags = ["Code", "Csharp", "DesignPattern"]
+tags = ["C#", "Design Patterns"]
 prev_post_slug = "0011adapter-pattern"
 next_post_slug = "0013composite-pattern"
 series = ["DesignPattern"]
