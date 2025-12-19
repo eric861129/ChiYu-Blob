@@ -1,0 +1,17 @@
+{{ define "main" }}
+<div class="min-h-[60vh] flex flex-col items-center justify-center text-center px-4">
+    <h1 class="text-9xl font-bold" style="color: var(--text-secondary); opacity: 0.2;">404</h1>
+    <h2 class="text-3xl sm:text-4xl font-bold mt-4 mb-6">頁面未找到</h2>
+    <p class="text-lg mb-8 max-w-md" style="color: var(--text-secondary);">
+        抱歉，您所尋找的頁面似乎已經移動、刪除或是不存在。
+    </p>
+    <div class="flex gap-4">
+        <a href="{{ "/" | relURL }}" class="px-6 py-3 rounded-full font-medium transition-colors" style="background-color: var(--link-color); color: #fff;">
+            回到首頁
+        </a>
+        <button onclick="history.back()" class="px-6 py-3 rounded-full font-medium transition-colors border" style="border-color: var(--border-color); color: var(--text-color);">
+            回上一頁
+        </button>
+    </div>
+</div>
+{{ end }}
