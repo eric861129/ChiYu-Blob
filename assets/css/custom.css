@@ -147,6 +147,11 @@ nav.not-prose a:hover {
     transform: translateX(-300px); /* Slide in */
 }
 
+/* Fix for sticky elements inside mobile sidebar causing overlap */
+.mobile-sidebar .sticky {
+    position: static !important;
+}
+
 /* --- Responsive Sidebar Visibility --- */
 /* 手機版優先 (Mobile First)：預設隱藏 */
 .desktop-sidebar {

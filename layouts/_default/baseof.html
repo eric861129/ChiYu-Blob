@@ -70,7 +70,7 @@
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <header class="flex justify-between items-center py-6 border-b" style="border-color: var(--border-color);">
+        <header class="sticky top-0 z-50 flex justify-between items-center py-6 border-b" style="border-color: var(--border-color); background-color: var(--bg-color);">
             <a href="/ChiYu-Blob/" class="text-xl sm:text-2xl font-bold" style="color: var(--text-color);">{{ .Site.Title }}</a>
             <nav class="flex items-center space-x-2 sm:space-x-4">
                 <div id="search" ></div>
@@ -107,7 +107,6 @@
     <aside id="mobile-sidebar" class="mobile-sidebar">
         <div class="p-4">
             {{ partial "sidebar.html" . }}
-            {{ partial "calendar.html" . }}
             {{ partial "tag_sidebar.html" . }}
         </div>
     </aside>
