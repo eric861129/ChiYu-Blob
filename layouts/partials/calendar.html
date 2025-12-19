@@ -1,40 +1,37 @@
+{{ $uid := substr (md5 (printf "calendar-%d" now.UnixNano)) 0 8 }}
+{{ $wrapperId := printf "calendar-widget-%s" $uid }}
+
 <div class="mt-8">
     <h3 class="text-xl font-bold mb-4 pb-2 border-b" style="border-color: var(--border-color);">文章月曆</h3>
-    <div id="calendar-widget">
+    <div id="{{ $wrapperId }}" class="calendar-widget">
         <div class="flex justify-between items-center mb-2 font-semibold">
-            <button id="cal-prev" title="上個月" class="px-2 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700">&lt;</button>
-            <span id="cal-month-year"></span>
-            <button id="cal-next" title="下個月" class="px-2 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700">&gt;</button>
+            <button class="cal-prev px-2 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700" title="上個月">&lt;</button>
+            <span class="cal-month-year"></span>
+            <button class="cal-next px-2 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700" title="下個月">&gt;</button>
         </div>
         <div class="grid grid-cols-7 text-center text-xs gap-y-2" style="color: var(--text-secondary);">
             <span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span>
         </div>
-        <div id="cal-days" class="grid grid-cols-7 text-center text-sm mt-2 gap-y-2">
-            </div>
+        <div class="cal-days grid grid-cols-7 text-center text-sm mt-2 gap-y-2">
+        </div>
     </div>
 </div>
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    
+(function() {
+    const wrapper = document.getElementById('{{ $wrapperId }}');
+    if (!wrapper) return;
+
     const postedDates = {};
     {{ range where (where .Site.RegularPages "Type" "posts") "Date" "le" now }}
         {{ $dateStr := .Date.Format "2006-1-2" }}
-        {{/*
-            使用日期分類 (dates) 來產生連結，
-            免去在 content/day 下建立眾多索引檔案
-        */}}
-        {{/*
-            注意：路徑前面不加斜線，讓 relURL 自動補上 baseURL
-            這樣部屬在子目錄時也能取得正確的網址
-        */}}
         {{ $dailyPath := printf "dates/%s/" (.Date.Format "2006-01-02") }}
         postedDates["{{ $dateStr }}"] = "{{ $dailyPath | relURL }}";
     {{ end }}
 
-    const monthYearEl = document.getElementById('cal-month-year');
-    const daysEl = document.getElementById('cal-days');
-    const prevBtn = document.getElementById('cal-prev');
-    const nextBtn = document.getElementById('cal-next');
+    const monthYearEl = wrapper.querySelector('.cal-month-year');
+    const daysEl = wrapper.querySelector('.cal-days');
+    const prevBtn = wrapper.querySelector('.cal-prev');
+    const nextBtn = wrapper.querySelector('.cal-next');
 
     let currentDate = new Date();
 
@@ -74,5 +71,5 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     renderCalendar(currentDate);
-});
+})();
 </script>
