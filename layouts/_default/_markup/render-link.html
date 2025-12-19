@@ -1,1 +1,15 @@
-<a href="{{ .Destination | safeURL }}"{{ with .Title}} title="{{ . }}"{{ end }}{{ if strings.HasPrefix .Destination "http" }} target="_blank" rel="noopener"{{ end }}>{{ .Text | safeHTML }}</a>
+{{- $dest := .Destination -}}
+{{- $isExternal := strings.HasPrefix $dest "http" -}}
+
+<a href="{{ $dest | safeURL }}"
+   {{ with .Title }} title="{{ . }}"{{ end }}
+   {{ if $isExternal }} target="_blank" rel="noopener noreferrer"{{ end }}>
+    {{ .Text | safeHTML }}
+    {{- if $isExternal -}}
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: inline-block; vertical-align: middle; margin-left: 2px; opacity: 0.7;">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+            <polyline points="15 3 21 3 21 9"></polyline>
+            <line x1="10" y1="14" x2="21" y2="3"></line>
+        </svg>
+    {{- end -}}
+</a>
