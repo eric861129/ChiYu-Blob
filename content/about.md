@@ -10,6 +10,12 @@ date = 2025-06-01
 
 這個部落格主要用來記錄我的技術學習筆記、開發心得以及一些 Side Projects 的開發過程。我相信「教學相長」，透過輸出來強化輸入，同時也希望能幫助到在技術路上遇到類似問題的朋友。
 
+## 聯絡我 (Contact Me)
+
+如果你有任何合作機會、技術交流或是想喝杯咖啡聊聊，歡迎透過 Email 聯繫我：
+
+- **Email**: [iamhandsomeboy1129@gmail.com](mailto:iamhandsomeboy1129@gmail.com)
+
 ## 更多連結 (Connect with Me)
 
 除了部落格，你也可以在以下地方找到我：

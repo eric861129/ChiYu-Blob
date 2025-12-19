@@ -4,6 +4,18 @@
       class="w-32 h-32 rounded-full mx-auto object-cover border-2"
       style="border-color: var(--border-color);" data-pagefind-ignore >
     </div>
+
+    {{/* --- 新增：聯絡我按鈕 --- */}}
+    {{ with .Site.Params.email }}
+    <div class="text-center mb-8" data-pagefind-ignore>
+        <a href="mailto:{{ . }}" class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-white transition-opacity hover:opacity-90" style="background-color: var(--link-color);">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            <span class="text-sm font-medium">聯絡我</span>
+        </a>
+    </div>
+    {{ end }}
+    {{/* --- ↑↑↑ 新增：聯絡我按鈕 ↑↑↑ --- */}}
+
     {{ partial "calendar.html" . }}
 
     <h3

@@ -36,6 +36,7 @@ buildFuture = true
 
 [params]
   description = "歡迎來到 ChiYu 的程式旅程部落格"
+  email = "iamhandsomeboy1129@gmail.com"
   [params.author]
     name = "ChiYu"
 [params.giscus]
