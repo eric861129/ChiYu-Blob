@@ -1,5 +1,6 @@
 baseURL = 'https://eric861129.github.io/ChiYu-Blob/'
 languageCode = 'zh-TW'
+googleAnalytics = "G-FGXWEWM001"
 title = 'ChiYu Code Journey'
 # 明確指定網站時區，避免日期顯示錯亂
 timeZone = 'Asia/Taipei'

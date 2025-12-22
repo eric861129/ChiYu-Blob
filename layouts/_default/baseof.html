@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-tw">
 <head>
+    {{ template "_internal/google_analytics.html" . }}
     <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ if .IsPage }}{{ .Summary | plainify }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}">
     
     <meta property="og:title" content="{{ .Title }}">
