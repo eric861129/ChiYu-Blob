@@ -6,7 +6,8 @@
         抱歉，您所尋找的頁面似乎已經移動、刪除或是不存在。
     </p>
     <div class="flex gap-4">
-        <a href="{{ "/" | relURL }}" class="px-6 py-3 rounded-full font-medium transition-colors" style="background-color: var(--link-color); color: #fff;">
+        {{/* 使用 .Site.BaseURL 確保連結絕對正確指向設定的 BaseURL */}}
+        <a href="{{ .Site.BaseURL }}" class="px-6 py-3 rounded-full font-medium transition-colors" style="background-color: var(--link-color); color: #fff;">
             回到首頁
         </a>
         <button onclick="history.back()" class="px-6 py-3 rounded-full font-medium transition-colors border" style="border-color: var(--border-color); color: var(--text-color);">
