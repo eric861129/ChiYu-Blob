@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>API Integration on ChiYu Code Journey</title><link>/ChiYu-Blob/tags/api-integration/</link><description>Recent content in API Integration on ChiYu Code Journey</description><generator>Hugo -- gohugo.io</generator><language>zh-TW</language><lastBuildDate>Sat, 13 Sep 2025 00:00:00 +0800</lastBuildDate><atom:link href="/ChiYu-Blob/tags/api-integration/index.xml" rel="self" type="application/rss+xml"/><item><title>Day 25: 【前端 #6】核心生命週期：一天搞定習慣的「增刪改查」與「打卡」</title><link>/ChiYu-Blob/posts/2025ithomeironmanday25/</link><pubDate>Sat, 13 Sep 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday25/</guid><description>安安，我是 ChiYu！
+昨天，我們的 App 經歷了一次質的飛躍。我們為它植入了「靈魂」——一個中央的狀態 (state) 和一個渲染引擎 (render)。它學會了如何「思考」（管理數據）並「表達」（渲染畫面），成功地將從後端獲取的真實數據，呈現在使用者面前。
+我們的 App 現在有了一個能反映真實數據的漂亮外殼。但是，它還是一個只能「讀」，不能「寫」的「展示品」。使用者還無法新增、修改或刪除這些習慣，無法真正地與 App 產生連結。
+今天，我們將迎來一個內容極其豐富、極具挑戰、也極富成就感的 「濃縮實戰篇」。我們將火力全開，一天之內，搞定所有習慣的「增、刪、改、查」與「打卡」功能，讓我們的 App 真正地「動」起來，完成其核心功能的生命週期！
+Part 1：前端心法：萬變不離其宗的「互動模式」 在我們開始瘋狂寫 Code 之前，讓我們先建立一個清晰的「心智模型」。今天我們要做的所有功能，無論是新增、刪除還是打卡，都將嚴格遵循我們前幾天建立的、那個優雅而強大的「數據驅動」模式。
+這個模式，就是我們所有互動功能的 「黃金公式」：
+使用者事件 (User Event)：使用者觸發一個動作（例如：點擊「儲存」按鈕）。 呼叫 API (Call API)：我們的 JavaScript 會捕捉到這個事件，然後呼叫對應的 api.js 函式，向後端發送一個請求（POST, DELETE, PUT&amp;hellip;）。 更新狀態 (Update State)：在成功收到後端的回應後，我們不去手動修改畫面，而是去更新我們中央的 state 物件。 自動渲染 (Auto Re-render)：setState 函式會自動觸發 render()，我們的 UI 就會像鏡子一樣，自動、精準地反映出 state 的最新樣貌。 記住這個公式，你會發現，再複雜的互動，都能被拆解成這幾個簡單、可預測的步驟。
+Part 2：Vibe Coding 實戰 (上)：擴充我們的「通訊模組」 我們的 api.js 現在只會「讀取」(fetchHabits)，是時候教它「寫入」了。
+【魔法詠唱：升級通訊模組】 讓我們進入 gemini chat 模式，指揮 AI 為我們擴充 api.js。
+# 角色 (Role) 你是一位資深的 API 用戶端架構師 (API Client Architect)，精通 `fetch` API 與 `async/await`，並致力於遵循 DRY (Don&amp;#39;t Repeat Yourself) 原則，撰寫可複用、可擴展且易於維護的數據獲取模組。 # 目標 (Objective) 請對現有的 `@frontend/api.</description></item></channel></rss>

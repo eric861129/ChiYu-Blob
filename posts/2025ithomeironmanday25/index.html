@@ -1,0 +1,656 @@
+<!doctype html><html lang=zh-tw><head><script async src="https://www.googletagmanager.com/gtag/js?id=G-FGXWEWM001"></script><script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-FGXWEWM001",{anonymize_ip:!1})}</script><meta name=description content="今天我們將火力全開，搞定所有習慣的「增、刪、改、查」與「打卡」功能，讓 App 真正地動起來。"><meta property="og:title" content="Day 25: 【前端 #6】核心生命週期：一天搞定習慣的「增刪改查」與「打卡」"><meta property="og:description" content="今天我們將火力全開，搞定所有習慣的「增、刪、改、查」與「打卡」功能，讓 App 真正地動起來。"><meta property="og:type" content="article"><meta property="og:url" content="/ChiYu-Blob/posts/2025ithomeironmanday25/"><meta name=twitter:card content="summary_large_image"><meta name=twitter:title content="Day 25: 【前端 #6】核心生命週期：一天搞定習慣的「增刪改查」與「打卡」"><meta name=twitter:description content="今天我們將火力全開，搞定所有習慣的「增、刪、改、查」與「打卡」功能，讓 App 真正地動起來。"><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Day 25: 【前端 #6】核心生命週期：一天搞定習慣的「增刪改查」與「打卡」 | ChiYu Code Journey</title>
+<script>(function(){const e=localStorage.getItem("theme")||"dark";document.documentElement.setAttribute("data-theme",e)})()</script><script src=https://cdn.tailwindcss.com></script><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel=stylesheet><link href=/pagefind/pagefind-ui.css rel=stylesheet><link href="https://fonts.googleapis.com/css2?family=Chocolate+Classical+Sans&family=Edu+SA+Hand:wght@400..700&family=Inter:wght@400;500;600;700&display=swap" rel=stylesheet><link rel=icon type=image/jpeg href=/ChiYu-Blob/images/avatar.jpg><link rel=stylesheet href=/ChiYu-Blob/css/style.bundle.min.603fe609a4fee1de053c12e00858727a67cc5a3ba05a0a66f04142a379f47374.css integrity="sha256-YD/mCaT+4d4FPBLgCFhyemfMWjugWgpm8EFCo3n0c3Q=" crossorigin=anonymous><style>#reading-progress-container{position:fixed;top:0;left:0;width:100%;height:3px;z-index:9999;background:0 0}#reading-progress-bar{height:100%;width:0%;background:linear-gradient(to right,#60a5fa,#2563eb);transition:width .1s ease-out}</style></head><body class=antialiased><div id=reading-progress-container><div id=reading-progress-bar></div></div><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><header class="sticky top-0 z-50 flex justify-between items-center py-6 border-b" style=border-color:var(--border-color);background-color:var(--bg-color)><a href=/ChiYu-Blob/ class="text-xl sm:text-2xl font-bold" style=color:var(--text-color)>ChiYu Code Journey</a><nav class="flex items-center space-x-2 sm:space-x-4"><div id=search></div><a href=/ChiYu-Blob/ class="text-sm sm:text-base" style=color:var(--text-secondary)>首頁</a>
+<a href=/ChiYu-Blob/posts/ class="text-sm sm:text-base" style=color:var(--text-secondary)>文章</a>
+<a href=/ChiYu-Blob/about/ class="text-sm sm:text-base" style=color:var(--text-secondary)>關於</a>
+<a href=/ChiYu-Blob/index.xml target=_blank title="訂閱 RSS" style=color:var(--text-secondary) class="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11a9 9 0 019 9"/><path d="M4 4a16 16 0 0116 16"/><circle cx="5" cy="19" r="1"/></svg>
+</a><button id=theme-toggle title=切換深色/淺色主題>
+<svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+<svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+</button>
+<button id=mobile-sidebar-toggle class=lg:hidden title=開啟側邊欄><svg class="w-6 h-6" fill="none" stroke="currentcolor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/></svg></button></nav></header><div data-pagefind-body style=display:none><p>安安，我是 ChiYu！</p><p>昨天，我們的 App 經歷了一次質的飛躍。我們為它植入了「靈魂」——一個中央的狀態 (<code>state</code>) 和一個渲染引擎 (<code>render</code>)。它學會了如何「思考」（管理數據）並「表達」（渲染畫面），成功地將從後端獲取的真實數據，呈現在使用者面前。</p><p>我們的 App 現在有了一個能反映真實數據的漂亮外殼。但是，它還是一個只能「讀」，不能「寫」的「展示品」。使用者還無法新增、修改或刪除這些習慣，無法真正地與 App 產生連結。</p><p>今天，我們將迎來一個內容極其豐富、極具挑戰、也極富成就感的 <strong>「濃縮實戰篇」</strong>。我們將火力全開，一天之內，搞定所有習慣的「增、刪、改、查」與「打卡」功能，讓我們的 App 真正地「動」起來，完成其核心功能的生命週期！</p><h2 id=part-1前端心法萬變不離其宗的互動模式>Part 1：前端心法：萬變不離其宗的「互動模式」</h2><p>在我們開始瘋狂寫 Code 之前，讓我們先建立一個清晰的「心智模型」。今天我們要做的所有功能，無論是新增、刪除還是打卡，都將嚴格遵循我們前幾天建立的、那個優雅而強大的「數據驅動」模式。</p><p>這個模式，就是我們所有互動功能的 <strong>「黃金公式」</strong>：</p><ol><li><strong>使用者事件 (User Event)</strong>：使用者觸發一個動作（例如：點擊「儲存」按鈕）。</li><li><strong>呼叫 API (Call API)</strong>：我們的 JavaScript 會捕捉到這個事件，然後呼叫對應的 <code>api.js</code> 函式，向後端發送一個請求（<code>POST</code>, <code>DELETE</code>, <code>PUT</code>&mldr;）。</li><li><strong>更新狀態 (Update State)</strong>：在成功收到後端的回應後，我們不去手動修改畫面，而是去更新我們中央的 <code>state</code> 物件。</li><li><strong>自動渲染 (Auto Re-render)</strong>：<code>setState</code> 函式會自動觸發 <code>render()</code>，我們的 UI 就會像鏡子一樣，自動、精準地反映出 <code>state</code> 的最新樣貌。</li></ol><p>記住這個公式，你會發現，再複雜的互動，都能被拆解成這幾個簡單、可預測的步驟。</p><h2 id=part-2vibe-coding-實戰-上擴充我們的通訊模組>Part 2：Vibe Coding 實戰 (上)：擴充我們的「通訊模組」</h2><p>我們的 <code>api.js</code> 現在只會「讀取」(<code>fetchHabits</code>)，是時候教它「寫入」了。</p><h3 id=魔法詠唱升級通訊模組>【魔法詠唱：升級通訊模組】</h3><p>讓我們進入 gemini chat 模式，指揮 AI 為我們擴充 <code>api.js</code>。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown><span style=display:flex><span># 角色 (Role)
+</span></span><span style=display:flex><span>你是一位資深的 API 用戶端架構師 (API Client Architect)，精通 <span style=color:#e6db74>`fetch`</span> API 與 <span style=color:#e6db74>`async/await`</span>，並致力於遵循 DRY (Don&#39;t Repeat Yourself) 原則，撰寫可複用、可擴展且易於維護的數據獲取模組。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 目標 (Objective)
+</span></span><span style=display:flex><span>請對現有的 <span style=color:#e6db74>`@frontend/api.js`</span> 檔案進行一次全面的功能擴充，為「習慣 (Habits)」資源 <span style=font-weight:700>**實現完整的 CRUD (Create, Read, Update, Delete) 操作介面**</span>。你需要透過建立一個可複用的請求處理函式，來優雅地實現所有新的 API 請求。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 上下文與關鍵資訊 (Context &amp; Key Information)
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span> **目標修改檔案**: <span style=color:#e6db74>`@frontend/api.js`</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span> **後端 API Base URL**: <span style=color:#e6db74>`http://127.0.0.1:5000`</span> (已在檔案中定義為 <span style=color:#e6db74>`BASE_URL`</span> 常數)
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span> **現有函式**: <span style=color:#e6db74>`fetchHabits`</span> (用於 Read 操作)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 架構性要求 (Architectural Refinement)
+</span></span><span style=display:flex><span><span style=color:#66d9ef>1.</span>  <span style=font-weight:700>**建立 `apiFetch` 輔助函式 (Helper Function)**</span>:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span> 在檔案內部，建立一個**不被 <span style=color:#e6db74>`export`</span>** 的私有 <span style=color:#e6db74>`async`</span> 函式，命名為 <span style=color:#e6db74>`apiFetch`</span>。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span> 此函式的職責是 <span style=font-weight:700>**集中處理所有 API 請求的通用邏輯**</span>，包括：
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>*</span> 接收 <span style=color:#e6db74>`path`</span>, <span style=color:#e6db74>`method`</span>, <span style=color:#e6db74>`body`</span> 等參數。
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>*</span> 設定通用的 <span style=color:#e6db74>`headers`</span> (例如 <span style=color:#e6db74>`&#39;Content-Type&#39;: &#39;application/json&#39;`</span>)。
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>*</span> 使用 <span style=color:#e6db74>`try...catch`</span> 結構包裹 <span style=color:#e6db74>`fetch`</span> 呼叫。
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>*</span> 檢查 <span style=color:#e6db74>`response.ok`</span> 並在失敗時拋出錯誤。
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>*</span> 處理不同情況下的回應 (例如：有 JSON body 的回應 vs. 沒有內容的 204 No Content 回應)。
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>*</span> 集中處理錯誤並返回 <span style=color:#e6db74>`null`</span>。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>2.</span>  <span style=font-weight:700>**重構現有函式 (可選但建議)**</span>:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span> (可選) 輕微重構現有的 <span style=color:#e6db74>`fetchHabits`</span> 函式，使其也透過呼叫 <span style=color:#e6db74>`apiFetch`</span> 來實現，以保持模組內風格一致。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 新增 CRUD 函式實作要求 (New CRUD Functions Implementation)
+</span></span><span style=display:flex><span>**請直接重寫 <span style=color:#e6db74>`@frontend/api.js`</span> 的內容，保留 <span style=color:#e6db74>`BASE_URL`</span> 和 <span style=color:#e6db74>`fetchHabits`</span>，並新增以下三個 <span style=color:#e6db74>`export`</span> 的 <span style=color:#e6db74>`async`</span> 函式。所有新函式都應該是呼叫內部 <span style=color:#e6db74>`apiFetch`</span> 函式的簡潔包裝。**
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>1.</span>  <span style=font-style:italic>**</span><span style=color:#e6db74>`addHabit(habitData)`</span> - (Create)**
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span> **參數**: <span style=color:#e6db74>`habitData`</span> (一個物件，例如 <span style=color:#e6db74>`{ name: &#39;學習 Vim&#39; }`</span>)。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span> **內部邏輯**: 呼叫 <span style=color:#e6db74>`apiFetch`</span>，傳入路徑 <span style=color:#e6db74>`/habits`</span>，方法 <span style=color:#e6db74>`POST`</span>，以及請求 <span style=color:#e6db74>`body`</span>。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span> **回傳值**: 成功時，返回後端建立的新習慣物件；失敗時，返回 <span style=color:#e6db74>`null`</span>。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>2.</span>  <span style=font-style:italic>**</span><span style=color:#e6db74>`updateHabit(habitId, updateData)`</span> - (Update)**
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span> **參數**: <span style=color:#e6db74>`habitId`</span> (字串或數字), <span style=color:#e6db74>`updateData`</span> (一個包含要更新欄位的物件)。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span> **內部邏輯**: 呼叫 <span style=color:#e6db74>`apiFetch`</span>，傳入路徑 ``/habits/${habitId}``，方法 <span style=color:#e6db74>`PUT`</span>，以及請求 <span style=color:#e6db74>`body`</span>。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span> **回傳值**: 成功時，返回後端更新後的習慣物件；失敗時，返回 <span style=color:#e6db74>`null`</span>。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>3.</span>  <span style=font-style:italic>**</span><span style=color:#e6db74>`deleteHabit(habitId)`</span> - (Delete)**
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span> **參數**: <span style=color:#e6db74>`habitId`</span> (字串或數字)。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span> **內部邏輯**: 呼叫 <span style=color:#e6db74>`apiFetch`</span>，傳入路徑 ``/habits/${habitId}``，方法 <span style=color:#e6db74>`DELETE`</span>。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span> **回傳值**: 成功時 (例如後端回應 204)，返回 <span style=color:#e6db74>`true`</span>；失敗時，返回 <span style=color:#e6db74>`false`</span>。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>4.</span>  <span style=font-weight:700>**JSDoc 註解**</span>: 請為所有新增的函式，提供清晰的 JSDoc 註解，說明其用途、參數 (`@param`) 與回傳值 (`@returns`)。
+</span></span></code></pre></div><h2 id=part-3vibe-coding-實戰-下為-app-注入完整生命力>Part 3：Vibe Coding 實戰 (下)：為 App 注入完整生命力</h2><p>通訊模組升級完畢，是時候回到 <code>script.js</code>，將我們的「黃金公式」付諸實踐了！</p><h3 id=魔法詠唱實現完整-crud>【魔法詠唱：實現完整 CRUD】</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown><span style=display:flex><span># 角色 (Role)
+</span></span><span style=display:flex><span>你是一位資深前端架構師，精通現代 JavaScript、DOM 操作、狀態管理模式，以及**非同步操作下的使用者體驗 (Asynchronous UX) 設計**。你擅長將複雜的業務邏輯，轉化為穩固、可預測、且具備清晰反饋的互動式介面。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 目標 (Objective)
+</span></span><span style=display:flex><span>請對現有的 <span style=color:#e6db74>`@frontend/script.js`</span> 進行一次全面的功能擴充，**為「習慣 (Habit)」資源實現一個具備完整生命週期管理、且能優雅處理非同步狀態的互動介面**。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 上下文與關鍵資訊 (Context &amp; Key Information)
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span> **目標修改檔案**: <span style=color:#e6db74>`@frontend/script.js`</span> (內含 <span style=color:#e6db74>`state`</span> 物件與 <span style=color:#e6db74>`render`</span> 函式)。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span> **API 模組**: <span style=color:#e6db74>`@frontend/api.js`</span> (已提供完整的 <span style=color:#e6db74>`addHabit`</span>, <span style=color:#e6db74>`updateHabit`</span>, <span style=color:#e6db74>`deleteHabit`</span> 等 CRUD 函式)。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 核心互動哲學：管理非同步狀態
+</span></span><span style=display:flex><span>我們的黃金法則是：**UI 必須始終忠實反映應用程式的當前狀態，尤其是在等待 API 回應的「中間狀態」**。為此，我們需要：
+</span></span><span style=display:flex><span><span style=color:#66d9ef>1.</span>  <span style=font-weight:700>**擴充 `state` 物件**</span>: 在現有 <span style=color:#e6db74>`state`</span> 中增加用於追蹤非同步操作狀態的屬性，例如 <span style=color:#e6db74>`isSubmitting: false`</span> 或 <span style=color:#e6db74>`deletingHabitId: null`</span>。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>2.</span>  <span style=font-weight:700>**更新 `render` 函式**</span>: <span style=color:#e6db74>`render`</span> 函式需要能夠識別這些新狀態，並在畫面上給予使用者清晰的視覺反饋（例如：禁用按鈕、顯示載入指示器）。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>3.</span>  <span style=font-weight:700>**遵循流程**</span>: 所有互動操作都必須遵循「**設定載入狀態 -&gt; 呼叫 API -&gt; 根據結果更新最終狀態**」的穩健流程。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>---
+</span></span><span style=display:flex><span># 產出格式與要求 (Your Task &amp; Output Requirements)
+</span></span><span style=display:flex><span>**請直接重寫 <span style=color:#e6db74>`@frontend/script.js`</span> 的完整內容，並實現以下所有功能與狀態管理邏輯：**
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 1. **擴充 State &amp; Render**
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>*</span> 在 <span style=color:#e6db74>`state`</span> 物件中，新增 <span style=color:#e6db74>`isSubmitting: false`</span> 屬性。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span> 修改 <span style=color:#e6db74>`render`</span> 函式，讓它在渲染 Modal 時，檢查 <span style=color:#e6db74>`state.isSubmitting`</span>。如果為 <span style=color:#e6db74>`true`</span>，則 Modal 中的「儲存」按鈕應被設置為 <span style=color:#e6db74>`disabled`</span> 狀態。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 2. **新增習慣 (Create)**
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>*</span> 為「新增習慣 Modal」的表單，加上 <span style=color:#e6db74>`submit`</span> 事件監聽器。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span> **處理流程**:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>1.</span>  阻止表單預設提交行為。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>2.</span>  獲取輸入框的值，進行基本驗證（例如，不能為空）。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>3.</span>  <span style=font-weight:700>**進入載入狀態**</span>: <span style=color:#e6db74>`setState({ isSubmitting: true });`</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>4.</span>  呼叫 <span style=color:#e6db74>`addHabit()`</span> API。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>5.</span>  <span style=font-weight:700>**處理回應**</span>:
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>*</span> **成功**: 將返回的新習慣物件，加到 <span style=color:#e6db74>`state.habits`</span> 陣列的**最前面**，並呼叫 <span style=color:#e6db74>`setState({ habits: ..., isSubmitting: false });`</span>。
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>*</span> **失敗**: 彈出 <span style=color:#e6db74>`alert`</span> 或在 <span style=color:#e6db74>`console.error`</span> 中顯示錯誤，並呼叫 <span style=color:#e6db74>`setState({ isSubmitting: false });`</span> 來解除載入狀態。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>6.</span>  關閉 Modal 並清空輸入框。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 3. **刪除習慣 (Delete)**
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>*</span> **心法**: 使用**事件委派 (Event Delegation)** 模式，在父層容器 <span style=color:#e6db74>`.habit-list-container`</span> 上掛載一個 <span style=color:#e6db74>`click`</span> 事件監聽器。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span> **處理流程**:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>1.</span>  在 <span style=color:#e6db74>`renderHabitList`</span> 中，為每個習慣項的刪除按鈕，加上 <span style=color:#e6db74>`data-action=&#34;delete&#34;`</span> 和 <span style=color:#e6db74>`data-habit-id=&#34;...&#34;`</span> 屬性。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>2.</span>  在事件監聽器中，判斷被點擊的是否為 <span style=color:#e6db74>`[data-action=&#34;delete&#34;]`</span> 的按鈕。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>3.</span>  獲取 <span style=color:#e6db74>`habitId`</span>。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>4.</span>  <span style=font-weight:700>**樂觀更新 (Optimistic Update) 準備**</span>: 可以在呼叫 API <span style=font-weight:700>**前**</span>，就先從畫面移除該項目，提供更流暢的體驗。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>5.</span>  呼叫 <span style=color:#e6db74>`deleteHabit(habitId)`</span> API。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>6.</span>  <span style=font-weight:700>**處理回應**</span>:
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>*</span> **成功**: 如果採用樂觀更新，則無需額外操作。如果沒有，則在此處從 <span style=color:#e6db74>`state.habits`</span> 陣列中**過濾掉**被刪除的習慣，並呼叫 <span style=color:#e6db74>`setState()`</span>。
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>*</span> **失敗**: 如果採用樂觀更新，需要將剛才移除的項目**加回來**，並提示使用者刪除失敗。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 4. **完成/取消習慣 (Update - Toggle Completion)**
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>*</span> **同樣使用事件委派**。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span> **處理流程**:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>1.</span>  在 <span style=color:#e6db74>`renderHabitList`</span> 中，為每個習慣項的 checkbox 或完成區域，加上 <span style=color:#e6db74>`data-action=&#34;toggle&#34;`</span> 和 <span style=color:#e6db74>`data-habit-id`</span>。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>2.</span>  在事件監聽器中，判斷點擊目標。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>3.</span>  獲取 <span style=color:#e6db74>`habitId`</span>。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>4.</span>  <span style=font-weight:700>**樂觀更新**</span>:
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>*</span> 在 <span style=color:#e6db74>`state.habits`</span> 中找到對應的習慣，將其 <span style=color:#e6db74>`completed_today`</span> (或類似) 屬性反轉。
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>*</span> 立即呼叫 <span style=color:#e6db74>`setState({ habits: ... })`</span> 來刷新 UI。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>5.</span>  <span style=font-weight:700>**背景同步**</span>: 呼叫 <span style=color:#e6db74>`updateHabit(habitId, { completed_today: ... })`</span> API。
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>*</span> **注意**: 成功時無需操作，但若 API 呼叫**失敗**，應將狀態**還原**並提示使用者。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>6.</span>  <span style=font-weight:700>**TODO 註解**</span>: 請在程式碼中用 <span style=color:#e6db74>`// TODO:`</span> 標示出 API 同步失敗後的回滾 (rollback) 邏輯尚未實現。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 5. **(挑戰) 實現原地編輯 (In-place Edit)**
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>*</span> **狀態管理**: 在 <span style=color:#e6db74>`state`</span> 中新增 <span style=color:#e6db74>`editingHabitId: null`</span>。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span> **Render 邏輯**: <span style=color:#e6db74>`renderHabitList`</span> 需修改，當 <span style=color:#e6db74>`habit.id === state.editingHabitId`</span> 時，習慣名稱的 <span style=color:#e6db74>`&lt;span&gt;`</span> 應被替換為一個 <span style=color:#e6db74>`&lt;input type=&#34;text&#34;&gt;`</span>。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span> **事件委派**:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span> 點擊「編輯」按鈕 (`[data-action=&#34;edit&#34;]`) 時，呼叫 <span style=color:#e6db74>`setState({ editingHabitId: habitId });`</span>。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span> 監聽 <span style=color:#e6db74>`&lt;input&gt;`</span> 的 <span style=color:#e6db74>`blur`</span> (失焦) 或 <span style=color:#e6db74>`keydown`</span> (Enter 鍵) 事件。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span> 事件觸發時，獲取新值，呼叫 <span style=color:#e6db74>`updateHabit()`</span> API，並在成功後呼叫 <span style=color:#e6db74>`setState({ editingHabitId: null });`</span> 退出編輯模式。
+</span></span></code></pre></div><h2 id=part-4成果驗收一個完全可互動的-app>Part 4：成果驗收：一個完全可互動的 App！</h2><p>是時候驗收了！再次確保所有伺服器都在運行，然後刷新你的瀏覽器。</p><p>現在，去盡情地玩你的 App 吧！</p><ul><li>點擊「新增習慣」，輸入內容並儲存，看看新的習慣是否立刻出現在列表頂部！</li><li>點擊任何一個習慣項目，看看它是否能成功打卡和取消打卡！</li><li>點擊習慣項目旁的刪除按鈕，看看它是否立刻從列表中消失！</li></ul><p>這就是我們努力的成果！一個遵循專業架構、數據驅動、功能完整的 MVP 核心！</p><h2 id=part-5提交我們-app-的完整生命力>Part 5：提交我們 App 的「完整生命力」</h2><ul><li><strong>Commit 訊息</strong>: <code>feat(frontend): Implement full CRUD and completion logic for habits</code></li><li><strong>Commit & Push</strong>！</li></ul><h2 id=結語從思考到行動下一步是體驗>結語：從思考到行動，下一步是體驗</h2><p>再次恭喜！今天，我們的 App 真正地「活」了過來。它不僅能思考和表達，現在更擁有了完整的行動能力。我們也透過這次的綜合實戰，將「狀態管理」的黃金公式，深深地烙印在了我們的開發模式中。</p><p>我們的 App 現在功能很強大，但在使用者體驗的細節上，還有可以打磨的空間。例如，當網路慢的時候，使用者點擊按鈕後會發生什麼？如果 API 出錯了，又該怎麼辦？</p><p>明天，我們將學習用戶體驗的最後一哩路，為我們的 App 加上優雅的「載入中」和「錯誤處理」狀態，讓它從一個「能用」的產品，進化成一個「好用」的產品！</p></div><div class="flex flex-row justify-center py-8 sm:py-12"><div class="w-full max-w-6xl min-w-0"><div class="flex justify-center"><main class="w-full max-w-4xl min-w-0"><article class="prose max-w-none"><nav class="flex text-sm mb-6" aria-label=Breadcrumb><ol class="inline-flex items-center space-x-1 md:space-x-3"><li class="inline-flex items-center"><a href=/ChiYu-Blob/ class="inline-flex items-center hover:text-blue-600 dark:hover:text-blue-400" style=color:var(--text-secondary)><svg class="w-4 h-4 mr-2" fill="currentcolor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414.0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/></svg>
+首頁</a></li><li><div class="flex items-center"><svg class="w-4 h-4 mx-1" style="color:var(--text-secondary);opacity:.5" fill="currentcolor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414.0z" clip-rule="evenodd"/></svg>
+<a href=/ChiYu-Blob/posts/ class="ml-1 hover:text-blue-600 dark:hover:text-blue-400 capitalize" style=color:var(--text-secondary)>全部文章</a></div></li><li aria-current=page><div class="flex items-center"><svg class="w-4 h-4 mx-1" style="color:var(--text-secondary);opacity:.5" fill="currentcolor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414.0z" clip-rule="evenodd"/></svg>
+<span class="ml-1 font-medium truncate max-w-[150px] sm:max-w-[300px]" style=color:var(--text-color)>Day 25: 【前端 #6】核心生命週期：一天搞定習慣的「增刪改查」與「打卡」</span></div></li></ol></nav><header class=mb-8><h1 class="text-2xl sm:text-4xl font-bold tracking-tight mb-4 !mt-0">Day 25: 【前端 #6】核心生命週期：一天搞定習慣的「增刪改查」與「打卡」</h1><p class=text-base style=color:var(--text-secondary)>發布於 2025年9月13日
+<span class=ml-2 style=color:var(--text-secondary);opacity:.8;font-size:.9em>(更新於 2025年9月13日)
+</span>&#183; <span class=mx-1>約 4 分鐘閱讀</span>
+&#183;
+<span class="inline-flex flex-wrap gap-2 items-center" data-pagefind-ignore><a href=/ChiYu-Blob/tags/2025ithomeironman/ class=tag-pill>2025iThomeIronman</a>
+<a href=/ChiYu-Blob/tags/gemini/ class=tag-pill>Gemini</a>
+<a href=/ChiYu-Blob/tags/frontend/ class=tag-pill>Frontend</a>
+<a href=/ChiYu-Blob/tags/crud/ class=tag-pill>CRUD</a>
+<a href=/ChiYu-Blob/tags/javascript/ class=tag-pill>JavaScript</a>
+<a href=/ChiYu-Blob/tags/api-integration/ class=tag-pill>API Integration</a></span></p></header><div data-pagefind-meta="title:Day 25: 【前端 #6】核心生命週期：一天搞定習慣的「增刪改查」與「打卡」" style=display:none></div><div data-pagefind-ignore><p>安安，我是 ChiYu！</p><p>昨天，我們的 App 經歷了一次質的飛躍。我們為它植入了「靈魂」——一個中央的狀態 (<code>state</code>) 和一個渲染引擎 (<code>render</code>)。它學會了如何「思考」（管理數據）並「表達」（渲染畫面），成功地將從後端獲取的真實數據，呈現在使用者面前。</p><p>我們的 App 現在有了一個能反映真實數據的漂亮外殼。但是，它還是一個只能「讀」，不能「寫」的「展示品」。使用者還無法新增、修改或刪除這些習慣，無法真正地與 App 產生連結。</p><p>今天，我們將迎來一個內容極其豐富、極具挑戰、也極富成就感的 <strong>「濃縮實戰篇」</strong>。我們將火力全開，一天之內，搞定所有習慣的「增、刪、改、查」與「打卡」功能，讓我們的 App 真正地「動」起來，完成其核心功能的生命週期！</p><h2 id=part-1前端心法萬變不離其宗的互動模式>Part 1：前端心法：萬變不離其宗的「互動模式」</h2><p>在我們開始瘋狂寫 Code 之前，讓我們先建立一個清晰的「心智模型」。今天我們要做的所有功能，無論是新增、刪除還是打卡，都將嚴格遵循我們前幾天建立的、那個優雅而強大的「數據驅動」模式。</p><p>這個模式，就是我們所有互動功能的 <strong>「黃金公式」</strong>：</p><ol><li><strong>使用者事件 (User Event)</strong>：使用者觸發一個動作（例如：點擊「儲存」按鈕）。</li><li><strong>呼叫 API (Call API)</strong>：我們的 JavaScript 會捕捉到這個事件，然後呼叫對應的 <code>api.js</code> 函式，向後端發送一個請求（<code>POST</code>, <code>DELETE</code>, <code>PUT</code>&mldr;）。</li><li><strong>更新狀態 (Update State)</strong>：在成功收到後端的回應後，我們不去手動修改畫面，而是去更新我們中央的 <code>state</code> 物件。</li><li><strong>自動渲染 (Auto Re-render)</strong>：<code>setState</code> 函式會自動觸發 <code>render()</code>，我們的 UI 就會像鏡子一樣，自動、精準地反映出 <code>state</code> 的最新樣貌。</li></ol><p>記住這個公式，你會發現，再複雜的互動，都能被拆解成這幾個簡單、可預測的步驟。</p><h2 id=part-2vibe-coding-實戰-上擴充我們的通訊模組>Part 2：Vibe Coding 實戰 (上)：擴充我們的「通訊模組」</h2><p>我們的 <code>api.js</code> 現在只會「讀取」(<code>fetchHabits</code>)，是時候教它「寫入」了。</p><h3 id=魔法詠唱升級通訊模組>【魔法詠唱：升級通訊模組】</h3><p>讓我們進入 gemini chat 模式，指揮 AI 為我們擴充 <code>api.js</code>。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown><span style=display:flex><span># 角色 (Role)
+</span></span><span style=display:flex><span>你是一位資深的 API 用戶端架構師 (API Client Architect)，精通 <span style=color:#e6db74>`fetch`</span> API 與 <span style=color:#e6db74>`async/await`</span>，並致力於遵循 DRY (Don&#39;t Repeat Yourself) 原則，撰寫可複用、可擴展且易於維護的數據獲取模組。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 目標 (Objective)
+</span></span><span style=display:flex><span>請對現有的 <span style=color:#e6db74>`@frontend/api.js`</span> 檔案進行一次全面的功能擴充，為「習慣 (Habits)」資源 <span style=font-weight:700>**實現完整的 CRUD (Create, Read, Update, Delete) 操作介面**</span>。你需要透過建立一個可複用的請求處理函式，來優雅地實現所有新的 API 請求。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 上下文與關鍵資訊 (Context &amp; Key Information)
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span> **目標修改檔案**: <span style=color:#e6db74>`@frontend/api.js`</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span> **後端 API Base URL**: <span style=color:#e6db74>`http://127.0.0.1:5000`</span> (已在檔案中定義為 <span style=color:#e6db74>`BASE_URL`</span> 常數)
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span> **現有函式**: <span style=color:#e6db74>`fetchHabits`</span> (用於 Read 操作)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 架構性要求 (Architectural Refinement)
+</span></span><span style=display:flex><span><span style=color:#66d9ef>1.</span>  <span style=font-weight:700>**建立 `apiFetch` 輔助函式 (Helper Function)**</span>:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span> 在檔案內部，建立一個**不被 <span style=color:#e6db74>`export`</span>** 的私有 <span style=color:#e6db74>`async`</span> 函式，命名為 <span style=color:#e6db74>`apiFetch`</span>。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span> 此函式的職責是 <span style=font-weight:700>**集中處理所有 API 請求的通用邏輯**</span>，包括：
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>*</span> 接收 <span style=color:#e6db74>`path`</span>, <span style=color:#e6db74>`method`</span>, <span style=color:#e6db74>`body`</span> 等參數。
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>*</span> 設定通用的 <span style=color:#e6db74>`headers`</span> (例如 <span style=color:#e6db74>`&#39;Content-Type&#39;: &#39;application/json&#39;`</span>)。
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>*</span> 使用 <span style=color:#e6db74>`try...catch`</span> 結構包裹 <span style=color:#e6db74>`fetch`</span> 呼叫。
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>*</span> 檢查 <span style=color:#e6db74>`response.ok`</span> 並在失敗時拋出錯誤。
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>*</span> 處理不同情況下的回應 (例如：有 JSON body 的回應 vs. 沒有內容的 204 No Content 回應)。
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>*</span> 集中處理錯誤並返回 <span style=color:#e6db74>`null`</span>。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>2.</span>  <span style=font-weight:700>**重構現有函式 (可選但建議)**</span>:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span> (可選) 輕微重構現有的 <span style=color:#e6db74>`fetchHabits`</span> 函式，使其也透過呼叫 <span style=color:#e6db74>`apiFetch`</span> 來實現，以保持模組內風格一致。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 新增 CRUD 函式實作要求 (New CRUD Functions Implementation)
+</span></span><span style=display:flex><span>**請直接重寫 <span style=color:#e6db74>`@frontend/api.js`</span> 的內容，保留 <span style=color:#e6db74>`BASE_URL`</span> 和 <span style=color:#e6db74>`fetchHabits`</span>，並新增以下三個 <span style=color:#e6db74>`export`</span> 的 <span style=color:#e6db74>`async`</span> 函式。所有新函式都應該是呼叫內部 <span style=color:#e6db74>`apiFetch`</span> 函式的簡潔包裝。**
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>1.</span>  <span style=font-style:italic>**</span><span style=color:#e6db74>`addHabit(habitData)`</span> - (Create)**
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span> **參數**: <span style=color:#e6db74>`habitData`</span> (一個物件，例如 <span style=color:#e6db74>`{ name: &#39;學習 Vim&#39; }`</span>)。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span> **內部邏輯**: 呼叫 <span style=color:#e6db74>`apiFetch`</span>，傳入路徑 <span style=color:#e6db74>`/habits`</span>，方法 <span style=color:#e6db74>`POST`</span>，以及請求 <span style=color:#e6db74>`body`</span>。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span> **回傳值**: 成功時，返回後端建立的新習慣物件；失敗時，返回 <span style=color:#e6db74>`null`</span>。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>2.</span>  <span style=font-style:italic>**</span><span style=color:#e6db74>`updateHabit(habitId, updateData)`</span> - (Update)**
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span> **參數**: <span style=color:#e6db74>`habitId`</span> (字串或數字), <span style=color:#e6db74>`updateData`</span> (一個包含要更新欄位的物件)。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span> **內部邏輯**: 呼叫 <span style=color:#e6db74>`apiFetch`</span>，傳入路徑 ``/habits/${habitId}``，方法 <span style=color:#e6db74>`PUT`</span>，以及請求 <span style=color:#e6db74>`body`</span>。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span> **回傳值**: 成功時，返回後端更新後的習慣物件；失敗時，返回 <span style=color:#e6db74>`null`</span>。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>3.</span>  <span style=font-style:italic>**</span><span style=color:#e6db74>`deleteHabit(habitId)`</span> - (Delete)**
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span> **參數**: <span style=color:#e6db74>`habitId`</span> (字串或數字)。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span> **內部邏輯**: 呼叫 <span style=color:#e6db74>`apiFetch`</span>，傳入路徑 ``/habits/${habitId}``，方法 <span style=color:#e6db74>`DELETE`</span>。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span> **回傳值**: 成功時 (例如後端回應 204)，返回 <span style=color:#e6db74>`true`</span>；失敗時，返回 <span style=color:#e6db74>`false`</span>。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>4.</span>  <span style=font-weight:700>**JSDoc 註解**</span>: 請為所有新增的函式，提供清晰的 JSDoc 註解，說明其用途、參數 (`@param`) 與回傳值 (`@returns`)。
+</span></span></code></pre></div><h2 id=part-3vibe-coding-實戰-下為-app-注入完整生命力>Part 3：Vibe Coding 實戰 (下)：為 App 注入完整生命力</h2><p>通訊模組升級完畢，是時候回到 <code>script.js</code>，將我們的「黃金公式」付諸實踐了！</p><h3 id=魔法詠唱實現完整-crud>【魔法詠唱：實現完整 CRUD】</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown><span style=display:flex><span># 角色 (Role)
+</span></span><span style=display:flex><span>你是一位資深前端架構師，精通現代 JavaScript、DOM 操作、狀態管理模式，以及**非同步操作下的使用者體驗 (Asynchronous UX) 設計**。你擅長將複雜的業務邏輯，轉化為穩固、可預測、且具備清晰反饋的互動式介面。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 目標 (Objective)
+</span></span><span style=display:flex><span>請對現有的 <span style=color:#e6db74>`@frontend/script.js`</span> 進行一次全面的功能擴充，**為「習慣 (Habit)」資源實現一個具備完整生命週期管理、且能優雅處理非同步狀態的互動介面**。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 上下文與關鍵資訊 (Context &amp; Key Information)
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span> **目標修改檔案**: <span style=color:#e6db74>`@frontend/script.js`</span> (內含 <span style=color:#e6db74>`state`</span> 物件與 <span style=color:#e6db74>`render`</span> 函式)。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span> **API 模組**: <span style=color:#e6db74>`@frontend/api.js`</span> (已提供完整的 <span style=color:#e6db74>`addHabit`</span>, <span style=color:#e6db74>`updateHabit`</span>, <span style=color:#e6db74>`deleteHabit`</span> 等 CRUD 函式)。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 核心互動哲學：管理非同步狀態
+</span></span><span style=display:flex><span>我們的黃金法則是：**UI 必須始終忠實反映應用程式的當前狀態，尤其是在等待 API 回應的「中間狀態」**。為此，我們需要：
+</span></span><span style=display:flex><span><span style=color:#66d9ef>1.</span>  <span style=font-weight:700>**擴充 `state` 物件**</span>: 在現有 <span style=color:#e6db74>`state`</span> 中增加用於追蹤非同步操作狀態的屬性，例如 <span style=color:#e6db74>`isSubmitting: false`</span> 或 <span style=color:#e6db74>`deletingHabitId: null`</span>。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>2.</span>  <span style=font-weight:700>**更新 `render` 函式**</span>: <span style=color:#e6db74>`render`</span> 函式需要能夠識別這些新狀態，並在畫面上給予使用者清晰的視覺反饋（例如：禁用按鈕、顯示載入指示器）。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>3.</span>  <span style=font-weight:700>**遵循流程**</span>: 所有互動操作都必須遵循「**設定載入狀態 -&gt; 呼叫 API -&gt; 根據結果更新最終狀態**」的穩健流程。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>---
+</span></span><span style=display:flex><span># 產出格式與要求 (Your Task &amp; Output Requirements)
+</span></span><span style=display:flex><span>**請直接重寫 <span style=color:#e6db74>`@frontend/script.js`</span> 的完整內容，並實現以下所有功能與狀態管理邏輯：**
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 1. **擴充 State &amp; Render**
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>*</span> 在 <span style=color:#e6db74>`state`</span> 物件中，新增 <span style=color:#e6db74>`isSubmitting: false`</span> 屬性。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span> 修改 <span style=color:#e6db74>`render`</span> 函式，讓它在渲染 Modal 時，檢查 <span style=color:#e6db74>`state.isSubmitting`</span>。如果為 <span style=color:#e6db74>`true`</span>，則 Modal 中的「儲存」按鈕應被設置為 <span style=color:#e6db74>`disabled`</span> 狀態。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 2. **新增習慣 (Create)**
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>*</span> 為「新增習慣 Modal」的表單，加上 <span style=color:#e6db74>`submit`</span> 事件監聽器。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span> **處理流程**:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>1.</span>  阻止表單預設提交行為。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>2.</span>  獲取輸入框的值，進行基本驗證（例如，不能為空）。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>3.</span>  <span style=font-weight:700>**進入載入狀態**</span>: <span style=color:#e6db74>`setState({ isSubmitting: true });`</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>4.</span>  呼叫 <span style=color:#e6db74>`addHabit()`</span> API。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>5.</span>  <span style=font-weight:700>**處理回應**</span>:
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>*</span> **成功**: 將返回的新習慣物件，加到 <span style=color:#e6db74>`state.habits`</span> 陣列的**最前面**，並呼叫 <span style=color:#e6db74>`setState({ habits: ..., isSubmitting: false });`</span>。
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>*</span> **失敗**: 彈出 <span style=color:#e6db74>`alert`</span> 或在 <span style=color:#e6db74>`console.error`</span> 中顯示錯誤，並呼叫 <span style=color:#e6db74>`setState({ isSubmitting: false });`</span> 來解除載入狀態。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>6.</span>  關閉 Modal 並清空輸入框。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 3. **刪除習慣 (Delete)**
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>*</span> **心法**: 使用**事件委派 (Event Delegation)** 模式，在父層容器 <span style=color:#e6db74>`.habit-list-container`</span> 上掛載一個 <span style=color:#e6db74>`click`</span> 事件監聽器。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span> **處理流程**:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>1.</span>  在 <span style=color:#e6db74>`renderHabitList`</span> 中，為每個習慣項的刪除按鈕，加上 <span style=color:#e6db74>`data-action=&#34;delete&#34;`</span> 和 <span style=color:#e6db74>`data-habit-id=&#34;...&#34;`</span> 屬性。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>2.</span>  在事件監聽器中，判斷被點擊的是否為 <span style=color:#e6db74>`[data-action=&#34;delete&#34;]`</span> 的按鈕。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>3.</span>  獲取 <span style=color:#e6db74>`habitId`</span>。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>4.</span>  <span style=font-weight:700>**樂觀更新 (Optimistic Update) 準備**</span>: 可以在呼叫 API <span style=font-weight:700>**前**</span>，就先從畫面移除該項目，提供更流暢的體驗。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>5.</span>  呼叫 <span style=color:#e6db74>`deleteHabit(habitId)`</span> API。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>6.</span>  <span style=font-weight:700>**處理回應**</span>:
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>*</span> **成功**: 如果採用樂觀更新，則無需額外操作。如果沒有，則在此處從 <span style=color:#e6db74>`state.habits`</span> 陣列中**過濾掉**被刪除的習慣，並呼叫 <span style=color:#e6db74>`setState()`</span>。
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>*</span> **失敗**: 如果採用樂觀更新，需要將剛才移除的項目**加回來**，並提示使用者刪除失敗。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 4. **完成/取消習慣 (Update - Toggle Completion)**
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>*</span> **同樣使用事件委派**。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span> **處理流程**:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>1.</span>  在 <span style=color:#e6db74>`renderHabitList`</span> 中，為每個習慣項的 checkbox 或完成區域，加上 <span style=color:#e6db74>`data-action=&#34;toggle&#34;`</span> 和 <span style=color:#e6db74>`data-habit-id`</span>。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>2.</span>  在事件監聽器中，判斷點擊目標。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>3.</span>  獲取 <span style=color:#e6db74>`habitId`</span>。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>4.</span>  <span style=font-weight:700>**樂觀更新**</span>:
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>*</span> 在 <span style=color:#e6db74>`state.habits`</span> 中找到對應的習慣，將其 <span style=color:#e6db74>`completed_today`</span> (或類似) 屬性反轉。
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>*</span> 立即呼叫 <span style=color:#e6db74>`setState({ habits: ... })`</span> 來刷新 UI。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>5.</span>  <span style=font-weight:700>**背景同步**</span>: 呼叫 <span style=color:#e6db74>`updateHabit(habitId, { completed_today: ... })`</span> API。
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>*</span> **注意**: 成功時無需操作，但若 API 呼叫**失敗**，應將狀態**還原**並提示使用者。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>6.</span>  <span style=font-weight:700>**TODO 註解**</span>: 請在程式碼中用 <span style=color:#e6db74>`// TODO:`</span> 標示出 API 同步失敗後的回滾 (rollback) 邏輯尚未實現。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 5. **(挑戰) 實現原地編輯 (In-place Edit)**
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>*</span> **狀態管理**: 在 <span style=color:#e6db74>`state`</span> 中新增 <span style=color:#e6db74>`editingHabitId: null`</span>。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span> **Render 邏輯**: <span style=color:#e6db74>`renderHabitList`</span> 需修改，當 <span style=color:#e6db74>`habit.id === state.editingHabitId`</span> 時，習慣名稱的 <span style=color:#e6db74>`&lt;span&gt;`</span> 應被替換為一個 <span style=color:#e6db74>`&lt;input type=&#34;text&#34;&gt;`</span>。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span> **事件委派**:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span> 點擊「編輯」按鈕 (`[data-action=&#34;edit&#34;]`) 時，呼叫 <span style=color:#e6db74>`setState({ editingHabitId: habitId });`</span>。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span> 監聽 <span style=color:#e6db74>`&lt;input&gt;`</span> 的 <span style=color:#e6db74>`blur`</span> (失焦) 或 <span style=color:#e6db74>`keydown`</span> (Enter 鍵) 事件。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span> 事件觸發時，獲取新值，呼叫 <span style=color:#e6db74>`updateHabit()`</span> API，並在成功後呼叫 <span style=color:#e6db74>`setState({ editingHabitId: null });`</span> 退出編輯模式。
+</span></span></code></pre></div><h2 id=part-4成果驗收一個完全可互動的-app>Part 4：成果驗收：一個完全可互動的 App！</h2><p>是時候驗收了！再次確保所有伺服器都在運行，然後刷新你的瀏覽器。</p><p>現在，去盡情地玩你的 App 吧！</p><ul><li>點擊「新增習慣」，輸入內容並儲存，看看新的習慣是否立刻出現在列表頂部！</li><li>點擊任何一個習慣項目，看看它是否能成功打卡和取消打卡！</li><li>點擊習慣項目旁的刪除按鈕，看看它是否立刻從列表中消失！</li></ul><p>這就是我們努力的成果！一個遵循專業架構、數據驅動、功能完整的 MVP 核心！</p><h2 id=part-5提交我們-app-的完整生命力>Part 5：提交我們 App 的「完整生命力」</h2><ul><li><strong>Commit 訊息</strong>: <code>feat(frontend): Implement full CRUD and completion logic for habits</code></li><li><strong>Commit & Push</strong>！</li></ul><h2 id=結語從思考到行動下一步是體驗>結語：從思考到行動，下一步是體驗</h2><p>再次恭喜！今天，我們的 App 真正地「活」了過來。它不僅能思考和表達，現在更擁有了完整的行動能力。我們也透過這次的綜合實戰，將「狀態管理」的黃金公式，深深地烙印在了我們的開發模式中。</p><p>我們的 App 現在功能很強大，但在使用者體驗的細節上，還有可以打磨的空間。例如，當網路慢的時候，使用者點擊按鈕後會發生什麼？如果 API 出錯了，又該怎麼辦？</p><p>明天，我們將學習用戶體驗的最後一哩路，為我們的 App 加上優雅的「載入中」和「錯誤處理」狀態，讓它從一個「能用」的產品，進化成一個「好用」的產品！</p></div></article><div class="not-prose my-8 p-6 rounded-lg border transition-colors" style=background-color:var(--code-bg);border-color:var(--border-color)><div class="flex flex-col sm:flex-row sm:items-center justify-between mb-4 pb-4 border-b" style=border-color:var(--border-color)><div><span class="text-xs font-semibold uppercase tracking-wider" style=color:var(--text-secondary)>Series</span><h3 class="text-lg font-bold mt-1"><a href=/ChiYu-Blob/series/2025ithomeironman/ class=hover:underline style=color:var(--link-color)>2025iThomeIronman</a></h3></div><div class="mt-2 sm:mt-0 text-sm font-medium px-3 py-1 rounded-full border" style=background-color:var(--bg-color);color:var(--text-secondary);border-color:var(--border-color)>Part 25 of 32</div></div><div class="series-list-container relative"><ol class="list-none space-y-1 relative" id=series-list-2025ithomeironman><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday1/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">01.</span>
+<span>Day 1: 【啟程】嘿，AI！我們來做個網站，但這次，我們約法三章</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday2/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">02.</span>
+<span>Day 2: 【心法篇】開發者的航海圖：什麼是文件驅動開發 (DDD)？</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday3/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">03.</span>
+<span>Day 3: 【工具篇 #1】萬丈高樓平地起：建置本地開發環境</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday4/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">04.</span>
+<span>Day 4: 【工具篇 #2】程式碼的時光機：Git 與 GitHub 版本控制</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday5/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">05.</span>
+<span>Day 5: 【工具篇 #3】終端機裡的魔法：什麼是 Vibe Coding 與 Gemini CLI？</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday6/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">06.</span>
+<span>Day 6: 【文件 #1】專案的靈魂：用 Gemini CLI 生成「專案章程」</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday7/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">07.</span>
+<span>Day 7: 【文件 #2】使用者的旅程：用 Gemini CLI 描繪「使用者故事」</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday8/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">08.</span>
+<span>Day 8: 【文件 #3】系統的心臟：用 Gemini CLI 設計「軟體架構文件」</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday9/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">09.</span>
+<span>Day 9: 【文件 #4】數據的家：用 Gemini 規劃「資料庫綱要」</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday10/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">10.</span>
+<span>Day 10: 【文件 #5】溝通的契約：用 Gemini 撰寫「Web API 規格書」</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday11/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">11.</span>
+<span>Day 11: 【心法 #2】透過AI幫我們生成Prompt</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday12/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">12.</span>
+<span>Day 12: 【後端 #1】起手式：AI 代理人 生成模組化的 Flask 專案</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday13/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">13.</span>
+<span>Day 13: 【後端 #2】AI 建築師：依藍圖自動建構 CRUD API</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday14/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">14.</span>
+<span>Day 14: 【DevOps #1】AI 品管員：設定 GitHub Actions 自動化程式碼檢查</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday15/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">15.</span>
+<span>Day 15: 【後端 #3】API 測試：用 Gemini CLI 輔助撰寫 Pytest</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday16/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">16.</span>
+<span>Day 16: 【整合篇】後端竣工！回顧與展望</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday17/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">17.</span>
+<span>Day 17: 【前端 #0】前端世界的基石： HTML, CSS 與 JavaScript</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday18/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">18.</span>
+<span>Day 18: 【文件 #6】網站的風格指南：用 Gemini 定義顏色與字體</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday19/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">19.</span>
+<span>Day 19: 【文件 #7】頁面的骨架：用 Gemini 規劃主佈局與元件拆分</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday20/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">20.</span>
+<span>Day 20: 【前端 #1】Gemini Canvas 生成UI (還有新的AI建議功能)</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday21/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">21.</span>
+<span>Day 21: 【前端 #2】從原型到架構：拆解並整合 AI 生成的 UI 程式碼</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday22/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">22.</span>
+<span>Day 22: 【前端 #3】AI 一鍵生成完整 App 靜態 UI</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday23/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">23.</span>
+<span>Day 23: 【前端 #4】非同步的藝術：深入 Fetch API 與 Promise</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday24/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">24.</span>
+<span>Day 24: 【前端 #5】狀態管理的哲學：讓 UI 成為數據的鏡子</span></a></li><li class="series-item p-2 rounded-md transition-colors current-series-item" style="background-color:var(--bg-color);border:1px solid var(--border-color)"><a href=javascript:void(0); class="flex items-start cursor-default" style=color:var(--text-color)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">25.</span>
+<span class=font-bold>Day 25: 【前端 #6】核心生命週期：一天搞定習慣的「增刪改查」與「打卡」</span>
+<span class="ml-2 text-xs px-2 py-0.5 rounded-full bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">Current</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday26/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">26.</span>
+<span>Day 26: 【前端 #7】用戶體驗的最後一哩路：優雅地處理載入與錯誤</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday27/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">27.</span>
+<span>Day 27: 【文件 #8】數據的畫布：用 Gemini 設計「圖表元件規格書」</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday28/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">28.</span>
+<span>Day 28: 【前端 #8】兌現承諾：根據規格書 Vibe Coding 關聯性洞察圖表</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday29/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">29.</span>
+<span>Day 29: 【文件 #9】專案的守衛：用 Gemini 規劃「前端認證流程」</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday30/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">30.</span>
+<span>Day 30: 【前端 #9】建立大門與鑰匙：根據流程圖實現前端使用者認證</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday31/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">31.</span>
+<span>Day 31: 【優化篇】代碼的整形外科：JavaScript 模組化與代碼重構</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday32/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">32.</span>
+<span>【完賽感言】左手藍圖，右手魔法：一趟旅程的結束與反思</span></a></li></ol><button onclick=toggleSeriesList(this) class="w-full mt-4 text-xs font-medium text-center py-2 border-t hover:bg-opacity-50 transition-colors" style=color:var(--text-secondary);border-color:var(--border-color)>
+Show all 32 posts</button><style>#series-list-2025ithomeironman{max-height:300px;overflow-y:auto;padding-right:5px}#series-list-2025ithomeironman::-webkit-scrollbar{width:4px}#series-list-2025ithomeironman::-webkit-scrollbar-track{background:0 0}#series-list-2025ithomeironman::-webkit-scrollbar-thumb{background-color:var(--border-color);border-radius:4px}</style></div></div><script>function toggleSeriesList(e){const t=e.previousElementSibling;t.style.maxHeight==="none"?(t.style.maxHeight="300px",e.innerText="Show all 32 posts"):(t.style.maxHeight="none",e.innerText="Collapse list")}document.addEventListener("DOMContentLoaded",()=>{const e=document.querySelector(".current-series-item");e&&e.scrollIntoView({behavior:"smooth",block:"nearest"})})</script><nav class="flex justify-between mt-16 pt-8 border-t not-prose" style=border-color:var(--border-color)><div><a href=/ChiYu-Blob/posts/2025ithomeironmanday24/ class="block p-4 rounded-lg transition-colors" style=color:var(--text-secondary)><span class=text-sm>上一篇</span>
+<span class="block font-semibold mt-1" style=color:var(--text-color)>Day 24: 【前端 #5】狀態管理的哲學：讓 UI 成為數據的鏡子 &larr;</span></a></div><div class=text-right><a href=/ChiYu-Blob/posts/2025ithomeironmanday26/ class="block p-4 rounded-lg transition-colors" style=color:var(--text-secondary)><span class=text-sm>下一篇</span>
+<span class="block font-semibold mt-1" style=color:var(--text-color)>&rarr; Day 26: 【前端 #7】用戶體驗的最後一哩路：優雅地處理載入與錯誤</span></a></div></nav><div class="mt-16 pt-8 border-t not-prose" style=border-color:var(--border-color)><h3 class="text-xl font-bold mb-6">相關文章</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-4"><a href=/ChiYu-Blob/posts/2025ithomeironmanday28/ class="block p-4 rounded-lg transition-colors" style="border:1px solid var(--border-color)"><span class="font-semibold block" style=color:var(--text-color)>Day 28: 【前端 #8】兌現承諾：根據規格書 Vibe Coding 關聯性洞察圖表</span><p class="text-sm mt-1" style=color:var(--text-secondary)>安安，我是 ChiYu！
+昨天，我們再次實踐了「文件驅動開發」的核心精神。我們沒有直接衝進複雜的圖表程式碼中，而是先退一步，將一個模糊的「想 …</p></a><a href=/ChiYu-Blob/posts/2025ithomeironmanday24/ class="block p-4 rounded-lg transition-colors" style="border:1px solid var(--border-color)"><span class="font-semibold block" style=color:var(--text-color)>Day 24: 【前端 #5】狀態管理的哲學：讓 UI 成為數據的鏡子</span><p class="text-sm mt-1" style=color:var(--text-secondary)>安安，我是 ChiYu！
+昨天，我們的 App 經歷了一次歷史性的飛躍。我們為它安裝了「神經系統」，成功地讓前端的「身體」與後端的「大腦」進 …</p></a><a href=/ChiYu-Blob/posts/2025ithomeironmanday23/ class="block p-4 rounded-lg transition-colors" style="border:1px solid var(--border-color)"><span class="font-semibold block" style=color:var(--text-color)>Day 23: 【前端 #4】非同步的藝術：深入 Fetch API 與 Promise</span><p class="text-sm mt-1" style=color:var(--text-secondary)>安安，我是 ChiYu！
+昨天，我們扮演了一位「創世神」，指揮 AI 在一天之內，為我們建構出了 App 完整、精美的靜態 UI。我們現在手 …</p></a><a href=/ChiYu-Blob/posts/2025ithomeironmanday30/ class="block p-4 rounded-lg transition-colors" style="border:1px solid var(--border-color)"><span class="font-semibold block" style=color:var(--text-color)>Day 30: 【前端 #9】建立大門與鑰匙：根據流程圖實現前端使用者認證</span><p class="text-sm mt-1" style=color:var(--text-secondary)>說在前頭！！！ 有些部分多花費了些時間在講，所以雖然今天已經滿30天了， 但我還沒有正式完成這次鐵人賽系列文！！！ 我後面還是會繼續更新到正 …</p></a><a href=/ChiYu-Blob/posts/2025ithomeironmanday26/ class="block p-4 rounded-lg transition-colors" style="border:1px solid var(--border-color)"><span class="font-semibold block" style=color:var(--text-color)>Day 26: 【前端 #7】用戶體驗的最後一哩路：優雅地處理載入與錯誤</span><p class="text-sm mt-1" style=color:var(--text-secondary)>安安，我是 ChiYu！
+昨天，我們的 App 經歷了一次完全體的進化！我們在一天之內，火力全開，搞定了核心的 CRUD 功能。 …</p></a></div></div><div class="share-buttons not-prose mt-8 border-t pt-8" style=border-color:var(--border-color)><h3 class="text-base font-semibold mb-4 opacity-70">分享此文章：</h3><div class="flex gap-4"><a href="https://www.facebook.com/sharer/sharer.php?u=%2fChiYu-Blob%2fposts%2f2025ithomeironmanday25%2f" target=_blank rel="noopener noreferrer" class="share-btn text-blue-600 hover:opacity-80" title="分享到 Facebook"><svg class="w-6 h-6" fill="currentcolor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312.0 2.686.235 2.686.235v2.953H15.83c-1.491.0-1.962.925-1.962 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+</a><a href="https://twitter.com/intent/tweet?url=%2fChiYu-Blob%2fposts%2f2025ithomeironmanday25%2f&text=Day%2025%3a%20%e3%80%90%e5%89%8d%e7%ab%af%20%236%e3%80%91%e6%a0%b8%e5%bf%83%e7%94%9f%e5%91%bd%e9%80%b1%e6%9c%9f%ef%bc%9a%e4%b8%80%e5%a4%a9%e6%90%9e%e5%ae%9a%e7%bf%92%e6%85%a3%e7%9a%84%e3%80%8c%e5%a2%9e%e5%88%aa%e6%94%b9%e6%9f%a5%e3%80%8d%e8%88%87%e3%80%8c%e6%89%93%e5%8d%a1%e3%80%8d" target=_blank rel="noopener noreferrer" class="share-btn text-gray-800 dark:text-gray-200 hover:opacity-80" title="分享到 X"><svg class="w-6 h-6" fill="currentcolor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+</a><a href="https://www.linkedin.com/shareArticle?mini=true&url=%2fChiYu-Blob%2fposts%2f2025ithomeironmanday25%2f&title=Day%2025%3a%20%e3%80%90%e5%89%8d%e7%ab%af%20%236%e3%80%91%e6%a0%b8%e5%bf%83%e7%94%9f%e5%91%bd%e9%80%b1%e6%9c%9f%ef%bc%9a%e4%b8%80%e5%a4%a9%e6%90%9e%e5%ae%9a%e7%bf%92%e6%85%a3%e7%9a%84%e3%80%8c%e5%a2%9e%e5%88%aa%e6%94%b9%e6%9f%a5%e3%80%8d%e8%88%87%e3%80%8c%e6%89%93%e5%8d%a1%e3%80%8d" target=_blank rel="noopener noreferrer" class="share-btn text-blue-700 hover:opacity-80" title="分享到 LinkedIn"><svg class="w-6 h-6" fill="currentcolor" viewBox="0 0 24 24"><path d="M19 0H5C2.239.0.0 2.239.0 5v14c0 2.761 2.239 5 5 5h14c2.762.0 5-2.239 5-5V5c0-2.761-2.238-5-5-5zM8 19H5V8h3v11zM6.5 6.732c-.966.0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zM20 19h-3v-5.604c0-3.368-4-3.113-4 0V19h-3V8h3v1.765c1.396-2.586 7-2.777 7 2.476V19z"/></svg>
+</a><a href="https://social-plugins.line.me/lineit/share?url=%2fChiYu-Blob%2fposts%2f2025ithomeironmanday25%2f" target=_blank rel="noopener noreferrer" class="share-btn text-green-500 hover:opacity-80" title="分享到 Line"><svg class="w-6 h-6" fill="currentcolor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 5.85 2 10.53c0 2.68 1.49 5.08 3.81 6.66-.17.6-.62 2.18-.73 2.61-.06.25-.03.5.21.53.22.03.48-.12.67-.23 2.8-1.63 3.05-1.77 3.63-1.87.8.11 1.62.18 2.41.18 5.52.0 10-3.85 10-8.53S17.52 2 12 2zm0 14.93c-.76.0-1.53-.07-2.27-.2-.22-.04-.45.01-.64.12-.52.29-1.82 1.05-2.78 1.6.17-.85.42-1.8.52-2.3.06-.3-.06-.6-.3-.77C4.7 13.1 3.5 11.2 3.5 10.53c0-3.85 3.81-6.98 8.5-6.98s8.5 3.13 8.5 6.98-3.81 6.4-8.5 6.4z"/></svg></a></div></div><div id=giscus-container class="mt-16 pt-8 border-t not-prose" style=border-color:var(--border-color)></div></main></div></div><aside class="w-64 flex-shrink-0 desktop-sidebar pl-8"><div class="sticky top-20" data-pagefind-ignore><div class="mb-8 text-center" data-pagefind-ignore><img src=/ChiYu-Blob/images/avatar.jpg alt=個人大頭貼 class="w-32 h-32 rounded-full mx-auto object-cover border-2" style=border-color:var(--border-color) data-pagefind-ignore></div><div class="text-center mb-8" data-pagefind-ignore><a href=mailto:iamhandsomeboy1129@gmail.com class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-white transition-opacity hover:opacity-90" style=background-color:var(--link-color)><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1.0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1.0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+<span class="text-sm font-medium">聯絡我</span></a></div><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>文章月曆</h3><div id=calendar-widget-6666b9d3 class=calendar-widget><div class="flex justify-between items-center mb-2 font-semibold"><button class="cal-prev px-2 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700" title=上個月>&lt;</button>
+<span class=cal-month-year></span>
+<button class="cal-next px-2 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700" title=下個月>></button></div><div class="grid grid-cols-7 text-center text-xs gap-y-2" style=color:var(--text-secondary)><span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span></div><div class="cal-days grid grid-cols-7 text-center text-sm mt-2 gap-y-2"></div></div></div><script>(function(){const n=document.getElementById("calendar-widget-6666b9d3");if(!n)return;const e={};e["2025-12-17"]="/ChiYu-Blob/dates/2025-12-17/",e["2025-8-20"]="/ChiYu-Blob/dates/2025-08-20/",e["2025-8-21"]="/ChiYu-Blob/dates/2025-08-21/",e["2025-8-22"]="/ChiYu-Blob/dates/2025-08-22/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-8-23"]="/ChiYu-Blob/dates/2025-08-23/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-8-24"]="/ChiYu-Blob/dates/2025-08-24/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-8-25"]="/ChiYu-Blob/dates/2025-08-25/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-26"]="/ChiYu-Blob/dates/2025-08-26/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-27"]="/ChiYu-Blob/dates/2025-08-27/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-28"]="/ChiYu-Blob/dates/2025-08-28/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-29"]="/ChiYu-Blob/dates/2025-08-29/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-30"]="/ChiYu-Blob/dates/2025-08-30/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-31"]="/ChiYu-Blob/dates/2025-08-31/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-1"]="/ChiYu-Blob/dates/2025-09-01/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-2"]="/ChiYu-Blob/dates/2025-09-02/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-3"]="/ChiYu-Blob/dates/2025-09-03/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-4"]="/ChiYu-Blob/dates/2025-09-04/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-5"]="/ChiYu-Blob/dates/2025-09-05/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-6"]="/ChiYu-Blob/dates/2025-09-06/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-7"]="/ChiYu-Blob/dates/2025-09-07/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-8"]="/ChiYu-Blob/dates/2025-09-08/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-9"]="/ChiYu-Blob/dates/2025-09-09/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-9-10"]="/ChiYu-Blob/dates/2025-09-10/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-9-11"]="/ChiYu-Blob/dates/2025-09-11/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-9-12"]="/ChiYu-Blob/dates/2025-09-12/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-9-13"]="/ChiYu-Blob/dates/2025-09-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-9-14"]="/ChiYu-Blob/dates/2025-09-14/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-9-15"]="/ChiYu-Blob/dates/2025-09-15/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-9-16"]="/ChiYu-Blob/dates/2025-09-16/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-9-17"]="/ChiYu-Blob/dates/2025-09-17/",e["2025-7-3"]="/ChiYu-Blob/dates/2025-07-03/",e["2025-9-18"]="/ChiYu-Blob/dates/2025-09-18/",e["2025-9-19"]="/ChiYu-Blob/dates/2025-09-19/",e["2025-9-20"]="/ChiYu-Blob/dates/2025-09-20/",e["2025-6-8"]="/ChiYu-Blob/dates/2025-06-08/",e["2025-6-5"]="/ChiYu-Blob/dates/2025-06-05/";const i=n.querySelector(".cal-month-year"),s=n.querySelector(".cal-days"),a=n.querySelector(".cal-prev"),r=n.querySelector(".cal-next");let t=new Date;function o(t){const n=t.getFullYear(),o=t.getMonth();i.textContent=`${n} 年 ${o+1} 月`,s.innerHTML="";const a=new Date(n,o,1),r=new Date(n,o+1,0),c=a.getDay();for(let e=0;e<c;e++)s.insertAdjacentHTML("beforeend","<div></div>");for(let t=1;t<=r.getDate();t++){const i=`${n}-${o+1}-${t}`;e[i]?s.insertAdjacentHTML("beforeend",`
+                    <a href="${e[i]}" class="block p-1 rounded-full transition-colors font-bold" style="color: var(--link-color); text-decoration: underline; text-decoration-thickness: 2px;">
+                        ${t}
+                    </a>
+                `):s.insertAdjacentHTML("beforeend",`<span class="block p-1">${t}</span>`)}}a.addEventListener("click",()=>{t.setMonth(t.getMonth()-1),o(t)}),r.addEventListener("click",()=>{t.setMonth(t.getMonth()+1),o(t)}),o(t)})()</script><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>所有標籤</h3><div class="flex flex-wrap gap-2"><a href=/ChiYu-Blob/tags/yaml/ class=tag-pill>YAML
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/vibe-coding/ class=tag-pill>Vibe Coding
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/ux/ class=tag-pill>UX
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/user-stories/ class=tag-pill>User Stories
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/ui/ux/ class=tag-pill>UI/UX
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/testing/ class=tag-pill>Testing
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/summary/ class=tag-pill>Summary
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/style-guide/ class=tag-pill>Style Guide
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/state-management/ class=tag-pill>State Management
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/state-machine/ class=tag-pill>State Machine
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/sqlite/ class=tag-pill>SQLite
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/sql/ class=tag-pill>SQL
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/spa/ class=tag-pill>SPA
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/software-engineering/ class=tag-pill>Software Engineering
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/software-architecture/ class=tag-pill>Software Architecture
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/side-project/ class=tag-pill>Side Project
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/schema/ class=tag-pill>Schema
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/scaffolding/ class=tag-pill>Scaffolding
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/reflection/ class=tag-pill>Reflection
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/pytest/ class=tag-pill>Pytest
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/promise/ class=tag-pill>Promise
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/project-charter/ class=tag-pill>Project Charter
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/modularization/ class=tag-pill>Modularization
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/linting/ class=tag-pill>Linting
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/layout/ class=tag-pill>Layout
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/hlr/ class=tag-pill>HLR
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/guide/ class=tag-pill>Guide
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/github-actions/ class=tag-pill>GitHub Actions
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/github/ class=tag-pill>GitHub
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/git/ class=tag-pill>Git
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/flake8/ class=tag-pill>Flake8
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/fetch-api/ class=tag-pill>Fetch API
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/error-handling/ class=tag-pill>Error Handling
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/efficiency/ class=tag-pill>Efficiency
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/documentation/ class=tag-pill>Documentation
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/design-system/ class=tag-pill>Design System
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/database/ class=tag-pill>Database
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/data-driven-ui/ class=tag-pill>Data-Driven UI
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/conclusion/ class=tag-pill>Conclusion
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/component-specification/ class=tag-pill>Component Specification
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/component/ class=tag-pill>Component
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/codex/ class=tag-pill>Codex
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/cli/ class=tag-pill>CLI
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/canvas/ class=tag-pill>Canvas
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/blueprints/ class=tag-pill>Blueprints
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/atomic-design/ class=tag-pill>Atomic Design
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/asynchronous/ class=tag-pill>Asynchronous
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/api-integration/ class=tag-pill>API Integration
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/api/ class=tag-pill>API
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/ai-agent/ class=tag-pill>AI Agent
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/agile/ class=tag-pill>Agile
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/swagger/ class=tag-pill>Swagger
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/security/ class=tag-pill>Security
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/refactoring/ class=tag-pill>Refactoring
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/python/ class=tag-pill>Python
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/prototyping/ class=tag-pill>Prototyping
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/prompt-engineering/ class=tag-pill>Prompt Engineering
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/openapi/ class=tag-pill>OpenAPI
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/jwt/ class=tag-pill>JWT
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/html/ class=tag-pill>HTML
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/data-visualization/ class=tag-pill>Data Visualization
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/css/ class=tag-pill>CSS
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/crud/ class=tag-pill>CRUD
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/clean-code/ class=tag-pill>Clean Code
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/ci/ class=tag-pill>CI
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/chart.js/ class=tag-pill>Chart.js
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/backend/ class=tag-pill>Backend
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/authentication/ class=tag-pill>Authentication
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/ui/ux/ class=tag-pill>UI/UX
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/mermaid/ class=tag-pill>Mermaid
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/hugo/ class=tag-pill>Hugo
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/flask/ class=tag-pill>Flask
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/ddd/ class=tag-pill>DDD
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/ai/ class=tag-pill>AI
+<span class="ml-1 opacity-75">4</span>
+</a><a href=/ChiYu-Blob/tags/vibecoding/ class=tag-pill>VibeCoding
+<span class="ml-1 opacity-75">6</span>
+</a><a href=/ChiYu-Blob/tags/javascript/ class=tag-pill>JavaScript
+<span class="ml-1 opacity-75">6</span>
+</a><a href=/ChiYu-Blob/tags/frontend/ class=tag-pill>Frontend
+<span class="ml-1 opacity-75">13</span>
+</a><a href=/ChiYu-Blob/tags/design-patterns/ class=tag-pill>Design Patterns
+<span class="ml-1 opacity-75">24</span>
+</a><a href=/ChiYu-Blob/tags/c class=tag-pill>C#
+<span class="ml-1 opacity-75">24</span>
+</a><a href=/ChiYu-Blob/tags/gemini/ class=tag-pill>Gemini
+<span class="ml-1 opacity-75">27</span>
+</a><a href=/ChiYu-Blob/tags/2025ithomeironman/ class=tag-pill>2025iThomeIronman
+<span class="ml-1 opacity-75">32</span></a></div><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>相關連結</h3><div class="flex flex-col space-y-3 mt-4"><a href=https://www.cake.me/me/ChiYuisme target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">cakeresume</span>
+</a><a href=https://github.com/eric861129 target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">github</span>
+</a><a href=https://ithelp.ithome.com.tw/users/20132971/ironman/8253 target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">ithome</span>
+</a><a href=https://www.linkedin.com/in/chiyu-huang/ target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">linkedin</span>
+</a><a href=https://www.threads.com/@chiyuisme target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">threads</span></a></div></div><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>系列文章</h3><ul class=space-y-1><li><a href=/ChiYu-Blob/series/2025ithomeironman/ class="flex justify-between"><span>2025 iThome 鐵人賽</span>
+<span class=text-sm>32</span></a></li><li><a href=/ChiYu-Blob/series/designpattern/ class="flex justify-between"><span>設計模式</span>
+<span class=text-sm>24</span></a></li><li><a href=/ChiYu-Blob/series/hugo-%E9%96%8B%E7%99%BC%E7%B4%80%E9%8C%84/ class="flex justify-between"><span>Hugo 開發紀錄</span>
+<span class=text-sm>1</span></a></li></ul></div></div></aside></div><footer class="mt-16 pt-8 border-t text-center text-sm" style=border-color:var(--border-color);color:var(--text-secondary)><p>&copy; 2025 ChiYu. All Rights Reserved.</p></footer><button id=scroll-to-top-btn class=scroll-to-top title=回到頂部><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentcolor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 15a.5.5.0 00.5-.5V2.707l3.146 3.147a.5.5.0 00.708-.708l-4-4a.5.5.0 00-.708.0l-4 4a.5.5.0 10.708.708L7.5 2.707V14.5a.5.5.0 00.5.5z"/></svg></button></div><div id=sidebar-overlay class=sidebar-overlay></div><aside id=mobile-sidebar class=mobile-sidebar><div class=p-4><aside class=sidebar><div class=sidebar-inner><div class=widget><h3 class=widget-title>系列文章</h3><ul class=widget-list><li><a href=/ChiYu-Blob/series/2025ithomeironman/>2025 iThome 鐵人賽
+<span class=posts-count>32</span></a></li><li><a href=/ChiYu-Blob/series/designpattern/>設計模式
+<span class=posts-count>24</span></a></li><li><a href=/ChiYu-Blob/series/hugo-%E9%96%8B%E7%99%BC%E7%B4%80%E9%8C%84/>Hugo 開發紀錄
+<span class=posts-count>1</span></a></li></ul></div></div></aside><div class="sticky top-20" data-pagefind-ignore><div class="mb-8 text-center" data-pagefind-ignore><img src=/ChiYu-Blob/images/avatar.jpg alt=個人大頭貼 class="w-32 h-32 rounded-full mx-auto object-cover border-2" style=border-color:var(--border-color) data-pagefind-ignore></div><div class="text-center mb-8" data-pagefind-ignore><a href=mailto:iamhandsomeboy1129@gmail.com class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-white transition-opacity hover:opacity-90" style=background-color:var(--link-color)><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1.0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1.0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+<span class="text-sm font-medium">聯絡我</span></a></div><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>文章月曆</h3><div id=calendar-widget-805c60ed class=calendar-widget><div class="flex justify-between items-center mb-2 font-semibold"><button class="cal-prev px-2 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700" title=上個月>&lt;</button>
+<span class=cal-month-year></span>
+<button class="cal-next px-2 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700" title=下個月>></button></div><div class="grid grid-cols-7 text-center text-xs gap-y-2" style=color:var(--text-secondary)><span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span></div><div class="cal-days grid grid-cols-7 text-center text-sm mt-2 gap-y-2"></div></div></div><script>(function(){const n=document.getElementById("calendar-widget-805c60ed");if(!n)return;const e={};e["2025-12-17"]="/ChiYu-Blob/dates/2025-12-17/",e["2025-8-20"]="/ChiYu-Blob/dates/2025-08-20/",e["2025-8-21"]="/ChiYu-Blob/dates/2025-08-21/",e["2025-8-22"]="/ChiYu-Blob/dates/2025-08-22/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-8-23"]="/ChiYu-Blob/dates/2025-08-23/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-8-24"]="/ChiYu-Blob/dates/2025-08-24/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-8-25"]="/ChiYu-Blob/dates/2025-08-25/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-26"]="/ChiYu-Blob/dates/2025-08-26/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-27"]="/ChiYu-Blob/dates/2025-08-27/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-28"]="/ChiYu-Blob/dates/2025-08-28/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-29"]="/ChiYu-Blob/dates/2025-08-29/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-30"]="/ChiYu-Blob/dates/2025-08-30/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-31"]="/ChiYu-Blob/dates/2025-08-31/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-1"]="/ChiYu-Blob/dates/2025-09-01/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-2"]="/ChiYu-Blob/dates/2025-09-02/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-3"]="/ChiYu-Blob/dates/2025-09-03/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-4"]="/ChiYu-Blob/dates/2025-09-04/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-5"]="/ChiYu-Blob/dates/2025-09-05/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-6"]="/ChiYu-Blob/dates/2025-09-06/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-7"]="/ChiYu-Blob/dates/2025-09-07/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-8"]="/ChiYu-Blob/dates/2025-09-08/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-9"]="/ChiYu-Blob/dates/2025-09-09/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-9-10"]="/ChiYu-Blob/dates/2025-09-10/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-9-11"]="/ChiYu-Blob/dates/2025-09-11/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-9-12"]="/ChiYu-Blob/dates/2025-09-12/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-9-13"]="/ChiYu-Blob/dates/2025-09-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-9-14"]="/ChiYu-Blob/dates/2025-09-14/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-9-15"]="/ChiYu-Blob/dates/2025-09-15/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-9-16"]="/ChiYu-Blob/dates/2025-09-16/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-9-17"]="/ChiYu-Blob/dates/2025-09-17/",e["2025-7-3"]="/ChiYu-Blob/dates/2025-07-03/",e["2025-9-18"]="/ChiYu-Blob/dates/2025-09-18/",e["2025-9-19"]="/ChiYu-Blob/dates/2025-09-19/",e["2025-9-20"]="/ChiYu-Blob/dates/2025-09-20/",e["2025-6-8"]="/ChiYu-Blob/dates/2025-06-08/",e["2025-6-5"]="/ChiYu-Blob/dates/2025-06-05/";const i=n.querySelector(".cal-month-year"),s=n.querySelector(".cal-days"),a=n.querySelector(".cal-prev"),r=n.querySelector(".cal-next");let t=new Date;function o(t){const n=t.getFullYear(),o=t.getMonth();i.textContent=`${n} 年 ${o+1} 月`,s.innerHTML="";const a=new Date(n,o,1),r=new Date(n,o+1,0),c=a.getDay();for(let e=0;e<c;e++)s.insertAdjacentHTML("beforeend","<div></div>");for(let t=1;t<=r.getDate();t++){const i=`${n}-${o+1}-${t}`;e[i]?s.insertAdjacentHTML("beforeend",`
+                    <a href="${e[i]}" class="block p-1 rounded-full transition-colors font-bold" style="color: var(--link-color); text-decoration: underline; text-decoration-thickness: 2px;">
+                        ${t}
+                    </a>
+                `):s.insertAdjacentHTML("beforeend",`<span class="block p-1">${t}</span>`)}}a.addEventListener("click",()=>{t.setMonth(t.getMonth()-1),o(t)}),r.addEventListener("click",()=>{t.setMonth(t.getMonth()+1),o(t)}),o(t)})()</script><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>所有標籤</h3><div class="flex flex-wrap gap-2"><a href=/ChiYu-Blob/tags/yaml/ class=tag-pill>YAML
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/vibe-coding/ class=tag-pill>Vibe Coding
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/ux/ class=tag-pill>UX
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/user-stories/ class=tag-pill>User Stories
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/ui/ux/ class=tag-pill>UI/UX
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/testing/ class=tag-pill>Testing
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/summary/ class=tag-pill>Summary
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/style-guide/ class=tag-pill>Style Guide
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/state-management/ class=tag-pill>State Management
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/state-machine/ class=tag-pill>State Machine
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/sqlite/ class=tag-pill>SQLite
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/sql/ class=tag-pill>SQL
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/spa/ class=tag-pill>SPA
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/software-engineering/ class=tag-pill>Software Engineering
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/software-architecture/ class=tag-pill>Software Architecture
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/side-project/ class=tag-pill>Side Project
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/schema/ class=tag-pill>Schema
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/scaffolding/ class=tag-pill>Scaffolding
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/reflection/ class=tag-pill>Reflection
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/pytest/ class=tag-pill>Pytest
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/promise/ class=tag-pill>Promise
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/project-charter/ class=tag-pill>Project Charter
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/modularization/ class=tag-pill>Modularization
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/linting/ class=tag-pill>Linting
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/layout/ class=tag-pill>Layout
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/hlr/ class=tag-pill>HLR
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/guide/ class=tag-pill>Guide
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/github-actions/ class=tag-pill>GitHub Actions
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/github/ class=tag-pill>GitHub
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/git/ class=tag-pill>Git
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/flake8/ class=tag-pill>Flake8
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/fetch-api/ class=tag-pill>Fetch API
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/error-handling/ class=tag-pill>Error Handling
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/efficiency/ class=tag-pill>Efficiency
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/documentation/ class=tag-pill>Documentation
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/design-system/ class=tag-pill>Design System
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/database/ class=tag-pill>Database
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/data-driven-ui/ class=tag-pill>Data-Driven UI
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/conclusion/ class=tag-pill>Conclusion
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/component-specification/ class=tag-pill>Component Specification
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/component/ class=tag-pill>Component
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/codex/ class=tag-pill>Codex
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/cli/ class=tag-pill>CLI
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/canvas/ class=tag-pill>Canvas
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/blueprints/ class=tag-pill>Blueprints
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/atomic-design/ class=tag-pill>Atomic Design
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/asynchronous/ class=tag-pill>Asynchronous
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/api-integration/ class=tag-pill>API Integration
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/api/ class=tag-pill>API
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/ai-agent/ class=tag-pill>AI Agent
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/agile/ class=tag-pill>Agile
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/swagger/ class=tag-pill>Swagger
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/security/ class=tag-pill>Security
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/refactoring/ class=tag-pill>Refactoring
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/python/ class=tag-pill>Python
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/prototyping/ class=tag-pill>Prototyping
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/prompt-engineering/ class=tag-pill>Prompt Engineering
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/openapi/ class=tag-pill>OpenAPI
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/jwt/ class=tag-pill>JWT
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/html/ class=tag-pill>HTML
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/data-visualization/ class=tag-pill>Data Visualization
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/css/ class=tag-pill>CSS
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/crud/ class=tag-pill>CRUD
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/clean-code/ class=tag-pill>Clean Code
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/ci/ class=tag-pill>CI
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/chart.js/ class=tag-pill>Chart.js
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/backend/ class=tag-pill>Backend
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/authentication/ class=tag-pill>Authentication
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/ui/ux/ class=tag-pill>UI/UX
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/mermaid/ class=tag-pill>Mermaid
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/hugo/ class=tag-pill>Hugo
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/flask/ class=tag-pill>Flask
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/ddd/ class=tag-pill>DDD
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/ai/ class=tag-pill>AI
+<span class="ml-1 opacity-75">4</span>
+</a><a href=/ChiYu-Blob/tags/vibecoding/ class=tag-pill>VibeCoding
+<span class="ml-1 opacity-75">6</span>
+</a><a href=/ChiYu-Blob/tags/javascript/ class=tag-pill>JavaScript
+<span class="ml-1 opacity-75">6</span>
+</a><a href=/ChiYu-Blob/tags/frontend/ class=tag-pill>Frontend
+<span class="ml-1 opacity-75">13</span>
+</a><a href=/ChiYu-Blob/tags/design-patterns/ class=tag-pill>Design Patterns
+<span class="ml-1 opacity-75">24</span>
+</a><a href=/ChiYu-Blob/tags/c class=tag-pill>C#
+<span class="ml-1 opacity-75">24</span>
+</a><a href=/ChiYu-Blob/tags/gemini/ class=tag-pill>Gemini
+<span class="ml-1 opacity-75">27</span>
+</a><a href=/ChiYu-Blob/tags/2025ithomeironman/ class=tag-pill>2025iThomeIronman
+<span class="ml-1 opacity-75">32</span></a></div><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>相關連結</h3><div class="flex flex-col space-y-3 mt-4"><a href=https://www.cake.me/me/ChiYuisme target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">cakeresume</span>
+</a><a href=https://github.com/eric861129 target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">github</span>
+</a><a href=https://ithelp.ithome.com.tw/users/20132971/ironman/8253 target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">ithome</span>
+</a><a href=https://www.linkedin.com/in/chiyu-huang/ target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">linkedin</span>
+</a><a href=https://www.threads.com/@chiyuisme target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">threads</span></a></div></div><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>系列文章</h3><ul class=space-y-1><li><a href=/ChiYu-Blob/series/2025ithomeironman/ class="flex justify-between"><span>2025 iThome 鐵人賽</span>
+<span class=text-sm>32</span></a></li><li><a href=/ChiYu-Blob/series/designpattern/ class="flex justify-between"><span>設計模式</span>
+<span class=text-sm>24</span></a></li><li><a href=/ChiYu-Blob/series/hugo-%E9%96%8B%E7%99%BC%E7%B4%80%E9%8C%84/ class="flex justify-between"><span>Hugo 開發紀錄</span>
+<span class=text-sm>1</span></a></li></ul></div></div></div></aside><script src=/ChiYu-Blob/pagefind/pagefind-ui.js onload=initPagefind()></script><script src=https://cdn.jsdelivr.net/npm/medium-zoom@1.0.8/dist/medium-zoom.min.js></script><script type=module>
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ 
+            startOnLoad: true, 
+            theme: document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default' 
+        });
+    </script><script src=/ChiYu-Blob/js/main.min.0193b07ef6d75c398d0ddd095576631329ae07bdc4f8790273143cfb31c1c9c5.js integrity="sha256-AZOwfvbXXDmNDd0JVXZjEymuB73E+HkCcxQ8+zHBycU=" crossorigin=anonymous></script></body></html>

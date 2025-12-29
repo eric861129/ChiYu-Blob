@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2025-09-08 on ChiYu Code Journey</title><link>/ChiYu-Blob/dates/2025-09-08/</link><description>Recent content in 2025-09-08 on ChiYu Code Journey</description><generator>Hugo -- gohugo.io</generator><language>zh-TW</language><lastBuildDate>Mon, 08 Sep 2025 00:00:00 +0800</lastBuildDate><atom:link href="/ChiYu-Blob/dates/2025-09-08/index.xml" rel="self" type="application/rss+xml"/><item><title>Day 20: 【前端 #1】Gemini Canvas 生成UI (還有新的AI建議功能)</title><link>/ChiYu-Blob/posts/2025ithomeironmanday20/</link><pubDate>Mon, 08 Sep 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday20/</guid><description>安安，我是 ChiYu！
+昨天，我們完成了前端開發的最後一份規劃文件。至此，我們所有的「左手藍圖」工作，全部大功告成！
+從今天起，我們將正式拿起工具，戴上安全帽，開始 Vibe Coding 的前端實作！但&amp;hellip; 我們真的要像傳統的「建築工人」那樣，一行一行地去搭建 HTML 骨架，再一點一點地去粉刷 CSS 樣式嗎？
+不！時代變了！今天，我們要直接從「建築工人」一步到位，升級成「魔法建築師」！我們不再一磚一瓦地蓋房子，我們要直接攤開我們的設計藍圖，對著 Gemini 詠唱咒語，瞬間召喚出一棟功能完整、外觀精美的 UI 原型！
+Part 1：為什麼要用 Canvas？—— 從「盲人摸象」到「上帝視角」 在 Day 12，我們體驗了在終端機 Vibe Coding 的快感。它很酷，但對於 UI 開發來說，它有個小缺點：我們就像是在黑暗中「盲人摸象」，敲下一行指令，然後切換到瀏覽器看看成果，來來回回，效率不高。
+而 Gemini Web UI 的 Canvas 功能，則給了我們截然不同的體驗——「上帝視角」。
+Canvas 是一個視覺化的 AI 互動介面，它能讓我們在描述需求的同時，即時預覽 AI 生成的 UI 畫面。它追求的是 「極速視覺化」，讓我們能在幾分鐘內，就得到一個可以直接互動、外觀精美的 UI 原型。這對於前端開發來說，簡直是夢幻般的工具！
+Part 2：Canvas 實戰：為 AI 建築師提供「設計圖」 現在，讓我們打開我們的「魔法實驗室」—— gemini.google.com，然後選擇 Canvas 功能。我們要學習一門全新的 Prompt 技巧：如何用文字，向一位魔法建築師描述一棟房子？
+答案很簡單：把我們嘔心瀝血產出的設計文件餵給它！
+【魔法詠唱：UI 生成咒語】 # 角色 (Role) 你是一位頂尖的前端工程師，精通 HTML, CSS, JavaScript，並且對 UI/UX 設計有深刻的理解。 # 目標 (Objective) 請根據我提供的設計文件和詳細需求，為我生成一個功能完整的「習慣追蹤器」Web UI 的**單一 HTML 檔案** # 上下文 (Context) - **風格指南**: STYLE_GUIDE.</description></item></channel></rss>

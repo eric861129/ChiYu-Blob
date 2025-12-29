@@ -1,8 +1,55 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>JavaScript on ChiYu Code Journey</title><link>/ChiYu-Blob/tags/javascript/</link><description>Recent content in JavaScript on ChiYu Code Journey</description><generator>Hugo -- gohugo.io</generator><language>zh-TW</language><lastBuildDate>Fri, 05 Sep 2025 00:00:00 +0800</lastBuildDate><atom:link href="/ChiYu-Blob/tags/javascript/index.xml" rel="self" type="application/rss+xml"/><item><title>Day 17: 【前端 #0】前端世界的基石： HTML, CSS 與 JavaScript</title><link>/ChiYu-Blob/posts/2025ithomeironmanday17/</link><pubDate>Fri, 05 Sep 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday17/</guid><description>安安，我是 ChiYu！
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>JavaScript on ChiYu Code Journey</title><link>/ChiYu-Blob/tags/javascript/</link><description>Recent content in JavaScript on ChiYu Code Journey</description><generator>Hugo -- gohugo.io</generator><language>zh-TW</language><lastBuildDate>Fri, 19 Sep 2025 00:00:00 +0800</lastBuildDate><atom:link href="/ChiYu-Blob/tags/javascript/index.xml" rel="self" type="application/rss+xml"/><item><title>Day 17: 【前端 #0】前端世界的基石： HTML, CSS 與 JavaScript</title><link>/ChiYu-Blob/posts/2025ithomeironmanday17/</link><pubDate>Fri, 05 Sep 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday17/</guid><description>安安，我是 ChiYu！
 昨天，我們為精彩的後端開發之旅，畫下了一個完美的句點。我們現在擁有一個性能強大、穩定可靠的「專案引擎」，一顆強壯、默默跳動的心臟，但它還沒有形體，等待著被賦予生命。
 從今天起，我們將正式開啟一個全新的篇章： 前端開發。我們將從幕後的「引擎工程師」，搖身一變，成為面向使用者的「 造物主」與「 生命設計師」。
 但在我們開始 Vibe Coding 我們的數位生命之前，我們必須先花一天時間，回歸本心，認識一下構成生命的三大基本元素。今天，是前端開發的 Day 0，我們不寫任何一行專案程式碼，只專注於一件事：用最簡單的比喻和親手實作，讓你徹底搞懂構成全世界所有網頁的生命三要素——HTML, CSS, 與 JavaScript。
 Part 1：HTML - 生命的「骨骼」 想像一下我們要創造一個生命體。我們做的第一件事是什麼？塑造它的骨架。這就是 HTML (HyperText Markup Language) 的角色。
 HTML 的唯一職責，就是定義網頁的「內容」與「結構」。它決定了這個生命體「有哪些器官」，但完全不管它「長什麼樣子」。
 &amp;lt;h1&amp;gt; 標籤告訴瀏覽器：「嘿，這是頭顱」，是思考的中心。 &amp;lt;p&amp;gt; 標籤說：「這是一塊軀幹」，是身體的主體。 &amp;lt;img&amp;gt; 標籤說：「這裡要有眼睛」，用來觀看世界。 &amp;lt;button&amp;gt; 標籤說：「這裡要有手」，用來與世界互動。 HTML 就是生命的骨架，最基礎、最核心，沒有它，皮囊與肌肉都將無所依附。
-【動手玩玩看 #1】 建立實驗室：在你的電腦桌面，建立一個新的資料夾，取名為 frontend-playground。 用 VS Code 開啟：打開 VS Code，點擊左上角「檔案 (File)」-&amp;gt;「開啟資料夾 (Open Folder)」，然後選擇我們剛剛建立的 frontend-playground。 建立 HTML 檔案：在 VS Code 左側的檔案總管中，點擊「新增檔案」的圖示，將檔案命名為 index.html。 貼上骨架程式碼：將下面的程式碼，完整地複製並貼到你剛剛建立的 index.html 檔案中。 &amp;lt;!DOCTYPE html&amp;gt; &amp;lt;html&amp;gt; &amp;lt;head&amp;gt; &amp;lt;title&amp;gt;我的生命體&amp;lt;/title&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;h1&amp;gt;這是頭顱&amp;lt;/h1&amp;gt; &amp;lt;p&amp;gt;這是一塊樸素的軀幹。&amp;lt;/p&amp;gt; &amp;lt;button&amp;gt;這是一隻手&amp;lt;/button&amp;gt; &amp;lt;/body&amp;gt; &amp;lt;/html&amp;gt; 預覽結果：直接在檔案總管中，找到 index.</description></item></channel></rss>
+【動手玩玩看 #1】 建立實驗室：在你的電腦桌面，建立一個新的資料夾，取名為 frontend-playground。 用 VS Code 開啟：打開 VS Code，點擊左上角「檔案 (File)」-&amp;gt;「開啟資料夾 (Open Folder)」，然後選擇我們剛剛建立的 frontend-playground。 建立 HTML 檔案：在 VS Code 左側的檔案總管中，點擊「新增檔案」的圖示，將檔案命名為 index.html。 貼上骨架程式碼：將下面的程式碼，完整地複製並貼到你剛剛建立的 index.html 檔案中。 &amp;lt;!DOCTYPE html&amp;gt; &amp;lt;html&amp;gt; &amp;lt;head&amp;gt; &amp;lt;title&amp;gt;我的生命體&amp;lt;/title&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;h1&amp;gt;這是頭顱&amp;lt;/h1&amp;gt; &amp;lt;p&amp;gt;這是一塊樸素的軀幹。&amp;lt;/p&amp;gt; &amp;lt;button&amp;gt;這是一隻手&amp;lt;/button&amp;gt; &amp;lt;/body&amp;gt; &amp;lt;/html&amp;gt; 預覽結果：直接在檔案總管中，找到 index.</description></item><item><title>Day 23: 【前端 #4】非同步的藝術：深入 Fetch API 與 Promise</title><link>/ChiYu-Blob/posts/2025ithomeironmanday23/</link><pubDate>Thu, 11 Sep 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday23/</guid><description>安安，我是 ChiYu！
+昨天，我們扮演了一位「創世神」，指揮 AI 在一天之內，為我們建構出了 App 完整、精美的靜態 UI。我們現在手上，有了一個外觀完美，但沒有靈魂的「App 蠟像館」。
+它很美，但它是靜默的。它無法感知外界，也無法與我們在後端建立的強大「大腦」進行溝通。
+今天，我們就要來為它安裝這套至關重要的神經系統！我們將深入前端開發中最核心、也最讓新手困惑的觀念——非同步程式設計 (Asynchronous Programming)，並學習如何使用 Fetch API，讓前端的「身體」與後端的「大腦」進行第一次的歷史性對話！
+Part 1：前端心法：為什麼我們需要「非同步」？ 想像一個場景：你去一家超紅的手搖飲店點餐。你點完一杯「珍珠鮮奶茶，半糖少冰」後，是會呆呆地站在櫃檯前，死盯著店員，從他開始煮珍珠、泡茶、加牛奶、到最後封膜，一步都不離開嗎？
+當然不會！那樣不僅你自己浪費時間，還會把後面的客人全都堵死。一個正常的流程是：你點完餐，店員給你一個會震動的「取餐呼叫器」，然後你就可以去旁邊找個位子坐下、滑滑手機、看看書。等到飲料做好了，呼叫器「嗡嗡嗡」地震動，你再優雅地過去取餐。
+前端與後端的溝通，就跟這個過程一模一樣！
+同步 (Synchronous)：就是那個呆站在櫃檯的笨方法。如果前端用「同步」的方式去跟後端要資料（例如，去資料庫拿你的習慣列表），那整個網頁畫面就會完全卡死，捲動不了、按鈕沒反應，直到後端把資料傳回來為止。這對使用者來說，是災難性的體驗。 非同步 (Asynchronous)：就是那個聰明的「呼叫器」方法。前端發出一個請求給後端後，它不會原地等待，而是會繼續做自己的事（例如：保持畫面的流暢、回應使用者的其他操作）。後端處理完資料後，會透過一個機制「通知」前端：「嘿，你的資料好了，快來拿！」 而這個神奇的「呼叫器」，在 JavaScript 的世界裡，就叫做 Promise。
+什麼是 Promise？ Promise 是一個物件，它代表一個「承諾」。當你呼叫一個非同步操作（例如 fetch）時，它會立刻回給你一個 Promise。這個 Promise 就像是那個取餐呼叫器，它有三種狀態：
+Pending (等待中)：你剛拿到呼叫器，它還沒震動。代表飲料還在做。 Fulfilled (已實現)：呼叫器震動了！代表你的珍奶做好了（數據成功取回）。 Rejected (已拒絕)：呼叫器發出悲鳴！代表珍珠賣完了（網路錯誤或伺服器出錯）。 async/await：優雅地等待呼叫器 早期的 JavaScript 處理 Promise 非常麻煩（俗稱「回調地獄」），但現代 JS 提供了一套超級優雅的語法糖——async/await。它能讓我們用寫「同步」程式碼的感覺，來處理「非同步」操作，大大提升了程式碼的可讀性。
+Part 2：Vibe Coding 實戰：建立我們的「通訊模組」 好了，理論武裝完畢！在我們開始呼叫 API 之前，專業的作法是建立一個專門負責與後端溝通的「通訊模組」，而不是把 fetch 寫得到處都是。這也是一種「關注點分離」！
+Step 1: 命令 AI 建立 api.js 讓我們進入 gemini chat 模式，指揮 AI 為我們建立這個模組。</description></item><item><title>Day 24: 【前端 #5】狀態管理的哲學：讓 UI 成為數據的鏡子</title><link>/ChiYu-Blob/posts/2025ithomeironmanday24/</link><pubDate>Fri, 12 Sep 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday24/</guid><description>安安，我是 ChiYu！
+昨天，我們的 App 經歷了一次歷史性的飛躍。我們為它安裝了「神經系統」，成功地讓前端的「身體」與後端的「大腦」進行了第一次對話。我們的 App 不再是離線的空殼，它擁有了「記憶」。
+但是，這些寶貴的記憶，現在還只靜靜地躺在瀏覽器的 console 裡，像一本鎖在保險箱裡的日記，使用者完全無法窺見其貌。我們的 App 雖然有了記憶，但它還是一個「啞巴」，無法將自己的所思所想表達出來。
+今天，我們就要來為 App 安裝「聲帶」和「表情肌肉」，教它如何開口說話。我們將深入探討一個區分業餘與專業前端開發的核心心法——狀態管理 (State Management)，並引入一個輕量的「狀態中心」模式，讓我們的 UI 成為數據最忠實的鏡子。
+Part 1：前端心法：為什麼「直接操作 DOM」是個壞主意？ 你可能會想：「這很簡單啊！昨天拿到數據後，我用 JavaScript 的 document.createElement、appendChild 這些方法，手動把一個個習慣項目加到畫面上不就好了嗎？」
+問得好！這確實是一種方法，但它就像一個木偶戲的師傅，用線牽引著木偶（DOM 元素）的一舉一動。當只有一兩個木偶時，這套方法還行得通。但想像一下，你的 App 越來越複雜，畫面上同時有幾十個木偶，它們之間還有複雜的互動，這位可憐的師傅很快就會手忙腳亂，把線纏在一起，最終導致整場表演崩潰。
+「直接操作 DOM」的壞處在於：
+程式碼極度混亂：你的 script.js 將會充滿各種查找元素、新增元素、刪除元素、修改樣式的程式碼，很快就會變得難以閱讀和維護。 狀態不一致：你很可能會忘記更新某個地方的數字，導致畫面上顯示的數據，跟你內心（程式碼變數）裡記得的數據不一致，這就是 Bug 的主要來源。 難以追蹤：當 Bug 出現時，你很難知道到底是哪一段手動操作，導致了畫面最終的錯誤狀態。 專業的作法：數據驅動畫面 那麼，專業的前端開發者是怎麼做的呢？他們不做那個辛苦的木偶師傅，而是做一位「劇本設計師」。
+他們會建立一個唯一的**「劇本 (State)」，這個劇本用數據完整地描述了舞台上應該是什麼樣子。然後，他們會聘請一位叫做「渲染引擎 (Render Function)」的超級演員，這位演員的唯一工作，就是閱讀劇本，然後完美地將自己扮演成劇本描述的樣子**。
+開發者的工作，從「手動去移動木偶的每一根手指」，變成了**「專心修改劇本」**。每當劇本（State）有任何變動，我們就大喊一聲：「卡！重來！」，然後渲染引擎就會立刻根據最新的劇本，重新表演一次，確保舞台上的畫面永遠與劇本 100% 同步。
+這個「劇本」，就是我們的**「單一真理來源 (Single Source of Truth)」**。這個過程，就是 「數據驅動畫面 (Data-Driven UI)」 的核心哲學。
+Part 2：Vibe Coding 實戰：建立我們的「狀態中心」與「渲染引擎」 好了，理論武裝完畢！讓我們進入 gemini chat 模式，指揮 AI 為我們重構昨天的邏輯，將這種專業的開發模式，注入我們的 App。</description></item><item><title>Day 25: 【前端 #6】核心生命週期：一天搞定習慣的「增刪改查」與「打卡」</title><link>/ChiYu-Blob/posts/2025ithomeironmanday25/</link><pubDate>Sat, 13 Sep 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday25/</guid><description>安安，我是 ChiYu！
+昨天，我們的 App 經歷了一次質的飛躍。我們為它植入了「靈魂」——一個中央的狀態 (state) 和一個渲染引擎 (render)。它學會了如何「思考」（管理數據）並「表達」（渲染畫面），成功地將從後端獲取的真實數據，呈現在使用者面前。
+我們的 App 現在有了一個能反映真實數據的漂亮外殼。但是，它還是一個只能「讀」，不能「寫」的「展示品」。使用者還無法新增、修改或刪除這些習慣，無法真正地與 App 產生連結。
+今天，我們將迎來一個內容極其豐富、極具挑戰、也極富成就感的 「濃縮實戰篇」。我們將火力全開，一天之內，搞定所有習慣的「增、刪、改、查」與「打卡」功能，讓我們的 App 真正地「動」起來，完成其核心功能的生命週期！
+Part 1：前端心法：萬變不離其宗的「互動模式」 在我們開始瘋狂寫 Code 之前，讓我們先建立一個清晰的「心智模型」。今天我們要做的所有功能，無論是新增、刪除還是打卡，都將嚴格遵循我們前幾天建立的、那個優雅而強大的「數據驅動」模式。
+這個模式，就是我們所有互動功能的 「黃金公式」：
+使用者事件 (User Event)：使用者觸發一個動作（例如：點擊「儲存」按鈕）。 呼叫 API (Call API)：我們的 JavaScript 會捕捉到這個事件，然後呼叫對應的 api.js 函式，向後端發送一個請求（POST, DELETE, PUT&amp;hellip;）。 更新狀態 (Update State)：在成功收到後端的回應後，我們不去手動修改畫面，而是去更新我們中央的 state 物件。 自動渲染 (Auto Re-render)：setState 函式會自動觸發 render()，我們的 UI 就會像鏡子一樣，自動、精準地反映出 state 的最新樣貌。 記住這個公式，你會發現，再複雜的互動，都能被拆解成這幾個簡單、可預測的步驟。
+Part 2：Vibe Coding 實戰 (上)：擴充我們的「通訊模組」 我們的 api.js 現在只會「讀取」(fetchHabits)，是時候教它「寫入」了。
+【魔法詠唱：升級通訊模組】 讓我們進入 gemini chat 模式，指揮 AI 為我們擴充 api.js。
+# 角色 (Role) 你是一位資深的 API 用戶端架構師 (API Client Architect)，精通 `fetch` API 與 `async/await`，並致力於遵循 DRY (Don&amp;#39;t Repeat Yourself) 原則，撰寫可複用、可擴展且易於維護的數據獲取模組。 # 目標 (Objective) 請對現有的 `@frontend/api.</description></item><item><title>Day 28: 【前端 #8】兌現承諾：根據規格書 Vibe Coding 關聯性洞察圖表</title><link>/ChiYu-Blob/posts/2025ithomeironmanday28/</link><pubDate>Tue, 16 Sep 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday28/</guid><description>安安，我是 ChiYu！
+昨天，我們再次實踐了「文件驅動開發」的核心精神。我們沒有直接衝進複雜的圖表程式碼中，而是先退一步，將一個模糊的「想法」，轉化為了一份清晰、具體、可執行的「技術規格」。
+我們手上現在握著一份像素級精密的「零件設計圖」。有了它，我們接下來的開發工作將會變得無比順暢，因為所有關於「如何設計」的燒腦問題，都已經被解決了。我們的任務只剩下一個——專注於「如何實現」。
+今天，我們將正式拿起工具，嚴格依據昨天的這份《圖表元件規格書》，指揮 AI 和 Chart.js，將這幅數據的畫布，變成真實、可互動的前端程式碼！
+Part 1：前端心法：為什麼專業團隊痴迷於「規格書」？ 在開始之前，讓我們再次鞏固一下心法。為什麼像我們昨天產出的那份規格書，在專業團隊中如此重要？
+消除模糊地帶：規格書用技術語言，將所有「可能」、「大概」、「我覺得」都變成了「必須」。前端工程師不再需要去猜測產品經理的心思，所有人都對著同一份文件工作。 實現並行開發：有了這份規格書，前端和後端甚至可以同時開工！後端工程師知道要提供什麼格式的 API，前端工程師知道要接收什麼格式的數據，雙方可以獨立開發，最後完美對接。 Vibe Coding 的「護欄」：這對我們至關重要。當我們指揮 AI 時，這份規格書就是最強大的「護欄」。我們可以非常精準地告訴 AI：「嘿，嚴格按照這份文件的 Props 定義來接收數據，嚴格按照這份文件的『互動行為』來寫 JS 邏輯。」這能確保 AI 的強大創造力，永遠在我們設定好的軌道上馳騁。 Part 2：Vibe Coding 實戰：將藍圖轉化為現實 好了，理論不再贅述，讓我們進入 gemini chat 模式，開始我們今天精彩的 Vibe Coding 之旅！
+Step 1: 安裝我們的「畫筆」- Chart.js 首先，我們要為專案引入一個強大且易用的圖表函式庫。
+【魔法詠唱：引入 Chart.js】 # 角色 你是一位熟悉前端生態系的前端工程師。 **# 任務** 請修改 `@frontend/index.html`，為專案引入 Chart.js 函式庫。 **# 產出要求** 請在 `&amp;lt;head&amp;gt;` 區塊中，加入 Chart.js 的 CDN 連結。請使用最新穩定版本。 AI 會為我們找到 Chart.js 的 CDN，並將 &amp;lt;script&amp;gt; 標籤加入到我們的 HTML 中。</description></item><item><title>Day 31: 【優化篇】代碼的整形外科：JavaScript 模組化與代碼重構</title><link>/ChiYu-Blob/posts/2025ithomeironmanday31/</link><pubDate>Fri, 19 Sep 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday31/</guid><description>說在前頭～ 既然已經達成30天了，乾脆把庫存一次全部PO完好了～
+安安，我是 ChiYu！
+昨天，我們為 App 裝上了堅固的大門與門鎖，成功地實現了完整的使用者認證流程。至此，我們 MVP (最小可行產品) 的所有核心功能，已全部開發完成！這是一個巨大的里程碑，再次為堅持到這裡的你，獻上最熱烈的掌聲！
+但是，我們的旅程還沒結束。一個專業的專案，不僅僅是功能的堆砌。回頭看看我們的 frontend/script.js 檔案，它現在已經變成一個包含了狀態管理、UI 渲染、API 請求、認證邏輯、事件監聽&amp;hellip; 的巨大怪獸。它雖然能跑，但已經變得難以閱讀和維護。
+今天，我們將進行系列文的最後一次程式碼實作，也是從「開發者」邁向「架構師」的關鍵一步。我們將扮演一位「程式碼整形醫師」，為我們臃腫的 script.js 進行一次徹底的「整形手術」，引入專業的 JavaScript 模組化，讓我們的專案達到生產級別的清晰度。
+Part 1：前端心法：為什麼說「高內聚，低耦合」是程式碼的最高境界？ 在我們動刀之前，先來理解一下我們手術的指導原則—— 「高內聚，低耦合 (High Cohesion, Low Coupling)」。這聽起來很玄，但卻是衡量所有軟體架構好壞的黃金標準。
+高內聚 (High Cohesion)：就像一個專業的「工具箱」。一個好的工具箱裡，所有放鑿子的抽屜裡，只會有各式各樣的鑿子；放螺絲起子的抽屜裡，只會有螺絲起子。 相關的功能，應該被集中在同一個模組裡。 低耦合 (Low Coupling)：代表工具箱裡的每個抽屜，都是獨立的。你拿出鑿子抽屜時，完全不需要擔心會動到螺絲起子的抽屜。 模組與模組之間，應該盡量減少依賴，保持獨立。 我們現在的 script.js，就是一個典型的「低內聚、高耦合」的壞例子：它什麼都做（低內聚），而且裡面所有功能都互相糾纏在一起（高耦合）。
+而我們的解決方案，就是使用現代 JavaScript 內建的 ES6 Module (import/export)。它能讓我們像整理工具箱一樣，將不同功能的程式碼，放進各自專屬的 .js 檔案中，然後在需要的時候，精準地「進口 (import)」我們需要的工具即可。
+Part 2：Vibe Coding 實戰：詠唱「程式碼重構」的終極咒語 好了，理論武裝完畢！讓我們進入 gemini chat 模式，開始這場重構手術。
+【重構後的專案結構】 frontend/ ├── assets/ │ └── logo.png ├── api.js # 只負責跟後端說話 ├── auth.js # 只負責登入登出 ├── state.</description></item></channel></rss>

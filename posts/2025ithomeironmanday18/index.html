@@ -1,0 +1,757 @@
+<!doctype html><html lang=zh-tw><head><script async src="https://www.googletagmanager.com/gtag/js?id=G-FGXWEWM001"></script><script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-FGXWEWM001",{anonymize_ip:!1})}</script><meta name=description content="今天我們將化身為「首席視覺設計師」，與我們的 AI 夥伴 Gemini 深度對談，為我們的 App 定義一套獨一無二的視覺風格。"><meta property="og:title" content="Day 18: 【文件 #6】網站的風格指南：用 Gemini 定義顏色與字體"><meta property="og:description" content="今天我們將化身為「首席視覺設計師」，與我們的 AI 夥伴 Gemini 深度對談，為我們的 App 定義一套獨一無二的視覺風格。"><meta property="og:type" content="article"><meta property="og:url" content="/ChiYu-Blob/posts/2025ithomeironmanday18/"><meta name=twitter:card content="summary_large_image"><meta name=twitter:title content="Day 18: 【文件 #6】網站的風格指南：用 Gemini 定義顏色與字體"><meta name=twitter:description content="今天我們將化身為「首席視覺設計師」，與我們的 AI 夥伴 Gemini 深度對談，為我們的 App 定義一套獨一無二的視覺風格。"><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Day 18: 【文件 #6】網站的風格指南：用 Gemini 定義顏色與字體 | ChiYu Code Journey</title>
+<script>(function(){const e=localStorage.getItem("theme")||"dark";document.documentElement.setAttribute("data-theme",e)})()</script><script src=https://cdn.tailwindcss.com></script><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel=stylesheet><link href=/pagefind/pagefind-ui.css rel=stylesheet><link href="https://fonts.googleapis.com/css2?family=Chocolate+Classical+Sans&family=Edu+SA+Hand:wght@400..700&family=Inter:wght@400;500;600;700&display=swap" rel=stylesheet><link rel=icon type=image/jpeg href=/ChiYu-Blob/images/avatar.jpg><link rel=stylesheet href=/ChiYu-Blob/css/style.bundle.min.603fe609a4fee1de053c12e00858727a67cc5a3ba05a0a66f04142a379f47374.css integrity="sha256-YD/mCaT+4d4FPBLgCFhyemfMWjugWgpm8EFCo3n0c3Q=" crossorigin=anonymous><style>#reading-progress-container{position:fixed;top:0;left:0;width:100%;height:3px;z-index:9999;background:0 0}#reading-progress-bar{height:100%;width:0%;background:linear-gradient(to right,#60a5fa,#2563eb);transition:width .1s ease-out}</style></head><body class=antialiased><div id=reading-progress-container><div id=reading-progress-bar></div></div><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><header class="sticky top-0 z-50 flex justify-between items-center py-6 border-b" style=border-color:var(--border-color);background-color:var(--bg-color)><a href=/ChiYu-Blob/ class="text-xl sm:text-2xl font-bold" style=color:var(--text-color)>ChiYu Code Journey</a><nav class="flex items-center space-x-2 sm:space-x-4"><div id=search></div><a href=/ChiYu-Blob/ class="text-sm sm:text-base" style=color:var(--text-secondary)>首頁</a>
+<a href=/ChiYu-Blob/posts/ class="text-sm sm:text-base" style=color:var(--text-secondary)>文章</a>
+<a href=/ChiYu-Blob/about/ class="text-sm sm:text-base" style=color:var(--text-secondary)>關於</a>
+<a href=/ChiYu-Blob/index.xml target=_blank title="訂閱 RSS" style=color:var(--text-secondary) class="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11a9 9 0 019 9"/><path d="M4 4a16 16 0 0116 16"/><circle cx="5" cy="19" r="1"/></svg>
+</a><button id=theme-toggle title=切換深色/淺色主題>
+<svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+<svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+</button>
+<button id=mobile-sidebar-toggle class=lg:hidden title=開啟側邊欄><svg class="w-6 h-6" fill="none" stroke="currentcolor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/></svg></button></nav></header><div data-pagefind-body style=display:none><p>安安，我是 ChiYu！</p><p>昨天，我們扮演了「造物主」，理解了構成數位生命的三大基本元素：HTML (骨骼)、CSS (皮囊) 與 JavaScript (肌肉)。</p><p>我們的生命體現在有了基本的構造，但它還沒有「氣質」與「個性」。它的膚色、瞳孔顏色、說話的語氣（字體）都尚未被定義。如果我們現在就開始隨心所欲地為它上色、化妝，最終很可能會創造出一個風格混亂、不忍直視的「四不像」。</p><p>因此，在我們動手寫任何一行 CSS 之前，我們要再次回到我們最信賴的工作流程——文件驅動。今天，我們將化身為「 <strong>首席視覺設計師</strong>」，與我們的 AI 夥伴 Gemini 深度對談，為我們的 App 定義一套獨一無二的視覺風格，並將其記錄成一份專業的**「風格指南 (Style Guide)」**文件。</p><h2 id=part-1什麼是風格指南為什麼它是設計的dna>Part 1：什麼是「風格指南」？為什麼它是設計的「DNA」？</h2><p>「風格指南」是一份定義了專案所有視覺元素（顏色、字體、間距、圖示、按鈕樣式等）使用規則的「設計聖經」。它就是我們數位生命的 <strong>「基因圖譜 (DNA)」</strong>。</p><p>為什麼我們需要它？</p><ul><li><strong>確保一致性 (Consistency)</strong>：一份好的風格指南，能確保你網站上的每一個按鈕、每一段文字，看起來都像是來自同一個「家族」。這種視覺上的一致性，會給使用者帶來專業、可靠、值得信賴的感覺。</li><li><strong>提升開發效率 (Efficiency)</strong>：它能將設計師與工程師從無盡的「這個藍色深一點還是淺一點？」、「這個標題用多大字體？」的決策地獄中解放出來。我們不再需要每次都重新發明輪子，只需要遵循 DNA 的指示即可。</li><li><strong>賦予 AI 清晰的指令</strong>：這對我們 Vibe Coding 的流程至關重要！當我們有了這份文件，未來就可以直接對 Gemini 說：「請用我們的 <code>primary-color</code> 設計一個按鈕」，AI 就能立刻理解並產出符合我們整體風格的程式碼。</li></ul><h2 id=part-2定義我們-app-的vibe--專案的個性>Part 2：定義我們 App 的「Vibe」- 專案的個性</h2><p>在挑選顏色和字體之前，我們得先回答一個更根本的問題：我們希望這個 App 給人什麼樣的「感覺 (Vibe)」？</p><p>回顧我們 Day 5 的專案章程，我們的願景是「賦予使用者力量，建立正向習慣並擁抱更健康的心態」。基於這個願景，我們可以提煉出幾個關鍵詞來定義我們 App 的個性：</p><ul><li><strong>Calm (平靜)</strong>：介面應該是簡潔、無干擾的，讓使用者能專注於紀錄與反思。</li><li><strong>Encouraging (鼓勵)</strong>：視覺元素應該帶有溫度，給人一種積極、正向的感覺。</li><li><strong>Clean (乾淨)</strong>：佈局要清晰，留有足夠的呼吸空間 (留白)，避免資訊過載。</li><li><strong>Trustworthy (可靠)</strong>：設計要專業、一致，讓使用者願意將他們的個人數據託付給我們。</li></ul><p>這幾個關鍵詞，就是我們接下來與 Gemini 溝通時的「通關密語」。</p><h2 id=part-3實戰開始讓-gemini-成為我們的視覺設計師>Part 3：實戰開始：讓 Gemini 成為我們的視覺設計師</h2><p>好了，讓我們打開終端機，指揮 Gemini 為我們進行專業的視覺設計。</p><h3 id=魔法詠唱生成風格指南>【魔法詠唱：生成風格指南】</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown><span style=display:flex><span># 角色 (Role)
+</span></span><span style=display:flex><span>你是一位頂尖的 UI/UX 設計師與設計系統架構師。你不僅對色彩心理學、字體排印學有深入研究，更擅長將抽象的品牌氛圍轉化為具體、可執行的設計規範。你尤其熟悉健康、正念與個人成長類 App 的設計趨勢，並重視無障礙設計 (Accessibility, WCAG) 原則。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 目標 (Objective)
+</span></span><span style=display:flex><span>請根據下方提供的專案上下文與核心氛圍，為我們的 App 設計一套完整、專業且具備前瞻性的「風格指南 (Style Guide)」。這份文件將作為前端開發的唯一視覺真理來源，確保所有 UI 元素都具備一致性、可用性與品牌辨識度。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 上下文與關鍵資訊 (Context &amp; Key Information)
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span> **核心文件**:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span> **專案願景**: <span style=color:#e6db74>`@docs/PROJECT_CHARTER.md`</span> (請務必深度理解我們的核心目標、價值主張與目標使用者輪廓)。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span> **品牌核心氛圍 (Core Vibe)**:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span> 你的所有設計決策，都必須圍繞並強化以下四種感覺：
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>1.</span>  <span style=font-weight:700>**平靜 (Calm)**</span>: 介面應簡潔、無干擾，引導使用者專注。
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>2.</span>  <span style=font-weight:700>**鼓勵 (Encouraging)**</span>: 視覺元素應帶有溫度，給人積極、正向的支持感。
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>3.</span>  <span style=font-weight:700>**乾淨 (Clean)**</span>: 佈局清晰，留有充足的呼吸感 (留白)，避免資訊過載。
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>4.</span>  <span style=font-weight:700>**可靠 (Trustworthy)**</span>: 設計專業、一致，讓使用者願意託付他們的個人數據。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span> **主要目標為Web APP**
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 產出格式與要求 (Output Format &amp; Requirements)
+</span></span><span style=display:flex><span>請生成一份結構清晰的 Markdown 文件，並**嚴格遵循**以下所有大綱與要求，在每個設計決策後，簡要闡述其如何連結至我們的「品牌核心氛圍」。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 1. 總覽 (Overview)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>*</span> **文件版本**: <span style=color:#e6db74>`v1.0.0`</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span> **引言**: 用一小段話，說明這份風格指南的目的與重要性。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 2. 色彩搭配 (Color Palette)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>*</span> **定義**: 包含 <span style=color:#e6db74>`主色 (Primary)`</span>、`輔色/強調色 (Accent)`、`成功色 (Success)`、`危險色 (Danger)`，以及一組至少 4 個層級的 <span style=color:#e6db74>`中性色 (Neutrals)`</span>。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span> **格式**: 以 Markdown 表格呈現，欄位包含「用途」、「色彩名稱 (例如：靜謐藍)」、「HEX 色碼」及「簡要用途說明」。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span> **無障礙考量 (Accessibility)**: 請確保主要文字顏色與背景色之間具有足夠的對比度，以符合 WCAG AA 標準。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span> **設計理念**: 在表格後，用一段話**詳細說明**選擇此顏色組合背後的「設計理念」與「色彩心理學」考量。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 3. 字體排印 (Typography)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>*</span> **字體組合**: 推薦一組 Google Fonts 上的「標題 (Headings)」與「內文 (Body)」字體搭配。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span> **推薦理由**: 闡述為何這組字體適合我們的「品牌核心氛圍」。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span> **字體層級 (Typographic Scale)**: 以 Markdown 表格定義一套清晰的字體層級，至少包含 <span style=color:#e6db74>`h1`</span> 到 <span style=color:#e6db74>`h3`</span>, <span style=color:#e6db74>`p`</span>, <span style=color:#e6db74>`small`</span>。表格欄位需包含「層級」、「`font-size` (rem)」、「`font-weight`」及「`line-height`」。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 4. 間距系統 (Spacing System)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>*</span> **原則**: 說明我們將採用基於 <span style=color:#e6db74>`8px`</span> 的網格系統來規範所有元件的內外間距，以確保視覺上的一致性與和諧感。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span> **單位**: 以 Markdown 表格定義一套間距單位 (例如 <span style=color:#e6db74>`spacing-xs`</span>, <span style=color:#e6db74>`spacing-s`</span>, <span style=color:#e6db74>`spacing-m`</span>, <span style=color:#e6db74>`spacing-l`</span>) 及其對應的 <span style=color:#e6db74>`rem`</span> 和 <span style=color:#e6db74>`px`</span> 值。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 5. 核心元件風格 (Core Component Styles)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>*</span> **按鈕 (Buttons)**:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span> 定義至少兩種按鈕樣式：`Primary` (主要操作) 和 <span style=color:#e6db74>`Secondary`</span> (次要操作)。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span> 描述它們在不同狀態 (Default, Hover, Disabled) 下的視覺表現 (背景色、邊框、文字顏色)。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span> **輸入框 (Input Fields)**:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span> 描述輸入框在不同狀態 (Default, Focus, Error) 下的視覺表現 (背景色、邊框顏色)。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 6. 溝通語氣 (Tone of Voice)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>*</span> **原則**: 定義 App 中的文字風格 (Microcopy) 應反映我們的核心價值：支持、清晰、溫和且賦予力量。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span> **範例**: 提供 2-3 個「我們這樣說 (Do)」和「我們不這樣說 (Don&#39;t)」的對照範例，以具體情境呈現。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 7. 最終產出
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>*</span> 將以上所有內容，生成一個名為 <span style=color:#e6db74>`STYLE_GUIDE.md`</span> 的單一 Markdown 檔案。
+</span></span></code></pre></div><h2 id=part-4審核與分析-ai-的設計提案>Part 4：審核與分析 AI 的設計提案</h2><p>在你與 AI 經過幾輪的迭代優化後，最終你會得到一份高品質的定稿文件。讓我們來深度剖析一下這份由 AI 設計的「基因圖譜」：</p><h3 id=ai-生成文件範例>【AI 生成文件範例】</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown><span style=display:flex><span># MindTrack App - Style Guide
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### **版本 (Version)**: `v1.0.0`
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>---
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## 1. 總覽 (Overview)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>本文件是「心境軌跡 (MindTrack)」應用的官方風格指南。它定義了構成我們使用者介面 (UI) 的所有核心視覺元素與互動模式。遵循此指南旨在確保我們的產品在所有平台上都擁有一致、專業、且具備高度品牌辨識度的使用者體驗。這份文件是設計與開發團隊之間溝通的橋樑，是打造一個 <span style=font-weight:700>**平靜 (Calm)**</span>、 <span style=font-weight:700>**鼓勵 (Encouraging)**</span>、 <span style=font-weight:700>**乾淨 (Clean)**</span> 且 <span style=font-weight:700>**可靠 (Trustworthy)**</span> 產品的唯一真理來源。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## 2. 色彩搭配 (Color Palette)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>我們的色彩系統旨在創造一個寧靜且引人專注的數位環境。主色調提供穩定感，而強調色則用於引導使用者並給予積極的回饋。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>| 用途 | 色彩名稱 | HEX 色碼 | 簡要用途說明 |
+</span></span><span style=display:flex><span>| :--- | :--- | :--- | :--- |
+</span></span><span style=display:flex><span>| <span style=font-weight:700>**主色 (Primary)**</span> | 靜謐藍 (Serene Blue) | <span style=color:#e6db74>`#4A90E2`</span> | 用於主要按鈕、連結、焦點狀態，代表穩定與專注。 |
+</span></span><span style=display:flex><span>| <span style=font-weight:700>**輔色/強調色 (Accent)**</span> | 暖陽橙 (Warm Sunrise) | <span style=color:#e6db74>`#F5A623`</span> | 用於特別需要強調的元素，如成就徽章、正面圖表數據。 |
+</span></span><span style=display:flex><span>| <span style=font-weight:700>**成功色 (Success)**</span> | 新芽綠 (Sprout Green) | <span style=color:#e6db74>`#7ED321`</span> | 用於操作成功後的提示、完成狀態的確認。 |
+</span></span><span style=display:flex><span>| <span style=font-weight:700>**危險色 (Danger)**</span> | 珊瑚紅 (Coral Red) | <span style=color:#e6db74>`#D0021B`</span> | 用於刪除操作的確認、錯誤提示，顏色醒目但不過於刺激。 |
+</span></span><span style=display:flex><span>| <span style=font-weight:700>**中性色 (Neutral)**</span> | 深灰 (Text) | <span style=color:#e6db74>`#333333`</span> | 主要內文顏色，確保最佳可讀性。 |
+</span></span><span style=display:flex><span>| <span style=font-weight:700>**中性色 (Neutral)**</span> | 中灰 (Subtle) | <span style=color:#e6db74>`#9B9B9B`</span> | 用於輔助文字、未啟用狀態的圖示、輸入框提示文字。 |
+</span></span><span style=display:flex><span>| <span style=font-weight:700>**中性色 (Neutral)**</span> | 淺灰 (Border/Line) | <span style=color:#e6db74>`#EAEAEA`</span> | 用於邊框、分隔線，創造柔和的視覺區隔。 |
+</span></span><span style=display:flex><span>| <span style=font-weight:700>**中性色 (Neutral)**</span> | 極淺灰 (Background) | <span style=color:#e6db74>`#F9F9F9`</span> | 頁面與卡片的主要背景色，提供呼吸感。 |
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#### **無障礙考量 (Accessibility)**
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>主文字顏色 <span style=color:#e6db74>`#333333`</span> 與背景色 <span style=color:#e6db74>`#F9F9F9`</span> 之間的對比度為 <span style=font-weight:700>**12.55:1**</span>，遠超 WCAG AA 級要求的 4.5:1，確保了極佳的可讀性。所有行動呼籲 (Call-to-Action) 的顏色組合都經過對比度檢查，以服務最廣泛的使用者。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#### **設計理念**
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>這組色彩搭配的靈感源於清晨的天空——從靜謐的藍色逐漸過渡到溫暖的橙色。
+</span></span><span style=display:flex><span><span style=font-style:italic>*   *</span>*靜謐藍** 作為主色，奠定了產品**平靜**與**可靠**的基調，如同廣闊天空給人的信賴感。
+</span></span><span style=display:flex><span><span style=font-style:italic>*   *</span>*暖陽橙** 作為點綴，象徵希望與能量，為使用者的每一步進展提供**鼓勵**。
+</span></span><span style=display:flex><span><span style=font-style:italic>*   整體的*</span>*中性色**階梯則確保了介面的**乾淨**與整潔，讓內容本身成為主角，避免了視覺干擾，幫助使用者專注於自我覺察的旅程。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## 3. 字體排印 (Typography)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>我們選擇的字體組合旨在提供清晰易讀的體驗，同時傳達出一種溫暖、友善的感覺。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span>   <span style=font-weight:700>**字體組合**</span>:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span>   <span style=font-weight:700>**標題 (Headings)**</span>: [<span style=color:#f92672>Nunito</span>](<span style=color:#a6e22e>https://fonts.google.com/specimen/Nunito</span>)
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span>   <span style=font-weight:700>**內文 (Body)**</span>: [<span style=color:#f92672>Lato</span>](<span style=color:#a6e22e>https://fonts.google.com/specimen/Lato</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span>   <span style=font-weight:700>**推薦理由**</span>:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span>   <span style=color:#e6db74>`Nunito`</span> 的圓潤邊角使其看起來非常友善且平易近人，適合用作標題，能夠有效地傳達**鼓勵**的氛圍。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span>   <span style=color:#e6db74>`Lato`</span> 則是一款極為清晰、結構均衡的無襯線字體，即使在小字號下也具備出色的可讀性，確保了介面的**乾淨**與資訊傳遞的**可靠**性。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span>   <span style=font-weight:700>**字體層級 (Typographic Scale)**</span>:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>| 層級 | <span style=color:#e6db74>`font-size`</span> (rem) | <span style=color:#e6db74>`font-weight`</span> | <span style=color:#e6db74>`line-height`</span> |
+</span></span><span style=display:flex><span>| :--- | :--- | :--- | :--- |
+</span></span><span style=display:flex><span>| <span style=color:#e6db74>`h1`</span> | <span style=color:#e6db74>`2.5rem`</span> (40px) | <span style=color:#e6db74>`700`</span> (Bold) | <span style=color:#e6db74>`1.2`</span> |
+</span></span><span style=display:flex><span>| <span style=color:#e6db74>`h2`</span> | <span style=color:#e6db74>`2rem`</span> (32px) | <span style=color:#e6db74>`700`</span> (Bold) | <span style=color:#e6db74>`1.3`</span> |
+</span></span><span style=display:flex><span>| <span style=color:#e6db74>`h3`</span> | <span style=color:#e6db74>`1.5rem`</span> (24px) | <span style=color:#e6db74>`700`</span> (Bold) | <span style=color:#e6db74>`1.4`</span> |
+</span></span><span style=display:flex><span>| <span style=color:#e6db74>`p`</span> | <span style=color:#e6db74>`1rem`</span> (16px) | <span style=color:#e6db74>`400`</span> (Regular) | <span style=color:#e6db74>`1.6`</span> |
+</span></span><span style=display:flex><span>| <span style=color:#e6db74>`small`</span>| <span style=color:#e6db74>`0.875rem`</span> (14px) | <span style=color:#e6db74>`400`</span> (Regular) | <span style=color:#e6db74>`1.5`</span> |
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## 4. 間距系統 (Spacing System)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span>   <span style=font-weight:700>**原則**</span>: 我們採用基於 <span style=font-weight:700>**8px**</span> 的網格系統來統籌所有元件的 <span style=color:#e6db74>`padding`</span>、`margin` 和 <span style=color:#e6db74>`gap`</span>。這個系統性的方法是實現視覺**乾淨**與和諧佈局的基石，並體現了設計的**可靠**性與一致性。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span>   <span style=font-weight:700>**單位**</span>:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>| 單位 | <span style=color:#e6db74>`rem`</span> | <span style=color:#e6db74>`px`</span> |
+</span></span><span style=display:flex><span>| :--- | :--- | :--- |
+</span></span><span style=display:flex><span>| <span style=color:#e6db74>`spacing-xs`</span> | <span style=color:#e6db74>`0.25rem`</span> | <span style=color:#e6db74>`4px`</span> |
+</span></span><span style=display:flex><span>| <span style=color:#e6db74>`spacing-s`</span> | <span style=color:#e6db74>`0.5rem`</span> | <span style=color:#e6db74>`8px`</span> |
+</span></span><span style=display:flex><span>| <span style=color:#e6db74>`spacing-m`</span> | <span style=color:#e6db74>`1rem`</span> | <span style=color:#e6db74>`16px`</span> |
+</span></span><span style=display:flex><span>| <span style=color:#e6db74>`spacing-l`</span> | <span style=color:#e6db74>`1.5rem`</span> | <span style=color:#e6db74>`24px`</span> |
+</span></span><span style=display:flex><span>| <span style=color:#e6db74>`spacing-xl`</span>| <span style=color:#e6db74>`2rem`</span> | <span style=color:#e6db74>`32px`</span> |
+</span></span><span style=display:flex><span>| <span style=color:#e6db74>`spacing-xxl`</span>| <span style=color:#e6db74>`3rem`</span> | <span style=color:#e6db74>`48px`</span> |
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## 5. 核心元件風格 (Core Component Styles)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 按鈕 (Buttons)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>| 樣式 | 狀態 | 背景色 | 邊框 | 文字顏色 | 說明 |
+</span></span><span style=display:flex><span>| :--- | :--- | :--- | :--- | :--- | :--- |
+</span></span><span style=display:flex><span>| <span style=font-weight:700>**Primary**</span> | Default | <span style=color:#e6db74>`#4A90E2`</span> | <span style=color:#e6db74>`none`</span> | <span style=color:#e6db74>`#FFFFFF`</span> | 用於最主要的行動呼籲，提供清晰的引導。 |
+</span></span><span style=display:flex><span>| | Hover | <span style=color:#e6db74>`#357ABD`</span> | <span style=color:#e6db74>`none`</span> | <span style=color:#e6db74>`#FFFFFF`</span> | 提供明確的互動反饋，增強**鼓勵**感。 |
+</span></span><span style=display:flex><span>| | Disabled | <span style=color:#e6db74>`#EAEAEA`</span> | <span style=color:#e6db74>`none`</span> | <span style=color:#e6db74>`#9B9B9B`</span> | 清晰地表明該操作目前不可用。 |
+</span></span><span style=display:flex><span>| <span style=font-weight:700>**Secondary**</span>| Default | <span style=color:#e6db74>`transparent`</span> | <span style=color:#e6db74>`1px solid #4A90E2`</span> | <span style=color:#e6db74>`#4A90E2`</span> | 用於次要操作，保持介面**乾淨**。 |
+</span></span><span style=display:flex><span>| | Hover | <span style=color:#e6db74>`#F0F8FF`</span> | <span style=color:#e6db74>`1px solid #357ABD`</span> | <span style=color:#e6db74>`#357ABD`</span> | 提供柔和的互動反饋。 |
+</span></span><span style=display:flex><span>| | Disabled | <span style=color:#e6db74>`transparent`</span> | <span style=color:#e6db74>`1px solid #EAEAEA&#34; | `</span>#9B9B9B<span style=color:#e6db74>` | 與 Primary 按鈕的禁用狀態保持一致。 |
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>### 輸入框 (Input Fields)
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>| 狀態 | 背景色 | 邊框顏色 | 說明 |
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>| :--- | :--- | :--- | :--- |
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>| **Default** | `</span>#FFFFFF<span style=color:#e6db74>` | `</span>#EAEAEA<span style=color:#e6db74>` | 提供一個**乾淨**、無干擾的輸入區域。 |
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>| **Focus** | `</span>#FFFFFF<span style=color:#e6db74>` | `</span>#4A90E2<span style=color:#e6db74>` | 使用主色高亮，幫助使用者**平靜**地專注於當前任務。 |
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>| **Error** | `</span>#FFF6F8<span style=color:#e6db74>` | `</span>#D0021B` | 使用危險色和淡紅色背景，提供清晰但不過度的錯誤警示。 |
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## 6. 溝通語氣 (Tone of Voice)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span>   <span style=font-weight:700>**原則**</span>: App 內的所有文字 (Microcopy) 都應是**支持、清晰、溫和且賦予力量**的。我們的語氣是使用者的夥伴，而非指導者。這建立了一種**可靠**的關係，並在互動中持續地**鼓勵**使用者。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span>   <span style=font-weight:700>**範例**</span>:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span>   <span style=font-weight:700>**情境：首次引導**</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>*</span>   <span style=font-weight:700>**我們這樣說 (Do)**</span>: &#34;準備好開始你的自我探索之旅了嗎？讓我們從建立第一個習慣開始。&#34;
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>*</span>   <span style=font-weight:700>**我們不這樣說 (Don&#39;t)**</span>: &#34;你必須先設定一個習慣才能繼續。&#34;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span>   <span style=font-weight:700>**情境：空白狀態**</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>*</span>   <span style=font-weight:700>**我們這樣說 (Do)**</span>: &#34;這裡將會展示你的心情與習慣關聯圖。開始記錄，發現屬於你的洞察吧！&#34;
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>*</span>   <span style=font-weight:700>**我們不這樣說 (Don&#39;t)**</span>: &#34;無數據。&#34;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span>   <span style=font-weight:700>**情境：操作成功**</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>*</span>   <span style=font-weight:700>**我們這樣說 (Do)**</span>: &#34;做得真棒！今天的你又向目標邁進了一步。&#34;
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>*</span>   <span style=font-weight:700>**我們不這樣說 (Don&#39;t)**</span>: &#34;操作成功。&#34;
+</span></span></code></pre></div><h3 id=文件重點分析>【文件重點分析】</h3><ul><li><strong>超越美學的設計</strong>：這份文件不只是挑了幾個好看的顏色，它為每一個設計決策都提供了**「理由」**。例如，主色 <code>Serene Blue</code> 是為了「建立信任感」，輔色 <code>Warm Coral</code> 是為了在平靜中「帶來激勵」。這代表我們的設計是有策略、有思考的。</li><li><strong>建立設計「系統」</strong>：注意到「間距系統」了嗎？這代表我們思考的不再是單一頁面，而是一個可重複使用、可擴展的**「設計系統 (Design System)」**。這是一個極其專業且重要的概念，能大幅提升未來開發的效率與一致性。</li><li><strong>完整的感官體驗</strong>：最精彩的是，這份指南甚至定義了 <strong>「溝通語氣 (Tone of Voice)」</strong>！這意味著我們的設計是全方位的，從視覺的顏色、字體，到文字的溫度，都緊密地圍繞著我們的核心 Vibe，共同為使用者創造一個沉浸式的正向體驗。</li></ul><h2 id=part-5將設計-dna-存檔>Part 5：將設計 DNA 存檔</h2><ol><li><strong>Commit 訊息</strong>: <code>docs: Create comprehensive style guide for UI</code></li><li><strong>Commit & Push</strong>！</li></ol><h2 id=結語從感覺到規範>結語：從感覺到規範</h2><p>太棒了！今天，我們將抽象的「感覺」，成功地轉化為了一套具體、可執行的「設計規範」。這份風格指南，就是我們專案的審美 DNA，它將指導我們接下來所有的前端開發工作。</p><p>有了這份設計圖，明天，我們就要來當真正的「建築師」了！我們將繼續待在終端機裡，指揮 Gemini 根據我們的使用者故事和風格指南，規劃出網站的 <strong>「頁面骨架」與「元件拆分」</strong>！</p></div><div class="flex flex-row justify-center py-8 sm:py-12"><div class="w-full max-w-6xl min-w-0"><div class="flex justify-center"><main class="w-full max-w-4xl min-w-0"><article class="prose max-w-none"><nav class="flex text-sm mb-6" aria-label=Breadcrumb><ol class="inline-flex items-center space-x-1 md:space-x-3"><li class="inline-flex items-center"><a href=/ChiYu-Blob/ class="inline-flex items-center hover:text-blue-600 dark:hover:text-blue-400" style=color:var(--text-secondary)><svg class="w-4 h-4 mr-2" fill="currentcolor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414.0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/></svg>
+首頁</a></li><li><div class="flex items-center"><svg class="w-4 h-4 mx-1" style="color:var(--text-secondary);opacity:.5" fill="currentcolor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414.0z" clip-rule="evenodd"/></svg>
+<a href=/ChiYu-Blob/posts/ class="ml-1 hover:text-blue-600 dark:hover:text-blue-400 capitalize" style=color:var(--text-secondary)>全部文章</a></div></li><li aria-current=page><div class="flex items-center"><svg class="w-4 h-4 mx-1" style="color:var(--text-secondary);opacity:.5" fill="currentcolor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414.0z" clip-rule="evenodd"/></svg>
+<span class="ml-1 font-medium truncate max-w-[150px] sm:max-w-[300px]" style=color:var(--text-color)>Day 18: 【文件 #6】網站的風格指南：用 Gemini 定義顏色與字體</span></div></li></ol></nav><header class=mb-8><h1 class="text-2xl sm:text-4xl font-bold tracking-tight mb-4 !mt-0">Day 18: 【文件 #6】網站的風格指南：用 Gemini 定義顏色與字體</h1><p class=text-base style=color:var(--text-secondary)>發布於 2025年9月6日
+<span class=ml-2 style=color:var(--text-secondary);opacity:.8;font-size:.9em>(更新於 2025年9月6日)
+</span>&#183; <span class=mx-1>約 5 分鐘閱讀</span>
+&#183;
+<span class="inline-flex flex-wrap gap-2 items-center" data-pagefind-ignore><a href=/ChiYu-Blob/tags/2025ithomeironman/ class=tag-pill>2025iThomeIronman</a>
+<a href=/ChiYu-Blob/tags/gemini/ class=tag-pill>Gemini</a>
+<a href=/ChiYu-Blob/tags/ui/ux/ class=tag-pill>UI/UX</a>
+<a href=/ChiYu-Blob/tags/style-guide/ class=tag-pill>Style Guide</a>
+<a href=/ChiYu-Blob/tags/design-system/ class=tag-pill>Design System</a></span></p></header><div data-pagefind-meta="title:Day 18: 【文件 #6】網站的風格指南：用 Gemini 定義顏色與字體" style=display:none></div><div data-pagefind-ignore><p>安安，我是 ChiYu！</p><p>昨天，我們扮演了「造物主」，理解了構成數位生命的三大基本元素：HTML (骨骼)、CSS (皮囊) 與 JavaScript (肌肉)。</p><p>我們的生命體現在有了基本的構造，但它還沒有「氣質」與「個性」。它的膚色、瞳孔顏色、說話的語氣（字體）都尚未被定義。如果我們現在就開始隨心所欲地為它上色、化妝，最終很可能會創造出一個風格混亂、不忍直視的「四不像」。</p><p>因此，在我們動手寫任何一行 CSS 之前，我們要再次回到我們最信賴的工作流程——文件驅動。今天，我們將化身為「 <strong>首席視覺設計師</strong>」，與我們的 AI 夥伴 Gemini 深度對談，為我們的 App 定義一套獨一無二的視覺風格，並將其記錄成一份專業的**「風格指南 (Style Guide)」**文件。</p><h2 id=part-1什麼是風格指南為什麼它是設計的dna>Part 1：什麼是「風格指南」？為什麼它是設計的「DNA」？</h2><p>「風格指南」是一份定義了專案所有視覺元素（顏色、字體、間距、圖示、按鈕樣式等）使用規則的「設計聖經」。它就是我們數位生命的 <strong>「基因圖譜 (DNA)」</strong>。</p><p>為什麼我們需要它？</p><ul><li><strong>確保一致性 (Consistency)</strong>：一份好的風格指南，能確保你網站上的每一個按鈕、每一段文字，看起來都像是來自同一個「家族」。這種視覺上的一致性，會給使用者帶來專業、可靠、值得信賴的感覺。</li><li><strong>提升開發效率 (Efficiency)</strong>：它能將設計師與工程師從無盡的「這個藍色深一點還是淺一點？」、「這個標題用多大字體？」的決策地獄中解放出來。我們不再需要每次都重新發明輪子，只需要遵循 DNA 的指示即可。</li><li><strong>賦予 AI 清晰的指令</strong>：這對我們 Vibe Coding 的流程至關重要！當我們有了這份文件，未來就可以直接對 Gemini 說：「請用我們的 <code>primary-color</code> 設計一個按鈕」，AI 就能立刻理解並產出符合我們整體風格的程式碼。</li></ul><h2 id=part-2定義我們-app-的vibe--專案的個性>Part 2：定義我們 App 的「Vibe」- 專案的個性</h2><p>在挑選顏色和字體之前，我們得先回答一個更根本的問題：我們希望這個 App 給人什麼樣的「感覺 (Vibe)」？</p><p>回顧我們 Day 5 的專案章程，我們的願景是「賦予使用者力量，建立正向習慣並擁抱更健康的心態」。基於這個願景，我們可以提煉出幾個關鍵詞來定義我們 App 的個性：</p><ul><li><strong>Calm (平靜)</strong>：介面應該是簡潔、無干擾的，讓使用者能專注於紀錄與反思。</li><li><strong>Encouraging (鼓勵)</strong>：視覺元素應該帶有溫度，給人一種積極、正向的感覺。</li><li><strong>Clean (乾淨)</strong>：佈局要清晰，留有足夠的呼吸空間 (留白)，避免資訊過載。</li><li><strong>Trustworthy (可靠)</strong>：設計要專業、一致，讓使用者願意將他們的個人數據託付給我們。</li></ul><p>這幾個關鍵詞，就是我們接下來與 Gemini 溝通時的「通關密語」。</p><h2 id=part-3實戰開始讓-gemini-成為我們的視覺設計師>Part 3：實戰開始：讓 Gemini 成為我們的視覺設計師</h2><p>好了，讓我們打開終端機，指揮 Gemini 為我們進行專業的視覺設計。</p><h3 id=魔法詠唱生成風格指南>【魔法詠唱：生成風格指南】</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown><span style=display:flex><span># 角色 (Role)
+</span></span><span style=display:flex><span>你是一位頂尖的 UI/UX 設計師與設計系統架構師。你不僅對色彩心理學、字體排印學有深入研究，更擅長將抽象的品牌氛圍轉化為具體、可執行的設計規範。你尤其熟悉健康、正念與個人成長類 App 的設計趨勢，並重視無障礙設計 (Accessibility, WCAG) 原則。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 目標 (Objective)
+</span></span><span style=display:flex><span>請根據下方提供的專案上下文與核心氛圍，為我們的 App 設計一套完整、專業且具備前瞻性的「風格指南 (Style Guide)」。這份文件將作為前端開發的唯一視覺真理來源，確保所有 UI 元素都具備一致性、可用性與品牌辨識度。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 上下文與關鍵資訊 (Context &amp; Key Information)
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span> **核心文件**:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span> **專案願景**: <span style=color:#e6db74>`@docs/PROJECT_CHARTER.md`</span> (請務必深度理解我們的核心目標、價值主張與目標使用者輪廓)。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span> **品牌核心氛圍 (Core Vibe)**:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span> 你的所有設計決策，都必須圍繞並強化以下四種感覺：
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>1.</span>  <span style=font-weight:700>**平靜 (Calm)**</span>: 介面應簡潔、無干擾，引導使用者專注。
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>2.</span>  <span style=font-weight:700>**鼓勵 (Encouraging)**</span>: 視覺元素應帶有溫度，給人積極、正向的支持感。
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>3.</span>  <span style=font-weight:700>**乾淨 (Clean)**</span>: 佈局清晰，留有充足的呼吸感 (留白)，避免資訊過載。
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>4.</span>  <span style=font-weight:700>**可靠 (Trustworthy)**</span>: 設計專業、一致，讓使用者願意託付他們的個人數據。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span> **主要目標為Web APP**
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 產出格式與要求 (Output Format &amp; Requirements)
+</span></span><span style=display:flex><span>請生成一份結構清晰的 Markdown 文件，並**嚴格遵循**以下所有大綱與要求，在每個設計決策後，簡要闡述其如何連結至我們的「品牌核心氛圍」。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 1. 總覽 (Overview)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>*</span> **文件版本**: <span style=color:#e6db74>`v1.0.0`</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span> **引言**: 用一小段話，說明這份風格指南的目的與重要性。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 2. 色彩搭配 (Color Palette)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>*</span> **定義**: 包含 <span style=color:#e6db74>`主色 (Primary)`</span>、`輔色/強調色 (Accent)`、`成功色 (Success)`、`危險色 (Danger)`，以及一組至少 4 個層級的 <span style=color:#e6db74>`中性色 (Neutrals)`</span>。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span> **格式**: 以 Markdown 表格呈現，欄位包含「用途」、「色彩名稱 (例如：靜謐藍)」、「HEX 色碼」及「簡要用途說明」。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span> **無障礙考量 (Accessibility)**: 請確保主要文字顏色與背景色之間具有足夠的對比度，以符合 WCAG AA 標準。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span> **設計理念**: 在表格後，用一段話**詳細說明**選擇此顏色組合背後的「設計理念」與「色彩心理學」考量。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 3. 字體排印 (Typography)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>*</span> **字體組合**: 推薦一組 Google Fonts 上的「標題 (Headings)」與「內文 (Body)」字體搭配。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span> **推薦理由**: 闡述為何這組字體適合我們的「品牌核心氛圍」。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span> **字體層級 (Typographic Scale)**: 以 Markdown 表格定義一套清晰的字體層級，至少包含 <span style=color:#e6db74>`h1`</span> 到 <span style=color:#e6db74>`h3`</span>, <span style=color:#e6db74>`p`</span>, <span style=color:#e6db74>`small`</span>。表格欄位需包含「層級」、「`font-size` (rem)」、「`font-weight`」及「`line-height`」。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 4. 間距系統 (Spacing System)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>*</span> **原則**: 說明我們將採用基於 <span style=color:#e6db74>`8px`</span> 的網格系統來規範所有元件的內外間距，以確保視覺上的一致性與和諧感。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span> **單位**: 以 Markdown 表格定義一套間距單位 (例如 <span style=color:#e6db74>`spacing-xs`</span>, <span style=color:#e6db74>`spacing-s`</span>, <span style=color:#e6db74>`spacing-m`</span>, <span style=color:#e6db74>`spacing-l`</span>) 及其對應的 <span style=color:#e6db74>`rem`</span> 和 <span style=color:#e6db74>`px`</span> 值。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 5. 核心元件風格 (Core Component Styles)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>*</span> **按鈕 (Buttons)**:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span> 定義至少兩種按鈕樣式：`Primary` (主要操作) 和 <span style=color:#e6db74>`Secondary`</span> (次要操作)。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span> 描述它們在不同狀態 (Default, Hover, Disabled) 下的視覺表現 (背景色、邊框、文字顏色)。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span> **輸入框 (Input Fields)**:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span> 描述輸入框在不同狀態 (Default, Focus, Error) 下的視覺表現 (背景色、邊框顏色)。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 6. 溝通語氣 (Tone of Voice)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>*</span> **原則**: 定義 App 中的文字風格 (Microcopy) 應反映我們的核心價值：支持、清晰、溫和且賦予力量。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span> **範例**: 提供 2-3 個「我們這樣說 (Do)」和「我們不這樣說 (Don&#39;t)」的對照範例，以具體情境呈現。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 7. 最終產出
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>*</span> 將以上所有內容，生成一個名為 <span style=color:#e6db74>`STYLE_GUIDE.md`</span> 的單一 Markdown 檔案。
+</span></span></code></pre></div><h2 id=part-4審核與分析-ai-的設計提案>Part 4：審核與分析 AI 的設計提案</h2><p>在你與 AI 經過幾輪的迭代優化後，最終你會得到一份高品質的定稿文件。讓我們來深度剖析一下這份由 AI 設計的「基因圖譜」：</p><h3 id=ai-生成文件範例>【AI 生成文件範例】</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown><span style=display:flex><span># MindTrack App - Style Guide
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### **版本 (Version)**: `v1.0.0`
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>---
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## 1. 總覽 (Overview)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>本文件是「心境軌跡 (MindTrack)」應用的官方風格指南。它定義了構成我們使用者介面 (UI) 的所有核心視覺元素與互動模式。遵循此指南旨在確保我們的產品在所有平台上都擁有一致、專業、且具備高度品牌辨識度的使用者體驗。這份文件是設計與開發團隊之間溝通的橋樑，是打造一個 <span style=font-weight:700>**平靜 (Calm)**</span>、 <span style=font-weight:700>**鼓勵 (Encouraging)**</span>、 <span style=font-weight:700>**乾淨 (Clean)**</span> 且 <span style=font-weight:700>**可靠 (Trustworthy)**</span> 產品的唯一真理來源。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## 2. 色彩搭配 (Color Palette)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>我們的色彩系統旨在創造一個寧靜且引人專注的數位環境。主色調提供穩定感，而強調色則用於引導使用者並給予積極的回饋。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>| 用途 | 色彩名稱 | HEX 色碼 | 簡要用途說明 |
+</span></span><span style=display:flex><span>| :--- | :--- | :--- | :--- |
+</span></span><span style=display:flex><span>| <span style=font-weight:700>**主色 (Primary)**</span> | 靜謐藍 (Serene Blue) | <span style=color:#e6db74>`#4A90E2`</span> | 用於主要按鈕、連結、焦點狀態，代表穩定與專注。 |
+</span></span><span style=display:flex><span>| <span style=font-weight:700>**輔色/強調色 (Accent)**</span> | 暖陽橙 (Warm Sunrise) | <span style=color:#e6db74>`#F5A623`</span> | 用於特別需要強調的元素，如成就徽章、正面圖表數據。 |
+</span></span><span style=display:flex><span>| <span style=font-weight:700>**成功色 (Success)**</span> | 新芽綠 (Sprout Green) | <span style=color:#e6db74>`#7ED321`</span> | 用於操作成功後的提示、完成狀態的確認。 |
+</span></span><span style=display:flex><span>| <span style=font-weight:700>**危險色 (Danger)**</span> | 珊瑚紅 (Coral Red) | <span style=color:#e6db74>`#D0021B`</span> | 用於刪除操作的確認、錯誤提示，顏色醒目但不過於刺激。 |
+</span></span><span style=display:flex><span>| <span style=font-weight:700>**中性色 (Neutral)**</span> | 深灰 (Text) | <span style=color:#e6db74>`#333333`</span> | 主要內文顏色，確保最佳可讀性。 |
+</span></span><span style=display:flex><span>| <span style=font-weight:700>**中性色 (Neutral)**</span> | 中灰 (Subtle) | <span style=color:#e6db74>`#9B9B9B`</span> | 用於輔助文字、未啟用狀態的圖示、輸入框提示文字。 |
+</span></span><span style=display:flex><span>| <span style=font-weight:700>**中性色 (Neutral)**</span> | 淺灰 (Border/Line) | <span style=color:#e6db74>`#EAEAEA`</span> | 用於邊框、分隔線，創造柔和的視覺區隔。 |
+</span></span><span style=display:flex><span>| <span style=font-weight:700>**中性色 (Neutral)**</span> | 極淺灰 (Background) | <span style=color:#e6db74>`#F9F9F9`</span> | 頁面與卡片的主要背景色，提供呼吸感。 |
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#### **無障礙考量 (Accessibility)**
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>主文字顏色 <span style=color:#e6db74>`#333333`</span> 與背景色 <span style=color:#e6db74>`#F9F9F9`</span> 之間的對比度為 <span style=font-weight:700>**12.55:1**</span>，遠超 WCAG AA 級要求的 4.5:1，確保了極佳的可讀性。所有行動呼籲 (Call-to-Action) 的顏色組合都經過對比度檢查，以服務最廣泛的使用者。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#### **設計理念**
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>這組色彩搭配的靈感源於清晨的天空——從靜謐的藍色逐漸過渡到溫暖的橙色。
+</span></span><span style=display:flex><span><span style=font-style:italic>*   *</span>*靜謐藍** 作為主色，奠定了產品**平靜**與**可靠**的基調，如同廣闊天空給人的信賴感。
+</span></span><span style=display:flex><span><span style=font-style:italic>*   *</span>*暖陽橙** 作為點綴，象徵希望與能量，為使用者的每一步進展提供**鼓勵**。
+</span></span><span style=display:flex><span><span style=font-style:italic>*   整體的*</span>*中性色**階梯則確保了介面的**乾淨**與整潔，讓內容本身成為主角，避免了視覺干擾，幫助使用者專注於自我覺察的旅程。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## 3. 字體排印 (Typography)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>我們選擇的字體組合旨在提供清晰易讀的體驗，同時傳達出一種溫暖、友善的感覺。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span>   <span style=font-weight:700>**字體組合**</span>:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span>   <span style=font-weight:700>**標題 (Headings)**</span>: [<span style=color:#f92672>Nunito</span>](<span style=color:#a6e22e>https://fonts.google.com/specimen/Nunito</span>)
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span>   <span style=font-weight:700>**內文 (Body)**</span>: [<span style=color:#f92672>Lato</span>](<span style=color:#a6e22e>https://fonts.google.com/specimen/Lato</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span>   <span style=font-weight:700>**推薦理由**</span>:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span>   <span style=color:#e6db74>`Nunito`</span> 的圓潤邊角使其看起來非常友善且平易近人，適合用作標題，能夠有效地傳達**鼓勵**的氛圍。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span>   <span style=color:#e6db74>`Lato`</span> 則是一款極為清晰、結構均衡的無襯線字體，即使在小字號下也具備出色的可讀性，確保了介面的**乾淨**與資訊傳遞的**可靠**性。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span>   <span style=font-weight:700>**字體層級 (Typographic Scale)**</span>:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>| 層級 | <span style=color:#e6db74>`font-size`</span> (rem) | <span style=color:#e6db74>`font-weight`</span> | <span style=color:#e6db74>`line-height`</span> |
+</span></span><span style=display:flex><span>| :--- | :--- | :--- | :--- |
+</span></span><span style=display:flex><span>| <span style=color:#e6db74>`h1`</span> | <span style=color:#e6db74>`2.5rem`</span> (40px) | <span style=color:#e6db74>`700`</span> (Bold) | <span style=color:#e6db74>`1.2`</span> |
+</span></span><span style=display:flex><span>| <span style=color:#e6db74>`h2`</span> | <span style=color:#e6db74>`2rem`</span> (32px) | <span style=color:#e6db74>`700`</span> (Bold) | <span style=color:#e6db74>`1.3`</span> |
+</span></span><span style=display:flex><span>| <span style=color:#e6db74>`h3`</span> | <span style=color:#e6db74>`1.5rem`</span> (24px) | <span style=color:#e6db74>`700`</span> (Bold) | <span style=color:#e6db74>`1.4`</span> |
+</span></span><span style=display:flex><span>| <span style=color:#e6db74>`p`</span> | <span style=color:#e6db74>`1rem`</span> (16px) | <span style=color:#e6db74>`400`</span> (Regular) | <span style=color:#e6db74>`1.6`</span> |
+</span></span><span style=display:flex><span>| <span style=color:#e6db74>`small`</span>| <span style=color:#e6db74>`0.875rem`</span> (14px) | <span style=color:#e6db74>`400`</span> (Regular) | <span style=color:#e6db74>`1.5`</span> |
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## 4. 間距系統 (Spacing System)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span>   <span style=font-weight:700>**原則**</span>: 我們採用基於 <span style=font-weight:700>**8px**</span> 的網格系統來統籌所有元件的 <span style=color:#e6db74>`padding`</span>、`margin` 和 <span style=color:#e6db74>`gap`</span>。這個系統性的方法是實現視覺**乾淨**與和諧佈局的基石，並體現了設計的**可靠**性與一致性。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span>   <span style=font-weight:700>**單位**</span>:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>| 單位 | <span style=color:#e6db74>`rem`</span> | <span style=color:#e6db74>`px`</span> |
+</span></span><span style=display:flex><span>| :--- | :--- | :--- |
+</span></span><span style=display:flex><span>| <span style=color:#e6db74>`spacing-xs`</span> | <span style=color:#e6db74>`0.25rem`</span> | <span style=color:#e6db74>`4px`</span> |
+</span></span><span style=display:flex><span>| <span style=color:#e6db74>`spacing-s`</span> | <span style=color:#e6db74>`0.5rem`</span> | <span style=color:#e6db74>`8px`</span> |
+</span></span><span style=display:flex><span>| <span style=color:#e6db74>`spacing-m`</span> | <span style=color:#e6db74>`1rem`</span> | <span style=color:#e6db74>`16px`</span> |
+</span></span><span style=display:flex><span>| <span style=color:#e6db74>`spacing-l`</span> | <span style=color:#e6db74>`1.5rem`</span> | <span style=color:#e6db74>`24px`</span> |
+</span></span><span style=display:flex><span>| <span style=color:#e6db74>`spacing-xl`</span>| <span style=color:#e6db74>`2rem`</span> | <span style=color:#e6db74>`32px`</span> |
+</span></span><span style=display:flex><span>| <span style=color:#e6db74>`spacing-xxl`</span>| <span style=color:#e6db74>`3rem`</span> | <span style=color:#e6db74>`48px`</span> |
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## 5. 核心元件風格 (Core Component Styles)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 按鈕 (Buttons)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>| 樣式 | 狀態 | 背景色 | 邊框 | 文字顏色 | 說明 |
+</span></span><span style=display:flex><span>| :--- | :--- | :--- | :--- | :--- | :--- |
+</span></span><span style=display:flex><span>| <span style=font-weight:700>**Primary**</span> | Default | <span style=color:#e6db74>`#4A90E2`</span> | <span style=color:#e6db74>`none`</span> | <span style=color:#e6db74>`#FFFFFF`</span> | 用於最主要的行動呼籲，提供清晰的引導。 |
+</span></span><span style=display:flex><span>| | Hover | <span style=color:#e6db74>`#357ABD`</span> | <span style=color:#e6db74>`none`</span> | <span style=color:#e6db74>`#FFFFFF`</span> | 提供明確的互動反饋，增強**鼓勵**感。 |
+</span></span><span style=display:flex><span>| | Disabled | <span style=color:#e6db74>`#EAEAEA`</span> | <span style=color:#e6db74>`none`</span> | <span style=color:#e6db74>`#9B9B9B`</span> | 清晰地表明該操作目前不可用。 |
+</span></span><span style=display:flex><span>| <span style=font-weight:700>**Secondary**</span>| Default | <span style=color:#e6db74>`transparent`</span> | <span style=color:#e6db74>`1px solid #4A90E2`</span> | <span style=color:#e6db74>`#4A90E2`</span> | 用於次要操作，保持介面**乾淨**。 |
+</span></span><span style=display:flex><span>| | Hover | <span style=color:#e6db74>`#F0F8FF`</span> | <span style=color:#e6db74>`1px solid #357ABD`</span> | <span style=color:#e6db74>`#357ABD`</span> | 提供柔和的互動反饋。 |
+</span></span><span style=display:flex><span>| | Disabled | <span style=color:#e6db74>`transparent`</span> | <span style=color:#e6db74>`1px solid #EAEAEA&#34; | `</span>#9B9B9B<span style=color:#e6db74>` | 與 Primary 按鈕的禁用狀態保持一致。 |
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>### 輸入框 (Input Fields)
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>| 狀態 | 背景色 | 邊框顏色 | 說明 |
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>| :--- | :--- | :--- | :--- |
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>| **Default** | `</span>#FFFFFF<span style=color:#e6db74>` | `</span>#EAEAEA<span style=color:#e6db74>` | 提供一個**乾淨**、無干擾的輸入區域。 |
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>| **Focus** | `</span>#FFFFFF<span style=color:#e6db74>` | `</span>#4A90E2<span style=color:#e6db74>` | 使用主色高亮，幫助使用者**平靜**地專注於當前任務。 |
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>| **Error** | `</span>#FFF6F8<span style=color:#e6db74>` | `</span>#D0021B` | 使用危險色和淡紅色背景，提供清晰但不過度的錯誤警示。 |
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## 6. 溝通語氣 (Tone of Voice)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span>   <span style=font-weight:700>**原則**</span>: App 內的所有文字 (Microcopy) 都應是**支持、清晰、溫和且賦予力量**的。我們的語氣是使用者的夥伴，而非指導者。這建立了一種**可靠**的關係，並在互動中持續地**鼓勵**使用者。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span>   <span style=font-weight:700>**範例**</span>:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span>   <span style=font-weight:700>**情境：首次引導**</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>*</span>   <span style=font-weight:700>**我們這樣說 (Do)**</span>: &#34;準備好開始你的自我探索之旅了嗎？讓我們從建立第一個習慣開始。&#34;
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>*</span>   <span style=font-weight:700>**我們不這樣說 (Don&#39;t)**</span>: &#34;你必須先設定一個習慣才能繼續。&#34;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span>   <span style=font-weight:700>**情境：空白狀態**</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>*</span>   <span style=font-weight:700>**我們這樣說 (Do)**</span>: &#34;這裡將會展示你的心情與習慣關聯圖。開始記錄，發現屬於你的洞察吧！&#34;
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>*</span>   <span style=font-weight:700>**我們不這樣說 (Don&#39;t)**</span>: &#34;無數據。&#34;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span>   <span style=font-weight:700>**情境：操作成功**</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>*</span>   <span style=font-weight:700>**我們這樣說 (Do)**</span>: &#34;做得真棒！今天的你又向目標邁進了一步。&#34;
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>*</span>   <span style=font-weight:700>**我們不這樣說 (Don&#39;t)**</span>: &#34;操作成功。&#34;
+</span></span></code></pre></div><h3 id=文件重點分析>【文件重點分析】</h3><ul><li><strong>超越美學的設計</strong>：這份文件不只是挑了幾個好看的顏色，它為每一個設計決策都提供了**「理由」**。例如，主色 <code>Serene Blue</code> 是為了「建立信任感」，輔色 <code>Warm Coral</code> 是為了在平靜中「帶來激勵」。這代表我們的設計是有策略、有思考的。</li><li><strong>建立設計「系統」</strong>：注意到「間距系統」了嗎？這代表我們思考的不再是單一頁面，而是一個可重複使用、可擴展的**「設計系統 (Design System)」**。這是一個極其專業且重要的概念，能大幅提升未來開發的效率與一致性。</li><li><strong>完整的感官體驗</strong>：最精彩的是，這份指南甚至定義了 <strong>「溝通語氣 (Tone of Voice)」</strong>！這意味著我們的設計是全方位的，從視覺的顏色、字體，到文字的溫度，都緊密地圍繞著我們的核心 Vibe，共同為使用者創造一個沉浸式的正向體驗。</li></ul><h2 id=part-5將設計-dna-存檔>Part 5：將設計 DNA 存檔</h2><ol><li><strong>Commit 訊息</strong>: <code>docs: Create comprehensive style guide for UI</code></li><li><strong>Commit & Push</strong>！</li></ol><h2 id=結語從感覺到規範>結語：從感覺到規範</h2><p>太棒了！今天，我們將抽象的「感覺」，成功地轉化為了一套具體、可執行的「設計規範」。這份風格指南，就是我們專案的審美 DNA，它將指導我們接下來所有的前端開發工作。</p><p>有了這份設計圖，明天，我們就要來當真正的「建築師」了！我們將繼續待在終端機裡，指揮 Gemini 根據我們的使用者故事和風格指南，規劃出網站的 <strong>「頁面骨架」與「元件拆分」</strong>！</p></div></article><div class="not-prose my-8 p-6 rounded-lg border transition-colors" style=background-color:var(--code-bg);border-color:var(--border-color)><div class="flex flex-col sm:flex-row sm:items-center justify-between mb-4 pb-4 border-b" style=border-color:var(--border-color)><div><span class="text-xs font-semibold uppercase tracking-wider" style=color:var(--text-secondary)>Series</span><h3 class="text-lg font-bold mt-1"><a href=/ChiYu-Blob/series/2025ithomeironman/ class=hover:underline style=color:var(--link-color)>2025iThomeIronman</a></h3></div><div class="mt-2 sm:mt-0 text-sm font-medium px-3 py-1 rounded-full border" style=background-color:var(--bg-color);color:var(--text-secondary);border-color:var(--border-color)>Part 18 of 32</div></div><div class="series-list-container relative"><ol class="list-none space-y-1 relative" id=series-list-2025ithomeironman><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday1/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">01.</span>
+<span>Day 1: 【啟程】嘿，AI！我們來做個網站，但這次，我們約法三章</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday2/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">02.</span>
+<span>Day 2: 【心法篇】開發者的航海圖：什麼是文件驅動開發 (DDD)？</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday3/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">03.</span>
+<span>Day 3: 【工具篇 #1】萬丈高樓平地起：建置本地開發環境</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday4/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">04.</span>
+<span>Day 4: 【工具篇 #2】程式碼的時光機：Git 與 GitHub 版本控制</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday5/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">05.</span>
+<span>Day 5: 【工具篇 #3】終端機裡的魔法：什麼是 Vibe Coding 與 Gemini CLI？</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday6/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">06.</span>
+<span>Day 6: 【文件 #1】專案的靈魂：用 Gemini CLI 生成「專案章程」</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday7/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">07.</span>
+<span>Day 7: 【文件 #2】使用者的旅程：用 Gemini CLI 描繪「使用者故事」</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday8/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">08.</span>
+<span>Day 8: 【文件 #3】系統的心臟：用 Gemini CLI 設計「軟體架構文件」</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday9/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">09.</span>
+<span>Day 9: 【文件 #4】數據的家：用 Gemini 規劃「資料庫綱要」</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday10/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">10.</span>
+<span>Day 10: 【文件 #5】溝通的契約：用 Gemini 撰寫「Web API 規格書」</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday11/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">11.</span>
+<span>Day 11: 【心法 #2】透過AI幫我們生成Prompt</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday12/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">12.</span>
+<span>Day 12: 【後端 #1】起手式：AI 代理人 生成模組化的 Flask 專案</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday13/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">13.</span>
+<span>Day 13: 【後端 #2】AI 建築師：依藍圖自動建構 CRUD API</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday14/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">14.</span>
+<span>Day 14: 【DevOps #1】AI 品管員：設定 GitHub Actions 自動化程式碼檢查</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday15/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">15.</span>
+<span>Day 15: 【後端 #3】API 測試：用 Gemini CLI 輔助撰寫 Pytest</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday16/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">16.</span>
+<span>Day 16: 【整合篇】後端竣工！回顧與展望</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday17/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">17.</span>
+<span>Day 17: 【前端 #0】前端世界的基石： HTML, CSS 與 JavaScript</span></a></li><li class="series-item p-2 rounded-md transition-colors current-series-item" style="background-color:var(--bg-color);border:1px solid var(--border-color)"><a href=javascript:void(0); class="flex items-start cursor-default" style=color:var(--text-color)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">18.</span>
+<span class=font-bold>Day 18: 【文件 #6】網站的風格指南：用 Gemini 定義顏色與字體</span>
+<span class="ml-2 text-xs px-2 py-0.5 rounded-full bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">Current</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday19/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">19.</span>
+<span>Day 19: 【文件 #7】頁面的骨架：用 Gemini 規劃主佈局與元件拆分</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday20/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">20.</span>
+<span>Day 20: 【前端 #1】Gemini Canvas 生成UI (還有新的AI建議功能)</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday21/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">21.</span>
+<span>Day 21: 【前端 #2】從原型到架構：拆解並整合 AI 生成的 UI 程式碼</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday22/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">22.</span>
+<span>Day 22: 【前端 #3】AI 一鍵生成完整 App 靜態 UI</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday23/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">23.</span>
+<span>Day 23: 【前端 #4】非同步的藝術：深入 Fetch API 與 Promise</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday24/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">24.</span>
+<span>Day 24: 【前端 #5】狀態管理的哲學：讓 UI 成為數據的鏡子</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday25/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">25.</span>
+<span>Day 25: 【前端 #6】核心生命週期：一天搞定習慣的「增刪改查」與「打卡」</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday26/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">26.</span>
+<span>Day 26: 【前端 #7】用戶體驗的最後一哩路：優雅地處理載入與錯誤</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday27/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">27.</span>
+<span>Day 27: 【文件 #8】數據的畫布：用 Gemini 設計「圖表元件規格書」</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday28/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">28.</span>
+<span>Day 28: 【前端 #8】兌現承諾：根據規格書 Vibe Coding 關聯性洞察圖表</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday29/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">29.</span>
+<span>Day 29: 【文件 #9】專案的守衛：用 Gemini 規劃「前端認證流程」</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday30/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">30.</span>
+<span>Day 30: 【前端 #9】建立大門與鑰匙：根據流程圖實現前端使用者認證</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday31/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">31.</span>
+<span>Day 31: 【優化篇】代碼的整形外科：JavaScript 模組化與代碼重構</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday32/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">32.</span>
+<span>【完賽感言】左手藍圖，右手魔法：一趟旅程的結束與反思</span></a></li></ol><button onclick=toggleSeriesList(this) class="w-full mt-4 text-xs font-medium text-center py-2 border-t hover:bg-opacity-50 transition-colors" style=color:var(--text-secondary);border-color:var(--border-color)>
+Show all 32 posts</button><style>#series-list-2025ithomeironman{max-height:300px;overflow-y:auto;padding-right:5px}#series-list-2025ithomeironman::-webkit-scrollbar{width:4px}#series-list-2025ithomeironman::-webkit-scrollbar-track{background:0 0}#series-list-2025ithomeironman::-webkit-scrollbar-thumb{background-color:var(--border-color);border-radius:4px}</style></div></div><script>function toggleSeriesList(e){const t=e.previousElementSibling;t.style.maxHeight==="none"?(t.style.maxHeight="300px",e.innerText="Show all 32 posts"):(t.style.maxHeight="none",e.innerText="Collapse list")}document.addEventListener("DOMContentLoaded",()=>{const e=document.querySelector(".current-series-item");e&&e.scrollIntoView({behavior:"smooth",block:"nearest"})})</script><nav class="flex justify-between mt-16 pt-8 border-t not-prose" style=border-color:var(--border-color)><div><a href=/ChiYu-Blob/posts/2025ithomeironmanday17/ class="block p-4 rounded-lg transition-colors" style=color:var(--text-secondary)><span class=text-sm>上一篇</span>
+<span class="block font-semibold mt-1" style=color:var(--text-color)>Day 17: 【前端 #0】前端世界的基石： HTML, CSS 與 JavaScript &larr;</span></a></div><div class=text-right><a href=/ChiYu-Blob/posts/2025ithomeironmanday19/ class="block p-4 rounded-lg transition-colors" style=color:var(--text-secondary)><span class=text-sm>下一篇</span>
+<span class="block font-semibold mt-1" style=color:var(--text-color)>&rarr; Day 19: 【文件 #7】頁面的骨架：用 Gemini 規劃主佈局與元件拆分</span></a></div></nav><div class="mt-16 pt-8 border-t not-prose" style=border-color:var(--border-color)><h3 class="text-xl font-bold mb-6">相關文章</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-4"><a href=/ChiYu-Blob/posts/2025ithomeironmanday29/ class="block p-4 rounded-lg transition-colors" style="border:1px solid var(--border-color)"><span class="font-semibold block" style=color:var(--text-color)>Day 29: 【文件 #9】專案的守衛：用 Gemini 規劃「前端認證流程」</span><p class="text-sm mt-1" style=color:var(--text-secondary)>安安，我是 ChiYu！
+昨天，我們成功地兌現了對使用者的最終承諾，將冰冷的數據轉化為了富有情感的、能啟發洞察的視覺化故事。我們的 App …</p></a><a href=/ChiYu-Blob/posts/2025ithomeironmanday27/ class="block p-4 rounded-lg transition-colors" style="border:1px solid var(--border-color)"><span class="font-semibold block" style=color:var(--text-color)>Day 27: 【文件 #8】數據的畫布：用 Gemini 設計「圖表元件規格書」</span><p class="text-sm mt-1" style=color:var(--text-secondary)>安安，我是 ChiYu！
+昨天，我們的 App 學會了「同理心」，能夠優雅地處理載入與錯誤，大幅提升了使用者體驗。至此，我們 App 的基礎 …</p></a><a href=/ChiYu-Blob/posts/2025ithomeironmanday19/ class="block p-4 rounded-lg transition-colors" style="border:1px solid var(--border-color)"><span class="font-semibold block" style=color:var(--text-color)>Day 19: 【文件 #7】頁面的骨架：用 Gemini 規劃主佈局與元件拆分</span><p class="text-sm mt-1" style=color:var(--text-secondary)>安安，我是 ChiYu！
+昨天，我們扮演了「首席視覺設計師」，為我們的數位生命，定義了一套獨一無二的「基因圖譜 (DNA)」——我們的 風格 …</p></a><a href=/ChiYu-Blob/posts/2025ithomeironmanday32/ class="block p-4 rounded-lg transition-colors" style="border:1px solid var(--border-color)"><span class="font-semibold block" style=color:var(--text-color)>【完賽感言】左手藍圖，右手魔法：一趟旅程的結束與反思</span><p class="text-sm mt-1" style=color:var(--text-secondary)>安安！我是 ChiYu！
+三十天竟然就這樣過去了耶！回想一開始，真的只有一個超模糊的想法，就憑著一股傻勁跟對 AI 的好奇心與信任，直接衝 …</p></a><a href=/ChiYu-Blob/posts/2025ithomeironmanday31/ class="block p-4 rounded-lg transition-colors" style="border:1px solid var(--border-color)"><span class="font-semibold block" style=color:var(--text-color)>Day 31: 【優化篇】代碼的整形外科：JavaScript 模組化與代碼重構</span><p class="text-sm mt-1" style=color:var(--text-secondary)>說在前頭～ 既然已經達成30天了，乾脆把庫存一次全部PO完好了～
+安安，我是 ChiYu！
+昨天，我們為 App 裝上了堅固的大門與門鎖，成 …</p></a></div></div><div class="share-buttons not-prose mt-8 border-t pt-8" style=border-color:var(--border-color)><h3 class="text-base font-semibold mb-4 opacity-70">分享此文章：</h3><div class="flex gap-4"><a href="https://www.facebook.com/sharer/sharer.php?u=%2fChiYu-Blob%2fposts%2f2025ithomeironmanday18%2f" target=_blank rel="noopener noreferrer" class="share-btn text-blue-600 hover:opacity-80" title="分享到 Facebook"><svg class="w-6 h-6" fill="currentcolor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312.0 2.686.235 2.686.235v2.953H15.83c-1.491.0-1.962.925-1.962 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+</a><a href="https://twitter.com/intent/tweet?url=%2fChiYu-Blob%2fposts%2f2025ithomeironmanday18%2f&text=Day%2018%3a%20%e3%80%90%e6%96%87%e4%bb%b6%20%236%e3%80%91%e7%b6%b2%e7%ab%99%e7%9a%84%e9%a2%a8%e6%a0%bc%e6%8c%87%e5%8d%97%ef%bc%9a%e7%94%a8%20Gemini%20%e5%ae%9a%e7%be%a9%e9%a1%8f%e8%89%b2%e8%88%87%e5%ad%97%e9%ab%94" target=_blank rel="noopener noreferrer" class="share-btn text-gray-800 dark:text-gray-200 hover:opacity-80" title="分享到 X"><svg class="w-6 h-6" fill="currentcolor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+</a><a href="https://www.linkedin.com/shareArticle?mini=true&url=%2fChiYu-Blob%2fposts%2f2025ithomeironmanday18%2f&title=Day%2018%3a%20%e3%80%90%e6%96%87%e4%bb%b6%20%236%e3%80%91%e7%b6%b2%e7%ab%99%e7%9a%84%e9%a2%a8%e6%a0%bc%e6%8c%87%e5%8d%97%ef%bc%9a%e7%94%a8%20Gemini%20%e5%ae%9a%e7%be%a9%e9%a1%8f%e8%89%b2%e8%88%87%e5%ad%97%e9%ab%94" target=_blank rel="noopener noreferrer" class="share-btn text-blue-700 hover:opacity-80" title="分享到 LinkedIn"><svg class="w-6 h-6" fill="currentcolor" viewBox="0 0 24 24"><path d="M19 0H5C2.239.0.0 2.239.0 5v14c0 2.761 2.239 5 5 5h14c2.762.0 5-2.239 5-5V5c0-2.761-2.238-5-5-5zM8 19H5V8h3v11zM6.5 6.732c-.966.0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zM20 19h-3v-5.604c0-3.368-4-3.113-4 0V19h-3V8h3v1.765c1.396-2.586 7-2.777 7 2.476V19z"/></svg>
+</a><a href="https://social-plugins.line.me/lineit/share?url=%2fChiYu-Blob%2fposts%2f2025ithomeironmanday18%2f" target=_blank rel="noopener noreferrer" class="share-btn text-green-500 hover:opacity-80" title="分享到 Line"><svg class="w-6 h-6" fill="currentcolor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 5.85 2 10.53c0 2.68 1.49 5.08 3.81 6.66-.17.6-.62 2.18-.73 2.61-.06.25-.03.5.21.53.22.03.48-.12.67-.23 2.8-1.63 3.05-1.77 3.63-1.87.8.11 1.62.18 2.41.18 5.52.0 10-3.85 10-8.53S17.52 2 12 2zm0 14.93c-.76.0-1.53-.07-2.27-.2-.22-.04-.45.01-.64.12-.52.29-1.82 1.05-2.78 1.6.17-.85.42-1.8.52-2.3.06-.3-.06-.6-.3-.77C4.7 13.1 3.5 11.2 3.5 10.53c0-3.85 3.81-6.98 8.5-6.98s8.5 3.13 8.5 6.98-3.81 6.4-8.5 6.4z"/></svg></a></div></div><div id=giscus-container class="mt-16 pt-8 border-t not-prose" style=border-color:var(--border-color)></div></main></div></div><aside class="w-64 flex-shrink-0 desktop-sidebar pl-8"><div class="sticky top-20" data-pagefind-ignore><div class="mb-8 text-center" data-pagefind-ignore><img src=/ChiYu-Blob/images/avatar.jpg alt=個人大頭貼 class="w-32 h-32 rounded-full mx-auto object-cover border-2" style=border-color:var(--border-color) data-pagefind-ignore></div><div class="text-center mb-8" data-pagefind-ignore><a href=mailto:iamhandsomeboy1129@gmail.com class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-white transition-opacity hover:opacity-90" style=background-color:var(--link-color)><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1.0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1.0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+<span class="text-sm font-medium">聯絡我</span></a></div><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>文章月曆</h3><div id=calendar-widget-125ca17a class=calendar-widget><div class="flex justify-between items-center mb-2 font-semibold"><button class="cal-prev px-2 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700" title=上個月>&lt;</button>
+<span class=cal-month-year></span>
+<button class="cal-next px-2 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700" title=下個月>></button></div><div class="grid grid-cols-7 text-center text-xs gap-y-2" style=color:var(--text-secondary)><span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span></div><div class="cal-days grid grid-cols-7 text-center text-sm mt-2 gap-y-2"></div></div></div><script>(function(){const n=document.getElementById("calendar-widget-125ca17a");if(!n)return;const e={};e["2025-12-17"]="/ChiYu-Blob/dates/2025-12-17/",e["2025-8-20"]="/ChiYu-Blob/dates/2025-08-20/",e["2025-8-21"]="/ChiYu-Blob/dates/2025-08-21/",e["2025-8-22"]="/ChiYu-Blob/dates/2025-08-22/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-8-23"]="/ChiYu-Blob/dates/2025-08-23/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-8-24"]="/ChiYu-Blob/dates/2025-08-24/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-8-25"]="/ChiYu-Blob/dates/2025-08-25/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-26"]="/ChiYu-Blob/dates/2025-08-26/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-27"]="/ChiYu-Blob/dates/2025-08-27/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-28"]="/ChiYu-Blob/dates/2025-08-28/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-29"]="/ChiYu-Blob/dates/2025-08-29/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-30"]="/ChiYu-Blob/dates/2025-08-30/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-31"]="/ChiYu-Blob/dates/2025-08-31/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-1"]="/ChiYu-Blob/dates/2025-09-01/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-2"]="/ChiYu-Blob/dates/2025-09-02/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-3"]="/ChiYu-Blob/dates/2025-09-03/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-4"]="/ChiYu-Blob/dates/2025-09-04/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-5"]="/ChiYu-Blob/dates/2025-09-05/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-6"]="/ChiYu-Blob/dates/2025-09-06/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-7"]="/ChiYu-Blob/dates/2025-09-07/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-8"]="/ChiYu-Blob/dates/2025-09-08/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-9"]="/ChiYu-Blob/dates/2025-09-09/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-9-10"]="/ChiYu-Blob/dates/2025-09-10/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-9-11"]="/ChiYu-Blob/dates/2025-09-11/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-9-12"]="/ChiYu-Blob/dates/2025-09-12/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-9-13"]="/ChiYu-Blob/dates/2025-09-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-9-14"]="/ChiYu-Blob/dates/2025-09-14/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-9-15"]="/ChiYu-Blob/dates/2025-09-15/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-9-16"]="/ChiYu-Blob/dates/2025-09-16/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-9-17"]="/ChiYu-Blob/dates/2025-09-17/",e["2025-7-3"]="/ChiYu-Blob/dates/2025-07-03/",e["2025-9-18"]="/ChiYu-Blob/dates/2025-09-18/",e["2025-9-19"]="/ChiYu-Blob/dates/2025-09-19/",e["2025-9-20"]="/ChiYu-Blob/dates/2025-09-20/",e["2025-6-8"]="/ChiYu-Blob/dates/2025-06-08/",e["2025-6-5"]="/ChiYu-Blob/dates/2025-06-05/";const i=n.querySelector(".cal-month-year"),s=n.querySelector(".cal-days"),a=n.querySelector(".cal-prev"),r=n.querySelector(".cal-next");let t=new Date;function o(t){const n=t.getFullYear(),o=t.getMonth();i.textContent=`${n} 年 ${o+1} 月`,s.innerHTML="";const a=new Date(n,o,1),r=new Date(n,o+1,0),c=a.getDay();for(let e=0;e<c;e++)s.insertAdjacentHTML("beforeend","<div></div>");for(let t=1;t<=r.getDate();t++){const i=`${n}-${o+1}-${t}`;e[i]?s.insertAdjacentHTML("beforeend",`
+                    <a href="${e[i]}" class="block p-1 rounded-full transition-colors font-bold" style="color: var(--link-color); text-decoration: underline; text-decoration-thickness: 2px;">
+                        ${t}
+                    </a>
+                `):s.insertAdjacentHTML("beforeend",`<span class="block p-1">${t}</span>`)}}a.addEventListener("click",()=>{t.setMonth(t.getMonth()-1),o(t)}),r.addEventListener("click",()=>{t.setMonth(t.getMonth()+1),o(t)}),o(t)})()</script><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>所有標籤</h3><div class="flex flex-wrap gap-2"><a href=/ChiYu-Blob/tags/yaml/ class=tag-pill>YAML
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/vibe-coding/ class=tag-pill>Vibe Coding
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/ux/ class=tag-pill>UX
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/user-stories/ class=tag-pill>User Stories
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/ui/ux/ class=tag-pill>UI/UX
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/testing/ class=tag-pill>Testing
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/summary/ class=tag-pill>Summary
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/style-guide/ class=tag-pill>Style Guide
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/state-management/ class=tag-pill>State Management
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/state-machine/ class=tag-pill>State Machine
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/sqlite/ class=tag-pill>SQLite
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/sql/ class=tag-pill>SQL
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/spa/ class=tag-pill>SPA
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/software-engineering/ class=tag-pill>Software Engineering
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/software-architecture/ class=tag-pill>Software Architecture
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/side-project/ class=tag-pill>Side Project
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/schema/ class=tag-pill>Schema
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/scaffolding/ class=tag-pill>Scaffolding
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/reflection/ class=tag-pill>Reflection
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/pytest/ class=tag-pill>Pytest
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/promise/ class=tag-pill>Promise
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/project-charter/ class=tag-pill>Project Charter
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/modularization/ class=tag-pill>Modularization
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/linting/ class=tag-pill>Linting
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/layout/ class=tag-pill>Layout
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/hlr/ class=tag-pill>HLR
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/guide/ class=tag-pill>Guide
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/github-actions/ class=tag-pill>GitHub Actions
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/github/ class=tag-pill>GitHub
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/git/ class=tag-pill>Git
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/flake8/ class=tag-pill>Flake8
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/fetch-api/ class=tag-pill>Fetch API
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/error-handling/ class=tag-pill>Error Handling
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/efficiency/ class=tag-pill>Efficiency
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/documentation/ class=tag-pill>Documentation
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/design-system/ class=tag-pill>Design System
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/database/ class=tag-pill>Database
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/data-driven-ui/ class=tag-pill>Data-Driven UI
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/conclusion/ class=tag-pill>Conclusion
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/component-specification/ class=tag-pill>Component Specification
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/component/ class=tag-pill>Component
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/codex/ class=tag-pill>Codex
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/cli/ class=tag-pill>CLI
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/canvas/ class=tag-pill>Canvas
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/blueprints/ class=tag-pill>Blueprints
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/atomic-design/ class=tag-pill>Atomic Design
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/asynchronous/ class=tag-pill>Asynchronous
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/api-integration/ class=tag-pill>API Integration
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/api/ class=tag-pill>API
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/ai-agent/ class=tag-pill>AI Agent
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/agile/ class=tag-pill>Agile
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/swagger/ class=tag-pill>Swagger
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/security/ class=tag-pill>Security
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/refactoring/ class=tag-pill>Refactoring
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/python/ class=tag-pill>Python
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/prototyping/ class=tag-pill>Prototyping
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/prompt-engineering/ class=tag-pill>Prompt Engineering
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/openapi/ class=tag-pill>OpenAPI
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/jwt/ class=tag-pill>JWT
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/html/ class=tag-pill>HTML
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/data-visualization/ class=tag-pill>Data Visualization
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/css/ class=tag-pill>CSS
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/crud/ class=tag-pill>CRUD
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/clean-code/ class=tag-pill>Clean Code
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/ci/ class=tag-pill>CI
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/chart.js/ class=tag-pill>Chart.js
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/backend/ class=tag-pill>Backend
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/authentication/ class=tag-pill>Authentication
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/ui/ux/ class=tag-pill>UI/UX
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/mermaid/ class=tag-pill>Mermaid
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/hugo/ class=tag-pill>Hugo
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/flask/ class=tag-pill>Flask
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/ddd/ class=tag-pill>DDD
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/ai/ class=tag-pill>AI
+<span class="ml-1 opacity-75">4</span>
+</a><a href=/ChiYu-Blob/tags/vibecoding/ class=tag-pill>VibeCoding
+<span class="ml-1 opacity-75">6</span>
+</a><a href=/ChiYu-Blob/tags/javascript/ class=tag-pill>JavaScript
+<span class="ml-1 opacity-75">6</span>
+</a><a href=/ChiYu-Blob/tags/frontend/ class=tag-pill>Frontend
+<span class="ml-1 opacity-75">13</span>
+</a><a href=/ChiYu-Blob/tags/design-patterns/ class=tag-pill>Design Patterns
+<span class="ml-1 opacity-75">24</span>
+</a><a href=/ChiYu-Blob/tags/c class=tag-pill>C#
+<span class="ml-1 opacity-75">24</span>
+</a><a href=/ChiYu-Blob/tags/gemini/ class=tag-pill>Gemini
+<span class="ml-1 opacity-75">27</span>
+</a><a href=/ChiYu-Blob/tags/2025ithomeironman/ class=tag-pill>2025iThomeIronman
+<span class="ml-1 opacity-75">32</span></a></div><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>相關連結</h3><div class="flex flex-col space-y-3 mt-4"><a href=https://www.cake.me/me/ChiYuisme target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">cakeresume</span>
+</a><a href=https://github.com/eric861129 target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">github</span>
+</a><a href=https://ithelp.ithome.com.tw/users/20132971/ironman/8253 target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">ithome</span>
+</a><a href=https://www.linkedin.com/in/chiyu-huang/ target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">linkedin</span>
+</a><a href=https://www.threads.com/@chiyuisme target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">threads</span></a></div></div><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>系列文章</h3><ul class=space-y-1><li><a href=/ChiYu-Blob/series/2025ithomeironman/ class="flex justify-between"><span>2025 iThome 鐵人賽</span>
+<span class=text-sm>32</span></a></li><li><a href=/ChiYu-Blob/series/designpattern/ class="flex justify-between"><span>設計模式</span>
+<span class=text-sm>24</span></a></li><li><a href=/ChiYu-Blob/series/hugo-%E9%96%8B%E7%99%BC%E7%B4%80%E9%8C%84/ class="flex justify-between"><span>Hugo 開發紀錄</span>
+<span class=text-sm>1</span></a></li></ul></div></div></aside></div><footer class="mt-16 pt-8 border-t text-center text-sm" style=border-color:var(--border-color);color:var(--text-secondary)><p>&copy; 2025 ChiYu. All Rights Reserved.</p></footer><button id=scroll-to-top-btn class=scroll-to-top title=回到頂部><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentcolor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 15a.5.5.0 00.5-.5V2.707l3.146 3.147a.5.5.0 00.708-.708l-4-4a.5.5.0 00-.708.0l-4 4a.5.5.0 10.708.708L7.5 2.707V14.5a.5.5.0 00.5.5z"/></svg></button></div><div id=sidebar-overlay class=sidebar-overlay></div><aside id=mobile-sidebar class=mobile-sidebar><div class=p-4><aside class=sidebar><div class=sidebar-inner><div class=widget><h3 class=widget-title>系列文章</h3><ul class=widget-list><li><a href=/ChiYu-Blob/series/2025ithomeironman/>2025 iThome 鐵人賽
+<span class=posts-count>32</span></a></li><li><a href=/ChiYu-Blob/series/designpattern/>設計模式
+<span class=posts-count>24</span></a></li><li><a href=/ChiYu-Blob/series/hugo-%E9%96%8B%E7%99%BC%E7%B4%80%E9%8C%84/>Hugo 開發紀錄
+<span class=posts-count>1</span></a></li></ul></div></div></aside><div class="sticky top-20" data-pagefind-ignore><div class="mb-8 text-center" data-pagefind-ignore><img src=/ChiYu-Blob/images/avatar.jpg alt=個人大頭貼 class="w-32 h-32 rounded-full mx-auto object-cover border-2" style=border-color:var(--border-color) data-pagefind-ignore></div><div class="text-center mb-8" data-pagefind-ignore><a href=mailto:iamhandsomeboy1129@gmail.com class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-white transition-opacity hover:opacity-90" style=background-color:var(--link-color)><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1.0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1.0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+<span class="text-sm font-medium">聯絡我</span></a></div><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>文章月曆</h3><div id=calendar-widget-a1d1cc3e class=calendar-widget><div class="flex justify-between items-center mb-2 font-semibold"><button class="cal-prev px-2 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700" title=上個月>&lt;</button>
+<span class=cal-month-year></span>
+<button class="cal-next px-2 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700" title=下個月>></button></div><div class="grid grid-cols-7 text-center text-xs gap-y-2" style=color:var(--text-secondary)><span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span></div><div class="cal-days grid grid-cols-7 text-center text-sm mt-2 gap-y-2"></div></div></div><script>(function(){const n=document.getElementById("calendar-widget-a1d1cc3e");if(!n)return;const e={};e["2025-12-17"]="/ChiYu-Blob/dates/2025-12-17/",e["2025-8-20"]="/ChiYu-Blob/dates/2025-08-20/",e["2025-8-21"]="/ChiYu-Blob/dates/2025-08-21/",e["2025-8-22"]="/ChiYu-Blob/dates/2025-08-22/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-8-23"]="/ChiYu-Blob/dates/2025-08-23/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-8-24"]="/ChiYu-Blob/dates/2025-08-24/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-8-25"]="/ChiYu-Blob/dates/2025-08-25/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-26"]="/ChiYu-Blob/dates/2025-08-26/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-27"]="/ChiYu-Blob/dates/2025-08-27/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-28"]="/ChiYu-Blob/dates/2025-08-28/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-29"]="/ChiYu-Blob/dates/2025-08-29/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-30"]="/ChiYu-Blob/dates/2025-08-30/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-31"]="/ChiYu-Blob/dates/2025-08-31/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-1"]="/ChiYu-Blob/dates/2025-09-01/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-2"]="/ChiYu-Blob/dates/2025-09-02/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-3"]="/ChiYu-Blob/dates/2025-09-03/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-4"]="/ChiYu-Blob/dates/2025-09-04/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-5"]="/ChiYu-Blob/dates/2025-09-05/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-6"]="/ChiYu-Blob/dates/2025-09-06/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-7"]="/ChiYu-Blob/dates/2025-09-07/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-8"]="/ChiYu-Blob/dates/2025-09-08/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-9"]="/ChiYu-Blob/dates/2025-09-09/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-9-10"]="/ChiYu-Blob/dates/2025-09-10/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-9-11"]="/ChiYu-Blob/dates/2025-09-11/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-9-12"]="/ChiYu-Blob/dates/2025-09-12/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-9-13"]="/ChiYu-Blob/dates/2025-09-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-9-14"]="/ChiYu-Blob/dates/2025-09-14/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-9-15"]="/ChiYu-Blob/dates/2025-09-15/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-9-16"]="/ChiYu-Blob/dates/2025-09-16/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-9-17"]="/ChiYu-Blob/dates/2025-09-17/",e["2025-7-3"]="/ChiYu-Blob/dates/2025-07-03/",e["2025-9-18"]="/ChiYu-Blob/dates/2025-09-18/",e["2025-9-19"]="/ChiYu-Blob/dates/2025-09-19/",e["2025-9-20"]="/ChiYu-Blob/dates/2025-09-20/",e["2025-6-8"]="/ChiYu-Blob/dates/2025-06-08/",e["2025-6-5"]="/ChiYu-Blob/dates/2025-06-05/";const i=n.querySelector(".cal-month-year"),s=n.querySelector(".cal-days"),a=n.querySelector(".cal-prev"),r=n.querySelector(".cal-next");let t=new Date;function o(t){const n=t.getFullYear(),o=t.getMonth();i.textContent=`${n} 年 ${o+1} 月`,s.innerHTML="";const a=new Date(n,o,1),r=new Date(n,o+1,0),c=a.getDay();for(let e=0;e<c;e++)s.insertAdjacentHTML("beforeend","<div></div>");for(let t=1;t<=r.getDate();t++){const i=`${n}-${o+1}-${t}`;e[i]?s.insertAdjacentHTML("beforeend",`
+                    <a href="${e[i]}" class="block p-1 rounded-full transition-colors font-bold" style="color: var(--link-color); text-decoration: underline; text-decoration-thickness: 2px;">
+                        ${t}
+                    </a>
+                `):s.insertAdjacentHTML("beforeend",`<span class="block p-1">${t}</span>`)}}a.addEventListener("click",()=>{t.setMonth(t.getMonth()-1),o(t)}),r.addEventListener("click",()=>{t.setMonth(t.getMonth()+1),o(t)}),o(t)})()</script><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>所有標籤</h3><div class="flex flex-wrap gap-2"><a href=/ChiYu-Blob/tags/yaml/ class=tag-pill>YAML
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/vibe-coding/ class=tag-pill>Vibe Coding
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/ux/ class=tag-pill>UX
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/user-stories/ class=tag-pill>User Stories
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/ui/ux/ class=tag-pill>UI/UX
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/testing/ class=tag-pill>Testing
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/summary/ class=tag-pill>Summary
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/style-guide/ class=tag-pill>Style Guide
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/state-management/ class=tag-pill>State Management
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/state-machine/ class=tag-pill>State Machine
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/sqlite/ class=tag-pill>SQLite
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/sql/ class=tag-pill>SQL
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/spa/ class=tag-pill>SPA
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/software-engineering/ class=tag-pill>Software Engineering
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/software-architecture/ class=tag-pill>Software Architecture
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/side-project/ class=tag-pill>Side Project
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/schema/ class=tag-pill>Schema
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/scaffolding/ class=tag-pill>Scaffolding
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/reflection/ class=tag-pill>Reflection
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/pytest/ class=tag-pill>Pytest
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/promise/ class=tag-pill>Promise
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/project-charter/ class=tag-pill>Project Charter
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/modularization/ class=tag-pill>Modularization
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/linting/ class=tag-pill>Linting
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/layout/ class=tag-pill>Layout
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/hlr/ class=tag-pill>HLR
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/guide/ class=tag-pill>Guide
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/github-actions/ class=tag-pill>GitHub Actions
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/github/ class=tag-pill>GitHub
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/git/ class=tag-pill>Git
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/flake8/ class=tag-pill>Flake8
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/fetch-api/ class=tag-pill>Fetch API
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/error-handling/ class=tag-pill>Error Handling
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/efficiency/ class=tag-pill>Efficiency
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/documentation/ class=tag-pill>Documentation
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/design-system/ class=tag-pill>Design System
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/database/ class=tag-pill>Database
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/data-driven-ui/ class=tag-pill>Data-Driven UI
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/conclusion/ class=tag-pill>Conclusion
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/component-specification/ class=tag-pill>Component Specification
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/component/ class=tag-pill>Component
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/codex/ class=tag-pill>Codex
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/cli/ class=tag-pill>CLI
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/canvas/ class=tag-pill>Canvas
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/blueprints/ class=tag-pill>Blueprints
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/atomic-design/ class=tag-pill>Atomic Design
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/asynchronous/ class=tag-pill>Asynchronous
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/api-integration/ class=tag-pill>API Integration
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/api/ class=tag-pill>API
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/ai-agent/ class=tag-pill>AI Agent
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/agile/ class=tag-pill>Agile
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/swagger/ class=tag-pill>Swagger
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/security/ class=tag-pill>Security
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/refactoring/ class=tag-pill>Refactoring
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/python/ class=tag-pill>Python
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/prototyping/ class=tag-pill>Prototyping
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/prompt-engineering/ class=tag-pill>Prompt Engineering
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/openapi/ class=tag-pill>OpenAPI
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/jwt/ class=tag-pill>JWT
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/html/ class=tag-pill>HTML
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/data-visualization/ class=tag-pill>Data Visualization
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/css/ class=tag-pill>CSS
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/crud/ class=tag-pill>CRUD
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/clean-code/ class=tag-pill>Clean Code
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/ci/ class=tag-pill>CI
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/chart.js/ class=tag-pill>Chart.js
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/backend/ class=tag-pill>Backend
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/authentication/ class=tag-pill>Authentication
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/ui/ux/ class=tag-pill>UI/UX
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/mermaid/ class=tag-pill>Mermaid
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/hugo/ class=tag-pill>Hugo
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/flask/ class=tag-pill>Flask
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/ddd/ class=tag-pill>DDD
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/ai/ class=tag-pill>AI
+<span class="ml-1 opacity-75">4</span>
+</a><a href=/ChiYu-Blob/tags/vibecoding/ class=tag-pill>VibeCoding
+<span class="ml-1 opacity-75">6</span>
+</a><a href=/ChiYu-Blob/tags/javascript/ class=tag-pill>JavaScript
+<span class="ml-1 opacity-75">6</span>
+</a><a href=/ChiYu-Blob/tags/frontend/ class=tag-pill>Frontend
+<span class="ml-1 opacity-75">13</span>
+</a><a href=/ChiYu-Blob/tags/design-patterns/ class=tag-pill>Design Patterns
+<span class="ml-1 opacity-75">24</span>
+</a><a href=/ChiYu-Blob/tags/c class=tag-pill>C#
+<span class="ml-1 opacity-75">24</span>
+</a><a href=/ChiYu-Blob/tags/gemini/ class=tag-pill>Gemini
+<span class="ml-1 opacity-75">27</span>
+</a><a href=/ChiYu-Blob/tags/2025ithomeironman/ class=tag-pill>2025iThomeIronman
+<span class="ml-1 opacity-75">32</span></a></div><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>相關連結</h3><div class="flex flex-col space-y-3 mt-4"><a href=https://www.cake.me/me/ChiYuisme target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">cakeresume</span>
+</a><a href=https://github.com/eric861129 target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">github</span>
+</a><a href=https://ithelp.ithome.com.tw/users/20132971/ironman/8253 target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">ithome</span>
+</a><a href=https://www.linkedin.com/in/chiyu-huang/ target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">linkedin</span>
+</a><a href=https://www.threads.com/@chiyuisme target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">threads</span></a></div></div><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>系列文章</h3><ul class=space-y-1><li><a href=/ChiYu-Blob/series/2025ithomeironman/ class="flex justify-between"><span>2025 iThome 鐵人賽</span>
+<span class=text-sm>32</span></a></li><li><a href=/ChiYu-Blob/series/designpattern/ class="flex justify-between"><span>設計模式</span>
+<span class=text-sm>24</span></a></li><li><a href=/ChiYu-Blob/series/hugo-%E9%96%8B%E7%99%BC%E7%B4%80%E9%8C%84/ class="flex justify-between"><span>Hugo 開發紀錄</span>
+<span class=text-sm>1</span></a></li></ul></div></div></div></aside><script src=/ChiYu-Blob/pagefind/pagefind-ui.js onload=initPagefind()></script><script src=https://cdn.jsdelivr.net/npm/medium-zoom@1.0.8/dist/medium-zoom.min.js></script><script type=module>
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ 
+            startOnLoad: true, 
+            theme: document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default' 
+        });
+    </script><script src=/ChiYu-Blob/js/main.min.0193b07ef6d75c398d0ddd095576631329ae07bdc4f8790273143cfb31c1c9c5.js integrity="sha256-AZOwfvbXXDmNDd0JVXZjEymuB73E+HkCcxQ8+zHBycU=" crossorigin=anonymous></script></body></html>

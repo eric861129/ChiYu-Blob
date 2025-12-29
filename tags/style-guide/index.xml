@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Style Guide on ChiYu Code Journey</title><link>/ChiYu-Blob/tags/style-guide/</link><description>Recent content in Style Guide on ChiYu Code Journey</description><generator>Hugo -- gohugo.io</generator><language>zh-TW</language><lastBuildDate>Sat, 06 Sep 2025 00:00:00 +0800</lastBuildDate><atom:link href="/ChiYu-Blob/tags/style-guide/index.xml" rel="self" type="application/rss+xml"/><item><title>Day 18: 【文件 #6】網站的風格指南：用 Gemini 定義顏色與字體</title><link>/ChiYu-Blob/posts/2025ithomeironmanday18/</link><pubDate>Sat, 06 Sep 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday18/</guid><description>安安，我是 ChiYu！
+昨天，我們扮演了「造物主」，理解了構成數位生命的三大基本元素：HTML (骨骼)、CSS (皮囊) 與 JavaScript (肌肉)。
+我們的生命體現在有了基本的構造，但它還沒有「氣質」與「個性」。它的膚色、瞳孔顏色、說話的語氣（字體）都尚未被定義。如果我們現在就開始隨心所欲地為它上色、化妝，最終很可能會創造出一個風格混亂、不忍直視的「四不像」。
+因此，在我們動手寫任何一行 CSS 之前，我們要再次回到我們最信賴的工作流程——文件驅動。今天，我們將化身為「 首席視覺設計師」，與我們的 AI 夥伴 Gemini 深度對談，為我們的 App 定義一套獨一無二的視覺風格，並將其記錄成一份專業的**「風格指南 (Style Guide)」**文件。
+Part 1：什麼是「風格指南」？為什麼它是設計的「DNA」？ 「風格指南」是一份定義了專案所有視覺元素（顏色、字體、間距、圖示、按鈕樣式等）使用規則的「設計聖經」。它就是我們數位生命的 「基因圖譜 (DNA)」。
+為什麼我們需要它？
+確保一致性 (Consistency)：一份好的風格指南，能確保你網站上的每一個按鈕、每一段文字，看起來都像是來自同一個「家族」。這種視覺上的一致性，會給使用者帶來專業、可靠、值得信賴的感覺。 提升開發效率 (Efficiency)：它能將設計師與工程師從無盡的「這個藍色深一點還是淺一點？」、「這個標題用多大字體？」的決策地獄中解放出來。我們不再需要每次都重新發明輪子，只需要遵循 DNA 的指示即可。 賦予 AI 清晰的指令：這對我們 Vibe Coding 的流程至關重要！當我們有了這份文件，未來就可以直接對 Gemini 說：「請用我們的 primary-color 設計一個按鈕」，AI 就能立刻理解並產出符合我們整體風格的程式碼。 Part 2：定義我們 App 的「Vibe」- 專案的個性 在挑選顏色和字體之前，我們得先回答一個更根本的問題：我們希望這個 App 給人什麼樣的「感覺 (Vibe)」？
+回顧我們 Day 5 的專案章程，我們的願景是「賦予使用者力量，建立正向習慣並擁抱更健康的心態」。基於這個願景，我們可以提煉出幾個關鍵詞來定義我們 App 的個性：
+Calm (平靜)：介面應該是簡潔、無干擾的，讓使用者能專注於紀錄與反思。 Encouraging (鼓勵)：視覺元素應該帶有溫度，給人一種積極、正向的感覺。 Clean (乾淨)：佈局要清晰，留有足夠的呼吸空間 (留白)，避免資訊過載。 Trustworthy (可靠)：設計要專業、一致，讓使用者願意將他們的個人數據託付給我們。 這幾個關鍵詞，就是我們接下來與 Gemini 溝通時的「通關密語」。</description></item></channel></rss>

@@ -1,0 +1,658 @@
+<!doctype html><html lang=zh-tw><head><script async src="https://www.googletagmanager.com/gtag/js?id=G-FGXWEWM001"></script><script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-FGXWEWM001",{anonymize_ip:!1})}</script><meta name=description content="今天我們將正式拿起工具，嚴格依據昨天的這份《圖表元件規格書》，指揮 AI 和 Chart.js，將這幅數據的畫布，變成真實、可互動的前端程式碼！"><meta property="og:title" content="Day 28: 【前端 #8】兌現承諾：根據規格書 Vibe Coding 關聯性洞察圖表"><meta property="og:description" content="今天我們將正式拿起工具，嚴格依據昨天的這份《圖表元件規格書》，指揮 AI 和 Chart.js，將這幅數據的畫布，變成真實、可互動的前端程式碼！"><meta property="og:type" content="article"><meta property="og:url" content="/ChiYu-Blob/posts/2025ithomeironmanday28/"><meta name=twitter:card content="summary_large_image"><meta name=twitter:title content="Day 28: 【前端 #8】兌現承諾：根據規格書 Vibe Coding 關聯性洞察圖表"><meta name=twitter:description content="今天我們將正式拿起工具，嚴格依據昨天的這份《圖表元件規格書》，指揮 AI 和 Chart.js，將這幅數據的畫布，變成真實、可互動的前端程式碼！"><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Day 28: 【前端 #8】兌現承諾：根據規格書 Vibe Coding 關聯性洞察圖表 | ChiYu Code Journey</title>
+<script>(function(){const e=localStorage.getItem("theme")||"dark";document.documentElement.setAttribute("data-theme",e)})()</script><script src=https://cdn.tailwindcss.com></script><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel=stylesheet><link href=/pagefind/pagefind-ui.css rel=stylesheet><link href="https://fonts.googleapis.com/css2?family=Chocolate+Classical+Sans&family=Edu+SA+Hand:wght@400..700&family=Inter:wght@400;500;600;700&display=swap" rel=stylesheet><link rel=icon type=image/jpeg href=/ChiYu-Blob/images/avatar.jpg><link rel=stylesheet href=/ChiYu-Blob/css/style.bundle.min.603fe609a4fee1de053c12e00858727a67cc5a3ba05a0a66f04142a379f47374.css integrity="sha256-YD/mCaT+4d4FPBLgCFhyemfMWjugWgpm8EFCo3n0c3Q=" crossorigin=anonymous><style>#reading-progress-container{position:fixed;top:0;left:0;width:100%;height:3px;z-index:9999;background:0 0}#reading-progress-bar{height:100%;width:0%;background:linear-gradient(to right,#60a5fa,#2563eb);transition:width .1s ease-out}</style></head><body class=antialiased><div id=reading-progress-container><div id=reading-progress-bar></div></div><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><header class="sticky top-0 z-50 flex justify-between items-center py-6 border-b" style=border-color:var(--border-color);background-color:var(--bg-color)><a href=/ChiYu-Blob/ class="text-xl sm:text-2xl font-bold" style=color:var(--text-color)>ChiYu Code Journey</a><nav class="flex items-center space-x-2 sm:space-x-4"><div id=search></div><a href=/ChiYu-Blob/ class="text-sm sm:text-base" style=color:var(--text-secondary)>首頁</a>
+<a href=/ChiYu-Blob/posts/ class="text-sm sm:text-base" style=color:var(--text-secondary)>文章</a>
+<a href=/ChiYu-Blob/about/ class="text-sm sm:text-base" style=color:var(--text-secondary)>關於</a>
+<a href=/ChiYu-Blob/index.xml target=_blank title="訂閱 RSS" style=color:var(--text-secondary) class="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11a9 9 0 019 9"/><path d="M4 4a16 16 0 0116 16"/><circle cx="5" cy="19" r="1"/></svg>
+</a><button id=theme-toggle title=切換深色/淺色主題>
+<svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+<svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+</button>
+<button id=mobile-sidebar-toggle class=lg:hidden title=開啟側邊欄><svg class="w-6 h-6" fill="none" stroke="currentcolor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/></svg></button></nav></header><div data-pagefind-body style=display:none><p>安安，我是 ChiYu！</p><p>昨天，我們再次實踐了「文件驅動開發」的核心精神。我們沒有直接衝進複雜的圖表程式碼中，而是先退一步，將一個模糊的「想法」，轉化為了一份清晰、具體、可執行的「技術規格」。</p><p>我們手上現在握著一份像素級精密的「零件設計圖」。有了它，我們接下來的開發工作將會變得無比順暢，因為所有關於「如何設計」的燒腦問題，都已經被解決了。我們的任務只剩下一個——專注於「如何實現」。</p><p>今天，我們將正式拿起工具，嚴格依據昨天的這份《圖表元件規格書》，指揮 AI 和 Chart.js，將這幅數據的畫布，變成真實、可互動的前端程式碼！</p><h2 id=part-1前端心法為什麼專業團隊痴迷於規格書>Part 1：前端心法：為什麼專業團隊痴迷於「規格書」？</h2><p>在開始之前，讓我們再次鞏固一下心法。為什麼像我們昨天產出的那份規格書，在專業團隊中如此重要？</p><ul><li><strong>消除模糊地帶</strong>：規格書用技術語言，將所有「可能」、「大概」、「我覺得」都變成了「必須」。前端工程師不再需要去猜測產品經理的心思，所有人都對著同一份文件工作。</li><li><strong>實現並行開發</strong>：有了這份規格書，前端和後端甚至可以同時開工！後端工程師知道要提供什麼格式的 API，前端工程師知道要接收什麼格式的數據，雙方可以獨立開發，最後完美對接。</li><li><strong>Vibe Coding 的「護欄」</strong>：這對我們至關重要。當我們指揮 AI 時，這份規格書就是最強大的「護欄」。我們可以非常精準地告訴 AI：「嘿，嚴格按照這份文件的 <code>Props</code> 定義來接收數據，嚴格按照這份文件的『互動行為』來寫 JS 邏輯。」這能確保 AI 的強大創造力，永遠在我們設定好的軌道上馳騁。</li></ul><h2 id=part-2vibe-coding-實戰將藍圖轉化為現實>Part 2：Vibe Coding 實戰：將藍圖轉化為現實</h2><p>好了，理論不再贅述，讓我們進入 gemini chat 模式，開始我們今天精彩的 Vibe Coding 之旅！</p><h3 id=step-1-安裝我們的畫筆--chartjs>Step 1: 安裝我們的「畫筆」- Chart.js</h3><p>首先，我們要為專案引入一個強大且易用的圖表函式庫。</p><h3 id=魔法詠唱引入-chartjs>【魔法詠唱：引入 Chart.js】</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown><span style=display:flex><span># 角色
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>你是一位熟悉前端生態系的前端工程師。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=font-style:italic>**</span># 任務**
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>請修改 <span style=color:#e6db74>`@frontend/index.html`</span>，為專案引入 Chart.js 函式庫。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=font-style:italic>**</span># 產出要求**
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>請在 <span style=color:#e6db74>`&lt;head&gt;`</span> 區塊中，加入 Chart.js 的 CDN 連結。請使用最新穩定版本。
+</span></span></code></pre></div><p>AI 會為我們找到 Chart.js 的 CDN，並將 <code>&lt;script></code> 標籤加入到我們的 HTML 中。</p><h3 id=step-2-為我們的畫布準備空間>Step 2: 為我們的「畫布」準備空間</h3><p>我們需要在 HTML 中，為圖表預留一個位置。</p><h3 id=魔法詠唱建立圖表容器>【魔法詠唱：建立圖表容器】</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown><span style=display:flex><span># 角色 (Role)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>你是一位資深前端工程師，精通語意化 HTML、**無障礙網頁設計 (Accessibility)**，並擅長為複雜的 JavaScript 元件搭建穩固的 DOM 結構。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 目標 (Objective)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>請為我們的「關聯性洞察圖表」元件，在主 HTML 檔案中，**搭建其渲染的掛載點 (rendering mount point)**。這個結構必須同時考慮到 Chart.js 的渲染需求與無障礙設計的最佳實踐。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 上下文與關鍵資訊 (Context &amp; Key Information)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>*</span> **目標修改檔案**: <span style=color:#e6db74>`@frontend/index.html`</span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>*</span> **元件規格書**: <span style=color:#e6db74>`@docs/CHART_COMPONENT_SPEC.md`</span> (此操作應遵循規格書的規劃)。
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>*</span> **欲掛載元件**: Chart.js 驅動的圖表。
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>*</span> **預期位置**: 在 <span style=color:#e6db74>`&lt;main class=&#34;main-content&#34;&gt;`</span> 區域中，建議放置於「心情追蹤器」 (`mood-tracker-container`) 之後。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 產出格式與要求 (Your Task &amp; Output Requirements)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>1.</span>  <span style=font-weight:700>**直接修改**</span>: 請直接重寫 <span style=color:#e6db74>`@frontend/index.html`</span> 的內容，將新區塊加入。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>2.</span>  <span style=font-weight:700>**語意化結構**</span>:
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>*</span> 建立一個語義化的 <span style=color:#e6db74>`&lt;section&gt;`</span> 元素作為圖表容器，並賦予其 <span style=color:#e6db74>`class=&#34;chart-container&#34;`</span>。
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>*</span> 在容器內部，可以放置一個 <span style=color:#e6db74>`&lt;h2&gt;`</span> 標題，例如「關聯性洞察」。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>3.</span>  <span style=font-weight:700>**Canvas 元素**</span>:
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>*</span> 在 <span style=color:#e6db74>`&lt;section&gt;`</span> 內部，放置一個 <span style=color:#e6db74>`&lt;canvas&gt;`</span> 元素，並賦予其 <span style=color:#e6db74>`id=&#34;insightChart&#34;`</span>。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>4.</span>  <span style=font-weight:700>**無障礙設計 (Accessibility) - (關鍵要求)**</span>:
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>*</span> 為 <span style=color:#e6db74>`&lt;canvas&gt;`</span> 元素加上 <span style=color:#e6db74>`role=&#34;img&#34;`</span> 屬性，向輔助技術表明這是一個圖像。
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>*</span> 為 <span style=color:#e6db74>`&lt;canvas&gt;`</span> 元素加上一個描述性的 <span style=color:#e6db74>`aria-label`</span>，例如 <span style=color:#e6db74>`aria-label=&#34;心情趨勢與習慣完成關聯圖表&#34;`</span>。
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>*</span> 在 <span style=color:#e6db74>`&lt;canvas&gt;`</span> 標籤的**內部**，提供一段**備用文字 (Fallback Content)**，例如 <span style=color:#e6db74>`&lt;p&gt;您的瀏覽器不支援圖表顯示，此處為心情與習慣的關聯性數據圖表。&lt;/p&gt;`</span>。這對不支援 canvas 的瀏覽器或某些螢幕閱讀器至關重要。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>5.</span>  <span style=font-weight:700>**HTML 註解**</span>: 請使用清晰的 HTML 註解，標示出圖表容器區塊的開始與結束，以提高程式碼的可維護性。
+</span></span></code></pre></div><h3 id=step-3-詠唱圖表生成的超級咒語>Step 3: 詠唱「圖表生成」的超級咒語</h3><p>這是今天的重頭戲！我們將把昨天嘔心瀝血寫的規格書，當作一份完整的「施工命令單」，交給 AI 來執行。</p><h3 id=魔法詠唱vibe-coding-關聯性洞察圖表>【魔法詠唱：Vibe Coding 關聯性洞察圖表】</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown><span style=display:flex><span># 角色 (Role)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>你是一位頂尖的 JavaScript 開發者與數據視覺化架構師，是 Chart.js 的資深專家。你不僅擅長將複雜的規格轉化為美觀的圖表，更注重程式碼的**效能、可維護性與架構的優雅性**。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 目標 (Objective)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>請**嚴格依據**《圖表元件技術規格書》，在 <span style=color:#e6db74>`@frontend/script.js`</span> 中，實現一個**高效能、可複用、且與現有狀態管理機制深度整合的**「關聯性洞察圖表」渲染模組。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 上下文與關鍵資訊 (Context &amp; Key Information)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>*</span> **唯一真理來源**: <span style=color:#e6db74>`@docs/CHART_COMPONENT_SPEC.md`</span> (所有視覺、互動、數據格式的最終裁決依據)。
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>*</span> **目標修改檔案**: <span style=color:#e6db74>`@frontend/script.js`</span>。
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>*</span> **依賴 API 模組**: <span style=color:#e6db74>`@frontend/api.js`</span> (已提供 <span style=color:#e6db74>`fetchMoods`</span> 和 <span style=color:#e6db74>`fetchHabitLogs`</span> 函式)。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 關鍵架構決策 (Key Architectural Decisions)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>1.</span>  <span style=font-weight:700>**單一圖表實例 (Single Chart Instance)**</span>: 為避免重複渲染導致的效能問題，我們必須在全域範圍內維護一個**唯一的圖表實例變數** (例如 <span style=color:#e6db74>`let insightChartInstance = null;`</span>)。渲染函式在首次執行時建立圖表，後續僅更新其數據 (`chart.update()`)，而非銷毀重建。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>2.</span>  <span style=font-weight:700>**設計系統同步 (Theme Synchronization)**</span>: 圖表的所有顏色和字體，都**必須**從 CSS 變數中動態讀取，以確保視覺風格與 Style Guide 永遠保持一致。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>-----
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## 產出格式與要求 (Your Task &amp; Output Requirements)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=font-weight:700>**請直接修改 `@frontend/script.js`，追加新的程式碼，並對現有邏輯進行整合。**</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 1. **升級狀態中心 (`state`)**
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>*</span> 在全域 <span style=color:#e6db74>`state`</span> 物件中，新增用於儲存圖表相關數據的屬性：
+</span></span><span style=display:flex><span>    ```javascript
+</span></span><span style=display:flex><span>    const state = {
+</span></span><span style=display:flex><span>      // ... existing state
+</span></span><span style=display:flex><span>      moods: [],
+</span></span><span style=display:flex><span>      habitLogs: [],
+</span></span><span style=display:flex><span>      // We don&#39;t store the processed chart data in the state,
+</span></span><span style=display:flex><span>      // as it&#39;s derived data.
+</span></span><span style=display:flex><span>    };
+</span></span><span style=display:flex><span>    ```
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 2. **數據處理邏輯**
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>*</span> **整合 <span style=color:#e6db74>`loadInitialData`</span>**:
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>*</span> 在 <span style=color:#e6db74>`loadInitialData`</span> 函式中，使用 <span style=color:#e6db74>`Promise.all`</span> **同時**獲取 <span style=color:#e6db74>`habits`</span>, <span style=color:#e6db74>`moods`</span>, <span style=color:#e6db74>`habitLogs`</span> 的數據。
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>*</span> 成功獲取後，將**原始數據**存入 <span style=color:#e6db74>`state`</span> 中：`setState({ habits, moods, habitLogs, isLoading: false })`。
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>*</span> **建立 <span style=color:#e6db74>`processChartData`</span> 輔助函式**:
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>*</span> 建立一個**純函式 (Pure Function)** <span style=color:#e6db74>`processChartData(moods, habitLogs)`</span>。
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>*</span> 其唯一職責是接收原始數據陣列，並**嚴格按照**規格書中 <span style=color:#e6db74>`data`</span> Prop 的定義，回傳處理成圖表所需的格式：`[{ date, moodRating, completedHabits: [...] }, ...]`。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 3. **圖表渲染函式 (`renderInsightChart`)**
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>*</span> 在檔案頂部，宣告 <span style=color:#e6db74>`let insightChartInstance = null;`</span>。
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>*</span> 建立 <span style=color:#e6db74>`renderInsightChart(chartData)`</span> 函式，其邏輯如下：
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>1.</span>  <span style=font-weight:700>**獲取畫布**</span>: 取得 <span style=color:#e6db74>`&lt;canvas id=&#34;insightChart&#34;&gt;`</span> 元素。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>2.</span>  <span style=font-weight:700>**處理邊界情況**</span>: 嚴格遵循規格書，檢查傳入的 <span style=color:#e6db74>`chartData`</span> 長度。如果數據不足，需**銷毀**現有圖表實例 (`insightChartInstance?.destroy()`)，並在容器中顯示提示訊息，然後提前返回。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>3.</span>  <span style=font-weight:700>**更新或建立**</span>:
+</span></span><span style=display:flex><span>          <span style=color:#66d9ef>*</span> 如果 <span style=color:#e6db74>`insightChartInstance`</span> <span style=font-weight:700>**已存在**</span>，則只更新其數據 (`insightChartInstance.data = ...`) 和選項，然後呼叫 <span style=color:#e6db74>`insightChartInstance.update()`</span>。
+</span></span><span style=display:flex><span>          <span style=color:#66d9ef>*</span> 如果 <span style=color:#e6db74>`insightChartInstance`</span> <span style=font-weight:700>**不存在**</span>，則使用 <span style=color:#e6db74>`new Chart(...)`</span> 建立一個新的圖表實例，並將其賦值給 <span style=color:#e6db74>`insightChartInstance`</span>。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>4.</span>  <span style=font-weight:700>**Chart.js Config 設定**</span>:
+</span></span><span style=display:flex><span>          <span style=color:#66d9ef>*</span> **嚴格遵循**規格書中「核心功能」與「互動行為」的所有要求來設定 <span style=color:#e6db74>`config`</span> 物件（混合圖表類型、座標軸、Tooltip 回呼等）。
+</span></span><span style=display:flex><span>          <span style=color:#66d9ef>*</span> **顏色與字體**: 所有的顏色（線條、背景、標記點）和字體設定，都必須透過輔助函式從 CSS 變數動態獲取，**禁止硬編碼**。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 4. **整合主渲染流程 (`render`)**
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>*</span> 修改主 <span style=color:#e6db74>`render`</span> 函式：
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>*</span> 在 <span style=color:#e6db74>`render`</span> 函式的邏輯中，先從 <span style=color:#e6db74>`state`</span> 讀取原始數據：`const { moods, habitLogs } = state;`。
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>*</span> 呼叫 <span style=color:#e6db74>`const processedData = processChartData(moods, habitLogs);`</span> 來得到處理後的數據。
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>*</span> 最後呼叫 <span style=color:#e6db74>`renderInsightChart(processedData);`</span>，將渲染圖表的任務交給專門的函式。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 5. **(可選) 建立 CSS 變數讀取輔助函式**
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>*</span> 建議在檔案中加入一個小巧的輔助函式，用於在 JavaScript 中讀取 <span style=color:#e6db74>`:root`</span> 中的 CSS 變數值。
+</span></span><span style=display:flex><span>    ```javascript
+</span></span><span style=display:flex><span>    const getCssVariable = (varName) =&gt; getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
+</span></span><span style=display:flex><span>    ```
+</span></span></code></pre></div><h2 id=part-3成果驗收數據在眼前跳舞>Part 3：成果驗收：數據在眼前跳舞！</h2><p>是時候驗收了！再次確保所有伺服器都在運行，然後刷新你的瀏覽器。</p><p>這一次，在我們的習慣列表上方，你會看到一幅美麗的畫卷：</p><p>一條藍色的線條，優雅地描繪出你過去一段時間的心情起伏。而在某些日期上，點綴著珊瑚色的圓點，標示著你完成習慣的「高光時刻」。把滑鼠移上去，一個詳細的 Tooltip 會告訴你那天的所有故事。</p><p>我們成功了！ 我們將冰冷的數據，轉化為了富有情感的、能啟發洞察的視覺化故事。這正是我們專案的核心價值所在！</p><h2 id=part-4提交我們兌現的承諾>Part 4：提交我們兌現的承諾</h2><ul><li><strong>Commit 訊息</strong>: <code>feat(frontend): implement insight chart based on spec</code></li><li><strong>Commit & Push</strong>！</li></ul><h2 id=結語從可執行到有價值>結語：從「可執行」到「有價值」</h2><p>再次恭喜！今天，我們的 App 真正地從一個「好用的工具」，進化成了一個**「有價值的夥伴」**。它不再只是一個紀錄器，它現在是一個能夠幫助使用者反思、發現自我的數據分析師。</p><p>我們也再次證明了「文件驅動開發」的巨大威力。正因為有了昨天那份滴水不漏的規格書，我們今天才能如此從容、精準地 Vibe Coding 出如此複雜的功能。</p><p>我們的 MVP 核心功能已全部完成。但還有最後一道、也是最重要的一道門沒有建立。明天，我們將再次回歸「文件驅動」，為我們的專案設計並實現專業、安全的使用者認證流程！</p></div><div class="flex flex-row justify-center py-8 sm:py-12"><div class="w-full max-w-6xl min-w-0"><div class="flex justify-center"><main class="w-full max-w-4xl min-w-0"><article class="prose max-w-none"><nav class="flex text-sm mb-6" aria-label=Breadcrumb><ol class="inline-flex items-center space-x-1 md:space-x-3"><li class="inline-flex items-center"><a href=/ChiYu-Blob/ class="inline-flex items-center hover:text-blue-600 dark:hover:text-blue-400" style=color:var(--text-secondary)><svg class="w-4 h-4 mr-2" fill="currentcolor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414.0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/></svg>
+首頁</a></li><li><div class="flex items-center"><svg class="w-4 h-4 mx-1" style="color:var(--text-secondary);opacity:.5" fill="currentcolor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414.0z" clip-rule="evenodd"/></svg>
+<a href=/ChiYu-Blob/posts/ class="ml-1 hover:text-blue-600 dark:hover:text-blue-400 capitalize" style=color:var(--text-secondary)>全部文章</a></div></li><li aria-current=page><div class="flex items-center"><svg class="w-4 h-4 mx-1" style="color:var(--text-secondary);opacity:.5" fill="currentcolor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414.0z" clip-rule="evenodd"/></svg>
+<span class="ml-1 font-medium truncate max-w-[150px] sm:max-w-[300px]" style=color:var(--text-color)>Day 28: 【前端 #8】兌現承諾：根據規格書 Vibe Coding 關聯性洞察圖表</span></div></li></ol></nav><header class=mb-8><h1 class="text-2xl sm:text-4xl font-bold tracking-tight mb-4 !mt-0">Day 28: 【前端 #8】兌現承諾：根據規格書 Vibe Coding 關聯性洞察圖表</h1><p class=text-base style=color:var(--text-secondary)>發布於 2025年9月16日
+<span class=ml-2 style=color:var(--text-secondary);opacity:.8;font-size:.9em>(更新於 2025年9月16日)
+</span>&#183; <span class=mx-1>約 3 分鐘閱讀</span>
+&#183;
+<span class="inline-flex flex-wrap gap-2 items-center" data-pagefind-ignore><a href=/ChiYu-Blob/tags/2025ithomeironman/ class=tag-pill>2025iThomeIronman</a>
+<a href=/ChiYu-Blob/tags/gemini/ class=tag-pill>Gemini</a>
+<a href=/ChiYu-Blob/tags/frontend/ class=tag-pill>Frontend</a>
+<a href=/ChiYu-Blob/tags/chart.js/ class=tag-pill>Chart.js</a>
+<a href=/ChiYu-Blob/tags/data-visualization/ class=tag-pill>Data Visualization</a>
+<a href=/ChiYu-Blob/tags/javascript/ class=tag-pill>JavaScript</a></span></p></header><div data-pagefind-meta="title:Day 28: 【前端 #8】兌現承諾：根據規格書 Vibe Coding 關聯性洞察圖表" style=display:none></div><div data-pagefind-ignore><p>安安，我是 ChiYu！</p><p>昨天，我們再次實踐了「文件驅動開發」的核心精神。我們沒有直接衝進複雜的圖表程式碼中，而是先退一步，將一個模糊的「想法」，轉化為了一份清晰、具體、可執行的「技術規格」。</p><p>我們手上現在握著一份像素級精密的「零件設計圖」。有了它，我們接下來的開發工作將會變得無比順暢，因為所有關於「如何設計」的燒腦問題，都已經被解決了。我們的任務只剩下一個——專注於「如何實現」。</p><p>今天，我們將正式拿起工具，嚴格依據昨天的這份《圖表元件規格書》，指揮 AI 和 Chart.js，將這幅數據的畫布，變成真實、可互動的前端程式碼！</p><h2 id=part-1前端心法為什麼專業團隊痴迷於規格書>Part 1：前端心法：為什麼專業團隊痴迷於「規格書」？</h2><p>在開始之前，讓我們再次鞏固一下心法。為什麼像我們昨天產出的那份規格書，在專業團隊中如此重要？</p><ul><li><strong>消除模糊地帶</strong>：規格書用技術語言，將所有「可能」、「大概」、「我覺得」都變成了「必須」。前端工程師不再需要去猜測產品經理的心思，所有人都對著同一份文件工作。</li><li><strong>實現並行開發</strong>：有了這份規格書，前端和後端甚至可以同時開工！後端工程師知道要提供什麼格式的 API，前端工程師知道要接收什麼格式的數據，雙方可以獨立開發，最後完美對接。</li><li><strong>Vibe Coding 的「護欄」</strong>：這對我們至關重要。當我們指揮 AI 時，這份規格書就是最強大的「護欄」。我們可以非常精準地告訴 AI：「嘿，嚴格按照這份文件的 <code>Props</code> 定義來接收數據，嚴格按照這份文件的『互動行為』來寫 JS 邏輯。」這能確保 AI 的強大創造力，永遠在我們設定好的軌道上馳騁。</li></ul><h2 id=part-2vibe-coding-實戰將藍圖轉化為現實>Part 2：Vibe Coding 實戰：將藍圖轉化為現實</h2><p>好了，理論不再贅述，讓我們進入 gemini chat 模式，開始我們今天精彩的 Vibe Coding 之旅！</p><h3 id=step-1-安裝我們的畫筆--chartjs>Step 1: 安裝我們的「畫筆」- Chart.js</h3><p>首先，我們要為專案引入一個強大且易用的圖表函式庫。</p><h3 id=魔法詠唱引入-chartjs>【魔法詠唱：引入 Chart.js】</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown><span style=display:flex><span># 角色
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>你是一位熟悉前端生態系的前端工程師。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=font-style:italic>**</span># 任務**
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>請修改 <span style=color:#e6db74>`@frontend/index.html`</span>，為專案引入 Chart.js 函式庫。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=font-style:italic>**</span># 產出要求**
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>請在 <span style=color:#e6db74>`&lt;head&gt;`</span> 區塊中，加入 Chart.js 的 CDN 連結。請使用最新穩定版本。
+</span></span></code></pre></div><p>AI 會為我們找到 Chart.js 的 CDN，並將 <code>&lt;script></code> 標籤加入到我們的 HTML 中。</p><h3 id=step-2-為我們的畫布準備空間>Step 2: 為我們的「畫布」準備空間</h3><p>我們需要在 HTML 中，為圖表預留一個位置。</p><h3 id=魔法詠唱建立圖表容器>【魔法詠唱：建立圖表容器】</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown><span style=display:flex><span># 角色 (Role)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>你是一位資深前端工程師，精通語意化 HTML、**無障礙網頁設計 (Accessibility)**，並擅長為複雜的 JavaScript 元件搭建穩固的 DOM 結構。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 目標 (Objective)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>請為我們的「關聯性洞察圖表」元件，在主 HTML 檔案中，**搭建其渲染的掛載點 (rendering mount point)**。這個結構必須同時考慮到 Chart.js 的渲染需求與無障礙設計的最佳實踐。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 上下文與關鍵資訊 (Context &amp; Key Information)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>*</span> **目標修改檔案**: <span style=color:#e6db74>`@frontend/index.html`</span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>*</span> **元件規格書**: <span style=color:#e6db74>`@docs/CHART_COMPONENT_SPEC.md`</span> (此操作應遵循規格書的規劃)。
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>*</span> **欲掛載元件**: Chart.js 驅動的圖表。
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>*</span> **預期位置**: 在 <span style=color:#e6db74>`&lt;main class=&#34;main-content&#34;&gt;`</span> 區域中，建議放置於「心情追蹤器」 (`mood-tracker-container`) 之後。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 產出格式與要求 (Your Task &amp; Output Requirements)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>1.</span>  <span style=font-weight:700>**直接修改**</span>: 請直接重寫 <span style=color:#e6db74>`@frontend/index.html`</span> 的內容，將新區塊加入。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>2.</span>  <span style=font-weight:700>**語意化結構**</span>:
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>*</span> 建立一個語義化的 <span style=color:#e6db74>`&lt;section&gt;`</span> 元素作為圖表容器，並賦予其 <span style=color:#e6db74>`class=&#34;chart-container&#34;`</span>。
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>*</span> 在容器內部，可以放置一個 <span style=color:#e6db74>`&lt;h2&gt;`</span> 標題，例如「關聯性洞察」。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>3.</span>  <span style=font-weight:700>**Canvas 元素**</span>:
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>*</span> 在 <span style=color:#e6db74>`&lt;section&gt;`</span> 內部，放置一個 <span style=color:#e6db74>`&lt;canvas&gt;`</span> 元素，並賦予其 <span style=color:#e6db74>`id=&#34;insightChart&#34;`</span>。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>4.</span>  <span style=font-weight:700>**無障礙設計 (Accessibility) - (關鍵要求)**</span>:
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>*</span> 為 <span style=color:#e6db74>`&lt;canvas&gt;`</span> 元素加上 <span style=color:#e6db74>`role=&#34;img&#34;`</span> 屬性，向輔助技術表明這是一個圖像。
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>*</span> 為 <span style=color:#e6db74>`&lt;canvas&gt;`</span> 元素加上一個描述性的 <span style=color:#e6db74>`aria-label`</span>，例如 <span style=color:#e6db74>`aria-label=&#34;心情趨勢與習慣完成關聯圖表&#34;`</span>。
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>*</span> 在 <span style=color:#e6db74>`&lt;canvas&gt;`</span> 標籤的**內部**，提供一段**備用文字 (Fallback Content)**，例如 <span style=color:#e6db74>`&lt;p&gt;您的瀏覽器不支援圖表顯示，此處為心情與習慣的關聯性數據圖表。&lt;/p&gt;`</span>。這對不支援 canvas 的瀏覽器或某些螢幕閱讀器至關重要。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>5.</span>  <span style=font-weight:700>**HTML 註解**</span>: 請使用清晰的 HTML 註解，標示出圖表容器區塊的開始與結束，以提高程式碼的可維護性。
+</span></span></code></pre></div><h3 id=step-3-詠唱圖表生成的超級咒語>Step 3: 詠唱「圖表生成」的超級咒語</h3><p>這是今天的重頭戲！我們將把昨天嘔心瀝血寫的規格書，當作一份完整的「施工命令單」，交給 AI 來執行。</p><h3 id=魔法詠唱vibe-coding-關聯性洞察圖表>【魔法詠唱：Vibe Coding 關聯性洞察圖表】</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown><span style=display:flex><span># 角色 (Role)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>你是一位頂尖的 JavaScript 開發者與數據視覺化架構師，是 Chart.js 的資深專家。你不僅擅長將複雜的規格轉化為美觀的圖表，更注重程式碼的**效能、可維護性與架構的優雅性**。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 目標 (Objective)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>請**嚴格依據**《圖表元件技術規格書》，在 <span style=color:#e6db74>`@frontend/script.js`</span> 中，實現一個**高效能、可複用、且與現有狀態管理機制深度整合的**「關聯性洞察圖表」渲染模組。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 上下文與關鍵資訊 (Context &amp; Key Information)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>*</span> **唯一真理來源**: <span style=color:#e6db74>`@docs/CHART_COMPONENT_SPEC.md`</span> (所有視覺、互動、數據格式的最終裁決依據)。
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>*</span> **目標修改檔案**: <span style=color:#e6db74>`@frontend/script.js`</span>。
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>*</span> **依賴 API 模組**: <span style=color:#e6db74>`@frontend/api.js`</span> (已提供 <span style=color:#e6db74>`fetchMoods`</span> 和 <span style=color:#e6db74>`fetchHabitLogs`</span> 函式)。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 關鍵架構決策 (Key Architectural Decisions)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>1.</span>  <span style=font-weight:700>**單一圖表實例 (Single Chart Instance)**</span>: 為避免重複渲染導致的效能問題，我們必須在全域範圍內維護一個**唯一的圖表實例變數** (例如 <span style=color:#e6db74>`let insightChartInstance = null;`</span>)。渲染函式在首次執行時建立圖表，後續僅更新其數據 (`chart.update()`)，而非銷毀重建。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>2.</span>  <span style=font-weight:700>**設計系統同步 (Theme Synchronization)**</span>: 圖表的所有顏色和字體，都**必須**從 CSS 變數中動態讀取，以確保視覺風格與 Style Guide 永遠保持一致。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>-----
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## 產出格式與要求 (Your Task &amp; Output Requirements)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=font-weight:700>**請直接修改 `@frontend/script.js`，追加新的程式碼，並對現有邏輯進行整合。**</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 1. **升級狀態中心 (`state`)**
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>*</span> 在全域 <span style=color:#e6db74>`state`</span> 物件中，新增用於儲存圖表相關數據的屬性：
+</span></span><span style=display:flex><span>    ```javascript
+</span></span><span style=display:flex><span>    const state = {
+</span></span><span style=display:flex><span>      // ... existing state
+</span></span><span style=display:flex><span>      moods: [],
+</span></span><span style=display:flex><span>      habitLogs: [],
+</span></span><span style=display:flex><span>      // We don&#39;t store the processed chart data in the state,
+</span></span><span style=display:flex><span>      // as it&#39;s derived data.
+</span></span><span style=display:flex><span>    };
+</span></span><span style=display:flex><span>    ```
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 2. **數據處理邏輯**
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>*</span> **整合 <span style=color:#e6db74>`loadInitialData`</span>**:
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>*</span> 在 <span style=color:#e6db74>`loadInitialData`</span> 函式中，使用 <span style=color:#e6db74>`Promise.all`</span> **同時**獲取 <span style=color:#e6db74>`habits`</span>, <span style=color:#e6db74>`moods`</span>, <span style=color:#e6db74>`habitLogs`</span> 的數據。
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>*</span> 成功獲取後，將**原始數據**存入 <span style=color:#e6db74>`state`</span> 中：`setState({ habits, moods, habitLogs, isLoading: false })`。
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>*</span> **建立 <span style=color:#e6db74>`processChartData`</span> 輔助函式**:
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>*</span> 建立一個**純函式 (Pure Function)** <span style=color:#e6db74>`processChartData(moods, habitLogs)`</span>。
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>*</span> 其唯一職責是接收原始數據陣列，並**嚴格按照**規格書中 <span style=color:#e6db74>`data`</span> Prop 的定義，回傳處理成圖表所需的格式：`[{ date, moodRating, completedHabits: [...] }, ...]`。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 3. **圖表渲染函式 (`renderInsightChart`)**
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>*</span> 在檔案頂部，宣告 <span style=color:#e6db74>`let insightChartInstance = null;`</span>。
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>*</span> 建立 <span style=color:#e6db74>`renderInsightChart(chartData)`</span> 函式，其邏輯如下：
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>1.</span>  <span style=font-weight:700>**獲取畫布**</span>: 取得 <span style=color:#e6db74>`&lt;canvas id=&#34;insightChart&#34;&gt;`</span> 元素。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>2.</span>  <span style=font-weight:700>**處理邊界情況**</span>: 嚴格遵循規格書，檢查傳入的 <span style=color:#e6db74>`chartData`</span> 長度。如果數據不足，需**銷毀**現有圖表實例 (`insightChartInstance?.destroy()`)，並在容器中顯示提示訊息，然後提前返回。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>3.</span>  <span style=font-weight:700>**更新或建立**</span>:
+</span></span><span style=display:flex><span>          <span style=color:#66d9ef>*</span> 如果 <span style=color:#e6db74>`insightChartInstance`</span> <span style=font-weight:700>**已存在**</span>，則只更新其數據 (`insightChartInstance.data = ...`) 和選項，然後呼叫 <span style=color:#e6db74>`insightChartInstance.update()`</span>。
+</span></span><span style=display:flex><span>          <span style=color:#66d9ef>*</span> 如果 <span style=color:#e6db74>`insightChartInstance`</span> <span style=font-weight:700>**不存在**</span>，則使用 <span style=color:#e6db74>`new Chart(...)`</span> 建立一個新的圖表實例，並將其賦值給 <span style=color:#e6db74>`insightChartInstance`</span>。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>4.</span>  <span style=font-weight:700>**Chart.js Config 設定**</span>:
+</span></span><span style=display:flex><span>          <span style=color:#66d9ef>*</span> **嚴格遵循**規格書中「核心功能」與「互動行為」的所有要求來設定 <span style=color:#e6db74>`config`</span> 物件（混合圖表類型、座標軸、Tooltip 回呼等）。
+</span></span><span style=display:flex><span>          <span style=color:#66d9ef>*</span> **顏色與字體**: 所有的顏色（線條、背景、標記點）和字體設定，都必須透過輔助函式從 CSS 變數動態獲取，**禁止硬編碼**。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 4. **整合主渲染流程 (`render`)**
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>*</span> 修改主 <span style=color:#e6db74>`render`</span> 函式：
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>*</span> 在 <span style=color:#e6db74>`render`</span> 函式的邏輯中，先從 <span style=color:#e6db74>`state`</span> 讀取原始數據：`const { moods, habitLogs } = state;`。
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>*</span> 呼叫 <span style=color:#e6db74>`const processedData = processChartData(moods, habitLogs);`</span> 來得到處理後的數據。
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>*</span> 最後呼叫 <span style=color:#e6db74>`renderInsightChart(processedData);`</span>，將渲染圖表的任務交給專門的函式。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 5. **(可選) 建立 CSS 變數讀取輔助函式**
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>*</span> 建議在檔案中加入一個小巧的輔助函式，用於在 JavaScript 中讀取 <span style=color:#e6db74>`:root`</span> 中的 CSS 變數值。
+</span></span><span style=display:flex><span>    ```javascript
+</span></span><span style=display:flex><span>    const getCssVariable = (varName) =&gt; getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
+</span></span><span style=display:flex><span>    ```
+</span></span></code></pre></div><h2 id=part-3成果驗收數據在眼前跳舞>Part 3：成果驗收：數據在眼前跳舞！</h2><p>是時候驗收了！再次確保所有伺服器都在運行，然後刷新你的瀏覽器。</p><p>這一次，在我們的習慣列表上方，你會看到一幅美麗的畫卷：</p><p>一條藍色的線條，優雅地描繪出你過去一段時間的心情起伏。而在某些日期上，點綴著珊瑚色的圓點，標示著你完成習慣的「高光時刻」。把滑鼠移上去，一個詳細的 Tooltip 會告訴你那天的所有故事。</p><p>我們成功了！ 我們將冰冷的數據，轉化為了富有情感的、能啟發洞察的視覺化故事。這正是我們專案的核心價值所在！</p><h2 id=part-4提交我們兌現的承諾>Part 4：提交我們兌現的承諾</h2><ul><li><strong>Commit 訊息</strong>: <code>feat(frontend): implement insight chart based on spec</code></li><li><strong>Commit & Push</strong>！</li></ul><h2 id=結語從可執行到有價值>結語：從「可執行」到「有價值」</h2><p>再次恭喜！今天，我們的 App 真正地從一個「好用的工具」，進化成了一個**「有價值的夥伴」**。它不再只是一個紀錄器，它現在是一個能夠幫助使用者反思、發現自我的數據分析師。</p><p>我們也再次證明了「文件驅動開發」的巨大威力。正因為有了昨天那份滴水不漏的規格書，我們今天才能如此從容、精準地 Vibe Coding 出如此複雜的功能。</p><p>我們的 MVP 核心功能已全部完成。但還有最後一道、也是最重要的一道門沒有建立。明天，我們將再次回歸「文件驅動」，為我們的專案設計並實現專業、安全的使用者認證流程！</p></div></article><div class="not-prose my-8 p-6 rounded-lg border transition-colors" style=background-color:var(--code-bg);border-color:var(--border-color)><div class="flex flex-col sm:flex-row sm:items-center justify-between mb-4 pb-4 border-b" style=border-color:var(--border-color)><div><span class="text-xs font-semibold uppercase tracking-wider" style=color:var(--text-secondary)>Series</span><h3 class="text-lg font-bold mt-1"><a href=/ChiYu-Blob/series/2025ithomeironman/ class=hover:underline style=color:var(--link-color)>2025iThomeIronman</a></h3></div><div class="mt-2 sm:mt-0 text-sm font-medium px-3 py-1 rounded-full border" style=background-color:var(--bg-color);color:var(--text-secondary);border-color:var(--border-color)>Part 28 of 32</div></div><div class="series-list-container relative"><ol class="list-none space-y-1 relative" id=series-list-2025ithomeironman><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday1/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">01.</span>
+<span>Day 1: 【啟程】嘿，AI！我們來做個網站，但這次，我們約法三章</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday2/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">02.</span>
+<span>Day 2: 【心法篇】開發者的航海圖：什麼是文件驅動開發 (DDD)？</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday3/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">03.</span>
+<span>Day 3: 【工具篇 #1】萬丈高樓平地起：建置本地開發環境</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday4/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">04.</span>
+<span>Day 4: 【工具篇 #2】程式碼的時光機：Git 與 GitHub 版本控制</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday5/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">05.</span>
+<span>Day 5: 【工具篇 #3】終端機裡的魔法：什麼是 Vibe Coding 與 Gemini CLI？</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday6/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">06.</span>
+<span>Day 6: 【文件 #1】專案的靈魂：用 Gemini CLI 生成「專案章程」</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday7/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">07.</span>
+<span>Day 7: 【文件 #2】使用者的旅程：用 Gemini CLI 描繪「使用者故事」</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday8/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">08.</span>
+<span>Day 8: 【文件 #3】系統的心臟：用 Gemini CLI 設計「軟體架構文件」</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday9/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">09.</span>
+<span>Day 9: 【文件 #4】數據的家：用 Gemini 規劃「資料庫綱要」</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday10/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">10.</span>
+<span>Day 10: 【文件 #5】溝通的契約：用 Gemini 撰寫「Web API 規格書」</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday11/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">11.</span>
+<span>Day 11: 【心法 #2】透過AI幫我們生成Prompt</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday12/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">12.</span>
+<span>Day 12: 【後端 #1】起手式：AI 代理人 生成模組化的 Flask 專案</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday13/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">13.</span>
+<span>Day 13: 【後端 #2】AI 建築師：依藍圖自動建構 CRUD API</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday14/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">14.</span>
+<span>Day 14: 【DevOps #1】AI 品管員：設定 GitHub Actions 自動化程式碼檢查</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday15/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">15.</span>
+<span>Day 15: 【後端 #3】API 測試：用 Gemini CLI 輔助撰寫 Pytest</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday16/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">16.</span>
+<span>Day 16: 【整合篇】後端竣工！回顧與展望</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday17/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">17.</span>
+<span>Day 17: 【前端 #0】前端世界的基石： HTML, CSS 與 JavaScript</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday18/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">18.</span>
+<span>Day 18: 【文件 #6】網站的風格指南：用 Gemini 定義顏色與字體</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday19/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">19.</span>
+<span>Day 19: 【文件 #7】頁面的骨架：用 Gemini 規劃主佈局與元件拆分</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday20/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">20.</span>
+<span>Day 20: 【前端 #1】Gemini Canvas 生成UI (還有新的AI建議功能)</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday21/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">21.</span>
+<span>Day 21: 【前端 #2】從原型到架構：拆解並整合 AI 生成的 UI 程式碼</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday22/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">22.</span>
+<span>Day 22: 【前端 #3】AI 一鍵生成完整 App 靜態 UI</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday23/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">23.</span>
+<span>Day 23: 【前端 #4】非同步的藝術：深入 Fetch API 與 Promise</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday24/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">24.</span>
+<span>Day 24: 【前端 #5】狀態管理的哲學：讓 UI 成為數據的鏡子</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday25/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">25.</span>
+<span>Day 25: 【前端 #6】核心生命週期：一天搞定習慣的「增刪改查」與「打卡」</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday26/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">26.</span>
+<span>Day 26: 【前端 #7】用戶體驗的最後一哩路：優雅地處理載入與錯誤</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday27/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">27.</span>
+<span>Day 27: 【文件 #8】數據的畫布：用 Gemini 設計「圖表元件規格書」</span></a></li><li class="series-item p-2 rounded-md transition-colors current-series-item" style="background-color:var(--bg-color);border:1px solid var(--border-color)"><a href=javascript:void(0); class="flex items-start cursor-default" style=color:var(--text-color)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">28.</span>
+<span class=font-bold>Day 28: 【前端 #8】兌現承諾：根據規格書 Vibe Coding 關聯性洞察圖表</span>
+<span class="ml-2 text-xs px-2 py-0.5 rounded-full bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">Current</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday29/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">29.</span>
+<span>Day 29: 【文件 #9】專案的守衛：用 Gemini 規劃「前端認證流程」</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday30/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">30.</span>
+<span>Day 30: 【前端 #9】建立大門與鑰匙：根據流程圖實現前端使用者認證</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday31/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">31.</span>
+<span>Day 31: 【優化篇】代碼的整形外科：JavaScript 模組化與代碼重構</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday32/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">32.</span>
+<span>【完賽感言】左手藍圖，右手魔法：一趟旅程的結束與反思</span></a></li></ol><button onclick=toggleSeriesList(this) class="w-full mt-4 text-xs font-medium text-center py-2 border-t hover:bg-opacity-50 transition-colors" style=color:var(--text-secondary);border-color:var(--border-color)>
+Show all 32 posts</button><style>#series-list-2025ithomeironman{max-height:300px;overflow-y:auto;padding-right:5px}#series-list-2025ithomeironman::-webkit-scrollbar{width:4px}#series-list-2025ithomeironman::-webkit-scrollbar-track{background:0 0}#series-list-2025ithomeironman::-webkit-scrollbar-thumb{background-color:var(--border-color);border-radius:4px}</style></div></div><script>function toggleSeriesList(e){const t=e.previousElementSibling;t.style.maxHeight==="none"?(t.style.maxHeight="300px",e.innerText="Show all 32 posts"):(t.style.maxHeight="none",e.innerText="Collapse list")}document.addEventListener("DOMContentLoaded",()=>{const e=document.querySelector(".current-series-item");e&&e.scrollIntoView({behavior:"smooth",block:"nearest"})})</script><nav class="flex justify-between mt-16 pt-8 border-t not-prose" style=border-color:var(--border-color)><div><a href=/ChiYu-Blob/posts/2025ithomeironmanday27/ class="block p-4 rounded-lg transition-colors" style=color:var(--text-secondary)><span class=text-sm>上一篇</span>
+<span class="block font-semibold mt-1" style=color:var(--text-color)>Day 27: 【文件 #8】數據的畫布：用 Gemini 設計「圖表元件規格書」 &larr;</span></a></div><div class=text-right><a href=/ChiYu-Blob/posts/2025ithomeironmanday29/ class="block p-4 rounded-lg transition-colors" style=color:var(--text-secondary)><span class=text-sm>下一篇</span>
+<span class="block font-semibold mt-1" style=color:var(--text-color)>&rarr; Day 29: 【文件 #9】專案的守衛：用 Gemini 規劃「前端認證流程」</span></a></div></nav><div class="mt-16 pt-8 border-t not-prose" style=border-color:var(--border-color)><h3 class="text-xl font-bold mb-6">相關文章</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-4"><a href=/ChiYu-Blob/posts/2025ithomeironmanday27/ class="block p-4 rounded-lg transition-colors" style="border:1px solid var(--border-color)"><span class="font-semibold block" style=color:var(--text-color)>Day 27: 【文件 #8】數據的畫布：用 Gemini 設計「圖表元件規格書」</span><p class="text-sm mt-1" style=color:var(--text-secondary)>安安，我是 ChiYu！
+昨天，我們的 App 學會了「同理心」，能夠優雅地處理載入與錯誤，大幅提升了使用者體驗。至此，我們 App 的基礎 …</p></a><a href=/ChiYu-Blob/posts/2025ithomeironmanday25/ class="block p-4 rounded-lg transition-colors" style="border:1px solid var(--border-color)"><span class="font-semibold block" style=color:var(--text-color)>Day 25: 【前端 #6】核心生命週期：一天搞定習慣的「增刪改查」與「打卡」</span><p class="text-sm mt-1" style=color:var(--text-secondary)>安安，我是 ChiYu！
+昨天，我們的 App 經歷了一次質的飛躍。我們為它植入了「靈魂」——一個中央的狀態 (state) …</p></a><a href=/ChiYu-Blob/posts/2025ithomeironmanday24/ class="block p-4 rounded-lg transition-colors" style="border:1px solid var(--border-color)"><span class="font-semibold block" style=color:var(--text-color)>Day 24: 【前端 #5】狀態管理的哲學：讓 UI 成為數據的鏡子</span><p class="text-sm mt-1" style=color:var(--text-secondary)>安安，我是 ChiYu！
+昨天，我們的 App 經歷了一次歷史性的飛躍。我們為它安裝了「神經系統」，成功地讓前端的「身體」與後端的「大腦」進 …</p></a><a href=/ChiYu-Blob/posts/2025ithomeironmanday23/ class="block p-4 rounded-lg transition-colors" style="border:1px solid var(--border-color)"><span class="font-semibold block" style=color:var(--text-color)>Day 23: 【前端 #4】非同步的藝術：深入 Fetch API 與 Promise</span><p class="text-sm mt-1" style=color:var(--text-secondary)>安安，我是 ChiYu！
+昨天，我們扮演了一位「創世神」，指揮 AI 在一天之內，為我們建構出了 App 完整、精美的靜態 UI。我們現在手 …</p></a><a href=/ChiYu-Blob/posts/2025ithomeironmanday30/ class="block p-4 rounded-lg transition-colors" style="border:1px solid var(--border-color)"><span class="font-semibold block" style=color:var(--text-color)>Day 30: 【前端 #9】建立大門與鑰匙：根據流程圖實現前端使用者認證</span><p class="text-sm mt-1" style=color:var(--text-secondary)>說在前頭！！！ 有些部分多花費了些時間在講，所以雖然今天已經滿30天了， 但我還沒有正式完成這次鐵人賽系列文！！！ 我後面還是會繼續更新到正 …</p></a></div></div><div class="share-buttons not-prose mt-8 border-t pt-8" style=border-color:var(--border-color)><h3 class="text-base font-semibold mb-4 opacity-70">分享此文章：</h3><div class="flex gap-4"><a href="https://www.facebook.com/sharer/sharer.php?u=%2fChiYu-Blob%2fposts%2f2025ithomeironmanday28%2f" target=_blank rel="noopener noreferrer" class="share-btn text-blue-600 hover:opacity-80" title="分享到 Facebook"><svg class="w-6 h-6" fill="currentcolor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312.0 2.686.235 2.686.235v2.953H15.83c-1.491.0-1.962.925-1.962 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+</a><a href="https://twitter.com/intent/tweet?url=%2fChiYu-Blob%2fposts%2f2025ithomeironmanday28%2f&text=Day%2028%3a%20%e3%80%90%e5%89%8d%e7%ab%af%20%238%e3%80%91%e5%85%8c%e7%8f%be%e6%89%bf%e8%ab%be%ef%bc%9a%e6%a0%b9%e6%93%9a%e8%a6%8f%e6%a0%bc%e6%9b%b8%20Vibe%20Coding%20%e9%97%9c%e8%81%af%e6%80%a7%e6%b4%9e%e5%af%9f%e5%9c%96%e8%a1%a8" target=_blank rel="noopener noreferrer" class="share-btn text-gray-800 dark:text-gray-200 hover:opacity-80" title="分享到 X"><svg class="w-6 h-6" fill="currentcolor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+</a><a href="https://www.linkedin.com/shareArticle?mini=true&url=%2fChiYu-Blob%2fposts%2f2025ithomeironmanday28%2f&title=Day%2028%3a%20%e3%80%90%e5%89%8d%e7%ab%af%20%238%e3%80%91%e5%85%8c%e7%8f%be%e6%89%bf%e8%ab%be%ef%bc%9a%e6%a0%b9%e6%93%9a%e8%a6%8f%e6%a0%bc%e6%9b%b8%20Vibe%20Coding%20%e9%97%9c%e8%81%af%e6%80%a7%e6%b4%9e%e5%af%9f%e5%9c%96%e8%a1%a8" target=_blank rel="noopener noreferrer" class="share-btn text-blue-700 hover:opacity-80" title="分享到 LinkedIn"><svg class="w-6 h-6" fill="currentcolor" viewBox="0 0 24 24"><path d="M19 0H5C2.239.0.0 2.239.0 5v14c0 2.761 2.239 5 5 5h14c2.762.0 5-2.239 5-5V5c0-2.761-2.238-5-5-5zM8 19H5V8h3v11zM6.5 6.732c-.966.0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zM20 19h-3v-5.604c0-3.368-4-3.113-4 0V19h-3V8h3v1.765c1.396-2.586 7-2.777 7 2.476V19z"/></svg>
+</a><a href="https://social-plugins.line.me/lineit/share?url=%2fChiYu-Blob%2fposts%2f2025ithomeironmanday28%2f" target=_blank rel="noopener noreferrer" class="share-btn text-green-500 hover:opacity-80" title="分享到 Line"><svg class="w-6 h-6" fill="currentcolor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 5.85 2 10.53c0 2.68 1.49 5.08 3.81 6.66-.17.6-.62 2.18-.73 2.61-.06.25-.03.5.21.53.22.03.48-.12.67-.23 2.8-1.63 3.05-1.77 3.63-1.87.8.11 1.62.18 2.41.18 5.52.0 10-3.85 10-8.53S17.52 2 12 2zm0 14.93c-.76.0-1.53-.07-2.27-.2-.22-.04-.45.01-.64.12-.52.29-1.82 1.05-2.78 1.6.17-.85.42-1.8.52-2.3.06-.3-.06-.6-.3-.77C4.7 13.1 3.5 11.2 3.5 10.53c0-3.85 3.81-6.98 8.5-6.98s8.5 3.13 8.5 6.98-3.81 6.4-8.5 6.4z"/></svg></a></div></div><div id=giscus-container class="mt-16 pt-8 border-t not-prose" style=border-color:var(--border-color)></div></main></div></div><aside class="w-64 flex-shrink-0 desktop-sidebar pl-8"><div class="sticky top-20" data-pagefind-ignore><div class="mb-8 text-center" data-pagefind-ignore><img src=/ChiYu-Blob/images/avatar.jpg alt=個人大頭貼 class="w-32 h-32 rounded-full mx-auto object-cover border-2" style=border-color:var(--border-color) data-pagefind-ignore></div><div class="text-center mb-8" data-pagefind-ignore><a href=mailto:iamhandsomeboy1129@gmail.com class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-white transition-opacity hover:opacity-90" style=background-color:var(--link-color)><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1.0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1.0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+<span class="text-sm font-medium">聯絡我</span></a></div><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>文章月曆</h3><div id=calendar-widget-322b3559 class=calendar-widget><div class="flex justify-between items-center mb-2 font-semibold"><button class="cal-prev px-2 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700" title=上個月>&lt;</button>
+<span class=cal-month-year></span>
+<button class="cal-next px-2 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700" title=下個月>></button></div><div class="grid grid-cols-7 text-center text-xs gap-y-2" style=color:var(--text-secondary)><span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span></div><div class="cal-days grid grid-cols-7 text-center text-sm mt-2 gap-y-2"></div></div></div><script>(function(){const n=document.getElementById("calendar-widget-322b3559");if(!n)return;const e={};e["2025-12-17"]="/ChiYu-Blob/dates/2025-12-17/",e["2025-8-20"]="/ChiYu-Blob/dates/2025-08-20/",e["2025-8-21"]="/ChiYu-Blob/dates/2025-08-21/",e["2025-8-22"]="/ChiYu-Blob/dates/2025-08-22/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-8-23"]="/ChiYu-Blob/dates/2025-08-23/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-8-24"]="/ChiYu-Blob/dates/2025-08-24/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-8-25"]="/ChiYu-Blob/dates/2025-08-25/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-26"]="/ChiYu-Blob/dates/2025-08-26/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-27"]="/ChiYu-Blob/dates/2025-08-27/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-28"]="/ChiYu-Blob/dates/2025-08-28/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-29"]="/ChiYu-Blob/dates/2025-08-29/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-30"]="/ChiYu-Blob/dates/2025-08-30/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-31"]="/ChiYu-Blob/dates/2025-08-31/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-1"]="/ChiYu-Blob/dates/2025-09-01/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-2"]="/ChiYu-Blob/dates/2025-09-02/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-3"]="/ChiYu-Blob/dates/2025-09-03/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-4"]="/ChiYu-Blob/dates/2025-09-04/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-5"]="/ChiYu-Blob/dates/2025-09-05/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-6"]="/ChiYu-Blob/dates/2025-09-06/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-7"]="/ChiYu-Blob/dates/2025-09-07/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-8"]="/ChiYu-Blob/dates/2025-09-08/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-9"]="/ChiYu-Blob/dates/2025-09-09/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-9-10"]="/ChiYu-Blob/dates/2025-09-10/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-9-11"]="/ChiYu-Blob/dates/2025-09-11/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-9-12"]="/ChiYu-Blob/dates/2025-09-12/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-9-13"]="/ChiYu-Blob/dates/2025-09-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-9-14"]="/ChiYu-Blob/dates/2025-09-14/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-9-15"]="/ChiYu-Blob/dates/2025-09-15/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-9-16"]="/ChiYu-Blob/dates/2025-09-16/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-9-17"]="/ChiYu-Blob/dates/2025-09-17/",e["2025-7-3"]="/ChiYu-Blob/dates/2025-07-03/",e["2025-9-18"]="/ChiYu-Blob/dates/2025-09-18/",e["2025-9-19"]="/ChiYu-Blob/dates/2025-09-19/",e["2025-9-20"]="/ChiYu-Blob/dates/2025-09-20/",e["2025-6-8"]="/ChiYu-Blob/dates/2025-06-08/",e["2025-6-5"]="/ChiYu-Blob/dates/2025-06-05/";const i=n.querySelector(".cal-month-year"),s=n.querySelector(".cal-days"),a=n.querySelector(".cal-prev"),r=n.querySelector(".cal-next");let t=new Date;function o(t){const n=t.getFullYear(),o=t.getMonth();i.textContent=`${n} 年 ${o+1} 月`,s.innerHTML="";const a=new Date(n,o,1),r=new Date(n,o+1,0),c=a.getDay();for(let e=0;e<c;e++)s.insertAdjacentHTML("beforeend","<div></div>");for(let t=1;t<=r.getDate();t++){const i=`${n}-${o+1}-${t}`;e[i]?s.insertAdjacentHTML("beforeend",`
+                    <a href="${e[i]}" class="block p-1 rounded-full transition-colors font-bold" style="color: var(--link-color); text-decoration: underline; text-decoration-thickness: 2px;">
+                        ${t}
+                    </a>
+                `):s.insertAdjacentHTML("beforeend",`<span class="block p-1">${t}</span>`)}}a.addEventListener("click",()=>{t.setMonth(t.getMonth()-1),o(t)}),r.addEventListener("click",()=>{t.setMonth(t.getMonth()+1),o(t)}),o(t)})()</script><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>所有標籤</h3><div class="flex flex-wrap gap-2"><a href=/ChiYu-Blob/tags/yaml/ class=tag-pill>YAML
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/vibe-coding/ class=tag-pill>Vibe Coding
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/ux/ class=tag-pill>UX
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/user-stories/ class=tag-pill>User Stories
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/ui/ux/ class=tag-pill>UI/UX
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/testing/ class=tag-pill>Testing
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/summary/ class=tag-pill>Summary
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/style-guide/ class=tag-pill>Style Guide
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/state-management/ class=tag-pill>State Management
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/state-machine/ class=tag-pill>State Machine
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/sqlite/ class=tag-pill>SQLite
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/sql/ class=tag-pill>SQL
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/spa/ class=tag-pill>SPA
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/software-engineering/ class=tag-pill>Software Engineering
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/software-architecture/ class=tag-pill>Software Architecture
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/side-project/ class=tag-pill>Side Project
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/schema/ class=tag-pill>Schema
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/scaffolding/ class=tag-pill>Scaffolding
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/reflection/ class=tag-pill>Reflection
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/pytest/ class=tag-pill>Pytest
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/promise/ class=tag-pill>Promise
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/project-charter/ class=tag-pill>Project Charter
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/modularization/ class=tag-pill>Modularization
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/linting/ class=tag-pill>Linting
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/layout/ class=tag-pill>Layout
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/hlr/ class=tag-pill>HLR
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/guide/ class=tag-pill>Guide
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/github-actions/ class=tag-pill>GitHub Actions
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/github/ class=tag-pill>GitHub
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/git/ class=tag-pill>Git
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/flake8/ class=tag-pill>Flake8
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/fetch-api/ class=tag-pill>Fetch API
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/error-handling/ class=tag-pill>Error Handling
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/efficiency/ class=tag-pill>Efficiency
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/documentation/ class=tag-pill>Documentation
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/design-system/ class=tag-pill>Design System
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/database/ class=tag-pill>Database
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/data-driven-ui/ class=tag-pill>Data-Driven UI
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/conclusion/ class=tag-pill>Conclusion
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/component-specification/ class=tag-pill>Component Specification
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/component/ class=tag-pill>Component
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/codex/ class=tag-pill>Codex
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/cli/ class=tag-pill>CLI
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/canvas/ class=tag-pill>Canvas
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/blueprints/ class=tag-pill>Blueprints
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/atomic-design/ class=tag-pill>Atomic Design
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/asynchronous/ class=tag-pill>Asynchronous
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/api-integration/ class=tag-pill>API Integration
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/api/ class=tag-pill>API
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/ai-agent/ class=tag-pill>AI Agent
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/agile/ class=tag-pill>Agile
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/swagger/ class=tag-pill>Swagger
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/security/ class=tag-pill>Security
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/refactoring/ class=tag-pill>Refactoring
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/python/ class=tag-pill>Python
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/prototyping/ class=tag-pill>Prototyping
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/prompt-engineering/ class=tag-pill>Prompt Engineering
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/openapi/ class=tag-pill>OpenAPI
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/jwt/ class=tag-pill>JWT
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/html/ class=tag-pill>HTML
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/data-visualization/ class=tag-pill>Data Visualization
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/css/ class=tag-pill>CSS
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/crud/ class=tag-pill>CRUD
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/clean-code/ class=tag-pill>Clean Code
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/ci/ class=tag-pill>CI
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/chart.js/ class=tag-pill>Chart.js
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/backend/ class=tag-pill>Backend
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/authentication/ class=tag-pill>Authentication
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/ui/ux/ class=tag-pill>UI/UX
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/mermaid/ class=tag-pill>Mermaid
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/hugo/ class=tag-pill>Hugo
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/flask/ class=tag-pill>Flask
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/ddd/ class=tag-pill>DDD
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/ai/ class=tag-pill>AI
+<span class="ml-1 opacity-75">4</span>
+</a><a href=/ChiYu-Blob/tags/vibecoding/ class=tag-pill>VibeCoding
+<span class="ml-1 opacity-75">6</span>
+</a><a href=/ChiYu-Blob/tags/javascript/ class=tag-pill>JavaScript
+<span class="ml-1 opacity-75">6</span>
+</a><a href=/ChiYu-Blob/tags/frontend/ class=tag-pill>Frontend
+<span class="ml-1 opacity-75">13</span>
+</a><a href=/ChiYu-Blob/tags/design-patterns/ class=tag-pill>Design Patterns
+<span class="ml-1 opacity-75">24</span>
+</a><a href=/ChiYu-Blob/tags/c class=tag-pill>C#
+<span class="ml-1 opacity-75">24</span>
+</a><a href=/ChiYu-Blob/tags/gemini/ class=tag-pill>Gemini
+<span class="ml-1 opacity-75">27</span>
+</a><a href=/ChiYu-Blob/tags/2025ithomeironman/ class=tag-pill>2025iThomeIronman
+<span class="ml-1 opacity-75">32</span></a></div><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>相關連結</h3><div class="flex flex-col space-y-3 mt-4"><a href=https://www.cake.me/me/ChiYuisme target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">cakeresume</span>
+</a><a href=https://github.com/eric861129 target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">github</span>
+</a><a href=https://ithelp.ithome.com.tw/users/20132971/ironman/8253 target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">ithome</span>
+</a><a href=https://www.linkedin.com/in/chiyu-huang/ target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">linkedin</span>
+</a><a href=https://www.threads.com/@chiyuisme target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">threads</span></a></div></div><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>系列文章</h3><ul class=space-y-1><li><a href=/ChiYu-Blob/series/2025ithomeironman/ class="flex justify-between"><span>2025 iThome 鐵人賽</span>
+<span class=text-sm>32</span></a></li><li><a href=/ChiYu-Blob/series/designpattern/ class="flex justify-between"><span>設計模式</span>
+<span class=text-sm>24</span></a></li><li><a href=/ChiYu-Blob/series/hugo-%E9%96%8B%E7%99%BC%E7%B4%80%E9%8C%84/ class="flex justify-between"><span>Hugo 開發紀錄</span>
+<span class=text-sm>1</span></a></li></ul></div></div></aside></div><footer class="mt-16 pt-8 border-t text-center text-sm" style=border-color:var(--border-color);color:var(--text-secondary)><p>&copy; 2025 ChiYu. All Rights Reserved.</p></footer><button id=scroll-to-top-btn class=scroll-to-top title=回到頂部><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentcolor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 15a.5.5.0 00.5-.5V2.707l3.146 3.147a.5.5.0 00.708-.708l-4-4a.5.5.0 00-.708.0l-4 4a.5.5.0 10.708.708L7.5 2.707V14.5a.5.5.0 00.5.5z"/></svg></button></div><div id=sidebar-overlay class=sidebar-overlay></div><aside id=mobile-sidebar class=mobile-sidebar><div class=p-4><aside class=sidebar><div class=sidebar-inner><div class=widget><h3 class=widget-title>系列文章</h3><ul class=widget-list><li><a href=/ChiYu-Blob/series/2025ithomeironman/>2025 iThome 鐵人賽
+<span class=posts-count>32</span></a></li><li><a href=/ChiYu-Blob/series/designpattern/>設計模式
+<span class=posts-count>24</span></a></li><li><a href=/ChiYu-Blob/series/hugo-%E9%96%8B%E7%99%BC%E7%B4%80%E9%8C%84/>Hugo 開發紀錄
+<span class=posts-count>1</span></a></li></ul></div></div></aside><div class="sticky top-20" data-pagefind-ignore><div class="mb-8 text-center" data-pagefind-ignore><img src=/ChiYu-Blob/images/avatar.jpg alt=個人大頭貼 class="w-32 h-32 rounded-full mx-auto object-cover border-2" style=border-color:var(--border-color) data-pagefind-ignore></div><div class="text-center mb-8" data-pagefind-ignore><a href=mailto:iamhandsomeboy1129@gmail.com class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-white transition-opacity hover:opacity-90" style=background-color:var(--link-color)><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1.0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1.0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+<span class="text-sm font-medium">聯絡我</span></a></div><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>文章月曆</h3><div id=calendar-widget-5087b8b5 class=calendar-widget><div class="flex justify-between items-center mb-2 font-semibold"><button class="cal-prev px-2 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700" title=上個月>&lt;</button>
+<span class=cal-month-year></span>
+<button class="cal-next px-2 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700" title=下個月>></button></div><div class="grid grid-cols-7 text-center text-xs gap-y-2" style=color:var(--text-secondary)><span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span></div><div class="cal-days grid grid-cols-7 text-center text-sm mt-2 gap-y-2"></div></div></div><script>(function(){const n=document.getElementById("calendar-widget-5087b8b5");if(!n)return;const e={};e["2025-12-17"]="/ChiYu-Blob/dates/2025-12-17/",e["2025-8-20"]="/ChiYu-Blob/dates/2025-08-20/",e["2025-8-21"]="/ChiYu-Blob/dates/2025-08-21/",e["2025-8-22"]="/ChiYu-Blob/dates/2025-08-22/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-8-23"]="/ChiYu-Blob/dates/2025-08-23/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-8-24"]="/ChiYu-Blob/dates/2025-08-24/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-8-25"]="/ChiYu-Blob/dates/2025-08-25/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-26"]="/ChiYu-Blob/dates/2025-08-26/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-27"]="/ChiYu-Blob/dates/2025-08-27/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-28"]="/ChiYu-Blob/dates/2025-08-28/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-29"]="/ChiYu-Blob/dates/2025-08-29/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-30"]="/ChiYu-Blob/dates/2025-08-30/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-31"]="/ChiYu-Blob/dates/2025-08-31/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-1"]="/ChiYu-Blob/dates/2025-09-01/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-2"]="/ChiYu-Blob/dates/2025-09-02/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-3"]="/ChiYu-Blob/dates/2025-09-03/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-4"]="/ChiYu-Blob/dates/2025-09-04/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-5"]="/ChiYu-Blob/dates/2025-09-05/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-6"]="/ChiYu-Blob/dates/2025-09-06/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-7"]="/ChiYu-Blob/dates/2025-09-07/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-8"]="/ChiYu-Blob/dates/2025-09-08/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-9"]="/ChiYu-Blob/dates/2025-09-09/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-9-10"]="/ChiYu-Blob/dates/2025-09-10/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-9-11"]="/ChiYu-Blob/dates/2025-09-11/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-9-12"]="/ChiYu-Blob/dates/2025-09-12/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-9-13"]="/ChiYu-Blob/dates/2025-09-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-9-14"]="/ChiYu-Blob/dates/2025-09-14/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-9-15"]="/ChiYu-Blob/dates/2025-09-15/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-9-16"]="/ChiYu-Blob/dates/2025-09-16/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-9-17"]="/ChiYu-Blob/dates/2025-09-17/",e["2025-7-3"]="/ChiYu-Blob/dates/2025-07-03/",e["2025-9-18"]="/ChiYu-Blob/dates/2025-09-18/",e["2025-9-19"]="/ChiYu-Blob/dates/2025-09-19/",e["2025-9-20"]="/ChiYu-Blob/dates/2025-09-20/",e["2025-6-8"]="/ChiYu-Blob/dates/2025-06-08/",e["2025-6-5"]="/ChiYu-Blob/dates/2025-06-05/";const i=n.querySelector(".cal-month-year"),s=n.querySelector(".cal-days"),a=n.querySelector(".cal-prev"),r=n.querySelector(".cal-next");let t=new Date;function o(t){const n=t.getFullYear(),o=t.getMonth();i.textContent=`${n} 年 ${o+1} 月`,s.innerHTML="";const a=new Date(n,o,1),r=new Date(n,o+1,0),c=a.getDay();for(let e=0;e<c;e++)s.insertAdjacentHTML("beforeend","<div></div>");for(let t=1;t<=r.getDate();t++){const i=`${n}-${o+1}-${t}`;e[i]?s.insertAdjacentHTML("beforeend",`
+                    <a href="${e[i]}" class="block p-1 rounded-full transition-colors font-bold" style="color: var(--link-color); text-decoration: underline; text-decoration-thickness: 2px;">
+                        ${t}
+                    </a>
+                `):s.insertAdjacentHTML("beforeend",`<span class="block p-1">${t}</span>`)}}a.addEventListener("click",()=>{t.setMonth(t.getMonth()-1),o(t)}),r.addEventListener("click",()=>{t.setMonth(t.getMonth()+1),o(t)}),o(t)})()</script><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>所有標籤</h3><div class="flex flex-wrap gap-2"><a href=/ChiYu-Blob/tags/yaml/ class=tag-pill>YAML
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/vibe-coding/ class=tag-pill>Vibe Coding
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/ux/ class=tag-pill>UX
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/user-stories/ class=tag-pill>User Stories
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/ui/ux/ class=tag-pill>UI/UX
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/testing/ class=tag-pill>Testing
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/summary/ class=tag-pill>Summary
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/style-guide/ class=tag-pill>Style Guide
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/state-management/ class=tag-pill>State Management
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/state-machine/ class=tag-pill>State Machine
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/sqlite/ class=tag-pill>SQLite
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/sql/ class=tag-pill>SQL
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/spa/ class=tag-pill>SPA
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/software-engineering/ class=tag-pill>Software Engineering
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/software-architecture/ class=tag-pill>Software Architecture
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/side-project/ class=tag-pill>Side Project
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/schema/ class=tag-pill>Schema
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/scaffolding/ class=tag-pill>Scaffolding
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/reflection/ class=tag-pill>Reflection
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/pytest/ class=tag-pill>Pytest
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/promise/ class=tag-pill>Promise
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/project-charter/ class=tag-pill>Project Charter
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/modularization/ class=tag-pill>Modularization
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/linting/ class=tag-pill>Linting
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/layout/ class=tag-pill>Layout
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/hlr/ class=tag-pill>HLR
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/guide/ class=tag-pill>Guide
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/github-actions/ class=tag-pill>GitHub Actions
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/github/ class=tag-pill>GitHub
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/git/ class=tag-pill>Git
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/flake8/ class=tag-pill>Flake8
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/fetch-api/ class=tag-pill>Fetch API
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/error-handling/ class=tag-pill>Error Handling
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/efficiency/ class=tag-pill>Efficiency
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/documentation/ class=tag-pill>Documentation
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/design-system/ class=tag-pill>Design System
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/database/ class=tag-pill>Database
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/data-driven-ui/ class=tag-pill>Data-Driven UI
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/conclusion/ class=tag-pill>Conclusion
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/component-specification/ class=tag-pill>Component Specification
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/component/ class=tag-pill>Component
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/codex/ class=tag-pill>Codex
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/cli/ class=tag-pill>CLI
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/canvas/ class=tag-pill>Canvas
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/blueprints/ class=tag-pill>Blueprints
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/atomic-design/ class=tag-pill>Atomic Design
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/asynchronous/ class=tag-pill>Asynchronous
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/api-integration/ class=tag-pill>API Integration
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/api/ class=tag-pill>API
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/ai-agent/ class=tag-pill>AI Agent
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/agile/ class=tag-pill>Agile
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/swagger/ class=tag-pill>Swagger
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/security/ class=tag-pill>Security
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/refactoring/ class=tag-pill>Refactoring
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/python/ class=tag-pill>Python
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/prototyping/ class=tag-pill>Prototyping
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/prompt-engineering/ class=tag-pill>Prompt Engineering
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/openapi/ class=tag-pill>OpenAPI
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/jwt/ class=tag-pill>JWT
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/html/ class=tag-pill>HTML
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/data-visualization/ class=tag-pill>Data Visualization
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/css/ class=tag-pill>CSS
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/crud/ class=tag-pill>CRUD
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/clean-code/ class=tag-pill>Clean Code
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/ci/ class=tag-pill>CI
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/chart.js/ class=tag-pill>Chart.js
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/backend/ class=tag-pill>Backend
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/authentication/ class=tag-pill>Authentication
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/ui/ux/ class=tag-pill>UI/UX
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/mermaid/ class=tag-pill>Mermaid
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/hugo/ class=tag-pill>Hugo
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/flask/ class=tag-pill>Flask
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/ddd/ class=tag-pill>DDD
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/ai/ class=tag-pill>AI
+<span class="ml-1 opacity-75">4</span>
+</a><a href=/ChiYu-Blob/tags/vibecoding/ class=tag-pill>VibeCoding
+<span class="ml-1 opacity-75">6</span>
+</a><a href=/ChiYu-Blob/tags/javascript/ class=tag-pill>JavaScript
+<span class="ml-1 opacity-75">6</span>
+</a><a href=/ChiYu-Blob/tags/frontend/ class=tag-pill>Frontend
+<span class="ml-1 opacity-75">13</span>
+</a><a href=/ChiYu-Blob/tags/design-patterns/ class=tag-pill>Design Patterns
+<span class="ml-1 opacity-75">24</span>
+</a><a href=/ChiYu-Blob/tags/c class=tag-pill>C#
+<span class="ml-1 opacity-75">24</span>
+</a><a href=/ChiYu-Blob/tags/gemini/ class=tag-pill>Gemini
+<span class="ml-1 opacity-75">27</span>
+</a><a href=/ChiYu-Blob/tags/2025ithomeironman/ class=tag-pill>2025iThomeIronman
+<span class="ml-1 opacity-75">32</span></a></div><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>相關連結</h3><div class="flex flex-col space-y-3 mt-4"><a href=https://www.cake.me/me/ChiYuisme target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">cakeresume</span>
+</a><a href=https://github.com/eric861129 target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">github</span>
+</a><a href=https://ithelp.ithome.com.tw/users/20132971/ironman/8253 target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">ithome</span>
+</a><a href=https://www.linkedin.com/in/chiyu-huang/ target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">linkedin</span>
+</a><a href=https://www.threads.com/@chiyuisme target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">threads</span></a></div></div><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>系列文章</h3><ul class=space-y-1><li><a href=/ChiYu-Blob/series/2025ithomeironman/ class="flex justify-between"><span>2025 iThome 鐵人賽</span>
+<span class=text-sm>32</span></a></li><li><a href=/ChiYu-Blob/series/designpattern/ class="flex justify-between"><span>設計模式</span>
+<span class=text-sm>24</span></a></li><li><a href=/ChiYu-Blob/series/hugo-%E9%96%8B%E7%99%BC%E7%B4%80%E9%8C%84/ class="flex justify-between"><span>Hugo 開發紀錄</span>
+<span class=text-sm>1</span></a></li></ul></div></div></div></aside><script src=/ChiYu-Blob/pagefind/pagefind-ui.js onload=initPagefind()></script><script src=https://cdn.jsdelivr.net/npm/medium-zoom@1.0.8/dist/medium-zoom.min.js></script><script type=module>
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ 
+            startOnLoad: true, 
+            theme: document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default' 
+        });
+    </script><script src=/ChiYu-Blob/js/main.min.0193b07ef6d75c398d0ddd095576631329ae07bdc4f8790273143cfb31c1c9c5.js integrity="sha256-AZOwfvbXXDmNDd0JVXZjEymuB73E+HkCcxQ8+zHBycU=" crossorigin=anonymous></script></body></html>

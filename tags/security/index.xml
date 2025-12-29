@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Security on ChiYu Code Journey</title><link>/ChiYu-Blob/tags/security/</link><description>Recent content in Security on ChiYu Code Journey</description><generator>Hugo -- gohugo.io</generator><language>zh-TW</language><lastBuildDate>Thu, 18 Sep 2025 00:00:00 +0800</lastBuildDate><atom:link href="/ChiYu-Blob/tags/security/index.xml" rel="self" type="application/rss+xml"/><item><title>Day 29: 【文件 #9】專案的守衛：用 Gemini 規劃「前端認證流程」</title><link>/ChiYu-Blob/posts/2025ithomeironmanday29/</link><pubDate>Wed, 17 Sep 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday29/</guid><description>安安，我是 ChiYu！
+昨天，我們成功地兌現了對使用者的最終承諾，將冰冷的數據轉化為了富有情感的、能啟發洞察的視覺化故事。我們的 App 核心價值已然確立。
+但是，我們的 App 現在還像是一個 沒有門鎖的豪宅。雖然內部裝潢精美、功能強大，但任何人都可以隨意進出，這對於一個旨在儲存使用者私密心情與習慣數據的應用來說，是絕對不可接受的。
+使用者認證 (Authentication) 流程，是任何嚴肅 Web 應用的基石。它複雜、涉及安全性、且牽一髮而動全身。因此，我們 絕對不能憑感覺去寫！
+今天，我們將進行第二個前端的 DDD 循環！我們將扮演一位「資安架構師」，與 Gemini 一同腦力激盪，為這個最關鍵的功能，撰寫一份清晰、專業的**「前端認證流程規格書」**。
+Part 1：前端心法：在寫 Code 前，先成為半個資安專家 在我們觸碰任何跟認證相關的程式碼之前，我們必須先在腦中建立起清晰的資安模型。這不僅僅是「使用者體驗」的問題，更是「使用者信任」的基石。
+1.1 核心觀念：認證 (Authentication) vs. 授權 (Authorization) 首先，要釐清兩個最常被搞混的概念：
+認證 (Authentication - 你是誰？)：這個過程是在 驗證你的身份。就像你進入一棟大樓，需要出示你的身份證或門禁卡，向保全證明「我就是住戶 ChiYu」。 登入這個動作，就是最典型的認證。 授權 (Authorization - 你能做什麼？)：這個過程是在你 通過認證後， 決定你有哪些權限。保全確認了你是 ChiYu 後，他還需要知道，你的門禁卡只能打開你家的門，不能打開別人家或頂樓機房的門。在 App 中，這可能意味著普通使用者只能讀取自己的資料，而管理員 (Admin) 則可以讀取所有人的資料。 1.2 現代 Web 的通行證：JWT (JSON Web Token) 在現代 Web App 中，我們如何實現無狀態 (Stateless) 的認證呢？答案就是 JWT。
+你可以把 JWT 想像成一張 蓋了章的「數位通行證」。當你用帳號密碼成功登入後，伺服器會發給你一張 JWT。這張通行證本身包含了一些資訊（例如你是誰、你的權限是什麼），並且經過伺服器的 數位簽章，確保它沒有被偽造。</description></item><item><title>Day 30: 【前端 #9】建立大門與鑰匙：根據流程圖實現前端使用者認證</title><link>/ChiYu-Blob/posts/2025ithomeironmanday30/</link><pubDate>Thu, 18 Sep 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday30/</guid><description>說在前頭！！！ 有些部分多花費了些時間在講，所以雖然今天已經滿30天了， 但我還沒有正式完成這次鐵人賽系列文！！！ 我後面還是會繼續更新到正式完結。畢竟還是要有頭有尾有始有終！
+以下正文開始！ 安安，我是 ChiYu！
+昨天，我們為 App 的安全性，打下了最堅實的理論基礎。我們沒有憑感覺去處理這個複雜的流程，而是再次透過 「文件驅動」，將所有可能的路徑與邏輯，都預先規劃得一清二楚。
+我們手上現在握著一份精密的「安全白皮書」。有了它，我們接下來的開發工作將會變得無比順暢，因為所有關於「如何設計」的燒腦問題，都已經被解決了。我們的任務只剩下一個—— 專注於「如何實現」。
+今天，我們將迎來前端整合的最終章！我們將 嚴格依據昨天的這份流程圖，指揮 AI，將這套堅不可摧的認證系統，變成真實、可運行的前端程式碼，為我們的 App 裝上大門與門鎖！
+Part 1：前端心法：為我們的單頁應用模擬「多個頁面」 在開始之前，我們需要先解決一個結構性問題。我們的 App 目前是一個嚴格意義上的「單頁應用」——所有的 UI 都在同一個 index.html 裡。但現在，我們需要一個獨立的「登入/註冊」頁面。
+在不引入複雜前端框架的情況下，最聰明、最簡單的作法，就是 「用 &amp;lt;div&amp;gt; 模擬頁面」。
+我們的策略是：
+將我們現有的主應用程式介面，用一個 &amp;lt;div id=&amp;quot;app-page&amp;quot;&amp;gt; 包起來。 再建立一個新的 &amp;lt;div id=&amp;quot;auth-page&amp;quot;&amp;gt;，用來放置登入和註冊的表單。 這兩個 &amp;lt;div&amp;gt; 永遠只會有一個顯示在畫面上。 我們將用 JavaScript 來控制，根據使用者的登入狀態，決定要顯示哪一個「頁面」。 這是一個輕量級且高效的前端路由 (Routing) 模擬方法。
+Part 2：Vibe Coding 實戰：詠唱「認證系統創生」的超級咒語 好了，作戰計畫擬定，讓我們進入 gemini chat 模式，用一個全面的「超級 Prompt」，指揮 AI 為我們完成這次複雜的手術。
+【魔法詠唱：注入認證靈魂】 # 角色 (Role) 你是一位頂尖的資安前端架構師 (Principal Frontend Engineer &amp;amp; Security Advocate)，精通 JWT 認證機制、狀態管理、API 客戶端設計與單頁應用程式 (SPA) 的路由管理。你擅長將複雜的認證規格，轉化為一個安全、穩固、可擴展且具備卓越使用者體驗的完整前端架構。 # 目標 (Objective) 請**嚴格依據**《前端認證架構藍圖》，對我現有的前端專案進行一次全面的**架構性重構與功能實作**，為其注入一個完整的「使用者認證」系統。 # 上下文與關鍵資訊 (Context &amp;amp; Key Information) * **唯一真理來源**: `@docs/AUTH_FLOW.</description></item></channel></rss>

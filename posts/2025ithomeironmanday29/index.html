@@ -1,0 +1,738 @@
+<!doctype html><html lang=zh-tw><head><script async src="https://www.googletagmanager.com/gtag/js?id=G-FGXWEWM001"></script><script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-FGXWEWM001",{anonymize_ip:!1})}</script><meta name=description content="今天我們將進行第二個前端的 DDD 循環，扮演「資安架構師」，為專案撰寫一份清晰、專業的「前端認證流程規格書」。"><meta property="og:title" content="Day 29: 【文件 #9】專案的守衛：用 Gemini 規劃「前端認證流程」"><meta property="og:description" content="今天我們將進行第二個前端的 DDD 循環，扮演「資安架構師」，為專案撰寫一份清晰、專業的「前端認證流程規格書」。"><meta property="og:type" content="article"><meta property="og:url" content="/ChiYu-Blob/posts/2025ithomeironmanday29/"><meta name=twitter:card content="summary_large_image"><meta name=twitter:title content="Day 29: 【文件 #9】專案的守衛：用 Gemini 規劃「前端認證流程」"><meta name=twitter:description content="今天我們將進行第二個前端的 DDD 循環，扮演「資安架構師」，為專案撰寫一份清晰、專業的「前端認證流程規格書」。"><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Day 29: 【文件 #9】專案的守衛：用 Gemini 規劃「前端認證流程」 | ChiYu Code Journey</title>
+<script>(function(){const e=localStorage.getItem("theme")||"dark";document.documentElement.setAttribute("data-theme",e)})()</script><script src=https://cdn.tailwindcss.com></script><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel=stylesheet><link href=/pagefind/pagefind-ui.css rel=stylesheet><link href="https://fonts.googleapis.com/css2?family=Chocolate+Classical+Sans&family=Edu+SA+Hand:wght@400..700&family=Inter:wght@400;500;600;700&display=swap" rel=stylesheet><link rel=icon type=image/jpeg href=/ChiYu-Blob/images/avatar.jpg><link rel=stylesheet href=/ChiYu-Blob/css/style.bundle.min.603fe609a4fee1de053c12e00858727a67cc5a3ba05a0a66f04142a379f47374.css integrity="sha256-YD/mCaT+4d4FPBLgCFhyemfMWjugWgpm8EFCo3n0c3Q=" crossorigin=anonymous><style>#reading-progress-container{position:fixed;top:0;left:0;width:100%;height:3px;z-index:9999;background:0 0}#reading-progress-bar{height:100%;width:0%;background:linear-gradient(to right,#60a5fa,#2563eb);transition:width .1s ease-out}</style></head><body class=antialiased><div id=reading-progress-container><div id=reading-progress-bar></div></div><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><header class="sticky top-0 z-50 flex justify-between items-center py-6 border-b" style=border-color:var(--border-color);background-color:var(--bg-color)><a href=/ChiYu-Blob/ class="text-xl sm:text-2xl font-bold" style=color:var(--text-color)>ChiYu Code Journey</a><nav class="flex items-center space-x-2 sm:space-x-4"><div id=search></div><a href=/ChiYu-Blob/ class="text-sm sm:text-base" style=color:var(--text-secondary)>首頁</a>
+<a href=/ChiYu-Blob/posts/ class="text-sm sm:text-base" style=color:var(--text-secondary)>文章</a>
+<a href=/ChiYu-Blob/about/ class="text-sm sm:text-base" style=color:var(--text-secondary)>關於</a>
+<a href=/ChiYu-Blob/index.xml target=_blank title="訂閱 RSS" style=color:var(--text-secondary) class="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11a9 9 0 019 9"/><path d="M4 4a16 16 0 0116 16"/><circle cx="5" cy="19" r="1"/></svg>
+</a><button id=theme-toggle title=切換深色/淺色主題>
+<svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+<svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+</button>
+<button id=mobile-sidebar-toggle class=lg:hidden title=開啟側邊欄><svg class="w-6 h-6" fill="none" stroke="currentcolor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/></svg></button></nav></header><div data-pagefind-body style=display:none><p>安安，我是 ChiYu！</p><p>昨天，我們成功地兌現了對使用者的最終承諾，將冰冷的數據轉化為了富有情感的、能啟發洞察的視覺化故事。我們的 App 核心價值已然確立。</p><p>但是，我們的 App 現在還像是一個 <strong>沒有門鎖的豪宅</strong>。雖然內部裝潢精美、功能強大，但任何人都可以隨意進出，這對於一個旨在儲存使用者私密心情與習慣數據的應用來說，是絕對不可接受的。</p><p><strong>使用者認證 (Authentication)</strong> 流程，是任何嚴肅 Web 應用的基石。它複雜、涉及安全性、且牽一髮而動全身。因此，我們 <strong>絕對不能</strong>憑感覺去寫！</p><p>今天，我們將進行第二個前端的 DDD 循環！我們將扮演一位「資安架構師」，與 Gemini 一同腦力激盪，為這個最關鍵的功能，撰寫一份清晰、專業的**「前端認證流程規格書」**。</p><h2 id=part-1前端心法在寫-code-前先成為半個資安專家>Part 1：前端心法：在寫 Code 前，先成為半個資安專家</h2><p>在我們觸碰任何跟認證相關的程式碼之前，我們必須先在腦中建立起清晰的資安模型。這不僅僅是「使用者體驗」的問題，更是「使用者信任」的基石。</p><h3 id=11-核心觀念認證-authentication-vs-授權-authorization>1.1 核心觀念：認證 (Authentication) vs. 授權 (Authorization)</h3><p>首先，要釐清兩個最常被搞混的概念：</p><ul><li><strong>認證 (Authentication - 你是誰？)</strong>：這個過程是在 <strong>驗證你的身份</strong>。就像你進入一棟大樓，需要出示你的身份證或門禁卡，向保全證明「我就是住戶 ChiYu」。 <strong>登入</strong>這個動作，就是最典型的認證。</li><li><strong>授權 (Authorization - 你能做什麼？)</strong>：這個過程是在你 <strong>通過認證後</strong>， <strong>決定你有哪些權限</strong>。保全確認了你是 ChiYu 後，他還需要知道，你的門禁卡只能打開你家的門，不能打開別人家或頂樓機房的門。在 App 中，這可能意味著普通使用者只能讀取自己的資料，而管理員 (Admin) 則可以讀取所有人的資料。</li></ul><h3 id=12-現代-web-的通行證jwt-json-web-token>1.2 現代 Web 的通行證：JWT (JSON Web Token)</h3><p>在現代 Web App 中，我們如何實現無狀態 (Stateless) 的認證呢？答案就是 <strong>JWT</strong>。</p><p>你可以把 JWT 想像成一張 <strong>蓋了章的「數位通行證」</strong>。當你用帳號密碼成功登入後，伺服器會發給你一張 JWT。這張通行證本身包含了一些資訊（例如你是誰、你的權限是什麼），並且經過伺服器的 <strong>數位簽章</strong>，確保它沒有被偽造。</p><p>之後，你每次要向伺服器請求資料時，只需要在請求中附上這張通行證，伺服器看到上面有自己蓋的章，就知道你是合法的使用者，而不需要每次都重新去資料庫查驗你的帳號密碼。</p><h3 id=13-oauth-20安全的授權代理>1.3 OAuth 2.0：安全的「授權代理」</h3><p>你一定用過「透過 Google / Facebook 登入」的功能。這背後，就是 <strong>OAuth 2.0</strong> 的功勞。</p><p>OAuth 2.0 本質上不是一個「認證」協議，而是一個 **「授權 (Authorization)」**框架。它的核心思想是 <strong>「安全的代理授權」</strong>。</p><blockquote><p>比喻來說：
+假設你的 App (我們的 MindTrack) 是一個需要你家（Google 帳戶）鑰匙的「清潔服務公司」。</p><ul><li><strong>不安全的作法</strong>：你直接把你的 Google 帳號密碼告訴 MindTrack。這太危險了！MindTrack 不僅能打掃你的房間（讀取基本資料），還能動用你的存款、看你的私密信件！</li><li><strong>OAuth 2.0 的作法</strong>：你想請 MindTrack 來打掃時，MindTrack 會把你帶到 Google 的「物業管理處」。你在這裡向 Google 確認：「是的，我同意讓 MindTrack 進入我家，但 <strong>只授權</strong>他打掃客廳（讀取你的基本個人資料），絕對不准進臥室（讀取你的信件）！」</li></ul><p>Google 確認後，不會把你的「萬能鑰匙」給 MindTrack，而是會給他一張 <strong>有特定權限、有時效性</strong>的「臨時通行證」。MindTrack 拿著這張臨時通行證，就可以來幫你打掃客廳了。</p></blockquote><p>雖然我們的 MVP 不會實作 OAuth 2.0，但理解這個觀念，是你邁向專業開發者的重要一步。</p><h2 id=part-2vibe-coding-實戰撰寫我們的安全白皮書>Part 2：Vibe Coding 實戰：撰寫我們的「安全白皮書」</h2><p>好了，理論武裝完畢！讓我們進入 <code>gemini chat</code> 模式，指揮 AI 為我們撰寫這份至關重要的安全規格書。</p><h3 id=魔法詠唱設計認證流程>【魔法詠唱：設計認證流程】</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown><span style=display:flex><span># 角色 (Role)
+</span></span><span style=display:flex><span>你是一位頂尖的資安架構師與資深前端工程師，是 Web 安全、JWT (JSON Web Token) 認證機制、前端路由管理與 API 客戶端設計的權威專家。你致力於在確保安全性的前提下，打造無縫、穩固且可擴展的使用者認證體驗。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 目標 (Objective)
+</span></span><span style=display:flex><span>請根據我提供的專案上下文，為我們的 Web App 設計一份專業、完整、且具備高度可執行性的**「前端認證架構藍圖 (Frontend Authentication Architectural Blueprint)」**。這份文件將作為開發團隊實現所有安全相關功能的唯一真理來源。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 上下文與關鍵資訊 (Context &amp; Key Information)
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span> **核心需求**: 我們需要為 App 實現使用者故事 #1：「使用者註冊/登入」。(`@docs/USER_STORIES.md`)
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span> **後端契約**: 我們後端的 <span style=color:#e6db74>`/auth/login`</span> 和 <span style=color:#e6db74>`/auth/register`</span> 端點，在成功後會返回一個包含 <span style=color:#e6db74>`accessToken`</span> (JWT) 的 JSON 物件。(`@docs/API_SPEC.yml`)
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span> **核心挑戰**: 設計一個既安全又具備良好使用者體驗的前端認證系統。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 產出格式與要求 (Your Task &amp; Output Requirements)
+</span></span><span style=display:flex><span>**請生成一份專業的 Markdown 文件，並嚴格遵循以下大綱結構：**
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 1. **核心原則與架構決策**
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>*</span> **技術選型與權衡 (Tech Choices <span style=color:#960050;background-color:#1e0010>&amp;</span> Trade-offs)**:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span> **Token 儲存策略**: 明確我們將選擇 <span style=color:#e6db74>`localStorage`</span> 來儲存 JWT Token。 <span style=font-weight:700>**請深入分析此決策**</span>：闡述其優點（API 簡單、跨分頁共享），並 <span style=font-weight:700>**詳細列出其主要安全風險（易受 XSS 攻擊）及對應的基礎緩解措施**</span>（例如：內容安全策略 CSP、輸入淨化）。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span> **API 客戶端攔截器 (API Client Interceptor)**: 說明我們將 **必須**建立一個集中的 <span style=color:#e6db74>`fetch`</span> 封裝函式或使用類似 <span style=color:#e6db74>`axios`</span> 的攔截器。其核心職責是：在 **每個**發出的請求中，自動從 <span style=color:#e6db74>`localStorage`</span> 讀取 Token 並將其附加到 <span style=color:#e6db74>`Authorization`</span> 標頭中。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 2. **前端認證狀態機 (Frontend Auth State Machine)**
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>*</span> 說明我們將在前端的 <span style=color:#e6db74>`state`</span> 物件中，維護一個完整的認證狀態機，而不僅僅是一個布林值。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span> **狀態定義**:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span> <span style=color:#e6db74>`authStatus: &#39;idle&#39; | &#39;loading&#39; | &#39;authenticated&#39; | &#39;unauthenticated&#39; | &#39;error&#39;`</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span> <span style=color:#e6db74>`user: { id, name, email } | null`</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span> <span style=color:#e6db74>`error: string | null`</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span> **設計理由**: 簡述為何使用狀態機能夠更優雅地處理 UI 變化（例如，在 <span style=color:#e6db74>`loading`</span> 狀態下禁用登入按鈕）。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 3. **核心流程圖 (Core Flowcharts)**
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>*</span> 使用 Mermaid.js 的 <span style=color:#e6db74>`graph TD`</span> 語法，為以下三個核心流程，分別繪製包含 **UI 狀態變化**的清晰流程圖：
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span> **使用者登入流程**: 需包含「更新狀態為 loading」、「禁用按鈕」、「API 請求」、「成功後儲存 Token」、「更新狀態為 authenticated」、「失敗後更新狀態為 error」等節點。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span> **使用者登出流程**: 需包含「清除 Token」、「清除本地狀態」、「API 請求(可選)」、「重新導向」。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span> **應用程式啟動時的認證檢查流程**: 需包含「檢查本地 Token」、「驗證 Token 有效性(可選)」、「設定初始狀態」。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 4. **路由與授權：路由守衛 (Routing &amp; Authorization: Route Guards)**
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>*</span> **概念闡述**: 深入淺出地解釋什麼是「路由守衛」，並使用「每個房間門口的保全」的比喻。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span> **職責定義**:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span> **公開路由 (Public Routes)**: 如 <span style=color:#e6db74>`/login`</span>, <span style=color:#e6db74>`/register`</span>，任何人都可以訪問。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span> **私有路由 (Private Routes)**: 如 <span style=color:#e6db74>`/dashboard`</span>, <span style=color:#e6db74>`/settings`</span>，必須在進入前由「路由守衛」檢查 <span style=color:#e6db74>`state.isAuthenticated`</span> (或 Token 的有效性)。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span> **無權限處理**: 若檢查失敗，路由守衛必須立即將使用者**重新導向 (Redirect)** 至登入頁面。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 5. **錯誤處理與 Token 過期策略**
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>*</span> **集中處理**: 定義 API 客戶端攔截器的另一項核心職責：**攔截 API 回應**。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span> **標準流程**: 當攔截器偵測到後端返回 <span style=color:#e6db74>`401 Unauthorized`</span> 狀態碼時，它必須觸發一個**全域的登出程序**（清除 Token、重設狀態、重新導向到登入頁），而無需每個元件單獨處理。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 6. **最終產出**
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>*</span> 將以上所有內容，生成到 <span style=color:#e6db74>`docs/AUTH_FLOW.md`</span> 檔案中。
+</span></span></code></pre></div><h2 id=part-3審核-ai-產出的安全白皮書>Part 3：審核 AI 產出的「安全白皮書」</h2><p>AI 完成操作後，讓我們來仔細品味一下這份由我們共同創作的、專業的「安全設計圖」。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown><span style=display:flex><span># 前端認證架構藍圖 (Frontend Authentication Architectural Blueprint)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span> **文件版本**: 1.0
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span> **作者**: Gemini (資安架構師 / 資深前端工程師)
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span> **狀態**: <span style=color:#e6db74>`草案`</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>---
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## 1. 核心原則與架構決策
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 1.1. 技術選型與權衡 (Token 儲存策略)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>我們將選擇 <span style=color:#e6db74>`localStorage`</span> 來儲存 JWT (JSON Web Token)。此決策基於以下考量：
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   <span style=font-weight:700>**優點**</span>:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   <span style=font-weight:700>**API 簡單易用**</span>: <span style=color:#e6db74>`localStorage`</span> 提供直觀的 <span style=color:#e6db74>`setItem()`</span>, <span style=color:#e6db74>`getItem()`</span>, <span style=color:#e6db74>`removeItem()`</span> 方法，易於開發者操作。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   <span style=font-weight:700>**跨分頁共享**</span>: 儲存在 <span style=color:#e6db74>`localStorage`</span> 中的 Token 可以被同源 (same-origin) 的所有瀏覽器分頁共享，方便使用者在多個分頁間保持登入狀態。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   <span style=font-weight:700>**持久化儲存**</span>: Token 會在瀏覽器關閉後依然存在，使用者無需每次開啟瀏覽器都重新登入，提升使用者體驗。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   <span style=font-weight:700>**主要安全風險 (XSS 攻擊)**</span>:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   <span style=color:#e6db74>`localStorage`</span> 中的數據**容易受到跨站腳本 (XSS) 攻擊**。一旦攻擊者成功在頁面中注入惡意 JavaScript 程式碼，他們就可以直接存取 <span style=color:#e6db74>`localStorage`</span> 中的所有數據，包括 JWT Token。攻擊者獲取 Token 後，即可冒充使用者發送請求，造成會話劫持 (Session Hijacking)。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   <span style=font-weight:700>**基礎緩解措施**</span>:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   <span style=font-weight:700>**內容安全策略 (Content Security Policy, CSP)**</span>: 實施嚴格的 CSP，限制頁面可以載入的腳本、樣式和其他資源的來源。這能有效防禦大多數 XSS 攻擊，因為它阻止了惡意腳本的載入和執行。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   <span style=font-weight:700>**輸入淨化 (Input Sanitization)**</span>: 對所有來自使用者或外部來源的輸入數據進行嚴格的驗證、過濾和淨化，防止惡意程式碼（如 <span style=color:#e6db74>`&lt;script&gt;`</span> 標籤）被儲存到資料庫或直接顯示在頁面上。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   <span style=font-weight:700>**輸出編碼 (Output Encoding)**</span>: 在將任何來自使用者或不可信來源的數據渲染到 DOM 之前，對其進行適當的編碼（例如 HTML 實體編碼）。這可以防止瀏覽器將惡意數據解釋為可執行程式碼。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   <span style=font-weight:700>**Token 有效期短**</span>: 設定 JWT 的有效期限盡可能短（例如 15-30 分鐘）。即使 Token 被盜，其生命週期也有限，降低了攻擊的窗口。應搭配 Refresh Token 機制來無感刷新 Token，但 Refresh Token 應儲存在更安全的 <span style=color:#e6db74>`HttpOnly`</span> Cookie 中，這屬於後端和更複雜的前端範疇。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   <span style=font-weight:700>**不儲存敏感資訊**</span>: JWT 的 Payload 應只包含非敏感的公開資訊（如使用者 ID、角色），不應包含密碼、信用卡號等敏感數據。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 1.2. API 客戶端攔截器 (API Client Interceptor)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>我們將在 <span style=color:#e6db74>`api.js`</span> 模組中建立一個集中的 <span style=color:#e6db74>`apiFetch`</span> 封裝函式（已實現）。其核心職責是：在**每個**發出的請求中，自動從 <span style=color:#e6db74>`localStorage`</span> 讀取 Token 並將其附加到 <span style=color:#e6db74>`Authorization: Bearer &lt;token&gt;`</span> 標頭中。這確保了所有需要認證的 API 請求都能自動攜帶 Token，簡化了業務邏輯的開發。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>---
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## 2. 前端認證狀態機 (Frontend Auth State Machine)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>我們將在前端的 <span style=color:#e6db74>`state`</span> 物件中，維護一個完整的認證狀態機，而不僅僅是一個布林值。這使得 UI 能夠更精確地反映認證過程中的不同階段，提供更優質的使用者體驗。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   <span style=font-weight:700>**狀態定義**</span>:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   <span style=color:#e6db74>`authStatus: &#39;idle&#39; | &#39;loading&#39; | &#39;authenticated&#39; | &#39;unauthenticated&#39; | &#39;error&#39;`</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>-</span>   <span style=color:#e6db74>`idle`</span>: 應用程式初始狀態，或認證流程未啟動。
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>-</span>   <span style=color:#e6db74>`loading`</span>: 正在進行登入、註冊或 Token 驗證等認證相關的非同步操作。
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>-</span>   <span style=color:#e6db74>`authenticated`</span>: 使用者已成功登入並通過驗證，具備訪問受保護資源的權限。
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>-</span>   <span style=color:#e6db74>`unauthenticated`</span>: 使用者未登入，或其 Token 無效/已過期，無法訪問受保護資源。
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>-</span>   <span style=color:#e6db74>`error`</span>: 在認證過程中發生了錯誤（例如網路問題、憑證錯誤）。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   <span style=color:#e6db74>`user: { id, name, email } | null`</span>: 儲存已認證使用者的基本資訊。在 <span style=color:#e6db74>`unauthenticated`</span> 或 <span style=color:#e6db74>`error`</span> 狀態下為 <span style=color:#e6db74>`null`</span>。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   <span style=color:#e6db74>`error: string | null`</span>: 儲存認證過程中發生的具體錯誤訊息，用於向使用者顯示。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   <span style=font-weight:700>**設計理由**</span>:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   <span style=font-weight:700>**精確的 UI 反饋**</span>: 能夠根據 <span style=color:#e6db74>`authStatus`</span> 精確地控制 UI 元素（例如，在 <span style=color:#e6db74>`loading`</span> 狀態下禁用登入按鈕並顯示載入指示器，在 <span style=color:#e6db74>`error`</span> 狀態下顯示錯誤訊息）。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   <span style=font-weight:700>**清晰的邏輯流**</span>: 狀態機使得認證流程的邏輯更加清晰和可預測，減少了條件判斷的複雜性。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   <span style=font-weight:700>**優雅的錯誤處理**</span>: 能夠將認證錯誤與其他應用程式錯誤區分開來，並提供專門的處理和顯示。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>---
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## 3. 核心流程圖 (Core Flowcharts)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>以下流程圖使用 Mermaid.js 語法，展示了認證相關的核心流程及其伴隨的 UI 狀態變化。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 3.1. 使用者登入流程
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>```mermaid
+</span></span><span style=display:flex><span>graph TD
+</span></span><span style=display:flex><span>    A[使用者輸入憑證] --&gt; B{點擊登入};
+</span></span><span style=display:flex><span>    B --&gt; C{前端表單驗證}; 
+</span></span><span style=display:flex><span>    C -- 成功 --&gt; D{更新狀態: authStatus=&#39;loading&#39;, error=null};
+</span></span><span style=display:flex><span>    D --&gt; E[UI: 禁用登入按鈕/顯示載入指示器];
+</span></span><span style=display:flex><span>    E --&gt; F[發送 POST /auth/login 請求];
+</span></span><span style=display:flex><span>    F -- 成功 (200 OK, with token) --&gt; G{儲存 Token 到 localStorage};
+</span></span><span style=display:flex><span>    G --&gt; H{更新狀態: authStatus=&#39;authenticated&#39;, user data, error=null};
+</span></span><span style=display:flex><span>    H --&gt; I[UI: 導向主應用/儀表板];
+</span></span><span style=display:flex><span>    F -- 失敗 (401/403/500) --&gt; J{更新狀態: authStatus=&#39;error&#39;, error=&#39;錯誤訊息&#39;}; 
+</span></span><span style=display:flex><span>    J --&gt; K[UI: 顯示錯誤訊息/啟用按鈕];
+</span></span></code></pre></div><h3 id=32-使用者登出流程>3.2. 使用者登出流程</h3><pre tabindex=0><code class=language-mermaid data-lang=mermaid>graph TD
+    A[使用者點擊登出] --&gt; B{更新狀態: authStatus=&#39;loading&#39;};
+    B --&gt; C[UI: 禁用所有互動/顯示載入];
+    C --&gt; D{清除 localStorage 中的 Token};
+    D --&gt; E{清除前端狀態};
+    E --&gt; F[更新狀態: authStatus=&#39;unauthenticated&#39;, error=null];
+    F --&gt; G[UI: 導向登入頁面];
+    G -- (可選) 發送 API 請求 --&gt; H[後端清除 Session/Token];
+</code></pre><h3 id=33-應用程式啟動時的認證檢查流程>3.3. 應用程式啟動時的認證檢查流程</h3><pre tabindex=0><code class=language-mermaid data-lang=mermaid>graph TD
+    A[應用程式啟動] --&gt; B{檢查 localStorage 是否有 Token?};
+    B -- 無 Token --&gt; C{更新狀態: authStatus=&#39;unauthenticated&#39;};
+    C --&gt; D[UI: 顯示登入頁面];
+    B -- 有 Token --&gt; E{更新狀態: authStatus=&#39;loading&#39;};
+    E --&gt; F[UI: 顯示載入指示器];
+    F --&gt; G[發送 GET /users/me 請求];
+    G -- 成功 --&gt; H{更新狀態: authStatus=&#39;authenticated&#39;};
+    H --&gt; I[UI: 載入主應用數據/顯示儀表板];
+    G -- 失敗 --&gt; J{清除 localStorage 中的 Token};
+    J --&gt; K{更新狀態: authStatus=&#39;unauthenticated&#39;, error=&#39;Token 無效/過期&#39;}; 
+    K --&gt; L[UI: 顯示登入頁面];
+</code></pre><hr><h2 id=4-路由與授權路由守衛-routing--authorization-route-guards>4. 路由與授權：路由守衛 (Routing & Authorization: Route Guards)</h2><h3 id=41-概念闡述>4.1. 概念闡述</h3><p>「路由守衛」就像是應用程式中每個「房間」門口的保全。當使用者嘗試進入某個「房間」（即訪問某個路由或頁面）時，保全會先檢查他們是否具備進入的「通行證」（即是否已認證或具備特定權限）。如果沒有，保全就會阻止他們進入，並將他們帶到指定的地方（例如登入頁面）。</p><h3 id=42-職責定義>4.2. 職責定義</h3><ul><li><p><strong>公開路由 (Public Routes)</strong>:</p><ul><li>例如 <code>/login</code>, <code>/register</code>。這些路由不需要任何認證，任何人都可以訪問。</li><li>路由守衛會確保已登入的使用者不會被困在這些頁面。如果 <code>authStatus</code> 為 <code>authenticated</code>，則會自動將使用者導向主應用（例如儀表板）。</li></ul></li><li><p><strong>私有路由 (Private Routes)</strong>:</p><ul><li>例如 <code>/dashboard</code>, <code>/settings</code>, <code>/review</code>。這些路由包含敏感或個人化數據，必須在進入前由「路由守衛」檢查 <code>state.authStatus</code> 是否為 <code>authenticated</code>。</li></ul></li><li><p><strong>無權限處理</strong>:</p><ul><li>若檢查失敗（即 <code>authStatus</code> 不是 <code>authenticated</code>），路由守衛必須立即將使用者<strong>重新導向 (Redirect)</strong> 至登入頁面，並可選地附帶一個提示訊息，告知使用者需要登入才能訪問該頁面。</li></ul></li></ul><hr><h2 id=5-錯誤處理與-token-過期策略>5. 錯誤處理與 Token 過期策略</h2><h3 id=51-集中處理>5.1. 集中處理</h3><p><code>api.js</code> 中的 <code>apiFetch</code> 函式將作為 API 客戶端攔截器，負責攔截所有從後端返回的 API 回應。這是處理 Token 過期和認證錯誤的關鍵點，因為它允許我們在單一位置處理這些全域性的問題，而無需在每個 API 呼叫處重複邏輯。</p><h3 id=52-標準流程>5.2. 標準流程</h3><p>當 <code>apiFetch</code> 偵測到後端返回 <code>401 Unauthorized</code> 狀態碼時，這表示當前使用的 Token 無效或已過期。此時，<code>apiFetch</code> 必須觸發一個<strong>全域的登出程序</strong>：</p><ol><li><strong>清除 <code>localStorage</code> 中的 <code>authToken</code></strong>: 移除無效的 Token，防止其被再次使用。</li><li><strong>重設前端 <code>state</code> 中的認證相關狀態</strong>: 將 <code>isAuthenticated</code> 設為 <code>false</code>，<code>user</code> 設為 <code>null</code>，<code>authStatus</code> 設為 <code>unauthenticated</code>。這會立即更新 UI，反映使用者已登出。</li><li><strong>將使用者重新導向到登入頁面</strong>: 確保使用者被帶到正確的入口點，並可選地顯示一個訊息，告知他們會話已過期。</li></ol><p>這樣做的好處是，所有元件都不需要單獨處理 <code>401</code> 錯誤，只需專注於自身的業務邏輯。任何 <code>401</code> 錯誤都會自動觸發一個安全且一致的登出流程。</p><pre tabindex=0><code>
+## Part 4：提交我們的「安全設計圖」
+
+1. **Commit 訊息**: `docs(frontend): Create authentication flow specification`
+2. **Commit &amp; Push**！
+
+### 結語：從「功能」到「安全」
+
+再次恭喜！今天，我們為 App 的安全性，打下了最堅實的理論基礎。我們沒有憑感覺去處理這個複雜的流程，而是再次透過 **「文件驅動」**，將所有可能的路徑與邏輯，都預先規劃得一清二楚。
+
+有了這份精密的「安全白皮書」，我們接下來的開發工作將會變得無比順暢。明天，我們將正式拿起工具，**嚴格依據今天的這份流程圖** ，將我們的APP安全性補齊。
+</code></pre></div><div class="flex flex-row justify-center py-8 sm:py-12"><div class="w-full max-w-6xl min-w-0"><div class="flex justify-center"><main class="w-full max-w-4xl min-w-0"><article class="prose max-w-none"><nav class="flex text-sm mb-6" aria-label=Breadcrumb><ol class="inline-flex items-center space-x-1 md:space-x-3"><li class="inline-flex items-center"><a href=/ChiYu-Blob/ class="inline-flex items-center hover:text-blue-600 dark:hover:text-blue-400" style=color:var(--text-secondary)><svg class="w-4 h-4 mr-2" fill="currentcolor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414.0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/></svg>
+首頁</a></li><li><div class="flex items-center"><svg class="w-4 h-4 mx-1" style="color:var(--text-secondary);opacity:.5" fill="currentcolor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414.0z" clip-rule="evenodd"/></svg>
+<a href=/ChiYu-Blob/posts/ class="ml-1 hover:text-blue-600 dark:hover:text-blue-400 capitalize" style=color:var(--text-secondary)>全部文章</a></div></li><li aria-current=page><div class="flex items-center"><svg class="w-4 h-4 mx-1" style="color:var(--text-secondary);opacity:.5" fill="currentcolor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414.0z" clip-rule="evenodd"/></svg>
+<span class="ml-1 font-medium truncate max-w-[150px] sm:max-w-[300px]" style=color:var(--text-color)>Day 29: 【文件 #9】專案的守衛：用 Gemini 規劃「前端認證流程」</span></div></li></ol></nav><header class=mb-8><h1 class="text-2xl sm:text-4xl font-bold tracking-tight mb-4 !mt-0">Day 29: 【文件 #9】專案的守衛：用 Gemini 規劃「前端認證流程」</h1><p class=text-base style=color:var(--text-secondary)>發布於 2025年9月17日
+<span class=ml-2 style=color:var(--text-secondary);opacity:.8;font-size:.9em>(更新於 2025年9月17日)
+</span>&#183; <span class=mx-1>約 5 分鐘閱讀</span>
+&#183;
+<span class="inline-flex flex-wrap gap-2 items-center" data-pagefind-ignore><a href=/ChiYu-Blob/tags/2025ithomeironman/ class=tag-pill>2025iThomeIronman</a>
+<a href=/ChiYu-Blob/tags/gemini/ class=tag-pill>Gemini</a>
+<a href=/ChiYu-Blob/tags/frontend/ class=tag-pill>Frontend</a>
+<a href=/ChiYu-Blob/tags/authentication/ class=tag-pill>Authentication</a>
+<a href=/ChiYu-Blob/tags/jwt/ class=tag-pill>JWT</a>
+<a href=/ChiYu-Blob/tags/security/ class=tag-pill>Security</a></span></p></header><div data-pagefind-meta="title:Day 29: 【文件 #9】專案的守衛：用 Gemini 規劃「前端認證流程」" style=display:none></div><div data-pagefind-ignore><p>安安，我是 ChiYu！</p><p>昨天，我們成功地兌現了對使用者的最終承諾，將冰冷的數據轉化為了富有情感的、能啟發洞察的視覺化故事。我們的 App 核心價值已然確立。</p><p>但是，我們的 App 現在還像是一個 <strong>沒有門鎖的豪宅</strong>。雖然內部裝潢精美、功能強大，但任何人都可以隨意進出，這對於一個旨在儲存使用者私密心情與習慣數據的應用來說，是絕對不可接受的。</p><p><strong>使用者認證 (Authentication)</strong> 流程，是任何嚴肅 Web 應用的基石。它複雜、涉及安全性、且牽一髮而動全身。因此，我們 <strong>絕對不能</strong>憑感覺去寫！</p><p>今天，我們將進行第二個前端的 DDD 循環！我們將扮演一位「資安架構師」，與 Gemini 一同腦力激盪，為這個最關鍵的功能，撰寫一份清晰、專業的**「前端認證流程規格書」**。</p><h2 id=part-1前端心法在寫-code-前先成為半個資安專家>Part 1：前端心法：在寫 Code 前，先成為半個資安專家</h2><p>在我們觸碰任何跟認證相關的程式碼之前，我們必須先在腦中建立起清晰的資安模型。這不僅僅是「使用者體驗」的問題，更是「使用者信任」的基石。</p><h3 id=11-核心觀念認證-authentication-vs-授權-authorization>1.1 核心觀念：認證 (Authentication) vs. 授權 (Authorization)</h3><p>首先，要釐清兩個最常被搞混的概念：</p><ul><li><strong>認證 (Authentication - 你是誰？)</strong>：這個過程是在 <strong>驗證你的身份</strong>。就像你進入一棟大樓，需要出示你的身份證或門禁卡，向保全證明「我就是住戶 ChiYu」。 <strong>登入</strong>這個動作，就是最典型的認證。</li><li><strong>授權 (Authorization - 你能做什麼？)</strong>：這個過程是在你 <strong>通過認證後</strong>， <strong>決定你有哪些權限</strong>。保全確認了你是 ChiYu 後，他還需要知道，你的門禁卡只能打開你家的門，不能打開別人家或頂樓機房的門。在 App 中，這可能意味著普通使用者只能讀取自己的資料，而管理員 (Admin) 則可以讀取所有人的資料。</li></ul><h3 id=12-現代-web-的通行證jwt-json-web-token>1.2 現代 Web 的通行證：JWT (JSON Web Token)</h3><p>在現代 Web App 中，我們如何實現無狀態 (Stateless) 的認證呢？答案就是 <strong>JWT</strong>。</p><p>你可以把 JWT 想像成一張 <strong>蓋了章的「數位通行證」</strong>。當你用帳號密碼成功登入後，伺服器會發給你一張 JWT。這張通行證本身包含了一些資訊（例如你是誰、你的權限是什麼），並且經過伺服器的 <strong>數位簽章</strong>，確保它沒有被偽造。</p><p>之後，你每次要向伺服器請求資料時，只需要在請求中附上這張通行證，伺服器看到上面有自己蓋的章，就知道你是合法的使用者，而不需要每次都重新去資料庫查驗你的帳號密碼。</p><h3 id=13-oauth-20安全的授權代理>1.3 OAuth 2.0：安全的「授權代理」</h3><p>你一定用過「透過 Google / Facebook 登入」的功能。這背後，就是 <strong>OAuth 2.0</strong> 的功勞。</p><p>OAuth 2.0 本質上不是一個「認證」協議，而是一個 **「授權 (Authorization)」**框架。它的核心思想是 <strong>「安全的代理授權」</strong>。</p><blockquote><p>比喻來說：
+假設你的 App (我們的 MindTrack) 是一個需要你家（Google 帳戶）鑰匙的「清潔服務公司」。</p><ul><li><strong>不安全的作法</strong>：你直接把你的 Google 帳號密碼告訴 MindTrack。這太危險了！MindTrack 不僅能打掃你的房間（讀取基本資料），還能動用你的存款、看你的私密信件！</li><li><strong>OAuth 2.0 的作法</strong>：你想請 MindTrack 來打掃時，MindTrack 會把你帶到 Google 的「物業管理處」。你在這裡向 Google 確認：「是的，我同意讓 MindTrack 進入我家，但 <strong>只授權</strong>他打掃客廳（讀取你的基本個人資料），絕對不准進臥室（讀取你的信件）！」</li></ul><p>Google 確認後，不會把你的「萬能鑰匙」給 MindTrack，而是會給他一張 <strong>有特定權限、有時效性</strong>的「臨時通行證」。MindTrack 拿著這張臨時通行證，就可以來幫你打掃客廳了。</p></blockquote><p>雖然我們的 MVP 不會實作 OAuth 2.0，但理解這個觀念，是你邁向專業開發者的重要一步。</p><h2 id=part-2vibe-coding-實戰撰寫我們的安全白皮書>Part 2：Vibe Coding 實戰：撰寫我們的「安全白皮書」</h2><p>好了，理論武裝完畢！讓我們進入 <code>gemini chat</code> 模式，指揮 AI 為我們撰寫這份至關重要的安全規格書。</p><h3 id=魔法詠唱設計認證流程>【魔法詠唱：設計認證流程】</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown><span style=display:flex><span># 角色 (Role)
+</span></span><span style=display:flex><span>你是一位頂尖的資安架構師與資深前端工程師，是 Web 安全、JWT (JSON Web Token) 認證機制、前端路由管理與 API 客戶端設計的權威專家。你致力於在確保安全性的前提下，打造無縫、穩固且可擴展的使用者認證體驗。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 目標 (Objective)
+</span></span><span style=display:flex><span>請根據我提供的專案上下文，為我們的 Web App 設計一份專業、完整、且具備高度可執行性的**「前端認證架構藍圖 (Frontend Authentication Architectural Blueprint)」**。這份文件將作為開發團隊實現所有安全相關功能的唯一真理來源。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 上下文與關鍵資訊 (Context &amp; Key Information)
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span> **核心需求**: 我們需要為 App 實現使用者故事 #1：「使用者註冊/登入」。(`@docs/USER_STORIES.md`)
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span> **後端契約**: 我們後端的 <span style=color:#e6db74>`/auth/login`</span> 和 <span style=color:#e6db74>`/auth/register`</span> 端點，在成功後會返回一個包含 <span style=color:#e6db74>`accessToken`</span> (JWT) 的 JSON 物件。(`@docs/API_SPEC.yml`)
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span> **核心挑戰**: 設計一個既安全又具備良好使用者體驗的前端認證系統。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 產出格式與要求 (Your Task &amp; Output Requirements)
+</span></span><span style=display:flex><span>**請生成一份專業的 Markdown 文件，並嚴格遵循以下大綱結構：**
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 1. **核心原則與架構決策**
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>*</span> **技術選型與權衡 (Tech Choices <span style=color:#960050;background-color:#1e0010>&amp;</span> Trade-offs)**:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span> **Token 儲存策略**: 明確我們將選擇 <span style=color:#e6db74>`localStorage`</span> 來儲存 JWT Token。 <span style=font-weight:700>**請深入分析此決策**</span>：闡述其優點（API 簡單、跨分頁共享），並 <span style=font-weight:700>**詳細列出其主要安全風險（易受 XSS 攻擊）及對應的基礎緩解措施**</span>（例如：內容安全策略 CSP、輸入淨化）。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span> **API 客戶端攔截器 (API Client Interceptor)**: 說明我們將 **必須**建立一個集中的 <span style=color:#e6db74>`fetch`</span> 封裝函式或使用類似 <span style=color:#e6db74>`axios`</span> 的攔截器。其核心職責是：在 **每個**發出的請求中，自動從 <span style=color:#e6db74>`localStorage`</span> 讀取 Token 並將其附加到 <span style=color:#e6db74>`Authorization`</span> 標頭中。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 2. **前端認證狀態機 (Frontend Auth State Machine)**
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>*</span> 說明我們將在前端的 <span style=color:#e6db74>`state`</span> 物件中，維護一個完整的認證狀態機，而不僅僅是一個布林值。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span> **狀態定義**:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span> <span style=color:#e6db74>`authStatus: &#39;idle&#39; | &#39;loading&#39; | &#39;authenticated&#39; | &#39;unauthenticated&#39; | &#39;error&#39;`</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span> <span style=color:#e6db74>`user: { id, name, email } | null`</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span> <span style=color:#e6db74>`error: string | null`</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span> **設計理由**: 簡述為何使用狀態機能夠更優雅地處理 UI 變化（例如，在 <span style=color:#e6db74>`loading`</span> 狀態下禁用登入按鈕）。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 3. **核心流程圖 (Core Flowcharts)**
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>*</span> 使用 Mermaid.js 的 <span style=color:#e6db74>`graph TD`</span> 語法，為以下三個核心流程，分別繪製包含 **UI 狀態變化**的清晰流程圖：
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span> **使用者登入流程**: 需包含「更新狀態為 loading」、「禁用按鈕」、「API 請求」、「成功後儲存 Token」、「更新狀態為 authenticated」、「失敗後更新狀態為 error」等節點。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span> **使用者登出流程**: 需包含「清除 Token」、「清除本地狀態」、「API 請求(可選)」、「重新導向」。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span> **應用程式啟動時的認證檢查流程**: 需包含「檢查本地 Token」、「驗證 Token 有效性(可選)」、「設定初始狀態」。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 4. **路由與授權：路由守衛 (Routing &amp; Authorization: Route Guards)**
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>*</span> **概念闡述**: 深入淺出地解釋什麼是「路由守衛」，並使用「每個房間門口的保全」的比喻。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span> **職責定義**:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span> **公開路由 (Public Routes)**: 如 <span style=color:#e6db74>`/login`</span>, <span style=color:#e6db74>`/register`</span>，任何人都可以訪問。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span> **私有路由 (Private Routes)**: 如 <span style=color:#e6db74>`/dashboard`</span>, <span style=color:#e6db74>`/settings`</span>，必須在進入前由「路由守衛」檢查 <span style=color:#e6db74>`state.isAuthenticated`</span> (或 Token 的有效性)。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>*</span> **無權限處理**: 若檢查失敗，路由守衛必須立即將使用者**重新導向 (Redirect)** 至登入頁面。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 5. **錯誤處理與 Token 過期策略**
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>*</span> **集中處理**: 定義 API 客戶端攔截器的另一項核心職責：**攔截 API 回應**。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span> **標準流程**: 當攔截器偵測到後端返回 <span style=color:#e6db74>`401 Unauthorized`</span> 狀態碼時，它必須觸發一個**全域的登出程序**（清除 Token、重設狀態、重新導向到登入頁），而無需每個元件單獨處理。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 6. **最終產出**
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>*</span> 將以上所有內容，生成到 <span style=color:#e6db74>`docs/AUTH_FLOW.md`</span> 檔案中。
+</span></span></code></pre></div><h2 id=part-3審核-ai-產出的安全白皮書>Part 3：審核 AI 產出的「安全白皮書」</h2><p>AI 完成操作後，讓我們來仔細品味一下這份由我們共同創作的、專業的「安全設計圖」。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown><span style=display:flex><span># 前端認證架構藍圖 (Frontend Authentication Architectural Blueprint)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span> **文件版本**: 1.0
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span> **作者**: Gemini (資安架構師 / 資深前端工程師)
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span> **狀態**: <span style=color:#e6db74>`草案`</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>---
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## 1. 核心原則與架構決策
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 1.1. 技術選型與權衡 (Token 儲存策略)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>我們將選擇 <span style=color:#e6db74>`localStorage`</span> 來儲存 JWT (JSON Web Token)。此決策基於以下考量：
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   <span style=font-weight:700>**優點**</span>:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   <span style=font-weight:700>**API 簡單易用**</span>: <span style=color:#e6db74>`localStorage`</span> 提供直觀的 <span style=color:#e6db74>`setItem()`</span>, <span style=color:#e6db74>`getItem()`</span>, <span style=color:#e6db74>`removeItem()`</span> 方法，易於開發者操作。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   <span style=font-weight:700>**跨分頁共享**</span>: 儲存在 <span style=color:#e6db74>`localStorage`</span> 中的 Token 可以被同源 (same-origin) 的所有瀏覽器分頁共享，方便使用者在多個分頁間保持登入狀態。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   <span style=font-weight:700>**持久化儲存**</span>: Token 會在瀏覽器關閉後依然存在，使用者無需每次開啟瀏覽器都重新登入，提升使用者體驗。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   <span style=font-weight:700>**主要安全風險 (XSS 攻擊)**</span>:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   <span style=color:#e6db74>`localStorage`</span> 中的數據**容易受到跨站腳本 (XSS) 攻擊**。一旦攻擊者成功在頁面中注入惡意 JavaScript 程式碼，他們就可以直接存取 <span style=color:#e6db74>`localStorage`</span> 中的所有數據，包括 JWT Token。攻擊者獲取 Token 後，即可冒充使用者發送請求，造成會話劫持 (Session Hijacking)。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   <span style=font-weight:700>**基礎緩解措施**</span>:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   <span style=font-weight:700>**內容安全策略 (Content Security Policy, CSP)**</span>: 實施嚴格的 CSP，限制頁面可以載入的腳本、樣式和其他資源的來源。這能有效防禦大多數 XSS 攻擊，因為它阻止了惡意腳本的載入和執行。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   <span style=font-weight:700>**輸入淨化 (Input Sanitization)**</span>: 對所有來自使用者或外部來源的輸入數據進行嚴格的驗證、過濾和淨化，防止惡意程式碼（如 <span style=color:#e6db74>`&lt;script&gt;`</span> 標籤）被儲存到資料庫或直接顯示在頁面上。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   <span style=font-weight:700>**輸出編碼 (Output Encoding)**</span>: 在將任何來自使用者或不可信來源的數據渲染到 DOM 之前，對其進行適當的編碼（例如 HTML 實體編碼）。這可以防止瀏覽器將惡意數據解釋為可執行程式碼。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   <span style=font-weight:700>**Token 有效期短**</span>: 設定 JWT 的有效期限盡可能短（例如 15-30 分鐘）。即使 Token 被盜，其生命週期也有限，降低了攻擊的窗口。應搭配 Refresh Token 機制來無感刷新 Token，但 Refresh Token 應儲存在更安全的 <span style=color:#e6db74>`HttpOnly`</span> Cookie 中，這屬於後端和更複雜的前端範疇。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   <span style=font-weight:700>**不儲存敏感資訊**</span>: JWT 的 Payload 應只包含非敏感的公開資訊（如使用者 ID、角色），不應包含密碼、信用卡號等敏感數據。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 1.2. API 客戶端攔截器 (API Client Interceptor)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>我們將在 <span style=color:#e6db74>`api.js`</span> 模組中建立一個集中的 <span style=color:#e6db74>`apiFetch`</span> 封裝函式（已實現）。其核心職責是：在**每個**發出的請求中，自動從 <span style=color:#e6db74>`localStorage`</span> 讀取 Token 並將其附加到 <span style=color:#e6db74>`Authorization: Bearer &lt;token&gt;`</span> 標頭中。這確保了所有需要認證的 API 請求都能自動攜帶 Token，簡化了業務邏輯的開發。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>---
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## 2. 前端認證狀態機 (Frontend Auth State Machine)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>我們將在前端的 <span style=color:#e6db74>`state`</span> 物件中，維護一個完整的認證狀態機，而不僅僅是一個布林值。這使得 UI 能夠更精確地反映認證過程中的不同階段，提供更優質的使用者體驗。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   <span style=font-weight:700>**狀態定義**</span>:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   <span style=color:#e6db74>`authStatus: &#39;idle&#39; | &#39;loading&#39; | &#39;authenticated&#39; | &#39;unauthenticated&#39; | &#39;error&#39;`</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>-</span>   <span style=color:#e6db74>`idle`</span>: 應用程式初始狀態，或認證流程未啟動。
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>-</span>   <span style=color:#e6db74>`loading`</span>: 正在進行登入、註冊或 Token 驗證等認證相關的非同步操作。
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>-</span>   <span style=color:#e6db74>`authenticated`</span>: 使用者已成功登入並通過驗證，具備訪問受保護資源的權限。
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>-</span>   <span style=color:#e6db74>`unauthenticated`</span>: 使用者未登入，或其 Token 無效/已過期，無法訪問受保護資源。
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>-</span>   <span style=color:#e6db74>`error`</span>: 在認證過程中發生了錯誤（例如網路問題、憑證錯誤）。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   <span style=color:#e6db74>`user: { id, name, email } | null`</span>: 儲存已認證使用者的基本資訊。在 <span style=color:#e6db74>`unauthenticated`</span> 或 <span style=color:#e6db74>`error`</span> 狀態下為 <span style=color:#e6db74>`null`</span>。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   <span style=color:#e6db74>`error: string | null`</span>: 儲存認證過程中發生的具體錯誤訊息，用於向使用者顯示。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   <span style=font-weight:700>**設計理由**</span>:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   <span style=font-weight:700>**精確的 UI 反饋**</span>: 能夠根據 <span style=color:#e6db74>`authStatus`</span> 精確地控制 UI 元素（例如，在 <span style=color:#e6db74>`loading`</span> 狀態下禁用登入按鈕並顯示載入指示器，在 <span style=color:#e6db74>`error`</span> 狀態下顯示錯誤訊息）。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   <span style=font-weight:700>**清晰的邏輯流**</span>: 狀態機使得認證流程的邏輯更加清晰和可預測，減少了條件判斷的複雜性。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   <span style=font-weight:700>**優雅的錯誤處理**</span>: 能夠將認證錯誤與其他應用程式錯誤區分開來，並提供專門的處理和顯示。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>---
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## 3. 核心流程圖 (Core Flowcharts)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>以下流程圖使用 Mermaid.js 語法，展示了認證相關的核心流程及其伴隨的 UI 狀態變化。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 3.1. 使用者登入流程
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>```mermaid
+</span></span><span style=display:flex><span>graph TD
+</span></span><span style=display:flex><span>    A[使用者輸入憑證] --&gt; B{點擊登入};
+</span></span><span style=display:flex><span>    B --&gt; C{前端表單驗證}; 
+</span></span><span style=display:flex><span>    C -- 成功 --&gt; D{更新狀態: authStatus=&#39;loading&#39;, error=null};
+</span></span><span style=display:flex><span>    D --&gt; E[UI: 禁用登入按鈕/顯示載入指示器];
+</span></span><span style=display:flex><span>    E --&gt; F[發送 POST /auth/login 請求];
+</span></span><span style=display:flex><span>    F -- 成功 (200 OK, with token) --&gt; G{儲存 Token 到 localStorage};
+</span></span><span style=display:flex><span>    G --&gt; H{更新狀態: authStatus=&#39;authenticated&#39;, user data, error=null};
+</span></span><span style=display:flex><span>    H --&gt; I[UI: 導向主應用/儀表板];
+</span></span><span style=display:flex><span>    F -- 失敗 (401/403/500) --&gt; J{更新狀態: authStatus=&#39;error&#39;, error=&#39;錯誤訊息&#39;}; 
+</span></span><span style=display:flex><span>    J --&gt; K[UI: 顯示錯誤訊息/啟用按鈕];
+</span></span></code></pre></div><h3 id=32-使用者登出流程>3.2. 使用者登出流程</h3><pre tabindex=0><code class=language-mermaid data-lang=mermaid>graph TD
+    A[使用者點擊登出] --&gt; B{更新狀態: authStatus=&#39;loading&#39;};
+    B --&gt; C[UI: 禁用所有互動/顯示載入];
+    C --&gt; D{清除 localStorage 中的 Token};
+    D --&gt; E{清除前端狀態};
+    E --&gt; F[更新狀態: authStatus=&#39;unauthenticated&#39;, error=null];
+    F --&gt; G[UI: 導向登入頁面];
+    G -- (可選) 發送 API 請求 --&gt; H[後端清除 Session/Token];
+</code></pre><h3 id=33-應用程式啟動時的認證檢查流程>3.3. 應用程式啟動時的認證檢查流程</h3><pre tabindex=0><code class=language-mermaid data-lang=mermaid>graph TD
+    A[應用程式啟動] --&gt; B{檢查 localStorage 是否有 Token?};
+    B -- 無 Token --&gt; C{更新狀態: authStatus=&#39;unauthenticated&#39;};
+    C --&gt; D[UI: 顯示登入頁面];
+    B -- 有 Token --&gt; E{更新狀態: authStatus=&#39;loading&#39;};
+    E --&gt; F[UI: 顯示載入指示器];
+    F --&gt; G[發送 GET /users/me 請求];
+    G -- 成功 --&gt; H{更新狀態: authStatus=&#39;authenticated&#39;};
+    H --&gt; I[UI: 載入主應用數據/顯示儀表板];
+    G -- 失敗 --&gt; J{清除 localStorage 中的 Token};
+    J --&gt; K{更新狀態: authStatus=&#39;unauthenticated&#39;, error=&#39;Token 無效/過期&#39;}; 
+    K --&gt; L[UI: 顯示登入頁面];
+</code></pre><hr><h2 id=4-路由與授權路由守衛-routing--authorization-route-guards>4. 路由與授權：路由守衛 (Routing & Authorization: Route Guards)</h2><h3 id=41-概念闡述>4.1. 概念闡述</h3><p>「路由守衛」就像是應用程式中每個「房間」門口的保全。當使用者嘗試進入某個「房間」（即訪問某個路由或頁面）時，保全會先檢查他們是否具備進入的「通行證」（即是否已認證或具備特定權限）。如果沒有，保全就會阻止他們進入，並將他們帶到指定的地方（例如登入頁面）。</p><h3 id=42-職責定義>4.2. 職責定義</h3><ul><li><p><strong>公開路由 (Public Routes)</strong>:</p><ul><li>例如 <code>/login</code>, <code>/register</code>。這些路由不需要任何認證，任何人都可以訪問。</li><li>路由守衛會確保已登入的使用者不會被困在這些頁面。如果 <code>authStatus</code> 為 <code>authenticated</code>，則會自動將使用者導向主應用（例如儀表板）。</li></ul></li><li><p><strong>私有路由 (Private Routes)</strong>:</p><ul><li>例如 <code>/dashboard</code>, <code>/settings</code>, <code>/review</code>。這些路由包含敏感或個人化數據，必須在進入前由「路由守衛」檢查 <code>state.authStatus</code> 是否為 <code>authenticated</code>。</li></ul></li><li><p><strong>無權限處理</strong>:</p><ul><li>若檢查失敗（即 <code>authStatus</code> 不是 <code>authenticated</code>），路由守衛必須立即將使用者<strong>重新導向 (Redirect)</strong> 至登入頁面，並可選地附帶一個提示訊息，告知使用者需要登入才能訪問該頁面。</li></ul></li></ul><hr><h2 id=5-錯誤處理與-token-過期策略>5. 錯誤處理與 Token 過期策略</h2><h3 id=51-集中處理>5.1. 集中處理</h3><p><code>api.js</code> 中的 <code>apiFetch</code> 函式將作為 API 客戶端攔截器，負責攔截所有從後端返回的 API 回應。這是處理 Token 過期和認證錯誤的關鍵點，因為它允許我們在單一位置處理這些全域性的問題，而無需在每個 API 呼叫處重複邏輯。</p><h3 id=52-標準流程>5.2. 標準流程</h3><p>當 <code>apiFetch</code> 偵測到後端返回 <code>401 Unauthorized</code> 狀態碼時，這表示當前使用的 Token 無效或已過期。此時，<code>apiFetch</code> 必須觸發一個<strong>全域的登出程序</strong>：</p><ol><li><strong>清除 <code>localStorage</code> 中的 <code>authToken</code></strong>: 移除無效的 Token，防止其被再次使用。</li><li><strong>重設前端 <code>state</code> 中的認證相關狀態</strong>: 將 <code>isAuthenticated</code> 設為 <code>false</code>，<code>user</code> 設為 <code>null</code>，<code>authStatus</code> 設為 <code>unauthenticated</code>。這會立即更新 UI，反映使用者已登出。</li><li><strong>將使用者重新導向到登入頁面</strong>: 確保使用者被帶到正確的入口點，並可選地顯示一個訊息，告知他們會話已過期。</li></ol><p>這樣做的好處是，所有元件都不需要單獨處理 <code>401</code> 錯誤，只需專注於自身的業務邏輯。任何 <code>401</code> 錯誤都會自動觸發一個安全且一致的登出流程。</p><pre tabindex=0><code>
+## Part 4：提交我們的「安全設計圖」
+
+1. **Commit 訊息**: `docs(frontend): Create authentication flow specification`
+2. **Commit &amp; Push**！
+
+### 結語：從「功能」到「安全」
+
+再次恭喜！今天，我們為 App 的安全性，打下了最堅實的理論基礎。我們沒有憑感覺去處理這個複雜的流程，而是再次透過 **「文件驅動」**，將所有可能的路徑與邏輯，都預先規劃得一清二楚。
+
+有了這份精密的「安全白皮書」，我們接下來的開發工作將會變得無比順暢。明天，我們將正式拿起工具，**嚴格依據今天的這份流程圖** ，將我們的APP安全性補齊。
+</code></pre></div></article><div class="not-prose my-8 p-6 rounded-lg border transition-colors" style=background-color:var(--code-bg);border-color:var(--border-color)><div class="flex flex-col sm:flex-row sm:items-center justify-between mb-4 pb-4 border-b" style=border-color:var(--border-color)><div><span class="text-xs font-semibold uppercase tracking-wider" style=color:var(--text-secondary)>Series</span><h3 class="text-lg font-bold mt-1"><a href=/ChiYu-Blob/series/2025ithomeironman/ class=hover:underline style=color:var(--link-color)>2025iThomeIronman</a></h3></div><div class="mt-2 sm:mt-0 text-sm font-medium px-3 py-1 rounded-full border" style=background-color:var(--bg-color);color:var(--text-secondary);border-color:var(--border-color)>Part 29 of 32</div></div><div class="series-list-container relative"><ol class="list-none space-y-1 relative" id=series-list-2025ithomeironman><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday1/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">01.</span>
+<span>Day 1: 【啟程】嘿，AI！我們來做個網站，但這次，我們約法三章</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday2/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">02.</span>
+<span>Day 2: 【心法篇】開發者的航海圖：什麼是文件驅動開發 (DDD)？</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday3/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">03.</span>
+<span>Day 3: 【工具篇 #1】萬丈高樓平地起：建置本地開發環境</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday4/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">04.</span>
+<span>Day 4: 【工具篇 #2】程式碼的時光機：Git 與 GitHub 版本控制</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday5/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">05.</span>
+<span>Day 5: 【工具篇 #3】終端機裡的魔法：什麼是 Vibe Coding 與 Gemini CLI？</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday6/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">06.</span>
+<span>Day 6: 【文件 #1】專案的靈魂：用 Gemini CLI 生成「專案章程」</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday7/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">07.</span>
+<span>Day 7: 【文件 #2】使用者的旅程：用 Gemini CLI 描繪「使用者故事」</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday8/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">08.</span>
+<span>Day 8: 【文件 #3】系統的心臟：用 Gemini CLI 設計「軟體架構文件」</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday9/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">09.</span>
+<span>Day 9: 【文件 #4】數據的家：用 Gemini 規劃「資料庫綱要」</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday10/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">10.</span>
+<span>Day 10: 【文件 #5】溝通的契約：用 Gemini 撰寫「Web API 規格書」</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday11/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">11.</span>
+<span>Day 11: 【心法 #2】透過AI幫我們生成Prompt</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday12/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">12.</span>
+<span>Day 12: 【後端 #1】起手式：AI 代理人 生成模組化的 Flask 專案</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday13/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">13.</span>
+<span>Day 13: 【後端 #2】AI 建築師：依藍圖自動建構 CRUD API</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday14/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">14.</span>
+<span>Day 14: 【DevOps #1】AI 品管員：設定 GitHub Actions 自動化程式碼檢查</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday15/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">15.</span>
+<span>Day 15: 【後端 #3】API 測試：用 Gemini CLI 輔助撰寫 Pytest</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday16/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">16.</span>
+<span>Day 16: 【整合篇】後端竣工！回顧與展望</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday17/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">17.</span>
+<span>Day 17: 【前端 #0】前端世界的基石： HTML, CSS 與 JavaScript</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday18/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">18.</span>
+<span>Day 18: 【文件 #6】網站的風格指南：用 Gemini 定義顏色與字體</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday19/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">19.</span>
+<span>Day 19: 【文件 #7】頁面的骨架：用 Gemini 規劃主佈局與元件拆分</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday20/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">20.</span>
+<span>Day 20: 【前端 #1】Gemini Canvas 生成UI (還有新的AI建議功能)</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday21/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">21.</span>
+<span>Day 21: 【前端 #2】從原型到架構：拆解並整合 AI 生成的 UI 程式碼</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday22/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">22.</span>
+<span>Day 22: 【前端 #3】AI 一鍵生成完整 App 靜態 UI</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday23/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">23.</span>
+<span>Day 23: 【前端 #4】非同步的藝術：深入 Fetch API 與 Promise</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday24/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">24.</span>
+<span>Day 24: 【前端 #5】狀態管理的哲學：讓 UI 成為數據的鏡子</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday25/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">25.</span>
+<span>Day 25: 【前端 #6】核心生命週期：一天搞定習慣的「增刪改查」與「打卡」</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday26/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">26.</span>
+<span>Day 26: 【前端 #7】用戶體驗的最後一哩路：優雅地處理載入與錯誤</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday27/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">27.</span>
+<span>Day 27: 【文件 #8】數據的畫布：用 Gemini 設計「圖表元件規格書」</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday28/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">28.</span>
+<span>Day 28: 【前端 #8】兌現承諾：根據規格書 Vibe Coding 關聯性洞察圖表</span></a></li><li class="series-item p-2 rounded-md transition-colors current-series-item" style="background-color:var(--bg-color);border:1px solid var(--border-color)"><a href=javascript:void(0); class="flex items-start cursor-default" style=color:var(--text-color)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">29.</span>
+<span class=font-bold>Day 29: 【文件 #9】專案的守衛：用 Gemini 規劃「前端認證流程」</span>
+<span class="ml-2 text-xs px-2 py-0.5 rounded-full bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">Current</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday30/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">30.</span>
+<span>Day 30: 【前端 #9】建立大門與鑰匙：根據流程圖實現前端使用者認證</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday31/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">31.</span>
+<span>Day 31: 【優化篇】代碼的整形外科：JavaScript 模組化與代碼重構</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday32/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">32.</span>
+<span>【完賽感言】左手藍圖，右手魔法：一趟旅程的結束與反思</span></a></li></ol><button onclick=toggleSeriesList(this) class="w-full mt-4 text-xs font-medium text-center py-2 border-t hover:bg-opacity-50 transition-colors" style=color:var(--text-secondary);border-color:var(--border-color)>
+Show all 32 posts</button><style>#series-list-2025ithomeironman{max-height:300px;overflow-y:auto;padding-right:5px}#series-list-2025ithomeironman::-webkit-scrollbar{width:4px}#series-list-2025ithomeironman::-webkit-scrollbar-track{background:0 0}#series-list-2025ithomeironman::-webkit-scrollbar-thumb{background-color:var(--border-color);border-radius:4px}</style></div></div><script>function toggleSeriesList(e){const t=e.previousElementSibling;t.style.maxHeight==="none"?(t.style.maxHeight="300px",e.innerText="Show all 32 posts"):(t.style.maxHeight="none",e.innerText="Collapse list")}document.addEventListener("DOMContentLoaded",()=>{const e=document.querySelector(".current-series-item");e&&e.scrollIntoView({behavior:"smooth",block:"nearest"})})</script><nav class="flex justify-between mt-16 pt-8 border-t not-prose" style=border-color:var(--border-color)><div><a href=/ChiYu-Blob/posts/2025ithomeironmanday28/ class="block p-4 rounded-lg transition-colors" style=color:var(--text-secondary)><span class=text-sm>上一篇</span>
+<span class="block font-semibold mt-1" style=color:var(--text-color)>Day 28: 【前端 #8】兌現承諾：根據規格書 Vibe Coding 關聯性洞察圖表 &larr;</span></a></div><div class=text-right><a href=/ChiYu-Blob/posts/2025ithomeironmanday30/ class="block p-4 rounded-lg transition-colors" style=color:var(--text-secondary)><span class=text-sm>下一篇</span>
+<span class="block font-semibold mt-1" style=color:var(--text-color)>&rarr; Day 30: 【前端 #9】建立大門與鑰匙：根據流程圖實現前端使用者認證</span></a></div></nav><div class="mt-16 pt-8 border-t not-prose" style=border-color:var(--border-color)><h3 class="text-xl font-bold mb-6">相關文章</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-4"><a href=/ChiYu-Blob/posts/2025ithomeironmanday30/ class="block p-4 rounded-lg transition-colors" style="border:1px solid var(--border-color)"><span class="font-semibold block" style=color:var(--text-color)>Day 30: 【前端 #9】建立大門與鑰匙：根據流程圖實現前端使用者認證</span><p class="text-sm mt-1" style=color:var(--text-secondary)>說在前頭！！！ 有些部分多花費了些時間在講，所以雖然今天已經滿30天了， 但我還沒有正式完成這次鐵人賽系列文！！！ 我後面還是會繼續更新到正 …</p></a><a href=/ChiYu-Blob/posts/2025ithomeironmanday27/ class="block p-4 rounded-lg transition-colors" style="border:1px solid var(--border-color)"><span class="font-semibold block" style=color:var(--text-color)>Day 27: 【文件 #8】數據的畫布：用 Gemini 設計「圖表元件規格書」</span><p class="text-sm mt-1" style=color:var(--text-secondary)>安安，我是 ChiYu！
+昨天，我們的 App 學會了「同理心」，能夠優雅地處理載入與錯誤，大幅提升了使用者體驗。至此，我們 App 的基礎 …</p></a><a href=/ChiYu-Blob/posts/2025ithomeironmanday19/ class="block p-4 rounded-lg transition-colors" style="border:1px solid var(--border-color)"><span class="font-semibold block" style=color:var(--text-color)>Day 19: 【文件 #7】頁面的骨架：用 Gemini 規劃主佈局與元件拆分</span><p class="text-sm mt-1" style=color:var(--text-secondary)>安安，我是 ChiYu！
+昨天，我們扮演了「首席視覺設計師」，為我們的數位生命，定義了一套獨一無二的「基因圖譜 (DNA)」——我們的 風格 …</p></a><a href=/ChiYu-Blob/posts/2025ithomeironmanday28/ class="block p-4 rounded-lg transition-colors" style="border:1px solid var(--border-color)"><span class="font-semibold block" style=color:var(--text-color)>Day 28: 【前端 #8】兌現承諾：根據規格書 Vibe Coding 關聯性洞察圖表</span><p class="text-sm mt-1" style=color:var(--text-secondary)>安安，我是 ChiYu！
+昨天，我們再次實踐了「文件驅動開發」的核心精神。我們沒有直接衝進複雜的圖表程式碼中，而是先退一步，將一個模糊的「想 …</p></a><a href=/ChiYu-Blob/posts/2025ithomeironmanday26/ class="block p-4 rounded-lg transition-colors" style="border:1px solid var(--border-color)"><span class="font-semibold block" style=color:var(--text-color)>Day 26: 【前端 #7】用戶體驗的最後一哩路：優雅地處理載入與錯誤</span><p class="text-sm mt-1" style=color:var(--text-secondary)>安安，我是 ChiYu！
+昨天，我們的 App 經歷了一次完全體的進化！我們在一天之內，火力全開，搞定了核心的 CRUD 功能。 …</p></a></div></div><div class="share-buttons not-prose mt-8 border-t pt-8" style=border-color:var(--border-color)><h3 class="text-base font-semibold mb-4 opacity-70">分享此文章：</h3><div class="flex gap-4"><a href="https://www.facebook.com/sharer/sharer.php?u=%2fChiYu-Blob%2fposts%2f2025ithomeironmanday29%2f" target=_blank rel="noopener noreferrer" class="share-btn text-blue-600 hover:opacity-80" title="分享到 Facebook"><svg class="w-6 h-6" fill="currentcolor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312.0 2.686.235 2.686.235v2.953H15.83c-1.491.0-1.962.925-1.962 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+</a><a href="https://twitter.com/intent/tweet?url=%2fChiYu-Blob%2fposts%2f2025ithomeironmanday29%2f&text=Day%2029%3a%20%e3%80%90%e6%96%87%e4%bb%b6%20%239%e3%80%91%e5%b0%88%e6%a1%88%e7%9a%84%e5%ae%88%e8%a1%9b%ef%bc%9a%e7%94%a8%20Gemini%20%e8%a6%8f%e5%8a%83%e3%80%8c%e5%89%8d%e7%ab%af%e8%aa%8d%e8%ad%89%e6%b5%81%e7%a8%8b%e3%80%8d" target=_blank rel="noopener noreferrer" class="share-btn text-gray-800 dark:text-gray-200 hover:opacity-80" title="分享到 X"><svg class="w-6 h-6" fill="currentcolor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+</a><a href="https://www.linkedin.com/shareArticle?mini=true&url=%2fChiYu-Blob%2fposts%2f2025ithomeironmanday29%2f&title=Day%2029%3a%20%e3%80%90%e6%96%87%e4%bb%b6%20%239%e3%80%91%e5%b0%88%e6%a1%88%e7%9a%84%e5%ae%88%e8%a1%9b%ef%bc%9a%e7%94%a8%20Gemini%20%e8%a6%8f%e5%8a%83%e3%80%8c%e5%89%8d%e7%ab%af%e8%aa%8d%e8%ad%89%e6%b5%81%e7%a8%8b%e3%80%8d" target=_blank rel="noopener noreferrer" class="share-btn text-blue-700 hover:opacity-80" title="分享到 LinkedIn"><svg class="w-6 h-6" fill="currentcolor" viewBox="0 0 24 24"><path d="M19 0H5C2.239.0.0 2.239.0 5v14c0 2.761 2.239 5 5 5h14c2.762.0 5-2.239 5-5V5c0-2.761-2.238-5-5-5zM8 19H5V8h3v11zM6.5 6.732c-.966.0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zM20 19h-3v-5.604c0-3.368-4-3.113-4 0V19h-3V8h3v1.765c1.396-2.586 7-2.777 7 2.476V19z"/></svg>
+</a><a href="https://social-plugins.line.me/lineit/share?url=%2fChiYu-Blob%2fposts%2f2025ithomeironmanday29%2f" target=_blank rel="noopener noreferrer" class="share-btn text-green-500 hover:opacity-80" title="分享到 Line"><svg class="w-6 h-6" fill="currentcolor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 5.85 2 10.53c0 2.68 1.49 5.08 3.81 6.66-.17.6-.62 2.18-.73 2.61-.06.25-.03.5.21.53.22.03.48-.12.67-.23 2.8-1.63 3.05-1.77 3.63-1.87.8.11 1.62.18 2.41.18 5.52.0 10-3.85 10-8.53S17.52 2 12 2zm0 14.93c-.76.0-1.53-.07-2.27-.2-.22-.04-.45.01-.64.12-.52.29-1.82 1.05-2.78 1.6.17-.85.42-1.8.52-2.3.06-.3-.06-.6-.3-.77C4.7 13.1 3.5 11.2 3.5 10.53c0-3.85 3.81-6.98 8.5-6.98s8.5 3.13 8.5 6.98-3.81 6.4-8.5 6.4z"/></svg></a></div></div><div id=giscus-container class="mt-16 pt-8 border-t not-prose" style=border-color:var(--border-color)></div></main></div></div><aside class="w-64 flex-shrink-0 desktop-sidebar pl-8"><div class="sticky top-20" data-pagefind-ignore><div class="mb-8 text-center" data-pagefind-ignore><img src=/ChiYu-Blob/images/avatar.jpg alt=個人大頭貼 class="w-32 h-32 rounded-full mx-auto object-cover border-2" style=border-color:var(--border-color) data-pagefind-ignore></div><div class="text-center mb-8" data-pagefind-ignore><a href=mailto:iamhandsomeboy1129@gmail.com class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-white transition-opacity hover:opacity-90" style=background-color:var(--link-color)><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1.0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1.0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+<span class="text-sm font-medium">聯絡我</span></a></div><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>文章月曆</h3><div id=calendar-widget-5a7ef1c4 class=calendar-widget><div class="flex justify-between items-center mb-2 font-semibold"><button class="cal-prev px-2 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700" title=上個月>&lt;</button>
+<span class=cal-month-year></span>
+<button class="cal-next px-2 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700" title=下個月>></button></div><div class="grid grid-cols-7 text-center text-xs gap-y-2" style=color:var(--text-secondary)><span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span></div><div class="cal-days grid grid-cols-7 text-center text-sm mt-2 gap-y-2"></div></div></div><script>(function(){const n=document.getElementById("calendar-widget-5a7ef1c4");if(!n)return;const e={};e["2025-12-17"]="/ChiYu-Blob/dates/2025-12-17/",e["2025-8-20"]="/ChiYu-Blob/dates/2025-08-20/",e["2025-8-21"]="/ChiYu-Blob/dates/2025-08-21/",e["2025-8-22"]="/ChiYu-Blob/dates/2025-08-22/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-8-23"]="/ChiYu-Blob/dates/2025-08-23/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-8-24"]="/ChiYu-Blob/dates/2025-08-24/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-8-25"]="/ChiYu-Blob/dates/2025-08-25/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-26"]="/ChiYu-Blob/dates/2025-08-26/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-27"]="/ChiYu-Blob/dates/2025-08-27/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-28"]="/ChiYu-Blob/dates/2025-08-28/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-29"]="/ChiYu-Blob/dates/2025-08-29/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-30"]="/ChiYu-Blob/dates/2025-08-30/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-31"]="/ChiYu-Blob/dates/2025-08-31/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-1"]="/ChiYu-Blob/dates/2025-09-01/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-2"]="/ChiYu-Blob/dates/2025-09-02/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-3"]="/ChiYu-Blob/dates/2025-09-03/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-4"]="/ChiYu-Blob/dates/2025-09-04/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-5"]="/ChiYu-Blob/dates/2025-09-05/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-6"]="/ChiYu-Blob/dates/2025-09-06/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-7"]="/ChiYu-Blob/dates/2025-09-07/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-8"]="/ChiYu-Blob/dates/2025-09-08/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-9"]="/ChiYu-Blob/dates/2025-09-09/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-9-10"]="/ChiYu-Blob/dates/2025-09-10/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-9-11"]="/ChiYu-Blob/dates/2025-09-11/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-9-12"]="/ChiYu-Blob/dates/2025-09-12/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-9-13"]="/ChiYu-Blob/dates/2025-09-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-9-14"]="/ChiYu-Blob/dates/2025-09-14/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-9-15"]="/ChiYu-Blob/dates/2025-09-15/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-9-16"]="/ChiYu-Blob/dates/2025-09-16/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-9-17"]="/ChiYu-Blob/dates/2025-09-17/",e["2025-7-3"]="/ChiYu-Blob/dates/2025-07-03/",e["2025-9-18"]="/ChiYu-Blob/dates/2025-09-18/",e["2025-9-19"]="/ChiYu-Blob/dates/2025-09-19/",e["2025-9-20"]="/ChiYu-Blob/dates/2025-09-20/",e["2025-6-8"]="/ChiYu-Blob/dates/2025-06-08/",e["2025-6-5"]="/ChiYu-Blob/dates/2025-06-05/";const i=n.querySelector(".cal-month-year"),s=n.querySelector(".cal-days"),a=n.querySelector(".cal-prev"),r=n.querySelector(".cal-next");let t=new Date;function o(t){const n=t.getFullYear(),o=t.getMonth();i.textContent=`${n} 年 ${o+1} 月`,s.innerHTML="";const a=new Date(n,o,1),r=new Date(n,o+1,0),c=a.getDay();for(let e=0;e<c;e++)s.insertAdjacentHTML("beforeend","<div></div>");for(let t=1;t<=r.getDate();t++){const i=`${n}-${o+1}-${t}`;e[i]?s.insertAdjacentHTML("beforeend",`
+                    <a href="${e[i]}" class="block p-1 rounded-full transition-colors font-bold" style="color: var(--link-color); text-decoration: underline; text-decoration-thickness: 2px;">
+                        ${t}
+                    </a>
+                `):s.insertAdjacentHTML("beforeend",`<span class="block p-1">${t}</span>`)}}a.addEventListener("click",()=>{t.setMonth(t.getMonth()-1),o(t)}),r.addEventListener("click",()=>{t.setMonth(t.getMonth()+1),o(t)}),o(t)})()</script><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>所有標籤</h3><div class="flex flex-wrap gap-2"><a href=/ChiYu-Blob/tags/yaml/ class=tag-pill>YAML
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/vibe-coding/ class=tag-pill>Vibe Coding
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/ux/ class=tag-pill>UX
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/user-stories/ class=tag-pill>User Stories
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/ui/ux/ class=tag-pill>UI/UX
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/testing/ class=tag-pill>Testing
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/summary/ class=tag-pill>Summary
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/style-guide/ class=tag-pill>Style Guide
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/state-management/ class=tag-pill>State Management
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/state-machine/ class=tag-pill>State Machine
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/sqlite/ class=tag-pill>SQLite
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/sql/ class=tag-pill>SQL
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/spa/ class=tag-pill>SPA
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/software-engineering/ class=tag-pill>Software Engineering
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/software-architecture/ class=tag-pill>Software Architecture
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/side-project/ class=tag-pill>Side Project
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/schema/ class=tag-pill>Schema
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/scaffolding/ class=tag-pill>Scaffolding
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/reflection/ class=tag-pill>Reflection
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/pytest/ class=tag-pill>Pytest
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/promise/ class=tag-pill>Promise
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/project-charter/ class=tag-pill>Project Charter
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/modularization/ class=tag-pill>Modularization
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/linting/ class=tag-pill>Linting
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/layout/ class=tag-pill>Layout
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/hlr/ class=tag-pill>HLR
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/guide/ class=tag-pill>Guide
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/github-actions/ class=tag-pill>GitHub Actions
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/github/ class=tag-pill>GitHub
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/git/ class=tag-pill>Git
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/flake8/ class=tag-pill>Flake8
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/fetch-api/ class=tag-pill>Fetch API
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/error-handling/ class=tag-pill>Error Handling
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/efficiency/ class=tag-pill>Efficiency
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/documentation/ class=tag-pill>Documentation
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/design-system/ class=tag-pill>Design System
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/database/ class=tag-pill>Database
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/data-driven-ui/ class=tag-pill>Data-Driven UI
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/conclusion/ class=tag-pill>Conclusion
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/component-specification/ class=tag-pill>Component Specification
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/component/ class=tag-pill>Component
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/codex/ class=tag-pill>Codex
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/cli/ class=tag-pill>CLI
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/canvas/ class=tag-pill>Canvas
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/blueprints/ class=tag-pill>Blueprints
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/atomic-design/ class=tag-pill>Atomic Design
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/asynchronous/ class=tag-pill>Asynchronous
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/api-integration/ class=tag-pill>API Integration
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/api/ class=tag-pill>API
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/ai-agent/ class=tag-pill>AI Agent
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/agile/ class=tag-pill>Agile
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/swagger/ class=tag-pill>Swagger
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/security/ class=tag-pill>Security
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/refactoring/ class=tag-pill>Refactoring
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/python/ class=tag-pill>Python
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/prototyping/ class=tag-pill>Prototyping
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/prompt-engineering/ class=tag-pill>Prompt Engineering
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/openapi/ class=tag-pill>OpenAPI
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/jwt/ class=tag-pill>JWT
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/html/ class=tag-pill>HTML
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/data-visualization/ class=tag-pill>Data Visualization
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/css/ class=tag-pill>CSS
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/crud/ class=tag-pill>CRUD
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/clean-code/ class=tag-pill>Clean Code
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/ci/ class=tag-pill>CI
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/chart.js/ class=tag-pill>Chart.js
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/backend/ class=tag-pill>Backend
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/authentication/ class=tag-pill>Authentication
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/ui/ux/ class=tag-pill>UI/UX
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/mermaid/ class=tag-pill>Mermaid
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/hugo/ class=tag-pill>Hugo
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/flask/ class=tag-pill>Flask
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/ddd/ class=tag-pill>DDD
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/ai/ class=tag-pill>AI
+<span class="ml-1 opacity-75">4</span>
+</a><a href=/ChiYu-Blob/tags/vibecoding/ class=tag-pill>VibeCoding
+<span class="ml-1 opacity-75">6</span>
+</a><a href=/ChiYu-Blob/tags/javascript/ class=tag-pill>JavaScript
+<span class="ml-1 opacity-75">6</span>
+</a><a href=/ChiYu-Blob/tags/frontend/ class=tag-pill>Frontend
+<span class="ml-1 opacity-75">13</span>
+</a><a href=/ChiYu-Blob/tags/design-patterns/ class=tag-pill>Design Patterns
+<span class="ml-1 opacity-75">24</span>
+</a><a href=/ChiYu-Blob/tags/c class=tag-pill>C#
+<span class="ml-1 opacity-75">24</span>
+</a><a href=/ChiYu-Blob/tags/gemini/ class=tag-pill>Gemini
+<span class="ml-1 opacity-75">27</span>
+</a><a href=/ChiYu-Blob/tags/2025ithomeironman/ class=tag-pill>2025iThomeIronman
+<span class="ml-1 opacity-75">32</span></a></div><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>相關連結</h3><div class="flex flex-col space-y-3 mt-4"><a href=https://www.cake.me/me/ChiYuisme target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">cakeresume</span>
+</a><a href=https://github.com/eric861129 target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">github</span>
+</a><a href=https://ithelp.ithome.com.tw/users/20132971/ironman/8253 target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">ithome</span>
+</a><a href=https://www.linkedin.com/in/chiyu-huang/ target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">linkedin</span>
+</a><a href=https://www.threads.com/@chiyuisme target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">threads</span></a></div></div><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>系列文章</h3><ul class=space-y-1><li><a href=/ChiYu-Blob/series/2025ithomeironman/ class="flex justify-between"><span>2025 iThome 鐵人賽</span>
+<span class=text-sm>32</span></a></li><li><a href=/ChiYu-Blob/series/designpattern/ class="flex justify-between"><span>設計模式</span>
+<span class=text-sm>24</span></a></li><li><a href=/ChiYu-Blob/series/hugo-%E9%96%8B%E7%99%BC%E7%B4%80%E9%8C%84/ class="flex justify-between"><span>Hugo 開發紀錄</span>
+<span class=text-sm>1</span></a></li></ul></div></div></aside></div><footer class="mt-16 pt-8 border-t text-center text-sm" style=border-color:var(--border-color);color:var(--text-secondary)><p>&copy; 2025 ChiYu. All Rights Reserved.</p></footer><button id=scroll-to-top-btn class=scroll-to-top title=回到頂部><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentcolor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 15a.5.5.0 00.5-.5V2.707l3.146 3.147a.5.5.0 00.708-.708l-4-4a.5.5.0 00-.708.0l-4 4a.5.5.0 10.708.708L7.5 2.707V14.5a.5.5.0 00.5.5z"/></svg></button></div><div id=sidebar-overlay class=sidebar-overlay></div><aside id=mobile-sidebar class=mobile-sidebar><div class=p-4><aside class=sidebar><div class=sidebar-inner><div class=widget><h3 class=widget-title>系列文章</h3><ul class=widget-list><li><a href=/ChiYu-Blob/series/2025ithomeironman/>2025 iThome 鐵人賽
+<span class=posts-count>32</span></a></li><li><a href=/ChiYu-Blob/series/designpattern/>設計模式
+<span class=posts-count>24</span></a></li><li><a href=/ChiYu-Blob/series/hugo-%E9%96%8B%E7%99%BC%E7%B4%80%E9%8C%84/>Hugo 開發紀錄
+<span class=posts-count>1</span></a></li></ul></div></div></aside><div class="sticky top-20" data-pagefind-ignore><div class="mb-8 text-center" data-pagefind-ignore><img src=/ChiYu-Blob/images/avatar.jpg alt=個人大頭貼 class="w-32 h-32 rounded-full mx-auto object-cover border-2" style=border-color:var(--border-color) data-pagefind-ignore></div><div class="text-center mb-8" data-pagefind-ignore><a href=mailto:iamhandsomeboy1129@gmail.com class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-white transition-opacity hover:opacity-90" style=background-color:var(--link-color)><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1.0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1.0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+<span class="text-sm font-medium">聯絡我</span></a></div><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>文章月曆</h3><div id=calendar-widget-f8d3a0b2 class=calendar-widget><div class="flex justify-between items-center mb-2 font-semibold"><button class="cal-prev px-2 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700" title=上個月>&lt;</button>
+<span class=cal-month-year></span>
+<button class="cal-next px-2 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700" title=下個月>></button></div><div class="grid grid-cols-7 text-center text-xs gap-y-2" style=color:var(--text-secondary)><span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span></div><div class="cal-days grid grid-cols-7 text-center text-sm mt-2 gap-y-2"></div></div></div><script>(function(){const n=document.getElementById("calendar-widget-f8d3a0b2");if(!n)return;const e={};e["2025-12-17"]="/ChiYu-Blob/dates/2025-12-17/",e["2025-8-20"]="/ChiYu-Blob/dates/2025-08-20/",e["2025-8-21"]="/ChiYu-Blob/dates/2025-08-21/",e["2025-8-22"]="/ChiYu-Blob/dates/2025-08-22/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-8-23"]="/ChiYu-Blob/dates/2025-08-23/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-8-24"]="/ChiYu-Blob/dates/2025-08-24/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-8-25"]="/ChiYu-Blob/dates/2025-08-25/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-26"]="/ChiYu-Blob/dates/2025-08-26/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-27"]="/ChiYu-Blob/dates/2025-08-27/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-28"]="/ChiYu-Blob/dates/2025-08-28/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-29"]="/ChiYu-Blob/dates/2025-08-29/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-30"]="/ChiYu-Blob/dates/2025-08-30/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-31"]="/ChiYu-Blob/dates/2025-08-31/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-1"]="/ChiYu-Blob/dates/2025-09-01/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-2"]="/ChiYu-Blob/dates/2025-09-02/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-3"]="/ChiYu-Blob/dates/2025-09-03/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-4"]="/ChiYu-Blob/dates/2025-09-04/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-5"]="/ChiYu-Blob/dates/2025-09-05/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-6"]="/ChiYu-Blob/dates/2025-09-06/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-7"]="/ChiYu-Blob/dates/2025-09-07/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-8"]="/ChiYu-Blob/dates/2025-09-08/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-9"]="/ChiYu-Blob/dates/2025-09-09/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-9-10"]="/ChiYu-Blob/dates/2025-09-10/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-9-11"]="/ChiYu-Blob/dates/2025-09-11/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-9-12"]="/ChiYu-Blob/dates/2025-09-12/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-9-13"]="/ChiYu-Blob/dates/2025-09-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-9-14"]="/ChiYu-Blob/dates/2025-09-14/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-9-15"]="/ChiYu-Blob/dates/2025-09-15/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-9-16"]="/ChiYu-Blob/dates/2025-09-16/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-9-17"]="/ChiYu-Blob/dates/2025-09-17/",e["2025-7-3"]="/ChiYu-Blob/dates/2025-07-03/",e["2025-9-18"]="/ChiYu-Blob/dates/2025-09-18/",e["2025-9-19"]="/ChiYu-Blob/dates/2025-09-19/",e["2025-9-20"]="/ChiYu-Blob/dates/2025-09-20/",e["2025-6-8"]="/ChiYu-Blob/dates/2025-06-08/",e["2025-6-5"]="/ChiYu-Blob/dates/2025-06-05/";const i=n.querySelector(".cal-month-year"),s=n.querySelector(".cal-days"),a=n.querySelector(".cal-prev"),r=n.querySelector(".cal-next");let t=new Date;function o(t){const n=t.getFullYear(),o=t.getMonth();i.textContent=`${n} 年 ${o+1} 月`,s.innerHTML="";const a=new Date(n,o,1),r=new Date(n,o+1,0),c=a.getDay();for(let e=0;e<c;e++)s.insertAdjacentHTML("beforeend","<div></div>");for(let t=1;t<=r.getDate();t++){const i=`${n}-${o+1}-${t}`;e[i]?s.insertAdjacentHTML("beforeend",`
+                    <a href="${e[i]}" class="block p-1 rounded-full transition-colors font-bold" style="color: var(--link-color); text-decoration: underline; text-decoration-thickness: 2px;">
+                        ${t}
+                    </a>
+                `):s.insertAdjacentHTML("beforeend",`<span class="block p-1">${t}</span>`)}}a.addEventListener("click",()=>{t.setMonth(t.getMonth()-1),o(t)}),r.addEventListener("click",()=>{t.setMonth(t.getMonth()+1),o(t)}),o(t)})()</script><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>所有標籤</h3><div class="flex flex-wrap gap-2"><a href=/ChiYu-Blob/tags/yaml/ class=tag-pill>YAML
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/vibe-coding/ class=tag-pill>Vibe Coding
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/ux/ class=tag-pill>UX
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/user-stories/ class=tag-pill>User Stories
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/ui/ux/ class=tag-pill>UI/UX
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/testing/ class=tag-pill>Testing
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/summary/ class=tag-pill>Summary
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/style-guide/ class=tag-pill>Style Guide
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/state-management/ class=tag-pill>State Management
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/state-machine/ class=tag-pill>State Machine
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/sqlite/ class=tag-pill>SQLite
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/sql/ class=tag-pill>SQL
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/spa/ class=tag-pill>SPA
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/software-engineering/ class=tag-pill>Software Engineering
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/software-architecture/ class=tag-pill>Software Architecture
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/side-project/ class=tag-pill>Side Project
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/schema/ class=tag-pill>Schema
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/scaffolding/ class=tag-pill>Scaffolding
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/reflection/ class=tag-pill>Reflection
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/pytest/ class=tag-pill>Pytest
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/promise/ class=tag-pill>Promise
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/project-charter/ class=tag-pill>Project Charter
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/modularization/ class=tag-pill>Modularization
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/linting/ class=tag-pill>Linting
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/layout/ class=tag-pill>Layout
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/hlr/ class=tag-pill>HLR
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/guide/ class=tag-pill>Guide
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/github-actions/ class=tag-pill>GitHub Actions
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/github/ class=tag-pill>GitHub
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/git/ class=tag-pill>Git
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/flake8/ class=tag-pill>Flake8
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/fetch-api/ class=tag-pill>Fetch API
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/error-handling/ class=tag-pill>Error Handling
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/efficiency/ class=tag-pill>Efficiency
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/documentation/ class=tag-pill>Documentation
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/design-system/ class=tag-pill>Design System
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/database/ class=tag-pill>Database
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/data-driven-ui/ class=tag-pill>Data-Driven UI
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/conclusion/ class=tag-pill>Conclusion
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/component-specification/ class=tag-pill>Component Specification
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/component/ class=tag-pill>Component
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/codex/ class=tag-pill>Codex
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/cli/ class=tag-pill>CLI
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/canvas/ class=tag-pill>Canvas
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/blueprints/ class=tag-pill>Blueprints
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/atomic-design/ class=tag-pill>Atomic Design
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/asynchronous/ class=tag-pill>Asynchronous
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/api-integration/ class=tag-pill>API Integration
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/api/ class=tag-pill>API
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/ai-agent/ class=tag-pill>AI Agent
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/agile/ class=tag-pill>Agile
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/swagger/ class=tag-pill>Swagger
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/security/ class=tag-pill>Security
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/refactoring/ class=tag-pill>Refactoring
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/python/ class=tag-pill>Python
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/prototyping/ class=tag-pill>Prototyping
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/prompt-engineering/ class=tag-pill>Prompt Engineering
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/openapi/ class=tag-pill>OpenAPI
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/jwt/ class=tag-pill>JWT
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/html/ class=tag-pill>HTML
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/data-visualization/ class=tag-pill>Data Visualization
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/css/ class=tag-pill>CSS
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/crud/ class=tag-pill>CRUD
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/clean-code/ class=tag-pill>Clean Code
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/ci/ class=tag-pill>CI
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/chart.js/ class=tag-pill>Chart.js
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/backend/ class=tag-pill>Backend
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/authentication/ class=tag-pill>Authentication
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/ui/ux/ class=tag-pill>UI/UX
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/mermaid/ class=tag-pill>Mermaid
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/hugo/ class=tag-pill>Hugo
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/flask/ class=tag-pill>Flask
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/ddd/ class=tag-pill>DDD
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/ai/ class=tag-pill>AI
+<span class="ml-1 opacity-75">4</span>
+</a><a href=/ChiYu-Blob/tags/vibecoding/ class=tag-pill>VibeCoding
+<span class="ml-1 opacity-75">6</span>
+</a><a href=/ChiYu-Blob/tags/javascript/ class=tag-pill>JavaScript
+<span class="ml-1 opacity-75">6</span>
+</a><a href=/ChiYu-Blob/tags/frontend/ class=tag-pill>Frontend
+<span class="ml-1 opacity-75">13</span>
+</a><a href=/ChiYu-Blob/tags/design-patterns/ class=tag-pill>Design Patterns
+<span class="ml-1 opacity-75">24</span>
+</a><a href=/ChiYu-Blob/tags/c class=tag-pill>C#
+<span class="ml-1 opacity-75">24</span>
+</a><a href=/ChiYu-Blob/tags/gemini/ class=tag-pill>Gemini
+<span class="ml-1 opacity-75">27</span>
+</a><a href=/ChiYu-Blob/tags/2025ithomeironman/ class=tag-pill>2025iThomeIronman
+<span class="ml-1 opacity-75">32</span></a></div><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>相關連結</h3><div class="flex flex-col space-y-3 mt-4"><a href=https://www.cake.me/me/ChiYuisme target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">cakeresume</span>
+</a><a href=https://github.com/eric861129 target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">github</span>
+</a><a href=https://ithelp.ithome.com.tw/users/20132971/ironman/8253 target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">ithome</span>
+</a><a href=https://www.linkedin.com/in/chiyu-huang/ target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">linkedin</span>
+</a><a href=https://www.threads.com/@chiyuisme target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">threads</span></a></div></div><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>系列文章</h3><ul class=space-y-1><li><a href=/ChiYu-Blob/series/2025ithomeironman/ class="flex justify-between"><span>2025 iThome 鐵人賽</span>
+<span class=text-sm>32</span></a></li><li><a href=/ChiYu-Blob/series/designpattern/ class="flex justify-between"><span>設計模式</span>
+<span class=text-sm>24</span></a></li><li><a href=/ChiYu-Blob/series/hugo-%E9%96%8B%E7%99%BC%E7%B4%80%E9%8C%84/ class="flex justify-between"><span>Hugo 開發紀錄</span>
+<span class=text-sm>1</span></a></li></ul></div></div></div></aside><script src=/ChiYu-Blob/pagefind/pagefind-ui.js onload=initPagefind()></script><script src=https://cdn.jsdelivr.net/npm/medium-zoom@1.0.8/dist/medium-zoom.min.js></script><script type=module>
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ 
+            startOnLoad: true, 
+            theme: document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default' 
+        });
+    </script><script src=/ChiYu-Blob/js/main.min.0193b07ef6d75c398d0ddd095576631329ae07bdc4f8790273143cfb31c1c9c5.js integrity="sha256-AZOwfvbXXDmNDd0JVXZjEymuB73E+HkCcxQ8+zHBycU=" crossorigin=anonymous></script></body></html>

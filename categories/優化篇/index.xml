@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>優化篇 on ChiYu Code Journey</title><link>/ChiYu-Blob/categories/%E5%84%AA%E5%8C%96%E7%AF%87/</link><description>Recent content in 優化篇 on ChiYu Code Journey</description><generator>Hugo -- gohugo.io</generator><language>zh-TW</language><lastBuildDate>Fri, 19 Sep 2025 00:00:00 +0800</lastBuildDate><atom:link href="/ChiYu-Blob/categories/%E5%84%AA%E5%8C%96%E7%AF%87/index.xml" rel="self" type="application/rss+xml"/><item><title>Day 31: 【優化篇】代碼的整形外科：JavaScript 模組化與代碼重構</title><link>/ChiYu-Blob/posts/2025ithomeironmanday31/</link><pubDate>Fri, 19 Sep 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday31/</guid><description>說在前頭～ 既然已經達成30天了，乾脆把庫存一次全部PO完好了～
+安安，我是 ChiYu！
+昨天，我們為 App 裝上了堅固的大門與門鎖，成功地實現了完整的使用者認證流程。至此，我們 MVP (最小可行產品) 的所有核心功能，已全部開發完成！這是一個巨大的里程碑，再次為堅持到這裡的你，獻上最熱烈的掌聲！
+但是，我們的旅程還沒結束。一個專業的專案，不僅僅是功能的堆砌。回頭看看我們的 frontend/script.js 檔案，它現在已經變成一個包含了狀態管理、UI 渲染、API 請求、認證邏輯、事件監聽&amp;hellip; 的巨大怪獸。它雖然能跑，但已經變得難以閱讀和維護。
+今天，我們將進行系列文的最後一次程式碼實作，也是從「開發者」邁向「架構師」的關鍵一步。我們將扮演一位「程式碼整形醫師」，為我們臃腫的 script.js 進行一次徹底的「整形手術」，引入專業的 JavaScript 模組化，讓我們的專案達到生產級別的清晰度。
+Part 1：前端心法：為什麼說「高內聚，低耦合」是程式碼的最高境界？ 在我們動刀之前，先來理解一下我們手術的指導原則—— 「高內聚，低耦合 (High Cohesion, Low Coupling)」。這聽起來很玄，但卻是衡量所有軟體架構好壞的黃金標準。
+高內聚 (High Cohesion)：就像一個專業的「工具箱」。一個好的工具箱裡，所有放鑿子的抽屜裡，只會有各式各樣的鑿子；放螺絲起子的抽屜裡，只會有螺絲起子。 相關的功能，應該被集中在同一個模組裡。 低耦合 (Low Coupling)：代表工具箱裡的每個抽屜，都是獨立的。你拿出鑿子抽屜時，完全不需要擔心會動到螺絲起子的抽屜。 模組與模組之間，應該盡量減少依賴，保持獨立。 我們現在的 script.js，就是一個典型的「低內聚、高耦合」的壞例子：它什麼都做（低內聚），而且裡面所有功能都互相糾纏在一起（高耦合）。
+而我們的解決方案，就是使用現代 JavaScript 內建的 ES6 Module (import/export)。它能讓我們像整理工具箱一樣，將不同功能的程式碼，放進各自專屬的 .js 檔案中，然後在需要的時候，精準地「進口 (import)」我們需要的工具即可。
+Part 2：Vibe Coding 實戰：詠唱「程式碼重構」的終極咒語 好了，理論武裝完畢！讓我們進入 gemini chat 模式，開始這場重構手術。
+【重構後的專案結構】 frontend/ ├── assets/ │ └── logo.png ├── api.js # 只負責跟後端說話 ├── auth.js # 只負責登入登出 ├── state.</description></item></channel></rss>

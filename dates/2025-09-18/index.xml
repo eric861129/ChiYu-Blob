@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2025-09-18 on ChiYu Code Journey</title><link>/ChiYu-Blob/dates/2025-09-18/</link><description>Recent content in 2025-09-18 on ChiYu Code Journey</description><generator>Hugo -- gohugo.io</generator><language>zh-TW</language><lastBuildDate>Thu, 18 Sep 2025 00:00:00 +0800</lastBuildDate><atom:link href="/ChiYu-Blob/dates/2025-09-18/index.xml" rel="self" type="application/rss+xml"/><item><title>Day 30: 【前端 #9】建立大門與鑰匙：根據流程圖實現前端使用者認證</title><link>/ChiYu-Blob/posts/2025ithomeironmanday30/</link><pubDate>Thu, 18 Sep 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday30/</guid><description>說在前頭！！！ 有些部分多花費了些時間在講，所以雖然今天已經滿30天了， 但我還沒有正式完成這次鐵人賽系列文！！！ 我後面還是會繼續更新到正式完結。畢竟還是要有頭有尾有始有終！
+以下正文開始！ 安安，我是 ChiYu！
+昨天，我們為 App 的安全性，打下了最堅實的理論基礎。我們沒有憑感覺去處理這個複雜的流程，而是再次透過 「文件驅動」，將所有可能的路徑與邏輯，都預先規劃得一清二楚。
+我們手上現在握著一份精密的「安全白皮書」。有了它，我們接下來的開發工作將會變得無比順暢，因為所有關於「如何設計」的燒腦問題，都已經被解決了。我們的任務只剩下一個—— 專注於「如何實現」。
+今天，我們將迎來前端整合的最終章！我們將 嚴格依據昨天的這份流程圖，指揮 AI，將這套堅不可摧的認證系統，變成真實、可運行的前端程式碼，為我們的 App 裝上大門與門鎖！
+Part 1：前端心法：為我們的單頁應用模擬「多個頁面」 在開始之前，我們需要先解決一個結構性問題。我們的 App 目前是一個嚴格意義上的「單頁應用」——所有的 UI 都在同一個 index.html 裡。但現在，我們需要一個獨立的「登入/註冊」頁面。
+在不引入複雜前端框架的情況下，最聰明、最簡單的作法，就是 「用 &amp;lt;div&amp;gt; 模擬頁面」。
+我們的策略是：
+將我們現有的主應用程式介面，用一個 &amp;lt;div id=&amp;quot;app-page&amp;quot;&amp;gt; 包起來。 再建立一個新的 &amp;lt;div id=&amp;quot;auth-page&amp;quot;&amp;gt;，用來放置登入和註冊的表單。 這兩個 &amp;lt;div&amp;gt; 永遠只會有一個顯示在畫面上。 我們將用 JavaScript 來控制，根據使用者的登入狀態，決定要顯示哪一個「頁面」。 這是一個輕量級且高效的前端路由 (Routing) 模擬方法。
+Part 2：Vibe Coding 實戰：詠唱「認證系統創生」的超級咒語 好了，作戰計畫擬定，讓我們進入 gemini chat 模式，用一個全面的「超級 Prompt」，指揮 AI 為我們完成這次複雜的手術。
+【魔法詠唱：注入認證靈魂】 # 角色 (Role) 你是一位頂尖的資安前端架構師 (Principal Frontend Engineer &amp;amp; Security Advocate)，精通 JWT 認證機制、狀態管理、API 客戶端設計與單頁應用程式 (SPA) 的路由管理。你擅長將複雜的認證規格，轉化為一個安全、穩固、可擴展且具備卓越使用者體驗的完整前端架構。 # 目標 (Objective) 請**嚴格依據**《前端認證架構藍圖》，對我現有的前端專案進行一次全面的**架構性重構與功能實作**，為其注入一個完整的「使用者認證」系統。 # 上下文與關鍵資訊 (Context &amp;amp; Key Information) * **唯一真理來源**: `@docs/AUTH_FLOW.</description></item></channel></rss>

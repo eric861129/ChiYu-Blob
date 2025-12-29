@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Vibe Coding on ChiYu Code Journey</title><link>/ChiYu-Blob/tags/vibe-coding/</link><description>Recent content in Vibe Coding on ChiYu Code Journey</description><generator>Hugo -- gohugo.io</generator><language>zh-TW</language><lastBuildDate>Sat, 20 Sep 2025 00:00:00 +0800</lastBuildDate><atom:link href="/ChiYu-Blob/tags/vibe-coding/index.xml" rel="self" type="application/rss+xml"/><item><title>【完賽感言】左手藍圖，右手魔法：一趟旅程的結束與反思</title><link>/ChiYu-Blob/posts/2025ithomeironmanday32/</link><pubDate>Sat, 20 Sep 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday32/</guid><description>安安！我是 ChiYu！
+三十天竟然就這樣過去了耶！回想一開始，真的只有一個超模糊的想法，就憑著一股傻勁跟對 AI 的好奇心與信任，直接衝了，開始了這趟「左手藍圖，右手魔法」的冒險。今天，我們總算成功達陣啦！
+說真的，我必須要跟每一個從 Day 1 就有在看文章的夥伴，說聲「感謝！」，也謝謝身旁好友們天天提醒我發文，不要像去年一樣中斷文章。也真心恭喜大家！雖然點閱數不敢說多少，但有人看就讓我很感激了。
+OK！最後一天不寫 code，放輕鬆。咱們來幹最後一件，也是最重要的一件事：好好來回顧一下這趟旅程，看看我們到底搞了些什麼。
+Part 1：我們的協奏曲：從「空想」到「成品」的過程 這趟旅程，就像一首超 high 的五樂章協奏曲：
+第一樂章：蹲馬步！(心法與基礎) 一開始，我們沒急著寫 code。反而是先坐下來，把內功練好。我們確立了「文件驅動開發」的遊戲規則，並學會了用 Git 這台「時光機」。
+第二樂章：畫地圖！(前後端大規劃) 我們產出了從《專案章程》到《API 規格書》的全套藍圖，把地基打得超穩。
+第三樂章：開秀啦！(AI 高速開發) 地圖畫好了，換「右手」上場施展魔法！我們指揮 AI 把後端的伺服器、資料庫模型，以及前端的網頁介面、按鈕互動通通變出來。
+第四樂章：求個穩！(品質與體驗) 我們請來了 GitHub Actions 作為自動化「品管大師」，跑自動化測試。同時也幫我們的 App 裝上「同理心」，優雅處理非同步與錯誤狀態。
+第五樂章：收尾！(打磨與升級) 最後，我們像個「程式碼醫生」，把 code 整理得乾乾淨淨（模組化），讓它以後更好照顧。
+Part 2：聊聊這套方法：「左手藍圖，右手魔法」的好與壞 「好」：我們賺到了什麼？ 心裡超有底 (Certainty)：先寫文件讓我們在動手前就想清楚了變化，實作時方向感超明確。 又快又好 (Velocity &amp;amp; Quality)：規劃就像是給 AI 這匹脫韁野馬裝上了「護欄」，確保產出品質。 一份「活歷史」 (A Living History)：docs 資料夾記錄了專案從 0 到 1 的完整心路歷程。 「壞」：有什麼地方可以做得更好？ 測試可以玩得更 hardcore：下次可以嘗試結合 DDD 與 TDD，先讓 AI 根據規格書寫測試，再寫程式碼。 文件與文章的扣合：如果能更細緻地解釋文件中每一句話如何影響後面的 code， DDD 的威力會更鮮明。 Part 3：AI 時代，我們人類開發者還能幹嘛？ AI 是超強的副駕駛，但方向盤永遠握在我們手上。我們的價值在於：</description></item></channel></rss>

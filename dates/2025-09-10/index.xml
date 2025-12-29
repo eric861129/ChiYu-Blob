@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2025-09-10 on ChiYu Code Journey</title><link>/ChiYu-Blob/dates/2025-09-10/</link><description>Recent content in 2025-09-10 on ChiYu Code Journey</description><generator>Hugo -- gohugo.io</generator><language>zh-TW</language><lastBuildDate>Wed, 10 Sep 2025 00:00:00 +0800</lastBuildDate><atom:link href="/ChiYu-Blob/dates/2025-09-10/index.xml" rel="self" type="application/rss+xml"/><item><title>Day 22: 【前端 #3】AI 一鍵生成完整 App 靜態 UI</title><link>/ChiYu-Blob/posts/2025ithomeironmanday22/</link><pubDate>Wed, 10 Sep 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday22/</guid><description>安安，我是 ChiYu！
+昨天，我們扮演了一位冷靜而專業的「結構工程師」，成功地將 AI 生成的華麗原型，重構成為一個結構清晰、職責分明的專業前端專案。我們的 index.html, style.css, script.js 現在各司其職，一切都井井有條。
+我們現在有了一個專業的「建築框架」，以及一些基本的「核心傢俱」（習慣列表和 Modal）。但是，我們的房子裡還有很多房間是空的，例如完整的導覽列、心情記錄區等等。
+今天，我們的任務就是進行一場 「UI 補完計畫」！我們將繼續指揮我們的 AI 助手，根據我們所有的設計藍圖，在現有的專案基礎上，將 MVP 所需的所有靜態 UI 元素全部建造完成！
+Part 1：今日的作戰計畫：完成我們的「樣品屋」 我們的目標非常明確：將我們目前的 UI，擴建成一個外觀上 100% 完整的樣品屋。使用者看到它時，會覺得這就是一個功能齊全的 App，即使它內部還沒有連上數據。
+根據我們的《使用者故事》和《佈局元件》文件，我們今天需要補全以下幾個關鍵部分：
+一個功能完整的側邊導覽列 (Sidebar)。 一個心情記錄區 (Mood Tracker)。 整體樣式微調，確保所有新舊元件完美融合。 Part 2：Vibe Coding 實戰：指揮 AI 進行「室內精裝修」 現在，讓我們回到 gemini chat 模式，指揮 AI 在我們現有的程式碼基礎上，進行一次**「增量開發 (Incremental Development)」**。這是一個非常重要的專業開發模式，代表我們不是每次都推倒重來，而是在現有基礎上，逐步疊加新功能。
+【魔法詠唱：UI 擴建】 # 角色 (Role) 你是一位頂尖的前端工程師，精通語意化 HTML 和現代 CSS，擅長在現有專案基礎上，根據設計文件擴充 UI。 **# 目標 (Objective)** 請根據我提供的所有設計文件，擴充我現有的前端程式碼，補完 MVP 所需的全部靜態 UI 元素。 **# 上下文 (Context)** - **現有 HTML**: `@frontend/index.</description></item></channel></rss>

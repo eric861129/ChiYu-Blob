@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Data-Driven UI on ChiYu Code Journey</title><link>/ChiYu-Blob/tags/data-driven-ui/</link><description>Recent content in Data-Driven UI on ChiYu Code Journey</description><generator>Hugo -- gohugo.io</generator><language>zh-TW</language><lastBuildDate>Fri, 12 Sep 2025 00:00:00 +0800</lastBuildDate><atom:link href="/ChiYu-Blob/tags/data-driven-ui/index.xml" rel="self" type="application/rss+xml"/><item><title>Day 24: 【前端 #5】狀態管理的哲學：讓 UI 成為數據的鏡子</title><link>/ChiYu-Blob/posts/2025ithomeironmanday24/</link><pubDate>Fri, 12 Sep 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday24/</guid><description>安安，我是 ChiYu！
+昨天，我們的 App 經歷了一次歷史性的飛躍。我們為它安裝了「神經系統」，成功地讓前端的「身體」與後端的「大腦」進行了第一次對話。我們的 App 不再是離線的空殼，它擁有了「記憶」。
+但是，這些寶貴的記憶，現在還只靜靜地躺在瀏覽器的 console 裡，像一本鎖在保險箱裡的日記，使用者完全無法窺見其貌。我們的 App 雖然有了記憶，但它還是一個「啞巴」，無法將自己的所思所想表達出來。
+今天，我們就要來為 App 安裝「聲帶」和「表情肌肉」，教它如何開口說話。我們將深入探討一個區分業餘與專業前端開發的核心心法——狀態管理 (State Management)，並引入一個輕量的「狀態中心」模式，讓我們的 UI 成為數據最忠實的鏡子。
+Part 1：前端心法：為什麼「直接操作 DOM」是個壞主意？ 你可能會想：「這很簡單啊！昨天拿到數據後，我用 JavaScript 的 document.createElement、appendChild 這些方法，手動把一個個習慣項目加到畫面上不就好了嗎？」
+問得好！這確實是一種方法，但它就像一個木偶戲的師傅，用線牽引著木偶（DOM 元素）的一舉一動。當只有一兩個木偶時，這套方法還行得通。但想像一下，你的 App 越來越複雜，畫面上同時有幾十個木偶，它們之間還有複雜的互動，這位可憐的師傅很快就會手忙腳亂，把線纏在一起，最終導致整場表演崩潰。
+「直接操作 DOM」的壞處在於：
+程式碼極度混亂：你的 script.js 將會充滿各種查找元素、新增元素、刪除元素、修改樣式的程式碼，很快就會變得難以閱讀和維護。 狀態不一致：你很可能會忘記更新某個地方的數字，導致畫面上顯示的數據，跟你內心（程式碼變數）裡記得的數據不一致，這就是 Bug 的主要來源。 難以追蹤：當 Bug 出現時，你很難知道到底是哪一段手動操作，導致了畫面最終的錯誤狀態。 專業的作法：數據驅動畫面 那麼，專業的前端開發者是怎麼做的呢？他們不做那個辛苦的木偶師傅，而是做一位「劇本設計師」。
+他們會建立一個唯一的**「劇本 (State)」，這個劇本用數據完整地描述了舞台上應該是什麼樣子。然後，他們會聘請一位叫做「渲染引擎 (Render Function)」的超級演員，這位演員的唯一工作，就是閱讀劇本，然後完美地將自己扮演成劇本描述的樣子**。
+開發者的工作，從「手動去移動木偶的每一根手指」，變成了**「專心修改劇本」**。每當劇本（State）有任何變動，我們就大喊一聲：「卡！重來！」，然後渲染引擎就會立刻根據最新的劇本，重新表演一次，確保舞台上的畫面永遠與劇本 100% 同步。
+這個「劇本」，就是我們的**「單一真理來源 (Single Source of Truth)」**。這個過程，就是 「數據驅動畫面 (Data-Driven UI)」 的核心哲學。
+Part 2：Vibe Coding 實戰：建立我們的「狀態中心」與「渲染引擎」 好了，理論武裝完畢！讓我們進入 gemini chat 模式，指揮 AI 為我們重構昨天的邏輯，將這種專業的開發模式，注入我們的 App。</description></item></channel></rss>

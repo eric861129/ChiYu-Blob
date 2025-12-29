@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Layout on ChiYu Code Journey</title><link>/ChiYu-Blob/tags/layout/</link><description>Recent content in Layout on ChiYu Code Journey</description><generator>Hugo -- gohugo.io</generator><language>zh-TW</language><lastBuildDate>Sun, 07 Sep 2025 00:00:00 +0800</lastBuildDate><atom:link href="/ChiYu-Blob/tags/layout/index.xml" rel="self" type="application/rss+xml"/><item><title>Day 19: 【文件 #7】頁面的骨架：用 Gemini 規劃主佈局與元件拆分</title><link>/ChiYu-Blob/posts/2025ithomeironmanday19/</link><pubDate>Sun, 07 Sep 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday19/</guid><description>安安，我是 ChiYu！
+昨天，我們扮演了「首席視覺設計師」，為我們的數位生命，定義了一套獨一無二的「基因圖譜 (DNA)」——我們的 風格指南。現在，我們有了調色盤、有了字體，知道了這個生命體該有的氣質。
+但光有這些還不夠。在我們開始為它披上皮囊（寫 CSS）之前，我們需要先確定它的「身體結構」。它的頭、身體、四肢要如何組織？身體的各個器官（按鈕、卡片、列表）又要如何劃分？
+今天，我們將化身為「UI 架構師」，再次回到我們最信賴的文件驅動流程。我們將指揮 Gemini，根據我們的使用者故事，設計出網站的 主要佈局 (Layout)，並將複雜的介面，拆解成一份清晰的、可重複使用的 元件清單 (Component Breakdown)。
+Part 1：什麼是「佈局 (Layout)」？—— 房子的「格局規劃」 如果說昨天的風格指南是「室內設計風格」（例如：北歐風、工業風），那今天的「佈局」，就是這棟房子的「格局規劃圖」。
+它定義了整個應用程式最頂層的、共通的結構。例如：
+玄關/大廳 (Header / Navbar)：訪客一進門會看到的地方，通常包含 Logo 和主要的導覽連結。 客廳/主要活動區 (Main Content Area)：這是房子的核心，大部分的活動都會在這裡發生。 書房/側邊功能區 (Sidebar)：一個固定的區域，用來放置次要的導覽或工具。 陽台/頁腳 (Footer)：房子的底部，通常放一些版權資訊或次要連結。 先定義好這個共通的「格局」，能確保使用者在我們網站的不同房間（頁面）之間穿梭時，永遠不會迷路，擁有一致且可預測的體驗。
+Part 2：什麼是「元件拆分」？—— 用「樂高」來蓋房子 這是一個現代前端開發中，最最最重要的核心思想。
+想像一下，你要蓋一座樂高城堡。你不會每次都從最微小的顆粒開始，一顆一顆地去想要怎麼組成一扇窗戶。一個聰明的樂高玩家，會先預先組裝好幾種標準尺寸的「窗戶」、「門」、「城牆塊」、「塔頂」——這些，就是我們的 「元件 (Component)」。
+當你要蓋城堡時，你只需要像組合積木一樣，把這些預先做好的「元件」拼裝起來即可。
+*「元件拆分 (Component Breakdown)」 **就是這個過程。我們在動手寫程式碼之前，先審視我們的設計稿（或使用者故事），然後像玩樂高一樣，思考：「這個介面，可以拆解成哪些可以重複使用的積木？」 這樣做的好處是：
+可複用性 (Reusability)：我們只需要設計和製作一次「習慣卡片」這個元件，之後在儀表板、回顧頁面，都可以重複使用它。 可維護性 (Maintainability)：未來如果想修改所有習慣卡片的樣式，我們只需要修改一個地方，所有用到它的地方就全部更新了！ Vibe Coding 的加速器：這是最關鍵的一點！當我們定義好元件後，未來就可以直接對 Gemini 說：「幫我生成一個 HabitCard 元件的程式碼」，AI 就能根據這份文件，精準地產出我們需要的「樂高積木」。 Part 3：實戰開始：讓 Gemini 成為我們的 UI 架構師 好了，理論武裝完畢，讓我們再次召喚 Gemini CLI，請它扮演我們的 UI 架構師。</description></item></channel></rss>

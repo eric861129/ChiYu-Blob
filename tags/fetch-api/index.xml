@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Fetch API on ChiYu Code Journey</title><link>/ChiYu-Blob/tags/fetch-api/</link><description>Recent content in Fetch API on ChiYu Code Journey</description><generator>Hugo -- gohugo.io</generator><language>zh-TW</language><lastBuildDate>Thu, 11 Sep 2025 00:00:00 +0800</lastBuildDate><atom:link href="/ChiYu-Blob/tags/fetch-api/index.xml" rel="self" type="application/rss+xml"/><item><title>Day 23: 【前端 #4】非同步的藝術：深入 Fetch API 與 Promise</title><link>/ChiYu-Blob/posts/2025ithomeironmanday23/</link><pubDate>Thu, 11 Sep 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday23/</guid><description>安安，我是 ChiYu！
+昨天，我們扮演了一位「創世神」，指揮 AI 在一天之內，為我們建構出了 App 完整、精美的靜態 UI。我們現在手上，有了一個外觀完美，但沒有靈魂的「App 蠟像館」。
+它很美，但它是靜默的。它無法感知外界，也無法與我們在後端建立的強大「大腦」進行溝通。
+今天，我們就要來為它安裝這套至關重要的神經系統！我們將深入前端開發中最核心、也最讓新手困惑的觀念——非同步程式設計 (Asynchronous Programming)，並學習如何使用 Fetch API，讓前端的「身體」與後端的「大腦」進行第一次的歷史性對話！
+Part 1：前端心法：為什麼我們需要「非同步」？ 想像一個場景：你去一家超紅的手搖飲店點餐。你點完一杯「珍珠鮮奶茶，半糖少冰」後，是會呆呆地站在櫃檯前，死盯著店員，從他開始煮珍珠、泡茶、加牛奶、到最後封膜，一步都不離開嗎？
+當然不會！那樣不僅你自己浪費時間，還會把後面的客人全都堵死。一個正常的流程是：你點完餐，店員給你一個會震動的「取餐呼叫器」，然後你就可以去旁邊找個位子坐下、滑滑手機、看看書。等到飲料做好了，呼叫器「嗡嗡嗡」地震動，你再優雅地過去取餐。
+前端與後端的溝通，就跟這個過程一模一樣！
+同步 (Synchronous)：就是那個呆站在櫃檯的笨方法。如果前端用「同步」的方式去跟後端要資料（例如，去資料庫拿你的習慣列表），那整個網頁畫面就會完全卡死，捲動不了、按鈕沒反應，直到後端把資料傳回來為止。這對使用者來說，是災難性的體驗。 非同步 (Asynchronous)：就是那個聰明的「呼叫器」方法。前端發出一個請求給後端後，它不會原地等待，而是會繼續做自己的事（例如：保持畫面的流暢、回應使用者的其他操作）。後端處理完資料後，會透過一個機制「通知」前端：「嘿，你的資料好了，快來拿！」 而這個神奇的「呼叫器」，在 JavaScript 的世界裡，就叫做 Promise。
+什麼是 Promise？ Promise 是一個物件，它代表一個「承諾」。當你呼叫一個非同步操作（例如 fetch）時，它會立刻回給你一個 Promise。這個 Promise 就像是那個取餐呼叫器，它有三種狀態：
+Pending (等待中)：你剛拿到呼叫器，它還沒震動。代表飲料還在做。 Fulfilled (已實現)：呼叫器震動了！代表你的珍奶做好了（數據成功取回）。 Rejected (已拒絕)：呼叫器發出悲鳴！代表珍珠賣完了（網路錯誤或伺服器出錯）。 async/await：優雅地等待呼叫器 早期的 JavaScript 處理 Promise 非常麻煩（俗稱「回調地獄」），但現代 JS 提供了一套超級優雅的語法糖——async/await。它能讓我們用寫「同步」程式碼的感覺，來處理「非同步」操作，大大提升了程式碼的可讀性。
+Part 2：Vibe Coding 實戰：建立我們的「通訊模組」 好了，理論武裝完畢！在我們開始呼叫 API 之前，專業的作法是建立一個專門負責與後端溝通的「通訊模組」，而不是把 fetch 寫得到處都是。這也是一種「關注點分離」！
+Step 1: 命令 AI 建立 api.js 讓我們進入 gemini chat 模式，指揮 AI 為我們建立這個模組。</description></item></channel></rss>

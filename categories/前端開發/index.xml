@@ -1,8 +1,86 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>前端開發 on ChiYu Code Journey</title><link>/ChiYu-Blob/categories/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/</link><description>Recent content in 前端開發 on ChiYu Code Journey</description><generator>Hugo -- gohugo.io</generator><language>zh-TW</language><lastBuildDate>Fri, 05 Sep 2025 00:00:00 +0800</lastBuildDate><atom:link href="/ChiYu-Blob/categories/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/index.xml" rel="self" type="application/rss+xml"/><item><title>Day 17: 【前端 #0】前端世界的基石： HTML, CSS 與 JavaScript</title><link>/ChiYu-Blob/posts/2025ithomeironmanday17/</link><pubDate>Fri, 05 Sep 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday17/</guid><description>安安，我是 ChiYu！
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>前端開發 on ChiYu Code Journey</title><link>/ChiYu-Blob/categories/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/</link><description>Recent content in 前端開發 on ChiYu Code Journey</description><generator>Hugo -- gohugo.io</generator><language>zh-TW</language><lastBuildDate>Thu, 18 Sep 2025 00:00:00 +0800</lastBuildDate><atom:link href="/ChiYu-Blob/categories/%E5%89%8D%E7%AB%AF%E9%96%8B%E7%99%BC/index.xml" rel="self" type="application/rss+xml"/><item><title>Day 17: 【前端 #0】前端世界的基石： HTML, CSS 與 JavaScript</title><link>/ChiYu-Blob/posts/2025ithomeironmanday17/</link><pubDate>Fri, 05 Sep 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday17/</guid><description>安安，我是 ChiYu！
 昨天，我們為精彩的後端開發之旅，畫下了一個完美的句點。我們現在擁有一個性能強大、穩定可靠的「專案引擎」，一顆強壯、默默跳動的心臟，但它還沒有形體，等待著被賦予生命。
 從今天起，我們將正式開啟一個全新的篇章： 前端開發。我們將從幕後的「引擎工程師」，搖身一變，成為面向使用者的「 造物主」與「 生命設計師」。
 但在我們開始 Vibe Coding 我們的數位生命之前，我們必須先花一天時間，回歸本心，認識一下構成生命的三大基本元素。今天，是前端開發的 Day 0，我們不寫任何一行專案程式碼，只專注於一件事：用最簡單的比喻和親手實作，讓你徹底搞懂構成全世界所有網頁的生命三要素——HTML, CSS, 與 JavaScript。
 Part 1：HTML - 生命的「骨骼」 想像一下我們要創造一個生命體。我們做的第一件事是什麼？塑造它的骨架。這就是 HTML (HyperText Markup Language) 的角色。
 HTML 的唯一職責，就是定義網頁的「內容」與「結構」。它決定了這個生命體「有哪些器官」，但完全不管它「長什麼樣子」。
 &amp;lt;h1&amp;gt; 標籤告訴瀏覽器：「嘿，這是頭顱」，是思考的中心。 &amp;lt;p&amp;gt; 標籤說：「這是一塊軀幹」，是身體的主體。 &amp;lt;img&amp;gt; 標籤說：「這裡要有眼睛」，用來觀看世界。 &amp;lt;button&amp;gt; 標籤說：「這裡要有手」，用來與世界互動。 HTML 就是生命的骨架，最基礎、最核心，沒有它，皮囊與肌肉都將無所依附。
-【動手玩玩看 #1】 建立實驗室：在你的電腦桌面，建立一個新的資料夾，取名為 frontend-playground。 用 VS Code 開啟：打開 VS Code，點擊左上角「檔案 (File)」-&amp;gt;「開啟資料夾 (Open Folder)」，然後選擇我們剛剛建立的 frontend-playground。 建立 HTML 檔案：在 VS Code 左側的檔案總管中，點擊「新增檔案」的圖示，將檔案命名為 index.html。 貼上骨架程式碼：將下面的程式碼，完整地複製並貼到你剛剛建立的 index.html 檔案中。 &amp;lt;!DOCTYPE html&amp;gt; &amp;lt;html&amp;gt; &amp;lt;head&amp;gt; &amp;lt;title&amp;gt;我的生命體&amp;lt;/title&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;h1&amp;gt;這是頭顱&amp;lt;/h1&amp;gt; &amp;lt;p&amp;gt;這是一塊樸素的軀幹。&amp;lt;/p&amp;gt; &amp;lt;button&amp;gt;這是一隻手&amp;lt;/button&amp;gt; &amp;lt;/body&amp;gt; &amp;lt;/html&amp;gt; 預覽結果：直接在檔案總管中，找到 index.</description></item></channel></rss>
+【動手玩玩看 #1】 建立實驗室：在你的電腦桌面，建立一個新的資料夾，取名為 frontend-playground。 用 VS Code 開啟：打開 VS Code，點擊左上角「檔案 (File)」-&amp;gt;「開啟資料夾 (Open Folder)」，然後選擇我們剛剛建立的 frontend-playground。 建立 HTML 檔案：在 VS Code 左側的檔案總管中，點擊「新增檔案」的圖示，將檔案命名為 index.html。 貼上骨架程式碼：將下面的程式碼，完整地複製並貼到你剛剛建立的 index.html 檔案中。 &amp;lt;!DOCTYPE html&amp;gt; &amp;lt;html&amp;gt; &amp;lt;head&amp;gt; &amp;lt;title&amp;gt;我的生命體&amp;lt;/title&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;h1&amp;gt;這是頭顱&amp;lt;/h1&amp;gt; &amp;lt;p&amp;gt;這是一塊樸素的軀幹。&amp;lt;/p&amp;gt; &amp;lt;button&amp;gt;這是一隻手&amp;lt;/button&amp;gt; &amp;lt;/body&amp;gt; &amp;lt;/html&amp;gt; 預覽結果：直接在檔案總管中，找到 index.</description></item><item><title>Day 20: 【前端 #1】Gemini Canvas 生成UI (還有新的AI建議功能)</title><link>/ChiYu-Blob/posts/2025ithomeironmanday20/</link><pubDate>Mon, 08 Sep 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday20/</guid><description>安安，我是 ChiYu！
+昨天，我們完成了前端開發的最後一份規劃文件。至此，我們所有的「左手藍圖」工作，全部大功告成！
+從今天起，我們將正式拿起工具，戴上安全帽，開始 Vibe Coding 的前端實作！但&amp;hellip; 我們真的要像傳統的「建築工人」那樣，一行一行地去搭建 HTML 骨架，再一點一點地去粉刷 CSS 樣式嗎？
+不！時代變了！今天，我們要直接從「建築工人」一步到位，升級成「魔法建築師」！我們不再一磚一瓦地蓋房子，我們要直接攤開我們的設計藍圖，對著 Gemini 詠唱咒語，瞬間召喚出一棟功能完整、外觀精美的 UI 原型！
+Part 1：為什麼要用 Canvas？—— 從「盲人摸象」到「上帝視角」 在 Day 12，我們體驗了在終端機 Vibe Coding 的快感。它很酷，但對於 UI 開發來說，它有個小缺點：我們就像是在黑暗中「盲人摸象」，敲下一行指令，然後切換到瀏覽器看看成果，來來回回，效率不高。
+而 Gemini Web UI 的 Canvas 功能，則給了我們截然不同的體驗——「上帝視角」。
+Canvas 是一個視覺化的 AI 互動介面，它能讓我們在描述需求的同時，即時預覽 AI 生成的 UI 畫面。它追求的是 「極速視覺化」，讓我們能在幾分鐘內，就得到一個可以直接互動、外觀精美的 UI 原型。這對於前端開發來說，簡直是夢幻般的工具！
+Part 2：Canvas 實戰：為 AI 建築師提供「設計圖」 現在，讓我們打開我們的「魔法實驗室」—— gemini.google.com，然後選擇 Canvas 功能。我們要學習一門全新的 Prompt 技巧：如何用文字，向一位魔法建築師描述一棟房子？
+答案很簡單：把我們嘔心瀝血產出的設計文件餵給它！
+【魔法詠唱：UI 生成咒語】 # 角色 (Role) 你是一位頂尖的前端工程師，精通 HTML, CSS, JavaScript，並且對 UI/UX 設計有深刻的理解。 # 目標 (Objective) 請根據我提供的設計文件和詳細需求，為我生成一個功能完整的「習慣追蹤器」Web UI 的**單一 HTML 檔案** # 上下文 (Context) - **風格指南**: STYLE_GUIDE.</description></item><item><title>Day 21: 【前端 #2】從原型到架構：拆解並整合 AI 生成的 UI 程式碼</title><link>/ChiYu-Blob/posts/2025ithomeironmanday21/</link><pubDate>Tue, 09 Sep 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday21/</guid><description>安安，我是 ChiYu！
+昨天那場「視覺魔法秀」是不是超震撼的？才幾分鐘，AI 就「咻」一下變出一個又美又能動的 UI 原型，真的太扯了！這證明 AI 拿來做 prototype 根本是開外掛啊。
+不過，身為一個有格調的工程師，光是「能動」怎麼夠呢？今天，我們就要來當個「結構工程師」，幫這棟魔法變出來的漂亮房子，來個專業級的 「大改造 (Refactoring)」！
+Part 1：心法時間：為什麼高手絕對不把 CSS 跟 JS 塞在同一個 HTML 檔？ 昨天 AI 給我們的那個檔案，HTML、CSS、JavaScript 全都擠在一起。拿來看看樣子當然很方便，但在真專案裡，這樣搞可是超級大忌喔！為什麼？這背後藏著三個高手才知道的心法：
+各管各的 (Separation of Concerns)：這點最重要！HTML 是骨架、CSS 是外表、JS 是肌肉，大家各有各的工作。把它們全混在一起，就像把廚房、臥室、客廳的功能全塞到一個房間裡，保證亂到你媽都認不出來，以後要修根本是惡夢！ 讓瀏覽器偷懶 (Browser Caching)：你想想，你把 CSS 跟 JS 分開成獨立檔案後，瀏覽器第一次看完，就可以把它們存起來。下次你再逛同個網站的其他頁面，因為 style.css 跟 script.js 沒變，瀏覽器就不用再下載一次，直接拿舊的來用就好，這樣網站跑起來才會飛快啊！ 大家好做事 (Maintainability &amp;amp; Collaboration)：專案一搞大，肯定不止你一個人寫。把檔案分開，管畫面的同事就專心搞 .css，管功能的就專心搞 .js，大家井水不犯河水，才不會打架，做事效率才會高嘛！ 所以啦，我們的目標很簡單，就是把昨天那個漂亮的「藝術品」，改造成一個真正可以用在專案上、結構超清楚的「工業級產品」！
+Part 2：開工啦：來唸個「一鍵改造」的超級咒語 這個精細的「分家手術」，我們不用慢慢來。我們要用一個更猛的 Prompt，直接叫 AI 「一次搞定」！
+Step 1: 把昨天變出來的魔法成果搬進來 首先，當然是把昨天的成果，正式放到我們的專案裡。
+建立前端基地：在 VS Code 的專案根目錄，建立一個叫 frontend 的新資料夾。 儲存原型：把昨天從 Canvas 下載或複製的完整程式碼，在 frontend 資料夾裡存成 prototype.</description></item><item><title>Day 22: 【前端 #3】AI 一鍵生成完整 App 靜態 UI</title><link>/ChiYu-Blob/posts/2025ithomeironmanday22/</link><pubDate>Wed, 10 Sep 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday22/</guid><description>安安，我是 ChiYu！
+昨天，我們扮演了一位冷靜而專業的「結構工程師」，成功地將 AI 生成的華麗原型，重構成為一個結構清晰、職責分明的專業前端專案。我們的 index.html, style.css, script.js 現在各司其職，一切都井井有條。
+我們現在有了一個專業的「建築框架」，以及一些基本的「核心傢俱」（習慣列表和 Modal）。但是，我們的房子裡還有很多房間是空的，例如完整的導覽列、心情記錄區等等。
+今天，我們的任務就是進行一場 「UI 補完計畫」！我們將繼續指揮我們的 AI 助手，根據我們所有的設計藍圖，在現有的專案基礎上，將 MVP 所需的所有靜態 UI 元素全部建造完成！
+Part 1：今日的作戰計畫：完成我們的「樣品屋」 我們的目標非常明確：將我們目前的 UI，擴建成一個外觀上 100% 完整的樣品屋。使用者看到它時，會覺得這就是一個功能齊全的 App，即使它內部還沒有連上數據。
+根據我們的《使用者故事》和《佈局元件》文件，我們今天需要補全以下幾個關鍵部分：
+一個功能完整的側邊導覽列 (Sidebar)。 一個心情記錄區 (Mood Tracker)。 整體樣式微調，確保所有新舊元件完美融合。 Part 2：Vibe Coding 實戰：指揮 AI 進行「室內精裝修」 現在，讓我們回到 gemini chat 模式，指揮 AI 在我們現有的程式碼基礎上，進行一次**「增量開發 (Incremental Development)」**。這是一個非常重要的專業開發模式，代表我們不是每次都推倒重來，而是在現有基礎上，逐步疊加新功能。
+【魔法詠唱：UI 擴建】 # 角色 (Role) 你是一位頂尖的前端工程師，精通語意化 HTML 和現代 CSS，擅長在現有專案基礎上，根據設計文件擴充 UI。 **# 目標 (Objective)** 請根據我提供的所有設計文件，擴充我現有的前端程式碼，補完 MVP 所需的全部靜態 UI 元素。 **# 上下文 (Context)** - **現有 HTML**: `@frontend/index.</description></item><item><title>Day 23: 【前端 #4】非同步的藝術：深入 Fetch API 與 Promise</title><link>/ChiYu-Blob/posts/2025ithomeironmanday23/</link><pubDate>Thu, 11 Sep 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday23/</guid><description>安安，我是 ChiYu！
+昨天，我們扮演了一位「創世神」，指揮 AI 在一天之內，為我們建構出了 App 完整、精美的靜態 UI。我們現在手上，有了一個外觀完美，但沒有靈魂的「App 蠟像館」。
+它很美，但它是靜默的。它無法感知外界，也無法與我們在後端建立的強大「大腦」進行溝通。
+今天，我們就要來為它安裝這套至關重要的神經系統！我們將深入前端開發中最核心、也最讓新手困惑的觀念——非同步程式設計 (Asynchronous Programming)，並學習如何使用 Fetch API，讓前端的「身體」與後端的「大腦」進行第一次的歷史性對話！
+Part 1：前端心法：為什麼我們需要「非同步」？ 想像一個場景：你去一家超紅的手搖飲店點餐。你點完一杯「珍珠鮮奶茶，半糖少冰」後，是會呆呆地站在櫃檯前，死盯著店員，從他開始煮珍珠、泡茶、加牛奶、到最後封膜，一步都不離開嗎？
+當然不會！那樣不僅你自己浪費時間，還會把後面的客人全都堵死。一個正常的流程是：你點完餐，店員給你一個會震動的「取餐呼叫器」，然後你就可以去旁邊找個位子坐下、滑滑手機、看看書。等到飲料做好了，呼叫器「嗡嗡嗡」地震動，你再優雅地過去取餐。
+前端與後端的溝通，就跟這個過程一模一樣！
+同步 (Synchronous)：就是那個呆站在櫃檯的笨方法。如果前端用「同步」的方式去跟後端要資料（例如，去資料庫拿你的習慣列表），那整個網頁畫面就會完全卡死，捲動不了、按鈕沒反應，直到後端把資料傳回來為止。這對使用者來說，是災難性的體驗。 非同步 (Asynchronous)：就是那個聰明的「呼叫器」方法。前端發出一個請求給後端後，它不會原地等待，而是會繼續做自己的事（例如：保持畫面的流暢、回應使用者的其他操作）。後端處理完資料後，會透過一個機制「通知」前端：「嘿，你的資料好了，快來拿！」 而這個神奇的「呼叫器」，在 JavaScript 的世界裡，就叫做 Promise。
+什麼是 Promise？ Promise 是一個物件，它代表一個「承諾」。當你呼叫一個非同步操作（例如 fetch）時，它會立刻回給你一個 Promise。這個 Promise 就像是那個取餐呼叫器，它有三種狀態：
+Pending (等待中)：你剛拿到呼叫器，它還沒震動。代表飲料還在做。 Fulfilled (已實現)：呼叫器震動了！代表你的珍奶做好了（數據成功取回）。 Rejected (已拒絕)：呼叫器發出悲鳴！代表珍珠賣完了（網路錯誤或伺服器出錯）。 async/await：優雅地等待呼叫器 早期的 JavaScript 處理 Promise 非常麻煩（俗稱「回調地獄」），但現代 JS 提供了一套超級優雅的語法糖——async/await。它能讓我們用寫「同步」程式碼的感覺，來處理「非同步」操作，大大提升了程式碼的可讀性。
+Part 2：Vibe Coding 實戰：建立我們的「通訊模組」 好了，理論武裝完畢！在我們開始呼叫 API 之前，專業的作法是建立一個專門負責與後端溝通的「通訊模組」，而不是把 fetch 寫得到處都是。這也是一種「關注點分離」！
+Step 1: 命令 AI 建立 api.js 讓我們進入 gemini chat 模式，指揮 AI 為我們建立這個模組。</description></item><item><title>Day 24: 【前端 #5】狀態管理的哲學：讓 UI 成為數據的鏡子</title><link>/ChiYu-Blob/posts/2025ithomeironmanday24/</link><pubDate>Fri, 12 Sep 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday24/</guid><description>安安，我是 ChiYu！
+昨天，我們的 App 經歷了一次歷史性的飛躍。我們為它安裝了「神經系統」，成功地讓前端的「身體」與後端的「大腦」進行了第一次對話。我們的 App 不再是離線的空殼，它擁有了「記憶」。
+但是，這些寶貴的記憶，現在還只靜靜地躺在瀏覽器的 console 裡，像一本鎖在保險箱裡的日記，使用者完全無法窺見其貌。我們的 App 雖然有了記憶，但它還是一個「啞巴」，無法將自己的所思所想表達出來。
+今天，我們就要來為 App 安裝「聲帶」和「表情肌肉」，教它如何開口說話。我們將深入探討一個區分業餘與專業前端開發的核心心法——狀態管理 (State Management)，並引入一個輕量的「狀態中心」模式，讓我們的 UI 成為數據最忠實的鏡子。
+Part 1：前端心法：為什麼「直接操作 DOM」是個壞主意？ 你可能會想：「這很簡單啊！昨天拿到數據後，我用 JavaScript 的 document.createElement、appendChild 這些方法，手動把一個個習慣項目加到畫面上不就好了嗎？」
+問得好！這確實是一種方法，但它就像一個木偶戲的師傅，用線牽引著木偶（DOM 元素）的一舉一動。當只有一兩個木偶時，這套方法還行得通。但想像一下，你的 App 越來越複雜，畫面上同時有幾十個木偶，它們之間還有複雜的互動，這位可憐的師傅很快就會手忙腳亂，把線纏在一起，最終導致整場表演崩潰。
+「直接操作 DOM」的壞處在於：
+程式碼極度混亂：你的 script.js 將會充滿各種查找元素、新增元素、刪除元素、修改樣式的程式碼，很快就會變得難以閱讀和維護。 狀態不一致：你很可能會忘記更新某個地方的數字，導致畫面上顯示的數據，跟你內心（程式碼變數）裡記得的數據不一致，這就是 Bug 的主要來源。 難以追蹤：當 Bug 出現時，你很難知道到底是哪一段手動操作，導致了畫面最終的錯誤狀態。 專業的作法：數據驅動畫面 那麼，專業的前端開發者是怎麼做的呢？他們不做那個辛苦的木偶師傅，而是做一位「劇本設計師」。
+他們會建立一個唯一的**「劇本 (State)」，這個劇本用數據完整地描述了舞台上應該是什麼樣子。然後，他們會聘請一位叫做「渲染引擎 (Render Function)」的超級演員，這位演員的唯一工作，就是閱讀劇本，然後完美地將自己扮演成劇本描述的樣子**。
+開發者的工作，從「手動去移動木偶的每一根手指」，變成了**「專心修改劇本」**。每當劇本（State）有任何變動，我們就大喊一聲：「卡！重來！」，然後渲染引擎就會立刻根據最新的劇本，重新表演一次，確保舞台上的畫面永遠與劇本 100% 同步。
+這個「劇本」，就是我們的**「單一真理來源 (Single Source of Truth)」**。這個過程，就是 「數據驅動畫面 (Data-Driven UI)」 的核心哲學。
+Part 2：Vibe Coding 實戰：建立我們的「狀態中心」與「渲染引擎」 好了，理論武裝完畢！讓我們進入 gemini chat 模式，指揮 AI 為我們重構昨天的邏輯，將這種專業的開發模式，注入我們的 App。</description></item><item><title>Day 25: 【前端 #6】核心生命週期：一天搞定習慣的「增刪改查」與「打卡」</title><link>/ChiYu-Blob/posts/2025ithomeironmanday25/</link><pubDate>Sat, 13 Sep 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday25/</guid><description>安安，我是 ChiYu！
+昨天，我們的 App 經歷了一次質的飛躍。我們為它植入了「靈魂」——一個中央的狀態 (state) 和一個渲染引擎 (render)。它學會了如何「思考」（管理數據）並「表達」（渲染畫面），成功地將從後端獲取的真實數據，呈現在使用者面前。
+我們的 App 現在有了一個能反映真實數據的漂亮外殼。但是，它還是一個只能「讀」，不能「寫」的「展示品」。使用者還無法新增、修改或刪除這些習慣，無法真正地與 App 產生連結。
+今天，我們將迎來一個內容極其豐富、極具挑戰、也極富成就感的 「濃縮實戰篇」。我們將火力全開，一天之內，搞定所有習慣的「增、刪、改、查」與「打卡」功能，讓我們的 App 真正地「動」起來，完成其核心功能的生命週期！
+Part 1：前端心法：萬變不離其宗的「互動模式」 在我們開始瘋狂寫 Code 之前，讓我們先建立一個清晰的「心智模型」。今天我們要做的所有功能，無論是新增、刪除還是打卡，都將嚴格遵循我們前幾天建立的、那個優雅而強大的「數據驅動」模式。
+這個模式，就是我們所有互動功能的 「黃金公式」：
+使用者事件 (User Event)：使用者觸發一個動作（例如：點擊「儲存」按鈕）。 呼叫 API (Call API)：我們的 JavaScript 會捕捉到這個事件，然後呼叫對應的 api.js 函式，向後端發送一個請求（POST, DELETE, PUT&amp;hellip;）。 更新狀態 (Update State)：在成功收到後端的回應後，我們不去手動修改畫面，而是去更新我們中央的 state 物件。 自動渲染 (Auto Re-render)：setState 函式會自動觸發 render()，我們的 UI 就會像鏡子一樣，自動、精準地反映出 state 的最新樣貌。 記住這個公式，你會發現，再複雜的互動，都能被拆解成這幾個簡單、可預測的步驟。
+Part 2：Vibe Coding 實戰 (上)：擴充我們的「通訊模組」 我們的 api.js 現在只會「讀取」(fetchHabits)，是時候教它「寫入」了。
+【魔法詠唱：升級通訊模組】 讓我們進入 gemini chat 模式，指揮 AI 為我們擴充 api.js。
+# 角色 (Role) 你是一位資深的 API 用戶端架構師 (API Client Architect)，精通 `fetch` API 與 `async/await`，並致力於遵循 DRY (Don&amp;#39;t Repeat Yourself) 原則，撰寫可複用、可擴展且易於維護的數據獲取模組。 # 目標 (Objective) 請對現有的 `@frontend/api.</description></item><item><title>Day 26: 【前端 #7】用戶體驗的最後一哩路：優雅地處理載入與錯誤</title><link>/ChiYu-Blob/posts/2025ithomeironmanday26/</link><pubDate>Sun, 14 Sep 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday26/</guid><description>安安，我是 ChiYu！
+昨天，我們的 App 經歷了一次完全體的進化！我們在一天之內，火力全開，搞定了核心的 CRUD 功能。我們的 App 不僅能思考、能表達，現在更擁有了完整的 行動能力。
+但是，一個專業的產品，不只需要考慮「成功」的情境，更需要優雅地處理「等待」與「失敗」。想像一下，你點擊「儲存」後，如果因為網路不好，畫面卡住不動長達五秒，你會不會以為 App 當機了，然後狂點好幾次？如果伺服器剛好在維護，畫面直接崩潰，你是不是會立刻對這個 App 失去信心？一個沉默的 App 是一個「無禮」的 App，它不尊重使用者的時間和情緒。
+今天，我們就要來補上這至關重要的用戶體驗最後一哩路。我們將扮演一位「用戶體驗工程師」，為我們的 App 注入「同理心」，教它如何與使用者溝通，優雅地處理「載入中」和「錯誤」狀態，讓它從一個「能用」的產品，進化成一個 「好用」 且 **「貼心」**的產品！
+Part 1：前端心法：從「單一路徑」到「UI 狀態機」 一個業餘的 App 只會為「成功」而設計，也就是我們常說的「快樂路徑 (Happy Path)」。但一個專業的 App，會將每一次互動都視為一個 「狀態機 (State Machine)」。這意味著，我們的 UI 介面，在任何時刻，都只會處於一個明確、可預測的狀態中。
+對於資料獲取這個常見的場景，一個最基本的狀態機至少包含以下幾個狀態：
+閒置狀態 (Idle)：互動發生前的初始狀態。 等待狀態 (Loading)：從使用者點擊，到後端伺服器回應之前的這段時間。這是最容易被忽略，卻也最影響使用者感受的環節。一個好的 App 會在這時給出明確的回饋（例如轉圈動畫），告訴使用者：「我知道了，正在處理中，請稍候」，而不是讓使用者在原地焦慮地猜測。 成功狀態 (Success)：我們昨天做的所有功能，都屬於這個狀態。 錯誤狀態 (Error)：當網路中斷、伺服器出錯時，就會進入這個狀態。一個好的 App 會給出清晰、友善的錯誤提示，引導使用者解決問題，而不是直接崩潰或顯示一堆看不懂的程式碼。 我們可以將這個流程視覺化：
+graph TD A(閒置 Idle) --&amp;gt;|使用者操作| B(載入中 Loading); B --&amp;gt; C(成功 Success); B --&amp;gt; D(錯誤 Error); C --&amp;gt; A; D --&amp;gt; A; 我們今天的目標，就是要讓我們的「狀態中心 (State)」能夠完整地描述這個狀態機，並讓我們的「渲染引擎 (Render Function)」能夠忠實地將每一個狀態呈現出來。</description></item><item><title>Day 28: 【前端 #8】兌現承諾：根據規格書 Vibe Coding 關聯性洞察圖表</title><link>/ChiYu-Blob/posts/2025ithomeironmanday28/</link><pubDate>Tue, 16 Sep 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday28/</guid><description>安安，我是 ChiYu！
+昨天，我們再次實踐了「文件驅動開發」的核心精神。我們沒有直接衝進複雜的圖表程式碼中，而是先退一步，將一個模糊的「想法」，轉化為了一份清晰、具體、可執行的「技術規格」。
+我們手上現在握著一份像素級精密的「零件設計圖」。有了它，我們接下來的開發工作將會變得無比順暢，因為所有關於「如何設計」的燒腦問題，都已經被解決了。我們的任務只剩下一個——專注於「如何實現」。
+今天，我們將正式拿起工具，嚴格依據昨天的這份《圖表元件規格書》，指揮 AI 和 Chart.js，將這幅數據的畫布，變成真實、可互動的前端程式碼！
+Part 1：前端心法：為什麼專業團隊痴迷於「規格書」？ 在開始之前，讓我們再次鞏固一下心法。為什麼像我們昨天產出的那份規格書，在專業團隊中如此重要？
+消除模糊地帶：規格書用技術語言，將所有「可能」、「大概」、「我覺得」都變成了「必須」。前端工程師不再需要去猜測產品經理的心思，所有人都對著同一份文件工作。 實現並行開發：有了這份規格書，前端和後端甚至可以同時開工！後端工程師知道要提供什麼格式的 API，前端工程師知道要接收什麼格式的數據，雙方可以獨立開發，最後完美對接。 Vibe Coding 的「護欄」：這對我們至關重要。當我們指揮 AI 時，這份規格書就是最強大的「護欄」。我們可以非常精準地告訴 AI：「嘿，嚴格按照這份文件的 Props 定義來接收數據，嚴格按照這份文件的『互動行為』來寫 JS 邏輯。」這能確保 AI 的強大創造力，永遠在我們設定好的軌道上馳騁。 Part 2：Vibe Coding 實戰：將藍圖轉化為現實 好了，理論不再贅述，讓我們進入 gemini chat 模式，開始我們今天精彩的 Vibe Coding 之旅！
+Step 1: 安裝我們的「畫筆」- Chart.js 首先，我們要為專案引入一個強大且易用的圖表函式庫。
+【魔法詠唱：引入 Chart.js】 # 角色 你是一位熟悉前端生態系的前端工程師。 **# 任務** 請修改 `@frontend/index.html`，為專案引入 Chart.js 函式庫。 **# 產出要求** 請在 `&amp;lt;head&amp;gt;` 區塊中，加入 Chart.js 的 CDN 連結。請使用最新穩定版本。 AI 會為我們找到 Chart.js 的 CDN，並將 &amp;lt;script&amp;gt; 標籤加入到我們的 HTML 中。</description></item><item><title>Day 30: 【前端 #9】建立大門與鑰匙：根據流程圖實現前端使用者認證</title><link>/ChiYu-Blob/posts/2025ithomeironmanday30/</link><pubDate>Thu, 18 Sep 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday30/</guid><description>說在前頭！！！ 有些部分多花費了些時間在講，所以雖然今天已經滿30天了， 但我還沒有正式完成這次鐵人賽系列文！！！ 我後面還是會繼續更新到正式完結。畢竟還是要有頭有尾有始有終！
+以下正文開始！ 安安，我是 ChiYu！
+昨天，我們為 App 的安全性，打下了最堅實的理論基礎。我們沒有憑感覺去處理這個複雜的流程，而是再次透過 「文件驅動」，將所有可能的路徑與邏輯，都預先規劃得一清二楚。
+我們手上現在握著一份精密的「安全白皮書」。有了它，我們接下來的開發工作將會變得無比順暢，因為所有關於「如何設計」的燒腦問題，都已經被解決了。我們的任務只剩下一個—— 專注於「如何實現」。
+今天，我們將迎來前端整合的最終章！我們將 嚴格依據昨天的這份流程圖，指揮 AI，將這套堅不可摧的認證系統，變成真實、可運行的前端程式碼，為我們的 App 裝上大門與門鎖！
+Part 1：前端心法：為我們的單頁應用模擬「多個頁面」 在開始之前，我們需要先解決一個結構性問題。我們的 App 目前是一個嚴格意義上的「單頁應用」——所有的 UI 都在同一個 index.html 裡。但現在，我們需要一個獨立的「登入/註冊」頁面。
+在不引入複雜前端框架的情況下，最聰明、最簡單的作法，就是 「用 &amp;lt;div&amp;gt; 模擬頁面」。
+我們的策略是：
+將我們現有的主應用程式介面，用一個 &amp;lt;div id=&amp;quot;app-page&amp;quot;&amp;gt; 包起來。 再建立一個新的 &amp;lt;div id=&amp;quot;auth-page&amp;quot;&amp;gt;，用來放置登入和註冊的表單。 這兩個 &amp;lt;div&amp;gt; 永遠只會有一個顯示在畫面上。 我們將用 JavaScript 來控制，根據使用者的登入狀態，決定要顯示哪一個「頁面」。 這是一個輕量級且高效的前端路由 (Routing) 模擬方法。
+Part 2：Vibe Coding 實戰：詠唱「認證系統創生」的超級咒語 好了，作戰計畫擬定，讓我們進入 gemini chat 模式，用一個全面的「超級 Prompt」，指揮 AI 為我們完成這次複雜的手術。
+【魔法詠唱：注入認證靈魂】 # 角色 (Role) 你是一位頂尖的資安前端架構師 (Principal Frontend Engineer &amp;amp; Security Advocate)，精通 JWT 認證機制、狀態管理、API 客戶端設計與單頁應用程式 (SPA) 的路由管理。你擅長將複雜的認證規格，轉化為一個安全、穩固、可擴展且具備卓越使用者體驗的完整前端架構。 # 目標 (Objective) 請**嚴格依據**《前端認證架構藍圖》，對我現有的前端專案進行一次全面的**架構性重構與功能實作**，為其注入一個完整的「使用者認證」系統。 # 上下文與關鍵資訊 (Context &amp;amp; Key Information) * **唯一真理來源**: `@docs/AUTH_FLOW.</description></item></channel></rss>
