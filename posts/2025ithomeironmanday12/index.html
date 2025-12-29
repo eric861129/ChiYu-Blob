@@ -1,0 +1,645 @@
+<!doctype html><html lang=zh-tw><head><script async src="https://www.googletagmanager.com/gtag/js?id=G-FGXWEWM001"></script><script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-FGXWEWM001",{anonymize_ip:!1})}</script><meta name=description content="今天我們將命令 AI 代理人，根據設計好的「模組化專案結構」，一步到位地為我們生成整個後端專案的基礎架構。"><meta property="og:title" content="Day 12: 【後端 #1】起手式：AI 代理人 生成模組化的 Flask 專案"><meta property="og:description" content="今天我們將命令 AI 代理人，根據設計好的「模組化專案結構」，一步到位地為我們生成整個後端專案的基礎架構。"><meta property="og:type" content="article"><meta property="og:url" content="/ChiYu-Blob/posts/2025ithomeironmanday12/"><meta name=twitter:card content="summary_large_image"><meta name=twitter:title content="Day 12: 【後端 #1】起手式：AI 代理人 生成模組化的 Flask 專案"><meta name=twitter:description content="今天我們將命令 AI 代理人，根據設計好的「模組化專案結構」，一步到位地為我們生成整個後端專案的基礎架構。"><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Day 12: 【後端 #1】起手式：AI 代理人 生成模組化的 Flask 專案 | ChiYu Code Journey</title>
+<script>(function(){const e=localStorage.getItem("theme")||"dark";document.documentElement.setAttribute("data-theme",e)})()</script><script src=https://cdn.tailwindcss.com></script><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel=stylesheet><link href=/pagefind/pagefind-ui.css rel=stylesheet><link href="https://fonts.googleapis.com/css2?family=Chocolate+Classical+Sans&family=Edu+SA+Hand:wght@400..700&family=Inter:wght@400;500;600;700&display=swap" rel=stylesheet><link rel=icon type=image/jpeg href=/ChiYu-Blob/images/avatar.jpg><link rel=stylesheet href=/ChiYu-Blob/css/style.bundle.min.603fe609a4fee1de053c12e00858727a67cc5a3ba05a0a66f04142a379f47374.css integrity="sha256-YD/mCaT+4d4FPBLgCFhyemfMWjugWgpm8EFCo3n0c3Q=" crossorigin=anonymous><style>#reading-progress-container{position:fixed;top:0;left:0;width:100%;height:3px;z-index:9999;background:0 0}#reading-progress-bar{height:100%;width:0%;background:linear-gradient(to right,#60a5fa,#2563eb);transition:width .1s ease-out}</style></head><body class=antialiased><div id=reading-progress-container><div id=reading-progress-bar></div></div><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><header class="sticky top-0 z-50 flex justify-between items-center py-6 border-b" style=border-color:var(--border-color);background-color:var(--bg-color)><a href=/ChiYu-Blob/ class="text-xl sm:text-2xl font-bold" style=color:var(--text-color)>ChiYu Code Journey</a><nav class="flex items-center space-x-2 sm:space-x-4"><div id=search></div><a href=/ChiYu-Blob/ class="text-sm sm:text-base" style=color:var(--text-secondary)>首頁</a>
+<a href=/ChiYu-Blob/posts/ class="text-sm sm:text-base" style=color:var(--text-secondary)>文章</a>
+<a href=/ChiYu-Blob/about/ class="text-sm sm:text-base" style=color:var(--text-secondary)>關於</a>
+<a href=/ChiYu-Blob/index.xml target=_blank title="訂閱 RSS" style=color:var(--text-secondary) class="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11a9 9 0 019 9"/><path d="M4 4a16 16 0 0116 16"/><circle cx="5" cy="19" r="1"/></svg>
+</a><button id=theme-toggle title=切換深色/淺色主題>
+<svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+<svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+</button>
+<button id=mobile-sidebar-toggle class=lg:hidden title=開啟側邊欄><svg class="w-6 h-6" fill="none" stroke="currentcolor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/></svg></button></nav></header><div data-pagefind-body style=display:none><p>安安，我是 ChiYu！歡迎來到歷史性的一刻！</p><p>過去一週，我們是專案的「規劃師」，用文字和圖表描繪著未來。從今天起，我們是「建築師」與「魔法師」，要將那些平面的藍圖，用程式碼，一行一行地「召喚」到這個世界上！</p><p>今天，我們不打算一個檔案一個檔案地慢慢來。我們要直接挑戰專業的作法！我們將命令 AI 代理人，根據我們 Day 8 設計的「模組化專案結構」，一步到位地為我們生成整個後端專案的基礎架構，包含所有資料庫模型的定義！</p><h2 id=part-1為什麼要一開始就這麼搞剛>Part 1：為什麼要一開始就這麼「搞剛」？</h2><p>你可能會問，為什麼不先從一個簡單的檔案開始，之後再慢慢改？</p><p><strong>因為專業的習慣，從第一天就要養成。</strong></p><p>我們在 Day 7 設計的**「應用程式工廠 (Application Factory)」**模式，雖然看起來檔案比較多，但它為我們專案的未來，鋪設了一條康莊大道。這種結構能幫助我們將專案的不同部分（如設定、資料庫模型、API 路由）清晰地分開，讓專案更有條理、更容易測試與擴展。</p><p>從一開始就採用這種專業結構，就像是蓋房子時，直接把客廳、臥室、廚房的隔間都規劃好，而不是先蓋一個大通鋪，之後再來敲牆壁。</p><h2 id=part-2vibe-coding-實戰命令-ai-代理人建立專案>Part 2：Vibe Coding 實戰：命令 AI 代理人建立專案</h2><p>好了，讓我們來指揮 Gemini，讓它為我們建立這座「中央廚房」。這次，我們不只要求它生成文字，<strong>我們要命令它直接行動！</strong></p><h3 id=step-1進入互動模式並下達總指令>Step 1：進入互動模式並下達總指令</h3><p>我們要使用 <code>gemini chat</code> 互動模式，因為這最能模擬我們與一位「代理人」進行對話的感覺。</p><ol><li>在 VS Code 終端機中，輸入 <code>gemini chat</code> 並按下 Enter。</li><li>看到 <code>>>></code> 提示符後，詠唱我們的「專案創世」咒語：</li></ol><h3 id=魔法詠唱我們的-prompt>【魔法詠唱：我們的 Prompt】</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown><span style=display:flex><span># ---------------------------------------------------------------------------
+</span></span><span style=display:flex><span># PROMPT FOR GEMINI: Production-Ready Flask Project Scaffolding Agent
+</span></span><span style=display:flex><span># ---------------------------------------------------------------------------
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 角色 (Role)
+</span></span><span style=display:flex><span>你是一位精通 Python Flask 專案架構與 Shell 指令的 AI Code Scaffolding Agent。你的核心任務是根據設計文件，自動化地生成一個結構清晰、可立即執行的模組化 Flask 專案骨架。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 目標 (Objective)
+</span></span><span style=display:flex><span>我的目標是讓你根據「軟體架構」與「資料庫綱要」文件，為我生成一個遵循業界最佳實踐的 Flask 專案。這個專案在生成後，應能立即安裝依賴並成功運行。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 上下文 (Context)
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   <span style=font-weight:700>**核心依據**</span>: 你的所有操作都必須基於以下兩份文件的定義：
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>1.</span>  <span style=color:#e6db74>`@docs/ARCHITECTURE.md`</span> (定義了專案結構與技術選型)
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>2.</span>  <span style=color:#e6db74>`@docs/DATABASE_SCHEMA.md`</span> (定義了資料模型)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>---
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## 你的任務與產出要求 (Your Task &amp; Output Requirements)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>請直接在我的專案中，執行以下所有檔案系統操作與程式碼生成任務。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 任務 1: 建立專案目錄結構 (Create Project Directory Tree)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>請建立以下完整的目錄與空的 <span style=color:#e6db74>`__init__.py`</span> 檔案，以確保它們被視為 Python 模組：
+</span></span><span style=display:flex><span>/
+</span></span><span style=display:flex><span>├── app/
+</span></span><span style=display:flex><span>│   ├── init.py
+</span></span><span style=display:flex><span>│   ├── api/
+</span></span><span style=display:flex><span>│   │   ├── init.py
+</span></span><span style=display:flex><span>│   │   ├── auth.py
+</span></span><span style=display:flex><span>│   │   ├── habits.py
+</span></span><span style=display:flex><span>│   │   └── moods.py
+</span></span><span style=display:flex><span>│   └── models.py
+</span></span><span style=display:flex><span>├── instance/
+</span></span><span style=display:flex><span>│   └── config.py
+</span></span><span style=display:flex><span>├── tests/
+</span></span><span style=display:flex><span>│   └── init.py
+</span></span><span style=display:flex><span>└── app.py
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 任務 2: 生成依賴與環境設定檔 (Generate Dependency &amp; Env Files)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>1.</span>  <span style=font-weight:700>**建立 `requirements.txt`**</span>:
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    Flask
+</span></span><span style=display:flex><span>    Flask-SQLAlchemy
+</span></span><span style=display:flex><span>    Flask-Migrate
+</span></span><span style=display:flex><span>    python-dotenv
+</span></span><span style=display:flex><span>    # Add other dependencies from ARCHITECTURE.md if mentioned
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span><span style=color:#66d9ef>2.</span>  <span style=font-weight:700>**建立 `.flaskenv`**</span>:
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    FLASK_APP=app.py
+</span></span><span style=display:flex><span>    FLASK_ENV=development
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 任務 3: 撰寫核心檔案內容 (Generate Core File Contents)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=font-weight:700>**請為以下每個檔案生成指定的內容：**</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>1.</span>  <span style=font-style:italic>**</span><span style=color:#e6db74>`instance/config.py`</span>**:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   建立一個 <span style=color:#e6db74>`Config`</span> 類別，並定義 <span style=color:#e6db74>`SECRET_KEY`</span> 和 <span style=color:#e6db74>`SQLALCHEMY_DATABASE_URI`</span>（指向 <span style=color:#e6db74>`instance/app.db`</span>）。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>2.</span>  <span style=font-style:italic>**</span><span style=color:#e6db74>`app/models.py`</span>**:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   <span style=font-weight:700>**關鍵指令**</span>: 導入 <span style=color:#e6db74>`Flask-SQLAlchemy`</span> 的 <span style=color:#e6db74>`db`</span> 物件。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   將 <span style=color:#e6db74>`@docs/DATABASE_SCHEMA.md`</span> 中定義的**每一個資料表**，精確地轉譯為一個 <span style=color:#e6db74>`SQLAlchemy`</span> 的 <span style=color:#e6db74>`Model`</span> 類別。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   確保正確實現主鍵、外鍵、欄位類型，以及 <span style=color:#e6db74>`db.relationship`</span> 來定義模型間的關聯。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>3.</span>  <span style=font-style:italic>**</span><span style=color:#e6db74>`app/api/auth.py`</span>, <span style=color:#e6db74>`habits.py`</span>, <span style=color:#e6db74>`moods.py`</span> (Blueprint 檔案)**:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   <span style=font-weight:700>**為每個檔案**</span>:
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>-</span>   導入 <span style=color:#e6db74>`Blueprint`</span> 和 <span style=color:#e6db74>`jsonify`</span>。
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>-</span>   建立一個對應的 Blueprint (例如: <span style=color:#e6db74>`auth_bp = Blueprint(&#39;auth&#39;, __name__)`</span>)。
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>-</span>   <span style=font-weight:700>**關鍵指令**</span>: 根據 <span style=color:#e6db74>`@docs/USER_STORIES.md`</span> 或 <span style=color:#e6db74>`@docs/API_SPEC.yml`</span> (如果存在) 的內容，為該資源的**每個核心 API 端點**建立一個空的路由函式。
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>-</span>   每個路由函式目前只需返回一個簡單的 JSON 確認訊息，例如 <span style=color:#e6db74>`return jsonify(message=&#34;Auth endpoint OK&#34;), 200`</span>。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>4.</span>  <span style=font-style:italic>**</span><span style=color:#e6db74>`app/__init__.py`</span> (應用程式工廠)**:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   <span style=font-weight:700>**關鍵指令**</span>: 實現 <span style=font-weight:700>**應用程式工廠模式 (Application Factory Pattern)**</span>，建立一個名為 <span style=color:#e6db74>`create_app`</span> 的函式。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   在 <span style=color:#e6db74>`create_app`</span> 函式內部：
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>-</span>   初始化 Flask app。
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>-</span>   從 <span style=color:#e6db74>`instance/config.py`</span> 載入設定。
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>-</span>   初始化 <span style=color:#e6db74>`Flask-SQLAlchemy`</span> 和 <span style=color:#e6db74>`Flask-Migrate`</span> 擴充套件。
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>-</span>   <span style=font-weight:700>**導入並註冊**</span> <span style=color:#e6db74>`auth`</span>, <span style=color:#e6db74>`habits`</span>, <span style=color:#e6db74>`moods`</span> 這三個 Blueprint。
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>-</span>   返回 <span style=color:#e6db74>`app`</span> 實例。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>5.</span>  <span style=font-style:italic>**</span><span style=color:#e6db74>`app.py`</span> (專案進入點)**:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   從 <span style=color:#e6db74>`app`</span> 模組導入 <span style=color:#e6db74>`create_app`</span> 工廠函式。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   呼叫 <span style=color:#e6db74>`create_app()`</span> 來建立應用程式實例。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   在 <span style=color:#e6db74>`if __name__ == &#39;__main__&#39;:`</span> 區塊中，運行 <span style=color:#e6db74>`app.run()`</span>。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 最終確認
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>-</span>   請確保所有生成的程式碼檔案都互相正確引用（例如，`__init__.py` 正確導入並註冊了 Blueprints），使得整個專案在安裝 <span style=color:#e6db74>`requirements.txt`</span> 後，可以透過 <span style=color:#e6db74>`flask run`</span> 指令無錯誤地啟動。
+</span></span></code></pre></div><h3 id=heading></h3><h3 id=step-2審核並授權-ai-的行動計畫-指揮官的最終確認>Step 2：審核並授權 AI 的行動計畫 (指揮官的最終確認)</h3><p>在正式開發時，輸入了上面的Prompt可能就會出現下面這段文字:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown><span style=display:flex><span>✦ 好的，身為 Flask 專案建構代理 (Scaffolding Agent)，我將根據您的設計文件，為您自動化地建立一個結構清晰、可立即執行的專案骨架。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  我將開始執行一系列的檔案系統與程式碼生成操作。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  任務 1: 建立專案目錄結構
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  首先，我將建立您指定的專案目錄與空的 <span style=font-weight:700>__init__</span>.py 檔案。
+</span></span><span style=display:flex><span> ╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+</span></span><span style=display:flex><span> │ ?  Shell mkdir app <span style=color:#960050;background-color:#1e0010>&amp;&amp;</span> mkdir app\api <span style=color:#960050;background-color:#1e0010>&amp;&amp;</span> mkdir instance <span style=color:#960050;background-color:#1e0010>&amp;&amp;</span> mkdir tests <span style=color:#960050;background-color:#1e0010>&amp;&amp;</span> echo. &gt; app\__init__.py <span style=color:#960050;background-color:#1e0010>&amp;&amp;</span> echo. &gt; app\api\__init__.py <span style=color:#960050;background-color:#1e0010>&amp;&amp;</span>… ←  │
+</span></span><span style=display:flex><span> │                                                                                                                                       │
+</span></span><span style=display:flex><span> │   mkdir app <span style=color:#960050;background-color:#1e0010>&amp;&amp;</span> mkdir app\api <span style=color:#960050;background-color:#1e0010>&amp;&amp;</span> mkdir instance <span style=color:#960050;background-color:#1e0010>&amp;&amp;</span> mkdir tests <span style=color:#960050;background-color:#1e0010>&amp;&amp;</span> echo. &gt; app\__init__.py <span style=color:#960050;background-color:#1e0010>&amp;&amp;</span> echo. &gt; app\api\__init__.py               │
+</span></span><span style=display:flex><span> │   <span style=color:#960050;background-color:#1e0010>&amp;&amp;</span> echo. &gt; app\api\auth.py <span style=color:#960050;background-color:#1e0010>&amp;&amp;</span> echo. &gt; app\api\habits.py <span style=color:#960050;background-color:#1e0010>&amp;&amp;</span> echo. &gt; app\api\moods.py <span style=color:#960050;background-color:#1e0010>&amp;&amp;</span> echo. &gt; app\models.py <span style=color:#960050;background-color:#1e0010>&amp;&amp;</span> echo. &gt;             │
+</span></span><span style=display:flex><span> │    instance\config.py <span style=color:#960050;background-color:#1e0010>&amp;&amp;</span> echo. &gt; tests\__init__.py <span style=color:#960050;background-color:#1e0010>&amp;&amp;</span> echo. &gt; app.py                                                                  │
+</span></span><span style=display:flex><span> │                                                                                                                                       │
+</span></span><span style=display:flex><span> │ Allow execution of: &#39;mkdir, echo.&#39;?                                                                                                   │
+</span></span><span style=display:flex><span> │                                                                                                                                       │
+</span></span><span style=display:flex><span> │ ● 1. Yes, allow once                                                                                                                  │
+</span></span><span style=display:flex><span> │   2. Yes, allow always ...                                                                                                            │
+</span></span><span style=display:flex><span> │   3. No, suggest changes (esc)                                                                                                        │
+</span></span><span style=display:flex><span> │                                                                                                                                       │
+</span></span><span style=display:flex><span> ╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+</span></span><span style=display:flex><span>⠏ Waiting for user confirmation...
+</span></span></code></pre></div><blockquote><p>這邊開始 會需要我們授權AI 進行動作，如果看得懂內容，會建議大家先閱讀過AI要幫我們做什麼，再去同意，那同意可以選擇只同意這一次或是該選項永遠同意，當然如果懶的話，在可控狀況下可以開啟YOLO模式（快速開啟可以使用Ctrl + Y）跳過這個授權的詢問，直接讓AI幫我們處理完全部的任務。</p></blockquote><h2 id=part-3與-ai-對話成為專案的程式碼考古學家>Part 3：與 AI 對話：成為專案的「程式碼考古學家」</h2><p>太棒了！我們的專案現在有了一個專業的結構。但對於初學者來說，看到突然冒出來的一堆檔案，肯定會一頭霧水。</p><p>別怕！這正是 Gemini CLI 作為「學習工具」最強大的地方。我們不需要自己去 Google 每個檔案的作用，我們可以直接問我們的 AI 代理人！</p><p>繼續在剛才的 <code>gemini chat</code> 模式中，讓我們來當個「程式碼考古學家」，一層層地挖掘出這個專案結構的秘密：</p><blockquote><h3 id=對話式學習範例>【對話式學習範例】</h3><ul><li><strong>你：</strong> 你剛剛幫我建立了幾個檔案，可以簡單解釋一下 <code>app.py</code>和<code>app/__init__.py</code> 的差別和各自的角色嗎？</li><li><strong>AI：</strong> 當然！&mldr; (AI 會給你清晰的解釋)</li><li><strong>你：</strong> 原來如此。那請你詳細解釋一下 <code>app/models.py</code>裡面的<code>User</code>class，我想知道<code>db.relationship</code> 到底是什麼意思？請用一個簡單的比喻說明。</li><li><strong>AI：</strong> 很好的問題！<code>db.relationship</code> 就像是&mldr; (AI 會用比喻的方式，讓你秒懂 ORM 的關聯)</li><li><strong>你：</strong> 太酷了！最後，請解釋 <code>app/api/habits.py</code>裡的<code>Blueprint</code>是什麼？為什麼路由要寫成<code>@habits_bp.route</code>？</li><li><strong>AI：</strong> <code>Blueprint</code> 是 Flask 用來組織&mldr; (AI 會解釋模組化的概念)</li></ul></blockquote><p>看到了嗎？透過這種「提問-回答」的循環，我們不只得到了程式碼，更重要的是，<strong>我們理解了這些程式碼</strong>。這就像是有一個 24 小時待命的資深工程師，隨時可以回答你的任何問題。這才是 Vibe Coding 最有價值的學習模式！</p><h2 id=part-4請gemini-cli-幫我們執行專案>Part 4：請Gemini CLI 幫我們執行專案！</h2><p>在執行完上面的指令後，AI可能會回覆我：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown><span style=display:flex><span>✦ 專案骨架已全部生成完畢！
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  您現在可以執行以下指令來安裝依賴並啟動專案：
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   <span style=color:#66d9ef>1.</span> 安裝依賴:
+</span></span><span style=display:flex><span>   1     pip install -r requirements.txt
+</span></span><span style=display:flex><span>   <span style=color:#66d9ef>2.</span> 初始化資料庫遷移:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   1     flask db init
+</span></span><span style=display:flex><span>   2     flask db migrate -m &#34;Initial migration.&#34;
+</span></span><span style=display:flex><span>   3     flask db upgrade
+</span></span><span style=display:flex><span>   <span style=color:#66d9ef>3.</span> 運行應用程式:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   1     flask run
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  伺服器將會在 http://127.0.0.1:5000 上運行，並且 API 端點可以透過 /api/v1/... 訪問。
+</span></span></code></pre></div><p>那我們可以直接請AI幫我們執行這些指令，安裝依賴並啟動專案。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown><span style=display:flex><span>
+</span></span><span style=display:flex><span>╭───────────────────────────────╮
+</span></span><span style=display:flex><span>│  &gt; 你能夠幫我執行這些指令嗎?  │
+</span></span><span style=display:flex><span>╰───────────────────────────────╯
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>✦ 當然可以。我會一步步為您執行這些指令。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  首先，安裝專案所需的 Python 依賴。
+</span></span><span style=display:flex><span> ╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+</span></span><span style=display:flex><span> │ ✔ Shell pip install -r requirements.txt (從 requirements.txt 檔案安裝所有必要的 Python 套件。)                                  │
+</span></span><span style=display:flex><span> │   
+</span></span><span style=display:flex><span> │             ///....中間省略                                                                                                     
+</span></span><span style=display:flex><span> │                                                                                  
+</span></span><span style=display:flex><span> │                                                                                                                                │
+</span></span><span style=display:flex><span> ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+</span></span><span style=display:flex><span>✦ 依賴安裝完成。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  接下來，我將初始化資料庫遷移環境。
+</span></span><span style=display:flex><span> ╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+</span></span><span style=display:flex><span> │ ✔ Shell flask db init (初始化 Flask-Migrate，建立資料庫遷移所需的資料夾與設定。)                                              │
+</span></span><span style=display:flex><span> │         中間省略
+</span></span><span style=display:flex><span> │                                                                                                                                │
+</span></span><span style=display:flex><span> ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+</span></span><span style=display:flex><span>✦ 資料庫遷移環境已成功初始化。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  現在，我將根據您在 app/models.py 中定義的模型，建立第一個遷移腳本。
+</span></span><span style=display:flex><span> ╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+</span></span><span style=display:flex><span> │ ✔ Shell flask db migrate -m &#34;Initial migration.&#34; (根據 SQLAlchemy 模型自動生成資料庫綱要的遷移腳本。)                         │
+</span></span><span style=display:flex><span> │                                                                                                                                │
+</span></span><span style=display:flex><span> │               中間省略...
+</span></span><span style=display:flex><span> │                                                                                                                                │
+</span></span><span style=display:flex><span> ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+</span></span><span style=display:flex><span>✦ 遷移腳本已生成。不過，輸出顯示「No changes in schema detected」，這有點出乎意料，因為我們已經定義了模型。這有時可能是因為
+</span></span><span style=display:flex><span>  db.create_all() 在 flask db migrate 之前被某種方式觸發了。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  不過沒關係，我將繼續執行 upgrade 命令，這會確保資料庫與模型同步。
+</span></span><span style=display:flex><span> ╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+</span></span><span style=display:flex><span> │ ✔ Shell flask db upgrade (將遷移腳本應用到資料庫，建立或更新資料表。)                                                         │
+</span></span><span style=display:flex><span> │                                      中間省略...
+</span></span><span style=display:flex><span> │                                                                                                                                │
+</span></span><span style=display:flex><span> ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+</span></span><span style=display:flex><span>✦ 資料庫更新命令已執行。現在資料庫綱要應該已經是最新的了。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  最後，我將為您啟動 Flask 開發伺服器。這個指令會持續運行，您可以隨時在終端機中按下 Ctrl+C 來停止它。
+</span></span></code></pre></div><p>那我們可以到 <code>[http://127.0.0.1:5000](http://127.0.0.1:5000/)</code> 查看是否有在運行，當然我們現在什麼都沒開發只有基底專案，所以會顯示</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown><span style=display:flex><span>Not Found
+</span></span><span style=display:flex><span>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+</span></span></code></pre></div><p>上面這是以目前的專案是正常的，如果是無效的站台會顯示：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown><span style=display:flex><span>無法連上這個網站
+</span></span><span style=display:flex><span>127.0.0.1 拒絕連線。
+</span></span></code></pre></div><h2 id=part-5提交我們的專案地基>Part 5：提交我們的專案地基</h2><p>當你透過與 AI 的對話，對這個新結構有了充分的理解後，讓我們來完成今天的最後一步。</p><ol><li><strong>Stage 變更</strong>：將所有由 AI 建立的新檔案都按 <code>+</code>。</li><li><strong>Commit 訊息</strong>：<code>feat: Generate initial modular project structure via AI agent</code></li><li><strong>Commit & Push！</strong></li></ol><h2 id=結語不只建立更要理解>結語：不只建立，更要理解</h2><p>恭喜！今天，我們不只指揮 AI 為我們建立了一個專業、可擴展的應用程式架構，更學會了如何利用 AI 作為我們的專屬家教，來深入理解這個架構的每一個細節。</p><p>我們的廚房現在不只窗明几淨、井井有條，我們還拿到了一份完整的**「廚房導覽手冊」**。</p><p>有了這麼扎實的基礎，明天，我們終於要來為這個廚房點火，讓引擎真正地運轉起來！我們將學習如何啟動伺服器，並為我們的資料庫填充第一批測試數據！</p></div><div class="flex flex-row justify-center py-8 sm:py-12"><div class="w-full max-w-6xl min-w-0"><div class="flex justify-center"><main class="w-full max-w-4xl min-w-0"><article class="prose max-w-none"><nav class="flex text-sm mb-6" aria-label=Breadcrumb><ol class="inline-flex items-center space-x-1 md:space-x-3"><li class="inline-flex items-center"><a href=/ChiYu-Blob/ class="inline-flex items-center hover:text-blue-600 dark:hover:text-blue-400" style=color:var(--text-secondary)><svg class="w-4 h-4 mr-2" fill="currentcolor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414.0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/></svg>
+首頁</a></li><li><div class="flex items-center"><svg class="w-4 h-4 mx-1" style="color:var(--text-secondary);opacity:.5" fill="currentcolor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414.0z" clip-rule="evenodd"/></svg>
+<a href=/ChiYu-Blob/posts/ class="ml-1 hover:text-blue-600 dark:hover:text-blue-400 capitalize" style=color:var(--text-secondary)>全部文章</a></div></li><li aria-current=page><div class="flex items-center"><svg class="w-4 h-4 mx-1" style="color:var(--text-secondary);opacity:.5" fill="currentcolor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414.0z" clip-rule="evenodd"/></svg>
+<span class="ml-1 font-medium truncate max-w-[150px] sm:max-w-[300px]" style=color:var(--text-color)>Day 12: 【後端 #1】起手式：AI 代理人 生成模組化的 Flask 專案</span></div></li></ol></nav><header class=mb-8><h1 class="text-2xl sm:text-4xl font-bold tracking-tight mb-4 !mt-0">Day 12: 【後端 #1】起手式：AI 代理人 生成模組化的 Flask 專案</h1><p class=text-base style=color:var(--text-secondary)>發布於 2025年8月31日
+<span class=ml-2 style=color:var(--text-secondary);opacity:.8;font-size:.9em>(更新於 2025年8月31日)
+</span>&#183; <span class=mx-1>約 4 分鐘閱讀</span>
+&#183;
+<span class="inline-flex flex-wrap gap-2 items-center" data-pagefind-ignore><a href=/ChiYu-Blob/tags/2025ithomeironman/ class=tag-pill>2025iThomeIronman</a>
+<a href=/ChiYu-Blob/tags/gemini/ class=tag-pill>Gemini</a>
+<a href=/ChiYu-Blob/tags/flask/ class=tag-pill>Flask</a>
+<a href=/ChiYu-Blob/tags/scaffolding/ class=tag-pill>Scaffolding</a>
+<a href=/ChiYu-Blob/tags/backend/ class=tag-pill>Backend</a>
+<a href=/ChiYu-Blob/tags/python/ class=tag-pill>Python</a></span></p></header><div data-pagefind-meta="title:Day 12: 【後端 #1】起手式：AI 代理人 生成模組化的 Flask 專案" style=display:none></div><div data-pagefind-ignore><p>安安，我是 ChiYu！歡迎來到歷史性的一刻！</p><p>過去一週，我們是專案的「規劃師」，用文字和圖表描繪著未來。從今天起，我們是「建築師」與「魔法師」，要將那些平面的藍圖，用程式碼，一行一行地「召喚」到這個世界上！</p><p>今天，我們不打算一個檔案一個檔案地慢慢來。我們要直接挑戰專業的作法！我們將命令 AI 代理人，根據我們 Day 8 設計的「模組化專案結構」，一步到位地為我們生成整個後端專案的基礎架構，包含所有資料庫模型的定義！</p><h2 id=part-1為什麼要一開始就這麼搞剛>Part 1：為什麼要一開始就這麼「搞剛」？</h2><p>你可能會問，為什麼不先從一個簡單的檔案開始，之後再慢慢改？</p><p><strong>因為專業的習慣，從第一天就要養成。</strong></p><p>我們在 Day 7 設計的**「應用程式工廠 (Application Factory)」**模式，雖然看起來檔案比較多，但它為我們專案的未來，鋪設了一條康莊大道。這種結構能幫助我們將專案的不同部分（如設定、資料庫模型、API 路由）清晰地分開，讓專案更有條理、更容易測試與擴展。</p><p>從一開始就採用這種專業結構，就像是蓋房子時，直接把客廳、臥室、廚房的隔間都規劃好，而不是先蓋一個大通鋪，之後再來敲牆壁。</p><h2 id=part-2vibe-coding-實戰命令-ai-代理人建立專案>Part 2：Vibe Coding 實戰：命令 AI 代理人建立專案</h2><p>好了，讓我們來指揮 Gemini，讓它為我們建立這座「中央廚房」。這次，我們不只要求它生成文字，<strong>我們要命令它直接行動！</strong></p><h3 id=step-1進入互動模式並下達總指令>Step 1：進入互動模式並下達總指令</h3><p>我們要使用 <code>gemini chat</code> 互動模式，因為這最能模擬我們與一位「代理人」進行對話的感覺。</p><ol><li>在 VS Code 終端機中，輸入 <code>gemini chat</code> 並按下 Enter。</li><li>看到 <code>>>></code> 提示符後，詠唱我們的「專案創世」咒語：</li></ol><h3 id=魔法詠唱我們的-prompt>【魔法詠唱：我們的 Prompt】</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown><span style=display:flex><span># ---------------------------------------------------------------------------
+</span></span><span style=display:flex><span># PROMPT FOR GEMINI: Production-Ready Flask Project Scaffolding Agent
+</span></span><span style=display:flex><span># ---------------------------------------------------------------------------
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 角色 (Role)
+</span></span><span style=display:flex><span>你是一位精通 Python Flask 專案架構與 Shell 指令的 AI Code Scaffolding Agent。你的核心任務是根據設計文件，自動化地生成一個結構清晰、可立即執行的模組化 Flask 專案骨架。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 目標 (Objective)
+</span></span><span style=display:flex><span>我的目標是讓你根據「軟體架構」與「資料庫綱要」文件，為我生成一個遵循業界最佳實踐的 Flask 專案。這個專案在生成後，應能立即安裝依賴並成功運行。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 上下文 (Context)
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   <span style=font-weight:700>**核心依據**</span>: 你的所有操作都必須基於以下兩份文件的定義：
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>1.</span>  <span style=color:#e6db74>`@docs/ARCHITECTURE.md`</span> (定義了專案結構與技術選型)
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>2.</span>  <span style=color:#e6db74>`@docs/DATABASE_SCHEMA.md`</span> (定義了資料模型)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>---
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## 你的任務與產出要求 (Your Task &amp; Output Requirements)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>請直接在我的專案中，執行以下所有檔案系統操作與程式碼生成任務。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 任務 1: 建立專案目錄結構 (Create Project Directory Tree)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>請建立以下完整的目錄與空的 <span style=color:#e6db74>`__init__.py`</span> 檔案，以確保它們被視為 Python 模組：
+</span></span><span style=display:flex><span>/
+</span></span><span style=display:flex><span>├── app/
+</span></span><span style=display:flex><span>│   ├── init.py
+</span></span><span style=display:flex><span>│   ├── api/
+</span></span><span style=display:flex><span>│   │   ├── init.py
+</span></span><span style=display:flex><span>│   │   ├── auth.py
+</span></span><span style=display:flex><span>│   │   ├── habits.py
+</span></span><span style=display:flex><span>│   │   └── moods.py
+</span></span><span style=display:flex><span>│   └── models.py
+</span></span><span style=display:flex><span>├── instance/
+</span></span><span style=display:flex><span>│   └── config.py
+</span></span><span style=display:flex><span>├── tests/
+</span></span><span style=display:flex><span>│   └── init.py
+</span></span><span style=display:flex><span>└── app.py
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 任務 2: 生成依賴與環境設定檔 (Generate Dependency &amp; Env Files)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>1.</span>  <span style=font-weight:700>**建立 `requirements.txt`**</span>:
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    Flask
+</span></span><span style=display:flex><span>    Flask-SQLAlchemy
+</span></span><span style=display:flex><span>    Flask-Migrate
+</span></span><span style=display:flex><span>    python-dotenv
+</span></span><span style=display:flex><span>    # Add other dependencies from ARCHITECTURE.md if mentioned
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span><span style=color:#66d9ef>2.</span>  <span style=font-weight:700>**建立 `.flaskenv`**</span>:
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    FLASK_APP=app.py
+</span></span><span style=display:flex><span>    FLASK_ENV=development
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 任務 3: 撰寫核心檔案內容 (Generate Core File Contents)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=font-weight:700>**請為以下每個檔案生成指定的內容：**</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>1.</span>  <span style=font-style:italic>**</span><span style=color:#e6db74>`instance/config.py`</span>**:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   建立一個 <span style=color:#e6db74>`Config`</span> 類別，並定義 <span style=color:#e6db74>`SECRET_KEY`</span> 和 <span style=color:#e6db74>`SQLALCHEMY_DATABASE_URI`</span>（指向 <span style=color:#e6db74>`instance/app.db`</span>）。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>2.</span>  <span style=font-style:italic>**</span><span style=color:#e6db74>`app/models.py`</span>**:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   <span style=font-weight:700>**關鍵指令**</span>: 導入 <span style=color:#e6db74>`Flask-SQLAlchemy`</span> 的 <span style=color:#e6db74>`db`</span> 物件。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   將 <span style=color:#e6db74>`@docs/DATABASE_SCHEMA.md`</span> 中定義的**每一個資料表**，精確地轉譯為一個 <span style=color:#e6db74>`SQLAlchemy`</span> 的 <span style=color:#e6db74>`Model`</span> 類別。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   確保正確實現主鍵、外鍵、欄位類型，以及 <span style=color:#e6db74>`db.relationship`</span> 來定義模型間的關聯。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>3.</span>  <span style=font-style:italic>**</span><span style=color:#e6db74>`app/api/auth.py`</span>, <span style=color:#e6db74>`habits.py`</span>, <span style=color:#e6db74>`moods.py`</span> (Blueprint 檔案)**:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   <span style=font-weight:700>**為每個檔案**</span>:
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>-</span>   導入 <span style=color:#e6db74>`Blueprint`</span> 和 <span style=color:#e6db74>`jsonify`</span>。
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>-</span>   建立一個對應的 Blueprint (例如: <span style=color:#e6db74>`auth_bp = Blueprint(&#39;auth&#39;, __name__)`</span>)。
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>-</span>   <span style=font-weight:700>**關鍵指令**</span>: 根據 <span style=color:#e6db74>`@docs/USER_STORIES.md`</span> 或 <span style=color:#e6db74>`@docs/API_SPEC.yml`</span> (如果存在) 的內容，為該資源的**每個核心 API 端點**建立一個空的路由函式。
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>-</span>   每個路由函式目前只需返回一個簡單的 JSON 確認訊息，例如 <span style=color:#e6db74>`return jsonify(message=&#34;Auth endpoint OK&#34;), 200`</span>。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>4.</span>  <span style=font-style:italic>**</span><span style=color:#e6db74>`app/__init__.py`</span> (應用程式工廠)**:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   <span style=font-weight:700>**關鍵指令**</span>: 實現 <span style=font-weight:700>**應用程式工廠模式 (Application Factory Pattern)**</span>，建立一個名為 <span style=color:#e6db74>`create_app`</span> 的函式。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   在 <span style=color:#e6db74>`create_app`</span> 函式內部：
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>-</span>   初始化 Flask app。
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>-</span>   從 <span style=color:#e6db74>`instance/config.py`</span> 載入設定。
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>-</span>   初始化 <span style=color:#e6db74>`Flask-SQLAlchemy`</span> 和 <span style=color:#e6db74>`Flask-Migrate`</span> 擴充套件。
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>-</span>   <span style=font-weight:700>**導入並註冊**</span> <span style=color:#e6db74>`auth`</span>, <span style=color:#e6db74>`habits`</span>, <span style=color:#e6db74>`moods`</span> 這三個 Blueprint。
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>-</span>   返回 <span style=color:#e6db74>`app`</span> 實例。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>5.</span>  <span style=font-style:italic>**</span><span style=color:#e6db74>`app.py`</span> (專案進入點)**:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   從 <span style=color:#e6db74>`app`</span> 模組導入 <span style=color:#e6db74>`create_app`</span> 工廠函式。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   呼叫 <span style=color:#e6db74>`create_app()`</span> 來建立應用程式實例。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   在 <span style=color:#e6db74>`if __name__ == &#39;__main__&#39;:`</span> 區塊中，運行 <span style=color:#e6db74>`app.run()`</span>。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 最終確認
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>-</span>   請確保所有生成的程式碼檔案都互相正確引用（例如，`__init__.py` 正確導入並註冊了 Blueprints），使得整個專案在安裝 <span style=color:#e6db74>`requirements.txt`</span> 後，可以透過 <span style=color:#e6db74>`flask run`</span> 指令無錯誤地啟動。
+</span></span></code></pre></div><h3 id=heading></h3><h3 id=step-2審核並授權-ai-的行動計畫-指揮官的最終確認>Step 2：審核並授權 AI 的行動計畫 (指揮官的最終確認)</h3><p>在正式開發時，輸入了上面的Prompt可能就會出現下面這段文字:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown><span style=display:flex><span>✦ 好的，身為 Flask 專案建構代理 (Scaffolding Agent)，我將根據您的設計文件，為您自動化地建立一個結構清晰、可立即執行的專案骨架。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  我將開始執行一系列的檔案系統與程式碼生成操作。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  任務 1: 建立專案目錄結構
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  首先，我將建立您指定的專案目錄與空的 <span style=font-weight:700>__init__</span>.py 檔案。
+</span></span><span style=display:flex><span> ╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+</span></span><span style=display:flex><span> │ ?  Shell mkdir app <span style=color:#960050;background-color:#1e0010>&amp;&amp;</span> mkdir app\api <span style=color:#960050;background-color:#1e0010>&amp;&amp;</span> mkdir instance <span style=color:#960050;background-color:#1e0010>&amp;&amp;</span> mkdir tests <span style=color:#960050;background-color:#1e0010>&amp;&amp;</span> echo. &gt; app\__init__.py <span style=color:#960050;background-color:#1e0010>&amp;&amp;</span> echo. &gt; app\api\__init__.py <span style=color:#960050;background-color:#1e0010>&amp;&amp;</span>… ←  │
+</span></span><span style=display:flex><span> │                                                                                                                                       │
+</span></span><span style=display:flex><span> │   mkdir app <span style=color:#960050;background-color:#1e0010>&amp;&amp;</span> mkdir app\api <span style=color:#960050;background-color:#1e0010>&amp;&amp;</span> mkdir instance <span style=color:#960050;background-color:#1e0010>&amp;&amp;</span> mkdir tests <span style=color:#960050;background-color:#1e0010>&amp;&amp;</span> echo. &gt; app\__init__.py <span style=color:#960050;background-color:#1e0010>&amp;&amp;</span> echo. &gt; app\api\__init__.py               │
+</span></span><span style=display:flex><span> │   <span style=color:#960050;background-color:#1e0010>&amp;&amp;</span> echo. &gt; app\api\auth.py <span style=color:#960050;background-color:#1e0010>&amp;&amp;</span> echo. &gt; app\api\habits.py <span style=color:#960050;background-color:#1e0010>&amp;&amp;</span> echo. &gt; app\api\moods.py <span style=color:#960050;background-color:#1e0010>&amp;&amp;</span> echo. &gt; app\models.py <span style=color:#960050;background-color:#1e0010>&amp;&amp;</span> echo. &gt;             │
+</span></span><span style=display:flex><span> │    instance\config.py <span style=color:#960050;background-color:#1e0010>&amp;&amp;</span> echo. &gt; tests\__init__.py <span style=color:#960050;background-color:#1e0010>&amp;&amp;</span> echo. &gt; app.py                                                                  │
+</span></span><span style=display:flex><span> │                                                                                                                                       │
+</span></span><span style=display:flex><span> │ Allow execution of: &#39;mkdir, echo.&#39;?                                                                                                   │
+</span></span><span style=display:flex><span> │                                                                                                                                       │
+</span></span><span style=display:flex><span> │ ● 1. Yes, allow once                                                                                                                  │
+</span></span><span style=display:flex><span> │   2. Yes, allow always ...                                                                                                            │
+</span></span><span style=display:flex><span> │   3. No, suggest changes (esc)                                                                                                        │
+</span></span><span style=display:flex><span> │                                                                                                                                       │
+</span></span><span style=display:flex><span> ╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+</span></span><span style=display:flex><span>⠏ Waiting for user confirmation...
+</span></span></code></pre></div><blockquote><p>這邊開始 會需要我們授權AI 進行動作，如果看得懂內容，會建議大家先閱讀過AI要幫我們做什麼，再去同意，那同意可以選擇只同意這一次或是該選項永遠同意，當然如果懶的話，在可控狀況下可以開啟YOLO模式（快速開啟可以使用Ctrl + Y）跳過這個授權的詢問，直接讓AI幫我們處理完全部的任務。</p></blockquote><h2 id=part-3與-ai-對話成為專案的程式碼考古學家>Part 3：與 AI 對話：成為專案的「程式碼考古學家」</h2><p>太棒了！我們的專案現在有了一個專業的結構。但對於初學者來說，看到突然冒出來的一堆檔案，肯定會一頭霧水。</p><p>別怕！這正是 Gemini CLI 作為「學習工具」最強大的地方。我們不需要自己去 Google 每個檔案的作用，我們可以直接問我們的 AI 代理人！</p><p>繼續在剛才的 <code>gemini chat</code> 模式中，讓我們來當個「程式碼考古學家」，一層層地挖掘出這個專案結構的秘密：</p><blockquote><h3 id=對話式學習範例>【對話式學習範例】</h3><ul><li><strong>你：</strong> 你剛剛幫我建立了幾個檔案，可以簡單解釋一下 <code>app.py</code>和<code>app/__init__.py</code> 的差別和各自的角色嗎？</li><li><strong>AI：</strong> 當然！&mldr; (AI 會給你清晰的解釋)</li><li><strong>你：</strong> 原來如此。那請你詳細解釋一下 <code>app/models.py</code>裡面的<code>User</code>class，我想知道<code>db.relationship</code> 到底是什麼意思？請用一個簡單的比喻說明。</li><li><strong>AI：</strong> 很好的問題！<code>db.relationship</code> 就像是&mldr; (AI 會用比喻的方式，讓你秒懂 ORM 的關聯)</li><li><strong>你：</strong> 太酷了！最後，請解釋 <code>app/api/habits.py</code>裡的<code>Blueprint</code>是什麼？為什麼路由要寫成<code>@habits_bp.route</code>？</li><li><strong>AI：</strong> <code>Blueprint</code> 是 Flask 用來組織&mldr; (AI 會解釋模組化的概念)</li></ul></blockquote><p>看到了嗎？透過這種「提問-回答」的循環，我們不只得到了程式碼，更重要的是，<strong>我們理解了這些程式碼</strong>。這就像是有一個 24 小時待命的資深工程師，隨時可以回答你的任何問題。這才是 Vibe Coding 最有價值的學習模式！</p><h2 id=part-4請gemini-cli-幫我們執行專案>Part 4：請Gemini CLI 幫我們執行專案！</h2><p>在執行完上面的指令後，AI可能會回覆我：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown><span style=display:flex><span>✦ 專案骨架已全部生成完畢！
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  您現在可以執行以下指令來安裝依賴並啟動專案：
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   <span style=color:#66d9ef>1.</span> 安裝依賴:
+</span></span><span style=display:flex><span>   1     pip install -r requirements.txt
+</span></span><span style=display:flex><span>   <span style=color:#66d9ef>2.</span> 初始化資料庫遷移:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   1     flask db init
+</span></span><span style=display:flex><span>   2     flask db migrate -m &#34;Initial migration.&#34;
+</span></span><span style=display:flex><span>   3     flask db upgrade
+</span></span><span style=display:flex><span>   <span style=color:#66d9ef>3.</span> 運行應用程式:
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>   1     flask run
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  伺服器將會在 http://127.0.0.1:5000 上運行，並且 API 端點可以透過 /api/v1/... 訪問。
+</span></span></code></pre></div><p>那我們可以直接請AI幫我們執行這些指令，安裝依賴並啟動專案。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown><span style=display:flex><span>
+</span></span><span style=display:flex><span>╭───────────────────────────────╮
+</span></span><span style=display:flex><span>│  &gt; 你能夠幫我執行這些指令嗎?  │
+</span></span><span style=display:flex><span>╰───────────────────────────────╯
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>✦ 當然可以。我會一步步為您執行這些指令。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  首先，安裝專案所需的 Python 依賴。
+</span></span><span style=display:flex><span> ╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+</span></span><span style=display:flex><span> │ ✔ Shell pip install -r requirements.txt (從 requirements.txt 檔案安裝所有必要的 Python 套件。)                                  │
+</span></span><span style=display:flex><span> │   
+</span></span><span style=display:flex><span> │             ///....中間省略                                                                                                     
+</span></span><span style=display:flex><span> │                                                                                  
+</span></span><span style=display:flex><span> │                                                                                                                                │
+</span></span><span style=display:flex><span> ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+</span></span><span style=display:flex><span>✦ 依賴安裝完成。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  接下來，我將初始化資料庫遷移環境。
+</span></span><span style=display:flex><span> ╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+</span></span><span style=display:flex><span> │ ✔ Shell flask db init (初始化 Flask-Migrate，建立資料庫遷移所需的資料夾與設定。)                                              │
+</span></span><span style=display:flex><span> │         中間省略
+</span></span><span style=display:flex><span> │                                                                                                                                │
+</span></span><span style=display:flex><span> ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+</span></span><span style=display:flex><span>✦ 資料庫遷移環境已成功初始化。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  現在，我將根據您在 app/models.py 中定義的模型，建立第一個遷移腳本。
+</span></span><span style=display:flex><span> ╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+</span></span><span style=display:flex><span> │ ✔ Shell flask db migrate -m &#34;Initial migration.&#34; (根據 SQLAlchemy 模型自動生成資料庫綱要的遷移腳本。)                         │
+</span></span><span style=display:flex><span> │                                                                                                                                │
+</span></span><span style=display:flex><span> │               中間省略...
+</span></span><span style=display:flex><span> │                                                                                                                                │
+</span></span><span style=display:flex><span> ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+</span></span><span style=display:flex><span>✦ 遷移腳本已生成。不過，輸出顯示「No changes in schema detected」，這有點出乎意料，因為我們已經定義了模型。這有時可能是因為
+</span></span><span style=display:flex><span>  db.create_all() 在 flask db migrate 之前被某種方式觸發了。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  不過沒關係，我將繼續執行 upgrade 命令，這會確保資料庫與模型同步。
+</span></span><span style=display:flex><span> ╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+</span></span><span style=display:flex><span> │ ✔ Shell flask db upgrade (將遷移腳本應用到資料庫，建立或更新資料表。)                                                         │
+</span></span><span style=display:flex><span> │                                      中間省略...
+</span></span><span style=display:flex><span> │                                                                                                                                │
+</span></span><span style=display:flex><span> ╰────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+</span></span><span style=display:flex><span>✦ 資料庫更新命令已執行。現在資料庫綱要應該已經是最新的了。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  最後，我將為您啟動 Flask 開發伺服器。這個指令會持續運行，您可以隨時在終端機中按下 Ctrl+C 來停止它。
+</span></span></code></pre></div><p>那我們可以到 <code>[http://127.0.0.1:5000](http://127.0.0.1:5000/)</code> 查看是否有在運行，當然我們現在什麼都沒開發只有基底專案，所以會顯示</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown><span style=display:flex><span>Not Found
+</span></span><span style=display:flex><span>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+</span></span></code></pre></div><p>上面這是以目前的專案是正常的，如果是無效的站台會顯示：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown><span style=display:flex><span>無法連上這個網站
+</span></span><span style=display:flex><span>127.0.0.1 拒絕連線。
+</span></span></code></pre></div><h2 id=part-5提交我們的專案地基>Part 5：提交我們的專案地基</h2><p>當你透過與 AI 的對話，對這個新結構有了充分的理解後，讓我們來完成今天的最後一步。</p><ol><li><strong>Stage 變更</strong>：將所有由 AI 建立的新檔案都按 <code>+</code>。</li><li><strong>Commit 訊息</strong>：<code>feat: Generate initial modular project structure via AI agent</code></li><li><strong>Commit & Push！</strong></li></ol><h2 id=結語不只建立更要理解>結語：不只建立，更要理解</h2><p>恭喜！今天，我們不只指揮 AI 為我們建立了一個專業、可擴展的應用程式架構，更學會了如何利用 AI 作為我們的專屬家教，來深入理解這個架構的每一個細節。</p><p>我們的廚房現在不只窗明几淨、井井有條，我們還拿到了一份完整的**「廚房導覽手冊」**。</p><p>有了這麼扎實的基礎，明天，我們終於要來為這個廚房點火，讓引擎真正地運轉起來！我們將學習如何啟動伺服器，並為我們的資料庫填充第一批測試數據！</p></div></article><div class="not-prose my-8 p-6 rounded-lg border transition-colors" style=background-color:var(--code-bg);border-color:var(--border-color)><div class="flex flex-col sm:flex-row sm:items-center justify-between mb-4 pb-4 border-b" style=border-color:var(--border-color)><div><span class="text-xs font-semibold uppercase tracking-wider" style=color:var(--text-secondary)>Series</span><h3 class="text-lg font-bold mt-1"><a href=/ChiYu-Blob/series/2025ithomeironman/ class=hover:underline style=color:var(--link-color)>2025iThomeIronman</a></h3></div><div class="mt-2 sm:mt-0 text-sm font-medium px-3 py-1 rounded-full border" style=background-color:var(--bg-color);color:var(--text-secondary);border-color:var(--border-color)>Part 12 of 17</div></div><div class="series-list-container relative"><ol class="list-none space-y-1 relative" id=series-list-2025ithomeironman><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday1/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">01.</span>
+<span>Day 1: 【啟程】嘿，AI！我們來做個網站，但這次，我們約法三章</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday2/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">02.</span>
+<span>Day 2: 【心法篇】開發者的航海圖：什麼是文件驅動開發 (DDD)？</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday3/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">03.</span>
+<span>Day 3: 【工具篇 #1】萬丈高樓平地起：建置本地開發環境</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday4/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">04.</span>
+<span>Day 4: 【工具篇 #2】程式碼的時光機：Git 與 GitHub 版本控制</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday5/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">05.</span>
+<span>Day 5: 【工具篇 #3】終端機裡的魔法：什麼是 Vibe Coding 與 Gemini CLI？</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday6/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">06.</span>
+<span>Day 6: 【文件 #1】專案的靈魂：用 Gemini CLI 生成「專案章程」</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday7/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">07.</span>
+<span>Day 7: 【文件 #2】使用者的旅程：用 Gemini CLI 描繪「使用者故事」</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday8/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">08.</span>
+<span>Day 8: 【文件 #3】系統的心臟：用 Gemini CLI 設計「軟體架構文件」</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday9/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">09.</span>
+<span>Day 9: 【文件 #4】數據的家：用 Gemini 規劃「資料庫綱要」</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday10/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">10.</span>
+<span>Day 10: 【文件 #5】溝通的契約：用 Gemini 撰寫「Web API 規格書」</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday11/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">11.</span>
+<span>Day 11: 【心法 #2】透過AI幫我們生成Prompt</span></a></li><li class="series-item p-2 rounded-md transition-colors current-series-item" style="background-color:var(--bg-color);border:1px solid var(--border-color)"><a href=javascript:void(0); class="flex items-start cursor-default" style=color:var(--text-color)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">12.</span>
+<span class=font-bold>Day 12: 【後端 #1】起手式：AI 代理人 生成模組化的 Flask 專案</span>
+<span class="ml-2 text-xs px-2 py-0.5 rounded-full bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">Current</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday13/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">13.</span>
+<span>Day 13: 【後端 #2】AI 建築師：依藍圖自動建構 CRUD API</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday14/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">14.</span>
+<span>Day 14: 【DevOps #1】AI 品管員：設定 GitHub Actions 自動化程式碼檢查</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday15/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">15.</span>
+<span>Day 15: 【後端 #3】API 測試：用 Gemini CLI 輔助撰寫 Pytest</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday16/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">16.</span>
+<span>Day 16: 【整合篇】後端竣工！回顧與展望</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday17/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">17.</span>
+<span>Day 17: 【前端 #0】前端世界的基石： HTML, CSS 與 JavaScript</span></a></li></ol><button onclick=toggleSeriesList(this) class="w-full mt-4 text-xs font-medium text-center py-2 border-t hover:bg-opacity-50 transition-colors" style=color:var(--text-secondary);border-color:var(--border-color)>
+Show all 17 posts</button><style>#series-list-2025ithomeironman{max-height:300px;overflow-y:auto;padding-right:5px}#series-list-2025ithomeironman::-webkit-scrollbar{width:4px}#series-list-2025ithomeironman::-webkit-scrollbar-track{background:0 0}#series-list-2025ithomeironman::-webkit-scrollbar-thumb{background-color:var(--border-color);border-radius:4px}</style></div></div><script>function toggleSeriesList(e){const t=e.previousElementSibling;t.style.maxHeight==="none"?(t.style.maxHeight="300px",e.innerText="Show all 17 posts"):(t.style.maxHeight="none",e.innerText="Collapse list")}document.addEventListener("DOMContentLoaded",()=>{const e=document.querySelector(".current-series-item");e&&e.scrollIntoView({behavior:"smooth",block:"nearest"})})</script><nav class="flex justify-between mt-16 pt-8 border-t not-prose" style=border-color:var(--border-color)><div><a href=/ChiYu-Blob/posts/2025ithomeironmanday11/ class="block p-4 rounded-lg transition-colors" style=color:var(--text-secondary)><span class=text-sm>上一篇</span>
+<span class="block font-semibold mt-1" style=color:var(--text-color)>Day 11: 【心法 #2】透過AI幫我們生成Prompt &larr;</span></a></div><div class=text-right><a href=/ChiYu-Blob/posts/2025ithomeironmanday13/ class="block p-4 rounded-lg transition-colors" style=color:var(--text-secondary)><span class=text-sm>下一篇</span>
+<span class="block font-semibold mt-1" style=color:var(--text-color)>&rarr; Day 13: 【後端 #2】AI 建築師：依藍圖自動建構 CRUD API</span></a></div></nav><div class="mt-16 pt-8 border-t not-prose" style=border-color:var(--border-color)><h3 class="text-xl font-bold mb-6">相關文章</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-4"><a href=/ChiYu-Blob/posts/2025ithomeironmanday15/ class="block p-4 rounded-lg transition-colors" style="border:1px solid var(--border-color)"><span class="font-semibold block" style=color:var(--text-color)>Day 15: 【後端 #3】API 測試：用 Gemini CLI 輔助撰寫 Pytest</span><p class="text-sm mt-1" style=color:var(--text-secondary)>安安，我是 ChiYu！
+昨天，我們的 CI 品管員 (GitHub Actions) 成功上崗，確保了所有程式碼的「風格」都符合最高標準。 …</p></a><a href=/ChiYu-Blob/posts/2025ithomeironmanday13/ class="block p-4 rounded-lg transition-colors" style="border:1px solid var(--border-color)"><span class="font-semibold block" style=color:var(--text-color)>Day 13: 【後端 #2】AI 建築師：依藍圖自動建構 CRUD API</span><p class="text-sm mt-1" style=color:var(--text-secondary)>安安，我是 ChiYu！歡迎來到 Vibe Coding 協奏曲的第一個最大的開發項目！
+昨天，我們用一個指令召喚出了整個專案骨架。今天，我 …</p></a><a href=/ChiYu-Blob/posts/2025ithomeironmanday16/ class="block p-4 rounded-lg transition-colors" style="border:1px solid var(--border-color)"><span class="font-semibold block" style=color:var(--text-color)>Day 16: 【整合篇】後端竣工！回顧與展望</span><p class="text-sm mt-1" style=color:var(--text-secondary)>安安，我是 ChiYu！
+走到這一步，請先放下鍵盤，靠在椅背上，深呼吸，然後給自己一個最真誠、最響亮的掌聲！你真的非常、非常了不起！
+今天， …</p></a><a href=/ChiYu-Blob/posts/2025ithomeironmanday8/ class="block p-4 rounded-lg transition-colors" style="border:1px solid var(--border-color)"><span class="font-semibold block" style=color:var(--text-color)>Day 8: 【文件 #3】系統的心臟：用 Gemini CLI 設計「軟體架構文件」</span><p class="text-sm mt-1" style=color:var(--text-secondary)>安安，我是 ChiYu！
+前兩天，我們完成了專案的「出生證明」(專案章程) 和「使用者地圖」(使用者故事)。我們現在非常清楚「為誰而做」以 …</p></a><a href=/ChiYu-Blob/posts/2025ithomeironmanday14/ class="block p-4 rounded-lg transition-colors" style="border:1px solid var(--border-color)"><span class="font-semibold block" style=color:var(--text-color)>Day 14: 【DevOps #1】AI 品管員：設定 GitHub Actions 自動化程式碼檢查</span><p class="text-sm mt-1" style=color:var(--text-secondary)>安安，我是 ChiYu！
+我們前幾天火力全開，後端 API 核心功能都搞定了。我們的後端架構現在什麼功能都做得出來！但問題來了，我們怎麼保證 …</p></a></div></div><div class="share-buttons not-prose mt-8 border-t pt-8" style=border-color:var(--border-color)><h3 class="text-base font-semibold mb-4 opacity-70">分享此文章：</h3><div class="flex gap-4"><a href="https://www.facebook.com/sharer/sharer.php?u=%2fChiYu-Blob%2fposts%2f2025ithomeironmanday12%2f" target=_blank rel="noopener noreferrer" class="share-btn text-blue-600 hover:opacity-80" title="分享到 Facebook"><svg class="w-6 h-6" fill="currentcolor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312.0 2.686.235 2.686.235v2.953H15.83c-1.491.0-1.962.925-1.962 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+</a><a href="https://twitter.com/intent/tweet?url=%2fChiYu-Blob%2fposts%2f2025ithomeironmanday12%2f&text=Day%2012%3a%20%e3%80%90%e5%be%8c%e7%ab%af%20%231%e3%80%91%e8%b5%b7%e6%89%8b%e5%bc%8f%ef%bc%9aAI%20%e4%bb%a3%e7%90%86%e4%ba%ba%20%e7%94%9f%e6%88%90%e6%a8%a1%e7%b5%84%e5%8c%96%e7%9a%84%20Flask%20%e5%b0%88%e6%a1%88" target=_blank rel="noopener noreferrer" class="share-btn text-gray-800 dark:text-gray-200 hover:opacity-80" title="分享到 X"><svg class="w-6 h-6" fill="currentcolor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+</a><a href="https://www.linkedin.com/shareArticle?mini=true&url=%2fChiYu-Blob%2fposts%2f2025ithomeironmanday12%2f&title=Day%2012%3a%20%e3%80%90%e5%be%8c%e7%ab%af%20%231%e3%80%91%e8%b5%b7%e6%89%8b%e5%bc%8f%ef%bc%9aAI%20%e4%bb%a3%e7%90%86%e4%ba%ba%20%e7%94%9f%e6%88%90%e6%a8%a1%e7%b5%84%e5%8c%96%e7%9a%84%20Flask%20%e5%b0%88%e6%a1%88" target=_blank rel="noopener noreferrer" class="share-btn text-blue-700 hover:opacity-80" title="分享到 LinkedIn"><svg class="w-6 h-6" fill="currentcolor" viewBox="0 0 24 24"><path d="M19 0H5C2.239.0.0 2.239.0 5v14c0 2.761 2.239 5 5 5h14c2.762.0 5-2.239 5-5V5c0-2.761-2.238-5-5-5zM8 19H5V8h3v11zM6.5 6.732c-.966.0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zM20 19h-3v-5.604c0-3.368-4-3.113-4 0V19h-3V8h3v1.765c1.396-2.586 7-2.777 7 2.476V19z"/></svg>
+</a><a href="https://social-plugins.line.me/lineit/share?url=%2fChiYu-Blob%2fposts%2f2025ithomeironmanday12%2f" target=_blank rel="noopener noreferrer" class="share-btn text-green-500 hover:opacity-80" title="分享到 Line"><svg class="w-6 h-6" fill="currentcolor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 5.85 2 10.53c0 2.68 1.49 5.08 3.81 6.66-.17.6-.62 2.18-.73 2.61-.06.25-.03.5.21.53.22.03.48-.12.67-.23 2.8-1.63 3.05-1.77 3.63-1.87.8.11 1.62.18 2.41.18 5.52.0 10-3.85 10-8.53S17.52 2 12 2zm0 14.93c-.76.0-1.53-.07-2.27-.2-.22-.04-.45.01-.64.12-.52.29-1.82 1.05-2.78 1.6.17-.85.42-1.8.52-2.3.06-.3-.06-.6-.3-.77C4.7 13.1 3.5 11.2 3.5 10.53c0-3.85 3.81-6.98 8.5-6.98s8.5 3.13 8.5 6.98-3.81 6.4-8.5 6.4z"/></svg></a></div></div><div id=giscus-container class="mt-16 pt-8 border-t not-prose" style=border-color:var(--border-color)></div></main></div></div><aside class="w-64 flex-shrink-0 desktop-sidebar pl-8"><div class="sticky top-20" data-pagefind-ignore><div class="mb-8 text-center" data-pagefind-ignore><img src=/ChiYu-Blob/images/avatar.jpg alt=個人大頭貼 class="w-32 h-32 rounded-full mx-auto object-cover border-2" style=border-color:var(--border-color) data-pagefind-ignore></div><div class="text-center mb-8" data-pagefind-ignore><a href=mailto:iamhandsomeboy1129@gmail.com class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-white transition-opacity hover:opacity-90" style=background-color:var(--link-color)><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1.0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1.0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+<span class="text-sm font-medium">聯絡我</span></a></div><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>文章月曆</h3><div id=calendar-widget-9bbdb8f1 class=calendar-widget><div class="flex justify-between items-center mb-2 font-semibold"><button class="cal-prev px-2 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700" title=上個月>&lt;</button>
+<span class=cal-month-year></span>
+<button class="cal-next px-2 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700" title=下個月>></button></div><div class="grid grid-cols-7 text-center text-xs gap-y-2" style=color:var(--text-secondary)><span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span></div><div class="cal-days grid grid-cols-7 text-center text-sm mt-2 gap-y-2"></div></div></div><script>(function(){const n=document.getElementById("calendar-widget-9bbdb8f1");if(!n)return;const e={};e["2025-12-17"]="/ChiYu-Blob/dates/2025-12-17/",e["2025-8-20"]="/ChiYu-Blob/dates/2025-08-20/",e["2025-8-21"]="/ChiYu-Blob/dates/2025-08-21/",e["2025-8-22"]="/ChiYu-Blob/dates/2025-08-22/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-8-23"]="/ChiYu-Blob/dates/2025-08-23/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-8-24"]="/ChiYu-Blob/dates/2025-08-24/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-8-25"]="/ChiYu-Blob/dates/2025-08-25/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-26"]="/ChiYu-Blob/dates/2025-08-26/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-27"]="/ChiYu-Blob/dates/2025-08-27/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-28"]="/ChiYu-Blob/dates/2025-08-28/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-29"]="/ChiYu-Blob/dates/2025-08-29/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-30"]="/ChiYu-Blob/dates/2025-08-30/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-31"]="/ChiYu-Blob/dates/2025-08-31/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-1"]="/ChiYu-Blob/dates/2025-09-01/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-2"]="/ChiYu-Blob/dates/2025-09-02/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-3"]="/ChiYu-Blob/dates/2025-09-03/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-4"]="/ChiYu-Blob/dates/2025-09-04/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-5"]="/ChiYu-Blob/dates/2025-09-05/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-7-3"]="/ChiYu-Blob/dates/2025-07-03/",e["2025-6-8"]="/ChiYu-Blob/dates/2025-06-08/",e["2025-6-5"]="/ChiYu-Blob/dates/2025-06-05/";const i=n.querySelector(".cal-month-year"),s=n.querySelector(".cal-days"),a=n.querySelector(".cal-prev"),r=n.querySelector(".cal-next");let t=new Date;function o(t){const n=t.getFullYear(),o=t.getMonth();i.textContent=`${n} 年 ${o+1} 月`,s.innerHTML="";const a=new Date(n,o,1),r=new Date(n,o+1,0),c=a.getDay();for(let e=0;e<c;e++)s.insertAdjacentHTML("beforeend","<div></div>");for(let t=1;t<=r.getDate();t++){const i=`${n}-${o+1}-${t}`;e[i]?s.insertAdjacentHTML("beforeend",`
+                    <a href="${e[i]}" class="block p-1 rounded-full transition-colors font-bold" style="color: var(--link-color); text-decoration: underline; text-decoration-thickness: 2px;">
+                        ${t}
+                    </a>
+                `):s.insertAdjacentHTML("beforeend",`<span class="block p-1">${t}</span>`)}}a.addEventListener("click",()=>{t.setMonth(t.getMonth()-1),o(t)}),r.addEventListener("click",()=>{t.setMonth(t.getMonth()+1),o(t)}),o(t)})()</script><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>所有標籤</h3><div class="flex flex-wrap gap-2"><a href=/ChiYu-Blob/tags/yaml/ class=tag-pill>YAML
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/user-stories/ class=tag-pill>User Stories
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/testing/ class=tag-pill>Testing
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/summary/ class=tag-pill>Summary
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/sqlite/ class=tag-pill>SQLite
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/sql/ class=tag-pill>SQL
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/software-engineering/ class=tag-pill>Software Engineering
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/software-architecture/ class=tag-pill>Software Architecture
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/side-project/ class=tag-pill>Side Project
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/schema/ class=tag-pill>Schema
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/scaffolding/ class=tag-pill>Scaffolding
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/pytest/ class=tag-pill>Pytest
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/project-charter/ class=tag-pill>Project Charter
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/linting/ class=tag-pill>Linting
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/javascript/ class=tag-pill>JavaScript
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/html/ class=tag-pill>HTML
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/hlr/ class=tag-pill>HLR
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/guide/ class=tag-pill>Guide
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/github-actions/ class=tag-pill>GitHub Actions
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/github/ class=tag-pill>GitHub
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/git/ class=tag-pill>Git
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/frontend/ class=tag-pill>Frontend
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/flake8/ class=tag-pill>Flake8
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/efficiency/ class=tag-pill>Efficiency
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/documentation/ class=tag-pill>Documentation
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/database/ class=tag-pill>Database
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/css/ class=tag-pill>CSS
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/crud/ class=tag-pill>CRUD
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/codex/ class=tag-pill>Codex
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/cli/ class=tag-pill>CLI
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/blueprints/ class=tag-pill>Blueprints
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/api/ class=tag-pill>API
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/ai-agent/ class=tag-pill>AI Agent
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/agile/ class=tag-pill>Agile
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/swagger/ class=tag-pill>Swagger
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/python/ class=tag-pill>Python
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/prompt-engineering/ class=tag-pill>Prompt Engineering
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/openapi/ class=tag-pill>OpenAPI
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/ci/ class=tag-pill>CI
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/backend/ class=tag-pill>Backend
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/mermaid/ class=tag-pill>Mermaid
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/hugo/ class=tag-pill>Hugo
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/flask/ class=tag-pill>Flask
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/ddd/ class=tag-pill>DDD
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/ai/ class=tag-pill>AI
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/vibecoding/ class=tag-pill>VibeCoding
+<span class="ml-1 opacity-75">6</span>
+</a><a href=/ChiYu-Blob/tags/gemini/ class=tag-pill>Gemini
+<span class="ml-1 opacity-75">12</span>
+</a><a href=/ChiYu-Blob/tags/2025ithomeironman/ class=tag-pill>2025iThomeIronman
+<span class="ml-1 opacity-75">17</span>
+</a><a href=/ChiYu-Blob/tags/design-patterns/ class=tag-pill>Design Patterns
+<span class="ml-1 opacity-75">24</span>
+</a><a href=/ChiYu-Blob/tags/c class=tag-pill>C#
+<span class="ml-1 opacity-75">24</span></a></div><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>相關連結</h3><div class="flex flex-col space-y-3 mt-4"><a href=https://www.cake.me/me/ChiYuisme target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">cakeresume</span>
+</a><a href=https://github.com/eric861129 target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">github</span>
+</a><a href=https://ithelp.ithome.com.tw/users/20132971/ironman/8253 target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">ithome</span>
+</a><a href=https://www.linkedin.com/in/chiyu-huang/ target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">linkedin</span>
+</a><a href=https://www.threads.com/@chiyuisme target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">threads</span></a></div></div><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>系列文章</h3><ul class=space-y-1><li><a href=/ChiYu-Blob/series/designpattern/ class="flex justify-between"><span>設計模式</span>
+<span class=text-sm>24</span></a></li><li><a href=/ChiYu-Blob/series/2025ithomeironman/ class="flex justify-between"><span>2025 iThome 鐵人賽</span>
+<span class=text-sm>17</span></a></li><li><a href=/ChiYu-Blob/series/hugo-%E9%96%8B%E7%99%BC%E7%B4%80%E9%8C%84/ class="flex justify-between"><span>Hugo 開發紀錄</span>
+<span class=text-sm>1</span></a></li></ul></div></div></aside></div><footer class="mt-16 pt-8 border-t text-center text-sm" style=border-color:var(--border-color);color:var(--text-secondary)><p>&copy; 2025 ChiYu. All Rights Reserved.</p></footer><button id=scroll-to-top-btn class=scroll-to-top title=回到頂部><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentcolor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 15a.5.5.0 00.5-.5V2.707l3.146 3.147a.5.5.0 00.708-.708l-4-4a.5.5.0 00-.708.0l-4 4a.5.5.0 10.708.708L7.5 2.707V14.5a.5.5.0 00.5.5z"/></svg></button></div><div id=sidebar-overlay class=sidebar-overlay></div><aside id=mobile-sidebar class=mobile-sidebar><div class=p-4><aside class=sidebar><div class=sidebar-inner><div class=widget><h3 class=widget-title>系列文章</h3><ul class=widget-list><li><a href=/ChiYu-Blob/series/designpattern/>設計模式
+<span class=posts-count>24</span></a></li><li><a href=/ChiYu-Blob/series/2025ithomeironman/>2025 iThome 鐵人賽
+<span class=posts-count>17</span></a></li><li><a href=/ChiYu-Blob/series/hugo-%E9%96%8B%E7%99%BC%E7%B4%80%E9%8C%84/>Hugo 開發紀錄
+<span class=posts-count>1</span></a></li></ul></div></div></aside><div class="sticky top-20" data-pagefind-ignore><div class="mb-8 text-center" data-pagefind-ignore><img src=/ChiYu-Blob/images/avatar.jpg alt=個人大頭貼 class="w-32 h-32 rounded-full mx-auto object-cover border-2" style=border-color:var(--border-color) data-pagefind-ignore></div><div class="text-center mb-8" data-pagefind-ignore><a href=mailto:iamhandsomeboy1129@gmail.com class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-white transition-opacity hover:opacity-90" style=background-color:var(--link-color)><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1.0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1.0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+<span class="text-sm font-medium">聯絡我</span></a></div><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>文章月曆</h3><div id=calendar-widget-9615746e class=calendar-widget><div class="flex justify-between items-center mb-2 font-semibold"><button class="cal-prev px-2 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700" title=上個月>&lt;</button>
+<span class=cal-month-year></span>
+<button class="cal-next px-2 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700" title=下個月>></button></div><div class="grid grid-cols-7 text-center text-xs gap-y-2" style=color:var(--text-secondary)><span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span></div><div class="cal-days grid grid-cols-7 text-center text-sm mt-2 gap-y-2"></div></div></div><script>(function(){const n=document.getElementById("calendar-widget-9615746e");if(!n)return;const e={};e["2025-12-17"]="/ChiYu-Blob/dates/2025-12-17/",e["2025-8-20"]="/ChiYu-Blob/dates/2025-08-20/",e["2025-8-21"]="/ChiYu-Blob/dates/2025-08-21/",e["2025-8-22"]="/ChiYu-Blob/dates/2025-08-22/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-8-23"]="/ChiYu-Blob/dates/2025-08-23/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-8-24"]="/ChiYu-Blob/dates/2025-08-24/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-8-25"]="/ChiYu-Blob/dates/2025-08-25/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-26"]="/ChiYu-Blob/dates/2025-08-26/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-27"]="/ChiYu-Blob/dates/2025-08-27/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-28"]="/ChiYu-Blob/dates/2025-08-28/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-29"]="/ChiYu-Blob/dates/2025-08-29/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-30"]="/ChiYu-Blob/dates/2025-08-30/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-31"]="/ChiYu-Blob/dates/2025-08-31/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-1"]="/ChiYu-Blob/dates/2025-09-01/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-2"]="/ChiYu-Blob/dates/2025-09-02/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-3"]="/ChiYu-Blob/dates/2025-09-03/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-4"]="/ChiYu-Blob/dates/2025-09-04/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-5"]="/ChiYu-Blob/dates/2025-09-05/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-7-3"]="/ChiYu-Blob/dates/2025-07-03/",e["2025-6-8"]="/ChiYu-Blob/dates/2025-06-08/",e["2025-6-5"]="/ChiYu-Blob/dates/2025-06-05/";const i=n.querySelector(".cal-month-year"),s=n.querySelector(".cal-days"),a=n.querySelector(".cal-prev"),r=n.querySelector(".cal-next");let t=new Date;function o(t){const n=t.getFullYear(),o=t.getMonth();i.textContent=`${n} 年 ${o+1} 月`,s.innerHTML="";const a=new Date(n,o,1),r=new Date(n,o+1,0),c=a.getDay();for(let e=0;e<c;e++)s.insertAdjacentHTML("beforeend","<div></div>");for(let t=1;t<=r.getDate();t++){const i=`${n}-${o+1}-${t}`;e[i]?s.insertAdjacentHTML("beforeend",`
+                    <a href="${e[i]}" class="block p-1 rounded-full transition-colors font-bold" style="color: var(--link-color); text-decoration: underline; text-decoration-thickness: 2px;">
+                        ${t}
+                    </a>
+                `):s.insertAdjacentHTML("beforeend",`<span class="block p-1">${t}</span>`)}}a.addEventListener("click",()=>{t.setMonth(t.getMonth()-1),o(t)}),r.addEventListener("click",()=>{t.setMonth(t.getMonth()+1),o(t)}),o(t)})()</script><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>所有標籤</h3><div class="flex flex-wrap gap-2"><a href=/ChiYu-Blob/tags/yaml/ class=tag-pill>YAML
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/user-stories/ class=tag-pill>User Stories
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/testing/ class=tag-pill>Testing
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/summary/ class=tag-pill>Summary
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/sqlite/ class=tag-pill>SQLite
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/sql/ class=tag-pill>SQL
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/software-engineering/ class=tag-pill>Software Engineering
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/software-architecture/ class=tag-pill>Software Architecture
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/side-project/ class=tag-pill>Side Project
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/schema/ class=tag-pill>Schema
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/scaffolding/ class=tag-pill>Scaffolding
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/pytest/ class=tag-pill>Pytest
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/project-charter/ class=tag-pill>Project Charter
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/linting/ class=tag-pill>Linting
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/javascript/ class=tag-pill>JavaScript
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/html/ class=tag-pill>HTML
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/hlr/ class=tag-pill>HLR
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/guide/ class=tag-pill>Guide
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/github-actions/ class=tag-pill>GitHub Actions
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/github/ class=tag-pill>GitHub
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/git/ class=tag-pill>Git
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/frontend/ class=tag-pill>Frontend
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/flake8/ class=tag-pill>Flake8
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/efficiency/ class=tag-pill>Efficiency
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/documentation/ class=tag-pill>Documentation
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/database/ class=tag-pill>Database
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/css/ class=tag-pill>CSS
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/crud/ class=tag-pill>CRUD
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/codex/ class=tag-pill>Codex
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/cli/ class=tag-pill>CLI
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/blueprints/ class=tag-pill>Blueprints
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/api/ class=tag-pill>API
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/ai-agent/ class=tag-pill>AI Agent
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/agile/ class=tag-pill>Agile
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/swagger/ class=tag-pill>Swagger
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/python/ class=tag-pill>Python
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/prompt-engineering/ class=tag-pill>Prompt Engineering
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/openapi/ class=tag-pill>OpenAPI
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/ci/ class=tag-pill>CI
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/backend/ class=tag-pill>Backend
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/mermaid/ class=tag-pill>Mermaid
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/hugo/ class=tag-pill>Hugo
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/flask/ class=tag-pill>Flask
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/ddd/ class=tag-pill>DDD
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/ai/ class=tag-pill>AI
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/vibecoding/ class=tag-pill>VibeCoding
+<span class="ml-1 opacity-75">6</span>
+</a><a href=/ChiYu-Blob/tags/gemini/ class=tag-pill>Gemini
+<span class="ml-1 opacity-75">12</span>
+</a><a href=/ChiYu-Blob/tags/2025ithomeironman/ class=tag-pill>2025iThomeIronman
+<span class="ml-1 opacity-75">17</span>
+</a><a href=/ChiYu-Blob/tags/design-patterns/ class=tag-pill>Design Patterns
+<span class="ml-1 opacity-75">24</span>
+</a><a href=/ChiYu-Blob/tags/c class=tag-pill>C#
+<span class="ml-1 opacity-75">24</span></a></div><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>相關連結</h3><div class="flex flex-col space-y-3 mt-4"><a href=https://www.cake.me/me/ChiYuisme target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">cakeresume</span>
+</a><a href=https://github.com/eric861129 target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">github</span>
+</a><a href=https://ithelp.ithome.com.tw/users/20132971/ironman/8253 target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">ithome</span>
+</a><a href=https://www.linkedin.com/in/chiyu-huang/ target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">linkedin</span>
+</a><a href=https://www.threads.com/@chiyuisme target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">threads</span></a></div></div><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>系列文章</h3><ul class=space-y-1><li><a href=/ChiYu-Blob/series/designpattern/ class="flex justify-between"><span>設計模式</span>
+<span class=text-sm>24</span></a></li><li><a href=/ChiYu-Blob/series/2025ithomeironman/ class="flex justify-between"><span>2025 iThome 鐵人賽</span>
+<span class=text-sm>17</span></a></li><li><a href=/ChiYu-Blob/series/hugo-%E9%96%8B%E7%99%BC%E7%B4%80%E9%8C%84/ class="flex justify-between"><span>Hugo 開發紀錄</span>
+<span class=text-sm>1</span></a></li></ul></div></div></div></aside><script src=/ChiYu-Blob/pagefind/pagefind-ui.js onload=initPagefind()></script><script src=https://cdn.jsdelivr.net/npm/medium-zoom@1.0.8/dist/medium-zoom.min.js></script><script type=module>
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ 
+            startOnLoad: true, 
+            theme: document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default' 
+        });
+    </script><script src=/ChiYu-Blob/js/main.min.0193b07ef6d75c398d0ddd095576631329ae07bdc4f8790273143cfb31c1c9c5.js integrity="sha256-AZOwfvbXXDmNDd0JVXZjEymuB73E+HkCcxQ8+zHBycU=" crossorigin=anonymous></script></body></html>

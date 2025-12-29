@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Python on ChiYu Code Journey</title><link>/ChiYu-Blob/tags/python/</link><description>Recent content in Python on ChiYu Code Journey</description><generator>Hugo -- gohugo.io</generator><language>zh-TW</language><lastBuildDate>Wed, 03 Sep 2025 00:00:00 +0800</lastBuildDate><atom:link href="/ChiYu-Blob/tags/python/index.xml" rel="self" type="application/rss+xml"/><item><title>Day 12: 【後端 #1】起手式：AI 代理人 生成模組化的 Flask 專案</title><link>/ChiYu-Blob/posts/2025ithomeironmanday12/</link><pubDate>Sun, 31 Aug 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday12/</guid><description>安安，我是 ChiYu！歡迎來到歷史性的一刻！
+過去一週，我們是專案的「規劃師」，用文字和圖表描繪著未來。從今天起，我們是「建築師」與「魔法師」，要將那些平面的藍圖，用程式碼，一行一行地「召喚」到這個世界上！
+今天，我們不打算一個檔案一個檔案地慢慢來。我們要直接挑戰專業的作法！我們將命令 AI 代理人，根據我們 Day 8 設計的「模組化專案結構」，一步到位地為我們生成整個後端專案的基礎架構，包含所有資料庫模型的定義！
+Part 1：為什麼要一開始就這麼「搞剛」？ 你可能會問，為什麼不先從一個簡單的檔案開始，之後再慢慢改？
+因為專業的習慣，從第一天就要養成。
+我們在 Day 7 設計的**「應用程式工廠 (Application Factory)」**模式，雖然看起來檔案比較多，但它為我們專案的未來，鋪設了一條康莊大道。這種結構能幫助我們將專案的不同部分（如設定、資料庫模型、API 路由）清晰地分開，讓專案更有條理、更容易測試與擴展。
+從一開始就採用這種專業結構，就像是蓋房子時，直接把客廳、臥室、廚房的隔間都規劃好，而不是先蓋一個大通鋪，之後再來敲牆壁。
+Part 2：Vibe Coding 實戰：命令 AI 代理人建立專案 好了，讓我們來指揮 Gemini，讓它為我們建立這座「中央廚房」。這次，我們不只要求它生成文字，我們要命令它直接行動！
+Step 1：進入互動模式並下達總指令 我們要使用 gemini chat 互動模式，因為這最能模擬我們與一位「代理人」進行對話的感覺。
+在 VS Code 終端機中，輸入 gemini chat 並按下 Enter。 看到 &amp;gt;&amp;gt;&amp;gt; 提示符後，詠唱我們的「專案創世」咒語： 【魔法詠唱：我們的 Prompt】 # --------------------------------------------------------------------------- # PROMPT FOR GEMINI: Production-Ready Flask Project Scaffolding Agent # --------------------------------------------------------------------------- # 角色 (Role) 你是一位精通 Python Flask 專案架構與 Shell 指令的 AI Code Scaffolding Agent。你的核心任務是根據設計文件，自動化地生成一個結構清晰、可立即執行的模組化 Flask 專案骨架。 # 目標 (Objective) 我的目標是讓你根據「軟體架構」與「資料庫綱要」文件，為我生成一個遵循業界最佳實踐的 Flask 專案。這個專案在生成後，應能立即安裝依賴並成功運行。 # 上下文 (Context) - **核心依據**: 你的所有操作都必須基於以下兩份文件的定義： 1.</description></item><item><title>Day 15: 【後端 #3】API 測試：用 Gemini CLI 輔助撰寫 Pytest</title><link>/ChiYu-Blob/posts/2025ithomeironmanday15/</link><pubDate>Wed, 03 Sep 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday15/</guid><description>安安，我是 ChiYu！
+昨天，我們的 CI 品管員 (GitHub Actions) 成功上崗，確保了所有程式碼的「風格」都符合最高標準。
+但是，一本語法完全正確的食譜，不代表按照它做出來的菜就一定好吃。我們的專案，即使程式碼風格再優雅，如果 API 的商業邏輯出現錯誤，那依然是嚴重的品質問題。
+今天，我們就要來建立一張更堅實的「 安全網」。我們將引入自動化測試，指揮 Gemini 化身為「 測試工程師」，為我們撰寫測試案例，並直接升級 CI 流程，確保我們的 API 邏輯永遠精準無誤！
+Part 1：告別「手動點點點」：為什麼需要自動化測試？ 你可能會問：「我們不是已經用 Swagger UI 手動測試過 API 了嗎？」
+手動測試在開發時很方便，但它有幾個致命缺點：效率極低、容易遺漏、無法規模化。當專案功能變多，你不可能每次修改後，都把所有 API 再手動點一次。
+而自動化測試，就是「用程式碼來測試程式碼」。我們預先寫好一系列的「考卷」（測試案例），然後讓電腦在幾秒鐘內，自動「批改」我們的應用程式。
+比喻來說：
+自動化測試就像是高空走鋼索表演底下的那張「安全網」。有了它，開發者才能充滿信心地在鋼索上快速前進、大膽地嘗試新動作（重構或新增功能）。因為我們知道，即使不小心失足（不小心改壞了舊功能），這張安全網也會立刻接住我們（測試會失敗並報錯），而不是讓我們直接摔到地上（等使用者回報 Bug）。
+Part 2：我們的測試武器：Pytest Pytest 是 Python 世界中最受歡迎、也最簡單易用的測試框架。我們將用它來撰寫我們的「考卷」。
+Part 3：Vibe Coding 實戰：與 AI 測試工程師的協作 準備好了嗎？讓我們進入 gemini chat 模式，一步步指揮我們的 AI 測試工程師。
+Step 1: 命令 AI 設置「測試實驗室」 首先，我們要讓 AI 為我們準備好測試所需的環境。
+【魔法詠唱：設置測試環境】 好的，我們準備為專案加入自動化測試。
+請幫我執行以下任務：
+安裝測試框架: 使用 pip 安裝 pytest。 更新依賴清單: 將 pytest 新增到 requirements.</description></item></channel></rss>

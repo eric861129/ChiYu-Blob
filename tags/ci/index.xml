@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>CI on ChiYu Code Journey</title><link>/ChiYu-Blob/tags/ci/</link><description>Recent content in CI on ChiYu Code Journey</description><generator>Hugo -- gohugo.io</generator><language>zh-TW</language><lastBuildDate>Wed, 03 Sep 2025 00:00:00 +0800</lastBuildDate><atom:link href="/ChiYu-Blob/tags/ci/index.xml" rel="self" type="application/rss+xml"/><item><title>Day 14: 【DevOps #1】AI 品管員：設定 GitHub Actions 自動化程式碼檢查</title><link>/ChiYu-Blob/posts/2025ithomeironmanday14/</link><pubDate>Tue, 02 Sep 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday14/</guid><description>安安，我是 ChiYu！
+我們前幾天火力全開，後端 API 核心功能都搞定了。我們的後端架構現在什麼功能都做得出來！但問題來了，我們怎麼保證每個工程師（當然也包括幾週後的你自己！）在添加新功能時，都遵守一樣的編碼標準跟架構美學？
+光靠口頭約定絕對不夠，我們需要一套自動的、鐵面無私的「 品質稽查系統 」。只要有新的程式碼被提交 (commit)，系統就自動進行檢查，確保一切都符合最高標準！
+今天，我們就要來幫專案請一位 24 小時不休息的稽查員—— GitHub Actions ，順便設定好我們的第一條自動化品管流程 (CI)！
+Part 1：什麼是 CI？為什麼要從「程式碼風格」開始？ CI (Continuous Integration)，持續整合，是現代軟體開發的基本功！它的精神就是「沒事多 commit，多 commit 沒事」。每次完成一小塊功能，就提交上來讓系統檢查，這樣才不會到最後要合併時，大家的程式碼風格迥異、互相衝突，那簡集是開發地獄！
+我們要派給這位品管員的第一個任務，非常基礎，就是 「檢查程式碼乾不乾淨 (Linting)」！這就好像檢查建築的管線有沒有外露、牆面是否平整一樣。我們要讓所有的 Code 都遵循 Python 的官方風格指南 (PEP 8)，看起來整整齊齊、清爽漂亮！
+Part 2：Vibe Coding 實戰：聘請 AI 撰寫「自動化工作手冊」 準備好了嗎？又到了我們使喚 Gemini 的快樂時光！把它當成我們的 DevOps 專家，來幫我們撰寫那份詳細的工作手冊 (.yml 檔) 吧！
+Step 1: 命令 AI 準備「稽查工具清單」 第一步，我們要先列一張「工具清單 (requirements.txt)」，告訴我們的稽查員執行任務時需要哪些工具。這點小事，當然也是丟給 AI 去做！
+打開終端機，切換到 gemini chat 模式，下達我們的第一道指令：
+【魔法詠唱：生成依賴文件】 # 角色 (Role) 你是一位經驗豐富的 Python 開發者，非常熟悉使用 `requirements.txt` 來管理專案的相依性套件，並了解區分「生產環境依賴」與「開發環境依賴」的最佳實踐。 # 目標 (Objective) 請為一個 Python 專案生成 `requirements.</description></item><item><title>Day 15: 【後端 #3】API 測試：用 Gemini CLI 輔助撰寫 Pytest</title><link>/ChiYu-Blob/posts/2025ithomeironmanday15/</link><pubDate>Wed, 03 Sep 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday15/</guid><description>安安，我是 ChiYu！
+昨天，我們的 CI 品管員 (GitHub Actions) 成功上崗，確保了所有程式碼的「風格」都符合最高標準。
+但是，一本語法完全正確的食譜，不代表按照它做出來的菜就一定好吃。我們的專案，即使程式碼風格再優雅，如果 API 的商業邏輯出現錯誤，那依然是嚴重的品質問題。
+今天，我們就要來建立一張更堅實的「 安全網」。我們將引入自動化測試，指揮 Gemini 化身為「 測試工程師」，為我們撰寫測試案例，並直接升級 CI 流程，確保我們的 API 邏輯永遠精準無誤！
+Part 1：告別「手動點點點」：為什麼需要自動化測試？ 你可能會問：「我們不是已經用 Swagger UI 手動測試過 API 了嗎？」
+手動測試在開發時很方便，但它有幾個致命缺點：效率極低、容易遺漏、無法規模化。當專案功能變多，你不可能每次修改後，都把所有 API 再手動點一次。
+而自動化測試，就是「用程式碼來測試程式碼」。我們預先寫好一系列的「考卷」（測試案例），然後讓電腦在幾秒鐘內，自動「批改」我們的應用程式。
+比喻來說：
+自動化測試就像是高空走鋼索表演底下的那張「安全網」。有了它，開發者才能充滿信心地在鋼索上快速前進、大膽地嘗試新動作（重構或新增功能）。因為我們知道，即使不小心失足（不小心改壞了舊功能），這張安全網也會立刻接住我們（測試會失敗並報錯），而不是讓我們直接摔到地上（等使用者回報 Bug）。
+Part 2：我們的測試武器：Pytest Pytest 是 Python 世界中最受歡迎、也最簡單易用的測試框架。我們將用它來撰寫我們的「考卷」。
+Part 3：Vibe Coding 實戰：與 AI 測試工程師的協作 準備好了嗎？讓我們進入 gemini chat 模式，一步步指揮我們的 AI 測試工程師。
+Step 1: 命令 AI 設置「測試實驗室」 首先，我們要讓 AI 為我們準備好測試所需的環境。
+【魔法詠唱：設置測試環境】 好的，我們準備為專案加入自動化測試。
+請幫我執行以下任務：
+安裝測試框架: 使用 pip 安裝 pytest。 更新依賴清單: 將 pytest 新增到 requirements.</description></item></channel></rss>

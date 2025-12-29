@@ -1,0 +1,479 @@
+<!doctype html><html lang=zh-tw><head><script async src="https://www.googletagmanager.com/gtag/js?id=G-FGXWEWM001"></script><script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-FGXWEWM001",{anonymize_ip:!1})}</script><meta name=description content="今天，我們要戴上「工程安全帽」，化身為系統架構師，規劃未來系統穩定、高效、可擴展的基石。"><meta property="og:title" content="Day 8: 【文件 #3】系統的心臟：用 Gemini CLI 設計「軟體架構文件」"><meta property="og:description" content="今天，我們要戴上「工程安全帽」，化身為系統架構師，規劃未來系統穩定、高效、可擴展的基石。"><meta property="og:type" content="article"><meta property="og:url" content="/ChiYu-Blob/posts/2025ithomeironmanday8/"><meta name=twitter:card content="summary_large_image"><meta name=twitter:title content="Day 8: 【文件 #3】系統的心臟：用 Gemini CLI 設計「軟體架構文件」"><meta name=twitter:description content="今天，我們要戴上「工程安全帽」，化身為系統架構師，規劃未來系統穩定、高效、可擴展的基石。"><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Day 8: 【文件 #3】系統的心臟：用 Gemini CLI 設計「軟體架構文件」 | ChiYu Code Journey</title>
+<script>(function(){const e=localStorage.getItem("theme")||"dark";document.documentElement.setAttribute("data-theme",e)})()</script><script src=https://cdn.tailwindcss.com></script><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel=stylesheet><link href=/pagefind/pagefind-ui.css rel=stylesheet><link href="https://fonts.googleapis.com/css2?family=Chocolate+Classical+Sans&family=Edu+SA+Hand:wght@400..700&family=Inter:wght@400;500;600;700&display=swap" rel=stylesheet><link rel=icon type=image/jpeg href=/ChiYu-Blob/images/avatar.jpg><link rel=stylesheet href=/ChiYu-Blob/css/style.bundle.min.603fe609a4fee1de053c12e00858727a67cc5a3ba05a0a66f04142a379f47374.css integrity="sha256-YD/mCaT+4d4FPBLgCFhyemfMWjugWgpm8EFCo3n0c3Q=" crossorigin=anonymous><style>#reading-progress-container{position:fixed;top:0;left:0;width:100%;height:3px;z-index:9999;background:0 0}#reading-progress-bar{height:100%;width:0%;background:linear-gradient(to right,#60a5fa,#2563eb);transition:width .1s ease-out}</style></head><body class=antialiased><div id=reading-progress-container><div id=reading-progress-bar></div></div><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><header class="sticky top-0 z-50 flex justify-between items-center py-6 border-b" style=border-color:var(--border-color);background-color:var(--bg-color)><a href=/ChiYu-Blob/ class="text-xl sm:text-2xl font-bold" style=color:var(--text-color)>ChiYu Code Journey</a><nav class="flex items-center space-x-2 sm:space-x-4"><div id=search></div><a href=/ChiYu-Blob/ class="text-sm sm:text-base" style=color:var(--text-secondary)>首頁</a>
+<a href=/ChiYu-Blob/posts/ class="text-sm sm:text-base" style=color:var(--text-secondary)>文章</a>
+<a href=/ChiYu-Blob/about/ class="text-sm sm:text-base" style=color:var(--text-secondary)>關於</a>
+<a href=/ChiYu-Blob/index.xml target=_blank title="訂閱 RSS" style=color:var(--text-secondary) class="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11a9 9 0 019 9"/><path d="M4 4a16 16 0 0116 16"/><circle cx="5" cy="19" r="1"/></svg>
+</a><button id=theme-toggle title=切換深色/淺色主題>
+<svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+<svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+</button>
+<button id=mobile-sidebar-toggle class=lg:hidden title=開啟側邊欄><svg class="w-6 h-6" fill="none" stroke="currentcolor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/></svg></button></nav></header><div data-pagefind-body style=display:none><p>安安，我是 ChiYu！</p><p>前兩天，我們完成了專案的「出生證明」(專案章程) 和「使用者地圖」(使用者故事)。我們現在非常清楚「為誰而做」以及「他們想做什麼」。</p><p>今天，我們要戴上「工程安全帽」，從使用者的世界暫時抽離，化身為擘劃未來的 <strong>「系統架構師」</strong>。我們要進行一次視角切換，從關注「人」，轉向關注「系統」，回答一個核心問題：「為了滿足這些使用者故事，我們的系統內部應該長什麼樣子？」</p><p>我們今天要畫的，不僅是建築的藍圖，更是未來系統穩定、高效、可擴展的基石。</p><h2 id=part-1偉大的分工什麼是前後端分離>Part 1：偉大的分工：什麼是「前後端分離」？</h2><p>在我們深入探討具體的架構之前，你必須先理解現代網頁開發中最核心的一個思想——<strong>前後端分離 (Frontend-Backend Separation)</strong>。</p><p>讓我們再次回到「經營一家餐廳」的比喻。一家餐廳，最基本的劃分就是「外場」與「內場」。</p><ul><li><strong>外場 (前端 Frontend)</strong>：這是顧客能直接接觸到的地方。包含了華麗的裝潢、舒適的座位、精美的菜單、以及親切的服務生。它的唯一職責，就是提供給顧客最棒的「用餐體驗」。在我們的專案中，這對應的就是使用者在瀏覽器上看到的所有畫面，由 <code>HTML</code>, <code>CSS</code>, <code>JavaScript</code> 這三劍客負責打造。</li><li><strong>內場 (後端 Backend)</strong>：這是神秘的廚房，顧客看不見也摸不著。廚師們在這裡處理訂單、烹飪食物、管理食材庫存。它的唯一職責，就是處理所有核心的「商業邏輯」與「數據管理」。在我們的專案中，這對應的就是運行在遠端伺服器上的 <code>Python</code> + <code>Flask</code> 應用程式。</li></ul><p>「前後端分離」就是一個嚴格的規定：外場的人不准進内場，內場的人也不准跑去外場。他們之間唯一的溝通管道，就是透過「服務生」來傳遞標準化格式的「點餐單」與「餐點」。</p><h2 id=part-2溝通的契約什麼是-api>Part 2：溝通的契約：什麼是 API？</h2><p>這個至關重要的「服務生」，就是我們常說的 <code>API (Application Programming Interface)</code>。</p><p>API 的本質，就是一份前端與後端之間，神聖不可侵犯的「溝通契約」。這份契約詳細地定義了：</p><ul><li>前端可以要求後端做哪些事（例如：查詢所有習慣、新增一筆紀錄）。</li><li>前端在提出要求時，必須提供哪些資訊（例如：新增習慣時要給習慣名稱）。</li><li>後端在完成任務後，承諾會回傳什麼格式的資料給前端。</li></ul><p>有了這份契約，前端的「室內設計師」和後端的「大廚」就可以完全獨立、並行地工作，只要最後雙方都遵守契約，就能完美地將各自的成果組合起來。這份詳細的契約（Web API 規格書），將會是我們在 Day 10 的主題。</p><h2 id=part-3設計我們的廚房flask-後端-api-伺服器架構>Part 3：設計我們的廚房：Flask 後端 API 伺服器架構</h2><p>好了，理解了前後端的分工與 API 的角色後，現在我們可以聚焦在「如何設計我們的廚房 (後端)」了。</p><p>隨著我們的餐廳生意越來越好，菜色越來越多（功能越來越複雜）時，如果還把所有廚師都擠在一個廚房裡 (<code>app.py</code>)，肯定會天下大亂。</p><p>因此，我們需要升級成「中央廚房」模式。我們會把廚房細分成「冷盤區」、「熱炒區」、「甜點區」，每個區域有專門的師傅負責。這在我們的後端專案中，就是所謂的**「模組化 (Modularity)」**。</p><p>在 <code>Flask</code> 框架中，實現模組化的最佳實踐，就是使用**「藍圖 (Blueprints)」**。你可以把一個 <code>Blueprint</code> 想像成一個獨立的「功能模組包」。例如，我們可以規劃一個 <code>habits.py</code> 檔案，裡面專門放所有跟「習慣」相關的 API 路由。</p><p>因此，在我們動手寫 any 一行 <code>Python</code> 程式碼之前，我們就要先在這份架構文件中，規劃好我們未來的專案結構。</p><h2 id=part-4實戰開始讓-gemini-擔任我們的首席架構師>Part 4：實戰開始：讓 Gemini 擔任我們的首席架構師</h2><p>好了，觀念釐清，讓我們再次召喚 Gemini CLI，請它扮演我們的首席架構師。</p><h3 id=魔法詠唱我們的-prompt>【魔法詠唱：我們的 Prompt】</h3><p>打開 VS Code 終端機，詠唱我們的第三個「文件生成咒語」：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown><span style=display:flex><span># 角色 (Role)
+</span></span><span style=display:flex><span>你是一位資深的軟體架構師，精通 Python Flask 與模組化設計，特別擅長使用 Blueprints 來組織可擴展、可維護的 Web 應用程式。你的設計決策總是兼顧當前的 MVP 需求與未來的擴展性。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 目標 (Objective)
+</span></span><span style=display:flex><span>我的目標是讓你根據專案的初始文件，設計一份專業的「高階設計文檔 (High-Level Design, HLD)」，這份文件將作為開發團隊的技術核心指南。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 上下文 (Context)
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   <span style=font-weight:700>**核心依據**</span>: 你的所有設計都必須嚴格基於以下兩份文件：
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>1.</span>  <span style=color:#e6db74>`@docs/PROJECT_CHARTER.md`</span> (定義了業務目標與範圍)
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>2.</span>  <span style=color:#e6db74>`@docs/USER_STORIES.md`</span> (定義了核心功能與使用者流程)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>---
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## 你的任務與產出要求 (Your Task &amp; Output Requirements)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>你的產出物是一份正式的技術文檔。請嚴格遵循以下大綱結構，確保內容的專業性與完整性。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 1. 文件元數據 (Document Metadata)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>-</span>   <span style=font-weight:700>**文件標題**</span>: <span style=color:#e6db74>`高階設計文檔 (High-Level Design)`</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   <span style=font-weight:700>**文件版本**</span>: <span style=color:#e6db74>`v1.0.0`</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   <span style=font-weight:700>**作者**</span>: <span style=color:#e6db74>`Gemini (軟體架構師)`</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 2. 架構總覽 (Architecture Overview)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>-</span>   <span style=font-weight:700>**核心架構**</span>: 說明我們將採用「**前後端分離 (Headless)**」架構。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   <span style=font-weight:700>**設計原則**</span>: 解釋此架構選擇背後的 <span style=font-weight:700>**3 個主要優點**</span> (例如：獨立開發與部署、技術棧靈活性、更好的擴展性)。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   <span style=font-weight:700>**溝通方式**</span>: 強調前後端將透過 <span style=font-weight:700>**RESTful API**</span> 進行通訊，並以 <span style=font-weight:700>**JSON**</span> 作為數據交換格式。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 3. 技術選型與理由 (Technology Stack &amp; Justification)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>-</span>   以表格形式，條列出 MVP 階段後端開發所需的核心技術。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   表格欄位需包含「**技術領域**」、「**選擇**」與「**選擇理由 (WHY)**」。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   至少需包含以下領域：
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   Web 框架 (Web Framework)
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   資料庫 (Database)
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   ORM (Object-Relational Mapping)
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   資料驗證 (Data Validation)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 4. 後端專案結構 (Backend Project Structure)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>-</span>   簡要說明採用 <span style=font-weight:700>**Flask Blueprints**</span> 進行模組化設計的核心目的（關注點分離）。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   使用文字樹狀圖，清晰地展示推薦的後端專案結構。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   在樹狀圖的關鍵目錄旁，**用註解簡要說明該目錄的職責** (例如：`blueprints/` 存放各功能模組)。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 5. 高階架構圖 (High-Level Architecture Diagram)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>-</span>   使用 <span style=font-weight:700>**Mermaid.js 的 `graph TD` 語法**</span>，繪製一張清晰的系統架構圖。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   圖中必須包含以下四個主要元件及其互動關係：「**使用者 (Client/Browser)**」、「**前端應用 (React/Vue)**」、「**後端 API (Flask)**」、「**資料庫 (PostgreSQL/SQLite)**」。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 6. 最終產出指令 (Final Output Command)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>-</span>   <span style=font-weight:700>**執行動作**</span>: 將以上所有產出合併到同一個 Markdown 檔案中，命名為 <span style=color:#e6db74>`ARCHITECTURE.md`</span>，並放置於 <span style=color:#e6db74>`@docs`</span> 資料夾內。
+</span></span></code></pre></div><h3 id=預期成果與分析>【預期成果與分析】</h3><p>當你按下 Enter，稍待片刻，Gemini 就會化身為你的首席架構師，產出一份結構清晰、內容專業的軟體架構文件。請仔細審核這份由 AI 生成的草稿，特別是它對「後端專案結構」的規劃，這將是我們後續 Vibe Coding 的重要依據。</p><hr><h3 id=軟體架構文件習慣養成與心情日誌>軟體架構文件：習慣養成與心情日誌</h3><p>以下為 AI 生成的架構文件範例：</p><h4 id=1-架構總覽-architecture-overview>1. 架構總覽 (Architecture Overview)</h4><p>為了實現最大的靈活性與可擴展性，<code>心境軌跡 (MindTrack)</code> 將採用<strong>前後端分離 (Headless)</strong> 的現代化架構。</p><p><strong>設計原則與優勢</strong></p><p>此架構的選擇基於以下三個核心優點：</p><ol><li><strong>獨立開發與部署</strong>: 前端與後端團隊可以並行開發、測試及部署，互不阻塞。後端專注於業務邏輯與數據，前端專注於使用者體驗，大幅提升開發效率。</li><li><strong>技術棧靈活性</strong>: 允許我們為工作的不同部分選擇最適合的技術（例如，前端使用 React/Vue，後端使用 Python/Flask）。未來若需升級或替換某一層的技術，對另一層的影響也降至最低。</li><li><strong>多平台擴展性</strong>: 一套統一的後端 API 可以同時服務於目前的 Web 應用、未來的原生行動應用 (iOS/Android) 或其他第三方服務，實現一次開發、多端復用。</li></ol><p><strong>溝通方式</strong></p><ul><li>前端與後端之間的所有通訊，將透過標準的 <strong>RESTful API</strong> 進行。</li><li>數據交換格式統一採用輕量級的 <strong>JSON</strong> 格式。</li></ul><hr><h4 id=2-技術選型與理由-technology-stack--justification>2. 技術選型與理由 (Technology Stack & Justification)</h4><table><thead><tr><th style=text-align:left>技術領域</th><th style=text-align:left>選擇</th><th style=text-align:left>選擇理由 (WHY)</th></tr></thead><tbody><tr><td style=text-align:left><strong>Web 框架</strong></td><td style=text-align:left><strong>Flask</strong></td><td style=text-align:left>輕量、靈活，擁有龐大的擴充套件生態。非常適合從 MVP 快速啟動，並能隨著業務複雜度平滑擴展。</td></tr><tr><td style=text-align:left><strong>資料庫</strong></td><td style=text-align:left><strong>SQLite (開發) / PostgreSQL (生產)</strong></td><td style=text-align:left><strong>SQLite</strong> 無需額外設定，極適合作為本地開發資料庫。<strong>PostgreSQL</strong> 功能強大、穩定可靠，是應對生產環境高併發與數據一致性需求的不二之選。</td></tr><tr><td style=text-align:left><strong>ORM</strong></td><td style=text-align:left><strong>Flask-SQLAlchemy</strong></td><td style=text-align:left>作為 Flask 的官方 ORM 套件，它簡化了所有資料庫操作，能有效防止 SQL 注入攻擊，並讓我們能以 Pythonic 的方式與資料庫互動。</td></tr><tr><td style=text-align:left><strong>資料驗證</strong></td><td style=text-align:left><strong>Flask-Marshmallow</strong></td><td style=text-align:left>提供強大的物件序列化 (Serialization) 與反序列化 (Deserialization) 功能，能輕鬆定義清晰的 API 資料結構 (Schema)，並自動完成傳入數據的驗證，確保 API 的健壯性。</td></tr></tbody></table><hr><h4 id=3-後端專案結構-backend-project-structure>3. 後端專案結構 (Backend Project Structure)</h4><p>我們將採用 <strong>Flask Blueprints</strong> 來組織專案，將不同功能的程式碼（如認證、習慣管理）封裝到獨立的模組中。這能有效實現「<strong>關注點分離 (Separation of Concerns)</strong>」，讓專案在擴展時依然保持清晰、可維護。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>/mindtrack-api
+</span></span><span style=display:flex><span>|-- app/                           # 核心應用程式目錄
+</span></span><span style=display:flex><span>|   |-- __init__.py                # 應用程式工廠 (App Factory)
+</span></span><span style=display:flex><span>|   |-- blueprints/                # 存放所有功能藍圖
+</span></span><span style=display:flex><span>|   |   |-- auth/                  # 處理使用者認證 (註冊、登入)
+</span></span><span style=display:flex><span>|   |   |   |-- __init__.py
+</span></span><span style=display:flex><span>|   |   |   `-- routes.py
+</span></span><span style=display:flex><span>|   |   |-- habits/                # 處理習慣與心情的增刪改查
+</span></span><span style=display:flex><span>|   |   |   |-- __init__.py
+</span></span><span style=display:flex><span>|   |   |   `-- routes.py
+</span></span><span style=display:flex><span>|   |   `-- insights/              # 處理數據洞察相關邏輯
+</span></span><span style=display:flex><span>|   |       |-- __init__.py
+</span></span><span style=display:flex><span>|   |       `-- routes.py
+</span></span><span style=display:flex><span>|   |-- models.py                  # SQLAlchemy 資料庫模型
+</span></span><span style=display:flex><span>|   |-- schemas.py                 # Marshmallow 資料驗證結構
+</span></span><span style=display:flex><span>|   `-- extensions.py              # 集中管理 Flask 擴充套件實例
+</span></span><span style=display:flex><span>|-- migrations/                    # 資料庫遷移腳本 (Alembic)
+</span></span><span style=display:flex><span>|-- tests/                         # 單元測試與整合測試
+</span></span><span style=display:flex><span>|-- config.py                      # 環境設定檔 (開發、生產)
+</span></span><span style=display:flex><span>|-- run.py                         # 應用程式啟動入口
+</span></span><span style=display:flex><span>`-- .flaskenv                      # Flask 環境變數
+</span></span></code></pre></div><hr><h4 id=4-高階架構圖-high-level-architecture-diagram>4. 高階架構圖 (High-Level Architecture Diagram)</h4><pre tabindex=0><code class=language-mermaid data-lang=mermaid>graph TD
+    subgraph &#34;使用者端&#34;
+        Client[&#34;使用者 (瀏覽器)&#34;]
+    end
+
+    subgraph &#34;前端應用 (Frontend)&#34;
+        FrontendApp[&#34;React / Vue.js App&#34;]
+    end
+
+    subgraph &#34;後端應用 (Backend API)&#34;
+        BackendAPI[&#34;Flask API&#34;]
+    end
+    
+    subgraph &#34;資料庫 (Database)&#34;
+        DB[(&#34;Database (PostgreSQL / SQLite)&#34;)]
+    end
+
+    Client -- &#34;請求 (Request)&#34; --&gt; FrontendApp
+    FrontendApp -- &#34;API 請求&#34; --&gt; BackendAPI
+    BackendAPI -- &#34;查詢 (Query)&#34; --&gt; DB
+    DB -- &#34;回傳資料 (Data)&#34; --&gt; BackendAPI
+    BackendAPI -- &#34;API 回應 (Response)&#34; --&gt; FrontendApp
+    FrontendApp -- &#34;更新畫面 (UI Update)&#34; --&gt; Client
+</code></pre><hr><h2 id=part-5將系統藍圖存檔-commit--push>Part 5：將系統藍圖存檔 (Commit & Push)</h2><p>預覽架構圖：</p><p>在 VS Code 中，打開 ARCHITECTURE.md 的預覽模式 (Ctrl+Shift+V)。看到文字瞬間變成清晰的圖表，這就是**「文件即程式碼 (Docs-as-Code)」**的魅力！</p><p><strong>提交變更：</strong></p><ol><li>在原始碼管理頁面，對 <code>ARCHITECTURE.md</code> 按 <code>+</code> (Stage Changes)。</li><li>輸入 Commit 訊息: <code>docs: Add software architecture document</code></li><li>點擊打勾按鈕 (Commit)，然後同步變更 (Push)。</li></ol><h2 id=結語從點子到可執行的計畫>結語：從「點子」到「可執行的計畫」</h2><p>太棒了！今天，我們為專案打下了最穩固的「地基」。我們不只知道要做什麼（使用者故事），更清楚整個系統將如何運作（軟體架構）。有了這份結構藍圖，我們的專案才真正從一個「點子」，進化成了一個「可執行的計畫」。</p><p>接下來的兩天，我們將會完成後端藍圖的最後兩塊拼圖。</p><ul><li>在 <strong>Day 9</strong>，我們將化身為資料庫管理員 (DBA)，設計我們餐廳的「食材倉庫」，產出專業的 **「資料庫綱要 (Database Schema)」**文件。</li><li>而在緊接著的 <strong>Day 10</strong>，我們則要為我們的「服務生」，設計一份詳盡的「菜單」——也就是 <strong>「Web API 規格書」</strong>！</li></ul><p>完成這兩份文件後，我們整個後端的藍圖才算真正大功告成！</p></div><div class="flex flex-row justify-center py-8 sm:py-12"><div class="w-full max-w-6xl min-w-0"><div class="flex justify-center"><main class="w-full max-w-4xl min-w-0"><article class="prose max-w-none"><nav class="flex text-sm mb-6" aria-label=Breadcrumb><ol class="inline-flex items-center space-x-1 md:space-x-3"><li class="inline-flex items-center"><a href=/ChiYu-Blob/ class="inline-flex items-center hover:text-blue-600 dark:hover:text-blue-400" style=color:var(--text-secondary)><svg class="w-4 h-4 mr-2" fill="currentcolor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414.0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/></svg>
+首頁</a></li><li><div class="flex items-center"><svg class="w-4 h-4 mx-1" style="color:var(--text-secondary);opacity:.5" fill="currentcolor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414.0z" clip-rule="evenodd"/></svg>
+<a href=/ChiYu-Blob/posts/ class="ml-1 hover:text-blue-600 dark:hover:text-blue-400 capitalize" style=color:var(--text-secondary)>全部文章</a></div></li><li aria-current=page><div class="flex items-center"><svg class="w-4 h-4 mx-1" style="color:var(--text-secondary);opacity:.5" fill="currentcolor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414.0z" clip-rule="evenodd"/></svg>
+<span class="ml-1 font-medium truncate max-w-[150px] sm:max-w-[300px]" style=color:var(--text-color)>Day 8: 【文件 #3】系統的心臟：用 Gemini CLI 設計「軟體架構文件」</span></div></li></ol></nav><header class=mb-8><h1 class="text-2xl sm:text-4xl font-bold tracking-tight mb-4 !mt-0">Day 8: 【文件 #3】系統的心臟：用 Gemini CLI 設計「軟體架構文件」</h1><p class=text-base style=color:var(--text-secondary)>發布於 2025年8月27日
+<span class=ml-2 style=color:var(--text-secondary);opacity:.8;font-size:.9em>(更新於 2025年8月27日)
+</span>&#183; <span class=mx-1>約 3 分鐘閱讀</span>
+&#183;
+<span class="inline-flex flex-wrap gap-2 items-center" data-pagefind-ignore><a href=/ChiYu-Blob/tags/2025ithomeironman/ class=tag-pill>2025iThomeIronman</a>
+<a href=/ChiYu-Blob/tags/gemini/ class=tag-pill>Gemini</a>
+<a href=/ChiYu-Blob/tags/software-architecture/ class=tag-pill>Software Architecture</a>
+<a href=/ChiYu-Blob/tags/flask/ class=tag-pill>Flask</a>
+<a href=/ChiYu-Blob/tags/blueprints/ class=tag-pill>Blueprints</a>
+<a href=/ChiYu-Blob/tags/mermaid/ class=tag-pill>Mermaid</a></span></p></header><div data-pagefind-meta="title:Day 8: 【文件 #3】系統的心臟：用 Gemini CLI 設計「軟體架構文件」" style=display:none></div><div data-pagefind-ignore><p>安安，我是 ChiYu！</p><p>前兩天，我們完成了專案的「出生證明」(專案章程) 和「使用者地圖」(使用者故事)。我們現在非常清楚「為誰而做」以及「他們想做什麼」。</p><p>今天，我們要戴上「工程安全帽」，從使用者的世界暫時抽離，化身為擘劃未來的 <strong>「系統架構師」</strong>。我們要進行一次視角切換，從關注「人」，轉向關注「系統」，回答一個核心問題：「為了滿足這些使用者故事，我們的系統內部應該長什麼樣子？」</p><p>我們今天要畫的，不僅是建築的藍圖，更是未來系統穩定、高效、可擴展的基石。</p><h2 id=part-1偉大的分工什麼是前後端分離>Part 1：偉大的分工：什麼是「前後端分離」？</h2><p>在我們深入探討具體的架構之前，你必須先理解現代網頁開發中最核心的一個思想——<strong>前後端分離 (Frontend-Backend Separation)</strong>。</p><p>讓我們再次回到「經營一家餐廳」的比喻。一家餐廳，最基本的劃分就是「外場」與「內場」。</p><ul><li><strong>外場 (前端 Frontend)</strong>：這是顧客能直接接觸到的地方。包含了華麗的裝潢、舒適的座位、精美的菜單、以及親切的服務生。它的唯一職責，就是提供給顧客最棒的「用餐體驗」。在我們的專案中，這對應的就是使用者在瀏覽器上看到的所有畫面，由 <code>HTML</code>, <code>CSS</code>, <code>JavaScript</code> 這三劍客負責打造。</li><li><strong>內場 (後端 Backend)</strong>：這是神秘的廚房，顧客看不見也摸不著。廚師們在這裡處理訂單、烹飪食物、管理食材庫存。它的唯一職責，就是處理所有核心的「商業邏輯」與「數據管理」。在我們的專案中，這對應的就是運行在遠端伺服器上的 <code>Python</code> + <code>Flask</code> 應用程式。</li></ul><p>「前後端分離」就是一個嚴格的規定：外場的人不准進内場，內場的人也不准跑去外場。他們之間唯一的溝通管道，就是透過「服務生」來傳遞標準化格式的「點餐單」與「餐點」。</p><h2 id=part-2溝通的契約什麼是-api>Part 2：溝通的契約：什麼是 API？</h2><p>這個至關重要的「服務生」，就是我們常說的 <code>API (Application Programming Interface)</code>。</p><p>API 的本質，就是一份前端與後端之間，神聖不可侵犯的「溝通契約」。這份契約詳細地定義了：</p><ul><li>前端可以要求後端做哪些事（例如：查詢所有習慣、新增一筆紀錄）。</li><li>前端在提出要求時，必須提供哪些資訊（例如：新增習慣時要給習慣名稱）。</li><li>後端在完成任務後，承諾會回傳什麼格式的資料給前端。</li></ul><p>有了這份契約，前端的「室內設計師」和後端的「大廚」就可以完全獨立、並行地工作，只要最後雙方都遵守契約，就能完美地將各自的成果組合起來。這份詳細的契約（Web API 規格書），將會是我們在 Day 10 的主題。</p><h2 id=part-3設計我們的廚房flask-後端-api-伺服器架構>Part 3：設計我們的廚房：Flask 後端 API 伺服器架構</h2><p>好了，理解了前後端的分工與 API 的角色後，現在我們可以聚焦在「如何設計我們的廚房 (後端)」了。</p><p>隨著我們的餐廳生意越來越好，菜色越來越多（功能越來越複雜）時，如果還把所有廚師都擠在一個廚房裡 (<code>app.py</code>)，肯定會天下大亂。</p><p>因此，我們需要升級成「中央廚房」模式。我們會把廚房細分成「冷盤區」、「熱炒區」、「甜點區」，每個區域有專門的師傅負責。這在我們的後端專案中，就是所謂的**「模組化 (Modularity)」**。</p><p>在 <code>Flask</code> 框架中，實現模組化的最佳實踐，就是使用**「藍圖 (Blueprints)」**。你可以把一個 <code>Blueprint</code> 想像成一個獨立的「功能模組包」。例如，我們可以規劃一個 <code>habits.py</code> 檔案，裡面專門放所有跟「習慣」相關的 API 路由。</p><p>因此，在我們動手寫 any 一行 <code>Python</code> 程式碼之前，我們就要先在這份架構文件中，規劃好我們未來的專案結構。</p><h2 id=part-4實戰開始讓-gemini-擔任我們的首席架構師>Part 4：實戰開始：讓 Gemini 擔任我們的首席架構師</h2><p>好了，觀念釐清，讓我們再次召喚 Gemini CLI，請它扮演我們的首席架構師。</p><h3 id=魔法詠唱我們的-prompt>【魔法詠唱：我們的 Prompt】</h3><p>打開 VS Code 終端機，詠唱我們的第三個「文件生成咒語」：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown><span style=display:flex><span># 角色 (Role)
+</span></span><span style=display:flex><span>你是一位資深的軟體架構師，精通 Python Flask 與模組化設計，特別擅長使用 Blueprints 來組織可擴展、可維護的 Web 應用程式。你的設計決策總是兼顧當前的 MVP 需求與未來的擴展性。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 目標 (Objective)
+</span></span><span style=display:flex><span>我的目標是讓你根據專案的初始文件，設計一份專業的「高階設計文檔 (High-Level Design, HLD)」，這份文件將作為開發團隊的技術核心指南。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 上下文 (Context)
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   <span style=font-weight:700>**核心依據**</span>: 你的所有設計都必須嚴格基於以下兩份文件：
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>1.</span>  <span style=color:#e6db74>`@docs/PROJECT_CHARTER.md`</span> (定義了業務目標與範圍)
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>2.</span>  <span style=color:#e6db74>`@docs/USER_STORIES.md`</span> (定義了核心功能與使用者流程)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>---
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## 你的任務與產出要求 (Your Task &amp; Output Requirements)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>你的產出物是一份正式的技術文檔。請嚴格遵循以下大綱結構，確保內容的專業性與完整性。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 1. 文件元數據 (Document Metadata)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>-</span>   <span style=font-weight:700>**文件標題**</span>: <span style=color:#e6db74>`高階設計文檔 (High-Level Design)`</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   <span style=font-weight:700>**文件版本**</span>: <span style=color:#e6db74>`v1.0.0`</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   <span style=font-weight:700>**作者**</span>: <span style=color:#e6db74>`Gemini (軟體架構師)`</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 2. 架構總覽 (Architecture Overview)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>-</span>   <span style=font-weight:700>**核心架構**</span>: 說明我們將採用「**前後端分離 (Headless)**」架構。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   <span style=font-weight:700>**設計原則**</span>: 解釋此架構選擇背後的 <span style=font-weight:700>**3 個主要優點**</span> (例如：獨立開發與部署、技術棧靈活性、更好的擴展性)。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   <span style=font-weight:700>**溝通方式**</span>: 強調前後端將透過 <span style=font-weight:700>**RESTful API**</span> 進行通訊，並以 <span style=font-weight:700>**JSON**</span> 作為數據交換格式。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 3. 技術選型與理由 (Technology Stack &amp; Justification)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>-</span>   以表格形式，條列出 MVP 階段後端開發所需的核心技術。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   表格欄位需包含「**技術領域**」、「**選擇**」與「**選擇理由 (WHY)**」。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   至少需包含以下領域：
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   Web 框架 (Web Framework)
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   資料庫 (Database)
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   ORM (Object-Relational Mapping)
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   資料驗證 (Data Validation)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 4. 後端專案結構 (Backend Project Structure)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>-</span>   簡要說明採用 <span style=font-weight:700>**Flask Blueprints**</span> 進行模組化設計的核心目的（關注點分離）。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   使用文字樹狀圖，清晰地展示推薦的後端專案結構。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   在樹狀圖的關鍵目錄旁，**用註解簡要說明該目錄的職責** (例如：`blueprints/` 存放各功能模組)。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 5. 高階架構圖 (High-Level Architecture Diagram)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>-</span>   使用 <span style=font-weight:700>**Mermaid.js 的 `graph TD` 語法**</span>，繪製一張清晰的系統架構圖。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   圖中必須包含以下四個主要元件及其互動關係：「**使用者 (Client/Browser)**」、「**前端應用 (React/Vue)**」、「**後端 API (Flask)**」、「**資料庫 (PostgreSQL/SQLite)**」。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 6. 最終產出指令 (Final Output Command)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>-</span>   <span style=font-weight:700>**執行動作**</span>: 將以上所有產出合併到同一個 Markdown 檔案中，命名為 <span style=color:#e6db74>`ARCHITECTURE.md`</span>，並放置於 <span style=color:#e6db74>`@docs`</span> 資料夾內。
+</span></span></code></pre></div><h3 id=預期成果與分析>【預期成果與分析】</h3><p>當你按下 Enter，稍待片刻，Gemini 就會化身為你的首席架構師，產出一份結構清晰、內容專業的軟體架構文件。請仔細審核這份由 AI 生成的草稿，特別是它對「後端專案結構」的規劃，這將是我們後續 Vibe Coding 的重要依據。</p><hr><h3 id=軟體架構文件習慣養成與心情日誌>軟體架構文件：習慣養成與心情日誌</h3><p>以下為 AI 生成的架構文件範例：</p><h4 id=1-架構總覽-architecture-overview>1. 架構總覽 (Architecture Overview)</h4><p>為了實現最大的靈活性與可擴展性，<code>心境軌跡 (MindTrack)</code> 將採用<strong>前後端分離 (Headless)</strong> 的現代化架構。</p><p><strong>設計原則與優勢</strong></p><p>此架構的選擇基於以下三個核心優點：</p><ol><li><strong>獨立開發與部署</strong>: 前端與後端團隊可以並行開發、測試及部署，互不阻塞。後端專注於業務邏輯與數據，前端專注於使用者體驗，大幅提升開發效率。</li><li><strong>技術棧靈活性</strong>: 允許我們為工作的不同部分選擇最適合的技術（例如，前端使用 React/Vue，後端使用 Python/Flask）。未來若需升級或替換某一層的技術，對另一層的影響也降至最低。</li><li><strong>多平台擴展性</strong>: 一套統一的後端 API 可以同時服務於目前的 Web 應用、未來的原生行動應用 (iOS/Android) 或其他第三方服務，實現一次開發、多端復用。</li></ol><p><strong>溝通方式</strong></p><ul><li>前端與後端之間的所有通訊，將透過標準的 <strong>RESTful API</strong> 進行。</li><li>數據交換格式統一採用輕量級的 <strong>JSON</strong> 格式。</li></ul><hr><h4 id=2-技術選型與理由-technology-stack--justification>2. 技術選型與理由 (Technology Stack & Justification)</h4><table><thead><tr><th style=text-align:left>技術領域</th><th style=text-align:left>選擇</th><th style=text-align:left>選擇理由 (WHY)</th></tr></thead><tbody><tr><td style=text-align:left><strong>Web 框架</strong></td><td style=text-align:left><strong>Flask</strong></td><td style=text-align:left>輕量、靈活，擁有龐大的擴充套件生態。非常適合從 MVP 快速啟動，並能隨著業務複雜度平滑擴展。</td></tr><tr><td style=text-align:left><strong>資料庫</strong></td><td style=text-align:left><strong>SQLite (開發) / PostgreSQL (生產)</strong></td><td style=text-align:left><strong>SQLite</strong> 無需額外設定，極適合作為本地開發資料庫。<strong>PostgreSQL</strong> 功能強大、穩定可靠，是應對生產環境高併發與數據一致性需求的不二之選。</td></tr><tr><td style=text-align:left><strong>ORM</strong></td><td style=text-align:left><strong>Flask-SQLAlchemy</strong></td><td style=text-align:left>作為 Flask 的官方 ORM 套件，它簡化了所有資料庫操作，能有效防止 SQL 注入攻擊，並讓我們能以 Pythonic 的方式與資料庫互動。</td></tr><tr><td style=text-align:left><strong>資料驗證</strong></td><td style=text-align:left><strong>Flask-Marshmallow</strong></td><td style=text-align:left>提供強大的物件序列化 (Serialization) 與反序列化 (Deserialization) 功能，能輕鬆定義清晰的 API 資料結構 (Schema)，並自動完成傳入數據的驗證，確保 API 的健壯性。</td></tr></tbody></table><hr><h4 id=3-後端專案結構-backend-project-structure>3. 後端專案結構 (Backend Project Structure)</h4><p>我們將採用 <strong>Flask Blueprints</strong> 來組織專案，將不同功能的程式碼（如認證、習慣管理）封裝到獨立的模組中。這能有效實現「<strong>關注點分離 (Separation of Concerns)</strong>」，讓專案在擴展時依然保持清晰、可維護。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text><span style=display:flex><span>/mindtrack-api
+</span></span><span style=display:flex><span>|-- app/                           # 核心應用程式目錄
+</span></span><span style=display:flex><span>|   |-- __init__.py                # 應用程式工廠 (App Factory)
+</span></span><span style=display:flex><span>|   |-- blueprints/                # 存放所有功能藍圖
+</span></span><span style=display:flex><span>|   |   |-- auth/                  # 處理使用者認證 (註冊、登入)
+</span></span><span style=display:flex><span>|   |   |   |-- __init__.py
+</span></span><span style=display:flex><span>|   |   |   `-- routes.py
+</span></span><span style=display:flex><span>|   |   |-- habits/                # 處理習慣與心情的增刪改查
+</span></span><span style=display:flex><span>|   |   |   |-- __init__.py
+</span></span><span style=display:flex><span>|   |   |   `-- routes.py
+</span></span><span style=display:flex><span>|   |   `-- insights/              # 處理數據洞察相關邏輯
+</span></span><span style=display:flex><span>|   |       |-- __init__.py
+</span></span><span style=display:flex><span>|   |       `-- routes.py
+</span></span><span style=display:flex><span>|   |-- models.py                  # SQLAlchemy 資料庫模型
+</span></span><span style=display:flex><span>|   |-- schemas.py                 # Marshmallow 資料驗證結構
+</span></span><span style=display:flex><span>|   `-- extensions.py              # 集中管理 Flask 擴充套件實例
+</span></span><span style=display:flex><span>|-- migrations/                    # 資料庫遷移腳本 (Alembic)
+</span></span><span style=display:flex><span>|-- tests/                         # 單元測試與整合測試
+</span></span><span style=display:flex><span>|-- config.py                      # 環境設定檔 (開發、生產)
+</span></span><span style=display:flex><span>|-- run.py                         # 應用程式啟動入口
+</span></span><span style=display:flex><span>`-- .flaskenv                      # Flask 環境變數
+</span></span></code></pre></div><hr><h4 id=4-高階架構圖-high-level-architecture-diagram>4. 高階架構圖 (High-Level Architecture Diagram)</h4><pre tabindex=0><code class=language-mermaid data-lang=mermaid>graph TD
+    subgraph &#34;使用者端&#34;
+        Client[&#34;使用者 (瀏覽器)&#34;]
+    end
+
+    subgraph &#34;前端應用 (Frontend)&#34;
+        FrontendApp[&#34;React / Vue.js App&#34;]
+    end
+
+    subgraph &#34;後端應用 (Backend API)&#34;
+        BackendAPI[&#34;Flask API&#34;]
+    end
+    
+    subgraph &#34;資料庫 (Database)&#34;
+        DB[(&#34;Database (PostgreSQL / SQLite)&#34;)]
+    end
+
+    Client -- &#34;請求 (Request)&#34; --&gt; FrontendApp
+    FrontendApp -- &#34;API 請求&#34; --&gt; BackendAPI
+    BackendAPI -- &#34;查詢 (Query)&#34; --&gt; DB
+    DB -- &#34;回傳資料 (Data)&#34; --&gt; BackendAPI
+    BackendAPI -- &#34;API 回應 (Response)&#34; --&gt; FrontendApp
+    FrontendApp -- &#34;更新畫面 (UI Update)&#34; --&gt; Client
+</code></pre><hr><h2 id=part-5將系統藍圖存檔-commit--push>Part 5：將系統藍圖存檔 (Commit & Push)</h2><p>預覽架構圖：</p><p>在 VS Code 中，打開 ARCHITECTURE.md 的預覽模式 (Ctrl+Shift+V)。看到文字瞬間變成清晰的圖表，這就是**「文件即程式碼 (Docs-as-Code)」**的魅力！</p><p><strong>提交變更：</strong></p><ol><li>在原始碼管理頁面，對 <code>ARCHITECTURE.md</code> 按 <code>+</code> (Stage Changes)。</li><li>輸入 Commit 訊息: <code>docs: Add software architecture document</code></li><li>點擊打勾按鈕 (Commit)，然後同步變更 (Push)。</li></ol><h2 id=結語從點子到可執行的計畫>結語：從「點子」到「可執行的計畫」</h2><p>太棒了！今天，我們為專案打下了最穩固的「地基」。我們不只知道要做什麼（使用者故事），更清楚整個系統將如何運作（軟體架構）。有了這份結構藍圖，我們的專案才真正從一個「點子」，進化成了一個「可執行的計畫」。</p><p>接下來的兩天，我們將會完成後端藍圖的最後兩塊拼圖。</p><ul><li>在 <strong>Day 9</strong>，我們將化身為資料庫管理員 (DBA)，設計我們餐廳的「食材倉庫」，產出專業的 **「資料庫綱要 (Database Schema)」**文件。</li><li>而在緊接著的 <strong>Day 10</strong>，我們則要為我們的「服務生」，設計一份詳盡的「菜單」——也就是 <strong>「Web API 規格書」</strong>！</li></ul><p>完成這兩份文件後，我們整個後端的藍圖才算真正大功告成！</p></div></article><div class="not-prose my-8 p-6 rounded-lg border transition-colors" style=background-color:var(--code-bg);border-color:var(--border-color)><div class="flex flex-col sm:flex-row sm:items-center justify-between mb-4 pb-4 border-b" style=border-color:var(--border-color)><div><span class="text-xs font-semibold uppercase tracking-wider" style=color:var(--text-secondary)>Series</span><h3 class="text-lg font-bold mt-1"><a href=/ChiYu-Blob/series/2025ithomeironman/ class=hover:underline style=color:var(--link-color)>2025iThomeIronman</a></h3></div><div class="mt-2 sm:mt-0 text-sm font-medium px-3 py-1 rounded-full border" style=background-color:var(--bg-color);color:var(--text-secondary);border-color:var(--border-color)>Part 8 of 17</div></div><div class="series-list-container relative"><ol class="list-none space-y-1 relative" id=series-list-2025ithomeironman><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday1/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">01.</span>
+<span>Day 1: 【啟程】嘿，AI！我們來做個網站，但這次，我們約法三章</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday2/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">02.</span>
+<span>Day 2: 【心法篇】開發者的航海圖：什麼是文件驅動開發 (DDD)？</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday3/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">03.</span>
+<span>Day 3: 【工具篇 #1】萬丈高樓平地起：建置本地開發環境</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday4/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">04.</span>
+<span>Day 4: 【工具篇 #2】程式碼的時光機：Git 與 GitHub 版本控制</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday5/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">05.</span>
+<span>Day 5: 【工具篇 #3】終端機裡的魔法：什麼是 Vibe Coding 與 Gemini CLI？</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday6/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">06.</span>
+<span>Day 6: 【文件 #1】專案的靈魂：用 Gemini CLI 生成「專案章程」</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday7/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">07.</span>
+<span>Day 7: 【文件 #2】使用者的旅程：用 Gemini CLI 描繪「使用者故事」</span></a></li><li class="series-item p-2 rounded-md transition-colors current-series-item" style="background-color:var(--bg-color);border:1px solid var(--border-color)"><a href=javascript:void(0); class="flex items-start cursor-default" style=color:var(--text-color)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">08.</span>
+<span class=font-bold>Day 8: 【文件 #3】系統的心臟：用 Gemini CLI 設計「軟體架構文件」</span>
+<span class="ml-2 text-xs px-2 py-0.5 rounded-full bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">Current</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday9/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">09.</span>
+<span>Day 9: 【文件 #4】數據的家：用 Gemini 規劃「資料庫綱要」</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday10/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">10.</span>
+<span>Day 10: 【文件 #5】溝通的契約：用 Gemini 撰寫「Web API 規格書」</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday11/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">11.</span>
+<span>Day 11: 【心法 #2】透過AI幫我們生成Prompt</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday12/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">12.</span>
+<span>Day 12: 【後端 #1】起手式：AI 代理人 生成模組化的 Flask 專案</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday13/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">13.</span>
+<span>Day 13: 【後端 #2】AI 建築師：依藍圖自動建構 CRUD API</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday14/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">14.</span>
+<span>Day 14: 【DevOps #1】AI 品管員：設定 GitHub Actions 自動化程式碼檢查</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday15/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">15.</span>
+<span>Day 15: 【後端 #3】API 測試：用 Gemini CLI 輔助撰寫 Pytest</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday16/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">16.</span>
+<span>Day 16: 【整合篇】後端竣工！回顧與展望</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday17/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">17.</span>
+<span>Day 17: 【前端 #0】前端世界的基石： HTML, CSS 與 JavaScript</span></a></li></ol><button onclick=toggleSeriesList(this) class="w-full mt-4 text-xs font-medium text-center py-2 border-t hover:bg-opacity-50 transition-colors" style=color:var(--text-secondary);border-color:var(--border-color)>
+Show all 17 posts</button><style>#series-list-2025ithomeironman{max-height:300px;overflow-y:auto;padding-right:5px}#series-list-2025ithomeironman::-webkit-scrollbar{width:4px}#series-list-2025ithomeironman::-webkit-scrollbar-track{background:0 0}#series-list-2025ithomeironman::-webkit-scrollbar-thumb{background-color:var(--border-color);border-radius:4px}</style></div></div><script>function toggleSeriesList(e){const t=e.previousElementSibling;t.style.maxHeight==="none"?(t.style.maxHeight="300px",e.innerText="Show all 17 posts"):(t.style.maxHeight="none",e.innerText="Collapse list")}document.addEventListener("DOMContentLoaded",()=>{const e=document.querySelector(".current-series-item");e&&e.scrollIntoView({behavior:"smooth",block:"nearest"})})</script><nav class="flex justify-between mt-16 pt-8 border-t not-prose" style=border-color:var(--border-color)><div><a href=/ChiYu-Blob/posts/2025ithomeironmanday7/ class="block p-4 rounded-lg transition-colors" style=color:var(--text-secondary)><span class=text-sm>上一篇</span>
+<span class="block font-semibold mt-1" style=color:var(--text-color)>Day 7: 【文件 #2】使用者的旅程：用 Gemini CLI 描繪「使用者故事」 &larr;</span></a></div><div class=text-right><a href=/ChiYu-Blob/posts/2025ithomeironmanday9/ class="block p-4 rounded-lg transition-colors" style=color:var(--text-secondary)><span class=text-sm>下一篇</span>
+<span class="block font-semibold mt-1" style=color:var(--text-color)>&rarr; Day 9: 【文件 #4】數據的家：用 Gemini 規劃「資料庫綱要」</span></a></div></nav><div class="mt-16 pt-8 border-t not-prose" style=border-color:var(--border-color)><h3 class="text-xl font-bold mb-6">相關文章</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-4"><a href=/ChiYu-Blob/posts/2025ithomeironmanday13/ class="block p-4 rounded-lg transition-colors" style="border:1px solid var(--border-color)"><span class="font-semibold block" style=color:var(--text-color)>Day 13: 【後端 #2】AI 建築師：依藍圖自動建構 CRUD API</span><p class="text-sm mt-1" style=color:var(--text-secondary)>安安，我是 ChiYu！歡迎來到 Vibe Coding 協奏曲的第一個最大的開發項目！
+昨天，我們用一個指令召喚出了整個專案骨架。今天，我 …</p></a><a href=/ChiYu-Blob/posts/2025ithomeironmanday12/ class="block p-4 rounded-lg transition-colors" style="border:1px solid var(--border-color)"><span class="font-semibold block" style=color:var(--text-color)>Day 12: 【後端 #1】起手式：AI 代理人 生成模組化的 Flask 專案</span><p class="text-sm mt-1" style=color:var(--text-secondary)>安安，我是 ChiYu！歡迎來到歷史性的一刻！
+過去一週，我們是專案的「規劃師」，用文字和圖表描繪著未來。從今天起，我們是「建築師」與「魔法 …</p></a><a href=/ChiYu-Blob/posts/2025ithomeironmanday9/ class="block p-4 rounded-lg transition-colors" style="border:1px solid var(--border-color)"><span class="font-semibold block" style=color:var(--text-color)>Day 9: 【文件 #4】數據的家：用 Gemini 規劃「資料庫綱要」</span><p class="text-sm mt-1" style=color:var(--text-secondary)>安安，我是 ChiYu！
+昨天，我們化身為架構師，完成了專案的**「系統藍圖」**(軟體架構文件)，釐切了前台、後台、API 與資料庫之間的 …</p></a><a href=/ChiYu-Blob/posts/2025ithomeironmanday7/ class="block p-4 rounded-lg transition-colors" style="border:1px solid var(--border-color)"><span class="font-semibold block" style=color:var(--text-color)>Day 7: 【文件 #2】使用者的旅程：用 Gemini CLI 描繪「使用者故事」</span><p class="text-sm mt-1" style=color:var(--text-secondary)>安安，我是 ChiYu！
+昨天，我們確立了專案的「北極星」——專案章程，並在 GitHub 上留下了第一個不可磨滅的印記。如果說昨天的「專案 …</p></a><a href=/ChiYu-Blob/posts/2025ithomeironmanday16/ class="block p-4 rounded-lg transition-colors" style="border:1px solid var(--border-color)"><span class="font-semibold block" style=color:var(--text-color)>Day 16: 【整合篇】後端竣工！回顧與展望</span><p class="text-sm mt-1" style=color:var(--text-secondary)>安安，我是 ChiYu！
+走到這一步，請先放下鍵盤，靠在椅背上，深呼吸，然後給自己一個最真誠、最響亮的掌聲！你真的非常、非常了不起！
+今天， …</p></a></div></div><div class="share-buttons not-prose mt-8 border-t pt-8" style=border-color:var(--border-color)><h3 class="text-base font-semibold mb-4 opacity-70">分享此文章：</h3><div class="flex gap-4"><a href="https://www.facebook.com/sharer/sharer.php?u=%2fChiYu-Blob%2fposts%2f2025ithomeironmanday8%2f" target=_blank rel="noopener noreferrer" class="share-btn text-blue-600 hover:opacity-80" title="分享到 Facebook"><svg class="w-6 h-6" fill="currentcolor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312.0 2.686.235 2.686.235v2.953H15.83c-1.491.0-1.962.925-1.962 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+</a><a href="https://twitter.com/intent/tweet?url=%2fChiYu-Blob%2fposts%2f2025ithomeironmanday8%2f&text=Day%208%3a%20%e3%80%90%e6%96%87%e4%bb%b6%20%233%e3%80%91%e7%b3%bb%e7%b5%b1%e7%9a%84%e5%bf%83%e8%87%9f%ef%bc%9a%e7%94%a8%20Gemini%20CLI%20%e8%a8%ad%e8%a8%88%e3%80%8c%e8%bb%9f%e9%ab%94%e6%9e%b6%e6%a7%8b%e6%96%87%e4%bb%b6%e3%80%8d" target=_blank rel="noopener noreferrer" class="share-btn text-gray-800 dark:text-gray-200 hover:opacity-80" title="分享到 X"><svg class="w-6 h-6" fill="currentcolor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+</a><a href="https://www.linkedin.com/shareArticle?mini=true&url=%2fChiYu-Blob%2fposts%2f2025ithomeironmanday8%2f&title=Day%208%3a%20%e3%80%90%e6%96%87%e4%bb%b6%20%233%e3%80%91%e7%b3%bb%e7%b5%b1%e7%9a%84%e5%bf%83%e8%87%9f%ef%bc%9a%e7%94%a8%20Gemini%20CLI%20%e8%a8%ad%e8%a8%88%e3%80%8c%e8%bb%9f%e9%ab%94%e6%9e%b6%e6%a7%8b%e6%96%87%e4%bb%b6%e3%80%8d" target=_blank rel="noopener noreferrer" class="share-btn text-blue-700 hover:opacity-80" title="分享到 LinkedIn"><svg class="w-6 h-6" fill="currentcolor" viewBox="0 0 24 24"><path d="M19 0H5C2.239.0.0 2.239.0 5v14c0 2.761 2.239 5 5 5h14c2.762.0 5-2.239 5-5V5c0-2.761-2.238-5-5-5zM8 19H5V8h3v11zM6.5 6.732c-.966.0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zM20 19h-3v-5.604c0-3.368-4-3.113-4 0V19h-3V8h3v1.765c1.396-2.586 7-2.777 7 2.476V19z"/></svg>
+</a><a href="https://social-plugins.line.me/lineit/share?url=%2fChiYu-Blob%2fposts%2f2025ithomeironmanday8%2f" target=_blank rel="noopener noreferrer" class="share-btn text-green-500 hover:opacity-80" title="分享到 Line"><svg class="w-6 h-6" fill="currentcolor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 5.85 2 10.53c0 2.68 1.49 5.08 3.81 6.66-.17.6-.62 2.18-.73 2.61-.06.25-.03.5.21.53.22.03.48-.12.67-.23 2.8-1.63 3.05-1.77 3.63-1.87.8.11 1.62.18 2.41.18 5.52.0 10-3.85 10-8.53S17.52 2 12 2zm0 14.93c-.76.0-1.53-.07-2.27-.2-.22-.04-.45.01-.64.12-.52.29-1.82 1.05-2.78 1.6.17-.85.42-1.8.52-2.3.06-.3-.06-.6-.3-.77C4.7 13.1 3.5 11.2 3.5 10.53c0-3.85 3.81-6.98 8.5-6.98s8.5 3.13 8.5 6.98-3.81 6.4-8.5 6.4z"/></svg></a></div></div><div id=giscus-container class="mt-16 pt-8 border-t not-prose" style=border-color:var(--border-color)></div></main></div></div><aside class="w-64 flex-shrink-0 desktop-sidebar pl-8"><div class="sticky top-20" data-pagefind-ignore><div class="mb-8 text-center" data-pagefind-ignore><img src=/ChiYu-Blob/images/avatar.jpg alt=個人大頭貼 class="w-32 h-32 rounded-full mx-auto object-cover border-2" style=border-color:var(--border-color) data-pagefind-ignore></div><div class="text-center mb-8" data-pagefind-ignore><a href=mailto:iamhandsomeboy1129@gmail.com class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-white transition-opacity hover:opacity-90" style=background-color:var(--link-color)><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1.0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1.0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+<span class="text-sm font-medium">聯絡我</span></a></div><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>文章月曆</h3><div id=calendar-widget-95a8734a class=calendar-widget><div class="flex justify-between items-center mb-2 font-semibold"><button class="cal-prev px-2 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700" title=上個月>&lt;</button>
+<span class=cal-month-year></span>
+<button class="cal-next px-2 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700" title=下個月>></button></div><div class="grid grid-cols-7 text-center text-xs gap-y-2" style=color:var(--text-secondary)><span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span></div><div class="cal-days grid grid-cols-7 text-center text-sm mt-2 gap-y-2"></div></div></div><script>(function(){const n=document.getElementById("calendar-widget-95a8734a");if(!n)return;const e={};e["2025-12-17"]="/ChiYu-Blob/dates/2025-12-17/",e["2025-8-20"]="/ChiYu-Blob/dates/2025-08-20/",e["2025-8-21"]="/ChiYu-Blob/dates/2025-08-21/",e["2025-8-22"]="/ChiYu-Blob/dates/2025-08-22/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-8-23"]="/ChiYu-Blob/dates/2025-08-23/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-8-24"]="/ChiYu-Blob/dates/2025-08-24/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-8-25"]="/ChiYu-Blob/dates/2025-08-25/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-26"]="/ChiYu-Blob/dates/2025-08-26/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-27"]="/ChiYu-Blob/dates/2025-08-27/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-28"]="/ChiYu-Blob/dates/2025-08-28/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-29"]="/ChiYu-Blob/dates/2025-08-29/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-30"]="/ChiYu-Blob/dates/2025-08-30/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-31"]="/ChiYu-Blob/dates/2025-08-31/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-1"]="/ChiYu-Blob/dates/2025-09-01/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-2"]="/ChiYu-Blob/dates/2025-09-02/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-3"]="/ChiYu-Blob/dates/2025-09-03/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-4"]="/ChiYu-Blob/dates/2025-09-04/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-5"]="/ChiYu-Blob/dates/2025-09-05/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-7-3"]="/ChiYu-Blob/dates/2025-07-03/",e["2025-6-8"]="/ChiYu-Blob/dates/2025-06-08/",e["2025-6-5"]="/ChiYu-Blob/dates/2025-06-05/";const i=n.querySelector(".cal-month-year"),s=n.querySelector(".cal-days"),a=n.querySelector(".cal-prev"),r=n.querySelector(".cal-next");let t=new Date;function o(t){const n=t.getFullYear(),o=t.getMonth();i.textContent=`${n} 年 ${o+1} 月`,s.innerHTML="";const a=new Date(n,o,1),r=new Date(n,o+1,0),c=a.getDay();for(let e=0;e<c;e++)s.insertAdjacentHTML("beforeend","<div></div>");for(let t=1;t<=r.getDate();t++){const i=`${n}-${o+1}-${t}`;e[i]?s.insertAdjacentHTML("beforeend",`
+                    <a href="${e[i]}" class="block p-1 rounded-full transition-colors font-bold" style="color: var(--link-color); text-decoration: underline; text-decoration-thickness: 2px;">
+                        ${t}
+                    </a>
+                `):s.insertAdjacentHTML("beforeend",`<span class="block p-1">${t}</span>`)}}a.addEventListener("click",()=>{t.setMonth(t.getMonth()-1),o(t)}),r.addEventListener("click",()=>{t.setMonth(t.getMonth()+1),o(t)}),o(t)})()</script><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>所有標籤</h3><div class="flex flex-wrap gap-2"><a href=/ChiYu-Blob/tags/yaml/ class=tag-pill>YAML
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/user-stories/ class=tag-pill>User Stories
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/testing/ class=tag-pill>Testing
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/summary/ class=tag-pill>Summary
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/sqlite/ class=tag-pill>SQLite
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/sql/ class=tag-pill>SQL
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/software-engineering/ class=tag-pill>Software Engineering
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/software-architecture/ class=tag-pill>Software Architecture
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/side-project/ class=tag-pill>Side Project
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/schema/ class=tag-pill>Schema
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/scaffolding/ class=tag-pill>Scaffolding
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/pytest/ class=tag-pill>Pytest
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/project-charter/ class=tag-pill>Project Charter
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/linting/ class=tag-pill>Linting
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/javascript/ class=tag-pill>JavaScript
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/html/ class=tag-pill>HTML
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/hlr/ class=tag-pill>HLR
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/guide/ class=tag-pill>Guide
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/github-actions/ class=tag-pill>GitHub Actions
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/github/ class=tag-pill>GitHub
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/git/ class=tag-pill>Git
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/frontend/ class=tag-pill>Frontend
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/flake8/ class=tag-pill>Flake8
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/efficiency/ class=tag-pill>Efficiency
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/documentation/ class=tag-pill>Documentation
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/database/ class=tag-pill>Database
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/css/ class=tag-pill>CSS
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/crud/ class=tag-pill>CRUD
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/codex/ class=tag-pill>Codex
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/cli/ class=tag-pill>CLI
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/blueprints/ class=tag-pill>Blueprints
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/api/ class=tag-pill>API
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/ai-agent/ class=tag-pill>AI Agent
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/agile/ class=tag-pill>Agile
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/swagger/ class=tag-pill>Swagger
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/python/ class=tag-pill>Python
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/prompt-engineering/ class=tag-pill>Prompt Engineering
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/openapi/ class=tag-pill>OpenAPI
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/ci/ class=tag-pill>CI
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/backend/ class=tag-pill>Backend
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/mermaid/ class=tag-pill>Mermaid
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/hugo/ class=tag-pill>Hugo
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/flask/ class=tag-pill>Flask
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/ddd/ class=tag-pill>DDD
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/ai/ class=tag-pill>AI
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/vibecoding/ class=tag-pill>VibeCoding
+<span class="ml-1 opacity-75">6</span>
+</a><a href=/ChiYu-Blob/tags/gemini/ class=tag-pill>Gemini
+<span class="ml-1 opacity-75">12</span>
+</a><a href=/ChiYu-Blob/tags/2025ithomeironman/ class=tag-pill>2025iThomeIronman
+<span class="ml-1 opacity-75">17</span>
+</a><a href=/ChiYu-Blob/tags/design-patterns/ class=tag-pill>Design Patterns
+<span class="ml-1 opacity-75">24</span>
+</a><a href=/ChiYu-Blob/tags/c class=tag-pill>C#
+<span class="ml-1 opacity-75">24</span></a></div><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>相關連結</h3><div class="flex flex-col space-y-3 mt-4"><a href=https://www.cake.me/me/ChiYuisme target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">cakeresume</span>
+</a><a href=https://github.com/eric861129 target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">github</span>
+</a><a href=https://ithelp.ithome.com.tw/users/20132971/ironman/8253 target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">ithome</span>
+</a><a href=https://www.linkedin.com/in/chiyu-huang/ target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">linkedin</span>
+</a><a href=https://www.threads.com/@chiyuisme target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">threads</span></a></div></div><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>系列文章</h3><ul class=space-y-1><li><a href=/ChiYu-Blob/series/designpattern/ class="flex justify-between"><span>設計模式</span>
+<span class=text-sm>24</span></a></li><li><a href=/ChiYu-Blob/series/2025ithomeironman/ class="flex justify-between"><span>2025 iThome 鐵人賽</span>
+<span class=text-sm>17</span></a></li><li><a href=/ChiYu-Blob/series/hugo-%E9%96%8B%E7%99%BC%E7%B4%80%E9%8C%84/ class="flex justify-between"><span>Hugo 開發紀錄</span>
+<span class=text-sm>1</span></a></li></ul></div></div></aside></div><footer class="mt-16 pt-8 border-t text-center text-sm" style=border-color:var(--border-color);color:var(--text-secondary)><p>&copy; 2025 ChiYu. All Rights Reserved.</p></footer><button id=scroll-to-top-btn class=scroll-to-top title=回到頂部><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentcolor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 15a.5.5.0 00.5-.5V2.707l3.146 3.147a.5.5.0 00.708-.708l-4-4a.5.5.0 00-.708.0l-4 4a.5.5.0 10.708.708L7.5 2.707V14.5a.5.5.0 00.5.5z"/></svg></button></div><div id=sidebar-overlay class=sidebar-overlay></div><aside id=mobile-sidebar class=mobile-sidebar><div class=p-4><aside class=sidebar><div class=sidebar-inner><div class=widget><h3 class=widget-title>系列文章</h3><ul class=widget-list><li><a href=/ChiYu-Blob/series/designpattern/>設計模式
+<span class=posts-count>24</span></a></li><li><a href=/ChiYu-Blob/series/2025ithomeironman/>2025 iThome 鐵人賽
+<span class=posts-count>17</span></a></li><li><a href=/ChiYu-Blob/series/hugo-%E9%96%8B%E7%99%BC%E7%B4%80%E9%8C%84/>Hugo 開發紀錄
+<span class=posts-count>1</span></a></li></ul></div></div></aside><div class="sticky top-20" data-pagefind-ignore><div class="mb-8 text-center" data-pagefind-ignore><img src=/ChiYu-Blob/images/avatar.jpg alt=個人大頭貼 class="w-32 h-32 rounded-full mx-auto object-cover border-2" style=border-color:var(--border-color) data-pagefind-ignore></div><div class="text-center mb-8" data-pagefind-ignore><a href=mailto:iamhandsomeboy1129@gmail.com class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-white transition-opacity hover:opacity-90" style=background-color:var(--link-color)><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1.0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1.0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+<span class="text-sm font-medium">聯絡我</span></a></div><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>文章月曆</h3><div id=calendar-widget-104e05ca class=calendar-widget><div class="flex justify-between items-center mb-2 font-semibold"><button class="cal-prev px-2 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700" title=上個月>&lt;</button>
+<span class=cal-month-year></span>
+<button class="cal-next px-2 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700" title=下個月>></button></div><div class="grid grid-cols-7 text-center text-xs gap-y-2" style=color:var(--text-secondary)><span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span></div><div class="cal-days grid grid-cols-7 text-center text-sm mt-2 gap-y-2"></div></div></div><script>(function(){const n=document.getElementById("calendar-widget-104e05ca");if(!n)return;const e={};e["2025-12-17"]="/ChiYu-Blob/dates/2025-12-17/",e["2025-8-20"]="/ChiYu-Blob/dates/2025-08-20/",e["2025-8-21"]="/ChiYu-Blob/dates/2025-08-21/",e["2025-8-22"]="/ChiYu-Blob/dates/2025-08-22/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-8-23"]="/ChiYu-Blob/dates/2025-08-23/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-8-24"]="/ChiYu-Blob/dates/2025-08-24/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-8-25"]="/ChiYu-Blob/dates/2025-08-25/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-26"]="/ChiYu-Blob/dates/2025-08-26/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-27"]="/ChiYu-Blob/dates/2025-08-27/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-28"]="/ChiYu-Blob/dates/2025-08-28/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-29"]="/ChiYu-Blob/dates/2025-08-29/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-30"]="/ChiYu-Blob/dates/2025-08-30/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-31"]="/ChiYu-Blob/dates/2025-08-31/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-1"]="/ChiYu-Blob/dates/2025-09-01/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-2"]="/ChiYu-Blob/dates/2025-09-02/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-3"]="/ChiYu-Blob/dates/2025-09-03/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-4"]="/ChiYu-Blob/dates/2025-09-04/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-5"]="/ChiYu-Blob/dates/2025-09-05/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-7-3"]="/ChiYu-Blob/dates/2025-07-03/",e["2025-6-8"]="/ChiYu-Blob/dates/2025-06-08/",e["2025-6-5"]="/ChiYu-Blob/dates/2025-06-05/";const i=n.querySelector(".cal-month-year"),s=n.querySelector(".cal-days"),a=n.querySelector(".cal-prev"),r=n.querySelector(".cal-next");let t=new Date;function o(t){const n=t.getFullYear(),o=t.getMonth();i.textContent=`${n} 年 ${o+1} 月`,s.innerHTML="";const a=new Date(n,o,1),r=new Date(n,o+1,0),c=a.getDay();for(let e=0;e<c;e++)s.insertAdjacentHTML("beforeend","<div></div>");for(let t=1;t<=r.getDate();t++){const i=`${n}-${o+1}-${t}`;e[i]?s.insertAdjacentHTML("beforeend",`
+                    <a href="${e[i]}" class="block p-1 rounded-full transition-colors font-bold" style="color: var(--link-color); text-decoration: underline; text-decoration-thickness: 2px;">
+                        ${t}
+                    </a>
+                `):s.insertAdjacentHTML("beforeend",`<span class="block p-1">${t}</span>`)}}a.addEventListener("click",()=>{t.setMonth(t.getMonth()-1),o(t)}),r.addEventListener("click",()=>{t.setMonth(t.getMonth()+1),o(t)}),o(t)})()</script><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>所有標籤</h3><div class="flex flex-wrap gap-2"><a href=/ChiYu-Blob/tags/yaml/ class=tag-pill>YAML
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/user-stories/ class=tag-pill>User Stories
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/testing/ class=tag-pill>Testing
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/summary/ class=tag-pill>Summary
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/sqlite/ class=tag-pill>SQLite
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/sql/ class=tag-pill>SQL
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/software-engineering/ class=tag-pill>Software Engineering
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/software-architecture/ class=tag-pill>Software Architecture
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/side-project/ class=tag-pill>Side Project
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/schema/ class=tag-pill>Schema
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/scaffolding/ class=tag-pill>Scaffolding
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/pytest/ class=tag-pill>Pytest
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/project-charter/ class=tag-pill>Project Charter
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/linting/ class=tag-pill>Linting
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/javascript/ class=tag-pill>JavaScript
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/html/ class=tag-pill>HTML
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/hlr/ class=tag-pill>HLR
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/guide/ class=tag-pill>Guide
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/github-actions/ class=tag-pill>GitHub Actions
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/github/ class=tag-pill>GitHub
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/git/ class=tag-pill>Git
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/frontend/ class=tag-pill>Frontend
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/flake8/ class=tag-pill>Flake8
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/efficiency/ class=tag-pill>Efficiency
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/documentation/ class=tag-pill>Documentation
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/database/ class=tag-pill>Database
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/css/ class=tag-pill>CSS
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/crud/ class=tag-pill>CRUD
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/codex/ class=tag-pill>Codex
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/cli/ class=tag-pill>CLI
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/blueprints/ class=tag-pill>Blueprints
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/api/ class=tag-pill>API
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/ai-agent/ class=tag-pill>AI Agent
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/agile/ class=tag-pill>Agile
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/swagger/ class=tag-pill>Swagger
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/python/ class=tag-pill>Python
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/prompt-engineering/ class=tag-pill>Prompt Engineering
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/openapi/ class=tag-pill>OpenAPI
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/ci/ class=tag-pill>CI
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/backend/ class=tag-pill>Backend
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/mermaid/ class=tag-pill>Mermaid
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/hugo/ class=tag-pill>Hugo
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/flask/ class=tag-pill>Flask
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/ddd/ class=tag-pill>DDD
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/ai/ class=tag-pill>AI
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/vibecoding/ class=tag-pill>VibeCoding
+<span class="ml-1 opacity-75">6</span>
+</a><a href=/ChiYu-Blob/tags/gemini/ class=tag-pill>Gemini
+<span class="ml-1 opacity-75">12</span>
+</a><a href=/ChiYu-Blob/tags/2025ithomeironman/ class=tag-pill>2025iThomeIronman
+<span class="ml-1 opacity-75">17</span>
+</a><a href=/ChiYu-Blob/tags/design-patterns/ class=tag-pill>Design Patterns
+<span class="ml-1 opacity-75">24</span>
+</a><a href=/ChiYu-Blob/tags/c class=tag-pill>C#
+<span class="ml-1 opacity-75">24</span></a></div><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>相關連結</h3><div class="flex flex-col space-y-3 mt-4"><a href=https://www.cake.me/me/ChiYuisme target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">cakeresume</span>
+</a><a href=https://github.com/eric861129 target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">github</span>
+</a><a href=https://ithelp.ithome.com.tw/users/20132971/ironman/8253 target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">ithome</span>
+</a><a href=https://www.linkedin.com/in/chiyu-huang/ target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">linkedin</span>
+</a><a href=https://www.threads.com/@chiyuisme target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">threads</span></a></div></div><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>系列文章</h3><ul class=space-y-1><li><a href=/ChiYu-Blob/series/designpattern/ class="flex justify-between"><span>設計模式</span>
+<span class=text-sm>24</span></a></li><li><a href=/ChiYu-Blob/series/2025ithomeironman/ class="flex justify-between"><span>2025 iThome 鐵人賽</span>
+<span class=text-sm>17</span></a></li><li><a href=/ChiYu-Blob/series/hugo-%E9%96%8B%E7%99%BC%E7%B4%80%E9%8C%84/ class="flex justify-between"><span>Hugo 開發紀錄</span>
+<span class=text-sm>1</span></a></li></ul></div></div></div></aside><script src=/ChiYu-Blob/pagefind/pagefind-ui.js onload=initPagefind()></script><script src=https://cdn.jsdelivr.net/npm/medium-zoom@1.0.8/dist/medium-zoom.min.js></script><script type=module>
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ 
+            startOnLoad: true, 
+            theme: document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default' 
+        });
+    </script><script src=/ChiYu-Blob/js/main.min.0193b07ef6d75c398d0ddd095576631329ae07bdc4f8790273143cfb31c1c9c5.js integrity="sha256-AZOwfvbXXDmNDd0JVXZjEymuB73E+HkCcxQ8+zHBycU=" crossorigin=anonymous></script></body></html>

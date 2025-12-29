@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>SQLite on ChiYu Code Journey</title><link>/ChiYu-Blob/tags/sqlite/</link><description>Recent content in SQLite on ChiYu Code Journey</description><generator>Hugo -- gohugo.io</generator><language>zh-TW</language><lastBuildDate>Thu, 28 Aug 2025 00:00:00 +0800</lastBuildDate><atom:link href="/ChiYu-Blob/tags/sqlite/index.xml" rel="self" type="application/rss+xml"/><item><title>Day 9: 【文件 #4】數據的家：用 Gemini 規劃「資料庫綱要」</title><link>/ChiYu-Blob/posts/2025ithomeironmanday9/</link><pubDate>Thu, 28 Aug 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday9/</guid><description>安安，我是 ChiYu！
+昨天，我們化身為架構師，完成了專案的**「系統藍圖」**(軟體架構文件)，釐切了前台、後台、API 與資料庫之間的分工合作關係。
+我們的餐廳藍圖畫好了，下一步，就是要來仔細規劃我們儲放所有食材的「食材庫」。在軟體世界裡，這個角色就是由**「資料庫 (Database)」來扮演。今天，我們將化身為「數據的守護者」——資料庫管理員 (DBA)，與 Gemini 一同規劃我們專案的「資料庫綱要 (Database Schema)」**！
+Part 1：什麼是「資料庫 (Database)」？ 對於新手來說，你可以把資料庫想像成一個擁有超能力的、極度嚴謹的 Excel 表格。它是一個專門用來「結構化儲存」資訊的系統，有非常明確的規則，來確保我們存進去的資料是乾淨、有組織、且易於查詢的。
+要理解資料庫，你只需要知道幾個核心概念：
+資料表 (Table)：就像 Excel 裡的一個工作表 (Sheet)。 欄位 (Column/Field)：就像工作表裡的第一行標題。 紀錄 (Row/Record)：工作表裡的一行資料。 綱要 (Schema)：這就是整個資料庫的「設計藍圖」。它不僅定義了有哪些資料表、每張表有哪些欄位，更重要的是，它定義了規則： 資料型態 (Data Types)：規定了每個欄位只能存放哪種類型的資料（數字、文字、日期等）。 約束 (Constraints)：規定了資料必須遵守的規則，例如 email 欄位的內容必須是獨一無二的 (UNIQUE)。 關聯 (Relationships)：定義了表與表之間的連結關係。 我們今天就是要設計這份包含所有規則的「綱要 (Schema)」。
+Part 2：資料庫的兩大門派：SQL vs. NoSQL 在選擇具體的資料庫之前，你需要知道，當今的資料庫世界主要有兩大門派：SQL (關聯式資料庫) 和 NoSQL (非關聯式資料庫)。
+SQL 像 Excel 表格，結構嚴謹，資料之間關係明確，可靠性強。 NoSQL 像一個自由的資料夾，結構靈活彈性，擴展性極強。 對於我們的「習慣養成日誌」專案來說，要儲存的資料關係非常明確：一個「使用者」可以擁有多個「習慣」，一個「習慣」可以擁有多筆「打卡紀錄」。這種層次分明、井然有序的關係，正是 SQL 資料庫最擅長處理的。因此，選擇 SQL 陣營是我們最穩健的選擇。
+Part 3：選擇我們的資料庫：為什麼是 SQLite？ 在 SQL 這個門派裡，有許多知名的武林高手。但對於新手和中小型專案，我們選擇一個更輕巧、更友善的方案：SQLite。
+選擇 SQLite 的理由非常充分：零設定、單一檔案、Python 內建支援。它能讓你專注在「資料庫設計」本身，而不用分心去處理複雜的環境設定，是學習資料庫觀念的最佳起點。</description></item></channel></rss>

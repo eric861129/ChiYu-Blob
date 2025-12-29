@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Blueprints on ChiYu Code Journey</title><link>/ChiYu-Blob/tags/blueprints/</link><description>Recent content in Blueprints on ChiYu Code Journey</description><generator>Hugo -- gohugo.io</generator><language>zh-TW</language><lastBuildDate>Wed, 27 Aug 2025 00:00:00 +0800</lastBuildDate><atom:link href="/ChiYu-Blob/tags/blueprints/index.xml" rel="self" type="application/rss+xml"/><item><title>Day 8: 【文件 #3】系統的心臟：用 Gemini CLI 設計「軟體架構文件」</title><link>/ChiYu-Blob/posts/2025ithomeironmanday8/</link><pubDate>Wed, 27 Aug 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday8/</guid><description>安安，我是 ChiYu！
+前兩天，我們完成了專案的「出生證明」(專案章程) 和「使用者地圖」(使用者故事)。我們現在非常清楚「為誰而做」以及「他們想做什麼」。
+今天，我們要戴上「工程安全帽」，從使用者的世界暫時抽離，化身為擘劃未來的 「系統架構師」。我們要進行一次視角切換，從關注「人」，轉向關注「系統」，回答一個核心問題：「為了滿足這些使用者故事，我們的系統內部應該長什麼樣子？」
+我們今天要畫的，不僅是建築的藍圖，更是未來系統穩定、高效、可擴展的基石。
+Part 1：偉大的分工：什麼是「前後端分離」？ 在我們深入探討具體的架構之前，你必須先理解現代網頁開發中最核心的一個思想——前後端分離 (Frontend-Backend Separation)。
+讓我們再次回到「經營一家餐廳」的比喻。一家餐廳，最基本的劃分就是「外場」與「內場」。
+外場 (前端 Frontend)：這是顧客能直接接觸到的地方。包含了華麗的裝潢、舒適的座位、精美的菜單、以及親切的服務生。它的唯一職責，就是提供給顧客最棒的「用餐體驗」。在我們的專案中，這對應的就是使用者在瀏覽器上看到的所有畫面，由 HTML, CSS, JavaScript 這三劍客負責打造。 內場 (後端 Backend)：這是神秘的廚房，顧客看不見也摸不著。廚師們在這裡處理訂單、烹飪食物、管理食材庫存。它的唯一職責，就是處理所有核心的「商業邏輯」與「數據管理」。在我們的專案中，這對應的就是運行在遠端伺服器上的 Python + Flask 應用程式。 「前後端分離」就是一個嚴格的規定：外場的人不准進内場，內場的人也不准跑去外場。他們之間唯一的溝通管道，就是透過「服務生」來傳遞標準化格式的「點餐單」與「餐點」。
+Part 2：溝通的契約：什麼是 API？ 這個至關重要的「服務生」，就是我們常說的 API (Application Programming Interface)。
+API 的本質，就是一份前端與後端之間，神聖不可侵犯的「溝通契約」。這份契約詳細地定義了：
+前端可以要求後端做哪些事（例如：查詢所有習慣、新增一筆紀錄）。 前端在提出要求時，必須提供哪些資訊（例如：新增習慣時要給習慣名稱）。 後端在完成任務後，承諾會回傳什麼格式的資料給前端。 有了這份契約，前端的「室內設計師」和後端的「大廚」就可以完全獨立、並行地工作，只要最後雙方都遵守契約，就能完美地將各自的成果組合起來。這份詳細的契約（Web API 規格書），將會是我們在 Day 10 的主題。
+Part 3：設計我們的廚房：Flask 後端 API 伺服器架構 好了，理解了前後端的分工與 API 的角色後，現在我們可以聚焦在「如何設計我們的廚房 (後端)」了。
+隨著我們的餐廳生意越來越好，菜色越來越多（功能越來越複雜）時，如果還把所有廚師都擠在一個廚房裡 (app.py)，肯定會天下大亂。
+因此，我們需要升級成「中央廚房」模式。我們會把廚房細分成「冷盤區」、「熱炒區」、「甜點區」，每個區域有專門的師傅負責。這在我們的後端專案中，就是所謂的**「模組化 (Modularity)」**。
+在 Flask 框架中，實現模組化的最佳實踐，就是使用**「藍圖 (Blueprints)」**。你可以把一個 Blueprint 想像成一個獨立的「功能模組包」。例如，我們可以規劃一個 habits.py 檔案，裡面專門放所有跟「習慣」相關的 API 路由。</description></item></channel></rss>

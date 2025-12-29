@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Swagger on ChiYu Code Journey</title><link>/ChiYu-Blob/tags/swagger/</link><description>Recent content in Swagger on ChiYu Code Journey</description><generator>Hugo -- gohugo.io</generator><language>zh-TW</language><lastBuildDate>Mon, 01 Sep 2025 00:00:00 +0800</lastBuildDate><atom:link href="/ChiYu-Blob/tags/swagger/index.xml" rel="self" type="application/rss+xml"/><item><title>Day 10: 【文件 #5】溝通的契約：用 Gemini 撰寫「Web API 規格書」</title><link>/ChiYu-Blob/posts/2025ithomeironmanday10/</link><pubDate>Fri, 29 Aug 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday10/</guid><description>安安，我是 ChiYu！
+昨天，我們完成了餐廳的「食材倉庫」設計圖——資料庫綱要。至此，我們專案的願景、使用者需求、系統架構、數據儲存方式，都已經有了明確的定義。
+我們的餐廳藍圖（架構）和食材倉庫（資料庫）都設計好了。下一步，就是要交給「服務生 (API)」一份精準的「菜單」，讓他知道如何跟廚房溝通，顧客可以點哪些菜，以及餐點會以什麼形式送上。
+這份「菜單」，就是我們今天要產出的，後端藍圖的最後一塊拼圖——Web API 規格書。
+Part 1：什麼是「API 規格書」？ 我們在 Day 7 提過，API 是前端（前台）與後端（廚房）之間的溝通橋樑。而「API 規格書」就是一份極其嚴謹、毫無模糊空間的技術文件，如同法律契約一般，精準地定義了前端與後端之間每一次互動的細節。
+什麼是 OpenAPI 3.0 (Swagger)？ 為了避免每家公司都用自己的格式來寫規格書，業界發展出了一套公認的標準，其中最流行的就是 OpenAPI 3.0（前身就是大名鼎鼎的 Swagger）。它用 YAML 或 JSON 格式，提供了一套完整的語法規則來描述 API。YAML 格式因其對人類更友善、更易讀的特性而廣受歡迎。
+使用 OpenAPI 的最大好處是，有非常多工具可以讀取這份文件，自動生成可以互動的 API 文件網站、不同語言的客戶端程式碼、甚至是伺服器端的程式碼骨架！這也體現了一種專業的「設計優先 (Design-First)」開發哲學——我們先把契約定義好，再動手寫程式，這與我們系列「藍圖優先」的核心思想不謀而合。
+Part 2：實戰開始：讓 Gemini 成為我們的 API 設計專家 好了，讓我們來設計這份最重要的契約吧！
+Step 1：詠唱我們的魔法 (Craft the Prompt) API 的設計，需要通盤考慮專案的目標、使用者故事、系統架構、以及資料庫綱要。所以這次，我們要拿出至今為止的所有成果，全部餵給 Gemini！
+打開 VS Code 終端機，詠唱我們至今為止最複雜的一個「文件生成咒語」：
+【魔法詠唱：我們的 Prompt】 # --------------------------------------------------------------------------- # PROMPT FOR GEMINI: Production-Ready OpenAPI 3.0.3 Specification Generator # --------------------------------------------------------------------------- # 角色 (Role) 你是一位頂尖的後端工程師與 API 設計專家，精通 RESTful API 設計原則與 OpenAPI 3.</description></item><item><title>Day 13: 【後端 #2】AI 建築師：依藍圖自動建構 CRUD API</title><link>/ChiYu-Blob/posts/2025ithomeironmanday13/</link><pubDate>Mon, 01 Sep 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday13/</guid><description>安安，我是 ChiYu！歡迎來到 Vibe Coding 協奏曲的第一個最大的開發項目！
+昨天，我們用一個指令召喚出了整個專案骨架。今天，我們要進行一次令人振奮的專案升級。我們將扮演一位「專案總建築師」，把詳細的「設計藍圖 (API_SPEC.yml)」交給我們的 AI 首席工程師，命令它根據藍圖，將完整的「習慣 (Habits)」資源模組，精準地建構到我們現有的專案結構中！
+而在工程完工後，我們還需要一套最先進的「驗收工具」，來驗證成果是否符合藍圖規範。而這套工具的安裝與設定，我們同樣要交給 AI 來完成！
+Part 1：Vibe Coding 實戰：下達「程式碼建構」指令 專案藍圖已備妥，讓我們打開終端機，指揮我們的 AI 首席工程師開始施工。
+【實戰魔法詠唱：我們的 Prompt】 # 角色 (Role) 你是一位資深的 Python 後端工程師，專精於 Flask 框架與 API 開發。 你擁有豐富的經驗，能夠根據 OpenAPI 規格書，快速、精準地建構出穩定、 安全且符合業務邏輯的後端程式碼。你擅長使用 SQLAlchemy 進行資料庫操作， 並習慣撰寫清晰、可維護的程式碼。 # 目標 (Objective) 你的任務是，根據提供的 `API_SPEC.yml` 規格書與相關設計文件， 在一個已存在的 Python Flask 專案結構中，實作所有 API 端點的後端業務邏輯。 你將直接修改指定的 Python 檔案， 填入完整、可執行、生產級別 (Production-Ready) 的程式碼。 # 上下文與關鍵資訊 (Context &amp;amp; Key Information) * **OpenAPI 規格書 (OpenAPI Specification)**: 檔案位於 `[請提供 API_SPEC.</description></item></channel></rss>

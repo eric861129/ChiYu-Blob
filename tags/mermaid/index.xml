@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Mermaid on ChiYu Code Journey</title><link>/ChiYu-Blob/tags/mermaid/</link><description>Recent content in Mermaid on ChiYu Code Journey</description><generator>Hugo -- gohugo.io</generator><language>zh-TW</language><lastBuildDate>Tue, 26 Aug 2025 00:00:00 +0800</lastBuildDate><atom:link href="/ChiYu-Blob/tags/mermaid/index.xml" rel="self" type="application/rss+xml"/><item><title>Day 7: 【文件 #2】使用者的旅程：用 Gemini CLI 描繪「使用者故事」</title><link>/ChiYu-Blob/posts/2025ithomeironmanday7/</link><pubDate>Tue, 26 Aug 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday7/</guid><description>安安，我是 ChiYu！
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Mermaid on ChiYu Code Journey</title><link>/ChiYu-Blob/tags/mermaid/</link><description>Recent content in Mermaid on ChiYu Code Journey</description><generator>Hugo -- gohugo.io</generator><language>zh-TW</language><lastBuildDate>Thu, 28 Aug 2025 00:00:00 +0800</lastBuildDate><atom:link href="/ChiYu-Blob/tags/mermaid/index.xml" rel="self" type="application/rss+xml"/><item><title>Day 7: 【文件 #2】使用者的旅程：用 Gemini CLI 描繪「使用者故事」</title><link>/ChiYu-Blob/posts/2025ithomeironmanday7/</link><pubDate>Tue, 26 Aug 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday7/</guid><description>安安，我是 ChiYu！
 昨天，我們確立了專案的「北極星」——專案章程，並在 GitHub 上留下了第一個不可磨滅的印記。如果說昨天的「專案章程」是我們的**「戰略地圖」，告訴我們為何而戰、要攻下哪座城池。那今天，我們就要化身為「戰場指揮官」，繪製出士兵（使用者）在戰場上的具體「戰術路線圖」**。
 今天，我們將完全在終端機內，描繪這張地圖，產出兩份從「使用者視角」出發的關鍵文件：使用者故事 (User Stories) 與 使用者流程圖 (User Flowchart)。
 Part 1：什麼是「使用者故事」？ 別被「故事」這兩個字嚇到，我們不是要寫小說。使用者故事其實是一種在敏捷開發中，用來描述需求的強大工具。
@@ -14,4 +14,26 @@ Mermaid的語法我暫時不花太多篇幅作介紹，感覺要介紹可以花�
 Part 3：實戰開始：在終端機中扮演我們的產品經理 好了，理論課結束，讓我們再次召喚 Gemini CLI，請它繼續扮演我們的產品經理。
 Step 1：詠唱我們的魔法 (Craft the Prompt) 我們要讓 Gemini 直接讀取我們本地的「專案章程」，來確保我們的工作是基於最新、最正確的藍圖。
 打開 VS Code 終端機，詠唱我們的第二個「文件生成咒語」：
-【魔法詠唱：我們的 Prompt】 # 角色 (Role) 你是一位頂尖的產品經理 (PM)，擁有豐富的敏捷開發經驗，擅長將高階的專案目標，轉化為清晰、可執行的使用者故事與流程。你的產出兼具使用者同理心與技術可行性。 # 目標 (Objective) 我的目標是讓你將一份高階的「專案章程」分解為開發團隊可以立即投入工作的敏捷開發產物 (Agile Artifacts)，包含使用者故事和流程圖。 # 上下文 (Context) - **唯一的真相來源 (Single Source of Truth)**: 請將 @docs/PROJECT_CHARTER.</description></item></channel></rss>
+【魔法詠唱：我們的 Prompt】 # 角色 (Role) 你是一位頂尖的產品經理 (PM)，擁有豐富的敏捷開發經驗，擅長將高階的專案目標，轉化為清晰、可執行的使用者故事與流程。你的產出兼具使用者同理心與技術可行性。 # 目標 (Objective) 我的目標是讓你將一份高階的「專案章程」分解為開發團隊可以立即投入工作的敏捷開發產物 (Agile Artifacts)，包含使用者故事和流程圖。 # 上下文 (Context) - **唯一的真相來源 (Single Source of Truth)**: 請將 @docs/PROJECT_CHARTER.</description></item><item><title>Day 8: 【文件 #3】系統的心臟：用 Gemini CLI 設計「軟體架構文件」</title><link>/ChiYu-Blob/posts/2025ithomeironmanday8/</link><pubDate>Wed, 27 Aug 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday8/</guid><description>安安，我是 ChiYu！
+前兩天，我們完成了專案的「出生證明」(專案章程) 和「使用者地圖」(使用者故事)。我們現在非常清楚「為誰而做」以及「他們想做什麼」。
+今天，我們要戴上「工程安全帽」，從使用者的世界暫時抽離，化身為擘劃未來的 「系統架構師」。我們要進行一次視角切換，從關注「人」，轉向關注「系統」，回答一個核心問題：「為了滿足這些使用者故事，我們的系統內部應該長什麼樣子？」
+我們今天要畫的，不僅是建築的藍圖，更是未來系統穩定、高效、可擴展的基石。
+Part 1：偉大的分工：什麼是「前後端分離」？ 在我們深入探討具體的架構之前，你必須先理解現代網頁開發中最核心的一個思想——前後端分離 (Frontend-Backend Separation)。
+讓我們再次回到「經營一家餐廳」的比喻。一家餐廳，最基本的劃分就是「外場」與「內場」。
+外場 (前端 Frontend)：這是顧客能直接接觸到的地方。包含了華麗的裝潢、舒適的座位、精美的菜單、以及親切的服務生。它的唯一職責，就是提供給顧客最棒的「用餐體驗」。在我們的專案中，這對應的就是使用者在瀏覽器上看到的所有畫面，由 HTML, CSS, JavaScript 這三劍客負責打造。 內場 (後端 Backend)：這是神秘的廚房，顧客看不見也摸不著。廚師們在這裡處理訂單、烹飪食物、管理食材庫存。它的唯一職責，就是處理所有核心的「商業邏輯」與「數據管理」。在我們的專案中，這對應的就是運行在遠端伺服器上的 Python + Flask 應用程式。 「前後端分離」就是一個嚴格的規定：外場的人不准進内場，內場的人也不准跑去外場。他們之間唯一的溝通管道，就是透過「服務生」來傳遞標準化格式的「點餐單」與「餐點」。
+Part 2：溝通的契約：什麼是 API？ 這個至關重要的「服務生」，就是我們常說的 API (Application Programming Interface)。
+API 的本質，就是一份前端與後端之間，神聖不可侵犯的「溝通契約」。這份契約詳細地定義了：
+前端可以要求後端做哪些事（例如：查詢所有習慣、新增一筆紀錄）。 前端在提出要求時，必須提供哪些資訊（例如：新增習慣時要給習慣名稱）。 後端在完成任務後，承諾會回傳什麼格式的資料給前端。 有了這份契約，前端的「室內設計師」和後端的「大廚」就可以完全獨立、並行地工作，只要最後雙方都遵守契約，就能完美地將各自的成果組合起來。這份詳細的契約（Web API 規格書），將會是我們在 Day 10 的主題。
+Part 3：設計我們的廚房：Flask 後端 API 伺服器架構 好了，理解了前後端的分工與 API 的角色後，現在我們可以聚焦在「如何設計我們的廚房 (後端)」了。
+隨著我們的餐廳生意越來越好，菜色越來越多（功能越來越複雜）時，如果還把所有廚師都擠在一個廚房裡 (app.py)，肯定會天下大亂。
+因此，我們需要升級成「中央廚房」模式。我們會把廚房細分成「冷盤區」、「熱炒區」、「甜點區」，每個區域有專門的師傅負責。這在我們的後端專案中，就是所謂的**「模組化 (Modularity)」**。
+在 Flask 框架中，實現模組化的最佳實踐，就是使用**「藍圖 (Blueprints)」**。你可以把一個 Blueprint 想像成一個獨立的「功能模組包」。例如，我們可以規劃一個 habits.py 檔案，裡面專門放所有跟「習慣」相關的 API 路由。</description></item><item><title>Day 9: 【文件 #4】數據的家：用 Gemini 規劃「資料庫綱要」</title><link>/ChiYu-Blob/posts/2025ithomeironmanday9/</link><pubDate>Thu, 28 Aug 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday9/</guid><description>安安，我是 ChiYu！
+昨天，我們化身為架構師，完成了專案的**「系統藍圖」**(軟體架構文件)，釐切了前台、後台、API 與資料庫之間的分工合作關係。
+我們的餐廳藍圖畫好了，下一步，就是要來仔細規劃我們儲放所有食材的「食材庫」。在軟體世界裡，這個角色就是由**「資料庫 (Database)」來扮演。今天，我們將化身為「數據的守護者」——資料庫管理員 (DBA)，與 Gemini 一同規劃我們專案的「資料庫綱要 (Database Schema)」**！
+Part 1：什麼是「資料庫 (Database)」？ 對於新手來說，你可以把資料庫想像成一個擁有超能力的、極度嚴謹的 Excel 表格。它是一個專門用來「結構化儲存」資訊的系統，有非常明確的規則，來確保我們存進去的資料是乾淨、有組織、且易於查詢的。
+要理解資料庫，你只需要知道幾個核心概念：
+資料表 (Table)：就像 Excel 裡的一個工作表 (Sheet)。 欄位 (Column/Field)：就像工作表裡的第一行標題。 紀錄 (Row/Record)：工作表裡的一行資料。 綱要 (Schema)：這就是整個資料庫的「設計藍圖」。它不僅定義了有哪些資料表、每張表有哪些欄位，更重要的是，它定義了規則： 資料型態 (Data Types)：規定了每個欄位只能存放哪種類型的資料（數字、文字、日期等）。 約束 (Constraints)：規定了資料必須遵守的規則，例如 email 欄位的內容必須是獨一無二的 (UNIQUE)。 關聯 (Relationships)：定義了表與表之間的連結關係。 我們今天就是要設計這份包含所有規則的「綱要 (Schema)」。
+Part 2：資料庫的兩大門派：SQL vs. NoSQL 在選擇具體的資料庫之前，你需要知道，當今的資料庫世界主要有兩大門派：SQL (關聯式資料庫) 和 NoSQL (非關聯式資料庫)。
+SQL 像 Excel 表格，結構嚴謹，資料之間關係明確，可靠性強。 NoSQL 像一個自由的資料夾，結構靈活彈性，擴展性極強。 對於我們的「習慣養成日誌」專案來說，要儲存的資料關係非常明確：一個「使用者」可以擁有多個「習慣」，一個「習慣」可以擁有多筆「打卡紀錄」。這種層次分明、井然有序的關係，正是 SQL 資料庫最擅長處理的。因此，選擇 SQL 陣營是我們最穩健的選擇。
+Part 3：選擇我們的資料庫：為什麼是 SQLite？ 在 SQL 這個門派裡，有許多知名的武林高手。但對於新手和中小型專案，我們選擇一個更輕巧、更友善的方案：SQLite。
+選擇 SQLite 的理由非常充分：零設定、單一檔案、Python 內建支援。它能讓你專注在「資料庫設計」本身，而不用分心去處理複雜的環境設定，是學習資料庫觀念的最佳起點。</description></item></channel></rss>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>提示工程 on ChiYu Code Journey</title><link>/ChiYu-Blob/categories/%E6%8F%90%E7%A4%BA%E5%B7%A5%E7%A8%8B/</link><description>Recent content in 提示工程 on ChiYu Code Journey</description><generator>Hugo -- gohugo.io</generator><language>zh-TW</language><lastBuildDate>Sat, 30 Aug 2025 00:00:00 +0800</lastBuildDate><atom:link href="/ChiYu-Blob/categories/%E6%8F%90%E7%A4%BA%E5%B7%A5%E7%A8%8B/index.xml" rel="self" type="application/rss+xml"/><item><title>Day 11: 【心法 #2】透過AI幫我們生成Prompt</title><link>/ChiYu-Blob/posts/2025ithomeironmanday11/</link><pubDate>Sat, 30 Aug 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday11/</guid><description>安安，我是 ChiYu！
+昨天，我們終於完成了上半部分的最後一份文件！可以正式進入開發的環節！但在進入開發環節前，我想要回頭再詳細聊一下 Ai Prompt Engineering。
+我相信大家在經歷了前面五天、一連串燒腦的文件生成後，肯定會有點累，心中可能還會冒出一個疑問：
+「ChiYu 你每次給的 Prompt 都又臭又長，結構還那麼複雜，每次都要自己想，也太累了吧？」
+你說的沒錯！所以今天，我們要稍微轉換一下節奏，暫時不推進度。我們要來一場「魔法師的幕後揭秘」，聊聊我是如何生成那些看似複雜、但效果奇佳的完整 Prompt 的！
+Part 1：為什麼現在才說？先學會走路，再學會開跑車 在揭曉我的秘密武器之前，我想先解釋一下，為什麼我刻意把這個技巧，留到今天才告訴大家。
+過去五天，我讓大家親手去「感受」一個 Prompt 的好壞。你們親自體驗了從一個模糊的想法，到一個結構化的指令；從 AI 給出不甚滿意的答案，到透過迭代優化，最終得到專業產出的完整過程。
+這個 「手動」的過程至關重要。因為它能讓你建立起對**「好 Prompt」的品味與鑑賞力**。
+如果我第一天就教你開跑車，你可能會因為速度太快而看不清沿途的風景，甚至直接翻車。只有當你親自走過一遍崎嶇的山路，你才會知道跑車的懸吊有多重要、輪胎該怎麼選。
+現在，你已經是一位合格的**「Prompt 手工藝人」了。是時候，為你配備一台「Prompt 工業母機」**了！
+Part 2：我們的「靈感實驗室」：Gemini Web UI 你可能又會問：「咦？我們不是說好要完全在終端機裡 Vibe Coding 嗎？怎麼又回到瀏覽器了？」
+問得好！一個專業的開發者，懂得為不同的任務，選擇最適合的工具。
+Gemini CLI：是我們的**「生產線」**。它追求的是效率、精準、可重複。當我們心中已經有了明確的目標時（例如：根據 @API_SPEC.yml 生成程式碼），CLI 是我們的最佳選擇。 Gemini Web UI：是我們的**「靈感實驗室」或「創意沙盒」**。它擁有更自由、更具創意的互動介面，可以同時看到多個版本的草稿、方便地進行長篇大論的對話。它最適合的場景，就是進行探索性、創造性、迭代性的任務——例如，打磨我們即將在 CLI 中使用的「終極咒語」！ Part 3：AI 幫我寫咒語：Prompt Engineering 的「後設」技巧 「Prompt Engineering」，直白點說，就是「如何跟 AI 好好說話的藝術」。我們在 Day 5 已經介紹過它的基本原則。但今天，我們要玩一個更進階的**「後設 (Meta)」**技巧——讓 AI 自己，成為一位提示工程專家。
+這就像是，我們不只問許願精靈『我想要什麼』，而是拉著精靈坐下來，一起討論：『嘿，精靈！以你對魔法的理解，如果我想要一座完美的黃金城堡，我應該用什麼樣的「許願詞」、提供哪些細節（例如：尺寸、風格、純度），才能讓你最有效率、最不會理解錯誤地幫我變出來？』我們正在讓 AI 成為我們的『許願顧問』。
+首先打開你的靈感實驗室，前往 gemini.google.com。
+這邊我提供我在使用的萬用咒語：
+【我的萬用 Prompt 模板】 # 角色 (Role) 你是一位頂尖的 AI Prompt Engineering 專家與思維框架建構師。你的核心專長是，將使用者提出的初步、模糊的想法，轉化為一個結構完整、指令清晰、包含所有最佳實踐的高品質「進階 Prompt」。 # 目標 (Objective) 我的任務是，請你根據我下方提供的「初步構想」，為我生成一個可以直接複製使用、用於驅動其他 AI 完成具體任務的「進階 Prompt」。 --- ## 使用者提供的初步構想 (User&amp;#39;s Initial Idea) * **[核心任務]**: `[請在這裡用一句話描述你最想讓 AI 做什麼。例如：幫我規劃一趟為期七天的日本東京家庭旅遊行程。]` * **[目標產出]**: `[請描述你希望最終得到的產出物是什麼。例如：一份 Markdown 格式的每日行程表。]` * **[目標受眾]**: `[請描述這個產出物是給誰看的，或在什麼情境下使用。例如：給我的家人看，成員包含兩位長輩和一位小孩。]` * **[關鍵細節與限制]**: `[請列出任何你認為重要的額外資訊、風格要求或限制。例如：行程要輕鬆，不要太趕；需要考慮長輩的體力；預算中等；希望包含至少一個親子景點。]` --- ## 你的任務與產出要求 (Your Task &amp;amp; Output Requirements) 1.</description></item></channel></rss>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2025iThomeIronman on ChiYu Code Journey</title><link>/ChiYu-Blob/tags/2025ithomeironman/</link><description>Recent content in 2025iThomeIronman on ChiYu Code Journey</description><generator>Hugo -- gohugo.io</generator><language>zh-TW</language><lastBuildDate>Tue, 26 Aug 2025 00:00:00 +0800</lastBuildDate><atom:link href="/ChiYu-Blob/tags/2025ithomeironman/index.xml" rel="self" type="application/rss+xml"/><item><title>Day 1: 【啟程】嘿，AI！我們來做個網站，但這次，我們約法三章</title><link>/ChiYu-Blob/posts/2025ithomeironmanday1/</link><pubDate>Wed, 20 Aug 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday1/</guid><description>Day 0: 【啟程】嘿，AI！我們來做個網站，但這次，我們約法三章 嘿，大家好啊！我是 ChiYu，也可以叫我 Eric。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2025iThomeIronman on ChiYu Code Journey</title><link>/ChiYu-Blob/tags/2025ithomeironman/</link><description>Recent content in 2025iThomeIronman on ChiYu Code Journey</description><generator>Hugo -- gohugo.io</generator><language>zh-TW</language><lastBuildDate>Fri, 05 Sep 2025 00:00:00 +0800</lastBuildDate><atom:link href="/ChiYu-Blob/tags/2025ithomeironman/index.xml" rel="self" type="application/rss+xml"/><item><title>Day 1: 【啟程】嘿，AI！我們來做個網站，但這次，我們約法三章</title><link>/ChiYu-Blob/posts/2025ithomeironmanday1/</link><pubDate>Wed, 20 Aug 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday1/</guid><description>Day 0: 【啟程】嘿，AI！我們來做個網站，但這次，我們約法三章 嘿，大家好啊！我是 ChiYu，也可以叫我 Eric。
 寫了五年的 Code，平常都在跟 .Net 還有 Azure 打交道。簡單說，就是個靠鍵盤吃飯的工程師啦。去年有參賽，但中途忘記發文中斷!!! 希望今年能培養好習慣每天準時一篇不斷更!!!
 這趟旅程，是為誰準備的？ 在開始之前，我想先說說，這系列文章是為誰而寫的。
 你可能完全沒有程式背景，但對現在最紅的 Vibe Coding 充滿好奇嗎？你是不是也想跟上這波 AI 浪潮，試著自己動手做點東西，甚至想成為一名開發者呢？
@@ -93,4 +93,106 @@ Mermaid的語法我暫時不花太多篇幅作介紹，感覺要介紹可以花�
 Part 3：實戰開始：在終端機中扮演我們的產品經理 好了，理論課結束，讓我們再次召喚 Gemini CLI，請它繼續扮演我們的產品經理。
 Step 1：詠唱我們的魔法 (Craft the Prompt) 我們要讓 Gemini 直接讀取我們本地的「專案章程」，來確保我們的工作是基於最新、最正確的藍圖。
 打開 VS Code 終端機，詠唱我們的第二個「文件生成咒語」：
-【魔法詠唱：我們的 Prompt】 # 角色 (Role) 你是一位頂尖的產品經理 (PM)，擁有豐富的敏捷開發經驗，擅長將高階的專案目標，轉化為清晰、可執行的使用者故事與流程。你的產出兼具使用者同理心與技術可行性。 # 目標 (Objective) 我的目標是讓你將一份高階的「專案章程」分解為開發團隊可以立即投入工作的敏捷開發產物 (Agile Artifacts)，包含使用者故事和流程圖。 # 上下文 (Context) - **唯一的真相來源 (Single Source of Truth)**: 請將 @docs/PROJECT_CHARTER.</description></item></channel></rss>
+【魔法詠唱：我們的 Prompt】 # 角色 (Role) 你是一位頂尖的產品經理 (PM)，擁有豐富的敏捷開發經驗，擅長將高階的專案目標，轉化為清晰、可執行的使用者故事與流程。你的產出兼具使用者同理心與技術可行性。 # 目標 (Objective) 我的目標是讓你將一份高階的「專案章程」分解為開發團隊可以立即投入工作的敏捷開發產物 (Agile Artifacts)，包含使用者故事和流程圖。 # 上下文 (Context) - **唯一的真相來源 (Single Source of Truth)**: 請將 @docs/PROJECT_CHARTER.</description></item><item><title>Day 8: 【文件 #3】系統的心臟：用 Gemini CLI 設計「軟體架構文件」</title><link>/ChiYu-Blob/posts/2025ithomeironmanday8/</link><pubDate>Wed, 27 Aug 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday8/</guid><description>安安，我是 ChiYu！
+前兩天，我們完成了專案的「出生證明」(專案章程) 和「使用者地圖」(使用者故事)。我們現在非常清楚「為誰而做」以及「他們想做什麼」。
+今天，我們要戴上「工程安全帽」，從使用者的世界暫時抽離，化身為擘劃未來的 「系統架構師」。我們要進行一次視角切換，從關注「人」，轉向關注「系統」，回答一個核心問題：「為了滿足這些使用者故事，我們的系統內部應該長什麼樣子？」
+我們今天要畫的，不僅是建築的藍圖，更是未來系統穩定、高效、可擴展的基石。
+Part 1：偉大的分工：什麼是「前後端分離」？ 在我們深入探討具體的架構之前，你必須先理解現代網頁開發中最核心的一個思想——前後端分離 (Frontend-Backend Separation)。
+讓我們再次回到「經營一家餐廳」的比喻。一家餐廳，最基本的劃分就是「外場」與「內場」。
+外場 (前端 Frontend)：這是顧客能直接接觸到的地方。包含了華麗的裝潢、舒適的座位、精美的菜單、以及親切的服務生。它的唯一職責，就是提供給顧客最棒的「用餐體驗」。在我們的專案中，這對應的就是使用者在瀏覽器上看到的所有畫面，由 HTML, CSS, JavaScript 這三劍客負責打造。 內場 (後端 Backend)：這是神秘的廚房，顧客看不見也摸不著。廚師們在這裡處理訂單、烹飪食物、管理食材庫存。它的唯一職責，就是處理所有核心的「商業邏輯」與「數據管理」。在我們的專案中，這對應的就是運行在遠端伺服器上的 Python + Flask 應用程式。 「前後端分離」就是一個嚴格的規定：外場的人不准進内場，內場的人也不准跑去外場。他們之間唯一的溝通管道，就是透過「服務生」來傳遞標準化格式的「點餐單」與「餐點」。
+Part 2：溝通的契約：什麼是 API？ 這個至關重要的「服務生」，就是我們常說的 API (Application Programming Interface)。
+API 的本質，就是一份前端與後端之間，神聖不可侵犯的「溝通契約」。這份契約詳細地定義了：
+前端可以要求後端做哪些事（例如：查詢所有習慣、新增一筆紀錄）。 前端在提出要求時，必須提供哪些資訊（例如：新增習慣時要給習慣名稱）。 後端在完成任務後，承諾會回傳什麼格式的資料給前端。 有了這份契約，前端的「室內設計師」和後端的「大廚」就可以完全獨立、並行地工作，只要最後雙方都遵守契約，就能完美地將各自的成果組合起來。這份詳細的契約（Web API 規格書），將會是我們在 Day 10 的主題。
+Part 3：設計我們的廚房：Flask 後端 API 伺服器架構 好了，理解了前後端的分工與 API 的角色後，現在我們可以聚焦在「如何設計我們的廚房 (後端)」了。
+隨著我們的餐廳生意越來越好，菜色越來越多（功能越來越複雜）時，如果還把所有廚師都擠在一個廚房裡 (app.py)，肯定會天下大亂。
+因此，我們需要升級成「中央廚房」模式。我們會把廚房細分成「冷盤區」、「熱炒區」、「甜點區」，每個區域有專門的師傅負責。這在我們的後端專案中，就是所謂的**「模組化 (Modularity)」**。
+在 Flask 框架中，實現模組化的最佳實踐，就是使用**「藍圖 (Blueprints)」**。你可以把一個 Blueprint 想像成一個獨立的「功能模組包」。例如，我們可以規劃一個 habits.py 檔案，裡面專門放所有跟「習慣」相關的 API 路由。</description></item><item><title>Day 9: 【文件 #4】數據的家：用 Gemini 規劃「資料庫綱要」</title><link>/ChiYu-Blob/posts/2025ithomeironmanday9/</link><pubDate>Thu, 28 Aug 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday9/</guid><description>安安，我是 ChiYu！
+昨天，我們化身為架構師，完成了專案的**「系統藍圖」**(軟體架構文件)，釐切了前台、後台、API 與資料庫之間的分工合作關係。
+我們的餐廳藍圖畫好了，下一步，就是要來仔細規劃我們儲放所有食材的「食材庫」。在軟體世界裡，這個角色就是由**「資料庫 (Database)」來扮演。今天，我們將化身為「數據的守護者」——資料庫管理員 (DBA)，與 Gemini 一同規劃我們專案的「資料庫綱要 (Database Schema)」**！
+Part 1：什麼是「資料庫 (Database)」？ 對於新手來說，你可以把資料庫想像成一個擁有超能力的、極度嚴謹的 Excel 表格。它是一個專門用來「結構化儲存」資訊的系統，有非常明確的規則，來確保我們存進去的資料是乾淨、有組織、且易於查詢的。
+要理解資料庫，你只需要知道幾個核心概念：
+資料表 (Table)：就像 Excel 裡的一個工作表 (Sheet)。 欄位 (Column/Field)：就像工作表裡的第一行標題。 紀錄 (Row/Record)：工作表裡的一行資料。 綱要 (Schema)：這就是整個資料庫的「設計藍圖」。它不僅定義了有哪些資料表、每張表有哪些欄位，更重要的是，它定義了規則： 資料型態 (Data Types)：規定了每個欄位只能存放哪種類型的資料（數字、文字、日期等）。 約束 (Constraints)：規定了資料必須遵守的規則，例如 email 欄位的內容必須是獨一無二的 (UNIQUE)。 關聯 (Relationships)：定義了表與表之間的連結關係。 我們今天就是要設計這份包含所有規則的「綱要 (Schema)」。
+Part 2：資料庫的兩大門派：SQL vs. NoSQL 在選擇具體的資料庫之前，你需要知道，當今的資料庫世界主要有兩大門派：SQL (關聯式資料庫) 和 NoSQL (非關聯式資料庫)。
+SQL 像 Excel 表格，結構嚴謹，資料之間關係明確，可靠性強。 NoSQL 像一個自由的資料夾，結構靈活彈性，擴展性極強。 對於我們的「習慣養成日誌」專案來說，要儲存的資料關係非常明確：一個「使用者」可以擁有多個「習慣」，一個「習慣」可以擁有多筆「打卡紀錄」。這種層次分明、井然有序的關係，正是 SQL 資料庫最擅長處理的。因此，選擇 SQL 陣營是我們最穩健的選擇。
+Part 3：選擇我們的資料庫：為什麼是 SQLite？ 在 SQL 這個門派裡，有許多知名的武林高手。但對於新手和中小型專案，我們選擇一個更輕巧、更友善的方案：SQLite。
+選擇 SQLite 的理由非常充分：零設定、單一檔案、Python 內建支援。它能讓你專注在「資料庫設計」本身，而不用分心去處理複雜的環境設定，是學習資料庫觀念的最佳起點。</description></item><item><title>Day 10: 【文件 #5】溝通的契約：用 Gemini 撰寫「Web API 規格書」</title><link>/ChiYu-Blob/posts/2025ithomeironmanday10/</link><pubDate>Fri, 29 Aug 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday10/</guid><description>安安，我是 ChiYu！
+昨天，我們完成了餐廳的「食材倉庫」設計圖——資料庫綱要。至此，我們專案的願景、使用者需求、系統架構、數據儲存方式，都已經有了明確的定義。
+我們的餐廳藍圖（架構）和食材倉庫（資料庫）都設計好了。下一步，就是要交給「服務生 (API)」一份精準的「菜單」，讓他知道如何跟廚房溝通，顧客可以點哪些菜，以及餐點會以什麼形式送上。
+這份「菜單」，就是我們今天要產出的，後端藍圖的最後一塊拼圖——Web API 規格書。
+Part 1：什麼是「API 規格書」？ 我們在 Day 7 提過，API 是前端（前台）與後端（廚房）之間的溝通橋樑。而「API 規格書」就是一份極其嚴謹、毫無模糊空間的技術文件，如同法律契約一般，精準地定義了前端與後端之間每一次互動的細節。
+什麼是 OpenAPI 3.0 (Swagger)？ 為了避免每家公司都用自己的格式來寫規格書，業界發展出了一套公認的標準，其中最流行的就是 OpenAPI 3.0（前身就是大名鼎鼎的 Swagger）。它用 YAML 或 JSON 格式，提供了一套完整的語法規則來描述 API。YAML 格式因其對人類更友善、更易讀的特性而廣受歡迎。
+使用 OpenAPI 的最大好處是，有非常多工具可以讀取這份文件，自動生成可以互動的 API 文件網站、不同語言的客戶端程式碼、甚至是伺服器端的程式碼骨架！這也體現了一種專業的「設計優先 (Design-First)」開發哲學——我們先把契約定義好，再動手寫程式，這與我們系列「藍圖優先」的核心思想不謀而合。
+Part 2：實戰開始：讓 Gemini 成為我們的 API 設計專家 好了，讓我們來設計這份最重要的契約吧！
+Step 1：詠唱我們的魔法 (Craft the Prompt) API 的設計，需要通盤考慮專案的目標、使用者故事、系統架構、以及資料庫綱要。所以這次，我們要拿出至今為止的所有成果，全部餵給 Gemini！
+打開 VS Code 終端機，詠唱我們至今為止最複雜的一個「文件生成咒語」：
+【魔法詠唱：我們的 Prompt】 # --------------------------------------------------------------------------- # PROMPT FOR GEMINI: Production-Ready OpenAPI 3.0.3 Specification Generator # --------------------------------------------------------------------------- # 角色 (Role) 你是一位頂尖的後端工程師與 API 設計專家，精通 RESTful API 設計原則與 OpenAPI 3.</description></item><item><title>Day 11: 【心法 #2】透過AI幫我們生成Prompt</title><link>/ChiYu-Blob/posts/2025ithomeironmanday11/</link><pubDate>Sat, 30 Aug 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday11/</guid><description>安安，我是 ChiYu！
+昨天，我們終於完成了上半部分的最後一份文件！可以正式進入開發的環節！但在進入開發環節前，我想要回頭再詳細聊一下 Ai Prompt Engineering。
+我相信大家在經歷了前面五天、一連串燒腦的文件生成後，肯定會有點累，心中可能還會冒出一個疑問：
+「ChiYu 你每次給的 Prompt 都又臭又長，結構還那麼複雜，每次都要自己想，也太累了吧？」
+你說的沒錯！所以今天，我們要稍微轉換一下節奏，暫時不推進度。我們要來一場「魔法師的幕後揭秘」，聊聊我是如何生成那些看似複雜、但效果奇佳的完整 Prompt 的！
+Part 1：為什麼現在才說？先學會走路，再學會開跑車 在揭曉我的秘密武器之前，我想先解釋一下，為什麼我刻意把這個技巧，留到今天才告訴大家。
+過去五天，我讓大家親手去「感受」一個 Prompt 的好壞。你們親自體驗了從一個模糊的想法，到一個結構化的指令；從 AI 給出不甚滿意的答案，到透過迭代優化，最終得到專業產出的完整過程。
+這個 「手動」的過程至關重要。因為它能讓你建立起對**「好 Prompt」的品味與鑑賞力**。
+如果我第一天就教你開跑車，你可能會因為速度太快而看不清沿途的風景，甚至直接翻車。只有當你親自走過一遍崎嶇的山路，你才會知道跑車的懸吊有多重要、輪胎該怎麼選。
+現在，你已經是一位合格的**「Prompt 手工藝人」了。是時候，為你配備一台「Prompt 工業母機」**了！
+Part 2：我們的「靈感實驗室」：Gemini Web UI 你可能又會問：「咦？我們不是說好要完全在終端機裡 Vibe Coding 嗎？怎麼又回到瀏覽器了？」
+問得好！一個專業的開發者，懂得為不同的任務，選擇最適合的工具。
+Gemini CLI：是我們的**「生產線」**。它追求的是效率、精準、可重複。當我們心中已經有了明確的目標時（例如：根據 @API_SPEC.yml 生成程式碼），CLI 是我們的最佳選擇。 Gemini Web UI：是我們的**「靈感實驗室」或「創意沙盒」**。它擁有更自由、更具創意的互動介面，可以同時看到多個版本的草稿、方便地進行長篇大論的對話。它最適合的場景，就是進行探索性、創造性、迭代性的任務——例如，打磨我們即將在 CLI 中使用的「終極咒語」！ Part 3：AI 幫我寫咒語：Prompt Engineering 的「後設」技巧 「Prompt Engineering」，直白點說，就是「如何跟 AI 好好說話的藝術」。我們在 Day 5 已經介紹過它的基本原則。但今天，我們要玩一個更進階的**「後設 (Meta)」**技巧——讓 AI 自己，成為一位提示工程專家。
+這就像是，我們不只問許願精靈『我想要什麼』，而是拉著精靈坐下來，一起討論：『嘿，精靈！以你對魔法的理解，如果我想要一座完美的黃金城堡，我應該用什麼樣的「許願詞」、提供哪些細節（例如：尺寸、風格、純度），才能讓你最有效率、最不會理解錯誤地幫我變出來？』我們正在讓 AI 成為我們的『許願顧問』。
+首先打開你的靈感實驗室，前往 gemini.google.com。
+這邊我提供我在使用的萬用咒語：
+【我的萬用 Prompt 模板】 # 角色 (Role) 你是一位頂尖的 AI Prompt Engineering 專家與思維框架建構師。你的核心專長是，將使用者提出的初步、模糊的想法，轉化為一個結構完整、指令清晰、包含所有最佳實踐的高品質「進階 Prompt」。 # 目標 (Objective) 我的任務是，請你根據我下方提供的「初步構想」，為我生成一個可以直接複製使用、用於驅動其他 AI 完成具體任務的「進階 Prompt」。 --- ## 使用者提供的初步構想 (User&amp;#39;s Initial Idea) * **[核心任務]**: `[請在這裡用一句話描述你最想讓 AI 做什麼。例如：幫我規劃一趟為期七天的日本東京家庭旅遊行程。]` * **[目標產出]**: `[請描述你希望最終得到的產出物是什麼。例如：一份 Markdown 格式的每日行程表。]` * **[目標受眾]**: `[請描述這個產出物是給誰看的，或在什麼情境下使用。例如：給我的家人看，成員包含兩位長輩和一位小孩。]` * **[關鍵細節與限制]**: `[請列出任何你認為重要的額外資訊、風格要求或限制。例如：行程要輕鬆，不要太趕；需要考慮長輩的體力；預算中等；希望包含至少一個親子景點。]` --- ## 你的任務與產出要求 (Your Task &amp;amp; Output Requirements) 1.</description></item><item><title>Day 12: 【後端 #1】起手式：AI 代理人 生成模組化的 Flask 專案</title><link>/ChiYu-Blob/posts/2025ithomeironmanday12/</link><pubDate>Sun, 31 Aug 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday12/</guid><description>安安，我是 ChiYu！歡迎來到歷史性的一刻！
+過去一週，我們是專案的「規劃師」，用文字和圖表描繪著未來。從今天起，我們是「建築師」與「魔法師」，要將那些平面的藍圖，用程式碼，一行一行地「召喚」到這個世界上！
+今天，我們不打算一個檔案一個檔案地慢慢來。我們要直接挑戰專業的作法！我們將命令 AI 代理人，根據我們 Day 8 設計的「模組化專案結構」，一步到位地為我們生成整個後端專案的基礎架構，包含所有資料庫模型的定義！
+Part 1：為什麼要一開始就這麼「搞剛」？ 你可能會問，為什麼不先從一個簡單的檔案開始，之後再慢慢改？
+因為專業的習慣，從第一天就要養成。
+我們在 Day 7 設計的**「應用程式工廠 (Application Factory)」**模式，雖然看起來檔案比較多，但它為我們專案的未來，鋪設了一條康莊大道。這種結構能幫助我們將專案的不同部分（如設定、資料庫模型、API 路由）清晰地分開，讓專案更有條理、更容易測試與擴展。
+從一開始就採用這種專業結構，就像是蓋房子時，直接把客廳、臥室、廚房的隔間都規劃好，而不是先蓋一個大通鋪，之後再來敲牆壁。
+Part 2：Vibe Coding 實戰：命令 AI 代理人建立專案 好了，讓我們來指揮 Gemini，讓它為我們建立這座「中央廚房」。這次，我們不只要求它生成文字，我們要命令它直接行動！
+Step 1：進入互動模式並下達總指令 我們要使用 gemini chat 互動模式，因為這最能模擬我們與一位「代理人」進行對話的感覺。
+在 VS Code 終端機中，輸入 gemini chat 並按下 Enter。 看到 &amp;gt;&amp;gt;&amp;gt; 提示符後，詠唱我們的「專案創世」咒語： 【魔法詠唱：我們的 Prompt】 # --------------------------------------------------------------------------- # PROMPT FOR GEMINI: Production-Ready Flask Project Scaffolding Agent # --------------------------------------------------------------------------- # 角色 (Role) 你是一位精通 Python Flask 專案架構與 Shell 指令的 AI Code Scaffolding Agent。你的核心任務是根據設計文件，自動化地生成一個結構清晰、可立即執行的模組化 Flask 專案骨架。 # 目標 (Objective) 我的目標是讓你根據「軟體架構」與「資料庫綱要」文件，為我生成一個遵循業界最佳實踐的 Flask 專案。這個專案在生成後，應能立即安裝依賴並成功運行。 # 上下文 (Context) - **核心依據**: 你的所有操作都必須基於以下兩份文件的定義： 1.</description></item><item><title>Day 13: 【後端 #2】AI 建築師：依藍圖自動建構 CRUD API</title><link>/ChiYu-Blob/posts/2025ithomeironmanday13/</link><pubDate>Mon, 01 Sep 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday13/</guid><description>安安，我是 ChiYu！歡迎來到 Vibe Coding 協奏曲的第一個最大的開發項目！
+昨天，我們用一個指令召喚出了整個專案骨架。今天，我們要進行一次令人振奮的專案升級。我們將扮演一位「專案總建築師」，把詳細的「設計藍圖 (API_SPEC.yml)」交給我們的 AI 首席工程師，命令它根據藍圖，將完整的「習慣 (Habits)」資源模組，精準地建構到我們現有的專案結構中！
+而在工程完工後，我們還需要一套最先進的「驗收工具」，來驗證成果是否符合藍圖規範。而這套工具的安裝與設定，我們同樣要交給 AI 來完成！
+Part 1：Vibe Coding 實戰：下達「程式碼建構」指令 專案藍圖已備妥，讓我們打開終端機，指揮我們的 AI 首席工程師開始施工。
+【實戰魔法詠唱：我們的 Prompt】 # 角色 (Role) 你是一位資深的 Python 後端工程師，專精於 Flask 框架與 API 開發。 你擁有豐富的經驗，能夠根據 OpenAPI 規格書，快速、精準地建構出穩定、 安全且符合業務邏輯的後端程式碼。你擅長使用 SQLAlchemy 進行資料庫操作， 並習慣撰寫清晰、可維護的程式碼。 # 目標 (Objective) 你的任務是，根據提供的 `API_SPEC.yml` 規格書與相關設計文件， 在一個已存在的 Python Flask 專案結構中，實作所有 API 端點的後端業務邏輯。 你將直接修改指定的 Python 檔案， 填入完整、可執行、生產級別 (Production-Ready) 的程式碼。 # 上下文與關鍵資訊 (Context &amp;amp; Key Information) * **OpenAPI 規格書 (OpenAPI Specification)**: 檔案位於 `[請提供 API_SPEC.</description></item><item><title>Day 14: 【DevOps #1】AI 品管員：設定 GitHub Actions 自動化程式碼檢查</title><link>/ChiYu-Blob/posts/2025ithomeironmanday14/</link><pubDate>Tue, 02 Sep 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday14/</guid><description>安安，我是 ChiYu！
+我們前幾天火力全開，後端 API 核心功能都搞定了。我們的後端架構現在什麼功能都做得出來！但問題來了，我們怎麼保證每個工程師（當然也包括幾週後的你自己！）在添加新功能時，都遵守一樣的編碼標準跟架構美學？
+光靠口頭約定絕對不夠，我們需要一套自動的、鐵面無私的「 品質稽查系統 」。只要有新的程式碼被提交 (commit)，系統就自動進行檢查，確保一切都符合最高標準！
+今天，我們就要來幫專案請一位 24 小時不休息的稽查員—— GitHub Actions ，順便設定好我們的第一條自動化品管流程 (CI)！
+Part 1：什麼是 CI？為什麼要從「程式碼風格」開始？ CI (Continuous Integration)，持續整合，是現代軟體開發的基本功！它的精神就是「沒事多 commit，多 commit 沒事」。每次完成一小塊功能，就提交上來讓系統檢查，這樣才不會到最後要合併時，大家的程式碼風格迥異、互相衝突，那簡集是開發地獄！
+我們要派給這位品管員的第一個任務，非常基礎，就是 「檢查程式碼乾不乾淨 (Linting)」！這就好像檢查建築的管線有沒有外露、牆面是否平整一樣。我們要讓所有的 Code 都遵循 Python 的官方風格指南 (PEP 8)，看起來整整齊齊、清爽漂亮！
+Part 2：Vibe Coding 實戰：聘請 AI 撰寫「自動化工作手冊」 準備好了嗎？又到了我們使喚 Gemini 的快樂時光！把它當成我們的 DevOps 專家，來幫我們撰寫那份詳細的工作手冊 (.yml 檔) 吧！
+Step 1: 命令 AI 準備「稽查工具清單」 第一步，我們要先列一張「工具清單 (requirements.txt)」，告訴我們的稽查員執行任務時需要哪些工具。這點小事，當然也是丟給 AI 去做！
+打開終端機，切換到 gemini chat 模式，下達我們的第一道指令：
+【魔法詠唱：生成依賴文件】 # 角色 (Role) 你是一位經驗豐富的 Python 開發者，非常熟悉使用 `requirements.txt` 來管理專案的相依性套件，並了解區分「生產環境依賴」與「開發環境依賴」的最佳實踐。 # 目標 (Objective) 請為一個 Python 專案生成 `requirements.</description></item><item><title>Day 15: 【後端 #3】API 測試：用 Gemini CLI 輔助撰寫 Pytest</title><link>/ChiYu-Blob/posts/2025ithomeironmanday15/</link><pubDate>Wed, 03 Sep 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday15/</guid><description>安安，我是 ChiYu！
+昨天，我們的 CI 品管員 (GitHub Actions) 成功上崗，確保了所有程式碼的「風格」都符合最高標準。
+但是，一本語法完全正確的食譜，不代表按照它做出來的菜就一定好吃。我們的專案，即使程式碼風格再優雅，如果 API 的商業邏輯出現錯誤，那依然是嚴重的品質問題。
+今天，我們就要來建立一張更堅實的「 安全網」。我們將引入自動化測試，指揮 Gemini 化身為「 測試工程師」，為我們撰寫測試案例，並直接升級 CI 流程，確保我們的 API 邏輯永遠精準無誤！
+Part 1：告別「手動點點點」：為什麼需要自動化測試？ 你可能會問：「我們不是已經用 Swagger UI 手動測試過 API 了嗎？」
+手動測試在開發時很方便，但它有幾個致命缺點：效率極低、容易遺漏、無法規模化。當專案功能變多，你不可能每次修改後，都把所有 API 再手動點一次。
+而自動化測試，就是「用程式碼來測試程式碼」。我們預先寫好一系列的「考卷」（測試案例），然後讓電腦在幾秒鐘內，自動「批改」我們的應用程式。
+比喻來說：
+自動化測試就像是高空走鋼索表演底下的那張「安全網」。有了它，開發者才能充滿信心地在鋼索上快速前進、大膽地嘗試新動作（重構或新增功能）。因為我們知道，即使不小心失足（不小心改壞了舊功能），這張安全網也會立刻接住我們（測試會失敗並報錯），而不是讓我們直接摔到地上（等使用者回報 Bug）。
+Part 2：我們的測試武器：Pytest Pytest 是 Python 世界中最受歡迎、也最簡單易用的測試框架。我們將用它來撰寫我們的「考卷」。
+Part 3：Vibe Coding 實戰：與 AI 測試工程師的協作 準備好了嗎？讓我們進入 gemini chat 模式，一步步指揮我們的 AI 測試工程師。
+Step 1: 命令 AI 設置「測試實驗室」 首先，我們要讓 AI 為我們準備好測試所需的環境。
+【魔法詠唱：設置測試環境】 好的，我們準備為專案加入自動化測試。
+請幫我執行以下任務：
+安裝測試框架: 使用 pip 安裝 pytest。 更新依賴清單: 將 pytest 新增到 requirements.</description></item><item><title>Day 16: 【整合篇】後端竣工！回顧與展望</title><link>/ChiYu-Blob/posts/2025ithomeironmanday16/</link><pubDate>Thu, 04 Sep 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday16/</guid><description>安安，我是 ChiYu！
+走到這一步，請先放下鍵盤，靠在椅背上，深呼吸，然後給自己一個最真誠、最響亮的掌聲！你真的非常、非常了不起！
+今天，是我們「左手藍圖，右手魔法」協奏曲的上半場終章。我們將暫時放下後端的程式碼，為過去兩週緊湊而充實的奮鬥，畫下一個完美的句點。今天的議程很簡單：慶祝，回顧我們走了多遠，沉澱我們學到了什麼，然後滿懷期待地展望未來。
+Part 1：旅程回顧：從一個模糊的想法到一個會說話的後端 還記得兩週前的我們嗎？那時，我們手中只有一個飄在空中的、模糊的想法：「我想做個能幫助人們的習慣追蹤器」。它很美好，但也很脆弱。
+而現在，經過十四天的淬鍊，我們共同打造出了一個堅實的、看得見摸得著的成果。它不再只是一個想法，而是一個功能完整、經過雙重自動化驗證、穩定可靠的後端服務。我們親手賦予了它骨骼與心跳。
+讓我們一同盤點，在這趟旅程中，我們從無到有，創造了哪些寶貴的「數位資產」：
+一套完整的「設計藍圖」：我們產出了五份彼此關聯、層層遞進的專業文件。從定義方向的《專案章程》，到釐清需求的《使用者故事》，再到搭建骨架的《軟體架構》、規劃數據的《資料庫綱要》，最終確立契約的《API 規格書》。這套藍圖，是我們所有工作的「單一真理來源」，它確保了我們的航行始終朝著正確的航向。 一組強大的「核心 API」：我們利用 Vibe Coding，高效地實作了身份驗證、習慣管理等所有核心的 CRUD 端點。這些 API 就是我們餐廳廚房の爐火，是我們專案未來所有功能的動力來源。 一道堅實的「自動化品質防線」：我們建立了兩道 CI 品質防線。flake8 如同一位嚴謹的文學編輯，確保我們的程式碼風格優雅；pytest 則像一位精明的邏輯考官，確保我們的功能邏輯準確無誤。這道防線，是我們未來敢於快速迭代、大膽重構的最大底氣。 一套進化的「AI 協作方法論」：這或許是我們最大的收穫。我們不再只是 AI 的使用者，我們學會了如何扮演指揮家，透過精準的 Prompt，引導 AI 成為我們的產品經理、架構師、甚至是測試工程師。我們掌握了一套能夠駕馭 AI，進行現代化高效開發的全新工作流。 我們嚴格地遵循了「先有藍圖，再有魔法」的原則，而這整個過程，其實隱含了許多超越程式碼本身、能讓你受用無窮的專業開發心法。
+Part 2：超越程式碼的三個核心心法 在我們為上半場畫下句點之前，讓我們花點時間，從我們剛剛完成的後端專案中，提煉出幾個更深層次的、關於「如何思考」的專業心法。
+心法一：各司其職的藝術 (關注點分離) 回想我們的餐廳比喻： 前台（Frontend） 負責點餐、 廚房（Backend） 負責做菜、 食材庫（Database）負責存貨。它們各司其職，互不干涉，透過定義好的流程（API）來溝通。這在軟體開發中，被稱為「關注點分離 (Separation of Concerns)」 。這不僅是一種技術，更是一種思維的紀律。它讓我們在面對複雜問題時，能夠將其拆解成一個個獨立、可管理的小問題，然後逐一擊破。
+對 Vibe Coding 的啟示是：當你向 AI 提問時，也要保持這種思維紀律。一次只專注在一件事上。正是因為我們將任務拆解成「幫我設計資料庫」、「幫我生成 API」、「幫我寫測試」，我們才避免了 Day 1 那種「我想要一台腳踏車，AI 卻給我一艘航空母艦」的失控窘境。你的問題越聚焦，AI 給你的答案品質就越高，你也越能掌控最終的結果。
+心法二：跟隨慣例，事半功倍 (慣例優於設定) 你可能已經發現，我們遵循了很多「慣例 (Convention)」：測試檔案放在 tests/，CI 設定檔放在 .github/workflows/，依賴套件寫在 requirements.txt。這些都不是硬性規定，但它們是整個開發者社群歷經多年演化，沉澱下來的「最佳實踐」。
+這就是 「慣例優於設定 (Convention over Configuration)」 的哲學。當我們遵循社群普遍認可的慣例時，就等於在使用一種「共通語言」。這使得我們的專案對於任何一位有經驗的開發者（甚至是 AI！）來說，都是熟悉且可預測的。它大幅降低了溝通成本與新成員的學習曲線，同時也讓許多工具能夠「開箱即用」。</description></item><item><title>Day 17: 【前端 #0】前端世界的基石： HTML, CSS 與 JavaScript</title><link>/ChiYu-Blob/posts/2025ithomeironmanday17/</link><pubDate>Fri, 05 Sep 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday17/</guid><description>安安，我是 ChiYu！
+昨天，我們為精彩的後端開發之旅，畫下了一個完美的句點。我們現在擁有一個性能強大、穩定可靠的「專案引擎」，一顆強壯、默默跳動的心臟，但它還沒有形體，等待著被賦予生命。
+從今天起，我們將正式開啟一個全新的篇章： 前端開發。我們將從幕後的「引擎工程師」，搖身一變，成為面向使用者的「 造物主」與「 生命設計師」。
+但在我們開始 Vibe Coding 我們的數位生命之前，我們必須先花一天時間，回歸本心，認識一下構成生命的三大基本元素。今天，是前端開發的 Day 0，我們不寫任何一行專案程式碼，只專注於一件事：用最簡單的比喻和親手實作，讓你徹底搞懂構成全世界所有網頁的生命三要素——HTML, CSS, 與 JavaScript。
+Part 1：HTML - 生命的「骨骼」 想像一下我們要創造一個生命體。我們做的第一件事是什麼？塑造它的骨架。這就是 HTML (HyperText Markup Language) 的角色。
+HTML 的唯一職責，就是定義網頁的「內容」與「結構」。它決定了這個生命體「有哪些器官」，但完全不管它「長什麼樣子」。
+&amp;lt;h1&amp;gt; 標籤告訴瀏覽器：「嘿，這是頭顱」，是思考的中心。 &amp;lt;p&amp;gt; 標籤說：「這是一塊軀幹」，是身體的主體。 &amp;lt;img&amp;gt; 標籤說：「這裡要有眼睛」，用來觀看世界。 &amp;lt;button&amp;gt; 標籤說：「這裡要有手」，用來與世界互動。 HTML 就是生命的骨架，最基礎、最核心，沒有它，皮囊與肌肉都將無所依附。
+【動手玩玩看 #1】 建立實驗室：在你的電腦桌面，建立一個新的資料夾，取名為 frontend-playground。 用 VS Code 開啟：打開 VS Code，點擊左上角「檔案 (File)」-&amp;gt;「開啟資料夾 (Open Folder)」，然後選擇我們剛剛建立的 frontend-playground。 建立 HTML 檔案：在 VS Code 左側的檔案總管中，點擊「新增檔案」的圖示，將檔案命名為 index.html。 貼上骨架程式碼：將下面的程式碼，完整地複製並貼到你剛剛建立的 index.html 檔案中。 &amp;lt;!DOCTYPE html&amp;gt; &amp;lt;html&amp;gt; &amp;lt;head&amp;gt; &amp;lt;title&amp;gt;我的生命體&amp;lt;/title&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;h1&amp;gt;這是頭顱&amp;lt;/h1&amp;gt; &amp;lt;p&amp;gt;這是一塊樸素的軀幹。&amp;lt;/p&amp;gt; &amp;lt;button&amp;gt;這是一隻手&amp;lt;/button&amp;gt; &amp;lt;/body&amp;gt; &amp;lt;/html&amp;gt; 預覽結果：直接在檔案總管中，找到 index.</description></item></channel></rss>

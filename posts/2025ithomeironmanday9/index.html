@@ -1,0 +1,726 @@
+<!doctype html><html lang=zh-tw><head><script async src="https://www.googletagmanager.com/gtag/js?id=G-FGXWEWM001"></script><script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-FGXWEWM001",{anonymize_ip:!1})}</script><meta name=description content="今天，我們將化身為「數據的守護者」——資料庫管理員 (DBA)，與 Gemini 一同規劃我們專案的「資料庫綱要 (Database Schema)」！"><meta property="og:title" content="Day 9: 【文件 #4】數據的家：用 Gemini 規劃「資料庫綱要」"><meta property="og:description" content="今天，我們將化身為「數據的守護者」——資料庫管理員 (DBA)，與 Gemini 一同規劃我們專案的「資料庫綱要 (Database Schema)」！"><meta property="og:type" content="article"><meta property="og:url" content="/ChiYu-Blob/posts/2025ithomeironmanday9/"><meta name=twitter:card content="summary_large_image"><meta name=twitter:title content="Day 9: 【文件 #4】數據的家：用 Gemini 規劃「資料庫綱要」"><meta name=twitter:description content="今天，我們將化身為「數據的守護者」——資料庫管理員 (DBA)，與 Gemini 一同規劃我們專案的「資料庫綱要 (Database Schema)」！"><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Day 9: 【文件 #4】數據的家：用 Gemini 規劃「資料庫綱要」 | ChiYu Code Journey</title>
+<script>(function(){const e=localStorage.getItem("theme")||"dark";document.documentElement.setAttribute("data-theme",e)})()</script><script src=https://cdn.tailwindcss.com></script><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel=stylesheet><link href=/pagefind/pagefind-ui.css rel=stylesheet><link href="https://fonts.googleapis.com/css2?family=Chocolate+Classical+Sans&family=Edu+SA+Hand:wght@400..700&family=Inter:wght@400;500;600;700&display=swap" rel=stylesheet><link rel=icon type=image/jpeg href=/ChiYu-Blob/images/avatar.jpg><link rel=stylesheet href=/ChiYu-Blob/css/style.bundle.min.603fe609a4fee1de053c12e00858727a67cc5a3ba05a0a66f04142a379f47374.css integrity="sha256-YD/mCaT+4d4FPBLgCFhyemfMWjugWgpm8EFCo3n0c3Q=" crossorigin=anonymous><style>#reading-progress-container{position:fixed;top:0;left:0;width:100%;height:3px;z-index:9999;background:0 0}#reading-progress-bar{height:100%;width:0%;background:linear-gradient(to right,#60a5fa,#2563eb);transition:width .1s ease-out}</style></head><body class=antialiased><div id=reading-progress-container><div id=reading-progress-bar></div></div><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><header class="sticky top-0 z-50 flex justify-between items-center py-6 border-b" style=border-color:var(--border-color);background-color:var(--bg-color)><a href=/ChiYu-Blob/ class="text-xl sm:text-2xl font-bold" style=color:var(--text-color)>ChiYu Code Journey</a><nav class="flex items-center space-x-2 sm:space-x-4"><div id=search></div><a href=/ChiYu-Blob/ class="text-sm sm:text-base" style=color:var(--text-secondary)>首頁</a>
+<a href=/ChiYu-Blob/posts/ class="text-sm sm:text-base" style=color:var(--text-secondary)>文章</a>
+<a href=/ChiYu-Blob/about/ class="text-sm sm:text-base" style=color:var(--text-secondary)>關於</a>
+<a href=/ChiYu-Blob/index.xml target=_blank title="訂閱 RSS" style=color:var(--text-secondary) class="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11a9 9 0 019 9"/><path d="M4 4a16 16 0 0116 16"/><circle cx="5" cy="19" r="1"/></svg>
+</a><button id=theme-toggle title=切換深色/淺色主題>
+<svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+<svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+</button>
+<button id=mobile-sidebar-toggle class=lg:hidden title=開啟側邊欄><svg class="w-6 h-6" fill="none" stroke="currentcolor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/></svg></button></nav></header><div data-pagefind-body style=display:none><p>安安，我是 ChiYu！</p><p>昨天，我們化身為架構師，完成了專案的**「系統藍圖」**(軟體架構文件)，釐切了前台、後台、API 與資料庫之間的分工合作關係。</p><p>我們的餐廳藍圖畫好了，下一步，就是要來仔細規劃我們儲放所有食材的「食材庫」。在軟體世界裡，這個角色就是由**「資料庫 (Database)」<strong>來扮演。今天，我們將化身為「數據的守護者」——資料庫管理員 (DBA)，與 Gemini 一同規劃我們專案的</strong>「資料庫綱要 (Database Schema)」**！</p><h2 id=part-1什麼是資料庫-database>Part 1：什麼是「資料庫 (Database)」？</h2><p>對於新手來說，你可以把資料庫想像成一個擁有超能力的、極度嚴謹的 Excel 表格。它是一個專門用來「結構化儲存」資訊的系統，有非常明確的規則，來確保我們存進去的資料是乾淨、有組織、且易於查詢的。</p><p>要理解資料庫，你只需要知道幾個核心概念：</p><ul><li><strong>資料表 (Table)</strong>：就像 Excel 裡的一個工作表 (Sheet)。</li><li><strong>欄位 (Column/Field)</strong>：就像工作表裡的第一行標題。</li><li><strong>紀錄 (Row/Record)</strong>：工作表裡的一行資料。</li><li><strong>綱要 (Schema)</strong>：這就是整個資料庫的「設計藍圖」。它不僅定義了有哪些資料表、每張表有哪些欄位，更重要的是，它定義了規則：<ul><li><strong>資料型態 (Data Types)</strong>：規定了每個欄位只能存放哪種類型的資料（數字、文字、日期等）。</li><li><strong>約束 (Constraints)</strong>：規定了資料必須遵守的規則，例如 <code>email</code> 欄位的內容必須是獨一無二的 (<code>UNIQUE</code>)。</li><li><strong>關聯 (Relationships)</strong>：定義了表與表之間的連結關係。</li></ul></li></ul><p>我們今天就是要設計這份包含所有規則的「綱要 (Schema)」。</p><h2 id=part-2資料庫的兩大門派sql-vs-nosql>Part 2：資料庫的兩大門派：SQL vs. NoSQL</h2><p>在選擇具體的資料庫之前，你需要知道，當今的資料庫世界主要有兩大門派：<code>SQL</code> (關聯式資料庫) 和 <code>NoSQL</code> (非關聯式資料庫)。</p><ul><li><strong>SQL</strong> 像 Excel 表格，結構嚴謹，資料之間關係明確，可靠性強。</li><li><strong>NoSQL</strong> 像一個自由的資料夾，結構靈活彈性，擴展性極強。</li></ul><p>對於我們的「習慣養成日誌」專案來說，要儲存的資料關係非常明確：一個「使用者」可以擁有多個「習慣」，一個「習慣」可以擁有多筆「打卡紀錄」。這種層次分明、井然有序的關係，正是 <code>SQL</code> 資料庫最擅長處理的。因此，選擇 <code>SQL</code> 陣營是我們最穩健的選擇。</p><h2 id=part-3選擇我們的資料庫為什麼是-sqlite>Part 3：選擇我們的資料庫：為什麼是 SQLite？</h2><p>在 <code>SQL</code> 這個門派裡，有許多知名的武林高手。但對於新手和中小型專案，我們選擇一個更輕巧、更友善的方案：<strong>SQLite</strong>。</p><p>選擇 <code>SQLite</code> 的理由非常充分：<strong>零設定、單一檔案、Python 內建支援</strong>。它能讓你專注在「資料庫設計」本身，而不用分心去處理複雜的環境設定，是學習資料庫觀念的最佳起點。</p><h2 id=part-4實戰開始讓-gemini-成為我們的資料庫管理員-dba>Part 4：實戰開始：讓 Gemini 成為我們的資料庫管理員 (DBA)</h2><p>理論課結束，讓我們再次召喚 Gemini CLI，請它扮演我們的 DBA。</p><h3 id=step-1詠唱我們的魔法-craft-the-prompt>Step 1：詠唱我們的魔法 (Craft the Prompt)</h3><p>資料庫的設計，必須要能滿足使用者的需求。因此，最重要的參考文件，就是我們的「使用者故事」。</p><p>打開 VS Code 終端機，詠唱我們的第四個「文件生成咒語」：</p><h3 id=魔法詠唱我們的-prompt>【魔法詠唱：我們的 Prompt】</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown><span style=display:flex><span># 角色 (Role)
+</span></span><span style=display:flex><span>你是一位專業的資料庫管理員 (DBA)，擁有十年以上的經驗，專長是根據應用程式的需求，設計出高效、正規化且具備良好擴展性的關聯式資料庫綱要 (Database Schema)。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 目標 (Objective)
+</span></span><span style=display:flex><span>我的目標是讓你根據專案的完整上下文，生成一份生產級別的「資料庫綱要定義文檔 (Database Schema Definition Document)」，並提供可執行的 SQL 腳本。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 上下文 (Context)
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   <span style=font-weight:700>**核心依據**</span>: 你的所有設計都必須嚴格基於以下三份文件所描述的業務邏輯與功能需求：
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>1.</span>  <span style=color:#e6db74>`@docs/PROJECT_CHARTER.md`</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>2.</span>  <span style=color:#e6db74>`@docs/USER_STORIES.md`</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>3.</span>  <span style=color:#e6db74>`@docs/ARCHITECTURE.md`</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>---
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## 你的任務與產出要求 (Your Task &amp; Output Requirements)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>請生成一份專業的 Markdown 文件，並嚴格遵循以下大綱結構與要求：
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 1. 文件元數據 (Document Metadata)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>-</span>   <span style=font-weight:700>**文件標題**</span>: <span style=color:#e6db74>`資料庫綱要定義文檔`</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   <span style=font-weight:700>**文件版本**</span>: <span style=color:#e6db74>`v1.0.0`</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   <span style=font-weight:700>**作者**</span>: <span style=color:#e6db74>`Gemini (資料庫管理員)`</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 2. 設計原則與選型 (Design Principles &amp; Engine)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>-</span>   <span style=font-weight:700>**正規化 (Normalization)**</span>: 簡要說明本次設計將遵循**第三正規化 (3NF)**，以確保資料的完整性並減少冗餘。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   <span style=font-weight:700>**資料庫引擎**</span>: 確認將使用 <span style=font-weight:700>**SQLite**</span>，並說明其適合 MVP 階段的 1-2 個理由（例如：輕量、零配置、易於整合）。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 3. 資料表定義 (Table Definitions)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>-</span>   根據上下文，為所有必要的核心實體設計資料表。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   <span style=font-weight:700>**重要提示**</span>: 請將「習慣的定義」與「習慣的完成紀錄」拆分為兩個獨立的資料表，以實現多對多關係的追蹤。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   為每一個資料表提供以下內容：
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   <span style=font-weight:700>**用途說明**</span>: 一句話描述該資料表的核心職責。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   <span style=font-weight:700>**欄位詳解 (Markdown 表格)**</span>:
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>-</span>   表格欄位必須包含: <span style=color:#e6db74>`欄位名稱`</span>, <span style=color:#e6db74>`資料類型 (SQLite)`</span>, <span style=color:#e6db74>`約束/索引 (PK, FK, UNIQUE, NOT NULL, INDEX)`</span>, <span style=color:#e6db74>`欄位描述`</span>。
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>-</span>   對於常用的查詢欄位（例如 <span style=color:#e6db74>`users.email`</span>），請加上 <span style=color:#e6db74>`INDEX`</span> 以提升效能。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 4. 實體關係圖 (Entity-Relationship Diagram - ERD)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>-</span>   在所有資料表定義之後，使用 <span style=font-weight:700>**Mermaid.js 的 `erDiagram` 語法**</span>，生成一個清晰的 ERD。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   圖表需明確展示所有資料表及其主鍵、外鍵和關係基數（例如：`||--o{` 代表一對多）。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 5. 關聯文字說明 (Relationship Description)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>-</span>   在 ERD 圖表下方，使用文字簡要說明各個核心資料表之間的關聯（例如：`users` 與 <span style=color:#e6db74>`habits`</span> 之間是一對多關係）。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 6. 資料庫填充腳本 (Database Seeding Script)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>-</span>   提供一段 <span style=font-weight:700>**SQL 程式碼**</span>，用於向所有資料表中插入 **2-3 筆**有意義的範例資料。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   這段腳本應能讓開發者在建立資料庫後立即執行，以進行測試。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   將 SQL 程式碼完整地包在 <span style=color:#e6db74>` `</span>``sql ... ``` 程式碼區塊中。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 7. 最終產出指令 (Final Output Command)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>-</span>   <span style=font-weight:700>**執行動作**</span>: 將以上所有產出合併到同一個 Markdown 檔案中，命名為 <span style=color:#e6db74>`DATABASE_SCHEMA.md`</span>，並放置於 <span style=color:#e6db74>`@docs`</span> 資料夾內。
+</span></span></code></pre></div><h3 id=step-2迭代與分析我們的-ai-產出>Step 2：迭代與分析我們的 AI 產出</h3><p>老規矩，AI 給的永遠是草稿。在你與 AI 經過幾輪的迭代優化後（例如，你可以用 <code>@</code> 指令請它新增一個 <code>user_settings</code> 表），最終你會得到一份高品質的定稿文件，就像下面樣：</p><hr><h3 id=生成的範例文件>生成的範例文件:</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown><span style=display:flex><span><span style=color:#75715e>### 資料庫文件
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>-</span> **文件標題**: 資料庫綱要定義文檔
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span> **文件版本**: v1.0.0
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span> **作者**: Gemini (資料庫管理員)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>---
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## 1. 設計原則與選型
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#### 正規化 (Normalization)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>本次資料庫設計嚴格遵循**第三正規化 (3NF)**。所有資料表的欄位都直接且唯一地依賴於該表的主鍵，旨在消除資料冗餘、保證數據一致性，並提升資料庫的長期可維護性。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#### 資料庫引擎
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   <span style=font-weight:700>**選型**</span>: <span style=font-weight:700>**SQLite**</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   <span style=font-weight:700>**選擇理由**</span>: 
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>1.</span>  <span style=font-weight:700>**輕量級與零配置**</span>: SQLite 是一個無伺服器的資料庫引擎，直接以單一檔案形式存在，無需安裝或設定，極大地簡化了開發環境的搭建與部署流程。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>2.</span>  <span style=font-weight:700>**易於整合與測試**</span>: 作為一個 C 語言函式庫，它可以輕鬆嵌入到 Python 應用程式中，非常適合專案的 MVP (最小可行性產品) 階段快速迭代與進行單元測試。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>---
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## 2. 資料表定義 (Table Definitions)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>以下是為 <span style=color:#e6db74>`心境軌跡 (MindTrack)`</span> 專案設計的核心資料表。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### `users` (使用者表)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>-</span> **用途說明**: 儲存應用程式的使用者帳號基本資料與憑證。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>| 欄位名稱        | 資料類型 (SQLite) | 約束/索引                     | 欄位描述                                            |
+</span></span><span style=display:flex><span>| :-------------- | :---------------- | :---------------------------- | :-------------------------------------------------- |
+</span></span><span style=display:flex><span>| <span style=color:#e6db74>`id`</span>            | <span style=color:#e6db74>`INTEGER`</span>         | <span style=color:#e6db74>`PK`</span>, <span style=color:#e6db74>`AUTOINCREMENT`</span>         | 使用者唯一識別碼                                    |
+</span></span><span style=display:flex><span>| <span style=color:#e6db74>`email`</span>         | <span style=color:#e6db74>`TEXT`</span>            | <span style=color:#e6db74>`UNIQUE`</span>, <span style=color:#e6db74>`NOT NULL`</span>, <span style=color:#e6db74>`INDEX`</span> | 使用者註冊信箱，建立索引以加速登入查詢              |
+</span></span><span style=display:flex><span>| <span style=color:#e6db74>`password_hash`</span> | <span style=color:#e6db74>`TEXT`</span>            | <span style=color:#e6db74>`NOT NULL`</span>                    | 使用 bcrypt 加密後的密碼雜湊值                      |
+</span></span><span style=display:flex><span>| <span style=color:#e6db74>`created_at`</span>    | <span style=color:#e6db74>`TEXT`</span>            | <span style=color:#e6db74>`NOT NULL`</span>                    | 帳號建立時間 (ISO 8601 格式: <span style=color:#e6db74>`YYYY-MM-DD HH:MM:SS`</span>) |
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### `habits` (習慣定義表)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>-</span> **用途說明**: 儲存使用者自定義的、想要追蹤的習慣項目。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>| 欄位名稱     | 資料類型 (SQLite) | 約束/索引                  | 欄位描述                                       |
+</span></span><span style=display:flex><span>| :----------- | :---------------- | :------------------------- | :--------------------------------------------- |
+</span></span><span style=display:flex><span>| <span style=color:#e6db74>`id`</span>         | <span style=color:#e6db74>`INTEGER`</span>         | <span style=color:#e6db74>`PK`</span>, <span style=color:#e6db74>`AUTOINCREMENT`</span>      | 習慣唯一識別碼                                 |
+</span></span><span style=display:flex><span>| <span style=color:#e6db74>`user_id`</span>    | <span style=color:#e6db74>`INTEGER`</span>         | <span style=color:#e6db74>`FK(users.id)`</span>, <span style=color:#e6db74>`NOT NULL`</span> | 關聯至 <span style=color:#e6db74>`users`</span> 表，表示該習慣的擁有者          |
+</span></span><span style=display:flex><span>| <span style=color:#e6db74>`name`</span>       | <span style=color:#e6db74>`TEXT`</span>            | <span style=color:#e6db74>`NOT NULL`</span>                 | 習慣的名稱，例如「晨間運動」、「閱讀 30 分鐘」 |
+</span></span><span style=display:flex><span>| <span style=color:#e6db74>`created_at`</span> | <span style=color:#e6db74>`TEXT`</span>            | <span style=color:#e6db74>`NOT NULL`</span>                 | 習慣建立時間 (ISO 8601 格式)                   |
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### `habit_logs` (習慣完成紀錄表)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>-</span> **用途說明**: 記錄使用者在特定日期完成了哪個習慣，實現打卡功能。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>| 欄位名稱     | 資料類型 (SQLite) | 約束/索引                    | 欄位描述                                 |
+</span></span><span style=display:flex><span>| :----------- | :---------------- | :--------------------------- | :--------------------------------------- |
+</span></span><span style=display:flex><span>| <span style=color:#e6db74>`id`</span>         | <span style=color:#e6db74>`INTEGER`</span>         | <span style=color:#e6db74>`PK`</span>, <span style=color:#e6db74>`AUTOINCREMENT`</span>        | 紀錄的唯一識別碼                         |
+</span></span><span style=display:flex><span>| <span style=color:#e6db74>`habit_id`</span>   | <span style=color:#e6db74>`INTEGER`</span>         | <span style=color:#e6db74>`FK(habits.id)`</span>, <span style=color:#e6db74>`NOT NULL`</span>  | 關聯至 <span style=color:#e6db74>`habits`</span> 表，表示完成的是哪個習慣 |
+</span></span><span style=display:flex><span>| <span style=color:#e6db74>`log_date`</span>   | <span style=color:#e6db74>`TEXT`</span>            | <span style=color:#e6db74>`NOT NULL`</span>                   | 完成習慣的日期 (`YYYY-MM-DD` 格式)       |
+</span></span><span style=display:flex><span>| <span style=color:#e6db74>`created_at`</span> | <span style=color:#e6db74>`TEXT`</span>            | <span style=color:#e6db74>`NOT NULL`</span>                   | 紀錄建立時間 (ISO 8601 格式)             |
+</span></span><span style=display:flex><span>|              |                   | <span style=color:#e6db74>`UNIQUE(habit_id, log_date)`</span> | 唯一約束，確保同一個習慣一天只能打卡一次 |
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### `mood_logs` (心情紀錄表)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>-</span> **用途說明**: 記錄使用者在特定日期的心情分數與相關筆記。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>| 欄位名稱     | 資料類型 (SQLite) | 約束/索引                   | 欄位描述                                     |
+</span></span><span style=display:flex><span>| :----------- | :---------------- | :-------------------------- | :------------------------------------------- |
+</span></span><span style=display:flex><span>| <span style=color:#e6db74>`id`</span>         | <span style=color:#e6db74>`INTEGER`</span>         | <span style=color:#e6db74>`PK`</span>, <span style=color:#e6db74>`AUTOINCREMENT`</span>       | 紀錄的唯一識別碼                             |
+</span></span><span style=display:flex><span>| <span style=color:#e6db74>`user_id`</span>    | <span style=color:#e6db74>`INTEGER`</span>         | <span style=color:#e6db74>`FK(users.id)`</span>, <span style=color:#e6db74>`NOT NULL`</span>  | 關聯至 <span style=color:#e6db74>`users`</span> 表，表示該心情紀錄的擁有者    |
+</span></span><span style=display:flex><span>| <span style=color:#e6db74>`rating`</span>     | <span style=color:#e6db74>`INTEGER`</span>         | <span style=color:#e6db74>`NOT NULL`</span>                  | 心情評分 (1-5 的整數)                        |
+</span></span><span style=display:flex><span>| <span style=color:#e6db74>`notes`</span>      | <span style=color:#e6db74>`TEXT`</span>            | <span style=color:#e6db74>`NULLABLE`</span>                  | 對當天心情的選填文字描述                     |
+</span></span><span style=display:flex><span>| <span style=color:#e6db74>`log_date`</span>   | <span style=color:#e6db74>`TEXT`</span>            | <span style=color:#e6db74>`NOT NULL`</span>                  | 記錄心情的日期 (`YYYY-MM-DD` 格式)           |
+</span></span><span style=display:flex><span>| <span style=color:#e6db74>`created_at&#34; | `</span>TEXT`            | <span style=color:#e6db74>`NOT NULL`</span>                  | 紀錄建立時間 (ISO 8601 格式)                 |
+</span></span><span style=display:flex><span>|              |                   | <span style=color:#e6db74>`UNIQUE(user_id, log_date)`</span> | 唯一約束，確保一個使用者一天只能記錄一次心情 |
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>---
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## 3. 實體關係圖 (Entity-Relationship Diagram - ERD)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>```mermaid
+</span></span><span style=display:flex><span>erDiagram
+</span></span><span style=display:flex><span>    users {
+</span></span><span style=display:flex><span>        INTEGER id
+</span></span><span style=display:flex><span>        TEXT email
+</span></span><span style=display:flex><span>        TEXT password_hash
+</span></span><span style=display:flex><span>        TEXT created_at
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    habits {
+</span></span><span style=display:flex><span>        INTEGER id
+</span></span><span style=display:flex><span>        INTEGER user_id
+</span></span><span style=display:flex><span>        TEXT name
+</span></span><span style=display:flex><span>        TEXT created_at
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    habit_logs {
+</span></span><span style=display:flex><span>        INTEGER id
+</span></span><span style=display:flex><span>        INTEGER habit_id
+</span></span><span style=display:flex><span>        TEXT log_date
+</span></span><span style=display:flex><span>        TEXT created_at
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    mood_logs {
+</span></span><span style=display:flex><span>        INTEGER id
+</span></span><span style=display:flex><span>        INTEGER user_id
+</span></span><span style=display:flex><span>        INTEGER rating
+</span></span><span style=display:flex><span>        TEXT notes
+</span></span><span style=display:flex><span>        TEXT log_date
+</span></span><span style=display:flex><span>        TEXT created_at
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    users ||--o{ habits : &#34;定義&#34;
+</span></span><span style=display:flex><span>    users ||--o{ mood_logs : &#34;記錄&#34;
+</span></span><span style=display:flex><span>    habits ||--o{ habit_logs : &#34;完成於&#34;
+</span></span></code></pre></div><h2 id=4-關聯文字說明>4. 關聯文字說明</h2><ul><li><strong>users 與 habits</strong>: 一對多 (<code>1-to-Many</code>) 關係。一個使用者可以定義多個不同的習慣。</li><li><strong>users 與 mood_logs</strong>: 一對多 (<code>1-to-Many</code>) 關係。一個使用者可以有多筆每日心情紀錄。</li><li><strong>habits 與 habit_logs</strong>: 一對多 (<code>1-to-Many</code>) 關係。一個已定義的習慣可以有多筆完成紀錄（每天一筆）。</li></ul><hr><h2 id=5-資料庫填充腳本-database-seeding-script>5. 資料庫填充腳本 (Database Seeding Script)</h2><p>以下 SQL 腳本可用於初始化資料庫並填充範例資料，方便開發與測試。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sql data-lang=sql><span style=display:flex><span><span style=color:#75715e>-- 清除舊資料 (可選)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>DELETE</span> <span style=color:#66d9ef>FROM</span> mood_logs;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>DELETE</span> <span style=color:#66d9ef>FROM</span> habit_logs;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>DELETE</span> <span style=color:#66d9ef>FROM</span> habits;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>DELETE</span> <span style=color:#66d9ef>FROM</span> users;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>-- 填充 `users` 表
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>INSERT</span> <span style=color:#66d9ef>INTO</span> users (id, email, password_hash, created_at) <span style=color:#66d9ef>VALUES</span>
+</span></span><span style=display:flex><span>(<span style=color:#ae81ff>1</span>, <span style=color:#e6db74>&#39;alice@example.com&#39;</span>, <span style=color:#e6db74>&#39;hashed_password_1&#39;</span>, <span style=color:#e6db74>&#39;2025-08-25 10:00:00&#39;</span>),
+</span></span><span style=display:flex><span>(<span style=color:#ae81ff>2</span>, <span style=color:#e6db74>&#39;bob@example.com&#39;</span>, <span style=color:#e6db74>&#39;hashed_password_2&#39;</span>, <span style=color:#e6db74>&#39;2025-08-25 10:05:00&#39;</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>-- 填充 `habits` 表 (Alice 的習慣)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>INSERT</span> <span style=color:#66d9ef>INTO</span> habits (id, user_id, name, created_at) <span style=color:#66d9ef>VALUES</span>
+</span></span><span style=display:flex><span>(<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, <span style=color:#e6db74>&#39;每日運動 30 分鐘&#39;</span>, <span style=color:#e6db74>&#39;2025-08-25 10:10:00&#39;</span>),
+</span></span><span style=display:flex><span>(<span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>1</span>, <span style=color:#e6db74>&#39;閱讀 10 頁書&#39;</span>, <span style=color:#e6db74>&#39;2025-08-25 10:11:00&#39;</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>-- 填充 `habits` 表 (Bob 的習慣)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>INSERT</span> <span style=color:#66d9ef>INTO</span> habits (id, user_id, name, created_at) <span style=color:#66d9ef>VALUES</span>
+</span></span><span style=display:flex><span>(<span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>2</span>, <span style=color:#e6db74>&#39;練習冥想 15 分鐘&#39;</span>, <span style=color:#e6db74>&#39;2025-08-25 10:15:00&#39;</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>-- 填充 `habit_logs` 表 (打卡紀錄)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>INSERT</span> <span style=color:#66d9ef>INTO</span> habit_logs (habit_id, log_date, created_at) <span style=color:#66d9ef>VALUES</span>
+</span></span><span style=display:flex><span>(<span style=color:#ae81ff>1</span>, <span style=color:#e6db74>&#39;2025-08-23&#39;</span>, <span style=color:#e6db74>&#39;2025-08-23 20:00:00&#39;</span>), <span style=color:#75715e>-- Alice 運動
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>(<span style=color:#ae81ff>1</span>, <span style=color:#e6db74>&#39;2025-08-24&#39;</span>, <span style=color:#e6db74>&#39;2025-08-24 20:05:00&#39;</span>), <span style=color:#75715e>-- Alice 運動
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>(<span style=color:#ae81ff>2</span>, <span style=color:#e6db74>&#39;2025-08-24&#39;</span>, <span style=color:#e6db74>&#39;2025-08-24 22:00:00&#39;</span>), <span style=color:#75715e>-- Alice 閱讀
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>(<span style=color:#ae81ff>3</span>, <span style=color:#e6db74>&#39;2025-08-24&#39;</span>, <span style=color:#e6db74>&#39;2025-08-24 08:00:00&#39;</span>); <span style=color:#75715e>-- Bob 冥想
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#75715e>-- 填充 `mood_logs` 表
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>INSERT</span> <span style=color:#66d9ef>INTO</span> mood_logs (user_id, rating, notes, log_date, created_at) <span style=color:#66d9ef>VALUES</span>
+</span></span><span style=display:flex><span>(<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>5</span>, <span style=color:#e6db74>&#39;運動完感覺很好！&#39;</span>, <span style=color:#e6db74>&#39;2025-08-23&#39;</span>, <span style=color:#e6db74>&#39;2025-08-23 21:00:00&#39;</span>),
+</span></span><span style=display:flex><span>(<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>4</span>, <span style=color:#e6db74>&#39;有點累，但還是讀完書了。&#39;</span>, <span style=color:#e6db74>&#39;2025-08-24&#39;</span>, <span style=color:#e6db74>&#39;2025-08-24 22:30:00&#39;</span>),
+</span></span><span style=display:flex><span>(<span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>5</span>, <span style=color:#e6db74>&#39;冥想讓一天有個平靜的開始。&#39;</span>, <span style=color:#e6db74>&#39;2025-08-24&#39;</span>, <span style=color:#e6db74>&#39;2025-08-24 09:00:00&#39;</span>);
+</span></span></code></pre></div><pre tabindex=0><code>
+
+## Part 5：建立本地資料庫檔案與文件
+
+### Step 1：建立一個空的資料庫檔案
+
+我們要在專案的根目錄（與 `docs` 資料夾同層）建立一個空的資料庫檔案。這一步就像是我們買了一本全新的、精裝的帳本，外面看起來很漂亮，但裡面還沒有任何內容。
+
+在 VS Code 的檔案總管中，對著根目錄的空白處按右鍵，選擇「New File」，並將檔案命名為 `database.db`。
+
+### Step 2：提交至 GitHub
+
+在原始碼管理頁面，你會看到 `DATABASE_SCHEMA.md` 和 `database.db` 這兩個新檔案。將它們都按 `+` (Stage Changes)。
+
+輸入 Commit 訊息: `docs: Add database schema and create empty db file`
+
+點擊打勾按鈕 (Commit)，然後同步變更 (Push)。
+
+## 結語：數據的家，基石已定
+
+太棒了！這次的 commit，代表著我們專案的**「數據地基」**已經正式打樁完成！
+
+有了這份資料庫藍圖，我們後端藍圖的規劃就只剩下最後一塊，也是與外界溝通最關鍵的一塊拼圖了。明天，我們要交給「服務生 (API)」一份精準的「菜單」，讓他知道如何跟廚房溝通。我們將產出後端開發最重要的契約——**「Web API 規格書」**！
+</code></pre></div><div class="flex flex-row justify-center py-8 sm:py-12"><div class="w-full max-w-6xl min-w-0"><div class="flex justify-center"><main class="w-full max-w-4xl min-w-0"><article class="prose max-w-none"><nav class="flex text-sm mb-6" aria-label=Breadcrumb><ol class="inline-flex items-center space-x-1 md:space-x-3"><li class="inline-flex items-center"><a href=/ChiYu-Blob/ class="inline-flex items-center hover:text-blue-600 dark:hover:text-blue-400" style=color:var(--text-secondary)><svg class="w-4 h-4 mr-2" fill="currentcolor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414.0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/></svg>
+首頁</a></li><li><div class="flex items-center"><svg class="w-4 h-4 mx-1" style="color:var(--text-secondary);opacity:.5" fill="currentcolor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414.0z" clip-rule="evenodd"/></svg>
+<a href=/ChiYu-Blob/posts/ class="ml-1 hover:text-blue-600 dark:hover:text-blue-400 capitalize" style=color:var(--text-secondary)>全部文章</a></div></li><li aria-current=page><div class="flex items-center"><svg class="w-4 h-4 mx-1" style="color:var(--text-secondary);opacity:.5" fill="currentcolor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414.0z" clip-rule="evenodd"/></svg>
+<span class="ml-1 font-medium truncate max-w-[150px] sm:max-w-[300px]" style=color:var(--text-color)>Day 9: 【文件 #4】數據的家：用 Gemini 規劃「資料庫綱要」</span></div></li></ol></nav><header class=mb-8><h1 class="text-2xl sm:text-4xl font-bold tracking-tight mb-4 !mt-0">Day 9: 【文件 #4】數據的家：用 Gemini 規劃「資料庫綱要」</h1><p class=text-base style=color:var(--text-secondary)>發布於 2025年8月28日
+<span class=ml-2 style=color:var(--text-secondary);opacity:.8;font-size:.9em>(更新於 2025年8月28日)
+</span>&#183; <span class=mx-1>約 5 分鐘閱讀</span>
+&#183;
+<span class="inline-flex flex-wrap gap-2 items-center" data-pagefind-ignore><a href=/ChiYu-Blob/tags/2025ithomeironman/ class=tag-pill>2025iThomeIronman</a>
+<a href=/ChiYu-Blob/tags/gemini/ class=tag-pill>Gemini</a>
+<a href=/ChiYu-Blob/tags/database/ class=tag-pill>Database</a>
+<a href=/ChiYu-Blob/tags/sqlite/ class=tag-pill>SQLite</a>
+<a href=/ChiYu-Blob/tags/schema/ class=tag-pill>Schema</a>
+<a href=/ChiYu-Blob/tags/mermaid/ class=tag-pill>Mermaid</a>
+<a href=/ChiYu-Blob/tags/sql/ class=tag-pill>SQL</a></span></p></header><div data-pagefind-meta="title:Day 9: 【文件 #4】數據的家：用 Gemini 規劃「資料庫綱要」" style=display:none></div><div data-pagefind-ignore><p>安安，我是 ChiYu！</p><p>昨天，我們化身為架構師，完成了專案的**「系統藍圖」**(軟體架構文件)，釐切了前台、後台、API 與資料庫之間的分工合作關係。</p><p>我們的餐廳藍圖畫好了，下一步，就是要來仔細規劃我們儲放所有食材的「食材庫」。在軟體世界裡，這個角色就是由**「資料庫 (Database)」<strong>來扮演。今天，我們將化身為「數據的守護者」——資料庫管理員 (DBA)，與 Gemini 一同規劃我們專案的</strong>「資料庫綱要 (Database Schema)」**！</p><h2 id=part-1什麼是資料庫-database>Part 1：什麼是「資料庫 (Database)」？</h2><p>對於新手來說，你可以把資料庫想像成一個擁有超能力的、極度嚴謹的 Excel 表格。它是一個專門用來「結構化儲存」資訊的系統，有非常明確的規則，來確保我們存進去的資料是乾淨、有組織、且易於查詢的。</p><p>要理解資料庫，你只需要知道幾個核心概念：</p><ul><li><strong>資料表 (Table)</strong>：就像 Excel 裡的一個工作表 (Sheet)。</li><li><strong>欄位 (Column/Field)</strong>：就像工作表裡的第一行標題。</li><li><strong>紀錄 (Row/Record)</strong>：工作表裡的一行資料。</li><li><strong>綱要 (Schema)</strong>：這就是整個資料庫的「設計藍圖」。它不僅定義了有哪些資料表、每張表有哪些欄位，更重要的是，它定義了規則：<ul><li><strong>資料型態 (Data Types)</strong>：規定了每個欄位只能存放哪種類型的資料（數字、文字、日期等）。</li><li><strong>約束 (Constraints)</strong>：規定了資料必須遵守的規則，例如 <code>email</code> 欄位的內容必須是獨一無二的 (<code>UNIQUE</code>)。</li><li><strong>關聯 (Relationships)</strong>：定義了表與表之間的連結關係。</li></ul></li></ul><p>我們今天就是要設計這份包含所有規則的「綱要 (Schema)」。</p><h2 id=part-2資料庫的兩大門派sql-vs-nosql>Part 2：資料庫的兩大門派：SQL vs. NoSQL</h2><p>在選擇具體的資料庫之前，你需要知道，當今的資料庫世界主要有兩大門派：<code>SQL</code> (關聯式資料庫) 和 <code>NoSQL</code> (非關聯式資料庫)。</p><ul><li><strong>SQL</strong> 像 Excel 表格，結構嚴謹，資料之間關係明確，可靠性強。</li><li><strong>NoSQL</strong> 像一個自由的資料夾，結構靈活彈性，擴展性極強。</li></ul><p>對於我們的「習慣養成日誌」專案來說，要儲存的資料關係非常明確：一個「使用者」可以擁有多個「習慣」，一個「習慣」可以擁有多筆「打卡紀錄」。這種層次分明、井然有序的關係，正是 <code>SQL</code> 資料庫最擅長處理的。因此，選擇 <code>SQL</code> 陣營是我們最穩健的選擇。</p><h2 id=part-3選擇我們的資料庫為什麼是-sqlite>Part 3：選擇我們的資料庫：為什麼是 SQLite？</h2><p>在 <code>SQL</code> 這個門派裡，有許多知名的武林高手。但對於新手和中小型專案，我們選擇一個更輕巧、更友善的方案：<strong>SQLite</strong>。</p><p>選擇 <code>SQLite</code> 的理由非常充分：<strong>零設定、單一檔案、Python 內建支援</strong>。它能讓你專注在「資料庫設計」本身，而不用分心去處理複雜的環境設定，是學習資料庫觀念的最佳起點。</p><h2 id=part-4實戰開始讓-gemini-成為我們的資料庫管理員-dba>Part 4：實戰開始：讓 Gemini 成為我們的資料庫管理員 (DBA)</h2><p>理論課結束，讓我們再次召喚 Gemini CLI，請它扮演我們的 DBA。</p><h3 id=step-1詠唱我們的魔法-craft-the-prompt>Step 1：詠唱我們的魔法 (Craft the Prompt)</h3><p>資料庫的設計，必須要能滿足使用者的需求。因此，最重要的參考文件，就是我們的「使用者故事」。</p><p>打開 VS Code 終端機，詠唱我們的第四個「文件生成咒語」：</p><h3 id=魔法詠唱我們的-prompt>【魔法詠唱：我們的 Prompt】</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown><span style=display:flex><span># 角色 (Role)
+</span></span><span style=display:flex><span>你是一位專業的資料庫管理員 (DBA)，擁有十年以上的經驗，專長是根據應用程式的需求，設計出高效、正規化且具備良好擴展性的關聯式資料庫綱要 (Database Schema)。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 目標 (Objective)
+</span></span><span style=display:flex><span>我的目標是讓你根據專案的完整上下文，生成一份生產級別的「資料庫綱要定義文檔 (Database Schema Definition Document)」，並提供可執行的 SQL 腳本。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 上下文 (Context)
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   <span style=font-weight:700>**核心依據**</span>: 你的所有設計都必須嚴格基於以下三份文件所描述的業務邏輯與功能需求：
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>1.</span>  <span style=color:#e6db74>`@docs/PROJECT_CHARTER.md`</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>2.</span>  <span style=color:#e6db74>`@docs/USER_STORIES.md`</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>3.</span>  <span style=color:#e6db74>`@docs/ARCHITECTURE.md`</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>---
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## 你的任務與產出要求 (Your Task &amp; Output Requirements)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>請生成一份專業的 Markdown 文件，並嚴格遵循以下大綱結構與要求：
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 1. 文件元數據 (Document Metadata)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>-</span>   <span style=font-weight:700>**文件標題**</span>: <span style=color:#e6db74>`資料庫綱要定義文檔`</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   <span style=font-weight:700>**文件版本**</span>: <span style=color:#e6db74>`v1.0.0`</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   <span style=font-weight:700>**作者**</span>: <span style=color:#e6db74>`Gemini (資料庫管理員)`</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 2. 設計原則與選型 (Design Principles &amp; Engine)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>-</span>   <span style=font-weight:700>**正規化 (Normalization)**</span>: 簡要說明本次設計將遵循**第三正規化 (3NF)**，以確保資料的完整性並減少冗餘。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   <span style=font-weight:700>**資料庫引擎**</span>: 確認將使用 <span style=font-weight:700>**SQLite**</span>，並說明其適合 MVP 階段的 1-2 個理由（例如：輕量、零配置、易於整合）。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 3. 資料表定義 (Table Definitions)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>-</span>   根據上下文，為所有必要的核心實體設計資料表。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   <span style=font-weight:700>**重要提示**</span>: 請將「習慣的定義」與「習慣的完成紀錄」拆分為兩個獨立的資料表，以實現多對多關係的追蹤。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   為每一個資料表提供以下內容：
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   <span style=font-weight:700>**用途說明**</span>: 一句話描述該資料表的核心職責。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>-</span>   <span style=font-weight:700>**欄位詳解 (Markdown 表格)**</span>:
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>-</span>   表格欄位必須包含: <span style=color:#e6db74>`欄位名稱`</span>, <span style=color:#e6db74>`資料類型 (SQLite)`</span>, <span style=color:#e6db74>`約束/索引 (PK, FK, UNIQUE, NOT NULL, INDEX)`</span>, <span style=color:#e6db74>`欄位描述`</span>。
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>-</span>   對於常用的查詢欄位（例如 <span style=color:#e6db74>`users.email`</span>），請加上 <span style=color:#e6db74>`INDEX`</span> 以提升效能。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 4. 實體關係圖 (Entity-Relationship Diagram - ERD)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>-</span>   在所有資料表定義之後，使用 <span style=font-weight:700>**Mermaid.js 的 `erDiagram` 語法**</span>，生成一個清晰的 ERD。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   圖表需明確展示所有資料表及其主鍵、外鍵和關係基數（例如：`||--o{` 代表一對多）。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 5. 關聯文字說明 (Relationship Description)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>-</span>   在 ERD 圖表下方，使用文字簡要說明各個核心資料表之間的關聯（例如：`users` 與 <span style=color:#e6db74>`habits`</span> 之間是一對多關係）。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 6. 資料庫填充腳本 (Database Seeding Script)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>-</span>   提供一段 <span style=font-weight:700>**SQL 程式碼**</span>，用於向所有資料表中插入 **2-3 筆**有意義的範例資料。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   這段腳本應能讓開發者在建立資料庫後立即執行，以進行測試。
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   將 SQL 程式碼完整地包在 <span style=color:#e6db74>` `</span>``sql ... ``` 程式碼區塊中。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### 7. 最終產出指令 (Final Output Command)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>-</span>   <span style=font-weight:700>**執行動作**</span>: 將以上所有產出合併到同一個 Markdown 檔案中，命名為 <span style=color:#e6db74>`DATABASE_SCHEMA.md`</span>，並放置於 <span style=color:#e6db74>`@docs`</span> 資料夾內。
+</span></span></code></pre></div><h3 id=step-2迭代與分析我們的-ai-產出>Step 2：迭代與分析我們的 AI 產出</h3><p>老規矩，AI 給的永遠是草稿。在你與 AI 經過幾輪的迭代優化後（例如，你可以用 <code>@</code> 指令請它新增一個 <code>user_settings</code> 表），最終你會得到一份高品質的定稿文件，就像下面樣：</p><hr><h3 id=生成的範例文件>生成的範例文件:</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-markdown data-lang=markdown><span style=display:flex><span><span style=color:#75715e>### 資料庫文件
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>-</span> **文件標題**: 資料庫綱要定義文檔
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span> **文件版本**: v1.0.0
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span> **作者**: Gemini (資料庫管理員)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>---
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## 1. 設計原則與選型
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#### 正規化 (Normalization)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>本次資料庫設計嚴格遵循**第三正規化 (3NF)**。所有資料表的欄位都直接且唯一地依賴於該表的主鍵，旨在消除資料冗餘、保證數據一致性，並提升資料庫的長期可維護性。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#### 資料庫引擎
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   <span style=font-weight:700>**選型**</span>: <span style=font-weight:700>**SQLite**</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span>   <span style=font-weight:700>**選擇理由**</span>: 
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>1.</span>  <span style=font-weight:700>**輕量級與零配置**</span>: SQLite 是一個無伺服器的資料庫引擎，直接以單一檔案形式存在，無需安裝或設定，極大地簡化了開發環境的搭建與部署流程。
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>2.</span>  <span style=font-weight:700>**易於整合與測試**</span>: 作為一個 C 語言函式庫，它可以輕鬆嵌入到 Python 應用程式中，非常適合專案的 MVP (最小可行性產品) 階段快速迭代與進行單元測試。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>---
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## 2. 資料表定義 (Table Definitions)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>以下是為 <span style=color:#e6db74>`心境軌跡 (MindTrack)`</span> 專案設計的核心資料表。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### `users` (使用者表)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>-</span> **用途說明**: 儲存應用程式的使用者帳號基本資料與憑證。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>| 欄位名稱        | 資料類型 (SQLite) | 約束/索引                     | 欄位描述                                            |
+</span></span><span style=display:flex><span>| :-------------- | :---------------- | :---------------------------- | :-------------------------------------------------- |
+</span></span><span style=display:flex><span>| <span style=color:#e6db74>`id`</span>            | <span style=color:#e6db74>`INTEGER`</span>         | <span style=color:#e6db74>`PK`</span>, <span style=color:#e6db74>`AUTOINCREMENT`</span>         | 使用者唯一識別碼                                    |
+</span></span><span style=display:flex><span>| <span style=color:#e6db74>`email`</span>         | <span style=color:#e6db74>`TEXT`</span>            | <span style=color:#e6db74>`UNIQUE`</span>, <span style=color:#e6db74>`NOT NULL`</span>, <span style=color:#e6db74>`INDEX`</span> | 使用者註冊信箱，建立索引以加速登入查詢              |
+</span></span><span style=display:flex><span>| <span style=color:#e6db74>`password_hash`</span> | <span style=color:#e6db74>`TEXT`</span>            | <span style=color:#e6db74>`NOT NULL`</span>                    | 使用 bcrypt 加密後的密碼雜湊值                      |
+</span></span><span style=display:flex><span>| <span style=color:#e6db74>`created_at`</span>    | <span style=color:#e6db74>`TEXT`</span>            | <span style=color:#e6db74>`NOT NULL`</span>                    | 帳號建立時間 (ISO 8601 格式: <span style=color:#e6db74>`YYYY-MM-DD HH:MM:SS`</span>) |
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### `habits` (習慣定義表)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>-</span> **用途說明**: 儲存使用者自定義的、想要追蹤的習慣項目。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>| 欄位名稱     | 資料類型 (SQLite) | 約束/索引                  | 欄位描述                                       |
+</span></span><span style=display:flex><span>| :----------- | :---------------- | :------------------------- | :--------------------------------------------- |
+</span></span><span style=display:flex><span>| <span style=color:#e6db74>`id`</span>         | <span style=color:#e6db74>`INTEGER`</span>         | <span style=color:#e6db74>`PK`</span>, <span style=color:#e6db74>`AUTOINCREMENT`</span>      | 習慣唯一識別碼                                 |
+</span></span><span style=display:flex><span>| <span style=color:#e6db74>`user_id`</span>    | <span style=color:#e6db74>`INTEGER`</span>         | <span style=color:#e6db74>`FK(users.id)`</span>, <span style=color:#e6db74>`NOT NULL`</span> | 關聯至 <span style=color:#e6db74>`users`</span> 表，表示該習慣的擁有者          |
+</span></span><span style=display:flex><span>| <span style=color:#e6db74>`name`</span>       | <span style=color:#e6db74>`TEXT`</span>            | <span style=color:#e6db74>`NOT NULL`</span>                 | 習慣的名稱，例如「晨間運動」、「閱讀 30 分鐘」 |
+</span></span><span style=display:flex><span>| <span style=color:#e6db74>`created_at`</span> | <span style=color:#e6db74>`TEXT`</span>            | <span style=color:#e6db74>`NOT NULL`</span>                 | 習慣建立時間 (ISO 8601 格式)                   |
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### `habit_logs` (習慣完成紀錄表)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>-</span> **用途說明**: 記錄使用者在特定日期完成了哪個習慣，實現打卡功能。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>| 欄位名稱     | 資料類型 (SQLite) | 約束/索引                    | 欄位描述                                 |
+</span></span><span style=display:flex><span>| :----------- | :---------------- | :--------------------------- | :--------------------------------------- |
+</span></span><span style=display:flex><span>| <span style=color:#e6db74>`id`</span>         | <span style=color:#e6db74>`INTEGER`</span>         | <span style=color:#e6db74>`PK`</span>, <span style=color:#e6db74>`AUTOINCREMENT`</span>        | 紀錄的唯一識別碼                         |
+</span></span><span style=display:flex><span>| <span style=color:#e6db74>`habit_id`</span>   | <span style=color:#e6db74>`INTEGER`</span>         | <span style=color:#e6db74>`FK(habits.id)`</span>, <span style=color:#e6db74>`NOT NULL`</span>  | 關聯至 <span style=color:#e6db74>`habits`</span> 表，表示完成的是哪個習慣 |
+</span></span><span style=display:flex><span>| <span style=color:#e6db74>`log_date`</span>   | <span style=color:#e6db74>`TEXT`</span>            | <span style=color:#e6db74>`NOT NULL`</span>                   | 完成習慣的日期 (`YYYY-MM-DD` 格式)       |
+</span></span><span style=display:flex><span>| <span style=color:#e6db74>`created_at`</span> | <span style=color:#e6db74>`TEXT`</span>            | <span style=color:#e6db74>`NOT NULL`</span>                   | 紀錄建立時間 (ISO 8601 格式)             |
+</span></span><span style=display:flex><span>|              |                   | <span style=color:#e6db74>`UNIQUE(habit_id, log_date)`</span> | 唯一約束，確保同一個習慣一天只能打卡一次 |
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### `mood_logs` (心情紀錄表)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>-</span> **用途說明**: 記錄使用者在特定日期的心情分數與相關筆記。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>| 欄位名稱     | 資料類型 (SQLite) | 約束/索引                   | 欄位描述                                     |
+</span></span><span style=display:flex><span>| :----------- | :---------------- | :-------------------------- | :------------------------------------------- |
+</span></span><span style=display:flex><span>| <span style=color:#e6db74>`id`</span>         | <span style=color:#e6db74>`INTEGER`</span>         | <span style=color:#e6db74>`PK`</span>, <span style=color:#e6db74>`AUTOINCREMENT`</span>       | 紀錄的唯一識別碼                             |
+</span></span><span style=display:flex><span>| <span style=color:#e6db74>`user_id`</span>    | <span style=color:#e6db74>`INTEGER`</span>         | <span style=color:#e6db74>`FK(users.id)`</span>, <span style=color:#e6db74>`NOT NULL`</span>  | 關聯至 <span style=color:#e6db74>`users`</span> 表，表示該心情紀錄的擁有者    |
+</span></span><span style=display:flex><span>| <span style=color:#e6db74>`rating`</span>     | <span style=color:#e6db74>`INTEGER`</span>         | <span style=color:#e6db74>`NOT NULL`</span>                  | 心情評分 (1-5 的整數)                        |
+</span></span><span style=display:flex><span>| <span style=color:#e6db74>`notes`</span>      | <span style=color:#e6db74>`TEXT`</span>            | <span style=color:#e6db74>`NULLABLE`</span>                  | 對當天心情的選填文字描述                     |
+</span></span><span style=display:flex><span>| <span style=color:#e6db74>`log_date`</span>   | <span style=color:#e6db74>`TEXT`</span>            | <span style=color:#e6db74>`NOT NULL`</span>                  | 記錄心情的日期 (`YYYY-MM-DD` 格式)           |
+</span></span><span style=display:flex><span>| <span style=color:#e6db74>`created_at&#34; | `</span>TEXT`            | <span style=color:#e6db74>`NOT NULL`</span>                  | 紀錄建立時間 (ISO 8601 格式)                 |
+</span></span><span style=display:flex><span>|              |                   | <span style=color:#e6db74>`UNIQUE(user_id, log_date)`</span> | 唯一約束，確保一個使用者一天只能記錄一次心情 |
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>---
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## 3. 實體關係圖 (Entity-Relationship Diagram - ERD)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>```mermaid
+</span></span><span style=display:flex><span>erDiagram
+</span></span><span style=display:flex><span>    users {
+</span></span><span style=display:flex><span>        INTEGER id
+</span></span><span style=display:flex><span>        TEXT email
+</span></span><span style=display:flex><span>        TEXT password_hash
+</span></span><span style=display:flex><span>        TEXT created_at
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    habits {
+</span></span><span style=display:flex><span>        INTEGER id
+</span></span><span style=display:flex><span>        INTEGER user_id
+</span></span><span style=display:flex><span>        TEXT name
+</span></span><span style=display:flex><span>        TEXT created_at
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    habit_logs {
+</span></span><span style=display:flex><span>        INTEGER id
+</span></span><span style=display:flex><span>        INTEGER habit_id
+</span></span><span style=display:flex><span>        TEXT log_date
+</span></span><span style=display:flex><span>        TEXT created_at
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    mood_logs {
+</span></span><span style=display:flex><span>        INTEGER id
+</span></span><span style=display:flex><span>        INTEGER user_id
+</span></span><span style=display:flex><span>        INTEGER rating
+</span></span><span style=display:flex><span>        TEXT notes
+</span></span><span style=display:flex><span>        TEXT log_date
+</span></span><span style=display:flex><span>        TEXT created_at
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    users ||--o{ habits : &#34;定義&#34;
+</span></span><span style=display:flex><span>    users ||--o{ mood_logs : &#34;記錄&#34;
+</span></span><span style=display:flex><span>    habits ||--o{ habit_logs : &#34;完成於&#34;
+</span></span></code></pre></div><h2 id=4-關聯文字說明>4. 關聯文字說明</h2><ul><li><strong>users 與 habits</strong>: 一對多 (<code>1-to-Many</code>) 關係。一個使用者可以定義多個不同的習慣。</li><li><strong>users 與 mood_logs</strong>: 一對多 (<code>1-to-Many</code>) 關係。一個使用者可以有多筆每日心情紀錄。</li><li><strong>habits 與 habit_logs</strong>: 一對多 (<code>1-to-Many</code>) 關係。一個已定義的習慣可以有多筆完成紀錄（每天一筆）。</li></ul><hr><h2 id=5-資料庫填充腳本-database-seeding-script>5. 資料庫填充腳本 (Database Seeding Script)</h2><p>以下 SQL 腳本可用於初始化資料庫並填充範例資料，方便開發與測試。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sql data-lang=sql><span style=display:flex><span><span style=color:#75715e>-- 清除舊資料 (可選)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>DELETE</span> <span style=color:#66d9ef>FROM</span> mood_logs;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>DELETE</span> <span style=color:#66d9ef>FROM</span> habit_logs;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>DELETE</span> <span style=color:#66d9ef>FROM</span> habits;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>DELETE</span> <span style=color:#66d9ef>FROM</span> users;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>-- 填充 `users` 表
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>INSERT</span> <span style=color:#66d9ef>INTO</span> users (id, email, password_hash, created_at) <span style=color:#66d9ef>VALUES</span>
+</span></span><span style=display:flex><span>(<span style=color:#ae81ff>1</span>, <span style=color:#e6db74>&#39;alice@example.com&#39;</span>, <span style=color:#e6db74>&#39;hashed_password_1&#39;</span>, <span style=color:#e6db74>&#39;2025-08-25 10:00:00&#39;</span>),
+</span></span><span style=display:flex><span>(<span style=color:#ae81ff>2</span>, <span style=color:#e6db74>&#39;bob@example.com&#39;</span>, <span style=color:#e6db74>&#39;hashed_password_2&#39;</span>, <span style=color:#e6db74>&#39;2025-08-25 10:05:00&#39;</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>-- 填充 `habits` 表 (Alice 的習慣)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>INSERT</span> <span style=color:#66d9ef>INTO</span> habits (id, user_id, name, created_at) <span style=color:#66d9ef>VALUES</span>
+</span></span><span style=display:flex><span>(<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, <span style=color:#e6db74>&#39;每日運動 30 分鐘&#39;</span>, <span style=color:#e6db74>&#39;2025-08-25 10:10:00&#39;</span>),
+</span></span><span style=display:flex><span>(<span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>1</span>, <span style=color:#e6db74>&#39;閱讀 10 頁書&#39;</span>, <span style=color:#e6db74>&#39;2025-08-25 10:11:00&#39;</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>-- 填充 `habits` 表 (Bob 的習慣)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>INSERT</span> <span style=color:#66d9ef>INTO</span> habits (id, user_id, name, created_at) <span style=color:#66d9ef>VALUES</span>
+</span></span><span style=display:flex><span>(<span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>2</span>, <span style=color:#e6db74>&#39;練習冥想 15 分鐘&#39;</span>, <span style=color:#e6db74>&#39;2025-08-25 10:15:00&#39;</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>-- 填充 `habit_logs` 表 (打卡紀錄)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>INSERT</span> <span style=color:#66d9ef>INTO</span> habit_logs (habit_id, log_date, created_at) <span style=color:#66d9ef>VALUES</span>
+</span></span><span style=display:flex><span>(<span style=color:#ae81ff>1</span>, <span style=color:#e6db74>&#39;2025-08-23&#39;</span>, <span style=color:#e6db74>&#39;2025-08-23 20:00:00&#39;</span>), <span style=color:#75715e>-- Alice 運動
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>(<span style=color:#ae81ff>1</span>, <span style=color:#e6db74>&#39;2025-08-24&#39;</span>, <span style=color:#e6db74>&#39;2025-08-24 20:05:00&#39;</span>), <span style=color:#75715e>-- Alice 運動
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>(<span style=color:#ae81ff>2</span>, <span style=color:#e6db74>&#39;2025-08-24&#39;</span>, <span style=color:#e6db74>&#39;2025-08-24 22:00:00&#39;</span>), <span style=color:#75715e>-- Alice 閱讀
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>(<span style=color:#ae81ff>3</span>, <span style=color:#e6db74>&#39;2025-08-24&#39;</span>, <span style=color:#e6db74>&#39;2025-08-24 08:00:00&#39;</span>); <span style=color:#75715e>-- Bob 冥想
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#75715e>-- 填充 `mood_logs` 表
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>INSERT</span> <span style=color:#66d9ef>INTO</span> mood_logs (user_id, rating, notes, log_date, created_at) <span style=color:#66d9ef>VALUES</span>
+</span></span><span style=display:flex><span>(<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>5</span>, <span style=color:#e6db74>&#39;運動完感覺很好！&#39;</span>, <span style=color:#e6db74>&#39;2025-08-23&#39;</span>, <span style=color:#e6db74>&#39;2025-08-23 21:00:00&#39;</span>),
+</span></span><span style=display:flex><span>(<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>4</span>, <span style=color:#e6db74>&#39;有點累，但還是讀完書了。&#39;</span>, <span style=color:#e6db74>&#39;2025-08-24&#39;</span>, <span style=color:#e6db74>&#39;2025-08-24 22:30:00&#39;</span>),
+</span></span><span style=display:flex><span>(<span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>5</span>, <span style=color:#e6db74>&#39;冥想讓一天有個平靜的開始。&#39;</span>, <span style=color:#e6db74>&#39;2025-08-24&#39;</span>, <span style=color:#e6db74>&#39;2025-08-24 09:00:00&#39;</span>);
+</span></span></code></pre></div><pre tabindex=0><code>
+
+## Part 5：建立本地資料庫檔案與文件
+
+### Step 1：建立一個空的資料庫檔案
+
+我們要在專案的根目錄（與 `docs` 資料夾同層）建立一個空的資料庫檔案。這一步就像是我們買了一本全新的、精裝的帳本，外面看起來很漂亮，但裡面還沒有任何內容。
+
+在 VS Code 的檔案總管中，對著根目錄的空白處按右鍵，選擇「New File」，並將檔案命名為 `database.db`。
+
+### Step 2：提交至 GitHub
+
+在原始碼管理頁面，你會看到 `DATABASE_SCHEMA.md` 和 `database.db` 這兩個新檔案。將它們都按 `+` (Stage Changes)。
+
+輸入 Commit 訊息: `docs: Add database schema and create empty db file`
+
+點擊打勾按鈕 (Commit)，然後同步變更 (Push)。
+
+## 結語：數據的家，基石已定
+
+太棒了！這次的 commit，代表著我們專案的**「數據地基」**已經正式打樁完成！
+
+有了這份資料庫藍圖，我們後端藍圖的規劃就只剩下最後一塊，也是與外界溝通最關鍵的一塊拼圖了。明天，我們要交給「服務生 (API)」一份精準的「菜單」，讓他知道如何跟廚房溝通。我們將產出後端開發最重要的契約——**「Web API 規格書」**！
+</code></pre></div></article><div class="not-prose my-8 p-6 rounded-lg border transition-colors" style=background-color:var(--code-bg);border-color:var(--border-color)><div class="flex flex-col sm:flex-row sm:items-center justify-between mb-4 pb-4 border-b" style=border-color:var(--border-color)><div><span class="text-xs font-semibold uppercase tracking-wider" style=color:var(--text-secondary)>Series</span><h3 class="text-lg font-bold mt-1"><a href=/ChiYu-Blob/series/2025ithomeironman/ class=hover:underline style=color:var(--link-color)>2025iThomeIronman</a></h3></div><div class="mt-2 sm:mt-0 text-sm font-medium px-3 py-1 rounded-full border" style=background-color:var(--bg-color);color:var(--text-secondary);border-color:var(--border-color)>Part 9 of 17</div></div><div class="series-list-container relative"><ol class="list-none space-y-1 relative" id=series-list-2025ithomeironman><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday1/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">01.</span>
+<span>Day 1: 【啟程】嘿，AI！我們來做個網站，但這次，我們約法三章</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday2/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">02.</span>
+<span>Day 2: 【心法篇】開發者的航海圖：什麼是文件驅動開發 (DDD)？</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday3/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">03.</span>
+<span>Day 3: 【工具篇 #1】萬丈高樓平地起：建置本地開發環境</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday4/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">04.</span>
+<span>Day 4: 【工具篇 #2】程式碼的時光機：Git 與 GitHub 版本控制</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday5/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">05.</span>
+<span>Day 5: 【工具篇 #3】終端機裡的魔法：什麼是 Vibe Coding 與 Gemini CLI？</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday6/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">06.</span>
+<span>Day 6: 【文件 #1】專案的靈魂：用 Gemini CLI 生成「專案章程」</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday7/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">07.</span>
+<span>Day 7: 【文件 #2】使用者的旅程：用 Gemini CLI 描繪「使用者故事」</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday8/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">08.</span>
+<span>Day 8: 【文件 #3】系統的心臟：用 Gemini CLI 設計「軟體架構文件」</span></a></li><li class="series-item p-2 rounded-md transition-colors current-series-item" style="background-color:var(--bg-color);border:1px solid var(--border-color)"><a href=javascript:void(0); class="flex items-start cursor-default" style=color:var(--text-color)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">09.</span>
+<span class=font-bold>Day 9: 【文件 #4】數據的家：用 Gemini 規劃「資料庫綱要」</span>
+<span class="ml-2 text-xs px-2 py-0.5 rounded-full bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">Current</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday10/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">10.</span>
+<span>Day 10: 【文件 #5】溝通的契約：用 Gemini 撰寫「Web API 規格書」</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday11/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">11.</span>
+<span>Day 11: 【心法 #2】透過AI幫我們生成Prompt</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday12/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">12.</span>
+<span>Day 12: 【後端 #1】起手式：AI 代理人 生成模組化的 Flask 專案</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday13/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">13.</span>
+<span>Day 13: 【後端 #2】AI 建築師：依藍圖自動建構 CRUD API</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday14/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">14.</span>
+<span>Day 14: 【DevOps #1】AI 品管員：設定 GitHub Actions 自動化程式碼檢查</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday15/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">15.</span>
+<span>Day 15: 【後端 #3】API 測試：用 Gemini CLI 輔助撰寫 Pytest</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday16/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">16.</span>
+<span>Day 16: 【整合篇】後端竣工！回顧與展望</span></a></li><li class="series-item p-2 rounded-md transition-colors"><a href=/ChiYu-Blob/posts/2025ithomeironmanday17/ class="flex items-start hover:text-blue-500" style=color:var(--text-secondary)><span class="mr-3 font-mono text-sm opacity-60 w-6 text-right">17.</span>
+<span>Day 17: 【前端 #0】前端世界的基石： HTML, CSS 與 JavaScript</span></a></li></ol><button onclick=toggleSeriesList(this) class="w-full mt-4 text-xs font-medium text-center py-2 border-t hover:bg-opacity-50 transition-colors" style=color:var(--text-secondary);border-color:var(--border-color)>
+Show all 17 posts</button><style>#series-list-2025ithomeironman{max-height:300px;overflow-y:auto;padding-right:5px}#series-list-2025ithomeironman::-webkit-scrollbar{width:4px}#series-list-2025ithomeironman::-webkit-scrollbar-track{background:0 0}#series-list-2025ithomeironman::-webkit-scrollbar-thumb{background-color:var(--border-color);border-radius:4px}</style></div></div><script>function toggleSeriesList(e){const t=e.previousElementSibling;t.style.maxHeight==="none"?(t.style.maxHeight="300px",e.innerText="Show all 17 posts"):(t.style.maxHeight="none",e.innerText="Collapse list")}document.addEventListener("DOMContentLoaded",()=>{const e=document.querySelector(".current-series-item");e&&e.scrollIntoView({behavior:"smooth",block:"nearest"})})</script><nav class="flex justify-between mt-16 pt-8 border-t not-prose" style=border-color:var(--border-color)><div><a href=/ChiYu-Blob/posts/2025ithomeironmanday8/ class="block p-4 rounded-lg transition-colors" style=color:var(--text-secondary)><span class=text-sm>上一篇</span>
+<span class="block font-semibold mt-1" style=color:var(--text-color)>Day 8: 【文件 #3】系統的心臟：用 Gemini CLI 設計「軟體架構文件」 &larr;</span></a></div><div class=text-right><a href=/ChiYu-Blob/posts/2025ithomeironmanday10/ class="block p-4 rounded-lg transition-colors" style=color:var(--text-secondary)><span class=text-sm>下一篇</span>
+<span class="block font-semibold mt-1" style=color:var(--text-color)>&rarr; Day 10: 【文件 #5】溝通的契約：用 Gemini 撰寫「Web API 規格書」</span></a></div></nav><div class="mt-16 pt-8 border-t not-prose" style=border-color:var(--border-color)><h3 class="text-xl font-bold mb-6">相關文章</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-4"><a href=/ChiYu-Blob/posts/2025ithomeironmanday8/ class="block p-4 rounded-lg transition-colors" style="border:1px solid var(--border-color)"><span class="font-semibold block" style=color:var(--text-color)>Day 8: 【文件 #3】系統的心臟：用 Gemini CLI 設計「軟體架構文件」</span><p class="text-sm mt-1" style=color:var(--text-secondary)>安安，我是 ChiYu！
+前兩天，我們完成了專案的「出生證明」(專案章程) 和「使用者地圖」(使用者故事)。我們現在非常清楚「為誰而做」以 …</p></a><a href=/ChiYu-Blob/posts/2025ithomeironmanday7/ class="block p-4 rounded-lg transition-colors" style="border:1px solid var(--border-color)"><span class="font-semibold block" style=color:var(--text-color)>Day 7: 【文件 #2】使用者的旅程：用 Gemini CLI 描繪「使用者故事」</span><p class="text-sm mt-1" style=color:var(--text-secondary)>安安，我是 ChiYu！
+昨天，我們確立了專案的「北極星」——專案章程，並在 GitHub 上留下了第一個不可磨滅的印記。如果說昨天的「專案 …</p></a><a href=/ChiYu-Blob/posts/2025ithomeironmanday16/ class="block p-4 rounded-lg transition-colors" style="border:1px solid var(--border-color)"><span class="font-semibold block" style=color:var(--text-color)>Day 16: 【整合篇】後端竣工！回顧與展望</span><p class="text-sm mt-1" style=color:var(--text-secondary)>安安，我是 ChiYu！
+走到這一步，請先放下鍵盤，靠在椅背上，深呼吸，然後給自己一個最真誠、最響亮的掌聲！你真的非常、非常了不起！
+今天， …</p></a><a href=/ChiYu-Blob/posts/2025ithomeironmanday15/ class="block p-4 rounded-lg transition-colors" style="border:1px solid var(--border-color)"><span class="font-semibold block" style=color:var(--text-color)>Day 15: 【後端 #3】API 測試：用 Gemini CLI 輔助撰寫 Pytest</span><p class="text-sm mt-1" style=color:var(--text-secondary)>安安，我是 ChiYu！
+昨天，我們的 CI 品管員 (GitHub Actions) 成功上崗，確保了所有程式碼的「風格」都符合最高標準。 …</p></a><a href=/ChiYu-Blob/posts/2025ithomeironmanday14/ class="block p-4 rounded-lg transition-colors" style="border:1px solid var(--border-color)"><span class="font-semibold block" style=color:var(--text-color)>Day 14: 【DevOps #1】AI 品管員：設定 GitHub Actions 自動化程式碼檢查</span><p class="text-sm mt-1" style=color:var(--text-secondary)>安安，我是 ChiYu！
+我們前幾天火力全開，後端 API 核心功能都搞定了。我們的後端架構現在什麼功能都做得出來！但問題來了，我們怎麼保證 …</p></a></div></div><div class="share-buttons not-prose mt-8 border-t pt-8" style=border-color:var(--border-color)><h3 class="text-base font-semibold mb-4 opacity-70">分享此文章：</h3><div class="flex gap-4"><a href="https://www.facebook.com/sharer/sharer.php?u=%2fChiYu-Blob%2fposts%2f2025ithomeironmanday9%2f" target=_blank rel="noopener noreferrer" class="share-btn text-blue-600 hover:opacity-80" title="分享到 Facebook"><svg class="w-6 h-6" fill="currentcolor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312.0 2.686.235 2.686.235v2.953H15.83c-1.491.0-1.962.925-1.962 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+</a><a href="https://twitter.com/intent/tweet?url=%2fChiYu-Blob%2fposts%2f2025ithomeironmanday9%2f&text=Day%209%3a%20%e3%80%90%e6%96%87%e4%bb%b6%20%234%e3%80%91%e6%95%b8%e6%93%9a%e7%9a%84%e5%ae%b6%ef%bc%9a%e7%94%a8%20Gemini%20%e8%a6%8f%e5%8a%83%e3%80%8c%e8%b3%87%e6%96%99%e5%ba%ab%e7%b6%b1%e8%a6%81%e3%80%8d" target=_blank rel="noopener noreferrer" class="share-btn text-gray-800 dark:text-gray-200 hover:opacity-80" title="分享到 X"><svg class="w-6 h-6" fill="currentcolor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+</a><a href="https://www.linkedin.com/shareArticle?mini=true&url=%2fChiYu-Blob%2fposts%2f2025ithomeironmanday9%2f&title=Day%209%3a%20%e3%80%90%e6%96%87%e4%bb%b6%20%234%e3%80%91%e6%95%b8%e6%93%9a%e7%9a%84%e5%ae%b6%ef%bc%9a%e7%94%a8%20Gemini%20%e8%a6%8f%e5%8a%83%e3%80%8c%e8%b3%87%e6%96%99%e5%ba%ab%e7%b6%b1%e8%a6%81%e3%80%8d" target=_blank rel="noopener noreferrer" class="share-btn text-blue-700 hover:opacity-80" title="分享到 LinkedIn"><svg class="w-6 h-6" fill="currentcolor" viewBox="0 0 24 24"><path d="M19 0H5C2.239.0.0 2.239.0 5v14c0 2.761 2.239 5 5 5h14c2.762.0 5-2.239 5-5V5c0-2.761-2.238-5-5-5zM8 19H5V8h3v11zM6.5 6.732c-.966.0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zM20 19h-3v-5.604c0-3.368-4-3.113-4 0V19h-3V8h3v1.765c1.396-2.586 7-2.777 7 2.476V19z"/></svg>
+</a><a href="https://social-plugins.line.me/lineit/share?url=%2fChiYu-Blob%2fposts%2f2025ithomeironmanday9%2f" target=_blank rel="noopener noreferrer" class="share-btn text-green-500 hover:opacity-80" title="分享到 Line"><svg class="w-6 h-6" fill="currentcolor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 5.85 2 10.53c0 2.68 1.49 5.08 3.81 6.66-.17.6-.62 2.18-.73 2.61-.06.25-.03.5.21.53.22.03.48-.12.67-.23 2.8-1.63 3.05-1.77 3.63-1.87.8.11 1.62.18 2.41.18 5.52.0 10-3.85 10-8.53S17.52 2 12 2zm0 14.93c-.76.0-1.53-.07-2.27-.2-.22-.04-.45.01-.64.12-.52.29-1.82 1.05-2.78 1.6.17-.85.42-1.8.52-2.3.06-.3-.06-.6-.3-.77C4.7 13.1 3.5 11.2 3.5 10.53c0-3.85 3.81-6.98 8.5-6.98s8.5 3.13 8.5 6.98-3.81 6.4-8.5 6.4z"/></svg></a></div></div><div id=giscus-container class="mt-16 pt-8 border-t not-prose" style=border-color:var(--border-color)></div></main></div></div><aside class="w-64 flex-shrink-0 desktop-sidebar pl-8"><div class="sticky top-20" data-pagefind-ignore><div class="mb-8 text-center" data-pagefind-ignore><img src=/ChiYu-Blob/images/avatar.jpg alt=個人大頭貼 class="w-32 h-32 rounded-full mx-auto object-cover border-2" style=border-color:var(--border-color) data-pagefind-ignore></div><div class="text-center mb-8" data-pagefind-ignore><a href=mailto:iamhandsomeboy1129@gmail.com class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-white transition-opacity hover:opacity-90" style=background-color:var(--link-color)><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1.0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1.0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+<span class="text-sm font-medium">聯絡我</span></a></div><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>文章月曆</h3><div id=calendar-widget-0f03a423 class=calendar-widget><div class="flex justify-between items-center mb-2 font-semibold"><button class="cal-prev px-2 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700" title=上個月>&lt;</button>
+<span class=cal-month-year></span>
+<button class="cal-next px-2 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700" title=下個月>></button></div><div class="grid grid-cols-7 text-center text-xs gap-y-2" style=color:var(--text-secondary)><span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span></div><div class="cal-days grid grid-cols-7 text-center text-sm mt-2 gap-y-2"></div></div></div><script>(function(){const n=document.getElementById("calendar-widget-0f03a423");if(!n)return;const e={};e["2025-12-17"]="/ChiYu-Blob/dates/2025-12-17/",e["2025-8-20"]="/ChiYu-Blob/dates/2025-08-20/",e["2025-8-21"]="/ChiYu-Blob/dates/2025-08-21/",e["2025-8-22"]="/ChiYu-Blob/dates/2025-08-22/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-8-23"]="/ChiYu-Blob/dates/2025-08-23/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-8-24"]="/ChiYu-Blob/dates/2025-08-24/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-8-25"]="/ChiYu-Blob/dates/2025-08-25/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-26"]="/ChiYu-Blob/dates/2025-08-26/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-27"]="/ChiYu-Blob/dates/2025-08-27/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-28"]="/ChiYu-Blob/dates/2025-08-28/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-29"]="/ChiYu-Blob/dates/2025-08-29/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-30"]="/ChiYu-Blob/dates/2025-08-30/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-31"]="/ChiYu-Blob/dates/2025-08-31/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-1"]="/ChiYu-Blob/dates/2025-09-01/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-2"]="/ChiYu-Blob/dates/2025-09-02/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-3"]="/ChiYu-Blob/dates/2025-09-03/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-4"]="/ChiYu-Blob/dates/2025-09-04/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-5"]="/ChiYu-Blob/dates/2025-09-05/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-7-3"]="/ChiYu-Blob/dates/2025-07-03/",e["2025-6-8"]="/ChiYu-Blob/dates/2025-06-08/",e["2025-6-5"]="/ChiYu-Blob/dates/2025-06-05/";const i=n.querySelector(".cal-month-year"),s=n.querySelector(".cal-days"),a=n.querySelector(".cal-prev"),r=n.querySelector(".cal-next");let t=new Date;function o(t){const n=t.getFullYear(),o=t.getMonth();i.textContent=`${n} 年 ${o+1} 月`,s.innerHTML="";const a=new Date(n,o,1),r=new Date(n,o+1,0),c=a.getDay();for(let e=0;e<c;e++)s.insertAdjacentHTML("beforeend","<div></div>");for(let t=1;t<=r.getDate();t++){const i=`${n}-${o+1}-${t}`;e[i]?s.insertAdjacentHTML("beforeend",`
+                    <a href="${e[i]}" class="block p-1 rounded-full transition-colors font-bold" style="color: var(--link-color); text-decoration: underline; text-decoration-thickness: 2px;">
+                        ${t}
+                    </a>
+                `):s.insertAdjacentHTML("beforeend",`<span class="block p-1">${t}</span>`)}}a.addEventListener("click",()=>{t.setMonth(t.getMonth()-1),o(t)}),r.addEventListener("click",()=>{t.setMonth(t.getMonth()+1),o(t)}),o(t)})()</script><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>所有標籤</h3><div class="flex flex-wrap gap-2"><a href=/ChiYu-Blob/tags/yaml/ class=tag-pill>YAML
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/user-stories/ class=tag-pill>User Stories
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/testing/ class=tag-pill>Testing
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/summary/ class=tag-pill>Summary
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/sqlite/ class=tag-pill>SQLite
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/sql/ class=tag-pill>SQL
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/software-engineering/ class=tag-pill>Software Engineering
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/software-architecture/ class=tag-pill>Software Architecture
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/side-project/ class=tag-pill>Side Project
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/schema/ class=tag-pill>Schema
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/scaffolding/ class=tag-pill>Scaffolding
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/pytest/ class=tag-pill>Pytest
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/project-charter/ class=tag-pill>Project Charter
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/linting/ class=tag-pill>Linting
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/javascript/ class=tag-pill>JavaScript
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/html/ class=tag-pill>HTML
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/hlr/ class=tag-pill>HLR
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/guide/ class=tag-pill>Guide
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/github-actions/ class=tag-pill>GitHub Actions
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/github/ class=tag-pill>GitHub
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/git/ class=tag-pill>Git
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/frontend/ class=tag-pill>Frontend
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/flake8/ class=tag-pill>Flake8
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/efficiency/ class=tag-pill>Efficiency
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/documentation/ class=tag-pill>Documentation
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/database/ class=tag-pill>Database
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/css/ class=tag-pill>CSS
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/crud/ class=tag-pill>CRUD
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/codex/ class=tag-pill>Codex
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/cli/ class=tag-pill>CLI
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/blueprints/ class=tag-pill>Blueprints
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/api/ class=tag-pill>API
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/ai-agent/ class=tag-pill>AI Agent
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/agile/ class=tag-pill>Agile
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/swagger/ class=tag-pill>Swagger
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/python/ class=tag-pill>Python
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/prompt-engineering/ class=tag-pill>Prompt Engineering
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/openapi/ class=tag-pill>OpenAPI
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/ci/ class=tag-pill>CI
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/backend/ class=tag-pill>Backend
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/mermaid/ class=tag-pill>Mermaid
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/hugo/ class=tag-pill>Hugo
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/flask/ class=tag-pill>Flask
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/ddd/ class=tag-pill>DDD
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/ai/ class=tag-pill>AI
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/vibecoding/ class=tag-pill>VibeCoding
+<span class="ml-1 opacity-75">6</span>
+</a><a href=/ChiYu-Blob/tags/gemini/ class=tag-pill>Gemini
+<span class="ml-1 opacity-75">12</span>
+</a><a href=/ChiYu-Blob/tags/2025ithomeironman/ class=tag-pill>2025iThomeIronman
+<span class="ml-1 opacity-75">17</span>
+</a><a href=/ChiYu-Blob/tags/design-patterns/ class=tag-pill>Design Patterns
+<span class="ml-1 opacity-75">24</span>
+</a><a href=/ChiYu-Blob/tags/c class=tag-pill>C#
+<span class="ml-1 opacity-75">24</span></a></div><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>相關連結</h3><div class="flex flex-col space-y-3 mt-4"><a href=https://www.cake.me/me/ChiYuisme target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">cakeresume</span>
+</a><a href=https://github.com/eric861129 target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">github</span>
+</a><a href=https://ithelp.ithome.com.tw/users/20132971/ironman/8253 target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">ithome</span>
+</a><a href=https://www.linkedin.com/in/chiyu-huang/ target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">linkedin</span>
+</a><a href=https://www.threads.com/@chiyuisme target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">threads</span></a></div></div><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>系列文章</h3><ul class=space-y-1><li><a href=/ChiYu-Blob/series/designpattern/ class="flex justify-between"><span>設計模式</span>
+<span class=text-sm>24</span></a></li><li><a href=/ChiYu-Blob/series/2025ithomeironman/ class="flex justify-between"><span>2025 iThome 鐵人賽</span>
+<span class=text-sm>17</span></a></li><li><a href=/ChiYu-Blob/series/hugo-%E9%96%8B%E7%99%BC%E7%B4%80%E9%8C%84/ class="flex justify-between"><span>Hugo 開發紀錄</span>
+<span class=text-sm>1</span></a></li></ul></div></div></aside></div><footer class="mt-16 pt-8 border-t text-center text-sm" style=border-color:var(--border-color);color:var(--text-secondary)><p>&copy; 2025 ChiYu. All Rights Reserved.</p></footer><button id=scroll-to-top-btn class=scroll-to-top title=回到頂部><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentcolor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 15a.5.5.0 00.5-.5V2.707l3.146 3.147a.5.5.0 00.708-.708l-4-4a.5.5.0 00-.708.0l-4 4a.5.5.0 10.708.708L7.5 2.707V14.5a.5.5.0 00.5.5z"/></svg></button></div><div id=sidebar-overlay class=sidebar-overlay></div><aside id=mobile-sidebar class=mobile-sidebar><div class=p-4><aside class=sidebar><div class=sidebar-inner><div class=widget><h3 class=widget-title>系列文章</h3><ul class=widget-list><li><a href=/ChiYu-Blob/series/designpattern/>設計模式
+<span class=posts-count>24</span></a></li><li><a href=/ChiYu-Blob/series/2025ithomeironman/>2025 iThome 鐵人賽
+<span class=posts-count>17</span></a></li><li><a href=/ChiYu-Blob/series/hugo-%E9%96%8B%E7%99%BC%E7%B4%80%E9%8C%84/>Hugo 開發紀錄
+<span class=posts-count>1</span></a></li></ul></div></div></aside><div class="sticky top-20" data-pagefind-ignore><div class="mb-8 text-center" data-pagefind-ignore><img src=/ChiYu-Blob/images/avatar.jpg alt=個人大頭貼 class="w-32 h-32 rounded-full mx-auto object-cover border-2" style=border-color:var(--border-color) data-pagefind-ignore></div><div class="text-center mb-8" data-pagefind-ignore><a href=mailto:iamhandsomeboy1129@gmail.com class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-white transition-opacity hover:opacity-90" style=background-color:var(--link-color)><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1.0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1.0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+<span class="text-sm font-medium">聯絡我</span></a></div><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>文章月曆</h3><div id=calendar-widget-555576bb class=calendar-widget><div class="flex justify-between items-center mb-2 font-semibold"><button class="cal-prev px-2 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700" title=上個月>&lt;</button>
+<span class=cal-month-year></span>
+<button class="cal-next px-2 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700" title=下個月>></button></div><div class="grid grid-cols-7 text-center text-xs gap-y-2" style=color:var(--text-secondary)><span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span></div><div class="cal-days grid grid-cols-7 text-center text-sm mt-2 gap-y-2"></div></div></div><script>(function(){const n=document.getElementById("calendar-widget-555576bb");if(!n)return;const e={};e["2025-12-17"]="/ChiYu-Blob/dates/2025-12-17/",e["2025-8-20"]="/ChiYu-Blob/dates/2025-08-20/",e["2025-8-21"]="/ChiYu-Blob/dates/2025-08-21/",e["2025-8-22"]="/ChiYu-Blob/dates/2025-08-22/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-8-23"]="/ChiYu-Blob/dates/2025-08-23/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-8-24"]="/ChiYu-Blob/dates/2025-08-24/",e["2025-6-11"]="/ChiYu-Blob/dates/2025-06-11/",e["2025-8-25"]="/ChiYu-Blob/dates/2025-08-25/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-26"]="/ChiYu-Blob/dates/2025-08-26/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-27"]="/ChiYu-Blob/dates/2025-08-27/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-28"]="/ChiYu-Blob/dates/2025-08-28/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-29"]="/ChiYu-Blob/dates/2025-08-29/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-30"]="/ChiYu-Blob/dates/2025-08-30/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-8-31"]="/ChiYu-Blob/dates/2025-08-31/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-1"]="/ChiYu-Blob/dates/2025-09-01/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-2"]="/ChiYu-Blob/dates/2025-09-02/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-3"]="/ChiYu-Blob/dates/2025-09-03/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-4"]="/ChiYu-Blob/dates/2025-09-04/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-9-5"]="/ChiYu-Blob/dates/2025-09-05/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-12"]="/ChiYu-Blob/dates/2025-06-12/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-6-13"]="/ChiYu-Blob/dates/2025-06-13/",e["2025-7-3"]="/ChiYu-Blob/dates/2025-07-03/",e["2025-6-8"]="/ChiYu-Blob/dates/2025-06-08/",e["2025-6-5"]="/ChiYu-Blob/dates/2025-06-05/";const i=n.querySelector(".cal-month-year"),s=n.querySelector(".cal-days"),a=n.querySelector(".cal-prev"),r=n.querySelector(".cal-next");let t=new Date;function o(t){const n=t.getFullYear(),o=t.getMonth();i.textContent=`${n} 年 ${o+1} 月`,s.innerHTML="";const a=new Date(n,o,1),r=new Date(n,o+1,0),c=a.getDay();for(let e=0;e<c;e++)s.insertAdjacentHTML("beforeend","<div></div>");for(let t=1;t<=r.getDate();t++){const i=`${n}-${o+1}-${t}`;e[i]?s.insertAdjacentHTML("beforeend",`
+                    <a href="${e[i]}" class="block p-1 rounded-full transition-colors font-bold" style="color: var(--link-color); text-decoration: underline; text-decoration-thickness: 2px;">
+                        ${t}
+                    </a>
+                `):s.insertAdjacentHTML("beforeend",`<span class="block p-1">${t}</span>`)}}a.addEventListener("click",()=>{t.setMonth(t.getMonth()-1),o(t)}),r.addEventListener("click",()=>{t.setMonth(t.getMonth()+1),o(t)}),o(t)})()</script><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>所有標籤</h3><div class="flex flex-wrap gap-2"><a href=/ChiYu-Blob/tags/yaml/ class=tag-pill>YAML
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/user-stories/ class=tag-pill>User Stories
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/testing/ class=tag-pill>Testing
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/summary/ class=tag-pill>Summary
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/sqlite/ class=tag-pill>SQLite
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/sql/ class=tag-pill>SQL
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/software-engineering/ class=tag-pill>Software Engineering
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/software-architecture/ class=tag-pill>Software Architecture
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/side-project/ class=tag-pill>Side Project
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/schema/ class=tag-pill>Schema
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/scaffolding/ class=tag-pill>Scaffolding
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/pytest/ class=tag-pill>Pytest
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/project-charter/ class=tag-pill>Project Charter
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/linting/ class=tag-pill>Linting
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/javascript/ class=tag-pill>JavaScript
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/html/ class=tag-pill>HTML
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/hlr/ class=tag-pill>HLR
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/guide/ class=tag-pill>Guide
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/github-actions/ class=tag-pill>GitHub Actions
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/github/ class=tag-pill>GitHub
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/git/ class=tag-pill>Git
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/frontend/ class=tag-pill>Frontend
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/flake8/ class=tag-pill>Flake8
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/efficiency/ class=tag-pill>Efficiency
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/documentation/ class=tag-pill>Documentation
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/database/ class=tag-pill>Database
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/css/ class=tag-pill>CSS
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/crud/ class=tag-pill>CRUD
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/codex/ class=tag-pill>Codex
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/cli/ class=tag-pill>CLI
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/blueprints/ class=tag-pill>Blueprints
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/api/ class=tag-pill>API
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/ai-agent/ class=tag-pill>AI Agent
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/agile/ class=tag-pill>Agile
+<span class="ml-1 opacity-75">1</span>
+</a><a href=/ChiYu-Blob/tags/swagger/ class=tag-pill>Swagger
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/python/ class=tag-pill>Python
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/prompt-engineering/ class=tag-pill>Prompt Engineering
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/openapi/ class=tag-pill>OpenAPI
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/ci/ class=tag-pill>CI
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/backend/ class=tag-pill>Backend
+<span class="ml-1 opacity-75">2</span>
+</a><a href=/ChiYu-Blob/tags/mermaid/ class=tag-pill>Mermaid
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/hugo/ class=tag-pill>Hugo
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/flask/ class=tag-pill>Flask
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/ddd/ class=tag-pill>DDD
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/ai/ class=tag-pill>AI
+<span class="ml-1 opacity-75">3</span>
+</a><a href=/ChiYu-Blob/tags/vibecoding/ class=tag-pill>VibeCoding
+<span class="ml-1 opacity-75">6</span>
+</a><a href=/ChiYu-Blob/tags/gemini/ class=tag-pill>Gemini
+<span class="ml-1 opacity-75">12</span>
+</a><a href=/ChiYu-Blob/tags/2025ithomeironman/ class=tag-pill>2025iThomeIronman
+<span class="ml-1 opacity-75">17</span>
+</a><a href=/ChiYu-Blob/tags/design-patterns/ class=tag-pill>Design Patterns
+<span class="ml-1 opacity-75">24</span>
+</a><a href=/ChiYu-Blob/tags/c class=tag-pill>C#
+<span class="ml-1 opacity-75">24</span></a></div><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>相關連結</h3><div class="flex flex-col space-y-3 mt-4"><a href=https://www.cake.me/me/ChiYuisme target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">cakeresume</span>
+</a><a href=https://github.com/eric861129 target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">github</span>
+</a><a href=https://ithelp.ithome.com.tw/users/20132971/ironman/8253 target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">ithome</span>
+</a><a href=https://www.linkedin.com/in/chiyu-huang/ target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">linkedin</span>
+</a><a href=https://www.threads.com/@chiyuisme target=_blank rel="noopener noreferrer" class="transition-colors flex items-center gap-2 group" style=color:var(--text-secondary)><span class="group-hover:text-[var(--link-color)] transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span>
+<span class="text-base group-hover:text-[var(--link-color)] transition-colors">threads</span></a></div></div><div class=mt-8><h3 class="text-xl font-bold mb-4 pb-2 border-b" style=border-color:var(--border-color)>系列文章</h3><ul class=space-y-1><li><a href=/ChiYu-Blob/series/designpattern/ class="flex justify-between"><span>設計模式</span>
+<span class=text-sm>24</span></a></li><li><a href=/ChiYu-Blob/series/2025ithomeironman/ class="flex justify-between"><span>2025 iThome 鐵人賽</span>
+<span class=text-sm>17</span></a></li><li><a href=/ChiYu-Blob/series/hugo-%E9%96%8B%E7%99%BC%E7%B4%80%E9%8C%84/ class="flex justify-between"><span>Hugo 開發紀錄</span>
+<span class=text-sm>1</span></a></li></ul></div></div></div></aside><script src=/ChiYu-Blob/pagefind/pagefind-ui.js onload=initPagefind()></script><script src=https://cdn.jsdelivr.net/npm/medium-zoom@1.0.8/dist/medium-zoom.min.js></script><script type=module>
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ 
+            startOnLoad: true, 
+            theme: document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default' 
+        });
+    </script><script src=/ChiYu-Blob/js/main.min.0193b07ef6d75c398d0ddd095576631329ae07bdc4f8790273143cfb31c1c9c5.js integrity="sha256-AZOwfvbXXDmNDd0JVXZjEymuB73E+HkCcxQ8+zHBycU=" crossorigin=anonymous></script></body></html>
