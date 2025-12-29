@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>開發雜談 on ChiYu Code Journey</title><link>/ChiYu-Blob/categories/%E9%96%8B%E7%99%BC%E9%9B%9C%E8%AB%87/</link><description>Recent content in 開發雜談 on ChiYu Code Journey</description><generator>Hugo -- gohugo.io</generator><language>zh-TW</language><lastBuildDate>Mon, 29 Dec 2025 00:00:00 +0800</lastBuildDate><atom:link href="/ChiYu-Blob/categories/%E9%96%8B%E7%99%BC%E9%9B%9C%E8%AB%87/index.xml" rel="self" type="application/rss+xml"/><item><title>【開發雜談】Vibe Coding 2.0：從文件驅動 (DDD) 進化到規格驅動 (SDD)，讓 AI 真正為你所用</title><link>/ChiYu-Blob/posts/vibe-coding-2-0-sdd/</link><pubDate>Mon, 29 Dec 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/vibe-coding-2-0-sdd/</guid><description>Hi 大家好，我是 ChiYu！
+最近在社群和鐵人賽裡，我們聊了很多關於 Vibe Coding 的話題。那種「指尖在鍵盤上飛舞，AI 像讀心術一樣把程式碼一行行噴出來」的感覺，確實很容易讓人上癮，對吧？
+但身為一個在代碼海裡打滾多年的資深工程師，我相信你在激情過後，一定也遇過這種「賢者時間」： 看著 AI 幫你寫出來的那幾千行程式碼，雖然能跑，但結構鬆散、變數命名隨意，甚至埋了一些你現在看不出來、但下個月會讓你加班到天亮的 Bug。
+我們之前談過 DDD (Document Driven Development，文件驅動開發)，強調「先有文件，才有 Code」，這是我們馴服 AI 的第一步。但今天，我要帶大家進入更深一層的領域。
+如果說 DDD 是我們跟 AI 簽訂的「君子協定」，那麼今天要介紹的 SDD (Spec Driven Development，規格驅動開發)，就是把協定升級成「法律條文」。
+準備好了嗎？我們來聊聊，為什麼你需要 SDD。
+一、 回顧 DDD：我們為什麼要「左移」？ 在進入新世界前，我們不能忘本。DDD 的核心價值在於 Shift-Left (左移)。
+傳統的開發模式（或者是失控的 Vibe Coding），往往是「右移」的：
+有一個模糊的想法。 直接開始寫 Code (或是叫 Copilot 寫)。 發現邏輯不通。 打掉重練 (Refactor)。 這個「打掉重練」的成本是巨大的。DDD 告訴我們：「在寫 Code 之前，先用自然語言把邏輯理清楚。」
+在文字階段（Document）修改邏輯，成本趨近於零；但在程式碼階段（Code）修改邏輯，成本是指數級上升。所以我們寫文件，我們建立 SSoT (Single Source of Truth，單一真理來源)，讓 AI 有所依據。
+但是，DDD 還有一個致命的弱點。
+那就是 「文件與程式碼的同步性 (Sync Rot)」。 人是懶惰的，AI 是被動的。當專案趕上線的時候，你改了 Code 修 Bug，卻往往忘了回頭去改文件。久而久之，文件變成了「僅供參考」的歷史遺跡，AI 讀了過期的文件，寫出了過期的 Code。</description></item></channel></rss>

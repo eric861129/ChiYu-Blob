@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Vibe Coding on ChiYu Code Journey</title><link>/ChiYu-Blob/tags/vibe-coding/</link><description>Recent content in Vibe Coding on ChiYu Code Journey</description><generator>Hugo -- gohugo.io</generator><language>zh-TW</language><lastBuildDate>Sat, 20 Sep 2025 00:00:00 +0800</lastBuildDate><atom:link href="/ChiYu-Blob/tags/vibe-coding/index.xml" rel="self" type="application/rss+xml"/><item><title>【完賽感言】左手藍圖，右手魔法：一趟旅程的結束與反思</title><link>/ChiYu-Blob/posts/2025ithomeironmanday32/</link><pubDate>Sat, 20 Sep 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday32/</guid><description>安安！我是 ChiYu！
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Vibe Coding on ChiYu Code Journey</title><link>/ChiYu-Blob/tags/vibe-coding/</link><description>Recent content in Vibe Coding on ChiYu Code Journey</description><generator>Hugo -- gohugo.io</generator><language>zh-TW</language><lastBuildDate>Mon, 29 Dec 2025 00:00:00 +0800</lastBuildDate><atom:link href="/ChiYu-Blob/tags/vibe-coding/index.xml" rel="self" type="application/rss+xml"/><item><title>【完賽感言】左手藍圖，右手魔法：一趟旅程的結束與反思</title><link>/ChiYu-Blob/posts/2025ithomeironmanday32/</link><pubDate>Sat, 20 Sep 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday32/</guid><description>安安！我是 ChiYu！
 三十天竟然就這樣過去了耶！回想一開始，真的只有一個超模糊的想法，就憑著一股傻勁跟對 AI 的好奇心與信任，直接衝了，開始了這趟「左手藍圖，右手魔法」的冒險。今天，我們總算成功達陣啦！
 說真的，我必須要跟每一個從 Day 1 就有在看文章的夥伴，說聲「感謝！」，也謝謝身旁好友們天天提醒我發文，不要像去年一樣中斷文章。也真心恭喜大家！雖然點閱數不敢說多少，但有人看就讓我很感激了。
 OK！最後一天不寫 code，放輕鬆。咱們來幹最後一件，也是最重要的一件事：好好來回顧一下這趟旅程，看看我們到底搞了些什麼。
@@ -8,4 +8,15 @@ Part 1：我們的協奏曲：從「空想」到「成品」的過程 這趟旅�
 第三樂章：開秀啦！(AI 高速開發) 地圖畫好了，換「右手」上場施展魔法！我們指揮 AI 把後端的伺服器、資料庫模型，以及前端的網頁介面、按鈕互動通通變出來。
 第四樂章：求個穩！(品質與體驗) 我們請來了 GitHub Actions 作為自動化「品管大師」，跑自動化測試。同時也幫我們的 App 裝上「同理心」，優雅處理非同步與錯誤狀態。
 第五樂章：收尾！(打磨與升級) 最後，我們像個「程式碼醫生」，把 code 整理得乾乾淨淨（模組化），讓它以後更好照顧。
-Part 2：聊聊這套方法：「左手藍圖，右手魔法」的好與壞 「好」：我們賺到了什麼？ 心裡超有底 (Certainty)：先寫文件讓我們在動手前就想清楚了變化，實作時方向感超明確。 又快又好 (Velocity &amp;amp; Quality)：規劃就像是給 AI 這匹脫韁野馬裝上了「護欄」，確保產出品質。 一份「活歷史」 (A Living History)：docs 資料夾記錄了專案從 0 到 1 的完整心路歷程。 「壞」：有什麼地方可以做得更好？ 測試可以玩得更 hardcore：下次可以嘗試結合 DDD 與 TDD，先讓 AI 根據規格書寫測試，再寫程式碼。 文件與文章的扣合：如果能更細緻地解釋文件中每一句話如何影響後面的 code， DDD 的威力會更鮮明。 Part 3：AI 時代，我們人類開發者還能幹嘛？ AI 是超強的副駕駛，但方向盤永遠握在我們手上。我們的價值在於：</description></item></channel></rss>
+Part 2：聊聊這套方法：「左手藍圖，右手魔法」的好與壞 「好」：我們賺到了什麼？ 心裡超有底 (Certainty)：先寫文件讓我們在動手前就想清楚了變化，實作時方向感超明確。 又快又好 (Velocity &amp;amp; Quality)：規劃就像是給 AI 這匹脫韁野馬裝上了「護欄」，確保產出品質。 一份「活歷史」 (A Living History)：docs 資料夾記錄了專案從 0 到 1 的完整心路歷程。 「壞」：有什麼地方可以做得更好？ 測試可以玩得更 hardcore：下次可以嘗試結合 DDD 與 TDD，先讓 AI 根據規格書寫測試，再寫程式碼。 文件與文章的扣合：如果能更細緻地解釋文件中每一句話如何影響後面的 code， DDD 的威力會更鮮明。 Part 3：AI 時代，我們人類開發者還能幹嘛？ AI 是超強的副駕駛，但方向盤永遠握在我們手上。我們的價值在於：</description></item><item><title>【開發雜談】Vibe Coding 2.0：從文件驅動 (DDD) 進化到規格驅動 (SDD)，讓 AI 真正為你所用</title><link>/ChiYu-Blob/posts/vibe-coding-2-0-sdd/</link><pubDate>Mon, 29 Dec 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/vibe-coding-2-0-sdd/</guid><description>Hi 大家好，我是 ChiYu！
+最近在社群和鐵人賽裡，我們聊了很多關於 Vibe Coding 的話題。那種「指尖在鍵盤上飛舞，AI 像讀心術一樣把程式碼一行行噴出來」的感覺，確實很容易讓人上癮，對吧？
+但身為一個在代碼海裡打滾多年的資深工程師，我相信你在激情過後，一定也遇過這種「賢者時間」： 看著 AI 幫你寫出來的那幾千行程式碼，雖然能跑，但結構鬆散、變數命名隨意，甚至埋了一些你現在看不出來、但下個月會讓你加班到天亮的 Bug。
+我們之前談過 DDD (Document Driven Development，文件驅動開發)，強調「先有文件，才有 Code」，這是我們馴服 AI 的第一步。但今天，我要帶大家進入更深一層的領域。
+如果說 DDD 是我們跟 AI 簽訂的「君子協定」，那麼今天要介紹的 SDD (Spec Driven Development，規格驅動開發)，就是把協定升級成「法律條文」。
+準備好了嗎？我們來聊聊，為什麼你需要 SDD。
+一、 回顧 DDD：我們為什麼要「左移」？ 在進入新世界前，我們不能忘本。DDD 的核心價值在於 Shift-Left (左移)。
+傳統的開發模式（或者是失控的 Vibe Coding），往往是「右移」的：
+有一個模糊的想法。 直接開始寫 Code (或是叫 Copilot 寫)。 發現邏輯不通。 打掉重練 (Refactor)。 這個「打掉重練」的成本是巨大的。DDD 告訴我們：「在寫 Code 之前，先用自然語言把邏輯理清楚。」
+在文字階段（Document）修改邏輯，成本趨近於零；但在程式碼階段（Code）修改邏輯，成本是指數級上升。所以我們寫文件，我們建立 SSoT (Single Source of Truth，單一真理來源)，讓 AI 有所依據。
+但是，DDD 還有一個致命的弱點。
+那就是 「文件與程式碼的同步性 (Sync Rot)」。 人是懶惰的，AI 是被動的。當專案趕上線的時候，你改了 Code 修 Bug，卻往往忘了回頭去改文件。久而久之，文件變成了「僅供參考」的歷史遺跡，AI 讀了過期的文件，寫出了過期的 Code。</description></item></channel></rss>

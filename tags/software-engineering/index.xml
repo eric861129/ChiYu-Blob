@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Software Engineering on ChiYu Code Journey</title><link>/ChiYu-Blob/tags/software-engineering/</link><description>Recent content in Software Engineering on ChiYu Code Journey</description><generator>Hugo -- gohugo.io</generator><language>zh-TW</language><lastBuildDate>Thu, 04 Sep 2025 00:00:00 +0800</lastBuildDate><atom:link href="/ChiYu-Blob/tags/software-engineering/index.xml" rel="self" type="application/rss+xml"/><item><title>Day 16: 【整合篇】後端竣工！回顧與展望</title><link>/ChiYu-Blob/posts/2025ithomeironmanday16/</link><pubDate>Thu, 04 Sep 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday16/</guid><description>安安，我是 ChiYu！
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Software Engineering on ChiYu Code Journey</title><link>/ChiYu-Blob/tags/software-engineering/</link><description>Recent content in Software Engineering on ChiYu Code Journey</description><generator>Hugo -- gohugo.io</generator><language>zh-TW</language><lastBuildDate>Mon, 29 Dec 2025 00:00:00 +0800</lastBuildDate><atom:link href="/ChiYu-Blob/tags/software-engineering/index.xml" rel="self" type="application/rss+xml"/><item><title>Day 16: 【整合篇】後端竣工！回顧與展望</title><link>/ChiYu-Blob/posts/2025ithomeironmanday16/</link><pubDate>Thu, 04 Sep 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/2025ithomeironmanday16/</guid><description>安安，我是 ChiYu！
 走到這一步，請先放下鍵盤，靠在椅背上，深呼吸，然後給自己一個最真誠、最響亮的掌聲！你真的非常、非常了不起！
 今天，是我們「左手藍圖，右手魔法」協奏曲的上半場終章。我們將暫時放下後端的程式碼，為過去兩週緊湊而充實的奮鬥，畫下一個完美的句點。今天的議程很簡單：慶祝，回顧我們走了多遠，沉澱我們學到了什麼，然後滿懷期待地展望未來。
 Part 1：旅程回顧：從一個模糊的想法到一個會說話的後端 還記得兩週前的我們嗎？那時，我們手中只有一個飄在空中的、模糊的想法：「我想做個能幫助人們的習慣追蹤器」。它很美好，但也很脆弱。
@@ -9,4 +9,15 @@ Part 2：超越程式碼的三個核心心法 在我們為上半場畫下句點�
 心法一：各司其職的藝術 (關注點分離) 回想我們的餐廳比喻： 前台（Frontend） 負責點餐、 廚房（Backend） 負責做菜、 食材庫（Database）負責存貨。它們各司其職，互不干涉，透過定義好的流程（API）來溝通。這在軟體開發中，被稱為「關注點分離 (Separation of Concerns)」 。這不僅是一種技術，更是一種思維的紀律。它讓我們在面對複雜問題時，能夠將其拆解成一個個獨立、可管理的小問題，然後逐一擊破。
 對 Vibe Coding 的啟示是：當你向 AI 提問時，也要保持這種思維紀律。一次只專注在一件事上。正是因為我們將任務拆解成「幫我設計資料庫」、「幫我生成 API」、「幫我寫測試」，我們才避免了 Day 1 那種「我想要一台腳踏車，AI 卻給我一艘航空母艦」的失控窘境。你的問題越聚焦，AI 給你的答案品質就越高，你也越能掌控最終的結果。
 心法二：跟隨慣例，事半功倍 (慣例優於設定) 你可能已經發現，我們遵循了很多「慣例 (Convention)」：測試檔案放在 tests/，CI 設定檔放在 .github/workflows/，依賴套件寫在 requirements.txt。這些都不是硬性規定，但它們是整個開發者社群歷經多年演化，沉澱下來的「最佳實踐」。
-這就是 「慣例優於設定 (Convention over Configuration)」 的哲學。當我們遵循社群普遍認可的慣例時，就等於在使用一種「共通語言」。這使得我們的專案對於任何一位有經驗的開發者（甚至是 AI！）來說，都是熟悉且可預測的。它大幅降低了溝通成本與新成員的學習曲線，同時也讓許多工具能夠「開箱即用」。</description></item></channel></rss>
+這就是 「慣例優於設定 (Convention over Configuration)」 的哲學。當我們遵循社群普遍認可的慣例時，就等於在使用一種「共通語言」。這使得我們的專案對於任何一位有經驗的開發者（甚至是 AI！）來說，都是熟悉且可預測的。它大幅降低了溝通成本與新成員的學習曲線，同時也讓許多工具能夠「開箱即用」。</description></item><item><title>【開發雜談】Vibe Coding 2.0：從文件驅動 (DDD) 進化到規格驅動 (SDD)，讓 AI 真正為你所用</title><link>/ChiYu-Blob/posts/vibe-coding-2-0-sdd/</link><pubDate>Mon, 29 Dec 2025 00:00:00 +0800</pubDate><guid>/ChiYu-Blob/posts/vibe-coding-2-0-sdd/</guid><description>Hi 大家好，我是 ChiYu！
+最近在社群和鐵人賽裡，我們聊了很多關於 Vibe Coding 的話題。那種「指尖在鍵盤上飛舞，AI 像讀心術一樣把程式碼一行行噴出來」的感覺，確實很容易讓人上癮，對吧？
+但身為一個在代碼海裡打滾多年的資深工程師，我相信你在激情過後，一定也遇過這種「賢者時間」： 看著 AI 幫你寫出來的那幾千行程式碼，雖然能跑，但結構鬆散、變數命名隨意，甚至埋了一些你現在看不出來、但下個月會讓你加班到天亮的 Bug。
+我們之前談過 DDD (Document Driven Development，文件驅動開發)，強調「先有文件，才有 Code」，這是我們馴服 AI 的第一步。但今天，我要帶大家進入更深一層的領域。
+如果說 DDD 是我們跟 AI 簽訂的「君子協定」，那麼今天要介紹的 SDD (Spec Driven Development，規格驅動開發)，就是把協定升級成「法律條文」。
+準備好了嗎？我們來聊聊，為什麼你需要 SDD。
+一、 回顧 DDD：我們為什麼要「左移」？ 在進入新世界前，我們不能忘本。DDD 的核心價值在於 Shift-Left (左移)。
+傳統的開發模式（或者是失控的 Vibe Coding），往往是「右移」的：
+有一個模糊的想法。 直接開始寫 Code (或是叫 Copilot 寫)。 發現邏輯不通。 打掉重練 (Refactor)。 這個「打掉重練」的成本是巨大的。DDD 告訴我們：「在寫 Code 之前，先用自然語言把邏輯理清楚。」
+在文字階段（Document）修改邏輯，成本趨近於零；但在程式碼階段（Code）修改邏輯，成本是指數級上升。所以我們寫文件，我們建立 SSoT (Single Source of Truth，單一真理來源)，讓 AI 有所依據。
+但是，DDD 還有一個致命的弱點。
+那就是 「文件與程式碼的同步性 (Sync Rot)」。 人是懶惰的，AI 是被動的。當專案趕上線的時候，你改了 Code 修 Bug，卻往往忘了回頭去改文件。久而久之，文件變成了「僅供參考」的歷史遺跡，AI 讀了過期的文件，寫出了過期的 Code。</description></item></channel></rss>
