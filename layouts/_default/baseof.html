@@ -17,8 +17,8 @@
 
     {{/* 提前整理描述內容，確保前言描述或自動摘要都為純文字且可重複使用 */}}
     {{- $pageDescription := "" -}}
-    {{- with .Description -}}
-        {{- $pageDescription = (. | plainify) -}}
+    {{- if .Description -}}
+        {{- $pageDescription = (.Description | plainify) -}}
     {{- else if .IsPage -}}
         {{- $pageDescription = (.Summary | plainify) -}}
     {{- else if .Site.Params.description -}}
@@ -27,8 +27,8 @@
 
     {{/* 抓取作者名稱，優先前言參數，次要站點設定，供多處共用 */}}
     {{- $pageAuthor := "" -}}
-    {{- with .Params.author -}}
-        {{- $pageAuthor = (printf "%v" .) -}}
+    {{- if .Params.author -}}
+        {{- $pageAuthor = (printf "%v" .Params.author) -}}
     {{- else if .Site.Params.author.name -}}
         {{- $pageAuthor = .Site.Params.author.name -}}
     {{- end -}}
