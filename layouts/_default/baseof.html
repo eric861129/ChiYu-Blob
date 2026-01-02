@@ -32,6 +32,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
     
+    {{/* 動態輸出結構化資料（含文章與麵包屑），方便搜尋引擎理解頁面內容 */}}
+    {{ if .IsPage }}
+        {{/* 取得描述，優先頁面描述，其次摘要，最後站點描述 */}}
+        {{- $ldDescription := "" -}}
+        {{- with .Description }}
+            {{- $ldDescription = (. | plainify) -}}
+        {{- else if .IsPage }}
+            {{- $ldDescription = (.Summary | plainify) -}}
+        {{- else if .Site.Params.description }}
+            {{- $ldDescription = (.Site.Params.description | plainify) -}}
+        {{- end }}
+
+        {{/* 取得作者名稱，優先頁面設定，其次站點設定 */}}
+        {{- $ldAuthor := "" -}}
+        {{- with .Params.author }}
+            {{- $ldAuthor = (printf "%v" .) -}}
+        {{- else if .Site.Params.author.name }}
+            {{- $ldAuthor = .Site.Params.author.name -}}
+        {{- end }}
+
+        {{/* 設定文章日期，若未設置發佈日期則退回建立日期 */}}
+        {{- $publishedTime := cond .PublishDate.IsZero .Date .PublishDate -}}
+        {{- $modifiedTime := cond .Lastmod.IsZero $publishedTime .Lastmod -}}
+        {{- $isoLayout := "2006-01-02T15:04:05Z07:00" -}}
+
+        {{/* 依文章類型切換 Schema 類別，文章使用 BlogPosting，其他頁面使用 Article */}}
+        {{- $articleType := cond (eq .Type "posts") "BlogPosting" "Article" -}}
+
+        {{/* 準備文章結構化資料，包含必填欄位與圖片 fallback */}}
+        {{- $articleLD := dict
+            "@context" "https://schema.org"
+            "@type" $articleType
+            "headline" .Title
+            "description" $ldDescription
+            "datePublished" ($publishedTime.Format $isoLayout)
+            "dateModified" ($modifiedTime.Format $isoLayout)
+            "author" (dict "@type" "Person" "name" $ldAuthor)
+            "mainEntityOfPage" (dict "@type" "WebPage" "@id" .Permalink)
+            "image" (slice $socialImage)
+        -}}
+
+        {{/* 建立麵包屑結構資料：首頁 → 章節（若有） → 當前頁面 */}}
+        {{- $breadcrumbItems := slice
+            (dict "@type" "ListItem" "position" 1 "name" "首頁" "item" .Site.BaseURL)
+        -}}
+        {{- if .Section }}
+            {{- $sectionPage := .Site.GetPage "section" .Section -}}
+            {{- $breadcrumbItems = $breadcrumbItems | append (dict "@type" "ListItem" "position" 2 "name" (or $sectionPage.Title .Section) "item" $sectionPage.Permalink) -}}
+            {{- $breadcrumbItems = $breadcrumbItems | append (dict "@type" "ListItem" "position" 3 "name" .Title "item" .Permalink) -}}
+        {{- else }}
+            {{- $breadcrumbItems = $breadcrumbItems | append (dict "@type" "ListItem" "position" 2 "name" .Title "item" .Permalink) -}}
+        {{- end }}
+        {{- $breadcrumbLD := dict
+            "@context" "https://schema.org"
+            "@type" "BreadcrumbList"
+            "itemListElement" $breadcrumbItems
+        -}}
+
+        {{/* 合併所有需要的 JSON-LD，並排版輸出以利閱讀 */}}
+        {{- $schemas := slice $articleLD $breadcrumbLD -}}
+        <script type="application/ld+json">
+            {{- $schemas | jsonify (dict "indent" "  ") | safeHTML -}}
+        </script>
+    {{ end }}
+    
     <script>
       // 此立即執行函式會在頁面繪製前執行，從根本解決閃爍問題
       (function() {
