@@ -14,63 +14,80 @@
         {{/* 若未設定，退回使用站點大頭貼作為預設分享圖 */}}
         {{ $socialImage = ("/images/avatar.jpg" | absURL) }}
     {{ end }}
+
+    {{/* 提前整理描述內容，確保前言描述或自動摘要都為純文字且可重複使用 */}}
+    {{- $pageDescription := "" -}}
+    {{- with .Description -}}
+        {{- $pageDescription = (. | plainify) -}}
+    {{- else if .IsPage -}}
+        {{- $pageDescription = (.Summary | plainify) -}}
+    {{- else if .Site.Params.description -}}
+        {{- $pageDescription = (.Site.Params.description | plainify) -}}
+    {{- end -}}
+
+    {{/* 抓取作者名稱，優先前言參數，次要站點設定，供多處共用 */}}
+    {{- $pageAuthor := "" -}}
+    {{- with .Params.author -}}
+        {{- $pageAuthor = (printf "%v" .) -}}
+    {{- else if .Site.Params.author.name -}}
+        {{- $pageAuthor = .Site.Params.author.name -}}
+    {{- end -}}
+
+    {{/* 統一處理發佈與更新日期，避免重複計算；同時準備 keywords 供 JSON-LD 使用 */}}
+    {{- $publishedTime := cond .PublishDate.IsZero .Date .PublishDate -}}
+    {{- $modifiedTime := cond .Lastmod.IsZero $publishedTime .Lastmod -}}
+    {{- $isoLayout := "2006-01-02T15:04:05Z07:00" -}}
+    {{- $keywords := slice -}}
+    {{- with .Params.tags -}}
+        {{- $keywords = $keywords | append . -}}
+    {{- end -}}
+    {{- with .Params.categories -}}
+        {{- $keywords = $keywords | append . -}}
+    {{- end -}}
+    {{- $keywords = $keywords | uniq -}}
     <link rel="canonical" href="{{ .Permalink }}">
     <link rel="alternate" hreflang="{{ $hreflang }}" href="{{ .Permalink }}">
-    <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ if .IsPage }}{{ .Summary | plainify }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}">
+    <meta name="description" content="{{ $pageDescription }}">
     
     <meta property="og:title" content="{{ .Title }}">
-    <meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{ if .IsPage }}{{ .Summary | plainify }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}">
+    <meta property="og:description" content="{{ $pageDescription }}">
     <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
     <meta property="og:url" content="{{ .Permalink }}">
     {{ if $socialImage }}<meta property="og:image" content="{{ $socialImage }}">{{ end }}
     
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{{ .Title }}">
-    <meta name="twitter:description" content="{{ with .Description }}{{ . }}{{ else }}{{ if .IsPage }}{{ .Summary | plainify }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}">
+    <meta name="twitter:description" content="{{ $pageDescription }}">
     {{ if $socialImage }}<meta name="twitter:image" content="{{ $socialImage }}">{{ end }}
+    {{ if .IsPage }}
+    {{/* 文章專屬的發佈、更新時間以及作者資訊中繼資料，方便社群與搜尋引擎解析 */}}
+    <meta property="article:published_time" content="{{ $publishedTime.Format $isoLayout }}">
+    <meta property="article:modified_time" content="{{ $modifiedTime.Format $isoLayout }}">
+    {{- with $pageAuthor }}
+    <meta name="author" content="{{ . }}">
+    {{- end }}
+    {{ end }}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
     
     {{/* 動態輸出結構化資料（含文章與麵包屑），方便搜尋引擎理解頁面內容 */}}
     {{ if .IsPage }}
-        {{/* 取得描述，優先頁面描述，其次摘要，最後站點描述 */}}
-        {{- $ldDescription := "" -}}
-        {{- with .Description }}
-            {{- $ldDescription = (. | plainify) -}}
-        {{- else if .IsPage }}
-            {{- $ldDescription = (.Summary | plainify) -}}
-        {{- else if .Site.Params.description }}
-            {{- $ldDescription = (.Site.Params.description | plainify) -}}
-        {{- end }}
-
-        {{/* 取得作者名稱，優先頁面設定，其次站點設定 */}}
-        {{- $ldAuthor := "" -}}
-        {{- with .Params.author }}
-            {{- $ldAuthor = (printf "%v" .) -}}
-        {{- else if .Site.Params.author.name }}
-            {{- $ldAuthor = .Site.Params.author.name -}}
-        {{- end }}
-
-        {{/* 設定文章日期，若未設置發佈日期則退回建立日期 */}}
-        {{- $publishedTime := cond .PublishDate.IsZero .Date .PublishDate -}}
-        {{- $modifiedTime := cond .Lastmod.IsZero $publishedTime .Lastmod -}}
-        {{- $isoLayout := "2006-01-02T15:04:05Z07:00" -}}
-
         {{/* 依文章類型切換 Schema 類別，文章使用 BlogPosting，其他頁面使用 Article */}}
         {{- $articleType := cond (eq .Type "posts") "BlogPosting" "Article" -}}
 
-        {{/* 準備文章結構化資料，包含必填欄位與圖片 fallback */}}
+        {{/* 準備文章結構化資料，包含必填欄位與圖片 fallback；描述、作者、關鍵字皆採共用變數 */}}
         {{- $articleLD := dict
             "@context" "https://schema.org"
             "@type" $articleType
             "headline" .Title
-            "description" $ldDescription
+            "description" $pageDescription
             "datePublished" ($publishedTime.Format $isoLayout)
             "dateModified" ($modifiedTime.Format $isoLayout)
-            "author" (dict "@type" "Person" "name" $ldAuthor)
+            "author" (dict "@type" "Person" "name" $pageAuthor)
             "mainEntityOfPage" (dict "@type" "WebPage" "@id" .Permalink)
             "image" (slice $socialImage)
+            "keywords" $keywords
         -}}
 
         {{/* 建立麵包屑結構資料：首頁 → 章節（若有） → 當前頁面 */}}
