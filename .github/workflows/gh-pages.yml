@@ -32,9 +32,13 @@ jobs:
           hugo-version: '0.123.7'
           extended: true
 
+      # --- ↓↓↓ 部署前檢查：若 buildFuture 啟用，未來文章須加上防護標記 --- 
+      - name: Check future-dated posts
+        run: python3 scripts/check_future_posts.py
+
       # --- ↓↓↓ 關鍵修改 (1/2): 在建置指令中加入 baseURL ---
       - name: Build site
-        run: hugo --minify --gc --buildFuture --baseURL "/ChiYu-Blob/"
+        run: hugo --minify --gc --baseURL "/ChiYu-Blob/"
 
       # --- ↓↓↓ 關鍵修改 (2/2): 修正 Pagefind 的 deprecated 選項 ---
       - name: Build Pagefind search index

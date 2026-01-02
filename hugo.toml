@@ -6,7 +6,8 @@ title = 'ChiYu Code Journey'
 timeZone = 'Asia/Taipei'
 # theme = 'github.com/kdevo/osprey-delight/v5'
 paginate = 5
-buildFuture = true
+# 停用 buildFuture，避免未來日期文章被自動建置
+buildFuture = false
 
 [taxonomies]
   tag = "tags"
