@@ -2,18 +2,32 @@
 <html lang="zh-tw">
 <head>
     {{ template "_internal/google_analytics.html" . }}
+    {{/* 依據站點語系設定產生 hreflang，無設定時預設為繁體中文 */}}
+    {{ $hreflang := default "zh-Hant" .Site.Language.Lang }}
+    {{/* 取得社群分享圖，優先頁面自訂，其次站點參數，最後使用站點大頭貼 */}}
+    {{ $socialImage := "" }}
+    {{ if .Params.image }}
+        {{ $socialImage = (.Params.image | absURL) }}
+    {{ else if .Site.Params.socialImage }}
+        {{ $socialImage = (.Site.Params.socialImage | absURL) }}
+    {{ else }}
+        {{/* 若未設定，退回使用站點大頭貼作為預設分享圖 */}}
+        {{ $socialImage = ("/images/avatar.jpg" | absURL) }}
+    {{ end }}
+    <link rel="canonical" href="{{ .Permalink }}">
+    <link rel="alternate" hreflang="{{ $hreflang }}" href="{{ .Permalink }}">
     <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ if .IsPage }}{{ .Summary | plainify }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}">
     
     <meta property="og:title" content="{{ .Title }}">
     <meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{ if .IsPage }}{{ .Summary | plainify }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}">
     <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
     <meta property="og:url" content="{{ .Permalink }}">
-    {{ with .Params.image }}<meta property="og:image" content="{{ . | absURL }}">{{ end }}
+    {{ if $socialImage }}<meta property="og:image" content="{{ $socialImage }}">{{ end }}
     
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{{ .Title }}">
     <meta name="twitter:description" content="{{ with .Description }}{{ . }}{{ else }}{{ if .IsPage }}{{ .Summary | plainify }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}">
-    {{ with .Params.image }}<meta name="twitter:image" content="{{ . | absURL }}">{{ end }}
+    {{ if $socialImage }}<meta name="twitter:image" content="{{ $socialImage }}">{{ end }}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
