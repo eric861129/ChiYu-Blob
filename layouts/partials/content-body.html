@@ -108,6 +108,28 @@
 </div>
 {{ end }}
 
+{{/* --- ↓↓↓ 熱門文章 / 必讀清單：維持站內關鍵字連結與導流 ↓↓↓ --- */}}
+{{ $featuredPages := where (where (where .Site.RegularPages "Params.featured" true) "Type" "posts") "Date" "le" now }}
+{{ if gt (len $featuredPages) 0 }}
+<div class="mt-16 pt-8 border-t not-prose" style="border-color: var(--border-color);">
+    <h3 class="text-xl font-bold mb-4">熱門文章 / 必讀清單</h3>
+    {{/* 說明文字中保留「設計模式」關鍵字並連到系列頁，提升內部連結品質 */}}
+    <p class="mb-4 text-base" style="color: var(--text-secondary);">
+        想更有系統地掌握「<a href="{{ \"series/designpattern/\" | relURL }}" class="underline">設計模式</a>」系列，或是快速回顧高價值文章，歡迎從下方清單開始閱讀。
+    </p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {{ $featuredSorted := sort $featuredPages "Weight" "asc" "Date" "desc" }}
+        {{ range first 4 $featuredSorted }}
+        <a href="{{ .RelPermalink }}" class="block p-4 rounded-lg transition-colors" style="border: 1px solid var(--border-color); background-color: var(--card-bg);">
+            <span class="font-semibold block" style="color: var(--text-color);">{{ .Title }}</span>
+            <p class="text-sm mt-2" style="color: var(--text-secondary);">{{ .Summary | truncate 80 }}</p>
+        </a>
+        {{ end }}
+    </div>
+</div>
+{{ end }}
+{{/* --- ↑↑↑ 熱門文章 / 必讀清單區塊結束 ↑↑↑ --- */}}
+
 {{ partial "share-buttons.html" . }}
 
 {{ if eq .Type "posts" }}

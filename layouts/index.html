@@ -24,6 +24,23 @@
                 </div>
             </section>
 
+            {{/* --- ↓↓↓ 熱門文章 / 必讀清單區塊，增加高價值內容曝光 ↓↓↓ --- */}}
+            {{/* 取得標記 featured=true、已發佈且類型為 posts 的文章，並依 weight 與日期排序 */}}
+            {{ $featuredPages := where (where (where .Site.RegularPages "Params.featured" true) "Type" "posts") "Date" "le" now }}
+            {{ if gt (len $featuredPages) 0 }}
+            <section class="mt-16">
+                <h2 class="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 border-b pb-3" style="border-color: var(--border-color);">熱門文章 / 必讀清單</h2>
+                <p class="mb-6 text-base" style="color: var(--text-secondary);">為你精選高價值內容，快速掌握重點觀念與系列主題。</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {{ $featuredSorted := sort $featuredPages "Weight" "asc" "Date" "desc" }}
+                    {{ range first 6 $featuredSorted }}
+                        {{ .Render "card" }}
+                    {{ end }}
+                </div>
+            </section>
+            {{ end }}
+            {{/* --- ↑↑↑ 熱門文章 / 必讀清單區塊結束 ↑↑↑ --- */}}
+
             {{/* --- ↓↓↓ 新增區塊：顯示系列文章 ↓↓↓ --- */}}
             <section class="mt-16">
                 <h2 class="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 border-b pb-3" style="border-color: var(--border-color);">系列文章</h2>
